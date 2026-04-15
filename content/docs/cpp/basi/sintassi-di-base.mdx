@@ -1,0 +1,199 @@
+---
+title: Sintassi di Base
+description: Le regole fondamentali della sintassi del C++.
+---
+
+## Cos'è la sintassi?
+
+La **sintassi** è l'insieme delle regole che determinano come scrivere correttamente il codice in un linguaggio di programmazione. Così come in italiano esistono regole grammaticali, in C++ ci sono regole precise su come scrivere le istruzioni.
+
+## Regole fondamentali
+
+### Il punto e virgola
+
+Ogni istruzione in C++ deve terminare con un **punto e virgola** (`;`):
+
+```cpp
+int x = 10;
+cout << "Ciao!" << endl;
+x = x + 1;
+```
+
+Il punto e virgola dice al compilatore che l'istruzione è finita. Dimenticarlo causa un errore di compilazione.
+
+### Le parentesi graffe
+
+I **blocchi di codice** sono delimitati da parentesi graffe `{` e `}`:
+
+```cpp
+int main() {
+    // qui dentro c'è il blocco di main
+    int x = 5;
+    cout << x << endl;
+}
+```
+
+### Le maiuscole contano
+
+Il C++ è **case-sensitive**: fa differenza tra maiuscole e minuscole. Quindi `cout`, `Cout` e `COUT` sono tre cose diverse (solo `cout` è corretto).
+
+```cpp
+int eta = 16;
+int Eta = 20;   // variabile diversa da eta!
+
+cout << eta;    // 16
+cout << Eta;    // 20
+```
+
+### L'indentazione
+
+In C++ l'indentazione (gli spazi a inizio riga) **non è obbligatoria** dal punto di vista del compilatore. Questo programma funziona:
+
+```cpp
+int main(){int x=5;cout<<x;return 0;}
+```
+
+Ma è illeggibile! Per convenzione, si indenta ogni blocco di codice con 4 spazi (o un tab):
+
+```cpp
+int main() {
+    int x = 5;
+    if (x > 0) {
+        cout << "positivo" << endl;
+    }
+    return 0;
+}
+```
+
+### Gli spazi bianchi
+
+Gli spazi, le righe vuote e le indentazioni sono generalmente ignorati dal compilatore. Puoi usarli liberamente per rendere il codice più leggibile.
+
+```cpp
+// Tutto uguale per il compilatore
+int x=5;
+int x = 5;
+int    x    =    5;
+```
+
+## Identificatori
+
+Un **identificatore** è il nome che dai a variabili, funzioni, classi, ecc.
+
+Regole per i nomi:
+
+- Deve iniziare con una lettera (`a-z`, `A-Z`) o un underscore `_`
+- Può contenere lettere, numeri e underscore
+- Non può contenere spazi o caratteri speciali
+- Non può essere una parola riservata del linguaggio
+- È case-sensitive
+
+```cpp
+// Nomi validi
+int eta;
+double altezza_media;
+string nomeUtente;
+int _valore;
+int x1;
+
+// Nomi non validi
+int 2variabile;   // inizia con un numero
+int nome utente;  // contiene uno spazio
+int int;          // è una parola riservata
+```
+
+## Parole riservate
+
+Le **parole riservate** (o keyword) sono parole che hanno un significato speciale in C++ e non possono essere usate come nomi di variabili:
+
+```
+int, float, double, char, bool, void
+if, else, while, for, do, switch, case, break, continue
+return, class, struct, public, private, new, delete
+include, namespace, using, const, ...
+```
+
+## Convenzioni di stile
+
+In C++ esistono diverse convenzioni di stile. Le più comuni sono:
+
+**camelCase**: la prima parola è minuscola, le successive iniziano con maiuscola:
+
+```cpp
+int numeroStudenti;
+string nomeUtente;
+```
+
+**snake_case**: tutte minuscole, parole separate da underscore:
+
+```cpp
+int numero_studenti;
+string nome_utente;
+```
+
+**PascalCase**: ogni parola inizia con maiuscola (usato per le classi):
+
+```cpp
+class NomeClasse;
+struct DatiStudente;
+```
+
+Scegli uno stile e usalo in modo consistente in tutto il codice.
+
+## I tipi di istruzioni
+
+In C++ esistono diversi tipi di istruzioni:
+
+```cpp
+// Dichiarazione di variabile
+int x;
+
+// Assegnazione
+x = 10;
+
+// Dichiarazione con inizializzazione
+int y = 20;
+
+// Chiamata a funzione
+cout << "Ciao" << endl;
+
+// Istruzione di controllo del flusso
+if (x > 0) {
+    cout << "positivo";
+}
+
+// Istruzione di ritorno
+return 0;
+```
+
+## Esempio completo
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Dichiarazione e inizializzazione
+    int numero = 42;
+    double pi = 3.14159;
+    string messaggio = "Il numero magico è: ";
+
+    // Output
+    cout << messaggio << numero << endl;
+    cout << "Pi greco: " << pi << endl;
+
+    // Operazione
+    int doppio = numero * 2;
+    cout << "Il doppio è: " << doppio << endl;
+
+    return 0;
+}
+```
+
+Output:
+
+```
+Il numero magico è: 42
+Pi greco: 3.14159
+Il doppio è: 84
+```

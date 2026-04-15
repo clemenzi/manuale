@@ -1,0 +1,108 @@
+---
+title: Librerie esterne
+description: Introduzione all'ecosistema di librerie Python.
+---
+
+## L'ecosistema Python
+
+Uno dei punti di forza di Python è il suo enorme ecosistema di librerie. Queste librerie, scritte da sviluppatori di tutto il mondo, ti permettono di fare cose complesse con poche righe di codice.
+
+Le librerie si trovano principalmente su [PyPI](https://pypi.org) (Python Package Index) e si installano con `pip`.
+
+## Come usare una libreria esterna
+
+Il processo è sempre lo stesso:
+
+1. **Installa** la libreria con pip (una volta sola)
+2. **Importa** la libreria nel tuo script
+3. **Usa** le funzioni e classi che offre
+
+```bash
+# 1. Installa
+pip install requests
+```
+
+```python
+# 2. Importa
+import requests
+
+# 3. Usa
+risposta = requests.get("https://api.github.com")
+print(risposta.status_code)   # 200
+```
+
+## Categorie di librerie popolari
+
+### Web e HTTP
+
+- **`requests`**: fare richieste HTTP in modo semplice
+- **`flask`**: creare web app leggere
+- **`django`**: framework web completo e robusto
+- **`fastapi`**: API moderne e veloci
+
+### Data Science e Machine Learning
+
+- **`numpy`**: array numerici e operazioni matematiche veloci
+- **`pandas`**: analisi e manipolazione dati
+- **`matplotlib`**: grafici e visualizzazioni
+- **`scikit-learn`**: machine learning
+- **`tensorflow`** / **`pytorch`**: deep learning
+
+### Automazione e scripting
+
+- **`selenium`**: automatizzare il browser
+- **`beautifulsoup4`**: web scraping (analizzare HTML)
+- **`pyautogui`**: automatizzare il mouse e la tastiera
+- **`schedule`**: pianificare l'esecuzione di codice
+
+### Grafica e giochi
+
+- **`pygame`**: sviluppare giochi 2D
+- **`pillow`**: elaborare e modificare immagini
+- **`tkinter`**: interfacce grafiche (incluso in Python)
+- **`PyQt`** / **`PySide`**: interfacce grafiche avanzate
+
+### Utilità
+
+- **`python-dotenv`**: gestire variabili d'ambiente
+- **`loguru`**: logging semplice ed elegante
+- **`tqdm`**: barre di progresso
+- **`rich`**: output colorato e formattato nel terminale
+
+## Esempio: libreria `requests`
+
+Facciamo una richiesta a un'API pubblica per ottenere dati:
+
+```python
+import requests
+
+# Richiesta GET a un'API pubblica (JSONPlaceholder)
+risposta = requests.get("https://jsonplaceholder.typicode.com/posts/1")
+
+if risposta.status_code == 200:
+    dati = risposta.json()  # converte automaticamente il JSON
+    print(f"Titolo: {dati['title']}")
+    print(f"Corpo: {dati['body'][:50]}...")
+else:
+    print(f"Errore: {risposta.status_code}")
+```
+
+## Esempio: libreria `tqdm` (barra di progresso)
+
+```python
+from tqdm import tqdm
+import time
+
+# Aggiunge una barra di progresso a qualsiasi ciclo
+for i in tqdm(range(100)):
+    time.sleep(0.01)  # simula un'operazione
+```
+
+## Trovare la libreria giusta
+
+Quando hai bisogno di fare qualcosa, cerca:
+1. Prima se esiste un modulo nella **libreria standard** di Python
+2. Poi su **PyPI** o con una ricerca web (es. "python library per X")
+3. Guarda le stelle su GitHub e la frequenza degli aggiornamenti
+
+Un consiglio: non reinventare la ruota. Spesso una libreria già pronta fa esattamente quello che ti serve, in modo più robusto e testato.

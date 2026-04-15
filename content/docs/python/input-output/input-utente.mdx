@@ -1,0 +1,125 @@
+---
+title: Input utente
+description: Come ricevere dati dall'utente in Python.
+---
+
+## La funzione `input()`
+
+La funzione `input()` permette al programma di **ricevere dati dall'utente** durante l'esecuzione. Il programma si ferma, aspetta che l'utente digiti qualcosa e prema Invio, poi continua.
+
+```python
+nome = input("Come ti chiami? ")
+print(f"Ciao, {nome}!")
+```
+
+```
+Come ti chiami? Alice
+Ciao, Alice!
+```
+
+## Importante: `input()` restituisce sempre una stringa
+
+Anche se l'utente digita un numero, `input()` lo restituisce come stringa (`str`). Devi convertirlo manualmente:
+
+```python
+# Questo è una STRINGA, non un numero!
+eta_testo = input("Quanti anni hai? ")
+print(type(eta_testo))  # <class 'str'>
+
+# Devi convertire per fare operazioni numeriche
+eta = int(input("Quanti anni hai? "))
+print(type(eta))        # <class 'int'>
+
+print(f"Tra 10 anni avrai {eta + 10} anni.")
+```
+
+## Conversioni comuni
+
+```python
+# Intero
+eta = int(input("Inserisci la tua età: "))
+
+# Decimale
+altezza = float(input("Inserisci la tua altezza in metri: "))
+
+# Lista di numeri (separati da spazio)
+testo = input("Inserisci dei numeri separati da spazio: ")
+numeri = [int(n) for n in testo.split()]
+print(numeri)
+```
+
+Esempio:
+```
+Inserisci dei numeri separati da spazio: 1 2 3 4 5
+[1, 2, 3, 4, 5]
+```
+
+## Gestire input non valido
+
+Se l'utente inserisce qualcosa di inaspettato (es. "pippo" quando aspetti un numero), Python genera un errore. Puoi gestirlo con `try/except`:
+
+```python
+try:
+    numero = int(input("Inserisci un numero intero: "))
+    print(f"Hai inserito: {numero}")
+except ValueError:
+    print("Errore: quello che hai inserito non è un numero intero.")
+```
+
+## Chiedere fino a ottenere una risposta valida
+
+```python
+while True:
+    try:
+        eta = int(input("Inserisci la tua età: "))
+        if eta < 0 or eta > 120:
+            print("Età non valida. Inserisci un numero tra 0 e 120.")
+            continue
+        break  # uscire dal ciclo solo se l'input è valido
+    except ValueError:
+        print("Inserisci un numero intero, non testo.")
+
+print(f"La tua età è: {eta}")
+```
+
+## Input con risposta sì/no
+
+```python
+risposta = input("Vuoi continuare? (s/n): ").lower()
+
+if risposta == "s" or risposta == "si" or risposta == "sì":
+    print("Continuiamo!")
+else:
+    print("Arrivederci!")
+```
+
+## Esempio pratico: calcolatrice interattiva
+
+```python
+print("Calcolatrice semplice")
+print("-" * 20)
+
+try:
+    a = float(input("Primo numero: "))
+    operazione = input("Operazione (+, -, *, /): ")
+    b = float(input("Secondo numero: "))
+
+    if operazione == "+":
+        risultato = a + b
+    elif operazione == "-":
+        risultato = a - b
+    elif operazione == "*":
+        risultato = a * b
+    elif operazione == "/":
+        if b == 0:
+            print("Errore: divisione per zero!")
+        else:
+            risultato = a / b
+    else:
+        print("Operazione non valida.")
+
+    print(f"Risultato: {a} {operazione} {b} = {risultato}")
+
+except ValueError:
+    print("Inserisci solo numeri validi.")
+```

@@ -1,0 +1,10 @@
+{
+  "title": "Gestione degli errori",
+  "icon": "Bug",
+  "defaultOpen": false,
+  "pages": [
+    "gestione-errori",
+    "eccezioni-avanzate",
+    "debugging"
+  ]
+}

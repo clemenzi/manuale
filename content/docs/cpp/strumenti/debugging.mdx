@@ -1,0 +1,203 @@
+---
+title: Debugging di Base
+description: Tecniche e strumenti per trovare e correggere gli errori nei programmi C++.
+---
+
+## Cosa è il debugging?
+
+Il **debugging** è il processo di trovare e correggere gli errori (bug) in un programma. È una delle abilità più importanti per un programmatore.
+
+I tipi di errori che dovrai affrontare:
+- Errori di compilazione (il compilatore li segnala)
+- Errori di runtime (il programma si blocca o crashea)
+- Errori logici (il programma gira ma dà risultati sbagliati)
+
+## Leggere i messaggi di errore del compilatore
+
+Quando compili un programma con errori, GCC produce messaggi di errore dettagliati. Impara a leggerli:
+
+```
+hello.cpp:5:5: error: 'cout' was not declared in this scope
+   cout << "Ciao!" << endl;
+   ^~~~
+```
+
+Il formato è: `file:riga:colonna: tipo: messaggio`
+
+- `hello.cpp`: il file con l'errore
+- `5`: la riga dell'errore
+- `5`: la colonna
+- `error`: tipo (error = errore, warning = avviso)
+- `messaggio`: descrizione dell'errore
+
+**Regola pratica**: correggi sempre il primo errore nella lista. Spesso un errore ne genera altri a cascata.
+
+## Messaggi di warning
+
+I warning non impediscono la compilazione, ma segnalano potenziali problemi:
+
+```
+warning: unused variable 'x' [-Wunused-variable]
+```
+
+Non ignorarli! I warning spesso indicano errori logici o codice problematico.
+
+Compila sempre con `-Wall` per vedere tutti i warning:
+
+```bash
+g++ programma.cpp -o programma -Wall
+```
+
+## Tecnica: print debugging
+
+Il modo più semplice per fare debugging è aggiungere istruzioni `cout` per stampare i valori delle variabili e capire cosa sta succedendo:
+
+```cpp
+double calcola(int a, int b) {
+    cout << "[DEBUG] a=" << a << ", b=" << b << endl;  // stampa i valori
+
+    double risultato = a / b;   // possibile divisione intera!
+
+    cout << "[DEBUG] risultato=" << risultato << endl;
+
+    return risultato;
+}
+```
+
+Ricorda di rimuovere le stampe di debug quando hai finito.
+
+## Macro di debug
+
+Puoi usare il preprocessore per abilitare/disabilitare facilmente le stampe di debug:
+
+```cpp
+#define DEBUG   // commenta questa riga per disabilitare
+
+#ifdef DEBUG
+    #define LOG(x) cout << "[DEBUG] " << x << endl
+#else
+    #define LOG(x)   // nessuna operazione
+#endif
+
+int main() {
+    int x = 42;
+    LOG("Il valore di x è: " << x);   // stampato solo se DEBUG è definito
+    return 0;
+}
+```
+
+## Errori comuni e come risolverli
+
+### Variabile non inizializzata
+
+```cpp
+int x;
+cout << x;   // valore casuale!
+
+// Soluzione: inizializza sempre
+int x = 0;
+```
+
+### Divisione intera indesiderata
+
+```cpp
+int a = 7, b = 2;
+double risultato = a / b;   // 3.0, non 3.5!
+
+// Soluzione: cast prima della divisione
+double risultato = (double)a / b;   // 3.5
+```
+
+### Off-by-one (errore di indice)
+
+```cpp
+int arr[5] = {1, 2, 3, 4, 5};
+for (int i = 0; i <= 5; i++) {   // ERRORE: i arriva a 5!
+    cout << arr[i];               // arr[5] non esiste
+}
+
+// Soluzione: usa < invece di <=
+for (int i = 0; i < 5; i++) {
+    cout << arr[i];
+}
+```
+
+### Uguale vs assegnazione nelle condizioni
+
+```cpp
+int x = 5;
+if (x = 10) {   // ERRORE: assegna 10 a x, non confronta!
+    cout << "uguale";
+}
+
+// Soluzione: usa ==
+if (x == 10) {
+    cout << "uguale";
+}
+```
+
+### Loop infinito
+
+```cpp
+int i = 0;
+while (i < 10) {
+    cout << i;
+    // manca i++! loop infinito
+}
+
+// Soluzione: aggiorna sempre il contatore
+while (i < 10) {
+    cout << i;
+    i++;
+}
+```
+
+## Il debugger (strumento avanzato)
+
+VS Code integra un **debugger** che permette di:
+
+- Impostare **breakpoint**: il programma si ferma a una riga specifica
+- Ispezionare il valore delle variabili in tempo reale
+- Eseguire il codice **passo per passo**
+
+Per usarlo in VS Code:
+1. Clicca nella barra laterale sinistra (accanto al numero di riga) per impostare un breakpoint (appare un punto rosso)
+2. Premi `F5` per avviare il debugging
+3. Usa `F10` per eseguire riga per riga, `F11` per entrare nelle funzioni
+
+## Strategia di debugging
+
+Quando hai un bug:
+
+1. **Riproduci** il bug in modo affidabile
+2. **Isola** la parte di codice problematica (stampa valori intermedi)
+3. **Formula un'ipotesi** su cosa potrebbe causarlo
+4. **Testa** l'ipotesi (modifica, compila, esegui)
+5. **Verifica** che la correzione funzioni senza rompere altro
+
+## Esempio: trovare un bug
+
+```cpp
+// Programma con un bug: calcola la media di un array
+#include <iostream>
+using namespace std;
+
+int main() {
+    int voti[] = {8, 7, 9, 6, 10};
+    int n = 5;
+    int somma = 0;
+
+    for (int i = 0; i <= n; i++) {   // BUG: <= invece di <
+        cout << "[DEBUG] i=" << i << ", voto=" << voti[i] << endl;
+        somma += voti[i];
+    }
+
+    double media = somma / n;   // BUG: divisione intera
+    cout << "Media: " << media << endl;
+    return 0;
+}
+
+// Versione corretta:
+// for (int i = 0; i < n; i++) {
+// double media = (double)somma / n;
+```

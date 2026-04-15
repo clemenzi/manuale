@@ -1,0 +1,224 @@
+---
+title: Costruttori
+description: Come usare i costruttori per inizializzare gli oggetti in C++.
+---
+
+## Cos'è un costruttore?
+
+Un **costruttore** è un metodo speciale che viene chiamato automaticamente quando viene creato un oggetto. Il suo scopo è **inizializzare** i dati dell'oggetto.
+
+Caratteristiche del costruttore:
+- Ha lo **stesso nome della classe**
+- **Non ha tipo di ritorno** (neanche `void`)
+- Viene chiamato automaticamente quando si crea un oggetto
+
+## Costruttore di default
+
+Se non definisci nessun costruttore, il compilatore fornisce un **costruttore di default** vuoto. Ma è buona pratica definirne uno tu stesso:
+
+```cpp
+class Persona {
+public:
+    string nome;
+    int eta;
+
+    // Costruttore di default
+    Persona() {
+        nome = "Sconosciuto";
+        eta = 0;
+    }
+};
+
+int main() {
+    Persona p;   // chiama automaticamente il costruttore
+    cout << p.nome << ", " << p.eta << endl;  // Sconosciuto, 0
+    return 0;
+}
+```
+
+## Costruttore con parametri
+
+Puoi definire un costruttore che accetta parametri per inizializzare l'oggetto con valori specifici:
+
+```cpp
+class Persona {
+public:
+    string nome;
+    int eta;
+
+    Persona(string n, int e) {
+        nome = n;
+        eta = e;
+    }
+};
+
+int main() {
+    Persona p1("Alice", 16);   // chiama il costruttore con parametri
+    Persona p2("Bob", 17);
+
+    cout << p1.nome << ", " << p1.eta << endl;  // Alice, 16
+    cout << p2.nome << ", " << p2.eta << endl;  // Bob, 17
+    return 0;
+}
+```
+
+## Lista di inizializzazione
+
+Il modo più efficiente per inizializzare i campi nel costruttore è usare la **lista di inizializzazione** (dopo i `:`):
+
+```cpp
+class Rettangolo {
+private:
+    double base;
+    double altezza;
+
+public:
+    // Lista di inizializzazione: più efficiente di assegnare nel corpo
+    Rettangolo(double b, double a) : base(b), altezza(a) {
+        // il corpo può restare vuoto o contenere altra logica
+    }
+
+    double area() const { return base * altezza; }
+};
+```
+
+La lista di inizializzazione è preferita perché inizializza i campi direttamente, senza prima crearli e poi assegnarli.
+
+## Overloading dei costruttori
+
+Puoi avere più costruttori con parametri diversi:
+
+```cpp
+class Punto {
+public:
+    double x;
+    double y;
+
+    // Costruttore di default: origine
+    Punto() : x(0.0), y(0.0) {}
+
+    // Costruttore con un valore: stesso valore per x e y
+    Punto(double v) : x(v), y(v) {}
+
+    // Costruttore con due valori
+    Punto(double x, double y) : x(x), y(y) {}
+};
+
+int main() {
+    Punto p1;          // (0, 0)
+    Punto p2(5.0);     // (5, 5)
+    Punto p3(3.0, 4.0);// (3, 4)
+    return 0;
+}
+```
+
+## Costruttore con valori di default
+
+```cpp
+class Cane {
+public:
+    string nome;
+    string razza;
+    int eta;
+
+    Cane(string n, string r = "Meticcio", int e = 0)
+        : nome(n), razza(r), eta(e) {}
+
+    void descrivi() {
+        cout << nome << " (" << razza << ", " << eta << " anni)" << endl;
+    }
+};
+
+int main() {
+    Cane d1("Fido", "Labrador", 3);
+    Cane d2("Rex", "Pastore");      // eta default = 0
+    Cane d3("Luna");                // razza default, eta default
+
+    d1.descrivi();  // Fido (Labrador, 3 anni)
+    d2.descrivi();  // Rex (Pastore, 0 anni)
+    d3.descrivi();  // Luna (Meticcio, 0 anni)
+    return 0;
+}
+```
+
+## Il distruttore
+
+Il **distruttore** è il complemento del costruttore: viene chiamato automaticamente quando l'oggetto viene distrutto (quando esce dallo scope o quando la memoria viene liberata).
+
+Si definisce con `~NomeClasse()`:
+
+```cpp
+class Risorsa {
+public:
+    Risorsa() {
+        cout << "Risorsa creata" << endl;
+    }
+
+    ~Risorsa() {
+        cout << "Risorsa distrutta" << endl;
+    }
+};
+
+int main() {
+    cout << "Inizio" << endl;
+    {
+        Risorsa r;   // costruttore chiamato qui
+        cout << "Dentro il blocco" << endl;
+    }   // distruttore chiamato qui (r esce dallo scope)
+    cout << "Fine" << endl;
+    return 0;
+}
+```
+
+Output:
+
+```
+Inizio
+Risorsa creata
+Dentro il blocco
+Risorsa distrutta
+Fine
+```
+
+Il distruttore è fondamentale per liberare risorse (memoria, file aperti, connessioni) quando l'oggetto non serve più.
+
+## Esempio pratico
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+class ContoBancario {
+private:
+    string intestatario;
+    double saldo;
+
+public:
+    // Costruttore
+    ContoBancario(string nome, double saldoIniziale = 0.0)
+        : intestatario(nome), saldo(saldoIniziale) {
+        cout << "Conto aperto per " << intestatario << endl;
+    }
+
+    // Distruttore
+    ~ContoBancario() {
+        cout << "Conto di " << intestatario << " chiuso." << endl;
+    }
+
+    void deposita(double importo) { saldo += importo; }
+    double getSaldo() const { return saldo; }
+    string getNome() const { return intestatario; }
+};
+
+int main() {
+    ContoBancario c1("Alice", 1000.0);
+    ContoBancario c2("Bob");    // saldo iniziale = 0
+
+    c1.deposita(500.0);
+    cout << c1.getNome() << ": €" << c1.getSaldo() << endl;
+    cout << c2.getNome() << ": €" << c2.getSaldo() << endl;
+
+    return 0;
+}
+```

@@ -1,6 +1,157 @@
 ---
 title: Liste
-description: Sequenze ordinate e modificabili di elementi in Python.
+description: Come creare e usare le liste in Python.
 ---
 
-Contenuto in arrivo.
+## Cosa sono le liste?
+
+Una **lista** (`list`) è una raccolta ordinata di elementi. Puoi metterci valori di qualsiasi tipo, anche misti, e puoi modificarla dopo averla creata.
+
+Le liste sono uno degli strumenti più usati in Python.
+
+## Creare una lista
+
+Le liste si scrivono con le **parentesi quadre** `[]`, con gli elementi separati da virgole:
+
+```python
+frutta = ["mela", "banana", "ciliegia"]
+numeri = [1, 2, 3, 4, 5]
+mista = [1, "ciao", True, 3.14]
+vuota = []
+```
+
+## Accedere agli elementi
+
+Gli elementi sono accessibili tramite indice (che parte da `0`):
+
+```python
+frutta = ["mela", "banana", "ciliegia"]
+print(frutta[0])   # mela
+print(frutta[1])   # banana
+print(frutta[-1])  # ciliegia (l'ultimo)
+print(frutta[-2])  # banana (il penultimo)
+```
+
+## Slicing (taglio)
+
+Come per le stringhe, puoi estrarre una parte della lista:
+
+```python
+numeri = [0, 1, 2, 3, 4, 5]
+print(numeri[1:4])   # [1, 2, 3]
+print(numeri[:3])    # [0, 1, 2]
+print(numeri[3:])    # [3, 4, 5]
+print(numeri[::2])   # [0, 2, 4]
+print(numeri[::-1])  # [5, 4, 3, 2, 1, 0] (rovesciata)
+```
+
+## Modificare gli elementi
+
+Le liste sono **modificabili** (mutabili):
+
+```python
+frutta = ["mela", "banana", "ciliegia"]
+frutta[1] = "kiwi"
+print(frutta)  # ['mela', 'kiwi', 'ciliegia']
+```
+
+## Metodi delle liste
+
+### Aggiungere elementi
+
+```python
+frutta = ["mela", "banana"]
+frutta.append("ciliegia")    # aggiunge alla fine
+print(frutta)  # ['mela', 'banana', 'ciliegia']
+
+frutta.insert(1, "kiwi")     # inserisce alla posizione 1
+print(frutta)  # ['mela', 'kiwi', 'banana', 'ciliegia']
+
+altra = ["uva", "pesca"]
+frutta.extend(altra)         # aggiunge tutti gli elementi di un'altra lista
+print(frutta)  # ['mela', 'kiwi', 'banana', 'ciliegia', 'uva', 'pesca']
+```
+
+### Rimuovere elementi
+
+```python
+frutta = ["mela", "banana", "ciliegia", "banana"]
+frutta.remove("banana")      # rimuove la prima occorrenza
+print(frutta)  # ['mela', 'ciliegia', 'banana']
+
+frutta.pop()                 # rimuove e restituisce l'ultimo elemento
+print(frutta)  # ['mela', 'ciliegia']
+
+frutta.pop(0)                # rimuove e restituisce l'elemento all'indice 0
+print(frutta)  # ['ciliegia']
+
+frutta = ["mela", "banana", "ciliegia"]
+del frutta[1]                # elimina l'elemento all'indice 1
+print(frutta)  # ['mela', 'ciliegia']
+
+frutta.clear()               # svuota la lista
+print(frutta)  # []
+```
+
+### Cercare e contare
+
+```python
+numeri = [1, 2, 3, 2, 4, 2]
+print(numeri.count(2))   # 3 (quante volte compare 2)
+print(numeri.index(3))   # 2 (indice della prima occorrenza di 3)
+```
+
+### Ordinare
+
+```python
+numeri = [3, 1, 4, 1, 5, 9, 2]
+numeri.sort()                   # ordina la lista (modifica l'originale)
+print(numeri)  # [1, 1, 2, 3, 4, 5, 9]
+
+numeri.sort(reverse=True)       # ordine decrescente
+print(numeri)  # [9, 5, 4, 3, 2, 1, 1]
+
+originale = [3, 1, 4, 1, 5]
+ordinata = sorted(originale)    # restituisce una nuova lista ordinata
+print(originale)  # [3, 1, 4, 1, 5] (invariata)
+print(ordinata)   # [1, 1, 3, 4, 5]
+```
+
+### Invertire
+
+```python
+frutta = ["mela", "banana", "ciliegia"]
+frutta.reverse()
+print(frutta)  # ['ciliegia', 'banana', 'mela']
+```
+
+### Copiare
+
+```python
+originale = [1, 2, 3]
+copia = originale.copy()   # o anche: copia = list(originale)
+copia.append(4)
+print(originale)  # [1, 2, 3]
+print(copia)      # [1, 2, 3, 4]
+```
+
+## Lunghezza di una lista
+
+```python
+frutta = ["mela", "banana", "ciliegia"]
+print(len(frutta))  # 3
+```
+
+## Liste di liste (matrici)
+
+Puoi mettere liste dentro altre liste per creare strutture bidimensionali:
+
+```python
+matrice = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+print(matrice[0])     # [1, 2, 3]
+print(matrice[1][2])  # 6
+```

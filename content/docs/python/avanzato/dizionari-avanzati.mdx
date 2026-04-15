@@ -1,0 +1,151 @@
+---
+title: Dizionari avanzati
+description: Tecniche avanzate per lavorare con i dizionari in Python.
+---
+
+## Tecniche avanzate sui dizionari
+
+I dizionari sono strutture dati estremamente potenti. In questo capitolo vediamo le tecniche più avanzate per usarli al meglio.
+
+## Dictionary comprehension
+
+Come le list comprehension, ma per i dizionari:
+
+```python
+# Sintassi
+dizionario = {chiave: valore for elemento in iterabile}
+
+# Esempio: quadrati dei numeri
+quadrati = {x: x**2 for x in range(1, 6)}
+print(quadrati)  # {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+
+# Da due liste
+nomi = ["Alice", "Bob", "Carlo"]
+voti = [8, 7, 9]
+registro = {nome: voto for nome, voto in zip(nomi, voti)}
+print(registro)  # {'Alice': 8, 'Bob': 7, 'Carlo': 9}
+
+# Con condizione
+pari_quadrati = {x: x**2 for x in range(10) if x % 2 == 0}
+print(pari_quadrati)  # {0: 0, 2: 4, 4: 16, 6: 36, 8: 64}
+```
+
+## `get()` con valore di default
+
+```python
+studenti = {"Alice": 8, "Bob": 7}
+
+# Senza get: KeyError se la chiave non esiste
+# print(studenti["Carlo"])  # KeyError!
+
+# Con get: restituisce None o il valore di default
+print(studenti.get("Alice"))        # 8
+print(studenti.get("Carlo"))        # None
+print(studenti.get("Carlo", "N/A")) # N/A
+```
+
+## `setdefault()`
+
+Restituisce il valore se la chiave esiste, altrimenti la aggiunge con il valore di default:
+
+```python
+dizionario = {"a": 1}
+
+valore = dizionario.setdefault("a", 99)   # "a" esiste già
+print(valore)     # 1
+print(dizionario) # {'a': 1}
+
+valore = dizionario.setdefault("b", 99)   # "b" non esiste
+print(valore)     # 99
+print(dizionario) # {'a': 1, 'b': 99}
+```
+
+Utile per costruire dizionari di liste:
+
+```python
+# Raggruppare parole per prima lettera
+parole = ["mela", "banana", "more", "banana", "mandarino"]
+raggruppate = {}
+for parola in parole:
+    lettera = parola[0]
+    raggruppate.setdefault(lettera, []).append(parola)
+
+print(raggruppate)
+# {'m': ['mela', 'more', 'mandarino'], 'b': ['banana', 'banana']}
+```
+
+## `Counter` dal modulo `collections`
+
+```python
+from collections import Counter
+
+# Contare le occorrenze
+parole = ["mela", "banana", "mela", "uva", "banana", "mela"]
+contatore = Counter(parole)
+print(contatore)
+# Counter({'mela': 3, 'banana': 2, 'uva': 1})
+
+print(contatore["mela"])      # 3
+print(contatore["kiwi"])      # 0 (non dà errore)
+print(contatore.most_common(2))  # [('mela', 3), ('banana', 2)]
+
+# Contare caratteri in una stringa
+lettere = Counter("mississippi")
+print(lettere)
+# Counter({'i': 4, 's': 4, 'p': 2, 'm': 1})
+```
+
+## `defaultdict`
+
+Un dizionario che crea automaticamente valori di default per chiavi inesistenti:
+
+```python
+from collections import defaultdict
+
+# defaultdict con lista come valore di default
+gruppi = defaultdict(list)
+
+studenti = [("Alice", "3A"), ("Bob", "3B"), ("Carlo", "3A")]
+for nome, classe in studenti:
+    gruppi[classe].append(nome)
+
+print(dict(gruppi))
+# {'3A': ['Alice', 'Carlo'], '3B': ['Bob']}
+```
+
+## Unire dizionari (Python 3.9+)
+
+```python
+d1 = {"a": 1, "b": 2}
+d2 = {"b": 3, "c": 4}
+
+# Operatore | (Python 3.9+)
+unito = d1 | d2
+print(unito)  # {'a': 1, 'b': 3, 'c': 4}
+
+# Con **
+unito2 = {**d1, **d2}
+print(unito2)  # {'a': 1, 'b': 3, 'c': 4}
+```
+
+## Invertire un dizionario
+
+```python
+originale = {"a": 1, "b": 2, "c": 3}
+invertito = {v: k for k, v in originale.items()}
+print(invertito)  # {1: 'a', 2: 'b', 3: 'c'}
+```
+
+## Ordinare un dizionario
+
+```python
+voti = {"Alice": 8, "Carlo": 9, "Bob": 7}
+
+# Ordinare per chiave
+per_nome = dict(sorted(voti.items()))
+print(per_nome)  # {'Alice': 8, 'Bob': 7, 'Carlo': 9}
+
+# Ordinare per valore
+per_voto = dict(sorted(voti.items(), key=lambda x: x[1], reverse=True))
+print(per_voto)  # {'Carlo': 9, 'Alice': 8, 'Bob': 7}
+```

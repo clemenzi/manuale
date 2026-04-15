@@ -1,0 +1,145 @@
+---
+title: Moduli
+description: Come organizzare il codice in moduli e importarli in Python.
+---
+
+## Cosa sono i moduli?
+
+Un **modulo** è semplicemente un file Python (`.py`) che contiene funzioni, variabili e classi. I moduli permettono di organizzare il codice in file separati e di riutilizzarlo facilmente.
+
+Python viene con una grandissima **libreria standard** di moduli già pronti. Puoi anche creare i tuoi moduli o installarne di terze parti.
+
+## Importare un modulo
+
+Usa la parola chiave `import`:
+
+```python
+import math
+
+print(math.pi)           # 3.141592653589793
+print(math.sqrt(16))     # 4.0
+print(math.floor(3.7))   # 3
+print(math.ceil(3.2))    # 4
+```
+
+## Importare funzioni specifiche
+
+Con `from ... import ...` puoi importare solo ciò che ti serve, senza dover scrivere il nome del modulo ogni volta:
+
+```python
+from math import pi, sqrt, floor
+
+print(pi)        # 3.141592653589793
+print(sqrt(25))  # 5.0
+print(floor(4.9))  # 4
+```
+
+## Importare tutto (sconsigliato)
+
+```python
+from math import *  # importa tutto
+
+print(sin(0))  # 0.0
+```
+
+Questo è sconsigliato perché non è chiaro da dove viene ogni funzione e può creare conflitti di nome.
+
+## Alias con `as`
+
+Puoi rinominare un modulo o una funzione con `as`:
+
+```python
+import math as m
+print(m.pi)       # 3.14159...
+
+from math import sqrt as radice_quadrata
+print(radice_quadrata(9))  # 3.0
+```
+
+Questo è comune con librerie come NumPy:
+
+```python
+import numpy as np       # convenzione standard
+import pandas as pd      # convenzione standard
+```
+
+## Creare un proprio modulo
+
+Crea un file chiamato `calcolatrice.py`:
+
+```python
+# calcolatrice.py
+
+def somma(a, b):
+    return a + b
+
+def sottrai(a, b):
+    return a - b
+
+def moltiplica(a, b):
+    return a * b
+
+pi = 3.14159
+```
+
+Poi in un altro file nella stessa cartella:
+
+```python
+# main.py
+import calcolatrice
+
+print(calcolatrice.somma(3, 4))       # 7
+print(calcolatrice.pi)                # 3.14159
+```
+
+## Il blocco `if __name__ == "__main__"`
+
+Questo costrutto è importante quando crei moduli. Permette di eseguire del codice solo se il file viene eseguito direttamente (non importato):
+
+```python
+# calcolatrice.py
+
+def somma(a, b):
+    return a + b
+
+if __name__ == "__main__":
+    # questo codice viene eseguito solo se avvii calcolatrice.py direttamente
+    print(somma(3, 4))  # test
+```
+
+## Moduli utili della libreria standard
+
+| Modulo | Cosa fa |
+|--------|---------|
+| `math` | Funzioni matematiche |
+| `random` | Numeri casuali |
+| `datetime` | Date e orari |
+| `os` | Interazione con il sistema operativo |
+| `sys` | Informazioni sul sistema Python |
+| `json` | Lettura e scrittura JSON |
+| `re` | Espressioni regolari |
+| `time` | Funzioni temporali |
+
+## Esempio: modulo `random`
+
+```python
+import random
+
+print(random.random())          # numero casuale tra 0 e 1
+print(random.randint(1, 10))    # intero casuale tra 1 e 10
+print(random.choice(["mela", "banana", "uva"]))  # elemento casuale
+
+lista = [1, 2, 3, 4, 5]
+random.shuffle(lista)           # mescola la lista in-place
+print(lista)
+```
+
+## Esempio: modulo `os`
+
+```python
+import os
+
+print(os.getcwd())              # directory corrente
+print(os.listdir("."))          # file nella directory corrente
+print(os.path.exists("file.txt"))  # True se il file esiste
+```

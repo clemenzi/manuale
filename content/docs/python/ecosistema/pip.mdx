@@ -1,0 +1,146 @@
+---
+title: Uso di pacchetti (pip)
+description: Come installare e gestire pacchetti Python con pip.
+---
+
+## Cos'è pip?
+
+**pip** è il gestore di pacchetti ufficiale di Python. Permette di installare, aggiornare e rimuovere librerie di terze parti dal **Python Package Index** (PyPI), il repository ufficiale con oltre 400.000 pacchetti gratuiti.
+
+## Verificare pip
+
+Verifica che pip sia installato:
+
+```bash
+pip --version
+# pip 24.0 from /usr/lib/python3/dist-packages/pip (python 3.x)
+```
+
+Se hai sia Python 2 che Python 3, potrebbe essere necessario usare `pip3`:
+
+```bash
+pip3 --version
+```
+
+## Installare un pacchetto
+
+```bash
+pip install nome-pacchetto
+```
+
+Esempio: installare `requests` (per fare richieste HTTP):
+
+```bash
+pip install requests
+```
+
+Installare una versione specifica:
+
+```bash
+pip install requests==2.31.0
+```
+
+Installare l'ultima versione disponibile:
+
+```bash
+pip install --upgrade requests
+```
+
+## Disinstallare un pacchetto
+
+```bash
+pip uninstall nome-pacchetto
+pip uninstall requests
+```
+
+## Elenco dei pacchetti installati
+
+```bash
+pip list
+```
+
+Output:
+```
+Package    Version
+---------- -------
+pip        24.0
+requests   2.31.0
+numpy      1.26.0
+...
+```
+
+## Il file `requirements.txt`
+
+Il file `requirements.txt` elenca tutti i pacchetti necessari per il progetto, in modo che chiunque possa installarli facilmente:
+
+```bash
+# Creare requirements.txt con i pacchetti installati
+pip freeze > requirements.txt
+
+# Installare tutti i pacchetti da requirements.txt
+pip install -r requirements.txt
+```
+
+Esempio di `requirements.txt`:
+
+```
+requests==2.31.0
+numpy==1.26.0
+pandas==2.1.0
+```
+
+## Cercare pacchetti
+
+```bash
+pip search nome-pacchetto
+```
+
+Oppure vai direttamente su [pypi.org](https://pypi.org) per cercare e scoprire pacchetti.
+
+## Informazioni su un pacchetto
+
+```bash
+pip show requests
+```
+
+Output:
+```
+Name: requests
+Version: 2.31.0
+Summary: Python HTTP for Humans.
+Home-page: https://requests.readthedocs.io
+Author: Kenneth Reitz
+...
+```
+
+## Pacchetti più popolari
+
+| Pacchetto | Utilizzo |
+|-----------|---------|
+| `requests` | Richieste HTTP |
+| `numpy` | Calcolo numerico |
+| `pandas` | Analisi dati |
+| `matplotlib` | Grafici |
+| `flask` | Web app leggera |
+| `django` | Web app completa |
+| `pillow` | Elaborazione immagini |
+| `pygame` | Sviluppo giochi |
+| `beautifulsoup4` | Web scraping |
+
+## Installare dall'interno di Python
+
+Puoi installare pacchetti direttamente da uno script Python (utile in certi ambienti):
+
+```python
+import subprocess
+import sys
+
+subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
+```
+
+## Buone pratiche
+
+- Usa sempre un **ambiente virtuale** (vedi il capitolo successivo) per ogni progetto
+- Mantieni aggiornato il file `requirements.txt`
+- Installa solo i pacchetti che ti servono davvero
+- Verifica la reputazione di un pacchetto prima di installarlo (stelle su GitHub, numero di download su PyPI)

@@ -1,0 +1,217 @@
+---
+title: Funzioni
+description: Come definire e usare le funzioni in C++.
+---
+
+## Cosa sono le funzioni?
+
+Una **funzione** è un blocco di codice riutilizzabile che esegue un compito specifico. Invece di scrivere lo stesso codice più volte, lo scrivi una volta in una funzione e la chiami quando ne hai bisogno.
+
+I vantaggi:
+- **Riutilizzo**: scrivi il codice una volta, usalo più volte
+- **Organizzazione**: il codice è diviso in parti logiche
+- **Leggibilità**: il codice è più facile da capire
+- **Manutenzione**: modifichi un solo posto per cambiare il comportamento
+
+## Definire una funzione
+
+Sintassi:
+
+```cpp
+tipo_ritorno nomeFunzione(tipo param1, tipo param2, ...) {
+    // corpo della funzione
+    return valore;   // se il tipo di ritorno non è void
+}
+```
+
+```cpp
+void saluta() {
+    cout << "Ciao!" << endl;
+}
+```
+
+`void` significa che la funzione non restituisce alcun valore.
+
+## Chiamare una funzione
+
+```cpp
+void saluta() {
+    cout << "Ciao!" << endl;
+}
+
+int main() {
+    saluta();   // chiama la funzione
+    saluta();   // puoi chiamarla più volte
+    return 0;
+}
+```
+
+## Funzioni con parametri
+
+I **parametri** sono valori che passi alla funzione quando la chiami:
+
+```cpp
+void saluta(string nome) {
+    cout << "Ciao, " << nome << "!" << endl;
+}
+
+int main() {
+    saluta("Alice");   // Ciao, Alice!
+    saluta("Bob");     // Ciao, Bob!
+    return 0;
+}
+```
+
+Puoi avere più parametri:
+
+```cpp
+void stampaRettangolo(int base, int altezza) {
+    cout << "Area: " << base * altezza << endl;
+    cout << "Perimetro: " << 2 * (base + altezza) << endl;
+}
+
+int main() {
+    stampaRettangolo(5, 3);
+    stampaRettangolo(10, 7);
+    return 0;
+}
+```
+
+## Funzioni con valore di ritorno
+
+Il **valore di ritorno** è il risultato che la funzione restituisce con `return`:
+
+```cpp
+int somma(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int risultato = somma(3, 5);
+    cout << risultato << endl;   // 8
+
+    // Puoi usare la funzione direttamente nelle espressioni
+    cout << somma(10, 20) * 2 << endl;  // 60
+
+    return 0;
+}
+```
+
+Quando il compilatore incontra `return`, la funzione termina immediatamente e restituisce il valore.
+
+## Prototipo di funzione
+
+In C++, le funzioni devono essere **dichiarate prima di essere usate**. Se la definizione viene dopo il punto in cui la chiami, devi fornire un **prototipo** (o dichiarazione anticipata):
+
+```cpp
+// Prototipo: dichiara la firma della funzione
+int somma(int a, int b);
+
+int main() {
+    cout << somma(3, 5) << endl;   // funziona!
+    return 0;
+}
+
+// Definizione completa (dopo main)
+int somma(int a, int b) {
+    return a + b;
+}
+```
+
+## Valori di default dei parametri
+
+Puoi assegnare valori predefiniti ai parametri. Se l'utente non li specifica, vengono usati i default:
+
+```cpp
+void saluta(string nome, string saluto = "Ciao") {
+    cout << saluto << ", " << nome << "!" << endl;
+}
+
+int main() {
+    saluta("Alice");              // Ciao, Alice!
+    saluta("Bob", "Buongiorno"); // Buongiorno, Bob!
+    return 0;
+}
+```
+
+I parametri con valori di default devono essere gli ultimi nella lista.
+
+## Funzioni con `return` multipli
+
+Una funzione può avere più istruzioni `return`:
+
+```cpp
+string classificaVoto(int voto) {
+    if (voto >= 9) return "Ottimo";
+    if (voto >= 7) return "Buono";
+    if (voto >= 6) return "Sufficiente";
+    return "Insufficiente";
+}
+```
+
+## Passaggio per valore
+
+Di default, i parametri vengono passati **per valore**: la funzione riceve una copia del valore e le modifiche non si riflettono sulla variabile originale:
+
+```cpp
+void raddoppia(int x) {
+    x = x * 2;    // modifica solo la copia locale
+    cout << "Dentro la funzione: " << x << endl;
+}
+
+int main() {
+    int numero = 5;
+    raddoppia(numero);
+    cout << "Fuori dalla funzione: " << numero << endl;  // ancora 5!
+    return 0;
+}
+```
+
+Output:
+
+```
+Dentro la funzione: 10
+Fuori dalla funzione: 5
+```
+
+Per modificare la variabile originale, si usano i riferimenti (vedi la sezione apposita).
+
+## Esempio pratico
+
+```cpp
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+double calcolaAreaCerchio(double raggio) {
+    const double PI = 3.14159265358979;
+    return PI * raggio * raggio;
+}
+
+double calcolaPerimetroCerchio(double raggio) {
+    const double PI = 3.14159265358979;
+    return 2 * PI * raggio;
+}
+
+bool isPari(int numero) {
+    return numero % 2 == 0;
+}
+
+int massimo(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+int main() {
+    double raggio = 5.0;
+    cout << "Cerchio con raggio " << raggio << ":" << endl;
+    cout << "Area: " << calcolaAreaCerchio(raggio) << endl;
+    cout << "Perimetro: " << calcolaPerimetroCerchio(raggio) << endl;
+
+    int n = 7;
+    cout << n << " e' " << (isPari(n) ? "pari" : "dispari") << endl;
+
+    cout << "Massimo tra 15 e 23: " << massimo(15, 23) << endl;
+
+    return 0;
+}
+```

@@ -1,0 +1,181 @@
+---
+title: Gestione della Memoria
+description: Introduzione all'allocazione dinamica della memoria con new e delete in C++.
+---
+
+## Memoria statica vs dinamica
+
+In C++, la memoria può essere gestita in due modi:
+
+**Memoria statica (stack)**: la dimensione delle variabili è nota a compile-time. Vengono create e distrutte automaticamente.
+
+```cpp
+int x = 5;          // allocato sullo stack
+int arr[10];        // allocato sullo stack, dimensione fissa
+```
+
+**Memoria dinamica (heap)**: la dimensione può essere decisa a runtime. Devi gestirla manualmente.
+
+```cpp
+int* ptr = new int;         // allocato sull'heap
+int* arr = new int[100];    // array dinamico sull'heap
+```
+
+## L'operatore `new`
+
+`new` alloca memoria sull'heap e restituisce un puntatore all'area allocata:
+
+```cpp
+// Alloca un singolo intero
+int* ptr = new int;
+*ptr = 42;
+cout << *ptr << endl;   // 42
+
+// Alloca con valore iniziale
+int* ptr2 = new int(100);
+cout << *ptr2 << endl;   // 100
+
+// Alloca un array
+int* arr = new int[5];
+arr[0] = 10;
+arr[1] = 20;
+// ...
+```
+
+## L'operatore `delete`
+
+Ogni memoria allocata con `new` deve essere liberata con `delete` quando non serve più. Non farlo causa un **memory leak** (perdita di memoria):
+
+```cpp
+int* ptr = new int(42);
+cout << *ptr << endl;   // 42
+
+delete ptr;             // libera la memoria
+ptr = nullptr;          // buona pratica: evita dangling pointer
+```
+
+Per liberare un array allocato con `new[]`, usa `delete[]`:
+
+```cpp
+int* arr = new int[10];
+// ... usa arr ...
+delete[] arr;    // NOTA: delete[] e non delete
+arr = nullptr;
+```
+
+## Il problema del memory leak
+
+Se allochi memoria con `new` ma dimentichi `delete`, la memoria resta occupata per tutta la durata del programma:
+
+```cpp
+// Memory leak: la memoria non viene mai liberata
+void funzione() {
+    int* ptr = new int(42);
+    // ... usa ptr ...
+    // manca delete ptr!
+}   // ptr viene distrutto ma la memoria sull'heap rimane occupata
+
+// Chiamando questa funzione mille volte, consumiamo molta memoria
+for (int i = 0; i < 1000; i++) {
+    funzione();   // ogni chiamata perde 4 byte
+}
+```
+
+## Il dangling pointer
+
+Un **dangling pointer** è un puntatore che punta a memoria già liberata. Usarlo è un errore grave:
+
+```cpp
+int* ptr = new int(42);
+delete ptr;
+// ptr è ora un dangling pointer!
+cout << *ptr;   // ERRORE: comportamento non definito
+
+// Soluzione: imposta il puntatore a nullptr dopo delete
+delete ptr;
+ptr = nullptr;
+```
+
+## Array dinamici
+
+Gli array dinamici sono utili quando la dimensione dipende dall'input dell'utente:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Quanti numeri vuoi inserire? ";
+    cin >> n;
+
+    int* numeri = new int[n];   // allocato a runtime!
+
+    for (int i = 0; i < n; i++) {
+        cout << "Numero " << (i + 1) << ": ";
+        cin >> numeri[i];
+    }
+
+    // Calcola la media
+    int somma = 0;
+    for (int i = 0; i < n; i++) {
+        somma += numeri[i];
+    }
+
+    cout << "Media: " << (double)somma / n << endl;
+
+    delete[] numeri;   // libera la memoria
+    numeri = nullptr;
+
+    return 0;
+}
+```
+
+## Puntatori smart (C++11)
+
+In C++ moderno, si preferisce evitare `new` e `delete` manualmente. Si usano invece i **puntatori smart** che gestiscono automaticamente la memoria:
+
+```cpp
+#include <memory>
+using namespace std;
+
+// unique_ptr: la memoria viene liberata automaticamente
+unique_ptr<int> ptr = make_unique<int>(42);
+cout << *ptr << endl;   // 42
+// Non serve delete: viene chiamato automaticamente
+
+// shared_ptr: gestisce la memoria condivisa
+shared_ptr<int> sptr = make_shared<int>(100);
+```
+
+I puntatori smart sono la scelta consigliata nel C++ moderno perché eliminano i problemi di memory leak e dangling pointer.
+
+## Regola pratica
+
+- Se usi `new`, usa sempre `delete` nella stessa funzione
+- Se usi `new[]`, usa sempre `delete[]`
+- Dopo `delete`, imposta il puntatore a `nullptr`
+- Quando possibile, usa i puntatori smart o `vector` invece di array dinamici manuali
+
+```cpp
+// Preferire vector all'array dinamico manuale
+#include <vector>
+vector<int> numeri(n);   // gestione automatica della memoria!
+// non serve delete
+```
+
+## Esempio: confronto
+
+```cpp
+// Approccio manuale (più vecchio)
+int n = 5;
+int* arr1 = new int[n]{1, 2, 3, 4, 5};
+// ... usa arr1 ...
+delete[] arr1;
+
+// Approccio moderno con vector (preferito)
+#include <vector>
+vector<int> arr2 = {1, 2, 3, 4, 5};
+// ... usa arr2 ...
+// nessun delete necessario!
+```

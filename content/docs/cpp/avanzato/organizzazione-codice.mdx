@@ -1,0 +1,330 @@
+---
+title: Organizzazione del Codice
+description: Come dividere un programma C++ in più file usando header file e file di implementazione.
+---
+
+## Perché dividere il codice in più file?
+
+Finora abbiamo scritto tutto il nostro codice in un unico file `.cpp`. Questo va bene per programmi piccoli, ma quando il progetto cresce diventa difficile da gestire.
+
+Dividere il codice in più file offre diversi vantaggi:
+- **Leggibilità**: ogni file ha uno scopo specifico
+- **Riutilizzo**: puoi usare le stesse funzioni in più programmi
+- **Manutenzione**: modificare una parte non richiede di toccare tutto il resto
+- **Collaborazione**: più persone possono lavorare su file diversi
+
+## I due tipi di file
+
+In C++ si usano tipicamente due tipi di file:
+
+| Tipo | Estensione | Contenuto |
+|------|-----------|-----------|
+| Header file | `.h` o `.hpp` | Dichiarazioni (prototipi di funzioni, classi, struct) |
+| File di implementazione | `.cpp` | Definizioni (il codice vero e proprio) |
+
+Pensa all'header come al **sommario di un libro**: ti dice cosa c'è, ma non ti mostra il contenuto completo. Il file `.cpp` è il contenuto vero.
+
+## Un esempio pratico
+
+Immagina di voler creare un programma che usa funzioni matematiche personalizzate.
+
+### Struttura dei file
+
+```
+progetto/
+├── main.cpp
+├── matematica.h
+└── matematica.cpp
+```
+
+### Il file header: `matematica.h`
+
+```cpp
+// matematica.h
+// Questo file contiene le DICHIARAZIONI delle funzioni
+
+#ifndef MATEMATICA_H
+#define MATEMATICA_H
+
+int somma(int a, int b);
+int prodotto(int a, int b);
+double potenza(double base, int esponente);
+
+#endif
+```
+
+### Il file di implementazione: `matematica.cpp`
+
+```cpp
+// matematica.cpp
+// Questo file contiene le DEFINIZIONI (il codice vero)
+
+#include "matematica.h"
+
+int somma(int a, int b) {
+    return a + b;
+}
+
+int prodotto(int a, int b) {
+    return a * b;
+}
+
+double potenza(double base, int esponente) {
+    double risultato = 1.0;
+    for (int i = 0; i < esponente; i++) {
+        risultato *= base;
+    }
+    return risultato;
+}
+```
+
+### Il file principale: `main.cpp`
+
+```cpp
+// main.cpp
+#include <iostream>
+#include "matematica.h"   // include il nostro header
+
+using namespace std;
+
+int main() {
+    cout << "Somma: " << somma(3, 4) << endl;
+    cout << "Prodotto: " << prodotto(3, 4) << endl;
+    cout << "2^8 = " << potenza(2, 8) << endl;
+    return 0;
+}
+```
+
+Per compilare ed eseguire:
+
+```bash
+g++ main.cpp matematica.cpp -o programma
+./programma
+```
+
+## Le include guard
+
+Nell'header hai visto queste righe:
+
+```cpp
+#ifndef MATEMATICA_H
+#define MATEMATICA_H
+
+// ... contenuto dell'header ...
+
+#endif
+```
+
+Si chiamano **include guard** e servono a evitare che lo stesso header venga incluso più volte nello stesso file (cosa che causerebbe errori di ridefinizione).
+
+Il meccanismo è semplice:
+1. `#ifndef MATEMATICA_H` — "se MATEMATICA_H non è ancora definito..."
+2. `#define MATEMATICA_H` — "...definiscilo..."
+3. "...e includi tutto questo contenuto"
+4. `#endif` — fine del blocco condizionale
+
+La seconda volta che il file viene incluso, `MATEMATICA_H` è già definito, quindi il contenuto viene saltato.
+
+### Alternativa moderna: `#pragma once`
+
+```cpp
+#pragma once
+
+// contenuto dell'header
+```
+
+`#pragma once` fa la stessa cosa delle include guard, ma è più semplice da scrivere. È supportata da tutti i compilatori moderni, anche se non è ufficialmente parte dello standard C++.
+
+## Come includere un file
+
+Esistono due sintassi per `#include`:
+
+```cpp
+#include <iostream>    // cerca nelle cartelle di sistema (librerie standard)
+#include "matematica.h" // cerca prima nella cartella corrente del progetto
+```
+
+Usa le **virgolette** per i tuoi file, le **parentesi angolari** per le librerie di sistema.
+
+## Esempio con una classe
+
+La stessa struttura si applica alle classi. Ecco un esempio con una classe `Studente`:
+
+### `studente.h`
+
+```cpp
+#ifndef STUDENTE_H
+#define STUDENTE_H
+
+#include <string>
+using namespace std;
+
+class Studente {
+private:
+    string nome;
+    int eta;
+    double votoMedio;
+
+public:
+    Studente(string n, int e);
+    void aggiungiVoto(double voto);
+    void stampaInfo() const;
+    string getNome() const;
+    double getVotoMedio() const;
+};
+
+#endif
+```
+
+### `studente.cpp`
+
+```cpp
+#include "studente.h"
+#include <iostream>
+
+Studente::Studente(string n, int e) {
+    nome = n;
+    eta = e;
+    votoMedio = 0.0;
+}
+
+void Studente::aggiungiVoto(double voto) {
+    if (votoMedio == 0.0) {
+        votoMedio = voto;
+    } else {
+        votoMedio = (votoMedio + voto) / 2.0;
+    }
+}
+
+void Studente::stampaInfo() const {
+    cout << "Nome: " << nome << endl;
+    cout << "Eta: " << eta << endl;
+    cout << "Voto medio: " << votoMedio << endl;
+}
+
+string Studente::getNome() const {
+    return nome;
+}
+
+double Studente::getVotoMedio() const {
+    return votoMedio;
+}
+```
+
+### `main.cpp`
+
+```cpp
+#include <iostream>
+#include "studente.h"
+
+using namespace std;
+
+int main() {
+    Studente s("Mario", 16);
+    s.aggiungiVoto(8.5);
+    s.aggiungiVoto(7.0);
+    s.aggiungiVoto(9.0);
+    s.stampaInfo();
+    return 0;
+}
+```
+
+Compilazione:
+
+```bash
+g++ main.cpp studente.cpp -o programma
+```
+
+## Cosa va nell'header e cosa nel .cpp?
+
+### Nell'header (`.h`) metti:
+- Prototipi di funzioni
+- Dichiarazioni di classi (con attributi e metodi)
+- Definizioni di struct ed enum
+- Costanti globali (`const`)
+- Direttive `#include` necessarie per i tipi usati
+
+### Nel file `.cpp` metti:
+- Corpo delle funzioni (l'implementazione)
+- Corpo dei metodi delle classi
+- Variabili locali
+- Logica del programma
+
+### Regola pratica
+
+> Se qualcuno ha bisogno di *sapere che esiste*, mettilo nell'header.
+> Se qualcuno ha bisogno di *vedere come funziona*, mettilo nel `.cpp`.
+
+## Errori comuni
+
+### Dimenticare le include guard
+
+```cpp
+// SBAGLIATO - senza include guard
+// Se incluso due volte, causa errori di ridefinizione
+int somma(int a, int b);
+```
+
+```cpp
+// CORRETTO
+#ifndef MATEMATICA_H
+#define MATEMATICA_H
+int somma(int a, int b);
+#endif
+```
+
+### Includere il `.cpp` invece dell'`.h`
+
+```cpp
+// SBAGLIATO
+#include "matematica.cpp"
+
+// CORRETTO
+#include "matematica.h"
+```
+
+### Dimenticare di compilare tutti i file `.cpp`
+
+```bash
+# SBAGLIATO - manca matematica.cpp
+g++ main.cpp -o programma
+
+# CORRETTO
+g++ main.cpp matematica.cpp -o programma
+```
+
+## Struttura consigliata per progetti più grandi
+
+Per progetti con molti file, è utile organizzarli in cartelle:
+
+```
+progetto/
+├── src/           (file .cpp)
+│   ├── main.cpp
+│   ├── studente.cpp
+│   └── matematica.cpp
+├── include/       (file .h)
+│   ├── studente.h
+│   └── matematica.h
+└── build/         (file compilati)
+```
+
+Compilazione con questa struttura:
+
+```bash
+g++ src/main.cpp src/studente.cpp src/matematica.cpp -I include -o build/programma
+```
+
+Il flag `-I include` dice al compilatore dove trovare gli header.
+
+## Riepilogo
+
+| Concetto | Dettaglio |
+|----------|-----------|
+| Header (`.h`) | Dichiarazioni, prototipi, classi |
+| Implementazione (`.cpp`) | Definizioni, logica vera e propria |
+| Include guard | `#ifndef / #define / #endif` per evitare inclusioni multiple |
+| `#pragma once` | Alternativa moderna alle include guard |
+| `#include "file.h"` | Include file del progetto (virgolette) |
+| `#include <lib>` | Include librerie di sistema (parentesi angolari) |
+| Compilazione | `g++ file1.cpp file2.cpp -o output` |

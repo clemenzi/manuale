@@ -1,0 +1,162 @@
+---
+title: Ciclo do...while
+description: Il ciclo do...while in C++, che esegue il blocco almeno una volta.
+---
+
+## Il ciclo `do...while`
+
+Il ciclo `do...while` è simile al `while`, con una differenza fondamentale: **il blocco di codice viene eseguito almeno una volta**, perché la condizione viene controllata alla fine.
+
+Sintassi:
+
+```cpp
+do {
+    // codice da eseguire
+} while (condizione);
+```
+
+Nota il **punto e virgola** dopo la parentesi tonda finale, che è obbligatorio.
+
+## Confronto con il `while`
+
+```cpp
+// while: controlla PRIMA, potrebbe non eseguire mai
+int x = 10;
+while (x < 5) {
+    cout << "while: " << x << endl;  // non viene mai eseguito
+}
+
+// do...while: esegue ALMENO UNA VOLTA
+int y = 10;
+do {
+    cout << "do-while: " << y << endl;  // eseguito una volta!
+} while (y < 5);
+```
+
+Output:
+
+```
+do-while: 10
+```
+
+## Quando usare `do...while`
+
+Il `do...while` è ideale quando vuoi che il codice venga eseguito almeno una volta prima di controllare la condizione. Il caso d'uso classico è chiedere un input all'utente e ripetere finché non inserisce qualcosa di valido:
+
+```cpp
+int numero;
+
+do {
+    cout << "Inserisci un numero tra 1 e 10: ";
+    cin >> numero;
+
+    if (numero < 1 || numero > 10) {
+        cout << "Valore non valido, riprova." << endl;
+    }
+} while (numero < 1 || numero > 10);
+
+cout << "Hai inserito: " << numero << endl;
+```
+
+Con il `while` normale, dovresti leggere l'input anche prima del ciclo (duplicando il codice). Con `do...while` è più pulito.
+
+## Esempio: menu interattivo
+
+Il `do...while` è perfetto per i menu:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int scelta;
+
+    do {
+        cout << "\n=== Menu ===" << endl;
+        cout << "1. Saluta" << endl;
+        cout << "2. Conta fino a 5" << endl;
+        cout << "3. Esci" << endl;
+        cout << "Scelta: ";
+        cin >> scelta;
+
+        switch (scelta) {
+            case 1:
+                cout << "Ciao! Come stai?" << endl;
+                break;
+            case 2:
+                for (int i = 1; i <= 5; i++) {
+                    cout << i << " ";
+                }
+                cout << endl;
+                break;
+            case 3:
+                cout << "Arrivederci!" << endl;
+                break;
+            default:
+                cout << "Scelta non valida." << endl;
+        }
+
+    } while (scelta != 3);
+
+    return 0;
+}
+```
+
+## Contatore con `do...while`
+
+```cpp
+int i = 1;
+
+do {
+    cout << i << " ";
+    i++;
+} while (i <= 5);
+
+cout << endl;
+// Output: 1 2 3 4 5
+```
+
+## Riepilogo dei tre cicli
+
+| Ciclo | Quando si controlla | Minimo esecuzioni |
+|---|---|---|
+| `while` | Prima | 0 |
+| `for` | Prima | 0 |
+| `do...while` | Dopo | 1 |
+
+Nella pratica, il `do...while` è meno usato degli altri due, ma è utile nei casi in cui l'esecuzione almeno una volta è garantita dalla logica del programma.
+
+## Esempio pratico: indovinare un numero
+
+```cpp
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int main() {
+    srand(time(0));  // inizializza il generatore di numeri casuali
+    int numeroDaIndovinare = rand() % 100 + 1;  // numero tra 1 e 100
+    int tentativo;
+    int contatore = 0;
+
+    cout << "Ho pensato un numero tra 1 e 100. Indovinalo!" << endl;
+
+    do {
+        cout << "Tentativo " << (contatore + 1) << ": ";
+        cin >> tentativo;
+        contatore++;
+
+        if (tentativo < numeroDaIndovinare) {
+            cout << "Troppo basso!" << endl;
+        } else if (tentativo > numeroDaIndovinare) {
+            cout << "Troppo alto!" << endl;
+        }
+
+    } while (tentativo != numeroDaIndovinare);
+
+    cout << "Bravo! Hai indovinato in " << contatore << " tentativi!" << endl;
+
+    return 0;
+}
+```

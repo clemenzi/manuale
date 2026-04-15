@@ -1,6 +1,152 @@
 ---
 title: Variabili
-description: Come dichiarare e usare variabili in C++.
+description: Come dichiarare e usare le variabili in C++.
 ---
 
-Contenuto in arrivo.
+## Cos'è una variabile?
+
+Una **variabile** è un contenitore che serve a conservare un valore nella memoria del computer. Puoi immaginare una variabile come una scatola con un'etichetta: l'etichetta è il nome della variabile, il contenuto della scatola è il suo valore.
+
+In C++, ogni variabile ha un **tipo**: devi specificare che tipo di dato vuoi conservare (un numero intero, un numero decimale, un carattere, ecc.).
+
+## Dichiarare una variabile
+
+In C++ devi **dichiarare** una variabile prima di usarla. La dichiarazione specifica il tipo e il nome:
+
+```cpp
+int eta;           // dichiara una variabile intera chiamata "eta"
+double altezza;    // dichiara una variabile decimale
+char iniziale;     // dichiara una variabile carattere
+```
+
+Dopo la dichiarazione, la variabile esiste in memoria ma non ha ancora un valore definito.
+
+## Inizializzare una variabile
+
+**Inizializzare** significa assegnare un valore alla variabile al momento della dichiarazione:
+
+```cpp
+int eta = 16;
+double altezza = 1.65;
+char iniziale = 'A';
+bool maggiorenne = false;
+```
+
+In C++ moderno puoi anche usare le parentesi graffe:
+
+```cpp
+int x{10};      // equivalente a int x = 10;
+double pi{3.14};
+```
+
+Questa forma è preferita dai programmatori moderni perché evita alcune conversioni implicite rischiose.
+
+## Assegnare un valore
+
+Puoi cambiare il valore di una variabile in qualsiasi momento con l'operatore `=`:
+
+```cpp
+int x = 5;
+cout << x << endl;  // 5
+
+x = 10;
+cout << x << endl;  // 10
+
+x = x + 3;
+cout << x << endl;  // 13
+```
+
+## Dichiarare più variabili dello stesso tipo
+
+Puoi dichiarare più variabili dello stesso tipo in una riga:
+
+```cpp
+int a, b, c;
+int x = 1, y = 2, z = 3;
+```
+
+## Regole per i nomi
+
+I nomi delle variabili devono seguire queste regole:
+
+- Devono iniziare con una lettera (`a-z`, `A-Z`) o un underscore `_`
+- Possono contenere lettere, numeri e underscore
+- Non possono contenere spazi o caratteri speciali
+- Non possono essere parole riservate del linguaggio (`int`, `if`, `return`, ecc.)
+- Il C++ è **case-sensitive**: `eta` e `Eta` sono variabili diverse
+
+```cpp
+// Nomi validi
+int eta;
+double altezza_media;
+string nomeUtente;
+int _valore;
+int x1;
+
+// Nomi non validi
+int 2x;          // inizia con un numero
+int nome utente; // contiene uno spazio
+int int;         // parola riservata
+```
+
+## Convenzioni di stile
+
+In C++ le convenzioni più usate per le variabili sono:
+
+- **camelCase**: `nomeUtente`, `etaMinima`, `numeroDiStudenti`
+- **snake_case**: `nome_utente`, `eta_minima`, `numero_di_studenti`
+
+Scegli uno stile e usalo in modo coerente.
+
+## Variabili non inizializzate
+
+Attenzione: in C++, una variabile dichiarata ma non inizializzata contiene un valore casuale (qualsiasi valore era in quella zona di memoria):
+
+```cpp
+int x;
+cout << x;  // stampa un valore imprevedibile! (comportamento non definito)
+```
+
+In Python questo non è possibile perché Python ti darebbe un errore. In C++ invece il compilatore può non avvertire, e il programma si comporta in modo imprevedibile.
+
+**Regola pratica**: inizializza sempre le variabili quando le dichiari.
+
+## Esempio completo
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    // Dichiarazione e inizializzazione
+    string nome = "Alice";
+    int eta = 16;
+    double altezza = 1.65;
+    bool haPatente = false;
+
+    // Utilizzo delle variabili
+    cout << "Nome: " << nome << endl;
+    cout << "Eta: " << eta << endl;
+    cout << "Altezza: " << altezza << " m" << endl;
+    cout << "Ha la patente: " << haPatente << endl;
+
+    // Modifica di una variabile
+    eta = 17;
+    cout << "Eta aggiornata: " << eta << endl;
+
+    return 0;
+}
+```
+
+Output:
+
+```
+Nome: Alice
+Eta: 16
+Altezza: 1.65 m
+Ha la patente: 0
+Eta aggiornata: 17
+```
+
+(Nota: `false` viene stampato come `0` e `true` come `1` per default)

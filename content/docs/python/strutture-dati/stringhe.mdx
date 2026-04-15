@@ -1,0 +1,133 @@
+---
+title: Stringhe
+description: Come lavorare con il testo in Python.
+---
+
+## Cosa sono le stringhe?
+
+Una **stringa** (`str`) è una sequenza di caratteri. In Python le stringhe si scrivono tra virgolette singole o doppie:
+
+```python
+nome = "Alice"
+saluto = 'Ciao, mondo!'
+```
+
+## Creare stringhe
+
+```python
+semplice = "Hello"
+con_apice = "It's a great day"   # virgolette doppie con apostrofo dentro
+con_virgolette = 'Disse "ciao"'  # virgolette singole con doppie dentro
+multiriga = """Questa stringa
+si estende su
+più righe."""
+```
+
+## Accedere ai caratteri (indicizzazione)
+
+Ogni carattere in una stringa ha un **indice** (posizione), che parte da `0`:
+
+```python
+testo = "Python"
+print(testo[0])   # P
+print(testo[1])   # y
+print(testo[-1])  # n  (l'ultimo carattere)
+print(testo[-2])  # o  (il penultimo)
+```
+
+## Tagliare le stringhe (slicing)
+
+Puoi estrarre una parte di una stringa con la sintassi `[inizio:fine]`:
+
+```python
+testo = "Python"
+print(testo[0:3])   # Pyt  (da 0 incluso a 3 escluso)
+print(testo[2:])    # thon (da 2 fino alla fine)
+print(testo[:4])    # Pyth (dall'inizio fino a 4 escluso)
+print(testo[::2])   # Pto  (ogni 2 caratteri)
+print(testo[::-1])  # nohtyP (stringa al contrario)
+```
+
+## Lunghezza di una stringa
+
+```python
+testo = "Python"
+print(len(testo))  # 6
+```
+
+## Concatenazione e ripetizione
+
+```python
+a = "Ciao"
+b = " mondo"
+print(a + b)   # Ciao mondo
+print(a * 3)   # CiaoCiaoCiao
+```
+
+## Metodi delle stringhe
+
+Le stringhe hanno molti metodi incorporati. Eccone i principali:
+
+```python
+testo = "  Ciao, Mondo!  "
+
+print(testo.upper())      # "  CIAO, MONDO!  "
+print(testo.lower())      # "  ciao, mondo!  "
+print(testo.strip())      # "Ciao, Mondo!"  (rimuove spazi iniziali e finali)
+print(testo.replace("Mondo", "Python"))  # "  Ciao, Python!  "
+print(testo.split(","))   # ['  Ciao', ' Mondo!  ']
+
+testo2 = "ciao"
+print(testo2.capitalize())  # "Ciao"
+print(testo2.startswith("ci"))  # True
+print(testo2.endswith("ao"))    # True
+print(testo2.find("ia"))        # 1 (indice dove inizia "ia")
+print(testo2.count("a"))        # 1 (numero di occorrenze)
+```
+
+## Verifica del contenuto
+
+```python
+print("123".isdigit())    # True  (solo cifre)
+print("abc".isalpha())    # True  (solo lettere)
+print("abc123".isalnum()) # True  (lettere e cifre)
+print("   ".isspace())    # True  (solo spazi)
+```
+
+## Formattazione delle stringhe (f-string)
+
+Il modo più moderno e pratico per inserire variabili dentro le stringhe è la **f-string** (disponibile da Python 3.6):
+
+```python
+nome = "Alice"
+eta = 16
+print(f"Mi chiamo {nome} e ho {eta} anni.")
+# Mi chiamo Alice e ho 16 anni.
+```
+
+Puoi anche eseguire espressioni dentro le parentesi graffe:
+
+```python
+a = 5
+b = 3
+print(f"La somma di {a} e {b} è {a + b}.")
+# La somma di 5 e 3 è 8.
+```
+
+## Stringhe e caratteri speciali
+
+Alcune sequenze iniziano con `\` e hanno un significato speciale:
+
+| Sequenza | Significato |
+|----------|-------------|
+| `\n` | Nuova riga |
+| `\t` | Tabulazione |
+| `\\` | Backslash letterale |
+| `\"` | Virgolette doppie |
+| `\'` | Virgolette singole |
+
+```python
+print("Prima riga\nSeconda riga")
+print("Nome:\tAlice")
+print("Dice: \"Ciao!\"")
+```

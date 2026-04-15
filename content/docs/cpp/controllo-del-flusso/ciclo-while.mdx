@@ -1,0 +1,184 @@
+---
+title: Ciclo while
+description: Come ripetere istruzioni con il ciclo while in C++.
+---
+
+## Cosa sono i cicli?
+
+Un **ciclo** (o loop) permette di ripetere un blocco di codice più volte. Invece di scrivere la stessa istruzione dieci volte, la scrivi una volta e dici al programma di ripeterla.
+
+## Il ciclo `while`
+
+Il ciclo `while` ripete un blocco di codice finché una condizione rimane vera:
+
+```cpp
+while (condizione) {
+    // codice da ripetere
+}
+```
+
+```cpp
+int i = 1;
+
+while (i <= 5) {
+    cout << i << endl;
+    i++;
+}
+```
+
+Output:
+
+```
+1
+2
+3
+4
+5
+```
+
+Come funziona:
+1. Controlla la condizione `i <= 5`
+2. Se è vera, esegue il blocco
+3. Dopo il blocco, controlla di nuovo la condizione
+4. Continua finché la condizione diventa falsa
+
+## La variabile contatore
+
+Di solito si usa una **variabile contatore** per tenere traccia di quante volte il ciclo è stato eseguito. Ricordati di:
+
+1. Inizializzare il contatore prima del ciclo
+2. Aggiornare il contatore all'interno del ciclo
+
+```cpp
+int contatore = 0;
+
+while (contatore < 3) {
+    cout << "Esecuzione " << contatore + 1 << endl;
+    contatore++;  // IMPORTANTE: senza questo, ciclo infinito!
+}
+```
+
+## Il ciclo infinito
+
+Se la condizione non diventa mai falsa, il ciclo va avanti all'infinito (loop infinito). Il programma si blocca:
+
+```cpp
+// ATTENZIONE: questo è un loop infinito!
+int i = 1;
+while (i <= 5) {
+    cout << i << endl;
+    // manca i++: i rimane sempre 1, la condizione sempre vera
+}
+```
+
+Se ti succede, puoi fermare il programma con `Ctrl+C`.
+
+## Ciclo con input dell'utente
+
+Il `while` è utile quando non sai quante volte ripetere qualcosa in anticipo:
+
+```cpp
+int numero;
+cout << "Inserisci un numero (0 per uscire): ";
+cin >> numero;
+
+while (numero != 0) {
+    cout << "Il quadrato di " << numero << " è " << numero * numero << endl;
+    cout << "Inserisci un numero (0 per uscire): ";
+    cin >> numero;
+}
+
+cout << "Arrivederci!" << endl;
+```
+
+## Ciclo con accumulatore
+
+Spesso si usa una variabile **accumulatore** per sommare o raccogliere valori:
+
+```cpp
+int somma = 0;
+int numero;
+int n = 5;
+
+cout << "Inserisci " << n << " numeri:" << endl;
+
+int i = 0;
+while (i < n) {
+    cout << "Numero " << (i + 1) << ": ";
+    cin >> numero;
+    somma += numero;
+    i++;
+}
+
+cout << "Somma: " << somma << endl;
+cout << "Media: " << (double)somma / n << endl;
+```
+
+## Condizioni complesse
+
+Puoi usare condizioni più elaborate con operatori logici:
+
+```cpp
+int tentativi = 0;
+int password;
+const int PASSWORD_CORRETTA = 1234;
+
+while (password != PASSWORD_CORRETTA && tentativi < 3) {
+    cout << "Inserisci la password: ";
+    cin >> password;
+    tentativi++;
+
+    if (password != PASSWORD_CORRETTA) {
+        cout << "Password errata. Tentativi rimasti: " << (3 - tentativi) << endl;
+    }
+}
+
+if (password == PASSWORD_CORRETTA) {
+    cout << "Accesso consentito!" << endl;
+} else {
+    cout << "Accesso bloccato dopo 3 tentativi." << endl;
+}
+```
+
+## Esempio pratico: calcolatrice interattiva
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    char continua = 's';
+
+    while (continua == 's' || continua == 'S') {
+        double a, b;
+        char operazione;
+
+        cout << "Inserisci il primo numero: ";
+        cin >> a;
+        cout << "Operazione (+, -, *, /): ";
+        cin >> operazione;
+        cout << "Inserisci il secondo numero: ";
+        cin >> b;
+
+        if (operazione == '+') {
+            cout << "Risultato: " << a + b << endl;
+        } else if (operazione == '-') {
+            cout << "Risultato: " << a - b << endl;
+        } else if (operazione == '*') {
+            cout << "Risultato: " << a * b << endl;
+        } else if (operazione == '/') {
+            if (b != 0) {
+                cout << "Risultato: " << a / b << endl;
+            } else {
+                cout << "Errore: divisione per zero!" << endl;
+            }
+        }
+
+        cout << "Vuoi continuare? (s/n): ";
+        cin >> continua;
+    }
+
+    cout << "Ciao!" << endl;
+    return 0;
+}
+```

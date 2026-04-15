@@ -1,0 +1,137 @@
+---
+title: Commenti
+description: Come usare i commenti in C++ per documentare il codice.
+---
+
+## Cosa sono i commenti?
+
+I **commenti** sono parti del codice che il compilatore ignora completamente. Servono a:
+
+- Spiegare cosa fa il codice
+- Lasciare note per se stessi o per altri programmatori
+- Disabilitare temporaneamente del codice durante il debugging
+
+Scrivere buoni commenti è un'abitudine fondamentale per ogni programmatore.
+
+## Commento su riga singola
+
+Il commento su riga singola inizia con `//`. Tutto ciò che segue fino alla fine della riga viene ignorato:
+
+```cpp
+// Questo è un commento su riga singola
+int x = 5; // questo commento è dopo il codice
+
+// Puoi commentare una riga intera
+// int y = 10;  // questa riga è disabilitata
+```
+
+## Commento su più righe
+
+Il commento su più righe inizia con `/*` e termina con `*/`. Tutto ciò che sta in mezzo viene ignorato:
+
+```cpp
+/* Questo è un commento
+   su più righe.
+   Utile per spiegazioni più lunghe. */
+
+int x = 5;
+
+/*
+ * Alcuni programmatori usano
+ * questo stile con l'asterisco
+ * all'inizio di ogni riga per leggibilità.
+ */
+```
+
+## Quando usare i commenti
+
+### Spiegare il perché, non il cosa
+
+Un buon commento spiega **perché** si fa qualcosa, non **cosa** si fa. Il codice stesso dovrebbe essere chiaro abbastanza da spiegare il "cosa":
+
+```cpp
+// Scarso: il codice lo si capisce già
+int x = x + 1; // incrementa x di 1
+
+// Buono: spiega il perché
+int tentativi = tentativi + 1; // conteggio dei tentativi falliti per bloccare dopo 3
+```
+
+### Documentare le funzioni
+
+I commenti sono utili per spiegare cosa fa una funzione, i suoi parametri e cosa restituisce:
+
+```cpp
+// Calcola l'area di un rettangolo.
+// base: la larghezza del rettangolo
+// altezza: l'altezza del rettangolo
+// Restituisce l'area come numero decimale.
+double calcolaArea(double base, double altezza) {
+    return base * altezza;
+}
+```
+
+### Disabilitare codice temporaneamente
+
+Durante il debugging, puoi commentare del codice per escluderlo temporaneamente:
+
+```cpp
+int main() {
+    int x = 10;
+    // cout << "Debug: x = " << x << endl;  // disabilitato temporaneamente
+    cout << "Valore finale: " << x << endl;
+    return 0;
+}
+```
+
+## Commenti da evitare
+
+Evita i commenti ovvi che non aggiungono informazioni:
+
+```cpp
+// Da evitare
+int eta = 16;    // imposta eta a 16
+x = x + 1;      // aggiunge 1 a x
+return 0;        // ritorna 0
+```
+
+Evita i commenti errati, cioè commenti che non corrispondono più al codice (possono essere peggio di nessun commento):
+
+```cpp
+// Somma due numeri  ← SBAGLIATO, in realtà moltiplica!
+int risultato = a * b;
+```
+
+## Esempio completo
+
+```cpp
+#include <iostream>
+using namespace std;
+
+/*
+ * Programma: Calcolatore dell'area
+ * Autore: Alice
+ * Data: 2024
+ *
+ * Questo programma calcola l'area di un cerchio
+ * dato il raggio inserito dall'utente.
+ */
+
+// Valore approssimato di pi greco
+const double PI = 3.14159265358979;
+
+int main() {
+    double raggio;
+
+    // Chiedi il raggio all'utente
+    cout << "Inserisci il raggio: ";
+    cin >> raggio;
+
+    // Calcola l'area con la formula: A = pi * r^2
+    double area = PI * raggio * raggio;
+
+    cout << "L'area del cerchio è: " << area << endl;
+
+    return 0;
+}
+```

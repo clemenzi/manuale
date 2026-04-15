@@ -1,0 +1,154 @@
+---
+title: Struttura di un Programma C++
+description: Le parti fondamentali che compongono ogni programma C++.
+---
+
+## La struttura minima
+
+Ogni programma C++ ha una struttura di base che devi conoscere. Vediamola con un esempio:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Ciao!" << endl;
+    return 0;
+}
+```
+
+Questo programma è composto da quattro parti principali. Analizziamole una per una.
+
+## 1. Le direttive `#include`
+
+```cpp
+#include <iostream>
+```
+
+La riga `#include <iostream>` dice al compilatore di includere la libreria `iostream` (input/output stream). Questa libreria contiene strumenti per visualizzare testo sullo schermo (`cout`) e leggere l'input dell'utente (`cin`).
+
+Il `#include` è una **direttiva del preprocessore**: viene elaborata prima della compilazione vera e propria. Ogni volta che hai bisogno di una funzionalità esterna, la includi con `#include`.
+
+## 2. Il namespace
+
+```cpp
+using namespace std;
+```
+
+Questa riga dice al programma di usare il **namespace** `std` (standard). Un namespace è come un gruppo di nomi: evita che nomi uguali in librerie diverse si scontrino.
+
+Senza questa riga, dovresti scrivere `std::cout` invece di `cout`, e `std::endl` invece di `endl`. Con `using namespace std;` puoi usare i nomi brevi direttamente.
+
+## 3. La funzione `main()`
+
+```cpp
+int main() {
+    // codice qui
+    return 0;
+}
+```
+
+La funzione `main()` è il **punto di partenza** di ogni programma C++. Quando esegui un programma, il computer inizia sempre dall'esecuzione di `main()`.
+
+- `int` indica che la funzione restituisce un numero intero
+- Le parentesi graffe `{` e `}` delimitano il corpo della funzione
+- `return 0;` indica che il programma è terminato correttamente (0 = nessun errore)
+
+## 4. Le istruzioni
+
+```cpp
+cout << "Ciao!" << endl;
+```
+
+Dentro `main()` scrivi le istruzioni del programma. Ogni istruzione in C++ termina con un **punto e virgola** (`;`). Questo è diverso da Python, dove non è necessario.
+
+`cout` stampa testo sullo schermo. `endl` va a capo (come `\n`).
+
+## Un esempio più completo
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    // Dichiarazione di variabili
+    string nome = "Alice";
+    int eta = 16;
+
+    // Output
+    cout << "Nome: " << nome << endl;
+    cout << "Eta: " << eta << endl;
+
+    // Fine del programma
+    return 0;
+}
+```
+
+Output:
+
+```
+Nome: Alice
+Eta: 16
+```
+
+## L'ordine delle sezioni
+
+La struttura tipica di un file C++ segue quest'ordine:
+
+1. **Direttive `#include`**: le librerie da includere
+2. **Direttive `using`**: i namespace da usare
+3. **Dichiarazioni globali** (variabili, costanti, prototipi di funzioni)
+4. **Funzione `main()`**
+5. **Altre funzioni** (definite dopo il main)
+
+```cpp
+// 1. Include
+#include <iostream>
+#include <cmath>
+
+// 2. Namespace
+using namespace std;
+
+// 3. Costanti globali (opzionale)
+const double PI = 3.14159;
+
+// 4. Funzione main
+int main() {
+    double raggio = 5.0;
+    double area = PI * raggio * raggio;
+    cout << "Area: " << area << endl;
+    return 0;
+}
+```
+
+## Le parentesi graffe
+
+Le parentesi graffe `{` e `}` delimitano i **blocchi di codice**. Le troverai ovunque in C++: nelle funzioni, nei cicli, nelle condizioni.
+
+```cpp
+int main() {          // apre il blocco main
+    if (true) {       // apre il blocco if
+        cout << "Ciao";
+    }                 // chiude il blocco if
+    return 0;
+}                     // chiude il blocco main
+```
+
+A differenza di Python, in C++ l'indentazione non è obbligatoria per il funzionamento del codice. Tuttavia, è fortemente consigliata per rendere il codice leggibile.
+
+## Il punto e virgola
+
+In C++, quasi tutte le istruzioni terminano con `;`. Dimenticarlo è uno degli errori più comuni per i principianti:
+
+```cpp
+// Corretto
+cout << "Ciao!" << endl;
+int x = 5;
+
+// Errato (manca il ;)
+cout << "Ciao!" << endl   // errore di compilazione
+int x = 5                  // errore di compilazione
+```
+
+Il compilatore ti segnalerà l'errore se dimentichi il punto e virgola.

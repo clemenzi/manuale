@@ -1,0 +1,194 @@
+---
+title: Riferimenti
+description: Come usare i riferimenti in C++ per creare alias alle variabili.
+---
+
+## Cos'è un riferimento?
+
+Un **riferimento** è un alias (un altro nome) per una variabile esistente. A differenza dei puntatori, i riferimenti sono più semplici da usare e meno pericolosi.
+
+Un riferimento si dichiara con `&` dopo il tipo:
+
+```cpp
+int x = 42;
+int& ref = x;    // ref è un riferimento a x (un altro nome per x)
+
+cout << x << endl;    // 42
+cout << ref << endl;  // 42 (stessa variabile!)
+
+ref = 100;
+cout << x << endl;    // 100 (x è cambiata!)
+```
+
+`ref` e `x` sono la stessa variabile vista con due nomi diversi. Modificare uno equivale a modificare l'altro.
+
+## Riferimenti vs puntatori
+
+| Caratteristica | Riferimento (`&`) | Puntatore (`*`) |
+|---|---|---|
+| Sintassi di accesso | `ref` (diretta) | `*ptr` (dereferenziazione) |
+| Può essere nullo? | No | Sì (`nullptr`) |
+| Può essere riassegnato? | No | Sì |
+| Deve essere inizializzato? | Sì | No (ma è pericoloso) |
+
+I riferimenti sono più semplici e sicuri: non possono essere nulli e non richiedono dereferenziazione.
+
+## Passaggio per riferimento alle funzioni
+
+Il caso d'uso principale dei riferimenti è passare variabili alle funzioni in modo che la funzione le possa modificare:
+
+```cpp
+void raddoppia(int& x) {
+    x = x * 2;   // modifica la variabile originale
+}
+
+int main() {
+    int numero = 5;
+    cout << numero << endl;   // 5
+    raddoppia(numero);        // non serve &, viene passato direttamente
+    cout << numero << endl;   // 10
+    return 0;
+}
+```
+
+Confronta con il passaggio per valore (che non modifica l'originale):
+
+```cpp
+void raddoppiaValore(int x) {
+    x = x * 2;  // modifica solo la copia
+}
+
+void raddoppiaRiferimento(int& x) {
+    x = x * 2;  // modifica l'originale
+}
+
+int main() {
+    int a = 5, b = 5;
+    raddoppiaValore(a);       // a rimane 5
+    raddoppiaRiferimento(b);  // b diventa 10
+    cout << a << " " << b;   // 5 10
+    return 0;
+}
+```
+
+## Scambiare due variabili con i riferimenti
+
+Il classico esempio dello swap è molto più pulito con i riferimenti rispetto ai puntatori:
+
+```cpp
+void scambia(int& a, int& b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+int main() {
+    int x = 10, y = 20;
+    cout << x << " " << y << endl;  // 10 20
+    scambia(x, y);
+    cout << x << " " << y << endl;  // 20 10
+    return 0;
+}
+```
+
+## Riferimenti `const`
+
+Puoi passare un riferimento costante per evitare la copia (efficiente per grandi oggetti) ma senza permettere modifiche:
+
+```cpp
+// Senza const: si copia tutta la stringa
+void stampa1(string s) {
+    cout << s << endl;
+}
+
+// Con const ref: nessuna copia, nessuna modifica
+void stampa2(const string& s) {
+    cout << s << endl;
+    // s = "altro";  // ERRORE: è const
+}
+
+int main() {
+    string lunghissima = "testo molto lungo...";
+    stampa1(lunghissima);   // copia l'intera stringa
+    stampa2(lunghissima);   // nessuna copia, più efficiente
+    return 0;
+}
+```
+
+Il passaggio `const &` è molto comune in C++ per evitare copie inutili di oggetti grandi.
+
+## Restituire un riferimento
+
+Una funzione può anche restituire un riferimento, ma bisogna fare attenzione: non restituire mai un riferimento a una variabile locale (che viene distrutta quando la funzione termina):
+
+```cpp
+// PERICOLOSO: riferimento a variabile locale!
+int& funzioneErrata() {
+    int x = 42;
+    return x;   // x viene distrutta, il riferimento è invalido
+}
+
+// OK: riferimento a variabile globale o parametro
+int& massimo(int& a, int& b) {
+    return (a > b) ? a : b;
+}
+
+int main() {
+    int x = 10, y = 20;
+    massimo(x, y) = 100;   // assegna 100 alla variabile più grande
+    cout << x << " " << y;  // 10 100
+    return 0;
+}
+```
+
+## Riferimenti nel range-based for
+
+I riferimenti sono molto utili nel ciclo range-based for per modificare gli elementi:
+
+```cpp
+int numeri[] = {1, 2, 3, 4, 5};
+
+// Senza riferimento: non modifica l'array
+for (int n : numeri) {
+    n *= 2;   // modifica solo la copia locale
+}
+
+// Con riferimento: modifica l'array originale
+for (int& n : numeri) {
+    n *= 2;   // modifica l'elemento originale
+}
+
+for (int n : numeri) {
+    cout << n << " ";
+}
+// Output: 2 4 6 8 10
+```
+
+## Esempio pratico
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Riceve stringa per riferimento const (efficiente, nessuna modifica)
+void stampaInfo(const string& nome, int eta) {
+    cout << "Nome: " << nome << ", Eta: " << eta << endl;
+}
+
+// Modifica entrambi i valori
+void aggiorna(int& valore, int incremento) {
+    valore += incremento;
+}
+
+int main() {
+    string nome = "Alice";
+    int punti = 100;
+
+    stampaInfo(nome, 16);
+    aggiorna(punti, 50);
+    cout << "Punti: " << punti << endl;   // 150
+
+    return 0;
+}
+```

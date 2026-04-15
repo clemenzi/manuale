@@ -1,0 +1,11 @@
+{
+  "title": "Input e output",
+  "icon": "Terminal",
+  "defaultOpen": true,
+  "pages": [
+    "output",
+    "input",
+    "stringhe",
+    "io-formattato"
+  ]
+}

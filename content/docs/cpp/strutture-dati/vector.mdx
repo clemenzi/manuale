@@ -1,0 +1,243 @@
+---
+title: Vettori (vector)
+description: Come usare il contenitore vector della STL in C++.
+---
+
+## Cos'è un vector?
+
+`vector` è un **array dinamico** della libreria standard del C++. A differenza degli array normali, un `vector`:
+
+- Può cambiare dimensione durante l'esecuzione
+- Tiene traccia della propria dimensione
+- Gestisce la memoria automaticamente
+- Fornisce molte funzioni utili già pronte
+
+Per usarlo, includi `<vector>`:
+
+```cpp
+#include <vector>
+using namespace std;
+```
+
+## Creare un vector
+
+```cpp
+// Vector vuoto
+vector<int> v1;
+
+// Vector con dimensione iniziale (tutti zero)
+vector<int> v2(5);            // {0, 0, 0, 0, 0}
+
+// Vector con valori iniziali
+vector<int> v3 = {1, 2, 3, 4, 5};
+
+// Vector con N elementi tutti uguali
+vector<int> v4(4, 7);         // {7, 7, 7, 7}
+
+// Vector di stringhe
+vector<string> nomi = {"Alice", "Bob", "Carlo"};
+```
+
+## Accedere agli elementi
+
+Come gli array, si usa l'indice `[]` (parte da 0):
+
+```cpp
+vector<int> v = {10, 20, 30, 40, 50};
+
+cout << v[0] << endl;   // 10
+cout << v[2] << endl;   // 30
+cout << v[4] << endl;   // 50
+
+// Modifica
+v[1] = 99;
+cout << v[1] << endl;   // 99
+```
+
+Per accesso con controllo dei limiti (lancia un'eccezione se fuori range):
+
+```cpp
+cout << v.at(2) << endl;   // 30 - più sicuro di []
+// v.at(10);               // lancia eccezione out_of_range
+```
+
+## Aggiungere e rimuovere elementi
+
+```cpp
+vector<int> v;
+
+// Aggiunge in coda
+v.push_back(10);
+v.push_back(20);
+v.push_back(30);
+// v = {10, 20, 30}
+
+// Rimuove l'ultimo elemento
+v.pop_back();
+// v = {10, 20}
+```
+
+## Dimensione e capacità
+
+```cpp
+vector<int> v = {1, 2, 3, 4, 5};
+
+cout << v.size() << endl;     // 5: numero di elementi
+cout << v.empty() << endl;    // 0 (false): è vuoto?
+
+// Dopo pop_back
+v.pop_back();
+cout << v.size() << endl;     // 4
+
+// Svuota il vector
+v.clear();
+cout << v.size() << endl;     // 0
+cout << v.empty() << endl;    // 1 (true)
+```
+
+## Iterare su un vector
+
+Con indice:
+
+```cpp
+vector<int> v = {10, 20, 30, 40, 50};
+
+for (int i = 0; i < v.size(); i++) {
+    cout << v[i] << " ";
+}
+```
+
+Con range-based for (il modo preferito):
+
+```cpp
+for (int n : v) {
+    cout << n << " ";
+}
+
+// Con riferimento per modificare
+for (int& n : v) {
+    n *= 2;
+}
+```
+
+## Primo e ultimo elemento
+
+```cpp
+vector<int> v = {10, 20, 30};
+
+cout << v.front() << endl;   // 10 (primo)
+cout << v.back() << endl;    // 30 (ultimo)
+```
+
+## Inserire e rimuovere in posizioni arbitrarie
+
+```cpp
+vector<int> v = {1, 2, 4, 5};
+
+// Inserisce 3 alla posizione 2 (indice 2)
+v.insert(v.begin() + 2, 3);
+// v = {1, 2, 3, 4, 5}
+
+// Rimuove l'elemento alla posizione 1
+v.erase(v.begin() + 1);
+// v = {1, 3, 4, 5}
+```
+
+## Ordinare un vector
+
+```cpp
+#include <algorithm>
+
+vector<int> v = {5, 2, 8, 1, 9, 3};
+
+sort(v.begin(), v.end());
+// v = {1, 2, 3, 5, 8, 9}
+
+sort(v.begin(), v.end(), greater<int>());
+// v = {9, 8, 5, 3, 2, 1}
+```
+
+## Vector di oggetti
+
+```cpp
+struct Studente {
+    string nome;
+    double media;
+};
+
+vector<Studente> classe;
+classe.push_back({"Alice", 8.5});
+classe.push_back({"Bob", 7.2});
+classe.push_back({"Carlo", 9.1});
+
+for (const Studente& s : classe) {
+    cout << s.nome << ": " << s.media << endl;
+}
+```
+
+## Vector 2D (matrice)
+
+```cpp
+// Matrice 3x3
+vector<vector<int>> matrice(3, vector<int>(3, 0));
+
+// Assegnazione
+matrice[0][0] = 1;
+matrice[1][1] = 5;
+
+// Iterazione
+for (const auto& riga : matrice) {
+    for (int el : riga) {
+        cout << el << " ";
+    }
+    cout << endl;
+}
+```
+
+## Esempio pratico
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    vector<int> voti;
+    int voto;
+
+    cout << "Inserisci i voti (0 per terminare):" << endl;
+    while (true) {
+        cin >> voto;
+        if (voto == 0) break;
+        if (voto >= 1 && voto <= 10) {
+            voti.push_back(voto);
+        } else {
+            cout << "Voto non valido, ignorato." << endl;
+        }
+    }
+
+    if (voti.empty()) {
+        cout << "Nessun voto inserito." << endl;
+        return 0;
+    }
+
+    // Statistiche
+    int somma = 0;
+    for (int v : voti) somma += v;
+    double media = (double)somma / voti.size();
+
+    sort(voti.begin(), voti.end());
+
+    cout << "\nNumero di voti: " << voti.size() << endl;
+    cout << "Media: " << media << endl;
+    cout << "Minimo: " << voti.front() << endl;
+    cout << "Massimo: " << voti.back() << endl;
+
+    cout << "Voti ordinati: ";
+    for (int v : voti) cout << v << " ";
+    cout << endl;
+
+    return 0;
+}
+```

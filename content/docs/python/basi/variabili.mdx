@@ -1,6 +1,110 @@
 ---
 title: Variabili
-description: Come memorizzare un valore e dargli un nome in Python.
+description: Come creare e usare le variabili in Python.
 ---
 
-Contenuto in arrivo.
+## Cos'è una variabile?
+
+Una **variabile** è un contenitore che serve a conservare un valore nella memoria del computer. Puoi immaginare una variabile come una scatola con un'etichetta: l'etichetta è il nome della variabile, il contenuto della scatola è il suo valore.
+
+## Creare una variabile
+
+In Python creare una variabile è semplicissimo. Non devi dichiarare il tipo: basta assegnare un valore con `=`:
+
+```python
+nome = "Alice"
+eta = 16
+altezza = 1.65
+```
+
+Non appena assegni un valore, la variabile esiste ed è pronta all'uso.
+
+## Usare una variabile
+
+```python
+nome = "Alice"
+print(nome)       # Alice
+print("Ciao, " + nome + "!")  # Ciao, Alice!
+```
+
+## Cambiare il valore
+
+Puoi cambiare il valore di una variabile in qualsiasi momento, anche con un tipo diverso (Python è un linguaggio a tipizzazione dinamica):
+
+```python
+x = 10
+print(x)   # 10
+x = "ciao"
+print(x)   # ciao
+```
+
+## Assegnazione multipla
+
+Python permette di assegnare valori a più variabili in una sola riga:
+
+```python
+a, b, c = 1, 2, 3
+print(a)  # 1
+print(b)  # 2
+print(c)  # 3
+```
+
+Puoi anche assegnare lo stesso valore a più variabili contemporaneamente:
+
+```python
+x = y = z = 0
+print(x, y, z)  # 0 0 0
+```
+
+## Regole per i nomi
+
+Il nome di una variabile deve seguire queste regole:
+
+- Deve iniziare con una lettera o un underscore `_`
+- Non può iniziare con un numero
+- Può contenere lettere, numeri e underscore
+- Non può contenere spazi
+- Non può essere una parola chiave di Python
+
+```python
+# Nomi validi
+nome = "Alice"
+eta_utente = 16
+_privato = 42
+valore2 = 3.14
+
+# Nomi non validi
+# 2variabile = 10    # Errore: inizia con un numero
+# mio nome = "Bob"  # Errore: contiene uno spazio
+# class = "A"       # Errore: è una keyword
+```
+
+## Convenzioni di stile
+
+Per convenzione, i nomi delle variabili in Python si scrivono in **snake_case**: tutto in minuscolo con gli underscore tra le parole:
+
+```python
+# Stile consigliato (snake_case)
+nome_utente = "Alice"
+eta_minima = 18
+numero_di_studenti = 30
+
+# Stile sconsigliato (anche se funziona)
+NomeUtente = "Alice"    # CamelCase, usato per le classi
+ETAMINIMA = 18          # tutto maiuscolo, usato per le costanti
+```
+
+## Verificare il tipo di una variabile
+
+Puoi sapere che tipo di dato contiene una variabile con `type()`:
+
+```python
+x = 42
+print(type(x))      # <class 'int'>
+
+y = "ciao"
+print(type(y))      # <class 'str'>
+
+z = 3.14
+print(type(z))      # <class 'float'>
+```

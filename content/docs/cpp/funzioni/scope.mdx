@@ -1,0 +1,190 @@
+---
+title: Scope delle Variabili
+description: La visibilità e la durata delle variabili in C++.
+---
+
+## Cos'è lo scope?
+
+Lo **scope** (o visibilità) di una variabile definisce **dove nel codice** quella variabile può essere usata. In C++, lo scope è determinato dalle parentesi graffe `{}`.
+
+## Variabili locali
+
+Una **variabile locale** è definita all'interno di un blocco di codice (funzione, ciclo, condizione). Esiste solo all'interno di quel blocco e non è accessibile dall'esterno:
+
+```cpp
+void miaFunzione() {
+    int x = 10;   // variabile locale a miaFunzione
+    cout << x;    // OK
+}
+
+int main() {
+    miaFunzione();
+    // cout << x;  // ERRORE: x non esiste qui
+    return 0;
+}
+```
+
+## Variabili globali
+
+Una **variabile globale** è definita fuori da qualsiasi funzione. È accessibile da tutto il codice nel file:
+
+```cpp
+int contatore = 0;   // variabile globale
+
+void incrementa() {
+    contatore++;     // accede alla variabile globale
+}
+
+int main() {
+    cout << contatore << endl;  // 0
+    incrementa();
+    incrementa();
+    cout << contatore << endl;  // 2
+    return 0;
+}
+```
+
+Le variabili globali devono essere usate con cautela perché possono essere modificate da qualsiasi parte del codice, rendendo difficile il debugging.
+
+## Scope dei blocchi
+
+Ogni coppia di `{}` crea un nuovo scope. Le variabili dichiarate in un blocco non sono visibili fuori da esso:
+
+```cpp
+int main() {
+    int x = 10;
+
+    {
+        int y = 20;   // y esiste solo in questo blocco
+        cout << x << " " << y << endl;  // OK: 10 20
+    }
+
+    cout << x << endl;   // OK: 10
+    // cout << y;        // ERRORE: y non esiste qui
+
+    return 0;
+}
+```
+
+## Scope nei cicli
+
+Le variabili dichiarate in un ciclo `for` esistono solo per la durata del ciclo:
+
+```cpp
+for (int i = 0; i < 5; i++) {
+    cout << i << " ";  // OK
+}
+// cout << i;  // ERRORE: i non esiste qui
+```
+
+## Shadowing (oscuramento)
+
+Se una variabile locale ha lo stesso nome di una variabile globale, la variabile locale "oscura" (shadow) quella globale all'interno del suo scope:
+
+```cpp
+int x = 100;  // variabile globale
+
+void funzione() {
+    int x = 50;   // variabile locale, oscura quella globale
+    cout << x;    // 50 (usa la locale)
+}
+
+int main() {
+    cout << x;    // 100 (usa la globale)
+    funzione();
+    cout << x;    // 100 (la globale non è cambiata)
+    return 0;
+}
+```
+
+Evita lo shadowing: può generare confusione. Usa nomi diversi per variabili diverse.
+
+## Durata (lifetime) delle variabili
+
+Lo scope e la durata sono concetti correlati:
+
+- **Variabili locali**: create quando si entra nel blocco, distrutte quando si esce
+- **Variabili globali**: create all'avvio del programma, distrutte alla fine
+
+```cpp
+void contaChiamate() {
+    int locale = 0;         // ricreata a ogni chiamata
+    static int statica = 0; // persiste tra le chiamate!
+
+    locale++;
+    statica++;
+
+    cout << "Locale: " << locale << ", Statica: " << statica << endl;
+}
+
+int main() {
+    contaChiamate();  // Locale: 1, Statica: 1
+    contaChiamate();  // Locale: 1, Statica: 2
+    contaChiamate();  // Locale: 1, Statica: 3
+    return 0;
+}
+```
+
+La keyword `static` davanti a una variabile locale la fa sopravvivere tra le chiamate alla funzione, mantenendo il suo valore.
+
+## Scope e funzioni
+
+I parametri di una funzione hanno lo stesso scope delle variabili locali della funzione:
+
+```cpp
+void funzione(int a, int b) {
+    // a e b sono locali a questa funzione
+    int somma = a + b;
+    cout << somma;
+}
+// a, b e somma non esistono qui
+```
+
+## Buone pratiche sullo scope
+
+- **Principio del minimo scope**: dichiara le variabili il più vicino possibile a dove le usi
+- Evita le variabili globali quando possibile
+- Non riusare lo stesso nome in scope diversi (evita lo shadowing)
+
+```cpp
+// Scarso: variabile dichiarata lontano dall'uso
+int risultato;
+// ... 50 righe di codice ...
+risultato = a + b;
+
+// Meglio: dichiarazione vicina all'uso
+int risultato = a + b;
+```
+
+## Esempio completo
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int totale = 0;   // variabile globale
+
+void aggiungi(int valore) {
+    totale += valore;   // modifica la variabile globale
+    cout << "Aggiunto " << valore << ", totale: " << totale << endl;
+}
+
+int main() {
+    // scope di main
+    int x = 10;
+
+    aggiungi(x);   // totale = 10
+
+    {
+        // scope interno
+        int x = 20;    // shadowing: oscura la x di main
+        aggiungi(x);   // totale = 30
+    }
+
+    // x di main è ancora 10
+    aggiungi(x);   // totale = 40
+
+    cout << "Totale finale: " << totale << endl;
+    return 0;
+}
+```

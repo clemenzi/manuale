@@ -1,0 +1,224 @@
+---
+title: Metodi
+description: Come definire e usare i metodi nelle classi C++.
+---
+
+## Cosa sono i metodi?
+
+I **metodi** sono funzioni definite all'interno di una classe. Rappresentano i **comportamenti** dell'oggetto: le azioni che può compiere o le informazioni che può fornire.
+
+Un metodo può accedere direttamente ai campi (dati) dell'oggetto su cui viene chiamato.
+
+## Definire metodi dentro la classe
+
+Puoi definire il metodo direttamente dentro il corpo della classe:
+
+```cpp
+class Cerchio {
+public:
+    double raggio;
+
+    double area() {
+        return 3.14159 * raggio * raggio;
+    }
+
+    double perimetro() {
+        return 2 * 3.14159 * raggio;
+    }
+};
+```
+
+## Definire metodi fuori dalla classe
+
+Per classi grandi, è comune separare la dichiarazione (dentro la classe) dalla definizione (fuori):
+
+```cpp
+class Cerchio {
+public:
+    double raggio;
+
+    double area();        // dichiarazione
+    double perimetro();   // dichiarazione
+};
+
+// Definizione: usa NomeClasse::NomeMetodo
+double Cerchio::area() {
+    return 3.14159 * raggio * raggio;
+}
+
+double Cerchio::perimetro() {
+    return 2 * 3.14159 * raggio;
+}
+```
+
+L'operatore `::` si chiama **operatore di scope** e indica a quale classe appartiene il metodo.
+
+## Il puntatore `this`
+
+Dentro un metodo, `this` è un puntatore all'oggetto corrente. Si usa raramente esplicitamente, ma è utile quando c'è ambiguità tra il nome di un parametro e un campo della classe:
+
+```cpp
+class Persona {
+public:
+    string nome;
+    int eta;
+
+    void setNome(string nome) {
+        this->nome = nome;   // this->nome = campo della classe
+                             // nome = parametro della funzione
+    }
+};
+```
+
+## Metodi `const`
+
+Un metodo dichiarato `const` garantisce che non modificherà i dati dell'oggetto. È una buona pratica per i metodi di "lettura":
+
+```cpp
+class Rettangolo {
+public:
+    double base;
+    double altezza;
+
+    double area() const {       // non modifica l'oggetto
+        return base * altezza;
+    }
+
+    void ridimensiona(double b, double a) {   // modifica l'oggetto
+        base = b;
+        altezza = a;
+    }
+};
+```
+
+Se dichiari un metodo `const`, il compilatore ti avvisa se provi a modificare un campo all'interno di esso.
+
+## Getter e Setter
+
+Quando i campi sono privati (come vedremo nell'incapsulamento), si usano metodi pubblici per accedervi:
+
+- **Getter**: metodo che legge il valore di un campo privato
+- **Setter**: metodo che modifica il valore di un campo privato
+
+```cpp
+class Temperatura {
+private:
+    double gradi;
+
+public:
+    // Setter: valida il valore prima di impostarlo
+    void setGradi(double t) {
+        if (t >= -273.15) {  // non può scendere sotto lo zero assoluto
+            gradi = t;
+        } else {
+            cout << "Temperatura non valida!" << endl;
+        }
+    }
+
+    // Getter: legge il valore
+    double getGradi() const {
+        return gradi;
+    }
+
+    // Metodo di conversione
+    double inFahrenheit() const {
+        return gradi * 9.0/5.0 + 32;
+    }
+};
+
+int main() {
+    Temperatura t;
+    t.setGradi(100.0);
+    cout << t.getGradi() << "°C = " << t.inFahrenheit() << "°F" << endl;
+    // 100°C = 212°F
+    return 0;
+}
+```
+
+## Metodi che restituiscono l'oggetto stesso
+
+Un metodo può restituire un riferimento all'oggetto (`*this`), permettendo di "concatenare" le chiamate:
+
+```cpp
+class Testo {
+public:
+    string contenuto;
+
+    Testo& aggiungi(string s) {
+        contenuto += s;
+        return *this;
+    }
+
+    Testo& aggiungiRiga(string s) {
+        contenuto += s + "\n";
+        return *this;
+    }
+};
+
+int main() {
+    Testo t;
+    t.aggiungi("Ciao").aggiungi(", ").aggiungiRiga("mondo!");
+    // concatenazione: ogni metodo restituisce l'oggetto
+    cout << t.contenuto;
+    return 0;
+}
+```
+
+## Esempio pratico: classe Conto Bancario
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+class ContoBancario {
+private:
+    string intestatario;
+    double saldo;
+
+public:
+    // Inizializzazione
+    void apri(string nome, double saldoIniziale) {
+        intestatario = nome;
+        saldo = saldoIniziale;
+    }
+
+    // Deposita
+    void deposita(double importo) {
+        if (importo > 0) {
+            saldo += importo;
+            cout << "Depositati €" << importo
+                 << ". Saldo: €" << saldo << endl;
+        }
+    }
+
+    // Preleva
+    bool preleva(double importo) {
+        if (importo > 0 && importo <= saldo) {
+            saldo -= importo;
+            cout << "Prelevati €" << importo
+                 << ". Saldo: €" << saldo << endl;
+            return true;
+        }
+        cout << "Fondi insufficienti!" << endl;
+        return false;
+    }
+
+    // Getter
+    double getSaldo() const { return saldo; }
+    string getIntestatario() const { return intestatario; }
+};
+
+int main() {
+    ContoBancario conto;
+    conto.apri("Alice", 1000.0);
+
+    conto.deposita(500.0);
+    conto.preleva(200.0);
+    conto.preleva(2000.0);   // fondi insufficienti
+
+    cout << "Saldo finale: €" << conto.getSaldo() << endl;
+
+    return 0;
+}
+```

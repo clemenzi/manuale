@@ -1,0 +1,13 @@
+{
+  "title": "Strumenti e tecniche",
+  "icon": "Wrench",
+  "defaultOpen": false,
+  "pages": [
+    "librerie-standard",
+    "file-handling",
+    "gestione-errori",
+    "debugging",
+    "buone-pratiche",
+    "algoritmi"
+  ]
+}

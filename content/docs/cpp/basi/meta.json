@@ -1,13 +1,15 @@
 {
-  "title": "Basi della Programmazione",
+  "title": "Le basi",
+  "icon": "WholeWord",
+  "defaultOpen": true,
   "pages": [
-    "index",
+    "installazione",
+    "struttura-programma",
+    "sintassi-di-base",
+    "commenti",
     "variabili",
-    "tipi-di-dato",
-    "operatori",
-    "input-output",
-    "condizioni",
-    "cicli",
-    "funzioni"
+    "tipi-di-dati",
+    "costanti",
+    "operatori"
   ]
 }

@@ -1,0 +1,147 @@
+---
+title: Condizioni
+description: Prendere decisioni nel codice con if, elif ed else.
+---
+
+## Cosa sono le condizioni?
+
+Le **condizioni** permettono al programma di eseguire blocchi di codice diversi a seconda che una situazione sia vera o falsa. Sono fondamentali per creare programmi che si comportano in modo diverso in base ai dati.
+
+## L'istruzione `if`
+
+La sintassi base è:
+
+```python
+if condizione:
+    # codice da eseguire se la condizione è vera
+```
+
+```python
+eta = 18
+
+if eta >= 18:
+    print("Sei maggiorenne.")
+```
+
+Se `eta` è 18 o più, viene stampato il messaggio. Altrimenti non succede nulla.
+
+## L'istruzione `else`
+
+`else` definisce cosa fare quando la condizione è falsa:
+
+```python
+eta = 15
+
+if eta >= 18:
+    print("Sei maggiorenne.")
+else:
+    print("Sei minorenne.")
+```
+
+## L'istruzione `elif`
+
+`elif` (abbreviazione di "else if") permette di controllare più condizioni in sequenza:
+
+```python
+voto = 75
+
+if voto >= 90:
+    print("Ottimo!")
+elif voto >= 70:
+    print("Buono!")
+elif voto >= 60:
+    print("Sufficiente.")
+else:
+    print("Insufficiente.")
+```
+
+Python controlla le condizioni dall'alto verso il basso e si ferma alla prima vera.
+
+## Condizioni annidate
+
+Puoi mettere un `if` dentro un altro `if`:
+
+```python
+eta = 20
+ha_patente = True
+
+if eta >= 18:
+    if ha_patente:
+        print("Puoi guidare.")
+    else:
+        print("Sei maggiorenne ma non hai la patente.")
+else:
+    print("Sei minorenne, non puoi guidare.")
+```
+
+## Operatori logici nelle condizioni
+
+Puoi combinare più condizioni con `and`, `or` e `not`:
+
+```python
+eta = 16
+con_accompagnatore = True
+
+if eta >= 18 or con_accompagnatore:
+    print("Puoi entrare.")
+else:
+    print("Non puoi entrare.")
+```
+
+```python
+nome = "Alice"
+eta = 16
+
+if nome and eta:  # controlla che né nome né eta siano vuoti/zero
+    print(f"Benvenuto/a {nome}, hai {eta} anni.")
+```
+
+## Condizioni con `in`
+
+```python
+frutta_preferita = "mela"
+disponibili = ["mela", "banana", "uva"]
+
+if frutta_preferita in disponibili:
+    print("Abbiamo la frutta che preferisci!")
+else:
+    print("Mi dispiace, non abbiamo quella frutta.")
+```
+
+## Espressione condizionale (operatore ternario)
+
+Python permette di scrivere un if-else su una sola riga:
+
+```python
+eta = 20
+stato = "maggiorenne" if eta >= 18 else "minorenne"
+print(stato)  # maggiorenne
+```
+
+La forma è: `valore_se_vero if condizione else valore_se_falso`
+
+## Confrontare con `None`
+
+Per verificare se una variabile è `None`, usa `is None` invece di `== None`:
+
+```python
+risultato = None
+
+if risultato is None:
+    print("Nessun risultato disponibile.")
+else:
+    print(f"Il risultato è: {risultato}")
+```
+
+## Esempio pratico
+
+```python
+numero = int(input("Inserisci un numero: "))
+
+if numero > 0:
+    print("Il numero è positivo.")
+elif numero < 0:
+    print("Il numero è negativo.")
+else:
+    print("Il numero è zero.")
+```

@@ -1,0 +1,141 @@
+---
+title: Scope delle variabili
+description: Dove le variabili sono accessibili in Python.
+---
+
+## Cos'è lo scope?
+
+Lo **scope** (o ambito) di una variabile è la parte del programma in cui quella variabile è accessibile e può essere usata. Se provi a usare una variabile fuori dal suo scope, Python darà un `NameError`.
+
+## Le regole LEGB
+
+Python segue la regola **LEGB** per trovare una variabile:
+
+1. **L**ocal: la funzione corrente
+2. **E**nclosing: le funzioni esterne (nel caso di funzioni annidate)
+3. **G**lobal: il livello principale del file
+4. **B**uilt-in: le funzioni e costanti predefinite di Python (`print`, `len`, `True`, ecc.)
+
+Python cerca in questo ordine e usa la prima che trova.
+
+## Scope locale
+
+Le variabili create **dentro** una funzione esistono solo dentro quella funzione:
+
+```python
+def mia_funzione():
+    x = 10   # variabile locale
+    print(x)
+
+mia_funzione()  # 10
+# print(x)      # NameError: 'x' non è definita qui fuori
+```
+
+## Scope globale
+
+Le variabili create **fuori** da qualsiasi funzione sono globali e accessibili da tutta la parte principale del programma:
+
+```python
+nome = "Alice"  # variabile globale
+
+def saluta():
+    print(f"Ciao, {nome}!")  # accede alla variabile globale
+
+saluta()  # Ciao, Alice!
+```
+
+## Modificare una variabile globale dentro una funzione
+
+Per default, puoi **leggere** una variabile globale da dentro una funzione, ma non **modificarla** (Python crea una variabile locale con lo stesso nome):
+
+```python
+contatore = 0
+
+def incrementa():
+    contatore = 1  # crea una variabile LOCALE, non modifica quella globale!
+    print(f"Dentro la funzione: {contatore}")
+
+incrementa()
+print(f"Fuori dalla funzione: {contatore}")  # ancora 0
+```
+
+Per modificare la variabile globale, usa la parola chiave `global`:
+
+```python
+contatore = 0
+
+def incrementa():
+    global contatore   # dichiara che usi la variabile globale
+    contatore += 1
+
+incrementa()
+incrementa()
+print(contatore)  # 2
+```
+
+Usare `global` è generalmente sconsigliato: rende il codice più difficile da capire. Meglio usare parametri e valori di ritorno.
+
+## Scope nelle funzioni annidate (`nonlocal`)
+
+Se hai una funzione dentro un'altra funzione (annidata), e vuoi modificare una variabile della funzione esterna, usa `nonlocal`:
+
+```python
+def esterna():
+    x = 10
+
+    def interna():
+        nonlocal x   # si riferisce alla x di esterna()
+        x += 5
+        print(f"Dentro interna: {x}")
+
+    interna()
+    print(f"Dentro esterna: {x}")
+
+esterna()
+# Dentro interna: 15
+# Dentro esterna: 15
+```
+
+## Variabili con lo stesso nome
+
+Se hai una variabile locale e una globale con lo stesso nome, la locale ha la precedenza dentro la funzione:
+
+```python
+x = "globale"
+
+def funzione():
+    x = "locale"
+    print(x)   # locale
+
+funzione()
+print(x)       # globale
+```
+
+## Riepilogo visivo
+
+```python
+x = "globale"            # scope globale
+
+def esterna():
+    y = "enclosing"      # scope enclosing
+
+    def interna():
+        z = "locale"     # scope locale
+        print(x)         # "globale" - trovato nel global scope
+        print(y)         # "enclosing" - trovato nell'enclosing scope
+        print(z)         # "locale" - trovato nel local scope
+
+    interna()
+
+esterna()
+```
+
+## Built-in scope
+
+Le funzioni built-in di Python (`print`, `len`, `range`, `input`, ecc.) sono sempre disponibili ovunque, perché fanno parte del livello built-in. Evita di sovrascriverle con variabili dello stesso nome:
+
+```python
+# Da evitare assolutamente:
+# list = [1, 2, 3]  # sovrascrive la funzione built-in list()
+# print = "ciao"    # sovrascrive la funzione print()!
+```

@@ -1,6 +1,108 @@
 ---
 title: Set
-description: Insiemi di elementi unici senza un ordine definito in Python.
+description: Insiemi di elementi unici e non ordinati in Python.
 ---
 
-Contenuto in arrivo.
+## Cosa sono i set?
+
+Un **set** (insieme) è una raccolta di elementi **unici** e **non ordinati**. Questo significa che:
+- Non ci possono essere duplicati
+- L'ordine degli elementi non è garantito
+
+I set sono utili per rimuovere duplicati, fare operazioni insiemistiche (unione, intersezione, differenza).
+
+## Creare un set
+
+I set si scrivono con le **parentesi graffe** `{}` (ma attenzione: le parentesi graffe vuote creano un dizionario, non un set!):
+
+```python
+frutta = {"mela", "banana", "ciliegia"}
+numeri = {1, 2, 3, 4, 5}
+
+# Set vuoto: si usa set(), non {}
+vuoto = set()
+print(type(vuoto))     # <class 'set'>
+print(type({}))        # <class 'dict'>  (attenzione!)
+```
+
+I duplicati vengono rimossi automaticamente:
+
+```python
+con_duplicati = {1, 2, 2, 3, 3, 3}
+print(con_duplicati)  # {1, 2, 3}
+```
+
+## Aggiungere e rimuovere elementi
+
+```python
+frutta = {"mela", "banana"}
+frutta.add("ciliegia")        # aggiunge un elemento
+print(frutta)  # {'mela', 'banana', 'ciliegia'} (ordine non garantito)
+
+frutta.remove("banana")       # rimuove (errore se non esiste)
+frutta.discard("uva")         # rimuove (nessun errore se non esiste)
+frutta.pop()                  # rimuove un elemento casuale
+frutta.clear()                # svuota il set
+```
+
+## Controllare l'appartenenza
+
+```python
+frutta = {"mela", "banana", "ciliegia"}
+print("mela" in frutta)     # True
+print("uva" in frutta)      # False
+print("uva" not in frutta)  # True
+```
+
+## Operazioni insiemistiche
+
+I set supportano le operazioni matematiche degli insiemi:
+
+```python
+A = {1, 2, 3, 4}
+B = {3, 4, 5, 6}
+
+# Unione: tutti gli elementi di A e B
+print(A | B)              # {1, 2, 3, 4, 5, 6}
+print(A.union(B))         # stessa cosa
+
+# Intersezione: solo gli elementi presenti in entrambi
+print(A & B)              # {3, 4}
+print(A.intersection(B))  # stessa cosa
+
+# Differenza: elementi in A ma non in B
+print(A - B)              # {1, 2}
+print(A.difference(B))    # stessa cosa
+
+# Differenza simmetrica: elementi in A o B ma non in entrambi
+print(A ^ B)                         # {1, 2, 5, 6}
+print(A.symmetric_difference(B))     # stessa cosa
+```
+
+## Relazioni tra insiemi
+
+```python
+A = {1, 2, 3}
+B = {1, 2, 3, 4, 5}
+C = {7, 8}
+
+print(A.issubset(B))       # True (A è sottoinsieme di B)
+print(B.issuperset(A))     # True (B è soprainsieme di A)
+print(A.isdisjoint(C))     # True (A e C non hanno elementi in comune)
+```
+
+## Convertire tra set e lista
+
+```python
+lista = [1, 2, 2, 3, 3, 4]
+
+# Rimuovere i duplicati facilmente
+lista_senza_duplicati = list(set(lista))
+print(lista_senza_duplicati)  # [1, 2, 3, 4]
+```
+
+## Limitazioni dei set
+
+- Gli elementi di un set devono essere **immutabili** (non puoi mettere liste dentro un set, ma puoi mettere tuple)
+- Non puoi accedere agli elementi tramite indice (`frutta[0]` darebbe un errore)
+- L'ordine non è garantito

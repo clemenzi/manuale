@@ -1,0 +1,139 @@
+---
+title: Liste avanzate
+description: List comprehension e tecniche avanzate per le liste in Python.
+---
+
+## List comprehension
+
+La **list comprehension** è un modo compatto ed elegante per creare liste. Permette di costruire una lista applicando un'espressione a ogni elemento di un iterabile, tutto in una sola riga.
+
+### Sintassi base
+
+```python
+nuova_lista = [espressione for elemento in iterabile]
+```
+
+### Confronto con il ciclo `for` tradizionale
+
+```python
+# Metodo tradizionale
+quadrati = []
+for x in range(1, 6):
+    quadrati.append(x ** 2)
+print(quadrati)  # [1, 4, 9, 16, 25]
+
+# Con list comprehension
+quadrati = [x ** 2 for x in range(1, 6)]
+print(quadrati)  # [1, 4, 9, 16, 25]
+```
+
+### Con condizione (`if`)
+
+```python
+# Solo i numeri pari
+pari = [x for x in range(10) if x % 2 == 0]
+print(pari)  # [0, 2, 4, 6, 8]
+
+# Solo le parole lunghe più di 4 lettere
+parole = ["mela", "banana", "uva", "ciliegia", "kiwi"]
+lunghe = [p for p in parole if len(p) > 4]
+print(lunghe)  # ['banana', 'ciliegia']
+```
+
+### Con `if-else`
+
+```python
+# Classifica ogni numero come "pari" o "dispari"
+numeri = range(6)
+classificati = ["pari" if x % 2 == 0 else "dispari" for x in numeri]
+print(classificati)  # ['pari', 'dispari', 'pari', 'dispari', 'pari', 'dispari']
+```
+
+### List comprehension annidate
+
+```python
+# Creare una matrice 3x3
+matrice = [[j for j in range(3)] for i in range(3)]
+print(matrice)  # [[0, 1, 2], [0, 1, 2], [0, 1, 2]]
+
+# Appiattire una matrice
+matrice = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+piatta = [elem for riga in matrice for elem in riga]
+print(piatta)  # [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+## Tecniche avanzate sulle liste
+
+### `sorted()` con chiave personalizzata
+
+```python
+studenti = [("Alice", 16), ("Carlo", 15), ("Bob", 17)]
+
+# Ordina per età
+per_eta = sorted(studenti, key=lambda s: s[1])
+print(per_eta)   # [('Carlo', 15), ('Alice', 16), ('Bob', 17)]
+
+# Ordina per nome
+per_nome = sorted(studenti, key=lambda s: s[0])
+print(per_nome)  # [('Alice', 16), ('Bob', 17), ('Carlo', 15)]
+
+# Ordine decrescente
+decrescente = sorted(studenti, key=lambda s: s[1], reverse=True)
+print(decrescente)  # [('Bob', 17), ('Alice', 16), ('Carlo', 15)]
+```
+
+### `map()` e `filter()`
+
+```python
+numeri = [1, 2, 3, 4, 5]
+
+# map: applica una funzione a ogni elemento
+doppi = list(map(lambda x: x * 2, numeri))
+print(doppi)   # [2, 4, 6, 8, 10]
+
+# filter: seleziona elementi che soddisfano una condizione
+maggiori_di_3 = list(filter(lambda x: x > 3, numeri))
+print(maggiori_di_3)  # [4, 5]
+```
+
+### `zip()` per combinare liste
+
+```python
+nomi = ["Alice", "Bob", "Carlo"]
+voti = [8, 7, 9]
+citta = ["Roma", "Milano", "Napoli"]
+
+# Combina più liste
+combinati = list(zip(nomi, voti, citta))
+print(combinati)
+# [('Alice', 8, 'Roma'), ('Bob', 7, 'Milano'), ('Carlo', 9, 'Napoli')]
+
+# Scorrere più liste insieme
+for nome, voto, c in zip(nomi, voti, citta):
+    print(f"{nome} ({c}): {voto}")
+```
+
+### Operazioni utili sulle liste
+
+```python
+numeri = [3, 1, 4, 1, 5, 9, 2, 6]
+
+print(sum(numeri))     # 31 (somma)
+print(max(numeri))     # 9  (massimo)
+print(min(numeri))     # 1  (minimo)
+print(len(numeri))     # 8  (lunghezza)
+
+# Media
+media = sum(numeri) / len(numeri)
+print(f"Media: {media:.2f}")   # Media: 3.88
+
+# Rimuovere duplicati mantenendo l'ordine
+unici = list(dict.fromkeys(numeri))
+print(unici)  # [3, 1, 4, 5, 9, 2, 6]
+
+# Appiattire (alternativa)
+from itertools import chain
+annidata = [[1, 2], [3, 4], [5, 6]]
+piatta = list(chain(*annidata))
+print(piatta)  # [1, 2, 3, 4, 5, 6]
+```

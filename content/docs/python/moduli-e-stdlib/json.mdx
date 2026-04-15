@@ -1,0 +1,160 @@
+---
+title: JSON
+description: Lavorare con il formato JSON in Python.
+---
+
+## Cos'è JSON?
+
+**JSON** (JavaScript Object Notation) è un formato di testo leggibile sia dagli esseri umani che dai computer, usato per scambiare dati tra applicazioni e sistemi diversi.
+
+È molto usato nelle API web: quando un'app chiede dati a un server, spesso li riceve in formato JSON.
+
+Un esempio di JSON:
+
+```json
+{
+  "nome": "Alice",
+  "eta": 16,
+  "voti": [8, 7, 9, 6],
+  "indirizzo": {
+    "citta": "Roma",
+    "cap": "00100"
+  },
+  "attivo": true
+}
+```
+
+## Il modulo `json` di Python
+
+Python include il modulo `json` per lavorare con questo formato:
+
+```python
+import json
+```
+
+## Da Python a JSON: `json.dumps()`
+
+`dumps()` converte un oggetto Python in una stringa JSON:
+
+```python
+import json
+
+dati = {
+    "nome": "Alice",
+    "eta": 16,
+    "voti": [8, 7, 9],
+    "attivo": True,
+    "media": None
+}
+
+json_stringa = json.dumps(dati)
+print(json_stringa)
+# {"nome": "Alice", "eta": 16, "voti": [8, 7, 9], "attivo": true, "media": null}
+```
+
+Per un output più leggibile (indentato):
+
+```python
+json_bello = json.dumps(dati, indent=4)
+print(json_bello)
+```
+
+Output:
+```json
+{
+    "nome": "Alice",
+    "eta": 16,
+    "voti": [8, 7, 9],
+    "attivo": true,
+    "media": null
+}
+```
+
+Nota la conversione automatica dei tipi:
+
+| Python | JSON |
+|--------|------|
+| `dict` | `{}` (oggetto) |
+| `list` | `[]` (array) |
+| `str` | `"..."` (stringa) |
+| `int`, `float` | numero |
+| `True` / `False` | `true` / `false` |
+| `None` | `null` |
+
+## Da JSON a Python: `json.loads()`
+
+`loads()` converte una stringa JSON in un oggetto Python:
+
+```python
+import json
+
+stringa_json = '{"nome": "Alice", "eta": 16, "voti": [8, 7, 9]}'
+
+dati = json.loads(stringa_json)
+print(dati["nome"])    # Alice
+print(dati["voti"])    # [8, 7, 9]
+print(type(dati))      # <class 'dict'>
+```
+
+## Scrivere JSON su file: `json.dump()`
+
+```python
+import json
+
+studenti = [
+    {"nome": "Alice", "eta": 16, "voto": 8},
+    {"nome": "Bob", "eta": 15, "voto": 7},
+]
+
+with open("studenti.json", "w") as file:
+    json.dump(studenti, file, indent=4)
+```
+
+## Leggere JSON da file: `json.load()`
+
+```python
+import json
+
+with open("studenti.json", "r") as file:
+    studenti = json.load(file)
+
+for studente in studenti:
+    print(f"{studente['nome']}: {studente['voto']}")
+```
+
+## Gestire errori JSON
+
+```python
+import json
+
+try:
+    dati = json.loads("questo non è JSON valido")
+except json.JSONDecodeError as e:
+    print(f"Errore di decodifica JSON: {e}")
+```
+
+## Esempio pratico: configurazione
+
+JSON è spesso usato per file di configurazione:
+
+```python
+import json
+
+# Salva configurazione
+config = {
+    "tema": "scuro",
+    "lingua": "italiano",
+    "notifiche": True,
+    "volume": 75
+}
+
+with open("config.json", "w") as f:
+    json.dump(config, f, indent=2)
+
+# Ricarica configurazione
+with open("config.json", "r") as f:
+    config_caricata = json.load(f)
+
+print(f"Tema: {config_caricata['tema']}")
+print(f"Lingua: {config_caricata['lingua']}")
+```

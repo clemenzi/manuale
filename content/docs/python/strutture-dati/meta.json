@@ -1,10 +1,12 @@
 {
-  "title": "Strutture Dati",
+  "title": "Strutture dati",
+  "icon": "Boxes",
+  "defaultOpen": true,
   "pages": [
-    "index",
+    "stringhe",
     "liste",
-    "dizionari",
     "tuple",
-    "set"
+    "set",
+    "dizionari"
   ]
 }

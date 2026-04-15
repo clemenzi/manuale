@@ -1,0 +1,224 @@
+---
+title: Enumerazioni (enum)
+description: Come usare le enumerazioni in C++ per definire insiemi di costanti con nome.
+---
+
+## Cosa sono le enumerazioni?
+
+Un'**enumerazione** (`enum`) è un tipo di dato che definisce un insieme di valori costanti con nome. È utile quando una variabile può assumere solo un numero limitato di valori predefiniti.
+
+Ad esempio, i giorni della settimana, le stagioni, i colori di un semaforo, o i livelli di difficoltà di un gioco.
+
+## Definire un `enum`
+
+```cpp
+enum NomeEnum {
+    VALORE1,
+    VALORE2,
+    VALORE3
+};
+```
+
+```cpp
+enum GiornoSettimana {
+    LUNEDI,
+    MARTEDI,
+    MERCOLEDI,
+    GIOVEDI,
+    VENERDI,
+    SABATO,
+    DOMENICA
+};
+```
+
+Per convenzione, i valori dell'enum si scrivono in **MAIUSCOLO**.
+
+## Usare un `enum`
+
+```cpp
+GiornoSettimana oggi = MERCOLEDI;
+
+if (oggi == SABATO || oggi == DOMENICA) {
+    cout << "Weekend!" << endl;
+} else {
+    cout << "Giorno lavorativo." << endl;
+}
+```
+
+## I valori numerici
+
+Internamente, ogni valore dell'enum è un numero intero. Per default, il primo vale 0, il secondo 1, e così via:
+
+```cpp
+enum Stagione {
+    PRIMAVERA,  // 0
+    ESTATE,     // 1
+    AUTUNNO,    // 2
+    INVERNO     // 3
+};
+
+Stagione s = ESTATE;
+cout << s << endl;   // 1 (il valore numerico)
+```
+
+Puoi assegnare valori espliciti:
+
+```cpp
+enum Mese {
+    GENNAIO = 1,   // inizia da 1 invece di 0
+    FEBBRAIO,      // 2
+    MARZO,         // 3
+    // ...
+    DICEMBRE = 12
+};
+
+Mese m = MARZO;
+cout << m << endl;  // 3
+```
+
+## Usare `enum` con `switch`
+
+`enum` e `switch` si abbinano molto bene:
+
+```cpp
+enum Semaforo {
+    ROSSO,
+    GIALLO,
+    VERDE
+};
+
+void istruzione(Semaforo s) {
+    switch (s) {
+        case ROSSO:
+            cout << "STOP!" << endl;
+            break;
+        case GIALLO:
+            cout << "Attenzione, rallentare." << endl;
+            break;
+        case VERDE:
+            cout << "Via libera!" << endl;
+            break;
+    }
+}
+
+int main() {
+    istruzione(ROSSO);    // STOP!
+    istruzione(VERDE);    // Via libera!
+    return 0;
+}
+```
+
+## `enum class` (C++11)
+
+Il C++ moderno introduce `enum class` (o `enum struct`), che è più sicuro perché i valori sono "scoped" (appartengono all'enum, non allo scope globale):
+
+```cpp
+enum class Colore {
+    ROSSO,
+    VERDE,
+    BLU
+};
+
+enum class Frutto {
+    ROSSO,   // non c'è conflitto con Colore::ROSSO
+    VERDE,
+    GIALLO
+};
+
+int main() {
+    Colore c = Colore::ROSSO;   // devi specificare il namespace
+    Frutto f = Frutto::ROSSO;   // nessun conflitto
+
+    if (c == Colore::ROSSO) {
+        cout << "Il colore è rosso" << endl;
+    }
+
+    return 0;
+}
+```
+
+Con `enum class`, puoi avere lo stesso nome in enum diversi senza conflitti. È la scelta preferita nel C++ moderno.
+
+## Limitazioni degli enum classici
+
+```cpp
+enum A { X, Y };
+enum B { X, Z };   // ERRORE: X è già definito!
+```
+
+Con `enum class`:
+
+```cpp
+enum class A { X, Y };
+enum class B { X, Z };   // OK: A::X e B::X non confliggono
+```
+
+## Convertire tra enum e int
+
+```cpp
+enum Livello { FACILE, MEDIO, DIFFICILE };
+
+Livello l = MEDIO;
+int n = static_cast<int>(l);   // enum -> int
+cout << n << endl;              // 1
+
+Livello l2 = static_cast<Livello>(2);  // int -> enum
+// l2 è DIFFICILE
+```
+
+## Esempio pratico: sistema di votazione
+
+```cpp
+#include <iostream>
+using namespace std;
+
+enum class Giudizio {
+    OTTIMO,
+    BUONO,
+    SUFFICIENTE,
+    INSUFFICIENTE
+};
+
+Giudizio classificaVoto(int voto) {
+    if (voto >= 9) return Giudizio::OTTIMO;
+    if (voto >= 7) return Giudizio::BUONO;
+    if (voto >= 6) return Giudizio::SUFFICIENTE;
+    return Giudizio::INSUFFICIENTE;
+}
+
+void stampaGiudizio(Giudizio g) {
+    switch (g) {
+        case Giudizio::OTTIMO:
+            cout << "Ottimo!" << endl;
+            break;
+        case Giudizio::BUONO:
+            cout << "Buono" << endl;
+            break;
+        case Giudizio::SUFFICIENTE:
+            cout << "Sufficiente" << endl;
+            break;
+        case Giudizio::INSUFFICIENTE:
+            cout << "Insufficiente" << endl;
+            break;
+    }
+}
+
+int main() {
+    int voti[] = {9, 7, 5, 10, 6};
+    for (int voto : voti) {
+        cout << "Voto " << voto << ": ";
+        stampaGiudizio(classificaVoto(voto));
+    }
+    return 0;
+}
+```
+
+Output:
+
+```
+Voto 9: Ottimo!
+Voto 7: Buono
+Voto 5: Insufficiente
+Voto 10: Ottimo!
+Voto 6: Sufficiente
+```

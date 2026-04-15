@@ -1,0 +1,194 @@
+---
+title: Classi e Oggetti
+description: Introduzione alla programmazione orientata agli oggetti con classi e oggetti in C++.
+---
+
+## Cos'è la programmazione orientata agli oggetti?
+
+La **programmazione orientata agli oggetti** (OOP, Object-Oriented Programming) è un modo di organizzare il codice che combina **dati** e **comportamenti** in un'unica entità chiamata **oggetto**.
+
+In OOP si pensa al codice come a un insieme di "oggetti" che interagiscono tra loro, ognuno con le proprie caratteristiche (dati) e le proprie azioni (funzioni).
+
+## Classe vs Oggetto
+
+- Una **classe** è lo "stampo" o il "progetto": definisce la struttura e il comportamento
+- Un **oggetto** è un'istanza concreta della classe: è la "cosa reale" creata dallo stampo
+
+Analogia: se `Automobile` è la classe (il progetto), allora `tuaMacchina` e `miaFordFocus` sono oggetti (istanze concrete di quella classe).
+
+## Definire una classe
+
+```cpp
+class NomeClasse {
+public:
+    // membri pubblici (accessibili dall'esterno)
+    tipo campo1;
+    tipo campo2;
+
+    void metodo() {
+        // codice
+    }
+};
+```
+
+```cpp
+class Cane {
+public:
+    string nome;
+    string razza;
+    int eta;
+
+    void abbaia() {
+        cout << nome << " dice: Bau!" << endl;
+    }
+
+    void descrivi() {
+        cout << nome << " è un/a " << razza
+             << " di " << eta << " anni." << endl;
+    }
+};
+```
+
+## Creare oggetti
+
+```cpp
+Cane c1;               // crea un oggetto Cane
+c1.nome = "Fido";
+c1.razza = "Labrador";
+c1.eta = 3;
+
+Cane c2;
+c2.nome = "Rex";
+c2.razza = "Pastore Tedesco";
+c2.eta = 5;
+
+c1.abbaia();   // Fido dice: Bau!
+c2.descrivi(); // Rex è un/a Pastore Tedesco di 5 anni.
+```
+
+## Accedere ai membri con `.`
+
+Come per le strutture, si usa il punto `.` per accedere ai campi e ai metodi di un oggetto:
+
+```cpp
+Cane c;
+c.nome = "Buddy";    // accesso al campo
+c.abbaia();          // chiamata al metodo
+```
+
+## Differenza tra `class` e `struct`
+
+Tecnicamente, l'unica differenza è il livello di accesso predefinito:
+- **`class`**: i membri sono `private` per default
+- **`struct`**: i membri sono `public` per default
+
+Nella pratica, si usa `class` per oggetti con logica e comportamenti, e `struct` per semplici contenitori di dati.
+
+```cpp
+class Rettangolo {
+public:
+    double base;
+    double altezza;
+
+    double area() {
+        return base * altezza;
+    }
+
+    double perimetro() {
+        return 2 * (base + altezza);
+    }
+};
+
+int main() {
+    Rettangolo r;
+    r.base = 5.0;
+    r.altezza = 3.0;
+
+    cout << "Area: " << r.area() << endl;        // 15
+    cout << "Perimetro: " << r.perimetro() << endl;  // 16
+
+    return 0;
+}
+```
+
+## Oggetti come parametri di funzioni
+
+Puoi passare oggetti a funzioni (per valore o per riferimento):
+
+```cpp
+void stampaInfoCane(const Cane& c) {
+    cout << "Nome: " << c.nome << endl;
+    cout << "Razza: " << c.razza << endl;
+    cout << "Eta: " << c.eta << " anni" << endl;
+}
+
+int main() {
+    Cane fido = {"Fido", "Labrador", 3};
+    stampaInfoCane(fido);
+    return 0;
+}
+```
+
+## Array di oggetti
+
+```cpp
+Cane canile[3];
+canile[0] = {"Fido", "Labrador", 3};
+canile[1] = {"Rex", "Pastore", 5};
+canile[2] = {"Luna", "Beagle", 2};
+
+for (int i = 0; i < 3; i++) {
+    canile[i].descrivi();
+}
+```
+
+## Esempio pratico: classe Studente
+
+```cpp
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+class Studente {
+public:
+    string nome;
+    vector<int> voti;
+
+    void aggiungiVoto(int voto) {
+        voti.push_back(voto);
+    }
+
+    double calcolaMedia() {
+        if (voti.empty()) return 0.0;
+        int somma = 0;
+        for (int v : voti) {
+            somma += v;
+        }
+        return (double)somma / voti.size();
+    }
+
+    void stampaScheda() {
+        cout << "Studente: " << nome << endl;
+        cout << "Voti: ";
+        for (int v : voti) {
+            cout << v << " ";
+        }
+        cout << endl;
+        cout << "Media: " << calcolaMedia() << endl;
+    }
+};
+
+int main() {
+    Studente alice;
+    alice.nome = "Alice";
+    alice.aggiungiVoto(8);
+    alice.aggiungiVoto(9);
+    alice.aggiungiVoto(7);
+    alice.aggiungiVoto(10);
+
+    alice.stampaScheda();
+
+    return 0;
+}
+```

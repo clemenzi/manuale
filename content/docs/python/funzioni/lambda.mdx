@@ -1,0 +1,113 @@
+---
+title: Lambda
+description: Funzioni anonime e compatte in Python.
+---
+
+## Cosa sono le funzioni lambda?
+
+Una **funzione lambda** è una piccola funzione anonima (senza nome) che può avere quanti argomenti vuoi ma deve contenere una sola espressione. È utile per creare funzioni semplici al volo, senza doverle definire formalmente con `def`.
+
+## Sintassi
+
+```python
+lambda argomenti: espressione
+```
+
+## Confronto con una funzione normale
+
+```python
+# Funzione normale
+def raddoppia(x):
+    return x * 2
+
+# Funzione lambda equivalente
+raddoppia_lambda = lambda x: x * 2
+
+print(raddoppia(5))        # 10
+print(raddoppia_lambda(5)) # 10
+```
+
+Nota: anche se puoi assegnare una lambda a una variabile, di solito è meglio usare `def` per funzioni con nome. Le lambda sono più utili quando le usi direttamente "al volo".
+
+## Lambda con più argomenti
+
+```python
+somma = lambda a, b: a + b
+print(somma(3, 5))  # 8
+
+prodotto = lambda a, b, c: a * b * c
+print(prodotto(2, 3, 4))  # 24
+```
+
+## Uso tipico: con `sorted()`
+
+Il caso d'uso più comune delle lambda è come argomento delle funzioni `sorted()`, `filter()`, `map()`:
+
+### Con `sorted()`
+
+```python
+studenti = [
+    ("Alice", 16),
+    ("Bob", 15),
+    ("Carlo", 17)
+]
+
+# Ordina per età (secondo elemento della tupla)
+ordinati = sorted(studenti, key=lambda s: s[1])
+print(ordinati)
+# [('Bob', 15), ('Alice', 16), ('Carlo', 17)]
+
+# Ordina per nome (primo elemento)
+ordinati_nome = sorted(studenti, key=lambda s: s[0])
+print(ordinati_nome)
+# [('Alice', 16), ('Bob', 15), ('Carlo', 17)]
+```
+
+### Con `map()`
+
+`map()` applica una funzione a ogni elemento di una sequenza:
+
+```python
+numeri = [1, 2, 3, 4, 5]
+quadrati = list(map(lambda x: x ** 2, numeri))
+print(quadrati)  # [1, 4, 9, 16, 25]
+```
+
+### Con `filter()`
+
+`filter()` seleziona gli elementi per cui la funzione restituisce `True`:
+
+```python
+numeri = [1, 2, 3, 4, 5, 6, 7, 8]
+pari = list(filter(lambda x: x % 2 == 0, numeri))
+print(pari)  # [2, 4, 6, 8]
+```
+
+## Limitazioni delle lambda
+
+- Possono contenere solo **una espressione** (non istruzioni come `if...else` multiriga, `for`, ecc.)
+- Non possono avere annotazioni di tipo
+- Non possono contenere `return` (l'espressione è già il valore di ritorno)
+
+Quando hai bisogno di logica più complessa, usa `def`.
+
+## Esempio pratico
+
+```python
+operazioni = {
+    "somma": lambda a, b: a + b,
+    "differenza": lambda a, b: a - b,
+    "prodotto": lambda a, b: a * b,
+}
+
+a, b = 10, 3
+for nome, operazione in operazioni.items():
+    print(f"{nome}: {operazione(a, b)}")
+```
+
+Output:
+```
+somma: 13
+differenza: 7
+prodotto: 30
+```

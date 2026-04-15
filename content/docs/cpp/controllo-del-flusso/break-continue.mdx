@@ -1,0 +1,167 @@
+---
+title: break e continue
+description: Come controllare il flusso dei cicli con break e continue in C++.
+---
+
+## L'istruzione `break`
+
+`break` interrompe immediatamente il ciclo in cui si trova. L'esecuzione continua con la prima istruzione dopo il ciclo.
+
+```cpp
+for (int i = 0; i < 10; i++) {
+    if (i == 5) {
+        break;  // esce dal ciclo quando i è 5
+    }
+    cout << i << " ";
+}
+cout << "fine" << endl;
+// Output: 0 1 2 3 4 fine
+```
+
+## Quando usare `break`
+
+`break` è utile quando vuoi uscire da un ciclo prima che la condizione diventi falsa, ad esempio quando hai trovato quello che cercavi:
+
+```cpp
+// Cerca un numero in un array
+int numeri[] = {10, 25, 3, 47, 8, 15};
+int dimensione = 6;
+int daQuerare = 47;
+bool trovato = false;
+
+for (int i = 0; i < dimensione; i++) {
+    if (numeri[i] == daQuerare) {
+        cout << "Trovato " << daQuerare << " alla posizione " << i << endl;
+        trovato = true;
+        break;  // inutile continuare a cercare
+    }
+}
+
+if (!trovato) {
+    cout << daQuerare << " non trovato." << endl;
+}
+```
+
+## `break` in cicli annidati
+
+`break` esce solo dal ciclo più interno in cui si trova:
+
+```cpp
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+        if (j == 1) {
+            break;  // esce solo dal ciclo interno (j)
+        }
+        cout << "(" << i << "," << j << ") ";
+    }
+    cout << endl;
+}
+```
+
+Output:
+
+```
+(0,0)
+(1,0)
+(2,0)
+```
+
+## L'istruzione `continue`
+
+`continue` salta il resto del blocco corrente e passa alla prossima iterazione del ciclo. A differenza di `break`, non esce dal ciclo.
+
+```cpp
+for (int i = 0; i < 10; i++) {
+    if (i % 2 == 0) {
+        continue;  // salta i numeri pari
+    }
+    cout << i << " ";
+}
+cout << endl;
+// Output: 1 3 5 7 9
+```
+
+## Quando usare `continue`
+
+`continue` è utile per saltare certi casi senza uscire dal ciclo:
+
+```cpp
+// Stampa solo i numeri non divisibili per 3
+for (int i = 1; i <= 20; i++) {
+    if (i % 3 == 0) {
+        continue;  // salta i multipli di 3
+    }
+    cout << i << " ";
+}
+// Output: 1 2 4 5 7 8 10 11 13 14 16 17 19 20
+```
+
+```cpp
+// Processa solo i voti validi
+int voti[] = {8, -1, 7, 150, 6, 9};
+int n = 6;
+int somma = 0;
+int contatore = 0;
+
+for (int i = 0; i < n; i++) {
+    if (voti[i] < 0 || voti[i] > 10) {
+        cout << "Voto non valido ignorato: " << voti[i] << endl;
+        continue;  // salta questo voto
+    }
+    somma += voti[i];
+    contatore++;
+}
+
+if (contatore > 0) {
+    cout << "Media: " << (double)somma / contatore << endl;
+}
+```
+
+## `break` e `continue` nel `while`
+
+Funzionano allo stesso modo anche nei cicli `while` e `do...while`:
+
+```cpp
+int i = 0;
+while (true) {  // ciclo "infinito"
+    if (i >= 5) {
+        break;  // esce quando i raggiunge 5
+    }
+    cout << i << " ";
+    i++;
+}
+// Output: 0 1 2 3 4
+```
+
+```cpp
+int i = 0;
+while (i < 10) {
+    i++;
+    if (i == 5) {
+        continue;  // salta il 5
+    }
+    cout << i << " ";
+}
+// Output: 1 2 3 4 6 7 8 9 10
+```
+
+## Buone pratiche
+
+- Usa `break` e `continue` con moderazione: troppi possono rendere il codice difficile da seguire
+- Un ciclo con molti `break` e `continue` potrebbe essere riscrivibile con una condizione migliore
+- Commenta sempre perché stai usando `break` o `continue` se non è ovvio
+
+```cpp
+// Scritto con break (meno chiaro)
+for (int i = 0; i < 100; i++) {
+    if (i * i > 50) {
+        break;
+    }
+    cout << i << " ";
+}
+
+// Alternativa più chiara con condizione esplicita
+for (int i = 0; i < 100 && i * i <= 50; i++) {
+    cout << i << " ";
+}
+```

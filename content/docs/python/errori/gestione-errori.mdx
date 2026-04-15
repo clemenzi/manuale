@@ -1,0 +1,152 @@
+---
+title: Gestione errori
+description: Come gestire le eccezioni con try ed except in Python.
+---
+
+## Cosa sono le eccezioni?
+
+Quando qualcosa va storto durante l'esecuzione di un programma, Python "lancia" (raise) un **eccezione**. Se l'eccezione non viene gestita, il programma si interrompe e mostra un messaggio di errore.
+
+Esempi di errori comuni:
+
+```python
+# ZeroDivisionError
+print(10 / 0)
+
+# TypeError
+print("ciao" + 5)
+
+# ValueError
+int("pippo")
+
+# NameError
+print(variabile_inesistente)
+
+# IndexError
+lista = [1, 2, 3]
+print(lista[10])
+
+# FileNotFoundError
+open("file_che_non_esiste.txt")
+```
+
+## Il blocco `try / except`
+
+Usa `try/except` per gestire le eccezioni invece di far crashare il programma:
+
+```python
+try:
+    # codice che potrebbe causare un errore
+    risultato = 10 / 0
+except ZeroDivisionError:
+    # cosa fare se si verifica l'errore
+    print("Non puoi dividere per zero!")
+```
+
+## Gestire più tipi di errori
+
+```python
+try:
+    numero = int(input("Inserisci un numero: "))
+    risultato = 10 / numero
+    print(f"10 / {numero} = {risultato}")
+except ValueError:
+    print("Devi inserire un numero valido.")
+except ZeroDivisionError:
+    print("Non puoi dividere per zero.")
+```
+
+Puoi anche gestire più eccezioni in una sola riga:
+
+```python
+try:
+    operazione_rischiosa()
+except (ValueError, TypeError):
+    print("Errore di valore o di tipo")
+```
+
+## Il blocco `else`
+
+Il blocco `else` viene eseguito **solo se non si è verificata alcuna eccezione**:
+
+```python
+try:
+    numero = int(input("Inserisci un numero: "))
+    risultato = 10 / numero
+except (ValueError, ZeroDivisionError) as e:
+    print(f"Errore: {e}")
+else:
+    print(f"Risultato: {risultato}")  # eseguito solo se non ci sono errori
+```
+
+## Il blocco `finally`
+
+Il blocco `finally` viene **sempre eseguito**, con o senza errori. È utile per liberare risorse (chiudere file, connessioni, ecc.):
+
+```python
+try:
+    file = open("esempio.txt", "r")
+    contenuto = file.read()
+except FileNotFoundError:
+    print("File non trovato.")
+finally:
+    file.close()   # viene eseguito sempre
+    print("File chiuso.")
+```
+
+## Accedere all'eccezione con `as`
+
+Puoi ottenere l'oggetto eccezione con `as` per leggere il messaggio di errore:
+
+```python
+try:
+    x = int("pippo")
+except ValueError as e:
+    print(f"Errore specifico: {e}")
+    # Errore specifico: invalid literal for int() with base 10: 'pippo'
+```
+
+## Eccezioni comuni
+
+| Eccezione | Quando si verifica |
+|-----------|-------------------|
+| `ValueError` | Valore non adatto al tipo (es. `int("abc")`) |
+| `TypeError` | Tipo sbagliato (es. `"a" + 5`) |
+| `ZeroDivisionError` | Divisione per zero |
+| `NameError` | Variabile non definita |
+| `IndexError` | Indice fuori dal range |
+| `KeyError` | Chiave non trovata in dizionario |
+| `FileNotFoundError` | File non trovato |
+| `AttributeError` | Attributo o metodo inesistente |
+| `ImportError` | Modulo non trovato |
+| `OverflowError` | Numero troppo grande |
+
+## Esempio pratico completo
+
+```python
+def dividi(a, b):
+    try:
+        risultato = a / b
+    except ZeroDivisionError:
+        return None
+    else:
+        return risultato
+
+# Test
+print(dividi(10, 2))   # 5.0
+print(dividi(10, 0))   # None
+
+# Uso con input utente
+while True:
+    try:
+        a = float(input("Numeratore: "))
+        b = float(input("Denominatore: "))
+        r = dividi(a, b)
+        if r is None:
+            print("Non si può dividere per zero!")
+        else:
+            print(f"Risultato: {r}")
+        break
+    except ValueError:
+        print("Inserisci solo numeri validi.")
+```

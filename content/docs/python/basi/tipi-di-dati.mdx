@@ -1,0 +1,103 @@
+---
+title: Tipi di dati
+description: I tipi di dati fondamentali in Python.
+---
+
+## Cosa sono i tipi di dati?
+
+Ogni valore in Python appartiene a un **tipo di dato** che determina cosa può contenere e quali operazioni si possono fare su di esso. Python assegna automaticamente il tipo in base al valore che gli dai.
+
+## Tipi principali
+
+### Intero (`int`)
+
+Rappresenta numeri interi, positivi o negativi, senza decimali:
+
+```python
+eta = 16
+temperatura = -5
+anno = 2024
+grandi = 1_000_000  # l'underscore aiuta la leggibilità
+print(type(eta))  # <class 'int'>
+```
+
+### Numero decimale (`float`)
+
+Rappresenta numeri con la virgola (il punto decimale in Python):
+
+```python
+altezza = 1.75
+pi = 3.14159
+temperatura = -2.5
+print(type(altezza))  # <class 'float'>
+```
+
+### Stringa (`str`)
+
+Rappresenta del testo. Si scrive tra virgolette singole `'...'` o doppie `"..."`:
+
+```python
+nome = "Alice"
+messaggio = 'Ciao, mondo!'
+frase_lunga = """Questa è
+una stringa
+su più righe."""
+print(type(nome))  # <class 'str'>
+```
+
+### Booleano (`bool`)
+
+Rappresenta un valore logico: `True` (vero) o `False` (falso). Notare la lettera maiuscola iniziale.
+
+```python
+maggiorenne = True
+piove = False
+print(type(maggiorenne))  # <class 'bool'>
+```
+
+### Nessun valore (`NoneType`)
+
+Il valore speciale `None` rappresenta l'assenza di un valore (simile a `null` in altri linguaggi):
+
+```python
+risultato = None
+print(type(risultato))  # <class 'NoneType'>
+```
+
+## Tipi di sequenza e raccolta
+
+Oltre ai tipi base, Python ha tipi per raccogliere più valori insieme:
+
+| Tipo | Esempio | Ordinato | Modificabile | Duplicati |
+|------|---------|----------|--------------|-----------|
+| `list` | `[1, 2, 3]` | Si | Si | Si |
+| `tuple` | `(1, 2, 3)` | Si | No | Si |
+| `set` | `{1, 2, 3}` | No | Si | No |
+| `dict` | `{"a": 1}` | Si | Si | Chiavi no |
+
+Questi tipi verranno approfonditi nei capitoli successivi.
+
+## Numeri complessi (`complex`)
+
+Python supporta anche i numeri complessi, con la parte immaginaria indicata con `j`:
+
+```python
+c = 2 + 3j
+print(type(c))  # <class 'complex'>
+```
+
+Non ti serviranno spesso da principiante, ma è utile sapere che esistono.
+
+## Riepilogo
+
+```python
+intero = 10               # int
+decimale = 3.14           # float
+testo = "Python"          # str
+vero_o_falso = True       # bool
+niente = None             # NoneType
+lista = [1, 2, 3]         # list
+tupla = (1, 2, 3)         # tuple
+insieme = {1, 2, 3}       # set
+dizionario = {"a": 1}     # dict
+```

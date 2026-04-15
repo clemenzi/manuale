@@ -1,0 +1,117 @@
+---
+title: Conversione dei tipi
+description: Come convertire i valori da un tipo all'altro in Python.
+---
+
+## Cos'è la conversione dei tipi?
+
+A volte è necessario convertire un valore da un tipo di dato a un altro. Questa operazione si chiama **type casting** o **conversione di tipo**.
+
+Python distingue due tipi di conversione:
+- **Implicita**: Python la fa automaticamente
+- **Esplicita**: sei tu a dirgli di convertire
+
+## Conversione implicita
+
+Python converte automaticamente i tipi quando è necessario e sicuro farlo, senza perdere informazioni:
+
+```python
+intero = 5
+decimale = 2.5
+risultato = intero + decimale
+print(risultato)        # 7.5
+print(type(risultato))  # <class 'float'>
+```
+
+Qui Python ha convertito `intero` in `float` automaticamente per poter fare la somma.
+
+## Conversione esplicita
+
+Puoi convertire manualmente un valore usando funzioni apposite:
+
+### Da qualsiasi tipo a intero: `int()`
+
+```python
+x = int(3.9)     # 3 (la parte decimale viene troncata, non arrotondata)
+y = int("42")    # 42 (stringa numerica -> intero)
+z = int(True)    # 1
+w = int(False)   # 0
+
+print(x, y, z, w)  # 3 42 1 0
+```
+
+Attenzione: `int("ciao")` darà un errore, perché "ciao" non è un numero.
+
+### Da qualsiasi tipo a decimale: `float()`
+
+```python
+a = float(5)       # 5.0
+b = float("3.14")  # 3.14
+c = float("inf")   # infinito
+d = float(True)    # 1.0
+
+print(a, b, c, d)  # 5.0 3.14 inf 1.0
+```
+
+### Da qualsiasi tipo a stringa: `str()`
+
+```python
+n = str(42)       # "42"
+f = str(3.14)     # "3.14"
+b = str(True)     # "True"
+niente = str(None) # "None"
+
+print(type(n))  # <class 'str'>
+```
+
+Questa conversione è molto utile per concatenare numeri e testo:
+
+```python
+eta = 16
+# print("Ho " + eta + " anni")  # Errore!
+print("Ho " + str(eta) + " anni")  # Funziona: "Ho 16 anni"
+```
+
+### Da qualsiasi tipo a booleano: `bool()`
+
+In Python quasi tutto è "truthy" (vero) o "falsy" (falso):
+
+```python
+print(bool(0))      # False
+print(bool(0.0))    # False
+print(bool(""))     # False (stringa vuota)
+print(bool(None))   # False
+print(bool([]))     # False (lista vuota)
+
+print(bool(1))      # True
+print(bool(-5))     # True (qualsiasi numero non zero)
+print(bool("ciao")) # True (stringa non vuota)
+print(bool([1, 2])) # True (lista non vuota)
+```
+
+### Da stringa a lista di caratteri: `list()`
+
+```python
+caratteri = list("Python")
+print(caratteri)  # ['P', 'y', 't', 'h', 'o', 'n']
+```
+
+## Errori comuni di conversione
+
+Se provi a convertire un valore incompatibile, Python genera un `ValueError`:
+
+```python
+# Questi causano un errore:
+int("ciao")    # ValueError
+float("abc")   # ValueError
+```
+
+Per sicurezza, puoi usare un blocco `try/except` (che vedremo in un capitolo dedicato):
+
+```python
+valore = "pippo"
+try:
+    numero = int(valore)
+except ValueError:
+    print("Impossibile convertire in intero!")
+```

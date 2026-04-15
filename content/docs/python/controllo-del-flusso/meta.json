@@ -1,0 +1,11 @@
+{
+  "title": "Controllo del flusso",
+  "icon": "Workflow",
+  "defaultOpen": true,
+  "pages": [
+    "condizioni",
+    "cicli-while",
+    "cicli-for",
+    "funzione-range"
+  ]
+}

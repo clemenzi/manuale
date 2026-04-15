@@ -1,0 +1,166 @@
+---
+title: Grafica con Turtle
+description: Disegnare con la libreria Turtle in Python.
+---
+
+## Cos'è Turtle?
+
+**Turtle** è una libreria inclusa in Python che permette di disegnare figure geometriche muovendo una "tartaruga" virtuale su uno schermo. È un ottimo modo per iniziare a programmare in modo visivo e divertente.
+
+L'idea viene dal linguaggio Logo degli anni '60: immagina una tartaruga con una penna sotto al guscio. Quando si muove, lascia un segno.
+
+## Iniziare con Turtle
+
+Turtle è già incluso in Python, non serve installare nulla:
+
+```python
+import turtle
+
+# Crea la finestra e la tartaruga
+t = turtle.Turtle()
+
+# Muovi la tartaruga
+t.forward(100)   # avanza di 100 pixel
+t.right(90)      # gira a destra di 90 gradi
+t.forward(100)
+
+# Chiudi la finestra al click (opzionale)
+turtle.done()
+```
+
+## Comandi di movimento
+
+```python
+import turtle
+t = turtle.Turtle()
+
+t.forward(100)   # (o t.fd(100)) avanza
+t.backward(50)   # (o t.bk(50)) arretra
+t.right(90)      # (o t.rt(90)) gira a destra
+t.left(90)       # (o t.lt(90)) gira a sinistra
+t.goto(100, 50)  # vai alle coordinate (x, y)
+t.home()         # torna all'origine (0, 0)
+t.setx(200)      # imposta solo la x
+t.sety(-50)      # imposta solo la y
+```
+
+## Penna su e giù
+
+```python
+t.penup()    # (o t.pu()) alza la penna: si muove senza disegnare
+t.pendown()  # (o t.pd()) abbassa la penna: torna a disegnare
+```
+
+## Personalizzare la penna
+
+```python
+t.pensize(3)            # spessore della linea
+t.pencolor("red")       # colore della linea
+t.fillcolor("yellow")   # colore di riempimento
+t.speed(5)              # velocità (1=lenta, 10=veloce, 0=massima)
+```
+
+## Disegnare figure base
+
+### Quadrato
+
+```python
+import turtle
+t = turtle.Turtle()
+
+for _ in range(4):
+    t.forward(100)
+    t.right(90)
+
+turtle.done()
+```
+
+### Triangolo
+
+```python
+import turtle
+t = turtle.Turtle()
+
+for _ in range(3):
+    t.forward(100)
+    t.left(120)
+
+turtle.done()
+```
+
+### Cerchio
+
+```python
+import turtle
+t = turtle.Turtle()
+
+t.circle(50)    # cerchio con raggio 50
+
+turtle.done()
+```
+
+### Stelle
+
+```python
+import turtle
+t = turtle.Turtle()
+t.speed(0)
+
+for _ in range(5):
+    t.forward(100)
+    t.right(144)  # angolo esterno di una stella a 5 punte
+
+turtle.done()
+```
+
+## Riempimento con il colore
+
+```python
+import turtle
+t = turtle.Turtle()
+
+t.fillcolor("blue")
+t.begin_fill()     # inizia a riempire
+
+for _ in range(4):
+    t.forward(100)
+    t.right(90)
+
+t.end_fill()       # finisce il riempimento
+turtle.done()
+```
+
+## Personalizzare la finestra
+
+```python
+import turtle
+
+schermo = turtle.Screen()
+schermo.title("Il mio disegno Turtle")
+schermo.bgcolor("black")
+schermo.setup(width=800, height=600)
+
+t = turtle.Turtle()
+t.pencolor("white")
+t.forward(200)
+
+turtle.done()
+```
+
+## Esempio: spirale colorata
+
+```python
+import turtle
+
+t = turtle.Turtle()
+t.speed(0)
+
+colori = ["red", "orange", "yellow", "green", "blue", "purple"]
+
+for i in range(100):
+    t.pencolor(colori[i % len(colori)])
+    t.forward(i * 2)
+    t.right(91)
+
+turtle.done()
+```

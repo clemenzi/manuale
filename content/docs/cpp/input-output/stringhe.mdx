@@ -1,0 +1,211 @@
+---
+title: Stringhe
+description: Come usare le stringhe in C++ con il tipo string.
+---
+
+## Cosa sono le stringhe?
+
+Una **stringa** è una sequenza di caratteri, cioè del testo. In C++ moderno si usa il tipo `string` fornito dalla libreria `<string>`.
+
+Per usare `string`, includi la libreria appropriata:
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+```
+
+## Creare una stringa
+
+```cpp
+string nome = "Alice";
+string saluto = "Ciao, mondo!";
+string vuota = "";   // stringa vuota
+```
+
+Le stringhe si delimitano con le **virgolette doppie** `"`. Le virgolette singole `'` sono riservate al tipo `char` (singolo carattere).
+
+## Operazioni di base
+
+### Concatenazione con `+`
+
+Puoi unire due stringhe con l'operatore `+`:
+
+```cpp
+string nome = "Alice";
+string cognome = "Bianchi";
+string nomeCompleto = nome + " " + cognome;
+cout << nomeCompleto << endl;  // Alice Bianchi
+```
+
+### Aggiungere in coda con `+=`
+
+```cpp
+string frase = "Ciao";
+frase += ", mondo";
+frase += "!";
+cout << frase << endl;  // Ciao, mondo!
+```
+
+## Lunghezza di una stringa
+
+Il metodo `length()` (o equivalentemente `size()`) restituisce il numero di caratteri:
+
+```cpp
+string nome = "Alice";
+cout << nome.length() << endl;  // 5
+cout << nome.size() << endl;    // 5 (uguale a length)
+```
+
+## Accedere ai singoli caratteri
+
+Puoi accedere a un singolo carattere tramite l'indice tra parentesi quadre `[]`. Gli indici partono da `0`:
+
+```cpp
+string nome = "Alice";
+cout << nome[0] << endl;  // A
+cout << nome[1] << endl;  // l
+cout << nome[4] << endl;  // e
+
+// Modifica di un carattere
+nome[0] = 'E';
+cout << nome << endl;     // Elice
+```
+
+## Confrontare stringhe
+
+Puoi confrontare le stringhe con gli operatori normali:
+
+```cpp
+string a = "ciao";
+string b = "ciao";
+string c = "hello";
+
+cout << (a == b) << endl;  // 1 (true)
+cout << (a == c) << endl;  // 0 (false)
+cout << (a != c) << endl;  // 1 (true)
+```
+
+Il confronto è case-sensitive: `"Ciao"` e `"ciao"` non sono uguali.
+
+## Cercare caratteri e sottostringhe
+
+### `find()`
+
+Cerca una sottostringa e restituisce la posizione del primo carattere trovato:
+
+```cpp
+string frase = "Ciao, mondo!";
+int pos = frase.find("mondo");
+cout << pos << endl;  // 6
+
+// Se non trova, restituisce string::npos
+if (frase.find("xyz") == string::npos) {
+    cout << "Non trovato" << endl;
+}
+```
+
+### `substr()`
+
+Estrae una sottostringa:
+
+```cpp
+string frase = "Ciao, mondo!";
+string parte = frase.substr(6, 5);  // da indice 6, lunga 5
+cout << parte << endl;  // mondo
+```
+
+## Leggere stringhe con spazi
+
+Con `cin >>` si legge solo una parola. Per leggere una riga intera usa `getline()`:
+
+```cpp
+string nome;
+cout << "Inserisci il tuo nome completo: ";
+getline(cin, nome);
+cout << "Ciao, " << nome << "!" << endl;
+```
+
+## Convertire numeri in stringhe e viceversa
+
+### Da numero a stringa: `to_string()`
+
+```cpp
+int eta = 16;
+string etaStr = to_string(eta);
+cout << "Hai " + etaStr + " anni." << endl;
+```
+
+### Da stringa a numero: `stoi()`, `stod()`
+
+```cpp
+string numStr = "42";
+int num = stoi(numStr);    // stringa -> int
+cout << num + 1 << endl;   // 43
+
+string decimaleStr = "3.14";
+double dec = stod(decimaleStr);   // stringa -> double
+```
+
+## Metodi utili di string
+
+```cpp
+string testo = "  Ciao, Mondo!  ";
+
+// Controlla se è vuota
+cout << testo.empty() << endl;       // 0 (false)
+
+string vuota = "";
+cout << vuota.empty() << endl;       // 1 (true)
+
+// Trova un carattere
+string nome = "Alice";
+cout << nome.find('l') << endl;      // 1
+
+// Sostituisce una parte
+string s = "Ciao, mondo!";
+s.replace(6, 5, "Alice");
+cout << s << endl;                   // Ciao, Alice!
+
+// Inserisce una sottostringa
+string str = "Ciao!";
+str.insert(4, ", mondo");
+cout << str << endl;                 // Ciao, mondo!
+```
+
+## Esempio pratico
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string nome, cognome;
+
+    cout << "Inserisci il nome: ";
+    cin >> nome;
+    cout << "Inserisci il cognome: ";
+    cin >> cognome;
+
+    string nomeCompleto = nome + " " + cognome;
+
+    cout << endl;
+    cout << "Nome completo: " << nomeCompleto << endl;
+    cout << "Lunghezza: " << nomeCompleto.length() << " caratteri" << endl;
+    cout << "Iniziale nome: " << nome[0] << endl;
+    cout << "Iniziale cognome: " << cognome[0] << endl;
+
+    // Conta le vocali
+    string vocali = "aeiouAEIOU";
+    int contaVocali = 0;
+    for (char c : nomeCompleto) {
+        if (vocali.find(c) != string::npos) {
+            contaVocali++;
+        }
+    }
+    cout << "Numero di vocali: " << contaVocali << endl;
+
+    return 0;
+}
+```

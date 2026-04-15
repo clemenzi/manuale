@@ -1,0 +1,216 @@
+---
+title: File Handling
+description: Come leggere e scrivere file in C++ con fstream.
+---
+
+## Cos'è il file handling?
+
+Il **file handling** permette ai programmi di leggere e scrivere dati su file. Invece di perdere i dati quando il programma termina, puoi salvarli su disco per riutilizzarli in seguito.
+
+In C++ si usa la libreria `<fstream>` che fornisce tre classi:
+
+| Classe | Uso |
+|---|---|
+| `ofstream` | Scrittura su file (output file stream) |
+| `ifstream` | Lettura da file (input file stream) |
+| `fstream` | Lettura e scrittura |
+
+## Scrivere su un file
+
+```cpp
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ofstream file("saluto.txt");    // apre (o crea) il file
+
+    if (file.is_open()) {
+        file << "Ciao, mondo!" << endl;
+        file << "Questa è la seconda riga." << endl;
+        file.close();    // chiudi il file
+        cout << "File scritto con successo." << endl;
+    } else {
+        cout << "Errore: impossibile aprire il file." << endl;
+    }
+
+    return 0;
+}
+```
+
+Questo crea (o sovrascrive) il file `saluto.txt` con il contenuto specificato.
+
+## Aggiungere in coda a un file
+
+Per aggiungere testo senza cancellare il contenuto esistente, usa il flag `ios::app`:
+
+```cpp
+ofstream file("log.txt", ios::app);   // append mode
+
+if (file.is_open()) {
+    file << "Nuova riga aggiunta" << endl;
+    file.close();
+}
+```
+
+## Leggere da un file
+
+```cpp
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+    ifstream file("saluto.txt");    // apre il file in lettura
+
+    if (file.is_open()) {
+        string riga;
+        while (getline(file, riga)) {    // legge riga per riga
+            cout << riga << endl;
+        }
+        file.close();
+    } else {
+        cout << "Errore: file non trovato." << endl;
+    }
+
+    return 0;
+}
+```
+
+`getline(file, riga)` legge una riga alla volta dal file. Quando non ci sono più righe, restituisce `false` e il ciclo termina.
+
+## Leggere parola per parola
+
+```cpp
+ifstream file("testo.txt");
+string parola;
+
+while (file >> parola) {    // legge una parola alla volta
+    cout << parola << endl;
+}
+
+file.close();
+```
+
+## Leggere numeri da un file
+
+```cpp
+ifstream file("numeri.txt");
+
+if (file.is_open()) {
+    int numero;
+    int somma = 0;
+    int contatore = 0;
+
+    while (file >> numero) {
+        somma += numero;
+        contatore++;
+    }
+
+    if (contatore > 0) {
+        cout << "Media: " << (double)somma / contatore << endl;
+    }
+
+    file.close();
+}
+```
+
+## Scrivere e leggere con fstream
+
+```cpp
+// Scrittura
+fstream file("dati.txt", ios::out);
+file << "Alice 16 8.5" << endl;
+file << "Bob 17 7.2" << endl;
+file.close();
+
+// Lettura
+file.open("dati.txt", ios::in);
+string nome;
+int eta;
+double voto;
+
+while (file >> nome >> eta >> voto) {
+    cout << nome << ": eta=" << eta << ", voto=" << voto << endl;
+}
+file.close();
+```
+
+## Verificare la fine del file
+
+```cpp
+ifstream file("dati.txt");
+string riga;
+
+while (!file.eof() && getline(file, riga)) {
+    cout << riga << endl;
+}
+```
+
+## Esempio pratico: registro voti su file
+
+```cpp
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+void salvaVoti(const string& nomefile) {
+    ofstream file(nomefile);
+    if (!file.is_open()) {
+        cout << "Errore nella creazione del file." << endl;
+        return;
+    }
+
+    int n;
+    cout << "Quanti studenti? ";
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        string nome;
+        double voto;
+        cout << "Nome studente " << (i+1) << ": ";
+        cin >> nome;
+        cout << "Voto: ";
+        cin >> voto;
+
+        file << nome << " " << voto << endl;
+    }
+
+    file.close();
+    cout << "Dati salvati in " << nomefile << endl;
+}
+
+void leggiVoti(const string& nomefile) {
+    ifstream file(nomefile);
+    if (!file.is_open()) {
+        cout << "File non trovato: " << nomefile << endl;
+        return;
+    }
+
+    cout << "\n=== Voti salvati ===" << endl;
+    string nome;
+    double voto, somma = 0;
+    int contatore = 0;
+
+    while (file >> nome >> voto) {
+        cout << nome << ": " << voto << endl;
+        somma += voto;
+        contatore++;
+    }
+
+    if (contatore > 0) {
+        cout << "Media classe: " << somma / contatore << endl;
+    }
+
+    file.close();
+}
+
+int main() {
+    string nomefile = "registro.txt";
+    salvaVoti(nomefile);
+    leggiVoti(nomefile);
+    return 0;
+}
+```

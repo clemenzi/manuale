@@ -1,0 +1,174 @@
+---
+title: Array Multidimensionali
+description: Come usare array a due o più dimensioni in C++.
+---
+
+## Cosa sono gli array multidimensionali?
+
+Un **array multidimensionale** è un array di array. Il caso più comune è l'array a due dimensioni, che puoi immaginare come una tabella con righe e colonne.
+
+## Array bidimensionali
+
+Dichiarazione:
+
+```cpp
+tipo nome[righe][colonne];
+```
+
+```cpp
+int tabella[3][4];  // 3 righe, 4 colonne (12 elementi totali)
+```
+
+## Inizializzare un array 2D
+
+```cpp
+int matrice[2][3] = {
+    {1, 2, 3},   // riga 0
+    {4, 5, 6}    // riga 1
+};
+```
+
+Oppure su una sola riga:
+
+```cpp
+int matrice[2][3] = {1, 2, 3, 4, 5, 6};  // riempito riga per riga
+```
+
+## Accedere agli elementi
+
+Si usano due indici: `[riga][colonna]`, entrambi partendo da 0:
+
+```cpp
+int matrice[2][3] = {
+    {1, 2, 3},
+    {4, 5, 6}
+};
+
+cout << matrice[0][0] << endl;  // 1 (riga 0, colonna 0)
+cout << matrice[0][2] << endl;  // 3 (riga 0, colonna 2)
+cout << matrice[1][1] << endl;  // 5 (riga 1, colonna 1)
+```
+
+## Iterare su un array 2D
+
+Si usano due cicli `for` annidati:
+
+```cpp
+int matrice[3][3] = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+for (int i = 0; i < 3; i++) {       // righe
+    for (int j = 0; j < 3; j++) {   // colonne
+        cout << matrice[i][j] << "\t";
+    }
+    cout << endl;
+}
+```
+
+Output:
+
+```
+1   2   3
+4   5   6
+7   8   9
+```
+
+## Esempio: registro voti
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    const int STUDENTI = 3;
+    const int MATERIE = 4;
+
+    // Voti: [studente][materia]
+    int voti[STUDENTI][MATERIE] = {
+        {8, 7, 9, 6},   // Alice
+        {5, 8, 7, 9},   // Bob
+        {9, 9, 8, 10}   // Carlo
+    };
+
+    string nomi[] = {"Alice", "Bob", "Carlo"};
+    string materie[] = {"Matematica", "Italiano", "Inglese", "Storia"};
+
+    // Stampa tabella
+    cout << "\t\t";
+    for (int m = 0; m < MATERIE; m++) {
+        cout << materie[m] << "\t";
+    }
+    cout << "Media" << endl;
+
+    for (int s = 0; s < STUDENTI; s++) {
+        cout << nomi[s] << "\t\t";
+        int somma = 0;
+        for (int m = 0; m < MATERIE; m++) {
+            cout << voti[s][m] << "\t\t";
+            somma += voti[s][m];
+        }
+        double media = (double)somma / MATERIE;
+        cout << media << endl;
+    }
+
+    return 0;
+}
+```
+
+## Esempio: scacchiera
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    char scacchiera[8][8];
+
+    // Inizializza la scacchiera con un pattern alternato
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if ((i + j) % 2 == 0) {
+                scacchiera[i][j] = '#';
+            } else {
+                scacchiera[i][j] = '.';
+            }
+        }
+    }
+
+    // Stampa la scacchiera
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            cout << scacchiera[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+```
+
+## Array tridimensionali
+
+Puoi anche avere array con più di due dimensioni, anche se diventano rapidamente difficili da visualizzare:
+
+```cpp
+int cubo[2][3][4];  // 2 "livelli", 3 righe, 4 colonne
+
+// Accesso con tre indici
+cubo[0][1][2] = 42;
+```
+
+Per la maggior parte dei casi pratici, gli array 2D sono sufficienti.
+
+## Limitazioni degli array C-style
+
+Gli array classici del C++ hanno alcune limitazioni:
+
+- La dimensione deve essere fissa e nota a compile-time
+- Non puoi sapere la dimensione "da dentro" l'array se lo passi a una funzione
+- Non controllano i limiti (out-of-bounds)
+
+Per questi motivi, nelle applicazioni moderne si preferisce usare `vector` (vedi la sezione apposita), che è più flessibile e sicuro.

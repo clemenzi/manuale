@@ -1,0 +1,151 @@
+---
+title: Funzione range()
+description: Come usare range() per generare sequenze numeriche in Python.
+---
+
+## Cos'è `range()`?
+
+`range()` è una funzione integrata di Python che genera una **sequenza di numeri interi**. È usata principalmente nei cicli `for` per ripetere qualcosa un numero preciso di volte.
+
+Non genera una lista vera e propria, ma un oggetto `range` che produce i numeri uno alla volta (più efficiente in memoria).
+
+## Sintassi
+
+`range()` accetta da uno a tre argomenti:
+
+```python
+range(fine)
+range(inizio, fine)
+range(inizio, fine, passo)
+```
+
+## `range(fine)` - da zero a n-1
+
+Con un solo argomento, genera numeri da `0` a `fine - 1`:
+
+```python
+for i in range(5):
+    print(i)
+```
+
+Output:
+```
+0
+1
+2
+3
+4
+```
+
+## `range(inizio, fine)` - da a a b-1
+
+```python
+for i in range(2, 7):
+    print(i)
+```
+
+Output:
+```
+2
+3
+4
+5
+6
+```
+
+## `range(inizio, fine, passo)` - con incremento
+
+Il terzo argomento è il **passo** (quanto si incrementa a ogni iterazione):
+
+```python
+# Numeri pari da 0 a 10
+for i in range(0, 11, 2):
+    print(i)
+```
+
+Output:
+```
+0
+2
+4
+6
+8
+10
+```
+
+```python
+# Conto alla rovescia
+for i in range(10, 0, -1):
+    print(i)
+```
+
+Output:
+```
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+```
+
+## Convertire range in lista
+
+Puoi convertire un `range` in una lista con `list()`:
+
+```python
+print(list(range(5)))       # [0, 1, 2, 3, 4]
+print(list(range(1, 6)))    # [1, 2, 3, 4, 5]
+print(list(range(0, 10, 2))) # [0, 2, 4, 6, 8]
+```
+
+## Lunghezza di un range
+
+Puoi usare `len()` su un range:
+
+```python
+print(len(range(10)))      # 10
+print(len(range(2, 8)))    # 6
+print(len(range(0, 10, 2))) # 5
+```
+
+## Esempi pratici
+
+### Sommare i numeri da 1 a 100
+
+```python
+totale = 0
+for i in range(1, 101):
+    totale += i
+print(totale)  # 5050
+```
+
+### Accedere a elementi di una lista tramite indice
+
+```python
+frutta = ["mela", "banana", "ciliegia"]
+
+for i in range(len(frutta)):
+    print(f"Posizione {i}: {frutta[i]}")
+```
+
+Output:
+```
+Posizione 0: mela
+Posizione 1: banana
+Posizione 2: ciliegia
+```
+
+Nota: spesso è più elegante usare `enumerate()` per questo scopo.
+
+### Tabellina
+
+```python
+n = 7
+for i in range(1, 11):
+    print(f"{n} x {i} = {n * i}")
+```

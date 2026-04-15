@@ -1,0 +1,10 @@
+{
+  "title": "Memoria e puntatori",
+  "icon": "Cpu",
+  "defaultOpen": false,
+  "pages": [
+    "puntatori",
+    "riferimenti",
+    "gestione-memoria"
+  ]
+}

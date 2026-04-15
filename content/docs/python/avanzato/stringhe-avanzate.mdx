@@ -1,0 +1,149 @@
+---
+title: Stringhe avanzate
+description: Metodi avanzati per la manipolazione delle stringhe in Python.
+---
+
+## Metodi avanzati delle stringhe
+
+Abbiamo già visto i metodi base delle stringhe. In questo capitolo esploriamo i metodi più utili e come usarli in pratica.
+
+## Ricerca e sostituzione
+
+### `find()` e `index()`
+
+```python
+testo = "Ciao, mi chiamo Alice e vivo a Roma."
+
+print(testo.find("Alice"))    # 15 (indice della prima occorrenza)
+print(testo.find("Mario"))    # -1 (non trovato, nessun errore)
+print(testo.rfind("a"))       # 31 (ultima occorrenza)
+
+print(testo.index("Alice"))   # 15 (come find, ma...
+# testo.index("Mario")        # ValueError se non trovato!
+```
+
+### `count()`
+
+```python
+testo = "banana"
+print(testo.count("a"))   # 3
+print(testo.count("na"))  # 2
+print(testo.count("an"))  # 2
+```
+
+### `replace()`
+
+```python
+testo = "Ciao mondo! Ciao Python!"
+print(testo.replace("Ciao", "Salve"))    # Salve mondo! Salve Python!
+print(testo.replace("Ciao", "Salve", 1)) # Salve mondo! Ciao Python! (solo la prima)
+```
+
+## Divisione e unione
+
+### `split()`
+
+```python
+frase = "mela banana ciliegia uva"
+parole = frase.split()          # divide sugli spazi
+print(parole)  # ['mela', 'banana', 'ciliegia', 'uva']
+
+dati = "Alice,16,Roma"
+campi = dati.split(",")         # divide sulla virgola
+print(campi)  # ['Alice', '16', 'Roma']
+
+# Limitare il numero di suddivisioni
+print("a:b:c:d".split(":", 2)) # ['a', 'b', 'c:d']
+```
+
+### `splitlines()`
+
+```python
+testo = "Prima riga\nSeconda riga\nTerza riga"
+righe = testo.splitlines()
+print(righe)  # ['Prima riga', 'Seconda riga', 'Terza riga']
+```
+
+### `join()`
+
+`join()` unisce una lista di stringhe in una sola:
+
+```python
+parole = ["mela", "banana", "ciliegia"]
+print(", ".join(parole))   # mela, banana, ciliegia
+print(" - ".join(parole))  # mela - banana - ciliegia
+print("".join(parole))     # melebananaciliegia
+```
+
+## Rimozione di spazi e caratteri
+
+```python
+testo = "   ciao mondo   "
+print(testo.strip())       # "ciao mondo"    (entrambi i lati)
+print(testo.lstrip())      # "ciao mondo   " (solo sinistra)
+print(testo.rstrip())      # "   ciao mondo" (solo destra)
+
+# Rimuovere caratteri specifici
+testo2 = "###ciao###"
+print(testo2.strip("#"))   # "ciao"
+```
+
+## Maiuscole e minuscole
+
+```python
+testo = "ciao mondo"
+print(testo.upper())        # CIAO MONDO
+print(testo.lower())        # ciao mondo
+print(testo.capitalize())   # Ciao mondo (prima lettera maiuscola)
+print(testo.title())        # Ciao Mondo (ogni parola con maiuscola)
+print(testo.swapcase())     # CIAO MONDO (inverte maiuscole/minuscole)
+```
+
+## Verifica del contenuto
+
+```python
+print("Hello".islower())    # False
+print("hello".islower())    # True
+print("HELLO".isupper())    # True
+print("Hello World".istitle()) # True
+
+print("abc123".isalnum())   # True (solo lettere e numeri)
+print("abc".isalpha())      # True (solo lettere)
+print("123".isdigit())      # True (solo cifre)
+print("   ".isspace())      # True (solo spazi)
+```
+
+## Padding (riempimento)
+
+```python
+print("42".zfill(5))        # "00042" (riempie con zeri)
+print("ciao".ljust(10))     # "ciao      " (allinea a sinistra)
+print("ciao".rjust(10))     # "      ciao" (allinea a destra)
+print("ciao".center(10))    # "   ciao   " (centra)
+print("ciao".center(10, "-"))  # "---ciao---"
+```
+
+## Partizione
+
+```python
+testo = "nome: Alice"
+prima, sep, dopo = testo.partition(":")
+print(prima)  # "nome"
+print(sep)    # ":"
+print(dopo)   # " Alice"
+```
+
+## Esempio pratico: parsing di dati CSV
+
+```python
+riga_csv = "Alice,16,Roma,8.5"
+campi = riga_csv.split(",")
+
+nome = campi[0].strip()
+eta = int(campi[1].strip())
+citta = campi[2].strip()
+voto = float(campi[3].strip())
+
+print(f"{nome} ha {eta} anni, vive a {citta} e ha voto {voto}")
+# Alice ha 16 anni, vive a Roma e ha voto 8.5
+```

@@ -1,0 +1,10 @@
+{
+  "title": "Funzioni",
+  "icon": "SquareFunction",
+  "defaultOpen": false,
+  "pages": [
+    "funzioni",
+    "overloading",
+    "scope"
+  ]
+}

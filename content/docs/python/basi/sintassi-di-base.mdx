@@ -1,0 +1,81 @@
+---
+title: Sintassi di base
+description: Le regole fondamentali della sintassi Python.
+---
+
+## Cos'è la sintassi?
+
+La **sintassi** è l'insieme di regole che definisce come si scrive il codice in un linguaggio di programmazione. Se non rispetti la sintassi, l'interprete non capisce cosa vuoi fare e ti segnala un errore.
+
+## Indentazione
+
+In Python, l'**indentazione** (gli spazi all'inizio di una riga) non è solo estetica: è **obbligatoria** e fa parte della sintassi.
+
+Mentre in altri linguaggi si usano le parentesi graffe `{}` per raggruppare blocchi di codice, Python usa l'indentazione:
+
+```python
+if 5 > 3:
+    print("Cinque è maggiore di tre")  # questo è dentro l'if
+print("Questo è fuori dall'if")         # questo è fuori
+```
+
+Lo standard è usare **4 spazi** per ogni livello di indentazione. Non mescolare spazi e tabulazioni.
+
+Se l'indentazione è sbagliata, Python darà un errore:
+
+```python
+if 5 > 3:
+print("Errore!")  # IndentationError: manca l'indentazione
+```
+
+## Maiuscole e minuscole
+
+Python è **case-sensitive**: distingue tra maiuscole e minuscole. `nome`, `Nome` e `NOME` sono tre variabili diverse.
+
+```python
+nome = "Alice"
+Nome = "Bob"
+print(nome)  # Alice
+print(Nome)  # Bob
+```
+
+## Istruzioni su più righe
+
+Di solito ogni istruzione occupa una riga. Se hai un'istruzione molto lunga, puoi continuarla sulla riga successiva usando il carattere `\`:
+
+```python
+risultato = 10 + 20 + \
+            30 + 40
+print(risultato)  # 100
+```
+
+Oppure, quando apri una parentesi, Python capisce che l'istruzione continua:
+
+```python
+numeri = (1, 2, 3,
+          4, 5, 6)
+```
+
+## Punto e virgola
+
+Python non richiede il punto e virgola `;` alla fine di ogni riga (diversamente da C++ o Java). Puoi però usarlo per mettere più istruzioni sulla stessa riga, anche se è sconsigliato per leggibilità:
+
+```python
+a = 1; b = 2; print(a + b)  # funziona, ma meglio evitarlo
+```
+
+## Le parole chiave (keywords)
+
+Python ha alcune parole riservate che non puoi usare come nomi di variabili. Sono le **keyword**:
+
+```
+False    await    else     import   pass
+None     break    except   in       raise
+True     class    finally  is       return
+and      continue for      lambda   try
+as       def      from     nonlocal while
+assert   del      global   not      with
+async    elif     if       or       yield
+```
+
+Se provi a usarle come variabili, otterrai un errore di sintassi.

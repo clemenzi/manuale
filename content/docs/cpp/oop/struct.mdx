@@ -1,0 +1,223 @@
+---
+title: Strutture (struct)
+description: Come raggruppare dati correlati in strutture in C++.
+---
+
+## Cosa sono le strutture?
+
+Una **struttura** (`struct`) è un tipo di dato personalizzato che raggruppa più variabili (chiamate **campi** o **membri**) sotto un unico nome. È utile per rappresentare entità del mondo reale che hanno più attributi.
+
+Ad esempio, uno studente ha un nome, un'età e un voto: invece di avere tre variabili separate, le raggruppi in una struttura `Studente`.
+
+## Definire una struttura
+
+```cpp
+struct NomeStruttura {
+    tipo1 campo1;
+    tipo2 campo2;
+    // ...
+};   // nota il punto e virgola!
+```
+
+```cpp
+struct Studente {
+    string nome;
+    int eta;
+    double media;
+};
+```
+
+## Creare variabili di tipo struttura
+
+```cpp
+Studente s1;   // crea una variabile di tipo Studente
+
+// Accedi ai campi con il punto .
+s1.nome = "Alice";
+s1.eta = 16;
+s1.media = 8.5;
+```
+
+## Inizializzazione
+
+Puoi inizializzare una struttura con la lista di valori:
+
+```cpp
+Studente s1 = {"Alice", 16, 8.5};
+
+// C++11: inizializzazione con nome dei campi
+Studente s2 = {.nome = "Bob", .eta = 17, .media = 7.2};
+```
+
+## Accedere ai campi
+
+Si usa l'operatore `.` (punto):
+
+```cpp
+Studente s = {"Alice", 16, 8.5};
+
+cout << s.nome << endl;   // Alice
+cout << s.eta << endl;    // 16
+cout << s.media << endl;  // 8.5
+
+// Modifica
+s.media = 9.0;
+```
+
+## Strutture come parametri di funzioni
+
+```cpp
+struct Punto {
+    double x;
+    double y;
+};
+
+double distanza(Punto p1, Punto p2) {
+    double dx = p1.x - p2.x;
+    double dy = p1.y - p2.y;
+    return sqrt(dx*dx + dy*dy);
+}
+
+int main() {
+    Punto a = {0.0, 0.0};
+    Punto b = {3.0, 4.0};
+
+    cout << "Distanza: " << distanza(a, b) << endl;  // 5
+    return 0;
+}
+```
+
+## Strutture con riferimento (per modificarle)
+
+Per modificare una struttura in una funzione, passala per riferimento:
+
+```cpp
+struct Contatore {
+    int valore;
+    int passi;
+};
+
+void incrementa(Contatore& c, int n) {
+    c.valore += n;
+    c.passi++;
+}
+
+int main() {
+    Contatore c = {0, 0};
+    incrementa(c, 10);
+    incrementa(c, 5);
+    cout << "Valore: " << c.valore << ", Passi: " << c.passi << endl;
+    // Valore: 15, Passi: 2
+    return 0;
+}
+```
+
+## Array di strutture
+
+```cpp
+struct Prodotto {
+    string nome;
+    double prezzo;
+    int quantita;
+};
+
+int main() {
+    Prodotto magazzino[3] = {
+        {"Mela", 0.50, 100},
+        {"Banana", 0.30, 150},
+        {"Arancia", 0.80, 80}
+    };
+
+    cout << "Prodotti in magazzino:" << endl;
+    for (int i = 0; i < 3; i++) {
+        cout << magazzino[i].nome << " - €"
+             << magazzino[i].prezzo
+             << " (qty: " << magazzino[i].quantita << ")" << endl;
+    }
+
+    // Calcola valore totale del magazzino
+    double totale = 0;
+    for (int i = 0; i < 3; i++) {
+        totale += magazzino[i].prezzo * magazzino[i].quantita;
+    }
+    cout << "Valore totale: €" << totale << endl;
+
+    return 0;
+}
+```
+
+## Strutture annidate
+
+Una struttura può contenere un'altra struttura come campo:
+
+```cpp
+struct Indirizzo {
+    string via;
+    string citta;
+    string cap;
+};
+
+struct Persona {
+    string nome;
+    int eta;
+    Indirizzo indirizzo;   // struttura dentro struttura
+};
+
+int main() {
+    Persona p;
+    p.nome = "Alice";
+    p.eta = 16;
+    p.indirizzo.via = "Via Roma 10";
+    p.indirizzo.citta = "Milano";
+    p.indirizzo.cap = "20100";
+
+    cout << p.nome << " vive in " << p.indirizzo.citta << endl;
+    return 0;
+}
+```
+
+## Differenza tra `struct` e `class`
+
+In C++, `struct` e `class` sono molto simili. La differenza principale è che:
+- In `struct`, i membri sono **public** (accessibili dall'esterno) per default
+- In `class`, i membri sono **private** (non accessibili dall'esterno) per default
+
+Nella pratica, si usa `struct` per raggruppare dati semplici senza logica, e `class` per oggetti più complessi con comportamenti (vedi la sezione sulle classi).
+
+## Esempio pratico: registro studenti
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Studente {
+    string nome;
+    int eta;
+    double voto;
+};
+
+void stampa(const Studente& s) {
+    cout << s.nome << " (" << s.eta << " anni) - Voto: " << s.voto << endl;
+}
+
+int main() {
+    const int N = 3;
+    Studente classe[N] = {
+        {"Alice", 16, 8.5},
+        {"Bob", 17, 7.0},
+        {"Carlo", 16, 9.2}
+    };
+
+    cout << "=== Registro ===" << endl;
+    double somma = 0;
+    for (int i = 0; i < N; i++) {
+        stampa(classe[i]);
+        somma += classe[i].voto;
+    }
+
+    cout << "Media classe: " << somma / N << endl;
+
+    return 0;
+}
+```

@@ -1,0 +1,178 @@
+---
+title: Gestione eccezioni avanzata
+description: Tecniche avanzate per gestire le eccezioni in Python.
+---
+
+## Riepilogo base
+
+Abbiamo già visto il blocco `try/except`. Ora approfondiamo le tecniche avanzate per la gestione degli errori.
+
+```python
+try:
+    # codice rischioso
+except TipoErrore:
+    # gestione dell'errore
+else:
+    # eseguito solo senza errori
+finally:
+    # sempre eseguito
+```
+
+## Eccezioni personalizzate
+
+Puoi creare le tue eccezioni personalizzate creando classi che ereditano da `Exception`:
+
+```python
+class EtaNonValidaError(Exception):
+    """Eccezione per età non valida."""
+    pass
+
+class VotoNonValidoError(Exception):
+    """Eccezione per voto non valido."""
+    def __init__(self, voto, messaggio="Il voto deve essere tra 0 e 10"):
+        self.voto = voto
+        self.messaggio = messaggio
+        super().__init__(self.messaggio)
+
+def controlla_eta(eta):
+    if eta < 0 or eta > 150:
+        raise EtaNonValidaError(f"L'età {eta} non è valida.")
+
+def controlla_voto(voto):
+    if voto < 0 or voto > 10:
+        raise VotoNonValidoError(voto)
+
+try:
+    controlla_eta(-5)
+except EtaNonValidaError as e:
+    print(f"Errore: {e}")
+# Errore: L'età -5 non è valida.
+
+try:
+    controlla_voto(15)
+except VotoNonValidoError as e:
+    print(f"Errore: {e.messaggio} (ricevuto: {e.voto})")
+# Errore: Il voto deve essere tra 0 e 10 (ricevuto: 15)
+```
+
+## Lanciare eccezioni con `raise`
+
+Puoi lanciare (sollevare) eccezioni manualmente con `raise`:
+
+```python
+def dividi(a, b):
+    if b == 0:
+        raise ValueError("Il divisore non può essere zero.")
+    return a / b
+
+try:
+    risultato = dividi(10, 0)
+except ValueError as e:
+    print(f"Errore: {e}")
+```
+
+## Rilancio di eccezioni
+
+Puoi catturare un'eccezione, fare qualcosa, e poi rilanciarla:
+
+```python
+def leggi_file(percorso):
+    try:
+        with open(percorso) as f:
+            return f.read()
+    except FileNotFoundError as e:
+        print(f"Log: file '{percorso}' non trovato.")
+        raise  # rilancia la stessa eccezione
+```
+
+## Catena di eccezioni
+
+Puoi collegare eccezioni per mostrare il contesto:
+
+```python
+def carica_configurazione(filename):
+    try:
+        with open(filename) as f:
+            import json
+            return json.load(f)
+    except FileNotFoundError as e:
+        raise RuntimeError(f"Impossibile caricare la configurazione da {filename}") from e
+
+try:
+    config = carica_configurazione("config.json")
+except RuntimeError as e:
+    print(f"Errore: {e}")
+    print(f"Causato da: {e.__cause__}")
+```
+
+## Gerarchia delle eccezioni
+
+Le eccezioni Python sono organizzate in una gerarchia. Catturare una classe base cattura anche tutte le classi derivate:
+
+```
+BaseException
+└── Exception
+    ├── ArithmeticError
+    │   ├── ZeroDivisionError
+    │   └── OverflowError
+    ├── LookupError
+    │   ├── IndexError
+    │   └── KeyError
+    ├── ValueError
+    ├── TypeError
+    ├── IOError
+    │   └── FileNotFoundError
+    └── ...
+```
+
+```python
+try:
+    x = [1, 2, 3][10]
+except LookupError:
+    print("Errore di accesso (IndexError o KeyError)")
+```
+
+## Context manager personalizzato
+
+Puoi usare le eccezioni nei context manager (usati con `with`):
+
+```python
+class GestoreRisorse:
+    def __enter__(self):
+        print("Risorsa aperta")
+        return self
+
+    def __exit__(self, tipo_exc, valore_exc, traceback_exc):
+        print("Risorsa chiusa")
+        if tipo_exc:
+            print(f"Si è verificato un errore: {valore_exc}")
+        return False  # False = non sopprimere l'eccezione
+
+with GestoreRisorse() as r:
+    print("Uso la risorsa")
+    # raise ValueError("Errore di test")  # prova a decommentare
+```
+
+## Buone pratiche
+
+```python
+# MALE: cattura tutto (nasconde i bug)
+try:
+    operazione_complessa()
+except:
+    pass
+
+# BENE: cattura solo le eccezioni previste
+try:
+    operazione_complessa()
+except (ValueError, TypeError) as e:
+    print(f"Errore gestito: {e}")
+
+# BENE: log e rilancio
+import logging
+try:
+    operazione_complessa()
+except Exception as e:
+    logging.error(f"Errore inatteso: {e}")
+    raise
+```

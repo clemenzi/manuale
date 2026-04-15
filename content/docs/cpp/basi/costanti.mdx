@@ -1,0 +1,137 @@
+---
+title: Costanti
+description: Come definire valori costanti in C++ con const e #define.
+---
+
+## Cosa sono le costanti?
+
+Una **costante** è un valore che non può essere modificato dopo l'inizializzazione. È utile per valori che non devono cambiare durante l'esecuzione del programma, come pi greco, il numero di ore in un giorno, o la velocità della luce.
+
+Usare le costanti rende il codice:
+- Più sicuro (il compilatore impedisce modifiche accidentali)
+- Più leggibile (un nome significativo al posto di un numero)
+- Più facile da modificare (cambi il valore in un solo posto)
+
+## La parola chiave `const`
+
+La parola chiave `const` davanti a una variabile la rende costante:
+
+```cpp
+const double PI = 3.14159265358979;
+const int ORE_PER_GIORNO = 24;
+const string LINGUA = "Italiano";
+```
+
+Se provi a modificare una costante, il compilatore dà un errore:
+
+```cpp
+const int MAX = 100;
+MAX = 200;  // ERRORE: assignment of read-only variable 'MAX'
+```
+
+## Convenzioni di naming
+
+Per le costanti, la convenzione in C++ è usare **tutto maiuscolo con underscore**:
+
+```cpp
+const double PI = 3.14159;
+const int ETA_MINIMA = 18;
+const int MAX_TENTATIVI = 3;
+const double VELOCITA_LUCE = 299792458.0;
+```
+
+Questa convenzione le distingue visivamente dalle variabili normali.
+
+## Costanti con `#define`
+
+Un altro modo per definire costanti è la direttiva del preprocessore `#define`:
+
+```cpp
+#define PI 3.14159
+#define MAX_STUDENTI 30
+```
+
+Con `#define`, il preprocessore sostituisce ogni occorrenza di `PI` con `3.14159` prima della compilazione. Non è una variabile: è una semplice sostituzione testuale.
+
+```cpp
+#include <iostream>
+#define PI 3.14159
+#define RAGGIO 5
+
+using namespace std;
+
+int main() {
+    double area = PI * RAGGIO * RAGGIO;
+    cout << "Area: " << area << endl;
+    return 0;
+}
+```
+
+### `const` vs `#define`: quale usare?
+
+Oggi si preferisce `const` rispetto a `#define` per questi motivi:
+
+| Caratteristica | `const` | `#define` |
+|---|---|---|
+| Ha un tipo | Sì | No |
+| Viene controllata dal compilatore | Sì | No |
+| Visibile nel debugger | Sì | No |
+| Rispetta lo scope | Sì | No |
+
+```cpp
+// Meglio: const ha tipo e viene controllata
+const double PI = 3.14159;
+
+// Evita: #define non ha tipo
+#define PI 3.14159
+```
+
+## Costanti `constexpr` (C++11)
+
+In C++ moderno esiste anche `constexpr`, che indica una costante calcolata a compile-time (durante la compilazione, non durante l'esecuzione):
+
+```cpp
+constexpr int SECONDI_PER_MINUTO = 60;
+constexpr int MINUTI_PER_ORA = 60;
+constexpr int SECONDI_PER_ORA = SECONDI_PER_MINUTO * MINUTI_PER_ORA; // 3600
+```
+
+`constexpr` è ancora più sicuro e performante di `const`. Per ora, puoi usare `const` senza problemi.
+
+## Esempio pratico
+
+```cpp
+#include <iostream>
+using namespace std;
+
+const double PI = 3.14159265358979;
+const double GRAVITA = 9.81;     // m/s^2
+const int MAX_VOTO = 10;
+
+int main() {
+    // Calcolo area cerchio
+    double raggio = 4.0;
+    double area = PI * raggio * raggio;
+    cout << "Area cerchio (r=" << raggio << "): " << area << endl;
+
+    // Calcolo energia potenziale
+    double massa = 70.0;   // kg
+    double altezza = 5.0;  // m
+    double energia = massa * GRAVITA * altezza;
+    cout << "Energia potenziale: " << energia << " J" << endl;
+
+    // Uso della costante del voto massimo
+    int voto = 8;
+    cout << "Voto: " << voto << "/" << MAX_VOTO << endl;
+
+    return 0;
+}
+```
+
+Output:
+
+```
+Area cerchio (r=4): 50.2655
+Energia potenziale: 3434.5 J
+Voto: 8/10
+```

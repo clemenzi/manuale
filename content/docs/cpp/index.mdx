@@ -1,15 +1,79 @@
 ---
-title: C++
-icon: CppIcon
+title: Introduzione al C++
+description: Cos'è il C++, come funziona e perché impararlo.
 ---
 
-Benvenuto nella sezione C++ dell'**Handbook di Programmazione**.
+## Cos'è il C++?
 
-C++ e un linguaggio che ti permette di capire come funziona davvero il computer: gestisci tu la memoria, controlli le prestazioni, e puoi costruire qualsiasi cosa — dai videogiochi ai sistemi operativi.
+Il **C++** è un linguaggio di programmazione creato da **Bjarne Stroustrup** nei primi anni '80 come estensione del linguaggio C. Il nome stesso ("C plus plus") indica che è un passo avanti rispetto al C.
 
-<Cards>
-  <Card title="Introduzione" href="/docs/cpp/introduzione" description="Cos'e la programmazione e come orientarsi." />
-  <Card title="Basi della Programmazione" href="/docs/cpp/basi" description="Variabili, condizioni, cicli e funzioni." />
-  <Card title="Strutture Dati" href="/docs/cpp/strutture-dati" description="Array, vettori, mappe e set." />
-  <Card title="Prossimi Passi" href="/docs/cpp/prossimi-passi" description="Dove andare dopo aver imparato le basi." />
-</Cards>
+È uno dei linguaggi più potenti e diffusi al mondo. Lo trovi in:
+
+- sistemi operativi (Windows, Linux usano parti scritte in C++)
+- videogiochi (motori grafici come Unreal Engine)
+- applicazioni ad alte prestazioni (browser, database)
+- sistemi embedded e dispositivi hardware
+- software scientifico e finanziario
+
+## Perché imparare il C++?
+
+- Ti insegna come funziona davvero il computer (memoria, processore, ecc.)
+- È velocissimo: spesso il programma più veloce possibile si scrive in C++
+- Una volta capito il C++, tutti gli altri linguaggi sembrano più semplici
+- È ancora molto richiesto nel mondo del lavoro
+
+## C++ vs Python: le differenze principali
+
+| Caratteristica | C++ | Python |
+|---|---|---|
+| Tipo di linguaggio | Compilato | Interpretato |
+| Velocità | Molto veloce | Più lento |
+| Sintassi | Più complessa | Più semplice |
+| Dichiarazione tipi | Obbligatoria | Non necessaria |
+| Gestione memoria | Manuale (a volte) | Automatica |
+
+In C++ devi essere più preciso: devi dichiarare i tipi delle variabili, chiudere le istruzioni con `;` e gestire alcune cose a mano. In cambio, ottieni programmi molto più veloci e un controllo totale su ciò che fa il computer.
+
+## Come funziona il C++?
+
+Il C++ è un linguaggio **compilato**: prima di eseguire il programma, il codice sorgente viene trasformato in un file eseguibile da un programma chiamato **compilatore**.
+
+Il flusso di lavoro è:
+
+1. Scrivi il codice in un file con estensione `.cpp`
+2. Il compilatore legge il file e lo trasforma in un eseguibile (`.exe` su Windows, senza estensione su Linux/macOS)
+3. Esegui il programma
+
+Questo processo rende i programmi C++ molto veloci, perché il computer esegue direttamente le istruzioni già tradotte nella sua lingua.
+
+## Il primo programma
+
+Per tradizione, il primo programma che si scrive è "Hello, World!":
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello, World!" << endl;
+    return 0;
+}
+```
+
+Output:
+
+```
+Hello, World!
+```
+
+Non preoccuparti se non capisci ancora tutto: nelle prossime sezioni spiegheremo ogni parte in dettaglio.
+
+## Le versioni del C++
+
+Il C++ viene aggiornato periodicamente. Le versioni più importanti sono:
+
+- **C++98**: la prima versione standardizzata
+- **C++11**: grande aggiornamento con molte funzionalità moderne
+- **C++14, C++17, C++20**: miglioramenti successivi
+
+In questo handbook useremo le funzionalità moderne (C++11 e successive), che sono quelle che si usano oggi nella pratica.

@@ -1,0 +1,12 @@
+{
+  "title": "Moduli e libreria standard",
+  "icon": "Puzzle",
+  "defaultOpen": false,
+  "pages": [
+    "moduli",
+    "date-e-orari",
+    "matematica",
+    "json",
+    "espressioni-regolari"
+  ]
+}

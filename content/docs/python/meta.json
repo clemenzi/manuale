@@ -4,9 +4,16 @@
   "root": true,
   "pages": [
     "index",
-    "introduzione",
     "basi",
     "strutture-dati",
-    "prossimi-passi"
+    "controllo-del-flusso",
+    "funzioni",
+    "oop",
+    "moduli-e-stdlib",
+    "input-output",
+    "errori",
+    "avanzato",
+    "ecosistema",
+    "grafica"
   ]
 }

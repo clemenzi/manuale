@@ -1,0 +1,126 @@
+---
+title: Booleani
+description: Valori vero/falso e logica booleana in Python.
+---
+
+## Cosa sono i booleani?
+
+Il tipo **booleano** (`bool`) può avere solo due valori: `True` (vero) o `False` (falso). Notare la prima lettera maiuscola, è importante!
+
+I booleani sono fondamentali per controllare il flusso del programma: decidono quale ramo del codice eseguire, quando fermare un ciclo, e molto altro.
+
+## Creare un booleano
+
+```python
+vero = True
+falso = False
+print(type(vero))   # <class 'bool'>
+print(type(falso))  # <class 'bool'>
+```
+
+## Confronti e operatori di confronto
+
+I confronti restituiscono sempre un booleano:
+
+```python
+print(5 > 3)    # True
+print(5 < 3)    # False
+print(5 == 5)   # True  (uguale)
+print(5 != 3)   # True  (diverso)
+print(5 >= 5)   # True  (maggiore o uguale)
+print(5 <= 4)   # False (minore o uguale)
+```
+
+Nota la differenza tra `=` (assegnazione) e `==` (confronto di uguaglianza)!
+
+## Operatori logici
+
+Puoi combinare condizioni booleane con gli operatori logici:
+
+### `and` (e)
+
+Restituisce `True` solo se **entrambe** le condizioni sono vere:
+
+```python
+print(True and True)   # True
+print(True and False)  # False
+print(False and True)  # False
+print(False and False) # False
+
+eta = 16
+ha_patente = False
+print(eta >= 18 and ha_patente)  # False
+```
+
+### `or` (o)
+
+Restituisce `True` se **almeno una** delle condizioni è vera:
+
+```python
+print(True or True)    # True
+print(True or False)   # True
+print(False or True)   # True
+print(False or False)  # False
+
+piove = False
+fa_freddo = True
+print(piove or fa_freddo)  # True
+```
+
+### `not` (non)
+
+Inverte il valore booleano:
+
+```python
+print(not True)   # False
+print(not False)  # True
+
+maggiorenne = False
+print(not maggiorenne)  # True (non è maggiorenne)
+```
+
+## Valori "truthy" e "falsy"
+
+In Python, ogni valore può essere valutato come booleano. I seguenti valori sono **falsy** (equivalenti a `False`):
+
+- `False`
+- `0` e `0.0`
+- `""` (stringa vuota)
+- `[]` (lista vuota)
+- `()` (tupla vuota)
+- `{}` (dizionario o set vuoto)
+- `None`
+
+Tutti gli altri valori sono **truthy** (equivalenti a `True`):
+
+```python
+print(bool(0))       # False
+print(bool(""))      # False
+print(bool([]))      # False
+print(bool(42))      # True
+print(bool("ciao"))  # True
+print(bool([1, 2]))  # True
+```
+
+Questo torna utile nelle condizioni:
+
+```python
+nome = ""
+if nome:
+    print("Hai inserito un nome")
+else:
+    print("Il nome è vuoto")  # Questo viene stampato
+```
+
+## Booleani come numeri
+
+In Python, `True` vale `1` e `False` vale `0`. Quindi puoi fare operazioni aritmetiche con i booleani:
+
+```python
+print(True + True)   # 2
+print(True + False)  # 1
+print(False + False) # 0
+print(True * 5)      # 5
+```
+
+Questo non è usato spesso, ma può capitare di vederlo.

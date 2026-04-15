@@ -1,0 +1,174 @@
+---
+title: Puntatori
+description: Il concetto di puntatori in C++, come funzionano e come usarli.
+---
+
+## Cos'è un puntatore?
+
+Un **puntatore** è una variabile che contiene l'**indirizzo di memoria** di un'altra variabile. Invece di contenere un valore direttamente (come un `int` che contiene il numero 42), un puntatore contiene la "posizione" dove quel valore è memorizzato.
+
+Pensa alla memoria del computer come una lunga fila di cassette. Ogni cassetta ha un numero (l'indirizzo) e può contenere un valore. Un puntatore è come un biglietto su cui è scritto il numero della cassetta che ti interessa.
+
+## Indirizzi di memoria
+
+Ogni variabile ha un indirizzo in memoria. Puoi ottenere l'indirizzo di una variabile con l'operatore `&`:
+
+```cpp
+int x = 42;
+cout << x << endl;    // 42 (il valore)
+cout << &x << endl;   // es: 0x7fff5c1a2b40 (l'indirizzo in esadecimale)
+```
+
+L'indirizzo è un numero esadecimale che indica la posizione della variabile nella RAM.
+
+## Dichiarare un puntatore
+
+Un puntatore si dichiara con `*` davanti al nome:
+
+```cpp
+int* ptr;       // puntatore a int
+double* dptr;   // puntatore a double
+char* cptr;     // puntatore a char
+```
+
+La convenzione in C++ moderno è mettere `*` vicino al tipo (`int*`) piuttosto che al nome (`int *ptr`).
+
+## Inizializzare un puntatore
+
+Per inizializzare un puntatore, assegnagli l'indirizzo di una variabile con `&`:
+
+```cpp
+int x = 42;
+int* ptr = &x;    // ptr contiene l'indirizzo di x
+
+cout << ptr << endl;    // indirizzo di x (es: 0x7fff...)
+cout << *ptr << endl;   // 42 (il valore a quell'indirizzo)
+```
+
+## L'operatore di dereferenziazione `*`
+
+L'operatore `*` davanti a un puntatore si chiama **operatore di dereferenziazione**: permette di accedere al valore all'indirizzo puntato.
+
+```cpp
+int x = 42;
+int* ptr = &x;
+
+cout << *ptr << endl;   // 42 (legge il valore di x tramite ptr)
+
+*ptr = 100;             // modifica x tramite ptr
+cout << x << endl;      // 100 (x è cambiata!)
+```
+
+Questo è il "superpotere" dei puntatori: puoi modificare una variabile indirettamente.
+
+## Riepilogo degli operatori
+
+```cpp
+int x = 42;
+int* ptr = &x;
+
+// & = "indirizzo di"
+cout << &x << endl;     // indirizzo di x
+
+// * nella dichiarazione = "è un puntatore a"
+int* ptr = &x;          // ptr è un puntatore a int
+
+// * sull'identificatore = "il valore a quell'indirizzo"
+cout << *ptr << endl;   // il valore puntato da ptr
+```
+
+## Il puntatore nullo
+
+Un puntatore che non punta a nulla viene inizializzato a `nullptr` (C++11) o `NULL`:
+
+```cpp
+int* ptr = nullptr;   // puntatore nullo (non punta a niente)
+
+// Verifica prima di usare
+if (ptr != nullptr) {
+    cout << *ptr;   // sicuro
+}
+```
+
+Non dereferenziare mai un puntatore nullo: causa un crash del programma.
+
+## Puntatori e array
+
+C'è una stretta relazione tra puntatori e array. Il nome di un array è in realtà un puntatore al suo primo elemento:
+
+```cpp
+int numeri[] = {10, 20, 30, 40, 50};
+int* ptr = numeri;   // punta al primo elemento
+
+cout << *ptr << endl;        // 10 (numeri[0])
+cout << *(ptr + 1) << endl;  // 20 (numeri[1])
+cout << *(ptr + 2) << endl;  // 30 (numeri[2])
+
+// Equivalente all'accesso tramite indice
+cout << ptr[0] << endl;   // 10
+cout << ptr[1] << endl;   // 20
+```
+
+## Passaggio per puntatore alle funzioni
+
+I puntatori permettono di passare variabili a funzioni in modo che possano modificarle:
+
+```cpp
+void raddoppia(int* ptr) {
+    *ptr = *ptr * 2;   // modifica il valore originale
+}
+
+int main() {
+    int x = 5;
+    cout << x << endl;   // 5
+    raddoppia(&x);       // passa l'indirizzo di x
+    cout << x << endl;   // 10
+    return 0;
+}
+```
+
+## Attenzione ai puntatori
+
+I puntatori sono potenti ma pericolosi:
+
+- **Puntatore non inizializzato**: contiene un valore casuale; dereferenziarlo causa crash o comportamento imprevedibile
+- **Dangling pointer**: punta a memoria già liberata; usarlo è un errore
+- **Memory leak**: dimentichi di liberare la memoria allocata dinamicamente
+
+```cpp
+int* ptr;           // NON inizializzato: pericoloso!
+*ptr = 42;          // ERRORE: comportamento non definito
+
+int* ptr2 = nullptr;
+*ptr2 = 42;         // ERRORE: crash garantito (null pointer dereference)
+```
+
+In C++ moderno si preferisce usare i **riferimenti** (`&`) quando possibile, e i **puntatori smart** (`unique_ptr`, `shared_ptr`) per la gestione della memoria dinamica.
+
+## Esempio pratico: scambiare due variabili
+
+```cpp
+#include <iostream>
+using namespace std;
+
+void scambia(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    int x = 10, y = 20;
+    cout << "Prima: x=" << x << ", y=" << y << endl;
+    scambia(&x, &y);
+    cout << "Dopo:  x=" << x << ", y=" << y << endl;
+    return 0;
+}
+```
+
+Output:
+
+```
+Prima: x=10, y=20
+Dopo:  x=20, y=10
+```

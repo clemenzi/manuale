@@ -1,0 +1,164 @@
+---
+title: Stringhe C-style vs string
+description: La differenza tra le stringhe in stile C (char array) e il tipo string del C++.
+---
+
+## Due modi di gestire le stringhe
+
+In C++ esistono due modi per lavorare con le stringhe:
+
+1. **Stringhe C-style**: array di caratteri (`char[]`), ereditate dal linguaggio C
+2. **`std::string`**: la classe stringa del C++ moderno, fornita dalla libreria `<string>`
+
+Per la quasi totalità dei casi, dovresti usare `std::string`. Tuttavia, è utile conoscere le stringhe C-style perché le incontrerai in codice vecchio e in alcune situazioni specifiche.
+
+## Stringhe C-style
+
+Una stringa C-style è semplicemente un array di `char` che termina con il carattere nullo `'\0'`:
+
+```cpp
+char saluto[] = "Ciao";
+// Internamente: {'C', 'i', 'a', 'o', '\0'}
+// Occupa 5 byte (4 caratteri + il terminatore)
+```
+
+Puoi anche dichiararla esplicitamente:
+
+```cpp
+char nome[10] = "Alice";   // array di 10 char, 6 usati ("Alice\0")
+```
+
+### Accesso ai caratteri
+
+```cpp
+char nome[] = "Alice";
+cout << nome[0] << endl;  // A
+cout << nome[1] << endl;  // l
+```
+
+### Funzioni per stringhe C-style (`<cstring>`)
+
+Per manipolare le stringhe C-style si usano funzioni della libreria `<cstring>`:
+
+```cpp
+#include <cstring>
+
+char a[] = "Ciao";
+char b[] = "Mondo";
+
+cout << strlen(a) << endl;        // 4 (lunghezza senza '\0')
+strcpy(a, "Hello");               // copia "Hello" in a
+strcat(a, " World");              // concatena
+cout << strcmp("abc", "abc") << endl;  // 0 (uguali)
+cout << strcmp("abc", "abd") << endl;  // numero negativo (abc < abd)
+```
+
+### Problemi delle stringhe C-style
+
+- Non puoi concatenarle con `+`
+- Devi gestire manualmente la memoria e i buffer
+- Facile fare errori di overflow (scrivere oltre i limiti)
+- Codice più verboso e error-prone
+
+```cpp
+char a[10] = "Ciao";
+// a + " mondo" non funziona!
+// devi usare strcat(a, " mondo");
+```
+
+## `std::string` (il modo moderno)
+
+`std::string` è molto più facile e sicura da usare:
+
+```cpp
+#include <string>
+using namespace std;
+
+string nome = "Alice";
+string cognome = "Bianchi";
+
+// Concatenazione con +
+string nomeCompleto = nome + " " + cognome;
+
+// Lunghezza
+cout << nome.length() << endl;   // 5
+
+// Confronto con ==
+if (nome == "Alice") {
+    cout << "Ciao Alice!" << endl;
+}
+```
+
+## Confronto diretto
+
+| Operazione | C-style (`char[]`) | `std::string` |
+|---|---|---|
+| Dichiarazione | `char s[20] = "ciao";` | `string s = "ciao";` |
+| Lunghezza | `strlen(s)` | `s.length()` |
+| Copia | `strcpy(dest, src)` | `dest = src` |
+| Concatenazione | `strcat(a, b)` | `a + b` |
+| Confronto | `strcmp(a, b) == 0` | `a == b` |
+| Accesso carattere | `s[i]` | `s[i]` |
+
+## Convertire tra i due tipi
+
+A volte serve convertire da un tipo all'altro:
+
+```cpp
+// string -> char[] (C-string)
+string str = "Ciao";
+const char* cstr = str.c_str();   // ottieni un puntatore al C-string
+
+// char[] -> string
+char cArray[] = "Ciao";
+string str2 = cArray;             // la conversione è automatica
+string str3(cArray);              // costruttore esplicito
+```
+
+## Quando usare le stringhe C-style
+
+Nella pratica moderna, usa sempre `std::string`. Le stringhe C-style rimangono utili in questi casi specifici:
+
+- Lavorare con librerie C che accettano `const char*`
+- Programmazione di sistema a basso livello
+- Situazioni dove la performance è critica e non vuoi overhead
+- Lavorare con stringhe letterali costanti
+
+```cpp
+// Librerie C richiedono spesso const char*
+FILE* f = fopen("file.txt", "r");   // usa C-string
+
+// Con std::string, usa .c_str() per convertire
+string nomefile = "file.txt";
+FILE* f2 = fopen(nomefile.c_str(), "r");
+```
+
+## Esempio: confronto pratico
+
+```cpp
+#include <iostream>
+#include <string>
+#include <cstring>
+using namespace std;
+
+int main() {
+    // Approccio C-style
+    char c_nome[50] = "Alice";
+    char c_cognome[50] = "Bianchi";
+    char c_completo[100];
+    strcpy(c_completo, c_nome);
+    strcat(c_completo, " ");
+    strcat(c_completo, c_cognome);
+    cout << "C-style: " << c_completo << endl;
+
+    // Approccio moderno con string
+    string s_nome = "Alice";
+    string s_cognome = "Bianchi";
+    string s_completo = s_nome + " " + s_cognome;
+    cout << "string:  " << s_completo << endl;
+
+    return 0;
+}
+```
+
+Come si vede, `std::string` è molto più semplice e leggibile. Usala sempre quando possibile.

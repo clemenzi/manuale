@@ -1,0 +1,180 @@
+---
+title: Funzioni
+description: Come definire e usare le funzioni in Python.
+---
+
+## Cosa sono le funzioni?
+
+Una **funzione** è un blocco di codice riutilizzabile che esegue un compito specifico. Invece di scrivere lo stesso codice più volte, lo scrivi una volta in una funzione e la chiami quando ne hai bisogno.
+
+I vantaggi delle funzioni:
+- **Riutilizzo**: scrivi il codice una volta, usalo più volte
+- **Organizzazione**: il codice è diviso in parti logiche
+- **Leggibilità**: il codice è più facile da capire
+- **Manutenzione**: modifichi un solo posto per cambiare il comportamento
+
+## Definire una funzione
+
+Si usa la parola chiave `def`, seguita dal nome della funzione e dalle parentesi:
+
+```python
+def saluta():
+    print("Ciao!")
+```
+
+## Chiamare una funzione
+
+Per eseguire la funzione, la "chiami" con il suo nome e le parentesi:
+
+```python
+saluta()  # Output: Ciao!
+saluta()  # puoi chiamarla quante volte vuoi
+```
+
+## Parametri e argomenti
+
+Le funzioni possono ricevere **parametri** (valori di input):
+
+```python
+def saluta(nome):
+    print(f"Ciao, {nome}!")
+
+saluta("Alice")  # Ciao, Alice!
+saluta("Bob")    # Ciao, Bob!
+```
+
+Puoi avere più parametri:
+
+```python
+def somma(a, b):
+    print(a + b)
+
+somma(3, 5)   # 8
+somma(10, 20) # 30
+```
+
+## Il valore di ritorno (`return`)
+
+Le funzioni possono **restituire** un valore con `return`:
+
+```python
+def somma(a, b):
+    return a + b
+
+risultato = somma(3, 5)
+print(risultato)  # 8
+```
+
+Quando Python incontra `return`, esce dalla funzione e restituisce il valore. Puoi usarlo nelle espressioni:
+
+```python
+print(somma(10, 20) * 2)  # 60
+```
+
+Se non c'è `return`, la funzione restituisce `None`.
+
+## Valori di default
+
+Puoi assegnare valori di default ai parametri:
+
+```python
+def saluta(nome, saluto="Ciao"):
+    print(f"{saluto}, {nome}!")
+
+saluta("Alice")           # Ciao, Alice!
+saluta("Bob", "Buongiorno")  # Buongiorno, Bob!
+```
+
+I parametri con default devono essere dopo quelli senza default.
+
+## Argomenti con nome (keyword arguments)
+
+Puoi specificare gli argomenti per nome quando chiami la funzione:
+
+```python
+def descrivi_persona(nome, eta, citta):
+    print(f"{nome} ha {eta} anni e vive a {citta}.")
+
+# Ordine normale
+descrivi_persona("Alice", 16, "Roma")
+
+# Con nomi (l'ordine non importa)
+descrivi_persona(eta=16, citta="Roma", nome="Alice")
+```
+
+## Numero variabile di argomenti
+
+### `*args` - argomenti posizionali variabili
+
+```python
+def somma_tutto(*numeri):
+    totale = 0
+    for n in numeri:
+        totale += n
+    return totale
+
+print(somma_tutto(1, 2, 3))        # 6
+print(somma_tutto(1, 2, 3, 4, 5)) # 15
+```
+
+`*numeri` raccoglie tutti gli argomenti in una tupla.
+
+### `**kwargs` - argomenti con nome variabili
+
+```python
+def mostra_info(**info):
+    for chiave, valore in info.items():
+        print(f"{chiave}: {valore}")
+
+mostra_info(nome="Alice", eta=16, citta="Roma")
+```
+
+## Funzioni che restituiscono più valori
+
+```python
+def min_max(numeri):
+    return min(numeri), max(numeri)
+
+piccolo, grande = min_max([3, 1, 4, 1, 5, 9])
+print(piccolo)  # 1
+print(grande)   # 9
+```
+
+## Scope delle variabili
+
+Le variabili definite dentro una funzione sono **locali**: esistono solo dentro la funzione:
+
+```python
+def mia_funzione():
+    x = 10  # variabile locale
+    print(x)
+
+mia_funzione()
+# print(x)  # NameError: x non esiste fuori dalla funzione
+```
+
+## Esempio pratico
+
+```python
+def calcola_media(voti):
+    if len(voti) == 0:
+        return 0
+    return sum(voti) / len(voti)
+
+def classifica_voto(media):
+    if media >= 9:
+        return "Ottimo"
+    elif media >= 7:
+        return "Buono"
+    elif media >= 6:
+        return "Sufficiente"
+    else:
+        return "Insufficiente"
+
+voti_alice = [8, 7, 9, 6, 10]
+media = calcola_media(voti_alice)
+giudizio = classifica_voto(media)
+
+print(f"Media: {media:.1f} - {giudizio}")
+# Media: 8.0 - Buono
+```

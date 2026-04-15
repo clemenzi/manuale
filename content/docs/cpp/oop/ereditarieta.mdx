@@ -1,0 +1,232 @@
+---
+title: Ereditarietà
+description: Introduzione all'ereditarietà in C++, come creare classi derivate da classi esistenti.
+---
+
+## Cos'è l'ereditarietà?
+
+L'**ereditarietà** è un principio dell'OOP che permette di creare una nuova classe (classe **derivata** o **figlia**) basata su una classe esistente (classe **base** o **padre**).
+
+La classe derivata **eredita** i campi e i metodi della classe base, e può:
+- Aggiungere nuovi campi e metodi
+- Sovrascrivere (modificare) metodi esistenti
+
+Analogia: un `Gatto` è una `Animale`. Il `Gatto` ha tutte le caratteristiche di un `Animale` (nome, mangia, dorme), più caratteristiche specifiche (fa le fusa, va sugli alberi).
+
+## Definire una classe derivata
+
+```cpp
+class ClasseBase {
+    // ...
+};
+
+class ClasseDerivata : public ClasseBase {
+    // eredita tutto da ClasseBase
+    // può aggiungere nuovi membri
+};
+```
+
+```cpp
+class Animale {
+public:
+    string nome;
+    int eta;
+
+    void mangia() {
+        cout << nome << " sta mangiando." << endl;
+    }
+
+    void dormi() {
+        cout << nome << " sta dormendo." << endl;
+    }
+};
+
+class Cane : public Animale {   // Cane eredita da Animale
+public:
+    string razza;
+
+    void abbaia() {
+        cout << nome << " dice: Bau!" << endl;   // usa il campo di Animale
+    }
+};
+
+class Gatto : public Animale {  // Gatto eredita da Animale
+public:
+    bool indoor;
+
+    void faSeFondi() {
+        cout << nome << " fa le fusa." << endl;
+    }
+};
+```
+
+## Usare le classi derivate
+
+```cpp
+int main() {
+    Cane fido;
+    fido.nome = "Fido";   // ereditato da Animale
+    fido.eta = 3;
+    fido.razza = "Labrador";
+
+    fido.mangia();   // metodo ereditato
+    fido.abbaia();   // metodo proprio di Cane
+
+    Gatto luna;
+    luna.nome = "Luna";
+    luna.dormi();    // metodo ereditato
+    luna.faSeFondi(); // metodo proprio di Gatto
+
+    return 0;
+}
+```
+
+## Il costruttore nelle classi derivate
+
+Quando crei un oggetto di una classe derivata, viene chiamato prima il costruttore della classe base, poi quello della derivata. Per passare parametri al costruttore base, usa la lista di inizializzazione:
+
+```cpp
+class Animale {
+public:
+    string nome;
+    int eta;
+
+    Animale(string n, int e) : nome(n), eta(e) {
+        cout << "Animale creato: " << nome << endl;
+    }
+};
+
+class Cane : public Animale {
+public:
+    string razza;
+
+    // Chiama il costruttore di Animale con : Animale(n, e)
+    Cane(string n, int e, string r) : Animale(n, e), razza(r) {
+        cout << "Cane creato: " << nome << " (" << razza << ")" << endl;
+    }
+};
+
+int main() {
+    Cane fido("Fido", 3, "Labrador");
+    // Output:
+    // Animale creato: Fido
+    // Cane creato: Fido (Labrador)
+    return 0;
+}
+```
+
+## Sovrascrittura dei metodi
+
+Una classe derivata può **sovrascrivere** (override) un metodo della classe base per cambiarne il comportamento:
+
+```cpp
+class Animale {
+public:
+    string nome;
+
+    void emettiSuono() {
+        cout << nome << " emette un suono generico." << endl;
+    }
+};
+
+class Cane : public Animale {
+public:
+    void emettiSuono() {    // sovrascrive il metodo base
+        cout << nome << " dice: Bau!" << endl;
+    }
+};
+
+class Gatto : public Animale {
+public:
+    void emettiSuono() {    // sovrascrive il metodo base
+        cout << nome << " dice: Miao!" << endl;
+    }
+};
+
+int main() {
+    Animale a;
+    a.nome = "Animale";
+    a.emettiSuono();  // emette un suono generico
+
+    Cane c;
+    c.nome = "Fido";
+    c.emettiSuono();  // Bau!
+
+    Gatto g;
+    g.nome = "Luna";
+    g.emettiSuono();  // Miao!
+
+    return 0;
+}
+```
+
+## Accedere al metodo base con `::`
+
+Dall'interno di un metodo sovrascritto puoi ancora chiamare il metodo della classe base:
+
+```cpp
+class Animale {
+public:
+    virtual void descrivi() {
+        cout << "Sono un animale." << endl;
+    }
+};
+
+class Cane : public Animale {
+public:
+    void descrivi() {
+        Animale::descrivi();   // chiama il metodo base
+        cout << "Sono un cane." << endl;
+    }
+};
+```
+
+## Il modificatore `protected`
+
+`protected` è un livello di accesso intermedio: il membro è inaccessibile dall'esterno (come `private`), ma è accessibile dalle classi derivate (a differenza di `private`):
+
+```cpp
+class Animale {
+protected:
+    string nome;    // accessibile alle classi derivate
+private:
+    int codice;     // NON accessibile alle classi derivate
+public:
+    Animale(string n) : nome(n) {}
+};
+
+class Cane : public Animale {
+public:
+    Cane(string n) : Animale(n) {}
+
+    void abbaia() {
+        cout << nome << " dice: Bau!";  // OK: nome è protected
+        // cout << codice;  // ERRORE: codice è private
+    }
+};
+```
+
+## Ereditarietà a catena
+
+Puoi creare gerarchie di classi:
+
+```cpp
+class Veicolo {
+public:
+    int velocitaMassima;
+    void muoviti() { cout << "Mi muovo." << endl; }
+};
+
+class Auto : public Veicolo {
+public:
+    int numeroPosti;
+};
+
+class SportCar : public Auto {
+public:
+    bool turbo;
+    void sgomma() { cout << "Sgommata!" << endl; }
+};
+```
+
+`SportCar` eredita da `Auto` che eredita da `Veicolo`. Ha quindi tutti i campi e metodi di entrambi.

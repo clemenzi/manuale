@@ -1,0 +1,178 @@
+---
+title: Preprocessore
+description: Le direttive del preprocessore in C++, come #include e #define.
+---
+
+## Cos'è il preprocessore?
+
+Il **preprocessore** è un programma che elabora il codice sorgente **prima** della compilazione vera e propria. Le sue istruzioni si chiamano **direttive** e iniziano tutte con `#`.
+
+Il preprocessore esegue sostituzioni testuali nel codice, senza comprendere la sintassi del C++.
+
+## `#include` - Inclusione di file
+
+`#include` inserisce il contenuto di un altro file nel punto in cui si trova la direttiva.
+
+### Includere librerie di sistema
+
+Si usano le parentesi angolari `<>`:
+
+```cpp
+#include <iostream>    // libreria standard
+#include <string>
+#include <cmath>
+#include <vector>
+```
+
+Il compilatore cerca questi file nelle directory standard del sistema.
+
+### Includere file propri
+
+Si usano le virgolette `""`:
+
+```cpp
+#include "mio_file.h"       // nella stessa directory
+#include "cartella/file.h"  // in una sottocartella
+```
+
+Il compilatore cerca prima nella directory del progetto, poi nelle directory standard.
+
+## `#define` - Definire macro
+
+`#define` crea una **macro**: una sostituzione testuale che il preprocessore esegue prima della compilazione.
+
+### Costanti con `#define`
+
+```cpp
+#define PI 3.14159265358979
+#define MAX_STUDENTI 30
+#define SALUTO "Ciao, mondo!"
+
+int main() {
+    double area = PI * 5.0 * 5.0;   // il preprocessore sostituisce PI
+    // diventa: double area = 3.14159265358979 * 5.0 * 5.0;
+    return 0;
+}
+```
+
+Oggi si preferisce `const` o `constexpr` alle macro costanti, ma `#define` è ancora molto usato nel codice esistente.
+
+### Macro con parametri (macro-funzioni)
+
+```cpp
+#define MASSIMO(a, b)  ((a) > (b) ? (a) : (b))
+#define QUADRATO(x)    ((x) * (x))
+
+int main() {
+    int x = 5, y = 3;
+    cout << MASSIMO(x, y) << endl;    // 5
+    cout << QUADRATO(4) << endl;      // 16
+    return 0;
+}
+```
+
+Attenzione: le macro non hanno tipo e possono causare effetti inaspettati. Preferisci le funzioni normali:
+
+```cpp
+// PROBLEMA con la macro
+int n = 5;
+int r = QUADRATO(n++);   // diventa: ((n++) * (n++)) - n viene incrementato due volte!
+
+// Soluzione: usa una funzione
+int quadrato(int x) { return x * x; }
+```
+
+## `#undef` - Rimuovere una macro
+
+```cpp
+#define VALORE 42
+cout << VALORE << endl;   // 42
+#undef VALORE
+// cout << VALORE << endl;  // ERRORE: VALORE non è definito
+```
+
+## `#ifdef`, `#ifndef`, `#endif` - Compilazione condizionale
+
+Permettono di includere o escludere parti di codice in base a condizioni:
+
+```cpp
+#define DEBUG   // commenta questa riga per disabilitare il debug
+
+int main() {
+    int x = 42;
+
+#ifdef DEBUG
+    cout << "Debug: x = " << x << endl;   // incluso solo se DEBUG è definito
+#endif
+
+    cout << "Valore: " << x << endl;
+    return 0;
+}
+```
+
+`#ifdef` = "se questo nome è definito"
+`#ifndef` = "se questo nome NON è definito"
+
+## Include guard (protezione dall'inclusione multipla)
+
+Quando si usa un file header (`.h`), si usano le include guard per evitare che venga incluso più volte:
+
+```cpp
+// mioFile.h
+#ifndef MIO_FILE_H    // se MIO_FILE_H non è definito...
+#define MIO_FILE_H    // ...definiscilo (ed esegui il codice qui sotto)
+
+// contenuto del file header
+void miaFunzione();
+struct MioTipo { int x; };
+
+#endif   // fine dell'include guard
+```
+
+Se il file viene incluso più volte (indirettamente tramite altri header), la seconda volta `MIO_FILE_H` è già definito e tutto il contenuto viene saltato.
+
+In C++ moderno puoi usare `#pragma once` che è più semplice (ma non è standard ufficiale):
+
+```cpp
+// mioFile.h
+#pragma once   // includi questo file solo una volta
+
+void miaFunzione();
+```
+
+## `#error` - Generare errori personalizzati
+
+Puoi usare `#error` per generare un errore di compilazione con un messaggio personalizzato:
+
+```cpp
+#ifndef MIA_LIBRERIA_H
+#error "Devi includere mia_libreria.h prima di questo file!"
+#endif
+```
+
+## Macro predefinite
+
+Il preprocessore definisce alcune macro automaticamente:
+
+```cpp
+cout << __FILE__ << endl;   // nome del file corrente
+cout << __LINE__ << endl;   // numero di riga corrente
+cout << __DATE__ << endl;   // data di compilazione
+cout << __TIME__ << endl;   // ora di compilazione
+```
+
+Sono utili per il debugging:
+
+```cpp
+#ifdef DEBUG
+#define LOG(msg) cout << "[" << __FILE__ << ":" << __LINE__ << "] " << msg << endl
+#else
+#define LOG(msg)   // nessuna operazione in release
+#endif
+
+int main() {
+    int x = 42;
+    LOG("Il valore di x è: " << x);   // stampa solo in modalità debug
+    return 0;
+}
+```

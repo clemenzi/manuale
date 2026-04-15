@@ -1,6 +1,196 @@
 ---
 title: Array
-description: Sequenze di elementi con dimensione fissa in C++.
+description: Come usare gli array in C++ per memorizzare sequenze di valori dello stesso tipo.
 ---
 
-Contenuto in arrivo.
+## Cosa sono gli array?
+
+Un **array** è una struttura che memorizza più valori dello stesso tipo in posizioni di memoria consecutive. Puoi immaginarlo come una fila di scatole numerate, ognuna contenente un valore.
+
+A differenza delle variabili normali (che contengono un solo valore), un array può contenere molti valori sotto un unico nome.
+
+## Dichiarare un array
+
+Sintassi:
+
+```cpp
+tipo nome[dimensione];
+```
+
+```cpp
+int numeri[5];        // array di 5 interi
+double voti[10];      // array di 10 decimali
+char lettere[26];     // array di 26 caratteri
+```
+
+La dimensione deve essere un numero fisso noto a compile-time (non puoi usare una variabile normale).
+
+## Inizializzare un array
+
+```cpp
+int numeri[5] = {10, 20, 30, 40, 50};
+double voti[4] = {8.5, 7.0, 9.0, 6.5};
+char vocali[5] = {'a', 'e', 'i', 'o', 'u'};
+```
+
+Puoi omettere la dimensione se la specifichi con i valori:
+
+```cpp
+int numeri[] = {10, 20, 30, 40, 50};  // dimensione dedotta: 5
+```
+
+Puoi inizializzare tutti gli elementi a zero:
+
+```cpp
+int numeri[5] = {0};    // tutti zero
+int numeri2[5] = {};    // tutti zero (C++11)
+```
+
+Se fornisci meno valori della dimensione, i restanti vengono inizializzati a zero:
+
+```cpp
+int numeri[5] = {1, 2};   // {1, 2, 0, 0, 0}
+```
+
+## Accedere agli elementi
+
+Gli elementi si accedono tramite l'**indice** tra parentesi quadre `[]`. Gli indici partono da **0**:
+
+```cpp
+int numeri[] = {10, 20, 30, 40, 50};
+
+cout << numeri[0] << endl;  // 10 (primo elemento)
+cout << numeri[1] << endl;  // 20
+cout << numeri[4] << endl;  // 50 (ultimo elemento)
+```
+
+Per un array di dimensione `n`, gli indici vanno da `0` a `n-1`.
+
+## Modificare un elemento
+
+```cpp
+int numeri[] = {10, 20, 30};
+numeri[1] = 99;
+cout << numeri[1] << endl;  // 99
+```
+
+## Attenzione: out of bounds
+
+In C++, accedere a un indice fuori dai limiti dell'array è un errore grave (comportamento non definito). Il compilatore non ti avverte:
+
+```cpp
+int numeri[5] = {1, 2, 3, 4, 5};
+cout << numeri[10] << endl;  // ERRORE: comportamento imprevedibile!
+numeri[10] = 99;             // ERRORE: potrebbe corrompere la memoria!
+```
+
+Fai sempre attenzione a non uscire dai limiti.
+
+## Iterare su un array con `for`
+
+```cpp
+int numeri[] = {10, 20, 30, 40, 50};
+int n = 5;  // o: sizeof(numeri) / sizeof(numeri[0])
+
+for (int i = 0; i < n; i++) {
+    cout << numeri[i] << " ";
+}
+cout << endl;
+// Output: 10 20 30 40 50
+```
+
+## Ottenere la dimensione di un array
+
+```cpp
+int numeri[] = {10, 20, 30, 40, 50};
+int dimensione = sizeof(numeri) / sizeof(numeri[0]);
+cout << dimensione << endl;  // 5
+```
+
+`sizeof(numeri)` restituisce la dimensione totale in byte, `sizeof(numeri[0])` la dimensione di un elemento. Dividendo si ottiene il numero di elementi.
+
+## Range-based for (C++11)
+
+Per iterare su tutti gli elementi senza gestire l'indice:
+
+```cpp
+int numeri[] = {10, 20, 30, 40, 50};
+
+for (int n : numeri) {
+    cout << n << " ";
+}
+// Output: 10 20 30 40 50
+```
+
+## Operazioni comuni
+
+### Trovare il massimo
+
+```cpp
+int numeri[] = {3, 7, 1, 9, 4};
+int n = 5;
+int massimo = numeri[0];
+
+for (int i = 1; i < n; i++) {
+    if (numeri[i] > massimo) {
+        massimo = numeri[i];
+    }
+}
+
+cout << "Massimo: " << massimo << endl;  // 9
+```
+
+### Calcolare la somma e la media
+
+```cpp
+int numeri[] = {5, 10, 15, 20, 25};
+int n = 5;
+int somma = 0;
+
+for (int i = 0; i < n; i++) {
+    somma += numeri[i];
+}
+
+double media = (double)somma / n;
+cout << "Somma: " << somma << endl;    // 75
+cout << "Media: " << media << endl;   // 15
+```
+
+## Esempio pratico
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    const int N = 5;
+    int voti[N];
+
+    // Inserimento voti
+    cout << "Inserisci " << N << " voti:" << endl;
+    for (int i = 0; i < N; i++) {
+        cout << "Voto " << (i + 1) << ": ";
+        cin >> voti[i];
+    }
+
+    // Calcolo statistiche
+    int somma = 0;
+    int max = voti[0];
+    int min = voti[0];
+
+    for (int i = 0; i < N; i++) {
+        somma += voti[i];
+        if (voti[i] > max) max = voti[i];
+        if (voti[i] < min) min = voti[i];
+    }
+
+    double media = (double)somma / N;
+
+    cout << endl;
+    cout << "Media: " << media << endl;
+    cout << "Voto piu alto: " << max << endl;
+    cout << "Voto piu basso: " << min << endl;
+
+    return 0;
+}
+```

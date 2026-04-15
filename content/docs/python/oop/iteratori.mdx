@@ -1,0 +1,141 @@
+---
+title: Iteratori
+description: Come funzionano gli iteratori in Python.
+---
+
+## Cosa sono gli iteratori?
+
+Un **iteratore** è un oggetto che produce un elemento alla volta quando richiesto. Tutto ciò su cui puoi fare un `for` (liste, stringhe, tuple, range, ecc.) è un **iterabile**.
+
+La differenza chiave:
+- **Iterabile**: un oggetto che può essere percorso (ha metodo `__iter__`)
+- **Iteratore**: un oggetto che ricorda dove si trova nella sequenza (ha anche metodo `__next__`)
+
+## Come funziona internamente il `for`
+
+Quando scrivi:
+
+```python
+for x in [1, 2, 3]:
+    print(x)
+```
+
+Python internamente fa:
+1. Chiama `iter([1, 2, 3])` per ottenere un iteratore
+2. Chiama ripetutamente `next(iteratore)` per ottenere ogni elemento
+3. Quando i valori finiscono, viene sollevata l'eccezione `StopIteration` e il ciclo si ferma
+
+Puoi farlo manualmente:
+
+```python
+lista = [1, 2, 3]
+iteratore = iter(lista)
+
+print(next(iteratore))  # 1
+print(next(iteratore))  # 2
+print(next(iteratore))  # 3
+# print(next(iteratore))  # StopIteration!
+```
+
+## Creare un iteratore personalizzato
+
+Puoi creare la tua classe iteratore implementando `__iter__` e `__next__`:
+
+```python
+class ContaDa:
+    """Iteratore che conta da 'inizio' a 'fine'."""
+    def __init__(self, inizio, fine):
+        self.corrente = inizio
+        self.fine = fine
+
+    def __iter__(self):
+        return self  # l'iteratore restituisce se stesso
+
+    def __next__(self):
+        if self.corrente > self.fine:
+            raise StopIteration
+        valore = self.corrente
+        self.corrente += 1
+        return valore
+
+# Uso dell'iteratore personalizzato
+for numero in ContaDa(1, 5):
+    print(numero)
+```
+
+Output:
+```
+1
+2
+3
+4
+5
+```
+
+## Generatori: iteratori semplificati
+
+I **generatori** sono un modo più semplice per creare iteratori. Si usano come le funzioni normali, ma con `yield` invece di `return`:
+
+```python
+def conta_da(inizio, fine):
+    corrente = inizio
+    while corrente <= fine:
+        yield corrente   # produce un valore e "mette in pausa" la funzione
+        corrente += 1
+
+for numero in conta_da(1, 5):
+    print(numero)
+```
+
+La funzione si "ferma" a ogni `yield` e riprende da lì alla chiamata successiva.
+
+## Generatori con espressioni
+
+Come le list comprehension, ma producono un generatore (più efficiente in memoria):
+
+```python
+# List comprehension: crea tutta la lista in memoria subito
+quadrati_lista = [x ** 2 for x in range(10)]
+
+# Generator expression: produce un valore alla volta
+quadrati_gen = (x ** 2 for x in range(10))
+
+# Usare il generatore
+for q in quadrati_gen:
+    print(q)
+```
+
+## Iteratori utili già pronti
+
+Python offre molti iteratori utili nel modulo `itertools`:
+
+```python
+import itertools
+
+# Ciclo infinito
+for i in itertools.cycle([1, 2, 3]):
+    print(i)  # 1 2 3 1 2 3 1 2 3 ...
+    break     # dovremmo fermarci!
+
+# Concatenare iterabili
+for x in itertools.chain([1, 2], [3, 4], [5]):
+    print(x)  # 1 2 3 4 5
+
+# Prendere solo i primi n
+for x in itertools.islice(range(100), 5):
+    print(x)  # 0 1 2 3 4
+```
+
+## Vantaggi degli iteratori e dei generatori
+
+- **Efficienza in memoria**: non caricano tutti i dati in memoria subito
+- **Pigrizia** (lazy evaluation): producono valori solo quando servono
+- Utili per sequenze infinite o molto grandi
+
+```python
+# Senza generatore: tutti i numeri in memoria
+numeri = list(range(1_000_000))  # occupa molta memoria
+
+# Con generatore: un numero alla volta
+generatore = range(1_000_000)    # quasi zero memoria
+```

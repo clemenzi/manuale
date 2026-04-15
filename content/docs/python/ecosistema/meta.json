@@ -1,0 +1,12 @@
+{
+  "title": "Ecosistema Python",
+  "icon": "Package",
+  "defaultOpen": false,
+  "pages": [
+    "pip",
+    "ambiente-virtuale",
+    "librerie-esterne",
+    "numpy",
+    "pandas"
+  ]
+}

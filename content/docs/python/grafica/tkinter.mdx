@@ -1,0 +1,193 @@
+---
+title: Interfacce grafiche con Tkinter
+description: Creare finestre e interfacce grafiche semplici con Tkinter in Python.
+---
+
+## Cos'è Tkinter?
+
+**Tkinter** è la libreria standard di Python per la creazione di interfacce grafiche (GUI, Graphical User Interface). È già inclusa in Python, non serve installarla.
+
+Con Tkinter puoi creare finestre con pulsanti, campi di testo, menu, etichette, e molto altro.
+
+## Prima finestra
+
+```python
+import tkinter as tk
+
+# Crea la finestra principale
+root = tk.Tk()
+root.title("La mia prima finestra")
+root.geometry("400x300")  # larghezza x altezza
+
+# Avvia il loop degli eventi (necessario per mostrare la finestra)
+root.mainloop()
+```
+
+## Widget principali
+
+### Label (etichetta)
+
+```python
+import tkinter as tk
+
+root = tk.Tk()
+
+etichetta = tk.Label(root, text="Ciao, mondo!", font=("Arial", 16))
+etichetta.pack(pady=20)  # pack() posiziona il widget
+
+root.mainloop()
+```
+
+### Button (pulsante)
+
+```python
+import tkinter as tk
+
+def saluta():
+    print("Ciao!")
+
+root = tk.Tk()
+
+pulsante = tk.Button(root, text="Clicca qui!", command=saluta)
+pulsante.pack(pady=20)
+
+root.mainloop()
+```
+
+### Entry (campo di testo)
+
+```python
+import tkinter as tk
+
+root = tk.Tk()
+
+campo = tk.Entry(root, width=30)
+campo.pack(pady=10)
+
+def leggi_input():
+    testo = campo.get()
+    print(f"Hai scritto: {testo}")
+
+pulsante = tk.Button(root, text="Leggi", command=leggi_input)
+pulsante.pack()
+
+root.mainloop()
+```
+
+## Esempio completo: app di saluto
+
+```python
+import tkinter as tk
+
+def saluta():
+    nome = campo_nome.get()
+    if nome:
+        etichetta_risultato.config(text=f"Ciao, {nome}!")
+    else:
+        etichetta_risultato.config(text="Inserisci un nome!")
+
+root = tk.Tk()
+root.title("App di saluto")
+root.geometry("300x200")
+
+# Etichetta istruzione
+tk.Label(root, text="Inserisci il tuo nome:").pack(pady=10)
+
+# Campo di testo
+campo_nome = tk.Entry(root, width=25)
+campo_nome.pack()
+
+# Pulsante
+tk.Button(root, text="Saluta", command=saluta).pack(pady=10)
+
+# Etichetta per il risultato
+etichetta_risultato = tk.Label(root, text="", font=("Arial", 14))
+etichetta_risultato.pack()
+
+root.mainloop()
+```
+
+## Posizionamento con `grid()`
+
+Il metodo `grid()` permette di posizionare i widget in una griglia (righe e colonne):
+
+```python
+import tkinter as tk
+
+root = tk.Tk()
+root.title("Calcolatrice semplice")
+
+tk.Label(root, text="Primo numero:").grid(row=0, column=0, padx=5, pady=5)
+campo_a = tk.Entry(root)
+campo_a.grid(row=0, column=1)
+
+tk.Label(root, text="Secondo numero:").grid(row=1, column=0, padx=5, pady=5)
+campo_b = tk.Entry(root)
+campo_b.grid(row=1, column=1)
+
+def calcola():
+    try:
+        a = float(campo_a.get())
+        b = float(campo_b.get())
+        risultato = a + b
+        etichetta_ris.config(text=f"Somma: {risultato}")
+    except ValueError:
+        etichetta_ris.config(text="Inserisci numeri validi")
+
+tk.Button(root, text="Somma", command=calcola).grid(row=2, column=0, columnspan=2, pady=10)
+
+etichetta_ris = tk.Label(root, text="")
+etichetta_ris.grid(row=3, column=0, columnspan=2)
+
+root.mainloop()
+```
+
+## Altri widget utili
+
+```python
+import tkinter as tk
+
+root = tk.Tk()
+
+# Text: area di testo multiriga
+area = tk.Text(root, height=5, width=30)
+area.pack()
+
+# Checkbutton
+var_check = tk.BooleanVar()
+check = tk.Checkbutton(root, text="Accetta i termini", variable=var_check)
+check.pack()
+
+# Radiobutton
+var_radio = tk.StringVar(value="mela")
+for frutto in ["mela", "banana", "uva"]:
+    tk.Radiobutton(root, text=frutto, variable=var_radio, value=frutto).pack()
+
+# Scale (cursore)
+cursore = tk.Scale(root, from_=0, to=100, orient=tk.HORIZONTAL)
+cursore.pack()
+
+root.mainloop()
+```
+
+## Messaggi dialog
+
+```python
+import tkinter as tk
+from tkinter import messagebox
+
+root = tk.Tk()
+
+def mostra_info():
+    messagebox.showinfo("Info", "Operazione completata!")
+
+def chiedi_conferma():
+    risposta = messagebox.askyesno("Conferma", "Sei sicuro?")
+    if risposta:
+        print("Confermato!")
+
+tk.Button(root, text="Info", command=mostra_info).pack(pady=5)
+tk.Button(root, text="Conferma", command=chiedi_conferma).pack(pady=5)
+
+root.mainloop()
+```

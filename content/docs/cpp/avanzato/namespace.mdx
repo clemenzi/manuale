@@ -1,0 +1,199 @@
+---
+title: Namespace
+description: Cosa sono i namespace e come si usa std in C++.
+---
+
+## Cosa sono i namespace?
+
+Un **namespace** è un contenitore che raggruppa nomi (di variabili, funzioni, classi) per evitare conflitti. Immagina di avere due librerie che entrambe definiscono una funzione chiamata `print`: senza namespace, il compilatore non saprebbe quale usare. Con i namespace, puoi distinguerle.
+
+## Il namespace `std`
+
+Tutto ciò che fa parte della libreria standard del C++ è nel namespace `std` (standard). Per usare `cout`, devi specificare che è `std::cout`:
+
+```cpp
+std::cout << "Ciao!" << std::endl;
+std::string nome = "Alice";
+```
+
+## `using namespace std`
+
+Scrivere `std::` ogni volta è scomodo. Con la direttiva `using namespace std;`, importi tutti i nomi del namespace `std` e puoi usarli senza prefisso:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Ciao!" << endl;   // senza std::
+    string nome = "Alice";
+    return 0;
+}
+```
+
+## `using` per nomi specifici
+
+Invece di importare tutto il namespace, puoi importare solo i nomi che ti servono:
+
+```cpp
+#include <iostream>
+using std::cout;
+using std::endl;
+using std::string;
+
+int main() {
+    cout << "Ciao!" << endl;   // OK
+    // cin >> nome;            // ERRORE: cin non è stato importato
+    return 0;
+}
+```
+
+Questo è più preciso di `using namespace std` e preferibile nei progetti grandi.
+
+## Creare un namespace personalizzato
+
+Puoi creare i tuoi namespace per organizzare il codice:
+
+```cpp
+namespace Matematica {
+    const double PI = 3.14159265358979;
+
+    double area(double raggio) {
+        return PI * raggio * raggio;
+    }
+
+    double perimetro(double raggio) {
+        return 2 * PI * raggio;
+    }
+}
+
+namespace Geometria {
+    double area(double base, double altezza) {
+        return base * altezza;
+    }
+}
+
+int main() {
+    // Nessun conflitto!
+    cout << Matematica::area(5.0) << endl;     // area cerchio
+    cout << Geometria::area(4.0, 6.0) << endl; // area rettangolo
+    cout << Matematica::PI << endl;
+    return 0;
+}
+```
+
+## Namespace annidati
+
+I namespace possono essere annidati:
+
+```cpp
+namespace Azienda {
+    namespace Finanza {
+        double calcola(double importo) {
+            return importo * 1.22;   // aggiunge IVA
+        }
+    }
+
+    namespace HR {
+        string benvenuto(string nome) {
+            return "Benvenuto, " + nome + "!";
+        }
+    }
+}
+
+int main() {
+    cout << Azienda::Finanza::calcola(100.0) << endl;
+    cout << Azienda::HR::benvenuto("Alice") << endl;
+    return 0;
+}
+```
+
+In C++17 puoi scrivere i namespace annidati in modo più compatto:
+
+```cpp
+namespace Azienda::Finanza {
+    double calcola(double importo) {
+        return importo * 1.22;
+    }
+}
+```
+
+## Alias di namespace
+
+Per namespace con nomi lunghi, puoi creare un alias:
+
+```cpp
+namespace MioNamespaceMoltoLungo {
+    void funzione() { cout << "Ciao!" << endl; }
+}
+
+namespace ML = MioNamespaceMoltoLungo;   // alias
+
+int main() {
+    ML::funzione();   // più breve!
+    return 0;
+}
+```
+
+## Buone pratiche
+
+**Non usare `using namespace std` nei file header (.h)**: può causare conflitti per chi include il tuo header.
+
+```cpp
+// header.h - SBAGLIATO
+using namespace std;  // inquina il namespace di chi include
+
+// header.h - CORRETTO
+void funzione(std::string s);  // usa il prefisso esplicito
+```
+
+**Usa `using` in modo limitato**: in un file `.cpp` va bene `using namespace std`, ma sii consapevole di cosa importi.
+
+## Esempio pratico
+
+```cpp
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+namespace Cerchio {
+    const double PI = 3.14159265358979;
+
+    double area(double r) {
+        return PI * r * r;
+    }
+
+    double perimetro(double r) {
+        return 2 * PI * r;
+    }
+}
+
+namespace Rettangolo {
+    double area(double b, double a) {
+        return b * a;
+    }
+
+    double perimetro(double b, double a) {
+        return 2 * (b + a);
+    }
+
+    double diagonale(double b, double a) {
+        return sqrt(b*b + a*a);
+    }
+}
+
+int main() {
+    double r = 5.0;
+    cout << "Cerchio con raggio " << r << ":" << endl;
+    cout << "  Area: " << Cerchio::area(r) << endl;
+    cout << "  Perimetro: " << Cerchio::perimetro(r) << endl;
+
+    double b = 4.0, a = 3.0;
+    cout << "\nRettangolo " << b << "x" << a << ":" << endl;
+    cout << "  Area: " << Rettangolo::area(b, a) << endl;
+    cout << "  Perimetro: " << Rettangolo::perimetro(b, a) << endl;
+    cout << "  Diagonale: " << Rettangolo::diagonale(b, a) << endl;
+
+    return 0;
+}
+```

@@ -1,0 +1,187 @@
+---
+title: Tipi di Dati
+description: I tipi di dati fondamentali del C++ int, float, double, char e bool.
+---
+
+## Cosa sono i tipi di dati?
+
+In C++ ogni variabile deve avere un **tipo**: il tipo determina che genere di valore può contenere e quanta memoria occupa. A differenza di Python, in C++ non puoi mettere qualsiasi cosa in una variabile: devi dichiarare il tipo in anticipo.
+
+## Tipi numerici interi: `int`
+
+`int` contiene numeri interi (senza parte decimale), sia positivi che negativi:
+
+```cpp
+int eta = 16;
+int temperatura = -5;
+int anno = 2024;
+int zero = 0;
+```
+
+L'`int` occupa tipicamente 4 byte di memoria e può contenere valori da circa -2 miliardi a +2 miliardi.
+
+```cpp
+int minimo = -2147483648;
+int massimo = 2147483647;
+```
+
+Per numeri molto grandi, esistono varianti:
+- `short int` (o `short`): 2 byte, valori da -32768 a 32767
+- `long int` (o `long`): 4 o 8 byte, numeri più grandi
+- `long long`: 8 byte, valori fino a circa 9 quintilioni
+
+## Tipi numerici decimali: `float` e `double`
+
+Per numeri con la parte decimale ci sono due tipi principali:
+
+### `float`
+
+`float` occupa 4 byte e ha una precisione di circa 7 cifre significative:
+
+```cpp
+float temperatura = 36.6f;    // nota la 'f' finale
+float pi = 3.14159f;
+```
+
+### `double`
+
+`double` occupa 8 byte e ha una precisione di circa 15-16 cifre significative. È quello più usato:
+
+```cpp
+double altezza = 1.75;
+double pi = 3.14159265358979;
+```
+
+### Quale usare?
+
+In generale, usa sempre `double` invece di `float`, a meno che non ci sia un motivo specifico per risparmiare memoria. `double` è più preciso e il tipo preferito in C++ per i decimali.
+
+```cpp
+// Possibile problema di precisione con float
+float a = 0.1f + 0.2f;
+cout << a;  // potrebbe stampare 0.3000001 invece di 0.3
+
+// Meglio con double
+double b = 0.1 + 0.2;
+cout << b;  // più preciso
+```
+
+## Tipo carattere: `char`
+
+`char` contiene un singolo carattere. I caratteri si scrivono tra apici singoli:
+
+```cpp
+char lettera = 'A';
+char cifra = '7';
+char spazio = ' ';
+char newline = '\n';
+```
+
+Internamente, `char` è un numero (il codice ASCII del carattere):
+
+```cpp
+char c = 'A';
+cout << c;          // A
+cout << (int)c;     // 65 (codice ASCII di 'A')
+```
+
+I codici ASCII più usati:
+- `'A'` = 65, `'Z'` = 90
+- `'a'` = 97, `'z'` = 122
+- `'0'` = 48, `'9'` = 57
+
+## Tipo booleano: `bool`
+
+`bool` può contenere solo due valori: `true` (vero) o `false` (falso):
+
+```cpp
+bool maggiorenne = true;
+bool haPatente = false;
+bool risultato = (5 > 3);   // true
+```
+
+Quando stampi un `bool`, per default viene stampato `1` (true) o `0` (false):
+
+```cpp
+bool x = true;
+cout << x;          // 1
+
+// Per stampare true/false come parole:
+cout << boolalpha << x;   // true
+```
+
+## La dimensione dei tipi
+
+Puoi sapere quanti byte occupa un tipo con `sizeof`:
+
+```cpp
+cout << sizeof(int) << endl;    // tipicamente 4
+cout << sizeof(double) << endl; // tipicamente 8
+cout << sizeof(char) << endl;   // sempre 1
+cout << sizeof(bool) << endl;   // tipicamente 1
+```
+
+## Riepilogo dei tipi principali
+
+| Tipo | Dimensione | Valori |
+|---|---|---|
+| `int` | 4 byte | da -2.147.483.648 a 2.147.483.647 |
+| `float` | 4 byte | decimali con ~7 cifre significative |
+| `double` | 8 byte | decimali con ~15 cifre significative |
+| `char` | 1 byte | un singolo carattere |
+| `bool` | 1 byte | `true` o `false` |
+
+## Conversione tra tipi (casting)
+
+In C++ puoi convertire un valore da un tipo all'altro. La conversione implicita avviene automaticamente:
+
+```cpp
+int x = 5;
+double y = x;   // conversione implicita int -> double
+cout << y;      // 5.0
+```
+
+La conversione esplicita (casting) si fa con la sintassi `(tipo)valore` o `static_cast<tipo>(valore)`:
+
+```cpp
+double pi = 3.14159;
+int parteIntera = (int)pi;       // vecchio stile C
+int parteIntera2 = static_cast<int>(pi);  // stile C++ moderno
+cout << parteIntera;  // 3 (parte decimale troncata, non arrotondata)
+```
+
+Attenzione alla **perdita di dati**:
+
+```cpp
+int x = 5, y = 2;
+int risultato = x / y;       // divisione intera: risultato = 2 (non 2.5!)
+double risultato2 = (double)x / y;  // risultato = 2.5
+```
+
+## Esempio pratico
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int eta = 16;
+    double altezza = 1.75;
+    char iniziale = 'A';
+    bool maggiorenne = false;
+
+    cout << "Eta (int): " << eta << endl;
+    cout << "Altezza (double): " << altezza << endl;
+    cout << "Iniziale (char): " << iniziale << endl;
+    cout << "Maggiorenne (bool): " << boolalpha << maggiorenne << endl;
+
+    // Dimensioni in memoria
+    cout << endl << "Dimensioni in memoria:" << endl;
+    cout << "int: " << sizeof(int) << " byte" << endl;
+    cout << "double: " << sizeof(double) << " byte" << endl;
+    cout << "char: " << sizeof(char) << " byte" << endl;
+    cout << "bool: " << sizeof(bool) << " byte" << endl;
+
+    return 0;
+}
+```

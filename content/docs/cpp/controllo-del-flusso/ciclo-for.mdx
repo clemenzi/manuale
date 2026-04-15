@@ -1,0 +1,197 @@
+---
+title: Ciclo for
+description: Come usare il ciclo for in C++ per iterazioni controllate.
+---
+
+## Il ciclo `for`
+
+Il ciclo `for` è ideale quando sai in anticipo quante volte vuoi ripetere qualcosa. È più compatto del `while` perché include inizializzazione, condizione e aggiornamento in una sola riga.
+
+Sintassi:
+
+```cpp
+for (inizializzazione; condizione; aggiornamento) {
+    // codice da ripetere
+}
+```
+
+```cpp
+for (int i = 0; i < 5; i++) {
+    cout << i << endl;
+}
+```
+
+Output:
+
+```
+0
+1
+2
+3
+4
+```
+
+## Le tre parti del `for`
+
+```cpp
+for (int i = 0; i < 5; i++) {
+//   ^^^^^^^^^  ^^^^^^^  ^^^
+//   init       cond     update
+```
+
+1. **Inizializzazione** (`int i = 0`): eseguita una sola volta all'inizio
+2. **Condizione** (`i < 5`): controllata prima di ogni iterazione; se falsa, il ciclo termina
+3. **Aggiornamento** (`i++`): eseguito alla fine di ogni iterazione
+
+## Contare in avanti
+
+```cpp
+// Da 1 a 10
+for (int i = 1; i <= 10; i++) {
+    cout << i << " ";
+}
+cout << endl;
+// Output: 1 2 3 4 5 6 7 8 9 10
+```
+
+## Contare all'indietro
+
+```cpp
+for (int i = 10; i >= 1; i--) {
+    cout << i << " ";
+}
+cout << endl;
+// Output: 10 9 8 7 6 5 4 3 2 1
+```
+
+## Passo diverso da 1
+
+```cpp
+// Numeri pari da 0 a 10
+for (int i = 0; i <= 10; i += 2) {
+    cout << i << " ";
+}
+// Output: 0 2 4 6 8 10
+
+// Multipli di 5
+for (int i = 5; i <= 25; i += 5) {
+    cout << i << " ";
+}
+// Output: 5 10 15 20 25
+```
+
+## Cicli annidati
+
+Puoi mettere un ciclo dentro un altro. Utile per tabelle e griglie:
+
+```cpp
+for (int i = 1; i <= 3; i++) {
+    for (int j = 1; j <= 3; j++) {
+        cout << i * j << "\t";
+    }
+    cout << endl;
+}
+```
+
+Output (tavola pitagorica 3x3):
+
+```
+1   2   3
+2   4   6
+3   6   9
+```
+
+## Il range-based for (C++11)
+
+In C++ moderno puoi usare il **range-based for** per iterare su collezioni (array, vettori, stringhe) senza gestire manualmente l'indice:
+
+```cpp
+// Itera sui caratteri di una stringa
+string nome = "Alice";
+for (char c : nome) {
+    cout << c << " ";
+}
+// Output: A l i c e
+
+// Itera su un array
+int numeri[] = {10, 20, 30, 40, 50};
+for (int n : numeri) {
+    cout << n << " ";
+}
+// Output: 10 20 30 40 50
+```
+
+La sintassi è: `for (tipo elemento : collezione)`.
+
+## `for` con `auto`
+
+Puoi usare `auto` e lasciare che il compilatore deduca il tipo automaticamente:
+
+```cpp
+int numeri[] = {1, 2, 3, 4, 5};
+for (auto n : numeri) {
+    cout << n * 2 << " ";
+}
+// Output: 2 4 6 8 10
+```
+
+## Esempio pratico: tabella delle potenze
+
+```cpp
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    cout << "n\tn^2\tn^3" << endl;
+    cout << "---\t---\t---" << endl;
+
+    for (int n = 1; n <= 10; n++) {
+        cout << n << "\t" << n*n << "\t" << n*n*n << endl;
+    }
+
+    return 0;
+}
+```
+
+Output:
+
+```
+n       n^2     n^3
+---     ---     ---
+1       1       1
+2       4       8
+3       9       27
+4       16      64
+5       25      125
+...
+```
+
+## Esempio pratico: tavola pitagorica
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n = 10;
+
+    // Intestazione
+    cout << "\t";
+    for (int i = 1; i <= n; i++) {
+        cout << i << "\t";
+    }
+    cout << endl;
+
+    // Righe della tavola
+    for (int i = 1; i <= n; i++) {
+        cout << i << "\t";
+        for (int j = 1; j <= n; j++) {
+            cout << i * j << "\t";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+```

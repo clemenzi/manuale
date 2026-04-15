@@ -1,0 +1,10 @@
+{
+  "title": "Input e output",
+  "icon": "Terminal",
+  "defaultOpen": false,
+  "pages": [
+    "input-utente",
+    "formattazione-output",
+    "gestione-file"
+  ]
+}

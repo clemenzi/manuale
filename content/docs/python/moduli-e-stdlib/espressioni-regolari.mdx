@@ -1,0 +1,164 @@
+---
+title: Espressioni regolari
+description: Introduzione alle espressioni regolari con il modulo re in Python.
+---
+
+## Cosa sono le espressioni regolari?
+
+Le **espressioni regolari** (regex o regexp) sono sequenze di caratteri che definiscono un **pattern di ricerca**. Sono usate per:
+- Verificare se una stringa corrisponde a un certo formato
+- Cercare pattern in un testo
+- Estrarre informazioni da una stringa
+- Sostituire parti di testo
+
+Il modulo Python per le regex è `re`:
+
+```python
+import re
+```
+
+## I pattern di base
+
+| Pattern | Significato |
+|---------|-------------|
+| `.` | Qualsiasi carattere (eccetto newline) |
+| `\d` | Una cifra (0-9) |
+| `\D` | Non una cifra |
+| `\w` | Lettera, cifra o underscore |
+| `\W` | Non lettera, cifra o underscore |
+| `\s` | Spazio, tab, newline |
+| `\S` | Non uno spazio |
+| `^` | Inizio della stringa |
+| `$` | Fine della stringa |
+| `[abc]` | a, b oppure c |
+| `[^abc]` | Nessuno tra a, b, c |
+| `[a-z]` | Qualsiasi lettera minuscola |
+| `[0-9]` | Qualsiasi cifra |
+
+## Quantificatori
+
+| Quantificatore | Significato |
+|----------------|-------------|
+| `*` | 0 o più ripetizioni |
+| `+` | 1 o più ripetizioni |
+| `?` | 0 o 1 ripetizione |
+| `{n}` | Esattamente n ripetizioni |
+| `{n,m}` | Da n a m ripetizioni |
+
+## `re.match()` - cerca all'inizio
+
+```python
+import re
+
+testo = "Ciao, mondo!"
+risultato = re.match(r"Ciao", testo)
+if risultato:
+    print("Trovato!")     # Trovato!
+else:
+    print("Non trovato.")
+```
+
+## `re.search()` - cerca ovunque
+
+```python
+import re
+
+testo = "Il mio numero è 334-1234567"
+risultato = re.search(r"\d{3}-\d{7}", testo)
+if risultato:
+    print(f"Numero trovato: {risultato.group()}")  # 334-1234567
+```
+
+## `re.findall()` - trova tutte le corrispondenze
+
+```python
+import re
+
+testo = "Ho 3 mele, 5 banane e 2 arance."
+numeri = re.findall(r"\d+", testo)
+print(numeri)  # ['3', '5', '2']
+```
+
+## `re.sub()` - sostituisci
+
+```python
+import re
+
+testo = "Il prezzo è 10 euro, poi 20 euro."
+# Sostituisce tutti i numeri con "X"
+nuovo = re.sub(r"\d+", "X", testo)
+print(nuovo)  # Il prezzo è X euro, poi X euro.
+```
+
+## `re.split()` - dividi con pattern
+
+```python
+import re
+
+testo = "mela; banana, uva  ciliegia"
+# Divide su punto e virgola, virgola o spazi multipli
+parti = re.split(r"[;,\s]+", testo)
+print(parti)  # ['mela', 'banana', 'uva', 'ciliegia']
+```
+
+## Gruppi con le parentesi
+
+Le parentesi `()` creano dei **gruppi** che puoi estrarre separatamente:
+
+```python
+import re
+
+testo = "Data: 15/01/2024"
+match = re.search(r"(\d{2})/(\d{2})/(\d{4})", testo)
+if match:
+    giorno = match.group(1)   # 15
+    mese = match.group(2)     # 01
+    anno = match.group(3)     # 2024
+    print(f"Giorno: {giorno}, Mese: {mese}, Anno: {anno}")
+```
+
+## Compilare un pattern (per riuso)
+
+Se usi lo stesso pattern più volte, compilalo prima per maggiore efficienza:
+
+```python
+import re
+
+pattern = re.compile(r"\d+")
+
+testi = ["Ho 3 mele", "Ho 10 banane", "nessun numero qui"]
+for testo in testi:
+    numeri = pattern.findall(testo)
+    if numeri:
+        print(f"Trovati: {numeri}")
+```
+
+## Esempi pratici
+
+### Validare un indirizzo email
+
+```python
+import re
+
+def valida_email(email):
+    pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+    return bool(re.match(pattern, email))
+
+print(valida_email("alice@esempio.it"))    # True
+print(valida_email("non_valida.com"))      # False
+print(valida_email("@dominio.it"))         # False
+```
+
+### Validare un numero di telefono italiano
+
+```python
+import re
+
+def valida_telefono(numero):
+    pattern = r"^(\+39)?[0-9]{9,10}$"
+    return bool(re.match(pattern, numero))
+
+print(valida_telefono("3341234567"))    # True
+print(valida_telefono("+393341234567")) # True
+print(valida_telefono("abc"))           # False
+```

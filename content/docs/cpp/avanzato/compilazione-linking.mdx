@@ -1,0 +1,265 @@
+---
+title: Compilazione e Linking
+description: Come funziona il processo di trasformazione del codice C++ in un programma eseguibile.
+---
+
+## Dal codice sorgente al programma
+
+Quando scrivi codice C++ e lo "compili", in realtà avvengono più fasi distinte. Capire questo processo ti aiuta a interpretare gli errori e a lavorare con progetti complessi.
+
+Le fasi principali sono:
+
+1. **Preprocessing** — il preprocessore elabora le direttive (`#include`, `#define`, ecc.)
+2. **Compilazione** — il compilatore traduce il codice C++ in codice assembly/macchina
+3. **Linking** — il linker unisce tutti i pezzi in un unico eseguibile
+
+## Fase 1: Preprocessing
+
+Il preprocessore è un programma che elabora il tuo codice *prima* della compilazione vera e propria. Si occupa di:
+
+- Sostituire `#include` con il contenuto del file incluso
+- Espandere le macro `#define`
+- Gestire i blocchi `#ifdef` / `#endif`
+
+```cpp
+#include <iostream>   // viene sostituito con tutto il contenuto di iostream
+#define PI 3.14159    // ogni occorrenza di PI viene sostituita con 3.14159
+
+int main() {
+    double area = PI * 5 * 5;  // diventa: double area = 3.14159 * 5 * 5;
+    return 0;
+}
+```
+
+Puoi vedere l'output del preprocessore con il flag `-E`:
+
+```bash
+g++ -E main.cpp -o main.i
+```
+
+Il file `.i` contiene il codice dopo il preprocessing (di solito è molto lungo per via degli header inclusi).
+
+## Fase 2: Compilazione
+
+Il compilatore prende il codice preprocessato e lo trasforma in **codice oggetto** (file con estensione `.o` su Linux/macOS, `.obj` su Windows).
+
+Il codice oggetto contiene istruzioni in linguaggio macchina, ma non è ancora un programma eseguibile completo: mancano i riferimenti alle funzioni definite in altri file.
+
+```bash
+# Compila senza linking (-c = compile only)
+g++ -c main.cpp -o main.o
+g++ -c matematica.cpp -o matematica.o
+```
+
+## Fase 3: Linking
+
+Il linker prende tutti i file oggetto e li **unisce** in un unico eseguibile. Risolve i riferimenti tra file: se `main.cpp` chiama `somma()` definita in `matematica.cpp`, il linker collega le due parti.
+
+```bash
+# Linka i file oggetto in un eseguibile
+g++ main.o matematica.o -o programma
+```
+
+## Il processo completo con g++
+
+Normalmente esegui tutto in un unico comando:
+
+```bash
+g++ main.cpp matematica.cpp -o programma
+```
+
+Questo comando fa automaticamente tutte e tre le fasi (preprocessing, compilazione, linking) per ogni file `.cpp` e poi linka tutto insieme.
+
+## I flag di g++ più utili
+
+### Flag fondamentali
+
+```bash
+g++ file.cpp -o output      # specifica il nome dell'eseguibile
+g++ file.cpp                # produce a.out (nome di default)
+```
+
+### Flag per i warning
+
+```bash
+g++ -Wall file.cpp -o output       # abilita la maggior parte dei warning
+g++ -Wextra file.cpp -o output     # warning aggiuntivi
+g++ -Wall -Wextra file.cpp -o output   # entrambi (consigliato!)
+```
+
+I warning non sono errori: il programma compila lo stesso, ma il compilatore ti avvisa di potenziali problemi.
+
+```cpp
+int x;         // warning: 'x' usata senza essere inizializzata
+if (x = 5)    // warning: probabilmente volevi == invece di =
+```
+
+### Flag per il debug
+
+```bash
+g++ -g file.cpp -o output    # include informazioni di debug (per gdb)
+```
+
+Con `-g` puoi usare debugger come `gdb` per eseguire il programma passo passo.
+
+### Flag per l'ottimizzazione
+
+```bash
+g++ -O0 file.cpp -o output   # nessuna ottimizzazione (default)
+g++ -O1 file.cpp -o output   # ottimizzazione leggera
+g++ -O2 file.cpp -o output   # ottimizzazione moderata (consigliata per release)
+g++ -O3 file.cpp -o output   # ottimizzazione aggressiva
+```
+
+Le ottimizzazioni rendono il programma più veloce, ma possono rendere il debug più difficile. Usa `-O0` o `-g` durante lo sviluppo.
+
+### Flag per lo standard C++
+
+```bash
+g++ -std=c++11 file.cpp -o output   # C++11
+g++ -std=c++14 file.cpp -o output   # C++14
+g++ -std=c++17 file.cpp -o output   # C++17 (buona scelta moderna)
+g++ -std=c++20 file.cpp -o output   # C++20
+```
+
+Specifica sempre lo standard se usi funzionalità moderne:
+
+```bash
+g++ -std=c++17 -Wall -Wextra main.cpp -o programma
+```
+
+### Flag per le cartelle degli header
+
+```bash
+g++ -I /percorso/include file.cpp -o output
+# oppure
+g++ -I./include file.cpp -o output   # cartella "include" nella directory corrente
+```
+
+## Messaggi di errore: compilazione vs linking
+
+Imparare a distinguere gli errori di compilazione da quelli di linking ti aiuta a trovare il problema più velocemente.
+
+### Errori di compilazione
+
+Riguardano la sintassi o la semantica del tuo codice C++:
+
+```
+main.cpp:5:10: error: 'somma' was not declared in this scope
+```
+
+Questo significa che hai usato `somma` senza dichiararla (manca il prototipo o l'include dell'header).
+
+```
+main.cpp:8:5: error: expected ';' before '}' token
+```
+
+Hai dimenticato un punto e virgola.
+
+### Errori di linking
+
+Riguardano riferimenti non risolti tra file diversi:
+
+```
+undefined reference to `somma(int, int)'
+```
+
+Questo significa che hai dichiarato `somma` (il compilatore la conosce) ma non hai fornito al linker il file `.cpp` che la definisce.
+
+**Soluzione**: aggiungi il file mancante al comando di compilazione:
+
+```bash
+# SBAGLIATO
+g++ main.cpp -o programma
+
+# CORRETTO
+g++ main.cpp matematica.cpp -o programma
+```
+
+## Compilare più file: esempio pratico
+
+Struttura del progetto:
+
+```
+progetto/
+├── main.cpp
+├── studente.h
+└── studente.cpp
+```
+
+Compilazione in un solo comando:
+
+```bash
+g++ -std=c++17 -Wall main.cpp studente.cpp -o programma
+```
+
+Oppure in due fasi (utile per progetti grandi, evita di ricompilare tutto):
+
+```bash
+# Compila solo i file modificati
+g++ -std=c++17 -c main.cpp -o main.o
+g++ -std=c++17 -c studente.cpp -o studente.o
+
+# Linka tutto
+g++ main.o studente.o -o programma
+```
+
+## Makefile: automatizzare la compilazione
+
+Per progetti con molti file, riscrivere il comando `g++` ogni volta è scomodo. Il **Makefile** è un file che descrive come compilare il progetto:
+
+```makefile
+# Makefile
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra
+
+programma: main.o studente.o
+	$(CXX) main.o studente.o -o programma
+
+main.o: main.cpp studente.h
+	$(CXX) $(CXXFLAGS) -c main.cpp
+
+studente.o: studente.cpp studente.h
+	$(CXX) $(CXXFLAGS) -c studente.cpp
+
+clean:
+	rm -f *.o programma
+```
+
+Per compilare, basta scrivere:
+
+```bash
+make
+```
+
+Per eliminare i file compilati:
+
+```bash
+make clean
+```
+
+Il Makefile è uno strumento avanzato, ma è utile conoscerne l'esistenza.
+
+## Riepilogo dei flag principali
+
+| Flag | Significato |
+|------|-------------|
+| `-o nome` | Specifica il nome dell'output |
+| `-Wall` | Abilita i warning principali |
+| `-Wextra` | Warning aggiuntivi |
+| `-g` | Informazioni di debug |
+| `-O2` | Ottimizzazione (per release) |
+| `-std=c++17` | Usa lo standard C++17 |
+| `-c` | Solo compilazione, senza linking |
+| `-I percorso` | Aggiunge cartella per gli header |
+| `-E` | Solo preprocessing |
+
+## Comando consigliato per lo studio
+
+Durante lo studio e lo sviluppo, usa sempre:
+
+```bash
+g++ -std=c++17 -Wall -Wextra file.cpp -o programma
+```
+
+I warning sono tuoi amici: leggili e correggili, anche quando il programma compila ugualmente.

@@ -1,10 +1,13 @@
 {
-  "title": "Strutture Dati",
+  "title": "Strutture dati",
+  "icon": "Boxes",
+  "defaultOpen": false,
   "pages": [
-    "index",
     "array",
-    "vettori",
-    "mappe",
-    "set"
+    "array-multidimensionali",
+    "stringhe-c-style",
+    "vector",
+    "stl",
+    "iteratori"
   ]
 }

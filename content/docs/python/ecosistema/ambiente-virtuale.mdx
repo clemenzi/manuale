@@ -1,0 +1,131 @@
+---
+title: Ambiente virtuale
+description: Come isolare le dipendenze dei progetti Python con gli ambienti virtuali.
+---
+
+## Cos'è un ambiente virtuale?
+
+Un **ambiente virtuale** (virtual environment) è una cartella isolata che contiene una copia di Python e dei pacchetti installati, separata dal Python del sistema. Ogni progetto può avere il suo ambiente virtuale con le proprie versioni dei pacchetti.
+
+**Perché usarlo?**
+
+Immagina di avere due progetti:
+- **Progetto A** richiede `requests 2.25`
+- **Progetto B** richiede `requests 2.31`
+
+Se installi tutto globalmente, i due progetti entrano in conflitto. Con gli ambienti virtuali, ogni progetto ha i propri pacchetti isolati.
+
+## Creare un ambiente virtuale
+
+Python 3 include il modulo `venv` per creare ambienti virtuali:
+
+```bash
+# Crea un ambiente virtuale nella cartella "venv"
+python -m venv venv
+```
+
+Puoi chiamare la cartella come vuoi, ma `venv` o `.venv` sono convenzioni comuni.
+
+## Attivare l'ambiente virtuale
+
+Prima di usare l'ambiente, devi **attivarlo**:
+
+**Su Windows:**
+```bash
+venv\Scripts\activate
+```
+
+**Su macOS/Linux:**
+```bash
+source venv/bin/activate
+```
+
+Quando è attivo, vedrai il nome dell'ambiente nel prompt del terminale:
+
+```bash
+(venv) $
+```
+
+Ora `pip install` installerà i pacchetti solo in questo ambiente, non nel sistema.
+
+## Disattivare l'ambiente virtuale
+
+```bash
+deactivate
+```
+
+## Flusso di lavoro tipico
+
+1. Crea la cartella del progetto
+2. Crea l'ambiente virtuale
+3. Attivalo
+4. Installa i pacchetti necessari
+5. Crea/modifica il codice
+6. Esporta le dipendenze in `requirements.txt`
+
+```bash
+# 1. Crea cartella progetto
+mkdir mio-progetto
+cd mio-progetto
+
+# 2. Crea ambiente virtuale
+python -m venv venv
+
+# 3. Attiva
+source venv/bin/activate   # macOS/Linux
+# venv\Scripts\activate    # Windows
+
+# 4. Installa pacchetti
+pip install requests pandas
+
+# 5. Lavora sul progetto...
+
+# 6. Esporta dipendenze
+pip freeze > requirements.txt
+```
+
+## Ripristinare un progetto
+
+Quando cloni un progetto altrui o passi a un altro computer:
+
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+## `.gitignore` e l'ambiente virtuale
+
+La cartella `venv` non va mai aggiunta a Git (è pesante e riproducibile). Aggiungi al file `.gitignore`:
+
+```
+venv/
+.venv/
+__pycache__/
+*.pyc
+```
+
+## Strumenti alternativi
+
+Esistono strumenti più avanzati per la gestione degli ambienti:
+
+| Strumento | Descrizione |
+|-----------|-------------|
+| `venv` | Modulo integrato in Python, semplice |
+| `virtualenv` | Versione più ricca di venv |
+| `conda` | Usato in ambito scientifico (Anaconda) |
+| `poetry` | Gestisce sia dipendenze che packaging |
+| `uv` | Moderno e velocissimo (scritto in Rust) |
+
+Per iniziare, `venv` è più che sufficiente.
+
+## Verificare dove sei
+
+```bash
+# Vedere quale Python sta usando
+which python         # macOS/Linux
+where python         # Windows
+
+# Vedere i pacchetti installati nell'ambiente attivo
+pip list
+```

@@ -1,6 +1,155 @@
 ---
 title: Operatori
-description: Come eseguire calcoli e confrontare valori in Python.
+description: Tutti gli operatori disponibili in Python.
 ---
 
-Contenuto in arrivo.
+## Cosa sono gli operatori?
+
+Gli **operatori** sono simboli speciali che eseguono operazioni su valori e variabili. I valori su cui agiscono si chiamano **operandi**.
+
+Python ha diversi tipi di operatori.
+
+## Operatori aritmetici
+
+Servono per fare calcoli matematici:
+
+| Operatore | Nome | Esempio | Risultato |
+|-----------|------|---------|-----------|
+| `+` | Addizione | `5 + 3` | `8` |
+| `-` | Sottrazione | `5 - 3` | `2` |
+| `*` | Moltiplicazione | `5 * 3` | `15` |
+| `/` | Divisione | `5 / 2` | `2.5` |
+| `//` | Divisione intera | `5 // 2` | `2` |
+| `%` | Modulo (resto) | `5 % 2` | `1` |
+| `**` | Potenza | `5 ** 2` | `25` |
+
+```python
+a = 10
+b = 3
+print(a + b)   # 13
+print(a - b)   # 7
+print(a * b)   # 30
+print(a / b)   # 3.3333...
+print(a // b)  # 3
+print(a % b)   # 1
+print(a ** b)  # 1000
+```
+
+## Operatori di confronto
+
+Confrontano due valori e restituiscono `True` o `False`:
+
+| Operatore | Significato |
+|-----------|-------------|
+| `==` | Uguale a |
+| `!=` | Diverso da |
+| `>` | Maggiore di |
+| `<` | Minore di |
+| `>=` | Maggiore o uguale |
+| `<=` | Minore o uguale |
+
+```python
+x = 5
+print(x == 5)  # True
+print(x != 3)  # True
+print(x > 4)   # True
+print(x < 3)   # False
+```
+
+## Operatori logici
+
+Combinano condizioni booleane:
+
+| Operatore | Descrizione |
+|-----------|-------------|
+| `and` | Vero se entrambe le condizioni sono vere |
+| `or` | Vero se almeno una condizione è vera |
+| `not` | Inverte il valore |
+
+```python
+print(5 > 3 and 10 > 7)  # True
+print(5 > 3 or 10 < 7)   # True
+print(not 5 > 3)          # False
+```
+
+## Operatori di assegnazione
+
+Assegnano valori alle variabili. L'operatore base è `=`, ma esistono versioni abbreviate:
+
+| Operatore | Equivalente a |
+|-----------|---------------|
+| `x = 5` | Assegna 5 a x |
+| `x += 3` | `x = x + 3` |
+| `x -= 3` | `x = x - 3` |
+| `x *= 3` | `x = x * 3` |
+| `x /= 3` | `x = x / 3` |
+| `x //= 3` | `x = x // 3` |
+| `x %= 3` | `x = x % 3` |
+| `x **= 3` | `x = x ** 3` |
+
+```python
+x = 10
+x += 5
+print(x)  # 15
+x *= 2
+print(x)  # 30
+```
+
+## Operatori di identità
+
+Controllano se due variabili puntano allo **stesso oggetto in memoria**:
+
+| Operatore | Descrizione |
+|-----------|-------------|
+| `is` | Vero se sono lo stesso oggetto |
+| `is not` | Vero se non sono lo stesso oggetto |
+
+```python
+a = [1, 2, 3]
+b = a
+c = [1, 2, 3]
+
+print(a is b)      # True  (stessa lista in memoria)
+print(a is c)      # False (stessa struttura, ma oggetti diversi)
+print(a == c)      # True  (stessi valori)
+print(a is not c)  # True
+```
+
+## Operatori di appartenenza
+
+Verificano se un valore è presente in una sequenza:
+
+| Operatore | Descrizione |
+|-----------|-------------|
+| `in` | Vero se il valore è nella sequenza |
+| `not in` | Vero se il valore non è nella sequenza |
+
+```python
+frutta = ["mela", "banana", "ciliegia"]
+print("mela" in frutta)      # True
+print("uva" in frutta)       # False
+print("uva" not in frutta)   # True
+
+testo = "Ciao, mondo!"
+print("mondo" in testo)      # True
+```
+
+## Precedenza degli operatori
+
+Come in matematica, Python segue un ordine di precedenza (dall'alto al basso):
+
+1. `()` Parentesi
+2. `**` Potenza
+3. `+x`, `-x` Segno unario
+4. `*`, `/`, `//`, `%`
+5. `+`, `-`
+6. `==`, `!=`, `>`, `<`, `>=`, `<=`, `is`, `is not`, `in`, `not in`
+7. `not`
+8. `and`
+9. `or`
+
+```python
+print(2 + 3 * 4)     # 14 (prima la moltiplicazione)
+print((2 + 3) * 4)   # 20 (prima le parentesi)
+print(2 ** 3 ** 2)   # 512 (la potenza è associativa a destra: 2 ** (3**2) = 2**9)
+```

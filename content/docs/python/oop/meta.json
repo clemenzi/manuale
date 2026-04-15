@@ -1,0 +1,10 @@
+{
+  "title": "Programmazione a oggetti",
+  "icon": "Blocks",
+  "defaultOpen": false,
+  "pages": [
+    "classi-e-oggetti",
+    "ereditarieta",
+    "iteratori"
+  ]
+}

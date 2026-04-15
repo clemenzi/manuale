@@ -4,9 +4,14 @@
   "root": true,
   "pages": [
     "index",
-    "introduzione",
     "basi",
+    "input-output",
+    "controllo-del-flusso",
     "strutture-dati",
-    "prossimi-passi"
+    "funzioni",
+    "memoria",
+    "oop",
+    "avanzato",
+    "strumenti"
   ]
 }

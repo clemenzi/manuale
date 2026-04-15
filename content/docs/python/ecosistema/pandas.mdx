@@ -1,0 +1,161 @@
+---
+title: Pandas
+description: Introduzione alla libreria Pandas per l'analisi dei dati in Python.
+---
+
+## Cos'è Pandas?
+
+**Pandas** è la libreria Python più usata per l'**analisi e la manipolazione di dati**. Fornisce strutture dati potenti e strumenti per lavorare con dati tabellari (come i fogli Excel o i database).
+
+Le due strutture dati principali di Pandas sono:
+- **Series**: una colonna di dati (come un array 1D con etichette)
+- **DataFrame**: una tabella di dati (come un foglio Excel o una tabella SQL)
+
+## Installazione
+
+```bash
+pip install pandas
+```
+
+## Importazione (convenzione)
+
+```python
+import pandas as pd
+```
+
+## Series
+
+Una **Series** è una lista di valori con un indice:
+
+```python
+import pandas as pd
+
+voti = pd.Series([8, 7, 9, 6, 10])
+print(voti)
+# 0     8
+# 1     7
+# 2     9
+# 3     6
+# 4    10
+# dtype: int64
+
+# Con indice personalizzato
+voti_nominativi = pd.Series(
+    [8, 7, 9, 6],
+    index=["Alice", "Bob", "Carlo", "Diana"]
+)
+print(voti_nominativi["Alice"])  # 8
+print(voti_nominativi.mean())    # 7.5
+```
+
+## DataFrame
+
+Un **DataFrame** è una tabella con righe e colonne:
+
+```python
+import pandas as pd
+
+# Da dizionario
+studenti = pd.DataFrame({
+    "nome": ["Alice", "Bob", "Carlo", "Diana"],
+    "eta": [16, 15, 17, 16],
+    "voto": [8, 7, 9, 6],
+    "citta": ["Roma", "Milano", "Roma", "Napoli"]
+})
+
+print(studenti)
+```
+
+Output:
+```
+    nome  eta  voto    citta
+0  Alice   16     8     Roma
+1    Bob   15     7   Milano
+2  Carlo   17     9     Roma
+3  Diana   16     6   Napoli
+```
+
+## Accesso ai dati
+
+```python
+# Selezionare una colonna
+print(studenti["nome"])
+print(studenti.nome)          # alternativa con il punto
+
+# Selezionare più colonne
+print(studenti[["nome", "voto"]])
+
+# Selezionare righe per indice (loc)
+print(studenti.loc[0])         # prima riga
+print(studenti.loc[0:2])       # righe 0, 1, 2
+
+# Selezionare per posizione (iloc)
+print(studenti.iloc[0, 1])     # riga 0, colonna 1
+```
+
+## Filtri
+
+```python
+# Studenti con voto >= 8
+promossi = studenti[studenti["voto"] >= 8]
+print(promossi)
+
+# Studenti di Roma
+romani = studenti[studenti["citta"] == "Roma"]
+print(romani)
+
+# Filtri combinati
+print(studenti[(studenti["voto"] >= 7) & (studenti["eta"] >= 16)])
+```
+
+## Statistiche di base
+
+```python
+print(studenti["voto"].mean())    # media
+print(studenti["voto"].max())     # massimo
+print(studenti["voto"].min())     # minimo
+print(studenti["voto"].std())     # deviazione standard
+print(studenti.describe())        # riepilogo statistico di tutte le colonne numeriche
+```
+
+## Leggere e scrivere file
+
+```python
+# Leggere un CSV
+df = pd.read_csv("dati.csv")
+
+# Scrivere un CSV
+studenti.to_csv("studenti.csv", index=False)
+
+# Leggere un file Excel
+df_excel = pd.read_excel("dati.xlsx")
+
+# Scrivere un Excel
+studenti.to_excel("studenti.xlsx", index=False)
+```
+
+## Operazioni comuni
+
+```python
+# Aggiungere una colonna
+studenti["promosso"] = studenti["voto"] >= 6
+print(studenti)
+
+# Ordinare
+ordinati = studenti.sort_values("voto", ascending=False)
+print(ordinati)
+
+# Raggruppare
+per_citta = studenti.groupby("citta")["voto"].mean()
+print(per_citta)
+
+# Informazioni sul DataFrame
+print(studenti.shape)    # (4, 4) - righe, colonne
+print(studenti.dtypes)   # tipi di ogni colonna
+print(studenti.info())   # riepilogo completo
+```
+
+## Dove approfondire
+
+Pandas è molto ricco. Per approfondire:
+- Documentazione ufficiale: [pandas.pydata.org](https://pandas.pydata.org)

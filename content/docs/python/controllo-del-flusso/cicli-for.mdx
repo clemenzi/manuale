@@ -1,0 +1,183 @@
+---
+title: Cicli for
+description: Come iterare su sequenze con il ciclo for in Python.
+---
+
+## Il ciclo `for`
+
+Il ciclo `for` in Python è usato per **iterare su una sequenza**: una lista, una stringa, una tupla, un range, ecc. Esegue il blocco di codice una volta per ogni elemento della sequenza.
+
+```python
+for elemento in sequenza:
+    # codice da eseguire
+```
+
+## Iterare su una lista
+
+```python
+frutta = ["mela", "banana", "ciliegia"]
+
+for frutto in frutta:
+    print(frutto)
+```
+
+Output:
+```
+mela
+banana
+ciliegia
+```
+
+## Iterare su una stringa
+
+Una stringa è una sequenza di caratteri, quindi puoi iterarci sopra:
+
+```python
+for carattere in "Python":
+    print(carattere)
+```
+
+Output:
+```
+P
+y
+t
+h
+o
+n
+```
+
+## Iterare su un range
+
+`range()` è spesso usato con `for` per ripetere qualcosa un numero preciso di volte:
+
+```python
+for i in range(5):
+    print(i)
+```
+
+Output:
+```
+0
+1
+2
+3
+4
+```
+
+## `break` e `continue`
+
+Funzionano come nel ciclo `while`:
+
+```python
+# break: interrompe il ciclo
+for i in range(10):
+    if i == 5:
+        break
+    print(i)
+# stampa 0, 1, 2, 3, 4
+
+# continue: salta all'iterazione successiva
+for i in range(10):
+    if i % 2 == 0:
+        continue
+    print(i)
+# stampa 1, 3, 5, 7, 9
+```
+
+## Il blocco `else`
+
+Come nel `while`, un `for` può avere un `else` che viene eseguito quando il ciclo termina senza `break`:
+
+```python
+for i in range(5):
+    print(i)
+else:
+    print("Ciclo completato!")
+```
+
+## La funzione `enumerate()`
+
+`enumerate()` restituisce sia l'indice che il valore di ogni elemento:
+
+```python
+frutta = ["mela", "banana", "ciliegia"]
+
+for indice, frutto in enumerate(frutta):
+    print(f"{indice}: {frutto}")
+```
+
+Output:
+```
+0: mela
+1: banana
+2: ciliegia
+```
+
+Puoi anche specificare da quale numero partire:
+
+```python
+for indice, frutto in enumerate(frutta, start=1):
+    print(f"{indice}. {frutto}")
+```
+
+Output:
+```
+1. mela
+2. banana
+3. ciliegia
+```
+
+## La funzione `zip()`
+
+`zip()` permette di iterare su più sequenze contemporaneamente:
+
+```python
+nomi = ["Alice", "Bob", "Carlo"]
+voti = [8, 7, 9]
+
+for nome, voto in zip(nomi, voti):
+    print(f"{nome} ha preso {voto}")
+```
+
+Output:
+```
+Alice ha preso 8
+Bob ha preso 7
+Carlo ha preso 9
+```
+
+## Iterare su un dizionario
+
+```python
+persona = {"nome": "Alice", "eta": 16, "citta": "Roma"}
+
+# Solo le chiavi (default)
+for chiave in persona:
+    print(chiave)
+
+# Chiavi e valori
+for chiave, valore in persona.items():
+    print(f"{chiave}: {valore}")
+```
+
+## Cicli annidati
+
+Puoi mettere un ciclo dentro un altro:
+
+```python
+for i in range(1, 4):
+    for j in range(1, 4):
+        print(f"{i} x {j} = {i * j}")
+    print("---")
+```
+
+Output:
+```
+1 x 1 = 1
+1 x 2 = 2
+1 x 3 = 3
+---
+2 x 1 = 2
+...
+```

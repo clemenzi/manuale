@@ -1,0 +1,137 @@
+---
+title: Date e orari
+description: Lavorare con date e orari usando il modulo datetime in Python.
+---
+
+## Il modulo `datetime`
+
+Python include il modulo `datetime` per lavorare con date e orari. Contiene diverse classi utili:
+
+- `datetime.date` - solo la data (anno, mese, giorno)
+- `datetime.time` - solo l'orario (ore, minuti, secondi)
+- `datetime.datetime` - data e orario insieme
+- `datetime.timedelta` - durata o differenza tra date
+
+## Importare il modulo
+
+```python
+import datetime
+
+# Oppure importare classi specifiche
+from datetime import date, datetime, timedelta
+```
+
+## La data di oggi
+
+```python
+from datetime import date, datetime
+
+oggi = date.today()
+print(oggi)           # 2024-01-15 (formato: anno-mese-giorno)
+print(type(oggi))     # <class 'datetime.date'>
+
+adesso = datetime.now()
+print(adesso)         # 2024-01-15 14:30:25.123456
+```
+
+## Creare una data specifica
+
+```python
+from datetime import date, datetime
+
+compleanno = date(2008, 3, 25)    # anno, mese, giorno
+print(compleanno)   # 2008-03-25
+
+evento = datetime(2024, 12, 31, 23, 59, 0)  # anno, mese, giorno, ora, min, sec
+print(evento)       # 2024-12-31 23:59:00
+```
+
+## Accedere agli attributi
+
+```python
+from datetime import datetime
+
+adesso = datetime.now()
+print(adesso.year)    # anno
+print(adesso.month)   # mese
+print(adesso.day)     # giorno
+print(adesso.hour)    # ora
+print(adesso.minute)  # minuti
+print(adesso.second)  # secondi
+```
+
+## Formattare le date: `strftime()`
+
+`strftime()` converte una data in una stringa con il formato che preferisci:
+
+```python
+from datetime import datetime
+
+adesso = datetime.now()
+
+print(adesso.strftime("%d/%m/%Y"))         # 15/01/2024
+print(adesso.strftime("%d %B %Y"))         # 15 January 2024
+print(adesso.strftime("%H:%M:%S"))         # 14:30:25
+print(adesso.strftime("%d/%m/%Y %H:%M"))   # 15/01/2024 14:30
+```
+
+Codici di formato principali:
+
+| Codice | Significato | Esempio |
+|--------|-------------|---------|
+| `%Y` | Anno (4 cifre) | 2024 |
+| `%m` | Mese (2 cifre) | 01 |
+| `%d` | Giorno (2 cifre) | 15 |
+| `%H` | Ora (24h) | 14 |
+| `%M` | Minuti | 30 |
+| `%S` | Secondi | 25 |
+| `%A` | Nome del giorno | Monday |
+| `%B` | Nome del mese | January |
+
+## Convertire una stringa in data: `strptime()`
+
+```python
+from datetime import datetime
+
+testo = "25/03/2008"
+data = datetime.strptime(testo, "%d/%m/%Y")
+print(data)        # 2008-03-25 00:00:00
+print(type(data))  # <class 'datetime.datetime'>
+```
+
+## Differenze tra date: `timedelta`
+
+```python
+from datetime import date, timedelta
+
+oggi = date.today()
+
+# Data tra 7 giorni
+tra_una_settimana = oggi + timedelta(days=7)
+print(tra_una_settimana)
+
+# Data di 30 giorni fa
+trenta_giorni_fa = oggi - timedelta(days=30)
+print(trenta_giorni_fa)
+
+# Differenza tra due date
+nato = date(2008, 3, 25)
+oggi = date.today()
+eta = oggi - nato
+print(f"Giorni vissuti: {eta.days}")
+```
+
+## Confrontare le date
+
+```python
+from datetime import date
+
+d1 = date(2024, 1, 1)
+d2 = date(2024, 12, 31)
+
+print(d1 < d2)   # True
+print(d1 == d2)  # False
+
+if date.today() > d1:
+    print("Siamo dopo il 1 gennaio 2024")
+```

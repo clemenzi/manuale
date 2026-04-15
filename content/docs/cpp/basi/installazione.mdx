@@ -1,0 +1,171 @@
+---
+title: Installazione
+description: Come installare il compilatore GCC e configurare Visual Studio Code per programmare in C++.
+---
+
+## Cosa ti serve
+
+Per scrivere ed eseguire programmi C++ hai bisogno di due cose:
+
+1. Un **compilatore**: il programma che trasforma il tuo codice C++ in un eseguibile
+2. Un **editor di testo** (o IDE): dove scrivi il codice
+
+In questa guida usiamo **GCC** come compilatore e **Visual Studio Code** come editor.
+
+## Installare il compilatore GCC
+
+GCC (GNU Compiler Collection) è il compilatore C++ più usato al mondo, gratuito e open source.
+
+### Su Windows
+
+Il modo più semplice su Windows è installare **MinGW-w64** (una versione di GCC per Windows):
+
+1. Scarica il programma di installazione da [winlibs.com](https://winlibs.com/) oppure usa **MSYS2** (consigliato)
+2. Segui le istruzioni di installazione
+3. Aggiungi la cartella `bin` di MinGW alla variabile d'ambiente `PATH`
+
+In alternativa, puoi installare il **Windows Subsystem for Linux (WSL)** e usare GCC direttamente su Linux all'interno di Windows.
+
+Verifica l'installazione aprendo il terminale (PowerShell o cmd) e digitando:
+
+```bash
+g++ --version
+```
+
+Se vedi un numero di versione, GCC è installato correttamente.
+
+### Su macOS
+
+Su macOS puoi installare gli **Xcode Command Line Tools** che includono il compilatore Clang (compatibile con GCC):
+
+```bash
+xcode-select --install
+```
+
+Oppure installa GCC tramite **Homebrew**:
+
+```bash
+brew install gcc
+```
+
+Verifica l'installazione:
+
+```bash
+g++ --version
+```
+
+### Su Linux (Ubuntu/Debian)
+
+Su Linux l'installazione è semplicissima:
+
+```bash
+sudo apt update
+sudo apt install g++
+```
+
+Verifica l'installazione:
+
+```bash
+g++ --version
+```
+
+## Installare Visual Studio Code
+
+Visual Studio Code (VS Code) è un editor di testo gratuito, leggero e molto potente.
+
+1. Scaricalo da [code.visualstudio.com](https://code.visualstudio.com/)
+2. Installa il programma come qualsiasi altra applicazione
+
+### Estensioni consigliate
+
+Dopo aver aperto VS Code, installa queste estensioni:
+
+- **C/C++** (di Microsoft): fornisce evidenziazione della sintassi, autocompletamento e debugging
+- **Code Runner**: permette di eseguire il codice con un tasto
+
+Per installare un'estensione: clicca sull'icona delle estensioni nella barra laterale sinistra, cerca il nome e clicca "Install".
+
+## Il primo programma: Hello World
+
+### Creare il file
+
+1. Apri VS Code
+2. Crea una nuova cartella per i tuoi progetti (es. `progetti-cpp`)
+3. Apri quella cartella in VS Code (File > Open Folder)
+4. Crea un nuovo file chiamato `hello.cpp`
+
+### Scrivere il codice
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello, World!" << endl;
+    return 0;
+}
+```
+
+### Compilare ed eseguire
+
+Apri il terminale integrato in VS Code (View > Terminal oppure `Ctrl+`\`).
+
+Compila il programma:
+
+```bash
+g++ hello.cpp -o hello
+```
+
+Questo comando dice a GCC di compilare `hello.cpp` e salvare l'eseguibile come `hello`.
+
+Esegui il programma:
+
+```bash
+# Su Linux/macOS
+./hello
+
+# Su Windows
+hello.exe
+```
+
+Output:
+
+```
+Hello, World!
+```
+
+## Struttura del comando di compilazione
+
+```bash
+g++ nomefile.cpp -o nomeeseguibile
+```
+
+- `g++`: il compilatore
+- `nomefile.cpp`: il file sorgente da compilare
+- `-o nomeeseguibile`: il nome del file eseguibile da creare
+
+Puoi aggiungere opzioni utili:
+
+```bash
+g++ hello.cpp -o hello -Wall -std=c++17
+```
+
+- `-Wall`: mostra tutti i warning (avvisi) durante la compilazione
+- `-std=c++17`: usa lo standard C++17
+
+## Configurare il build task in VS Code
+
+Per non dover digitare ogni volta il comando di compilazione, puoi configurare VS Code per farlo automaticamente:
+
+1. Premi `Ctrl+Shift+P` e cerca "Configure Default Build Task"
+2. Seleziona "g++ build active file"
+3. Ora puoi compilare con `Ctrl+Shift+B`
+
+## Alternative a VS Code
+
+Se preferisci, puoi usare altri ambienti di sviluppo:
+
+- **Code::Blocks**: IDE specifico per C/C++, semplice da usare
+- **CLion**: IDE professionale (a pagamento, ma gratuito per studenti)
+- **Dev-C++**: semplice IDE per Windows, ideale per chi inizia
+- **Replit**: ambiente online, non richiede installazione (vai su [replit.com](https://replit.com))

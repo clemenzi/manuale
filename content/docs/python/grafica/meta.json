@@ -1,0 +1,9 @@
+{
+  "title": "Grafica e interfacce",
+  "icon": "MonitorPlay",
+  "defaultOpen": false,
+  "pages": [
+    "turtle",
+    "tkinter"
+  ]
+}

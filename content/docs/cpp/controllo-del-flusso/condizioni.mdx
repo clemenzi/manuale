@@ -1,0 +1,228 @@
+---
+title: Condizioni
+description: Prendere decisioni nel codice con if, else if, else e switch in C++.
+---
+
+## Cosa sono le condizioni?
+
+Le **condizioni** permettono al programma di eseguire blocchi di codice diversi a seconda che una situazione sia vera o falsa. Sono fondamentali per creare programmi che si comportano in modo diverso in base ai dati.
+
+## L'istruzione `if`
+
+La sintassi base è:
+
+```cpp
+if (condizione) {
+    // codice da eseguire se la condizione è vera
+}
+```
+
+```cpp
+int eta = 18;
+
+if (eta >= 18) {
+    cout << "Sei maggiorenne." << endl;
+}
+```
+
+Se `eta` è 18 o più, viene stampato il messaggio. Altrimenti non succede nulla.
+
+Nota: in C++ la condizione deve essere tra parentesi tonde `()`.
+
+## L'istruzione `else`
+
+`else` definisce cosa fare quando la condizione è falsa:
+
+```cpp
+int eta = 15;
+
+if (eta >= 18) {
+    cout << "Sei maggiorenne." << endl;
+} else {
+    cout << "Sei minorenne." << endl;
+}
+```
+
+## L'istruzione `else if`
+
+`else if` permette di controllare più condizioni in sequenza:
+
+```cpp
+int voto = 75;
+
+if (voto >= 90) {
+    cout << "Ottimo!" << endl;
+} else if (voto >= 70) {
+    cout << "Buono!" << endl;
+} else if (voto >= 60) {
+    cout << "Sufficiente." << endl;
+} else {
+    cout << "Insufficiente." << endl;
+}
+```
+
+Il programma controlla le condizioni dall'alto verso il basso e si ferma alla prima vera.
+
+## Condizioni annidate
+
+Puoi mettere un `if` dentro un altro `if`:
+
+```cpp
+int eta = 20;
+bool haPatente = true;
+
+if (eta >= 18) {
+    if (haPatente) {
+        cout << "Puoi guidare." << endl;
+    } else {
+        cout << "Sei maggiorenne ma non hai la patente." << endl;
+    }
+} else {
+    cout << "Sei minorenne, non puoi guidare." << endl;
+}
+```
+
+## Usare gli operatori logici nelle condizioni
+
+Puoi combinare più condizioni con `&&` (AND), `||` (OR) e `!` (NOT):
+
+```cpp
+int eta = 16;
+bool conAccompagnatore = true;
+
+if (eta >= 18 || conAccompagnatore) {
+    cout << "Puoi entrare." << endl;
+} else {
+    cout << "Non puoi entrare." << endl;
+}
+```
+
+```cpp
+int temperatura = 22;
+bool piove = false;
+
+if (temperatura > 20 && !piove) {
+    cout << "Perfetto per uscire!" << endl;
+}
+```
+
+## Il costrutto `switch`
+
+`switch` è utile quando devi confrontare una variabile con molti valori fissi. È un'alternativa più leggibile a una lunga catena di `else if`:
+
+```cpp
+int giorno = 3;
+
+switch (giorno) {
+    case 1:
+        cout << "Lunedi" << endl;
+        break;
+    case 2:
+        cout << "Martedi" << endl;
+        break;
+    case 3:
+        cout << "Mercoledi" << endl;
+        break;
+    case 4:
+        cout << "Giovedi" << endl;
+        break;
+    case 5:
+        cout << "Venerdi" << endl;
+        break;
+    case 6:
+        cout << "Sabato" << endl;
+        break;
+    case 7:
+        cout << "Domenica" << endl;
+        break;
+    default:
+        cout << "Giorno non valido" << endl;
+}
+```
+
+Output: `Mercoledi`
+
+### Componenti di `switch`:
+
+- **`case valore:`**: esegue il codice se la variabile corrisponde a quel valore
+- **`break`**: esce dallo switch (senza `break`, l'esecuzione continua nel case successivo!)
+- **`default`**: viene eseguito se nessun case corrisponde (opzionale)
+
+### Attenzione al `break`!
+
+Senza `break`, dopo aver trovato il case corrispondente l'esecuzione continua fino al prossimo `break` o alla fine dello switch (comportamento chiamato "fall-through"):
+
+```cpp
+int x = 2;
+switch (x) {
+    case 1:
+        cout << "uno" << endl;
+    case 2:
+        cout << "due" << endl;   // eseguito
+    case 3:
+        cout << "tre" << endl;   // eseguito anche questo! (manca break)
+        break;
+    case 4:
+        cout << "quattro" << endl;
+}
+// Output:
+// due
+// tre
+```
+
+A volte il fall-through è intenzionale:
+
+```cpp
+char voto = 'B';
+switch (voto) {
+    case 'A':
+    case 'B':
+        cout << "Promosso con lode" << endl;
+        break;
+    case 'C':
+        cout << "Promosso" << endl;
+        break;
+    default:
+        cout << "Bocciato" << endl;
+}
+```
+
+## L'operatore ternario
+
+Per condizioni semplici su una sola riga:
+
+```cpp
+// sintassi: condizione ? valore_se_vero : valore_se_falso
+int eta = 20;
+string stato = (eta >= 18) ? "maggiorenne" : "minorenne";
+cout << stato << endl;  // maggiorenne
+```
+
+## Esempio pratico
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int punteggio;
+    cout << "Inserisci il punteggio (0-100): ";
+    cin >> punteggio;
+
+    if (punteggio < 0 || punteggio > 100) {
+        cout << "Punteggio non valido!" << endl;
+    } else if (punteggio >= 90) {
+        cout << "Voto: A - Eccellente!" << endl;
+    } else if (punteggio >= 80) {
+        cout << "Voto: B - Molto buono" << endl;
+    } else if (punteggio >= 70) {
+        cout << "Voto: C - Buono" << endl;
+    } else if (punteggio >= 60) {
+        cout << "Voto: D - Sufficiente" << endl;
+    } else {
+        cout << "Voto: F - Insufficiente" << endl;
+    }
+
+    return 0;
+}
+```

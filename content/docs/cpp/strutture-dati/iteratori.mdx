@@ -1,0 +1,192 @@
+---
+title: Iteratori
+description: Introduzione agli iteratori della STL in C++.
+---
+
+## Cosa sono gli iteratori?
+
+Gli **iteratori** sono oggetti che permettono di scorrere (iterare) gli elementi di un contenitore della STL. Funzionano in modo simile ai puntatori: puntano a un elemento del contenitore e possono spostarsi all'elemento successivo.
+
+Gli iteratori sono fondamentali per usare gli algoritmi della STL, che lavorano tutti con iteratori.
+
+## Perché usare gli iteratori?
+
+Gli iteratori forniscono un'interfaccia uniforme per tutti i contenitori. Lo stesso algoritmo (come `sort`) funziona su `vector`, `list`, `deque`, ecc., grazie agli iteratori.
+
+```cpp
+// sort funziona su vector grazie agli iteratori
+sort(v.begin(), v.end());
+```
+
+## I metodi `begin()` e `end()`
+
+Ogni contenitore STL ha due metodi principali:
+
+- **`begin()`**: restituisce un iteratore al **primo** elemento
+- **`end()`**: restituisce un iteratore **dopo** l'ultimo elemento
+
+```cpp
+#include <vector>
+using namespace std;
+
+vector<int> v = {10, 20, 30, 40, 50};
+
+// begin() punta a 10
+// end() punta DOPO 50 (posizione immaginaria)
+```
+
+## Dichiarare un iteratore
+
+Il tipo di un iteratore dipende dal contenitore. Si usa `auto` per semplificare:
+
+```cpp
+vector<int> v = {10, 20, 30};
+
+// Tipo esplicito
+vector<int>::iterator it = v.begin();
+
+// Con auto (preferito)
+auto it2 = v.begin();
+```
+
+## Usare un iteratore
+
+```cpp
+vector<int> v = {10, 20, 30, 40, 50};
+
+auto it = v.begin();
+cout << *it << endl;    // 10 (dereferenziazione)
+
+++it;                   // sposta al prossimo
+cout << *it << endl;    // 20
+
+it++;                   // stesso risultato
+cout << *it << endl;    // 30
+```
+
+## Iterare con un ciclo while
+
+```cpp
+vector<int> v = {10, 20, 30, 40, 50};
+
+auto it = v.begin();
+while (it != v.end()) {
+    cout << *it << " ";
+    ++it;
+}
+// Output: 10 20 30 40 50
+```
+
+## Iterare con un ciclo for
+
+```cpp
+for (auto it = v.begin(); it != v.end(); ++it) {
+    cout << *it << " ";
+}
+```
+
+Nota: il range-based for (`for (int n : v)`) usa internamente gli iteratori, quindi di solito non devi scrivere il ciclo with iteratori esplicitamente.
+
+## Iteratori costanti
+
+Per non modificare gli elementi durante l'iterazione, usa `cbegin()` e `cend()`:
+
+```cpp
+vector<int> v = {1, 2, 3};
+
+for (auto it = v.cbegin(); it != v.cend(); ++it) {
+    cout << *it << " ";
+    // *it = 99;  // ERRORE: iteratore costante!
+}
+```
+
+## Iteratori inversi
+
+Per scorrere al contrario, usa `rbegin()` e `rend()`:
+
+```cpp
+vector<int> v = {1, 2, 3, 4, 5};
+
+for (auto it = v.rbegin(); it != v.rend(); ++it) {
+    cout << *it << " ";
+}
+// Output: 5 4 3 2 1
+```
+
+## Iteratori e algoritmi STL
+
+La maggior parte degli algoritmi STL richiedono iteratori:
+
+```cpp
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+vector<int> v = {5, 2, 8, 1, 9, 3};
+
+// sort: ordina tra begin e end
+sort(v.begin(), v.end());
+
+// find: cerca un elemento
+auto it = find(v.begin(), v.end(), 5);
+if (it != v.end()) {
+    cout << "Trovato 5 alla posizione " << (it - v.begin()) << endl;
+}
+
+// count: conta le occorrenze
+int n = count(v.begin(), v.end(), 5);
+
+// erase: rimuove un elemento tramite iteratore
+v.erase(v.begin() + 2);  // rimuove il terzo elemento
+```
+
+## Esempio pratico
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    vector<int> numeri = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3};
+
+    // Stampa originale
+    cout << "Originale: ";
+    for (auto it = numeri.cbegin(); it != numeri.cend(); ++it) {
+        cout << *it << " ";
+    }
+    cout << endl;
+
+    // Ordina
+    sort(numeri.begin(), numeri.end());
+    cout << "Ordinato: ";
+    for (int n : numeri) cout << n << " ";
+    cout << endl;
+
+    // Stampa al contrario
+    cout << "Inverso: ";
+    for (auto it = numeri.rbegin(); it != numeri.rend(); ++it) {
+        cout << *it << " ";
+    }
+    cout << endl;
+
+    // Rimuove i duplicati (richiede che il vector sia ordinato)
+    auto fine = unique(numeri.begin(), numeri.end());
+    numeri.erase(fine, numeri.end());
+    cout << "Senza duplicati: ";
+    for (int n : numeri) cout << n << " ";
+    cout << endl;
+
+    return 0;
+}
+```
+
+Output:
+
+```
+Originale: 3 1 4 1 5 9 2 6 5 3
+Ordinato: 1 1 2 3 3 4 5 5 6 9
+Inverso: 9 6 5 5 4 3 3 2 1 1
+Senza duplicati: 1 2 3 4 5 6 9
+```

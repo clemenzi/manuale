@@ -1,0 +1,203 @@
+---
+title: Input/Output Formattato
+description: Come formattare l'output in C++ con setw, setprecision e altre opzioni.
+---
+
+## Formattare l'output
+
+Il C++ fornisce strumenti per controllare con precisione come vengono visualizzati i dati: larghezza dei campi, numero di cifre decimali, allineamento, ecc.
+
+Per usare questi strumenti, includi `<iomanip>`:
+
+```cpp
+#include <iostream>
+#include <iomanip>
+using namespace std;
+```
+
+## Precisione dei decimali: `setprecision`
+
+Controlla quante cifre significative (o decimali) vengono stampate:
+
+```cpp
+double pi = 3.14159265358979;
+
+cout << pi << endl;                          // 3.14159 (default: 6 cifre significative)
+cout << setprecision(3) << pi << endl;       // 3.14 (3 cifre significative)
+cout << setprecision(10) << pi << endl;      // 3.141592654
+```
+
+Con `fixed`, controlla le cifre **dopo** il punto decimale:
+
+```cpp
+double x = 1234.5678;
+
+cout << fixed << setprecision(2) << x << endl;    // 1234.57
+cout << fixed << setprecision(4) << x << endl;    // 1234.5678
+cout << fixed << setprecision(0) << x << endl;    // 1235 (arrotonda)
+```
+
+Con `scientific`, usa la notazione scientifica:
+
+```cpp
+double grande = 1234567.89;
+cout << scientific << setprecision(3) << grande << endl;  // 1.235e+06
+```
+
+## Larghezza del campo: `setw`
+
+`setw` imposta la larghezza minima del campo successivo (aggiunge spazi):
+
+```cpp
+cout << setw(10) << "Nome" << setw(10) << "Eta" << endl;
+cout << setw(10) << "Alice" << setw(10) << 16 << endl;
+cout << setw(10) << "Bob" << setw(10) << 17 << endl;
+```
+
+Output:
+
+```
+      Nome       Eta
+     Alice        16
+       Bob        17
+```
+
+`setw` è temporaneo: vale solo per il prossimo elemento stampato.
+
+## Allineamento: `left`, `right`, `internal`
+
+```cpp
+cout << left  << setw(10) << "Alice" << endl;  // allineato a sinistra
+cout << right << setw(10) << "Alice" << endl;  // allineato a destra (default)
+```
+
+Output:
+
+```
+Alice
+     Alice
+```
+
+## Carattere di riempimento: `setfill`
+
+Di default, `setw` riempie con spazi. Puoi cambiarlo:
+
+```cpp
+cout << setfill('*') << setw(10) << "ciao" << endl;
+cout << setfill('0') << setw(5) << 42 << endl;
+```
+
+Output:
+
+```
+******ciao
+00042
+```
+
+## Visualizzare booleani come parole
+
+```cpp
+bool b = true;
+cout << b << endl;           // 1
+cout << boolalpha << b << endl;  // true
+
+bool f = false;
+cout << boolalpha << f << endl;  // false
+```
+
+## Numeri in basi diverse
+
+```cpp
+int n = 255;
+cout << dec << n << endl;   // 255 (decimale, default)
+cout << hex << n << endl;   // ff (esadecimale)
+cout << oct << n << endl;   // 377 (ottale)
+
+// Con prefisso (0x per esadecimale, 0 per ottale)
+cout << showbase;
+cout << hex << n << endl;   // 0xff
+cout << oct << n << endl;   // 0377
+```
+
+## Tabelle formattate
+
+Ecco un esempio di come creare una tabella ben allineata:
+
+```cpp
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+int main() {
+    // Intestazione
+    cout << left
+         << setw(15) << "Studente"
+         << setw(8)  << "Eta"
+         << setw(10) << "Voto"
+         << endl;
+
+    cout << setfill('-') << setw(33) << "" << endl;
+    cout << setfill(' ');   // ripristina spazio
+
+    // Dati
+    struct Studente { string nome; int eta; double voto; };
+    Studente studenti[] = {
+        {"Alice", 16, 8.5},
+        {"Bob", 17, 7.2},
+        {"Carlo Verdi", 15, 9.1}
+    };
+
+    for (const auto& s : studenti) {
+        cout << left
+             << setw(15) << s.nome
+             << setw(8)  << s.eta
+             << fixed << setprecision(1) << setw(10) << s.voto
+             << endl;
+    }
+
+    return 0;
+}
+```
+
+Output:
+
+```
+Studente       Eta     Voto
+---------------------------------
+Alice          16      8.5
+Bob            17      7.2
+Carlo Verdi    15      9.1
+```
+
+## Modificatori persistenti vs temporanei
+
+Alcuni modificatori sono **persistenti** (rimangono attivi finché non li cambi):
+- `fixed`, `scientific`, `left`, `right`, `boolalpha`
+- `setprecision`, `setfill`
+
+`setw` è **temporaneo**: vale solo per il prossimo elemento.
+
+```cpp
+cout << fixed << setprecision(2);   // rimane attivo
+cout << 3.14159 << endl;   // 3.14
+cout << 2.71828 << endl;   // 2.72 (setprecision ancora attivo)
+
+cout << setw(10) << 42 << endl;   // "        42" (setw)
+cout << 43 << endl;               // "43" (setw non attivo)
+```
+
+## Ripristinare lo stato
+
+Puoi salvare e ripristinare lo stato di formattazione:
+
+```cpp
+ios::fmtflags flags = cout.flags();   // salva
+streamsize prec = cout.precision();    // salva
+
+cout << fixed << setprecision(4) << 3.14 << endl;
+
+cout.flags(flags);         // ripristina
+cout.precision(prec);      // ripristina
+cout << 3.14 << endl;      // tornato al default
+```

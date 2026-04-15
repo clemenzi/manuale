@@ -1,0 +1,132 @@
+---
+title: Matematica
+description: Operazioni matematiche avanzate con il modulo math in Python.
+---
+
+## Il modulo `math`
+
+Il modulo `math` di Python fornisce funzioni matematiche aggiuntive rispetto agli operatori base. Copre radici quadrate, funzioni trigonometriche, logaritmi, costanti matematiche e molto altro.
+
+```python
+import math
+```
+
+## Costanti
+
+```python
+import math
+
+print(math.pi)    # 3.141592653589793 (pi greco)
+print(math.e)     # 2.718281828459045 (numero di Eulero)
+print(math.inf)   # inf (infinito)
+print(math.nan)   # nan (Not a Number)
+```
+
+## Arrotondamento
+
+```python
+import math
+
+print(math.floor(3.7))   # 3  (arrotonda verso il basso)
+print(math.ceil(3.2))    # 4  (arrotonda verso l'alto)
+print(round(3.5))        # 4  (arrotondamento standard, built-in)
+print(math.trunc(3.9))   # 3  (tronca la parte decimale)
+```
+
+## Valore assoluto e segno
+
+```python
+import math
+
+print(abs(-5))           # 5   (built-in)
+print(math.fabs(-5.0))  # 5.0 (versione float di math)
+```
+
+## Potenze e radici
+
+```python
+import math
+
+print(math.sqrt(16))    # 4.0  (radice quadrata)
+print(math.pow(2, 10))  # 1024.0 (potenza, come 2**10 ma restituisce float)
+print(math.isqrt(17))   # 4    (radice quadrata intera, tronca)
+```
+
+## Funzioni esponenziali e logaritmiche
+
+```python
+import math
+
+print(math.exp(1))          # 2.718... (e^1)
+print(math.exp(2))          # 7.389... (e^2)
+
+print(math.log(math.e))     # 1.0 (logaritmo naturale)
+print(math.log(100, 10))    # 2.0 (logaritmo in base 10)
+print(math.log10(1000))     # 3.0 (logaritmo base 10)
+print(math.log2(8))         # 3.0 (logaritmo base 2)
+```
+
+## Funzioni trigonometriche
+
+Le funzioni trigonometriche lavorano in **radianti** (non gradi):
+
+```python
+import math
+
+# Conversione gradi <-> radianti
+print(math.radians(180))   # 3.14159... (180° in radianti = pi)
+print(math.degrees(math.pi)) # 180.0
+
+# Funzioni trig
+print(math.sin(math.pi / 2))   # 1.0    (sin(90°))
+print(math.cos(0))              # 1.0    (cos(0°))
+print(math.tan(math.pi / 4))   # 1.0    (tan(45°))
+```
+
+## Funzioni su più valori
+
+```python
+import math
+
+print(math.gcd(12, 8))     # 4 (massimo comune divisore)
+print(math.lcm(4, 6))      # 12 (minimo comune multiplo, Python 3.9+)
+print(math.factorial(5))   # 120 (5! = 5*4*3*2*1)
+```
+
+## Il modulo `random`
+
+Spesso usato insieme a `math`, il modulo `random` genera numeri casuali:
+
+```python
+import random
+
+print(random.random())          # float casuale in [0.0, 1.0)
+print(random.randint(1, 10))    # int casuale tra 1 e 10 (inclusi)
+print(random.uniform(1.0, 5.0)) # float casuale tra 1.0 e 5.0
+
+lista = [1, 2, 3, 4, 5]
+print(random.choice(lista))     # elemento casuale dalla lista
+random.shuffle(lista)           # mescola la lista
+print(lista)
+```
+
+## Esempio pratico: calcolo geometrico
+
+```python
+import math
+
+def area_cerchio(raggio):
+    return math.pi * raggio ** 2
+
+def ipotenusa(cateto_a, cateto_b):
+    return math.sqrt(cateto_a ** 2 + cateto_b ** 2)
+
+print(f"Area cerchio (r=5): {area_cerchio(5):.2f}")
+print(f"Ipotenusa (3, 4): {ipotenusa(3, 4):.2f}")
+```
+
+Output:
+```
+Area cerchio (r=5): 78.54
+Ipotenusa (3, 4): 5.00
+```

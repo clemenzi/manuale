@@ -1,0 +1,161 @@
+---
+title: Ereditarietà
+description: Come creare classi basate su altre classi in Python.
+---
+
+## Cos'è l'ereditarietà?
+
+L'**ereditarietà** è uno dei pilastri della programmazione orientata agli oggetti. Permette di creare una nuova classe a partire da una esistente, **ereditando** i suoi attributi e metodi.
+
+La classe da cui si eredita si chiama **classe padre** (o base, o superclasse). La nuova classe si chiama **classe figlia** (o derivata, o sottoclasse).
+
+Pensa a una famiglia: i figli ereditano caratteristiche dai genitori, ma possono anche avere caratteristiche proprie.
+
+## Sintassi di base
+
+```python
+class ClassePadre:
+    # metodi e attributi del padre
+
+class ClasseFiglia(ClassePadre):
+    # eredita tutto dal padre
+    # può aggiungere o modificare
+```
+
+## Esempio semplice
+
+```python
+class Animale:
+    def __init__(self, nome):
+        self.nome = nome
+
+    def respira(self):
+        print(f"{self.nome} respira.")
+
+    def mangia(self):
+        print(f"{self.nome} mangia.")
+
+class Cane(Animale):
+    def abbaia(self):
+        print(f"{self.nome} fa: Bau bau!")
+
+class Gatto(Animale):
+    def fa_le_fusa(self):
+        print(f"{self.nome} fa le fusa...")
+
+fido = Cane("Fido")
+fido.respira()     # Fido respira.  (ereditato da Animale)
+fido.mangia()      # Fido mangia.   (ereditato da Animale)
+fido.abbaia()      # Fido fa: Bau bau!
+
+micio = Gatto("Micio")
+micio.respira()    # Micio respira.
+micio.fa_le_fusa() # Micio fa le fusa...
+```
+
+## Sovrascrivere i metodi (Override)
+
+La classe figlia può ridefinire i metodi del padre per cambiarne il comportamento:
+
+```python
+class Animale:
+    def __init__(self, nome):
+        self.nome = nome
+
+    def suono(self):
+        print("...")
+
+class Cane(Animale):
+    def suono(self):   # sovrascrive il metodo del padre
+        print(f"{self.nome} fa: Bau bau!")
+
+class Gatto(Animale):
+    def suono(self):   # sovrascrive il metodo del padre
+        print(f"{self.nome} fa: Miao!")
+
+fido = Cane("Fido")
+micio = Gatto("Micio")
+
+fido.suono()   # Fido fa: Bau bau!
+micio.suono()  # Micio fa: Miao!
+```
+
+## La funzione `super()`
+
+`super()` permette di chiamare il metodo della classe padre dalla classe figlia. È utile quando vuoi estendere il comportamento del padre invece di sostituirlo completamente:
+
+```python
+class Animale:
+    def __init__(self, nome, eta):
+        self.nome = nome
+        self.eta = eta
+
+    def presenta(self):
+        print(f"Mi chiamo {self.nome} e ho {self.eta} anni.")
+
+class Cane(Animale):
+    def __init__(self, nome, eta, razza):
+        super().__init__(nome, eta)  # chiama __init__ del padre
+        self.razza = razza           # aggiunge un nuovo attributo
+
+    def presenta(self):
+        super().presenta()           # chiama presenta() del padre
+        print(f"Sono un {self.razza}.")
+
+fido = Cane("Fido", 3, "Labrador")
+fido.presenta()
+# Mi chiamo Fido e ho 3 anni.
+# Sono un Labrador.
+```
+
+## Verificare l'ereditarietà
+
+```python
+class Animale:
+    pass
+
+class Cane(Animale):
+    pass
+
+fido = Cane()
+
+print(isinstance(fido, Cane))     # True (fido è un Cane)
+print(isinstance(fido, Animale))  # True (fido è anche un Animale)
+print(issubclass(Cane, Animale))  # True (Cane è una sottoclasse di Animale)
+```
+
+## Esempio pratico: forme geometriche
+
+```python
+class Forma:
+    def __init__(self, colore):
+        self.colore = colore
+
+    def descrivi(self):
+        print(f"Sono una forma {self.colore}.")
+
+class Rettangolo(Forma):
+    def __init__(self, base, altezza, colore):
+        super().__init__(colore)
+        self.base = base
+        self.altezza = altezza
+
+    def area(self):
+        return self.base * self.altezza
+
+class Cerchio(Forma):
+    def __init__(self, raggio, colore):
+        super().__init__(colore)
+        self.raggio = raggio
+
+    def area(self):
+        return 3.14159 * self.raggio ** 2
+
+r = Rettangolo(5, 3, "rosso")
+r.descrivi()        # Sono una forma rosso.
+print(r.area())     # 15
+
+c = Cerchio(4, "blu")
+c.descrivi()        # Sono una forma blu.
+print(c.area())     # 50.265...
+```

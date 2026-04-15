@@ -1,0 +1,139 @@
+---
+title: Formattazione output
+description: Come formattare e presentare i dati in Python.
+---
+
+## Metodi di formattazione delle stringhe
+
+Python offre diversi modi per costruire stringhe con valori inseriti dentro.
+
+## 1. F-string (raccomandato, Python 3.6+)
+
+Le **f-string** sono il metodo più moderno e leggibile. Si scrivono mettendo `f` prima delle virgolette:
+
+```python
+nome = "Alice"
+eta = 16
+print(f"Mi chiamo {nome} e ho {eta} anni.")
+# Mi chiamo Alice e ho 16 anni.
+```
+
+Puoi inserire espressioni Python dentro le parentesi graffe:
+
+```python
+a, b = 5, 3
+print(f"{a} + {b} = {a + b}")
+print(f"Il quadrato di {a} è {a**2}")
+```
+
+## 2. Metodo `.format()`
+
+```python
+print("Mi chiamo {} e ho {} anni.".format("Alice", 16))
+print("Mi chiamo {nome} e ho {eta} anni.".format(nome="Alice", eta=16))
+print("{0} è maggiore di {1}: {2}".format(5, 3, 5 > 3))
+```
+
+## 3. Operatore `%` (vecchio stile)
+
+Ancora presente in molto codice, ma meno usato nelle versioni moderne:
+
+```python
+print("Mi chiamo %s e ho %d anni." % ("Alice", 16))
+print("Pi greco: %.2f" % 3.14159)
+```
+
+## Formattazione numerica con f-string
+
+Le f-string supportano opzioni di formattazione avanzate:
+
+### Numeri decimali
+
+```python
+pi = 3.14159265
+print(f"{pi:.2f}")    # 3.14  (2 cifre decimali)
+print(f"{pi:.4f}")    # 3.1416 (4 cifre decimali)
+print(f"{pi:.0f}")    # 3     (nessuna cifra decimale)
+```
+
+### Larghezza e allineamento
+
+```python
+print(f"{'sinistra':<15}|")   # allineato a sinistra (15 caratteri)
+print(f"{'centro':^15}|")     # centrato
+print(f"{'destra':>15}|")     # allineato a destra
+
+# Con numeri
+print(f"{42:10d}")    # "        42" (10 caratteri, allineato a destra)
+print(f"{42:<10d}")   # "42        " (10 caratteri, allineato a sinistra)
+```
+
+### Separatore delle migliaia
+
+```python
+numero_grande = 1234567
+print(f"{numero_grande:,}")     # 1,234,567
+print(f"{numero_grande:_}")     # 1_234_567
+```
+
+### Percentuali
+
+```python
+valore = 0.75
+print(f"{valore:.0%}")    # 75%
+print(f"{valore:.2%}")    # 75.00%
+```
+
+### Notazione scientifica
+
+```python
+piccolo = 0.000123
+grande = 1234567890
+print(f"{piccolo:.2e}")   # 1.23e-04
+print(f"{grande:.3e}")    # 1.235e+09
+```
+
+## La funzione `print()`
+
+`print()` ha alcune opzioni utili:
+
+```python
+# sep: separatore tra gli argomenti (default: spazio)
+print("mela", "banana", "uva")           # mela banana uva
+print("mela", "banana", "uva", sep=", ") # mela, banana, uva
+print("mela", "banana", "uva", sep="-")  # mela-banana-uva
+
+# end: carattere finale (default: \n = a capo)
+print("Ciao", end=" ")
+print("mondo!")         # Ciao mondo! (sulla stessa riga)
+
+# Scrivere senza andare a capo in un ciclo
+for i in range(5):
+    print(i, end=" ")
+print()  # a capo finale
+# Output: 0 1 2 3 4
+```
+
+## Esempio pratico: tabella formattata
+
+```python
+studenti = [
+    ("Alice", 16, 8.5),
+    ("Bob", 15, 7.0),
+    ("Carlo", 17, 9.2),
+]
+
+print(f"{'Nome':<10} {'Età':>5} {'Media':>8}")
+print("-" * 25)
+for nome, eta, media in studenti:
+    print(f"{nome:<10} {eta:>5} {media:>8.1f}")
+```
+
+Output:
+```
+Nome        Età    Media
+-------------------------
+Alice        16      8.5
+Bob          15      7.0
+Carlo        17      9.2
+```

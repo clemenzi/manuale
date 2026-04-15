@@ -1,0 +1,198 @@
+---
+title: Cenni alla STL
+description: Panoramica della Standard Template Library del C++ con i contenitori più utili.
+---
+
+## Cos'è la STL?
+
+La **STL** (Standard Template Library) è una parte importante della libreria standard del C++. Fornisce:
+
+- **Contenitori**: strutture dati per memorizzare collezioni di elementi
+- **Algoritmi**: funzioni per operare sulle collezioni (ordinamento, ricerca, ecc.)
+- **Iteratori**: oggetti per scorrere i contenitori
+
+La STL usa i **template** (generici): puoi usare gli stessi contenitori con qualsiasi tipo di dato.
+
+## I principali contenitori
+
+### `vector` - Array dinamico
+
+Già visto nella sezione precedente. È il contenitore più usato.
+
+```cpp
+#include <vector>
+vector<int> v = {1, 2, 3, 4, 5};
+v.push_back(6);
+```
+
+### `list` - Lista doppiamente collegata
+
+Utile quando aggiungi/rimuovi spesso elementi in mezzo alla lista:
+
+```cpp
+#include <list>
+using namespace std;
+
+list<int> l = {1, 2, 4, 5};
+l.insert(next(l.begin(), 2), 3);  // inserisce 3 alla posizione 2
+// l = {1, 2, 3, 4, 5}
+
+l.push_front(0);   // aggiunge all'inizio
+l.push_back(6);    // aggiunge alla fine
+l.pop_front();     // rimuove il primo
+
+for (int n : l) cout << n << " ";
+```
+
+### `map` - Dizionario (chiave-valore)
+
+Memorizza coppie chiave-valore, ordinate per chiave. Simile ai dizionari di Python:
+
+```cpp
+#include <map>
+using namespace std;
+
+map<string, int> eta;
+eta["Alice"] = 16;
+eta["Bob"] = 17;
+eta["Carlo"] = 15;
+
+// Accesso
+cout << eta["Alice"] << endl;   // 16
+
+// Iterazione
+for (auto& coppia : eta) {
+    cout << coppia.first << ": " << coppia.second << endl;
+}
+// Output (in ordine alfabetico):
+// Alice: 16
+// Bob: 17
+// Carlo: 15
+
+// Verifica esistenza
+if (eta.count("Alice") > 0) {
+    cout << "Alice è nel registro" << endl;
+}
+
+// Rimozione
+eta.erase("Bob");
+```
+
+### `unordered_map` - Dizionario non ordinato (più veloce)
+
+Come `map` ma non mantiene l'ordine delle chiavi. Accesso più veloce:
+
+```cpp
+#include <unordered_map>
+
+unordered_map<string, int> contaParole;
+contaParole["ciao"]++;
+contaParole["mondo"]++;
+contaParole["ciao"]++;
+
+for (auto& p : contaParole) {
+    cout << p.first << ": " << p.second << " volte" << endl;
+}
+```
+
+### `set` - Insieme (senza duplicati, ordinato)
+
+Memorizza elementi unici in ordine:
+
+```cpp
+#include <set>
+
+set<int> numeri = {5, 2, 8, 2, 1, 9, 1};  // duplicati rimossi!
+// numeri = {1, 2, 5, 8, 9}
+
+numeri.insert(3);   // aggiunge 3
+numeri.erase(8);    // rimuove 8
+
+if (numeri.count(5) > 0) {
+    cout << "5 è nel set" << endl;
+}
+
+for (int n : numeri) cout << n << " ";
+// Output: 1 2 3 5 9
+```
+
+### `stack` - Pila (LIFO)
+
+Struttura LIFO (Last In, First Out): l'ultimo elemento inserito è il primo a uscire:
+
+```cpp
+#include <stack>
+
+stack<int> pila;
+pila.push(1);   // inserisce in cima
+pila.push(2);
+pila.push(3);
+
+cout << pila.top() << endl;  // 3 (elemento in cima)
+pila.pop();                  // rimuove l'elemento in cima
+cout << pila.top() << endl;  // 2
+cout << pila.size() << endl; // 2
+```
+
+### `queue` - Coda (FIFO)
+
+Struttura FIFO (First In, First Out): il primo elemento inserito è il primo a uscire:
+
+```cpp
+#include <queue>
+
+queue<string> coda;
+coda.push("Alice");
+coda.push("Bob");
+coda.push("Carlo");
+
+cout << coda.front() << endl;  // "Alice" (primo entrato)
+coda.pop();                    // rimuove il primo
+cout << coda.front() << endl;  // "Bob"
+```
+
+## Riepilogo dei contenitori
+
+| Contenitore | Caratteristica principale | Quando usarlo |
+|---|---|---|
+| `vector` | Array dinamico, accesso per indice O(1) | Uso generale, accesso diretto |
+| `list` | Lista collegata, inserimento O(1) | Molte inserzioni/rimozioni in mezzo |
+| `map` | Chiave-valore, ordinato | Dizionario con ordine |
+| `unordered_map` | Chiave-valore, non ordinato, veloce | Dizionario senza ordine |
+| `set` | Elementi unici, ordinati | Raccolta senza duplicati |
+| `stack` | LIFO | Algoritmi ricorsivi, backtracking |
+| `queue` | FIFO | Code di elaborazione |
+
+## Algoritmi della STL
+
+Con `#include <algorithm>`:
+
+```cpp
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+vector<int> v = {5, 2, 8, 1, 9, 3};
+
+// Ordinamento
+sort(v.begin(), v.end());
+
+// Ricerca binaria (il vector deve essere ordinato)
+bool trovato = binary_search(v.begin(), v.end(), 5);
+
+// Somma
+int somma = 0;
+for (int n : v) somma += n;
+
+// Oppure con accumulate (<numeric>)
+#include <numeric>
+int somma2 = accumulate(v.begin(), v.end(), 0);
+
+// Conta occorrenze
+int quanti = count(v.begin(), v.end(), 3);
+
+// Trova il massimo e il minimo
+auto max_it = max_element(v.begin(), v.end());
+auto min_it = min_element(v.begin(), v.end());
+cout << "Max: " << *max_it << ", Min: " << *min_it << endl;
+```

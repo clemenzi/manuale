@@ -1,6 +1,139 @@
 ---
 title: Dizionari
-description: Coppie chiave-valore per accedere ai dati tramite nome in Python.
+description: Strutture chiave-valore per organizzare i dati in Python.
 ---
 
-Contenuto in arrivo.
+## Cosa sono i dizionari?
+
+Un **dizionario** (`dict`) è una raccolta di coppie **chiave-valore**. Ogni elemento ha una chiave univoca che permette di accedere al suo valore, un po' come un dizionario reale dove cerchi una parola (chiave) per trovare la sua definizione (valore).
+
+Le caratteristiche principali:
+- Le chiavi devono essere uniche e immutabili (stringhe, numeri, tuple)
+- I valori possono essere di qualsiasi tipo
+- L'ordine è mantenuto (da Python 3.7+)
+
+## Creare un dizionario
+
+I dizionari si scrivono con le **parentesi graffe** `{}`, con coppie `chiave: valore` separate da virgole:
+
+```python
+studente = {
+    "nome": "Alice",
+    "eta": 16,
+    "classe": "3A"
+}
+
+vuoto = {}
+```
+
+## Accedere ai valori
+
+```python
+studente = {"nome": "Alice", "eta": 16, "classe": "3A"}
+
+print(studente["nome"])   # Alice
+print(studente["eta"])    # 16
+```
+
+Se la chiave non esiste, `[]` dà un errore. Usa `.get()` per evitarlo:
+
+```python
+print(studente.get("cognome"))           # None (nessun errore)
+print(studente.get("cognome", "N/D"))    # N/D (valore di default)
+```
+
+## Aggiungere e modificare
+
+```python
+studente = {"nome": "Alice", "eta": 16}
+
+studente["eta"] = 17           # modifica un valore esistente
+studente["cognome"] = "Rossi"  # aggiunge una nuova coppia
+print(studente)
+# {'nome': 'Alice', 'eta': 17, 'cognome': 'Rossi'}
+```
+
+## Rimuovere elementi
+
+```python
+studente = {"nome": "Alice", "eta": 16, "classe": "3A"}
+
+del studente["classe"]           # elimina la coppia
+print(studente)  # {'nome': 'Alice', 'eta': 16}
+
+eta = studente.pop("eta")        # rimuove e restituisce il valore
+print(eta)       # 16
+print(studente)  # {'nome': 'Alice'}
+
+studente.clear()                 # svuota il dizionario
+```
+
+## Metodi principali
+
+```python
+persona = {"nome": "Alice", "eta": 16, "citta": "Roma"}
+
+# Ottenere tutte le chiavi
+print(persona.keys())    # dict_keys(['nome', 'eta', 'citta'])
+
+# Ottenere tutti i valori
+print(persona.values())  # dict_values(['Alice', 16, 'Roma'])
+
+# Ottenere tutte le coppie chiave-valore
+print(persona.items())   # dict_items([('nome', 'Alice'), ('eta', 16), ('citta', 'Roma')])
+
+# Verificare se una chiave esiste
+print("nome" in persona)      # True
+print("cognome" in persona)   # False
+```
+
+## Iterare su un dizionario
+
+```python
+persona = {"nome": "Alice", "eta": 16, "citta": "Roma"}
+
+# Solo le chiavi
+for chiave in persona:
+    print(chiave)
+
+# Chiavi e valori insieme
+for chiave, valore in persona.items():
+    print(f"{chiave}: {valore}")
+```
+
+Output:
+```
+nome: Alice
+eta: 16
+citta: Roma
+```
+
+## Dizionari annidati
+
+I valori possono essere altri dizionari:
+
+```python
+scuola = {
+    "studente1": {"nome": "Alice", "eta": 16},
+    "studente2": {"nome": "Bob", "eta": 17}
+}
+
+print(scuola["studente1"]["nome"])  # Alice
+print(scuola["studente2"]["eta"])   # 17
+```
+
+## Unire dizionari
+
+```python
+d1 = {"a": 1, "b": 2}
+d2 = {"b": 3, "c": 4}
+
+# Metodo update (modifica il dizionario originale)
+d1.update(d2)
+print(d1)  # {'a': 1, 'b': 3, 'c': 4}  (b è stato sovrascritto)
+
+# Metodo con ** (crea un nuovo dizionario)
+d1 = {"a": 1, "b": 2}
+d3 = {**d1, **d2}
+print(d3)  # {'a': 1, 'b': 3, 'c': 4}
+```

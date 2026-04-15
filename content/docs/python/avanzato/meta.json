@@ -1,0 +1,11 @@
+{
+  "title": "Tecniche avanzate",
+  "icon": "Zap",
+  "defaultOpen": false,
+  "pages": [
+    "stringhe-avanzate",
+    "liste-avanzate",
+    "dizionari-avanzati",
+    "array"
+  ]
+}

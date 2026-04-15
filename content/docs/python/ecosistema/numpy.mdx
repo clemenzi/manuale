@@ -1,0 +1,137 @@
+---
+title: NumPy
+description: Introduzione alla libreria NumPy per il calcolo numerico in Python.
+---
+
+## Cos'è NumPy?
+
+**NumPy** (Numerical Python) è la libreria fondamentale per il calcolo scientifico in Python. Fornisce:
+- Un tipo di array multidimensionale potente ed efficiente (`ndarray`)
+- Funzioni matematiche veloci che operano su array
+- Strumenti per lavorare con matrici
+
+NumPy è alla base di quasi tutte le librerie scientifiche Python (pandas, scikit-learn, matplotlib, ecc.).
+
+## Installazione
+
+```bash
+pip install numpy
+```
+
+## Importazione (convenzione)
+
+Per convenzione, NumPy si importa con l'alias `np`:
+
+```python
+import numpy as np
+```
+
+## Creare array
+
+```python
+import numpy as np
+
+# Da una lista Python
+a = np.array([1, 2, 3, 4, 5])
+print(a)          # [1 2 3 4 5]
+print(type(a))    # <class 'numpy.ndarray'>
+print(a.dtype)    # int64 (tipo dei dati)
+print(a.shape)    # (5,) (forma: 5 elementi in 1D)
+
+# Array 2D (matrice)
+m = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+print(m)
+print(m.shape)    # (3, 3)
+```
+
+## Array predefiniti
+
+```python
+import numpy as np
+
+print(np.zeros(5))          # [0. 0. 0. 0. 0.]
+print(np.ones(4))           # [1. 1. 1. 1.]
+print(np.zeros((2, 3)))     # matrice 2x3 di zeri
+print(np.eye(3))            # matrice identità 3x3
+print(np.arange(0, 10, 2))  # [0 2 4 6 8] (come range)
+print(np.linspace(0, 1, 5)) # [0.   0.25 0.5  0.75 1.  ] (5 punti uniformi)
+print(np.random.rand(3))    # 3 numeri casuali tra 0 e 1
+```
+
+## Operazioni su array
+
+La forza di NumPy è che le operazioni sono applicate a **tutti gli elementi** automaticamente:
+
+```python
+import numpy as np
+
+a = np.array([1, 2, 3, 4, 5])
+
+print(a + 10)       # [11 12 13 14 15]
+print(a * 2)        # [ 2  4  6  8 10]
+print(a ** 2)       # [ 1  4  9 16 25]
+print(a > 3)        # [False False False  True  True]
+
+b = np.array([10, 20, 30, 40, 50])
+print(a + b)        # [11 22 33 44 55]
+print(a * b)        # [ 10  40  90 160 250]
+```
+
+Con le liste Python dovresti usare un ciclo; NumPy lo fa in un colpo solo (e molto più velocemente).
+
+## Funzioni matematiche
+
+```python
+import numpy as np
+
+a = np.array([1, 4, 9, 16, 25])
+
+print(np.sqrt(a))    # [1. 2. 3. 4. 5.]
+print(np.sum(a))     # 55
+print(np.mean(a))    # 11.0 (media)
+print(np.min(a))     # 1
+print(np.max(a))     # 25
+print(np.std(a))     # deviazione standard
+```
+
+## Accesso agli elementi (indicizzazione)
+
+```python
+import numpy as np
+
+m = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+
+print(m[0])        # [1 2 3]  (prima riga)
+print(m[1, 2])     # 6        (riga 1, colonna 2)
+print(m[:, 0])     # [1 4 7]  (tutta la colonna 0)
+print(m[0:2, 1:3]) # [[2 3] [5 6]] (slice)
+```
+
+## NumPy vs liste Python
+
+```python
+import numpy as np
+import time
+
+n = 1_000_000
+
+# Con lista Python
+lista = list(range(n))
+inizio = time.time()
+risultato = [x * 2 for x in lista]
+print(f"Lista: {time.time() - inizio:.3f}s")
+
+# Con NumPy
+array = np.arange(n)
+inizio = time.time()
+risultato = array * 2
+print(f"NumPy: {time.time() - inizio:.3f}s")
+```
+
+NumPy è spesso 10-100 volte più veloce delle liste Python per operazioni numeriche.
+
+## Dove approfondire
+
+NumPy è una libreria enorme. Per imparare di più:
+- Documentazione ufficiale: [numpy.org](https://numpy.org)
+- Tutorial interattivi su numerosissimi siti online

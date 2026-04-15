@@ -1,0 +1,11 @@
+{
+  "title": "Funzioni",
+  "icon": "SquareFunction",
+  "defaultOpen": true,
+  "pages": [
+    "funzioni",
+    "lambda",
+    "scope",
+    "funzioni-ricorsive"
+  ]
+}

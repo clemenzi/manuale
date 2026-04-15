@@ -1,0 +1,152 @@
+---
+title: Debugging di base
+description: Come trovare e correggere gli errori nei programmi Python.
+---
+
+## Cos'è il debugging?
+
+Il **debugging** (o debug) è il processo di trovare e correggere gli errori (bug) in un programma. Anche i programmatori esperti passano molto tempo a fare debug.
+
+## Tipi di errori in Python
+
+### 1. Errori di sintassi (SyntaxError)
+
+Il codice non rispetta le regole del linguaggio. Python li segnala prima di eseguire il programma:
+
+```python
+# Manca i due punti dopo if
+if x > 0
+    print(x)
+# SyntaxError: expected ':'
+```
+
+### 2. Errori a runtime
+
+Il codice è sintatticamente corretto ma qualcosa va storto durante l'esecuzione:
+
+```python
+lista = [1, 2, 3]
+print(lista[10])   # IndexError: list index out of range
+```
+
+### 3. Errori logici
+
+Il programma gira senza errori ma produce risultati sbagliati. Sono i più difficili da trovare:
+
+```python
+def media(numeri):
+    return sum(numeri) / len(numeri) - 1  # Bug: il -1 non dovrebbe esserci
+```
+
+## Leggere i messaggi di errore (Traceback)
+
+Quando Python incontra un errore, mostra un **traceback**. Imparare a leggerlo è fondamentale:
+
+```
+Traceback (most recent call last):
+  File "script.py", line 10, in <module>
+    risultato = dividi(10, 0)
+  File "script.py", line 4, in dividi
+    return a / b
+ZeroDivisionError: division by zero
+```
+
+Leggi dal basso verso l'alto:
+- L'ultima riga ti dice il **tipo di errore** e il messaggio
+- Le righe precedenti mostrano la **sequenza di chiamate** che ha portato all'errore
+
+## Debug con `print()`
+
+Il metodo più semplice: inserire `print()` strategici per vedere il valore delle variabili:
+
+```python
+def calcola_media(voti):
+    print(f"DEBUG: voti ricevuti: {voti}")   # stampa di debug
+    totale = sum(voti)
+    print(f"DEBUG: totale = {totale}")        # stampa di debug
+    media = totale / len(voti)
+    print(f"DEBUG: media = {media}")          # stampa di debug
+    return media
+
+risultato = calcola_media([8, 7, 9])
+print(f"Risultato finale: {risultato}")
+```
+
+Ricorda di rimuovere le stampe di debug quando hai finito!
+
+## Il modulo `logging`
+
+Meglio delle print per il debug: il modulo `logging` permette di filtrare e disattivare facilmente i messaggi:
+
+```python
+import logging
+
+# Configura il livello di log
+logging.basicConfig(level=logging.DEBUG)
+
+def calcola_media(voti):
+    logging.debug(f"voti ricevuti: {voti}")
+    totale = sum(voti)
+    logging.debug(f"totale = {totale}")
+    return totale / len(voti)
+
+calcola_media([8, 7, 9])
+```
+
+Livelli di log (dal meno al più grave): DEBUG, INFO, WARNING, ERROR, CRITICAL.
+
+## Il debugger interattivo: `pdb`
+
+Python include un debugger a riga di comando chiamato `pdb`:
+
+```python
+import pdb
+
+def funzione_problematica(x, y):
+    pdb.set_trace()   # il programma si ferma qui
+    risultato = x / y
+    return risultato
+
+funzione_problematica(10, 2)
+```
+
+Comandi base di `pdb`:
+- `n` (next): esegui la riga successiva
+- `s` (step): entra in una funzione
+- `p variabile` (print): stampa il valore di una variabile
+- `c` (continue): continua fino al prossimo breakpoint
+- `q` (quit): esci dal debugger
+
+Da Python 3.7+, puoi usare `breakpoint()` invece di `pdb.set_trace()`.
+
+## Usare un IDE con debugger grafico
+
+Editor come **VS Code** o **PyCharm** offrono un debugger grafico molto più comodo:
+- Puoi cliccare per aggiungere **breakpoint** (punti di fermata)
+- Puoi vedere tutte le variabili in una finestra apposita
+- Puoi avanzare riga per riga con pulsanti
+
+## Tecniche di debug utili
+
+### Controllare il tipo di una variabile
+
+```python
+x = qualche_funzione()
+print(type(x), x)   # mostra tipo e valore
+```
+
+### `assert` per verificare condizioni
+
+```python
+def calcola_area(base, altezza):
+    assert base > 0, f"La base deve essere positiva, ricevuto: {base}"
+    assert altezza > 0, f"L'altezza deve essere positiva, ricevuta: {altezza}"
+    return base * altezza
+
+calcola_area(5, 3)     # funziona
+calcola_area(-1, 3)    # AssertionError: La base deve essere positiva, ricevuto: -1
+```
+
+### Isolare il problema
+
+Quando hai un bug, cerca di isolare la parte di codice che lo causa. Crea un piccolo esempio riproducibile e testalo separatamente.

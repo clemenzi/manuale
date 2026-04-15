@@ -1,0 +1,85 @@
+---
+title: Commenti
+description: Come usare i commenti per documentare il codice Python.
+---
+
+## Cosa sono i commenti?
+
+I **commenti** sono parti del codice che vengono ignorate dall'interprete Python. Servono a spiegare cosa fa il codice, sia a te stesso quando lo rileggi dopo qualche tempo, sia ad altri che potrebbero leggere il tuo lavoro.
+
+Un buon programmatore scrive commenti chiari e utili.
+
+## Commenti su una riga
+
+In Python, un commento su una singola riga inizia con il simbolo `#`. Tutto ciò che viene dopo `#` sulla stessa riga viene ignorato:
+
+```python
+# Questo è un commento
+print("Ciao!")  # Anche questo è un commento (inline)
+
+# Il codice sotto non viene eseguito:
+# print("Questa riga non viene stampata")
+```
+
+## Commenti su più righe
+
+Python non ha un simbolo dedicato per i commenti multiriga come altri linguaggi. Hai due opzioni:
+
+**Opzione 1:** Usare `#` su ogni riga
+
+```python
+# Questa è la prima riga del commento
+# Questa è la seconda riga
+# Questa è la terza riga
+```
+
+**Opzione 2:** Usare le stringhe triple apici (tecnicamente non sono commenti, ma vengono spesso usate così)
+
+```python
+"""
+Questo è un testo su più righe.
+Viene spesso usato come commento multiriga
+o come documentazione di funzioni e classi.
+"""
+```
+
+Le stringhe con triple apici `"""..."""` o `'''...'''` sono tecnicamente delle stringhe che non vengono assegnate a nessuna variabile, quindi Python le ignora. Vengono però usate ufficialmente come **docstring** (documentazione) per funzioni, classi e moduli.
+
+## Quando usare i commenti?
+
+Usa i commenti per:
+
+- Spiegare **perché** hai fatto una scelta (non solo cosa fa il codice)
+- Documentare parti complesse o non ovvie
+- Disabilitare temporaneamente del codice durante il debug
+
+```python
+# Calcoliamo l'area del cerchio con la formula pi * r^2
+raggio = 5
+area = 3.14159 * raggio ** 2
+print(area)
+```
+
+Evita commenti ovvi che non aggiungono informazioni:
+
+```python
+# Male: commento inutile
+x = 10  # assegna 10 a x
+
+# Bene: nessun commento necessario, il codice è già chiaro
+eta = 16
+```
+
+## Docstring
+
+Le **docstring** sono commenti speciali usati per documentare funzioni, classi e moduli. Si scrivono subito dopo la definizione con triple apici:
+
+```python
+def saluta(nome):
+    """Questa funzione stampa un saluto personalizzato."""
+    print("Ciao, " + nome + "!")
+
+saluta("Marco")
+```
+
+Le docstring possono essere lette dal programma con `help()` o con l'attributo `__doc__`.

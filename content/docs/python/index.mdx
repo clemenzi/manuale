@@ -1,15 +1,81 @@
 ---
-title: Python
-icon: PythonIcon
+title: Introduzione
+description: Cos'è Python, come funziona e come iniziare a usarlo.
+icon: BookOpen
 ---
 
-Benvenuto nella sezione Python dell'**Handbook di Programmazione**.
+## Cos'è Python?
 
-Python e un linguaggio ideale per chi inizia: la sintassi e leggibile, non richiede configurazioni complesse e si usa in moltissimi ambiti — dalla scienza dei dati al web, dall'automazione all'intelligenza artificiale.
+Python è un linguaggio di programmazione **ad alto livello**, cioè scritto in modo vicino al linguaggio umano, facile da leggere e capire. È stato creato da **Guido van Rossum** e rilasciato per la prima volta nel **1991**.
 
-<Cards>
-  <Card title="Introduzione" href="/docs/python/introduzione" description="Cos'e la programmazione e come orientarsi." />
-  <Card title="Basi della Programmazione" href="/docs/python/basi" description="Variabili, condizioni, cicli e funzioni." />
-  <Card title="Strutture Dati" href="/docs/python/strutture-dati" description="Liste, dizionari, tuple e set." />
-  <Card title="Prossimi Passi" href="/docs/python/prossimi-passi" description="Dove andare dopo aver imparato le basi." />
-</Cards>
+Oggi Python è uno dei linguaggi più usati al mondo. Lo trovi in:
+
+- applicazioni web (Instagram, YouTube usano Python)
+- intelligenza artificiale e machine learning
+- analisi dati e scienza
+- automazione e scripting
+- giochi e grafica
+
+## Perché imparare Python?
+
+- La sintassi è semplice e pulita: i programmi Python assomigliano quasi a frasi in inglese
+- È multipiattaforma: funziona su Windows, macOS e Linux
+- Ha una grandissima comunità e moltissime librerie disponibili
+- È gratis e open source
+
+## Come funziona Python?
+
+Python è un linguaggio **interpretato**: il codice che scrivi viene letto ed eseguito riga per riga da un programma chiamato **interprete**. Non devi compilare il codice prima di eseguirlo (a differenza di C++).
+
+Il flusso di lavoro è semplice:
+
+1. Scrivi il codice in un file con estensione `.py`
+2. L'interprete Python legge ed esegue il file
+3. Vedi il risultato nel terminale
+
+## Installazione
+
+Per iniziare, scarica Python dal sito ufficiale: [python.org](https://www.python.org/downloads/)
+
+Durante l'installazione su Windows, assicurati di spuntare **"Add Python to PATH"**.
+
+Puoi verificare l'installazione aprendo il terminale e digitando:
+
+```bash
+python --version
+```
+
+## Il primo programma
+
+Per tradizione, il primo programma che si scrive in qualsiasi linguaggio è "Hello, World!". In Python è semplicissimo:
+
+```python
+print("Hello, World!")
+```
+
+Salva questo codice in un file chiamato `hello.py` ed eseguilo con:
+
+```bash
+python hello.py
+```
+
+Output:
+
+```
+Hello, World!
+```
+
+La funzione `print()` visualizza del testo sullo schermo. Sarà una delle funzioni che userai di più.
+
+## La console interattiva (REPL)
+
+Python offre anche una **console interattiva** (chiamata REPL, Read-Eval-Print Loop). Basta digitare `python` nel terminale e puoi eseguire istruzioni una alla volta:
+
+```
+>>> print("Ciao!")
+Ciao!
+>>> 2 + 3
+5
+```
+
+La console interattiva è ottima per fare esperimenti e testare piccole idee rapidamente.
