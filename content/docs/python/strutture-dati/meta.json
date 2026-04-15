@@ -1,0 +1,10 @@
+{
+  "title": "Strutture Dati",
+  "pages": [
+    "index",
+    "liste",
+    "dizionari",
+    "tuple",
+    "set"
+  ]
+}

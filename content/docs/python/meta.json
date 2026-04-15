@@ -1,0 +1,12 @@
+{
+  "title": "Python",
+  "icon": "PythonIcon",
+  "root": true,
+  "pages": [
+    "index",
+    "introduzione",
+    "basi",
+    "strutture-dati",
+    "prossimi-passi"
+  ]
+}

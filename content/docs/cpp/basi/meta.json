@@ -1,0 +1,13 @@
+{
+  "title": "Basi della Programmazione",
+  "pages": [
+    "index",
+    "variabili",
+    "tipi-di-dato",
+    "operatori",
+    "input-output",
+    "condizioni",
+    "cicli",
+    "funzioni"
+  ]
+}

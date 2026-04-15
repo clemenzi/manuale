@@ -1,0 +1,12 @@
+{
+  "title": "C++",
+  "icon": "CppIcon",
+  "root": true,
+  "pages": [
+    "index",
+    "introduzione",
+    "basi",
+    "strutture-dati",
+    "prossimi-passi"
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "name": ".",
+  "name": "programming-handbook-it",
   "private": true,
   "type": "module",
   "sideEffects": false,
@@ -13,6 +13,7 @@
     "lint": "oxlint"
   },
   "dependencies": {
+    "@icons-pack/react-simple-icons": "^13.13.0",
     "@orama/orama": "^3.1.18",
     "@tanstack/react-router": "1.168.22",
     "@tanstack/react-router-devtools": "1.166.13",
@@ -35,10 +36,10 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
     "nitro": "^3.0.260311-beta",
+    "oxlint": "^1.60.0",
     "serve": "^14.2.6",
     "srvx": "^0.11.15",
     "tailwindcss": "^4.2.2",
-    "typescript": "^6.0.2",
-    "oxlint": "^1.60.0"
+    "typescript": "^6.0.2"
   }
 }

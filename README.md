@@ -1,7 +1,6 @@
-# .
+# Programming Handbook - Italian
 
-This is a Tanstack Start application generated with
-[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
+A comprehensive programming handbook with guides for Python, C++, and programming fundamentals, built with TanStack Start and Fumadocs.
 
 Run development server:
 
