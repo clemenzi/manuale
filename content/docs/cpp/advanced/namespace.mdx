@@ -3,37 +3,43 @@ title: Namespace
 description: Cosa sono i namespace e come si usa std in C++.
 ---
 
-## Cosa sono i namespace?
+## Perché ti serve questo?
 
-Un **namespace** è un contenitore che raggruppa nomi (di variabili, funzioni, classi) per evitare conflitti. Immagina di avere due librerie che entrambe definiscono una funzione chiamata `print`: senza namespace, il compilatore non saprebbe quale usare. Con i namespace, puoi distinguerle.
+Immagina che due studenti nella stessa classe si chiamino entrambi "Marco". Ogni volta che la prof dice "Marco!", nasce confusione. La soluzione? Usare il cognome: "Marco Rossi" e "Marco Bianchi".
+
+I **namespace** in C++ funzionano allo stesso modo. Se due librerie diverse definiscono una funzione chiamata `print`, il compilatore non saprebbe quale usare. Con i namespace, puoi distinguerle: `LibreriaA::print` e `LibreriaB::print`.
 
 ## Il namespace `std`
 
-Tutto ciò che fa parte della libreria standard del C++ è nel namespace `std` (standard). Per usare `cout`, devi specificare che è `std::cout`:
+Tutto quello che fa parte della libreria standard del C++ si trova nel namespace `std` (abbreviazione di "standard"). Per usare `cout`, devi indicare che appartiene a `std`:
 
 ```cpp
 std::cout << "Ciao!" << std::endl;
 std::string nome = "Alice";
 ```
 
-## `using namespace std`
+Il `::` si legge "appartenente a". Quindi `std::cout` significa "cout appartenente a std".
 
-Scrivere `std::` ogni volta è scomodo. Con la direttiva `using namespace std;`, importi tutti i nomi del namespace `std` e puoi usarli senza prefisso:
+## `using namespace std`: la scorciatoia
+
+Scrivere `std::` ogni volta è scomodo. Con `using namespace std;` importi tutto il namespace `std` e puoi usarlo senza prefisso:
 
 ```cpp
 #include <iostream>
 using namespace std;
 
 int main() {
-    cout << "Ciao!" << endl;   // senza std::
-    string nome = "Alice";
+    cout << "Ciao!" << endl;   // invece di std::cout e std::endl
+    string nome = "Alice";     // invece di std::string
     return 0;
 }
 ```
 
+Questa è la forma che hai visto in quasi tutto il codice di questo manuale.
+
 ## `using` per nomi specifici
 
-Invece di importare tutto il namespace, puoi importare solo i nomi che ti servono:
+Puoi importare solo i nomi che ti servono, invece di tutto il namespace:
 
 ```cpp
 #include <iostream>
@@ -42,24 +48,24 @@ using std::endl;
 using std::string;
 
 int main() {
-    cout << "Ciao!" << endl;   // OK
-    // cin >> nome;            // ERRORE: cin non è stato importato
+    cout << "Ciao!" << endl;   // OK — importato
+    // cin >> x;               // ERRORE — cin non è stato importato
     return 0;
 }
 ```
 
-Questo è più preciso di `using namespace std` e preferibile nei progetti grandi.
+Questo è più preciso ed è la scelta preferita nei progetti grandi.
 
-## Creare un namespace personalizzato
+## Creare i tuoi namespace
 
-Puoi creare i tuoi namespace per organizzare il codice:
+Puoi usare i namespace per organizzare il tuo codice ed evitare conflitti tra funzioni con lo stesso nome:
 
 ```cpp
 namespace Matematica {
     const double PI = 3.14159265358979;
 
     double area(double raggio) {
-        return PI * raggio * raggio;
+        return PI * raggio * raggio;   // area del cerchio
     }
 
     double perimetro(double raggio) {
@@ -69,14 +75,14 @@ namespace Matematica {
 
 namespace Geometria {
     double area(double base, double altezza) {
-        return base * altezza;
+        return base * altezza;   // area del rettangolo
     }
 }
 
 int main() {
-    // Nessun conflitto!
-    cout << Matematica::area(5.0) << endl;     // area cerchio
-    cout << Geometria::area(4.0, 6.0) << endl; // area rettangolo
+    // Nessun conflitto — il compilatore sa qual è quale
+    cout << Matematica::area(5.0) << endl;     // area del cerchio
+    cout << Geometria::area(4.0, 6.0) << endl; // area del rettangolo
     cout << Matematica::PI << endl;
     return 0;
 }
@@ -84,26 +90,25 @@ int main() {
 
 ## Namespace annidati
 
-I namespace possono essere annidati:
+Puoi mettere namespace dentro altri namespace, come cartelle dentro cartelle:
 
 ```cpp
-namespace Azienda {
-    namespace Finanza {
-        double calcola(double importo) {
-            return importo * 1.22;   // aggiunge IVA
+namespace Scuola {
+    namespace Matematica {
+        double calcolaMedia(double a, double b) {
+            return (a + b) / 2;
         }
     }
 
-    namespace HR {
-        string benvenuto(string nome) {
-            return "Benvenuto, " + nome + "!";
+    namespace Italiano {
+        string maiuscolo(string s) {
+            return s;   // semplificato
         }
     }
 }
 
 int main() {
-    cout << Azienda::Finanza::calcola(100.0) << endl;
-    cout << Azienda::HR::benvenuto("Alice") << endl;
+    cout << Scuola::Matematica::calcolaMedia(8, 9) << endl;   // 8.5
     return 0;
 }
 ```
@@ -111,45 +116,43 @@ int main() {
 In C++17 puoi scrivere i namespace annidati in modo più compatto:
 
 ```cpp
-namespace Azienda::Finanza {
-    double calcola(double importo) {
-        return importo * 1.22;
+namespace Scuola::Matematica {
+    double calcolaMedia(double a, double b) {
+        return (a + b) / 2;
     }
 }
 ```
 
-## Alias di namespace
+## Alias per namespace lunghi
 
-Per namespace con nomi lunghi, puoi creare un alias:
+Se un namespace ha un nome lungo, puoi dargli un soprannome:
 
 ```cpp
-namespace MioNamespaceMoltoLungo {
-    void funzione() { cout << "Ciao!" << endl; }
+namespace MioSistemaGestioneStudenti {
+    void aggiungiStudente(string nome) { /* ... */ }
 }
 
-namespace ML = MioNamespaceMoltoLungo;   // alias
+namespace MSGS = MioSistemaGestioneStudenti;   // soprannome
 
 int main() {
-    ML::funzione();   // più breve!
+    MSGS::aggiungiStudente("Alice");   // molto più comodo!
     return 0;
 }
 ```
 
-## Buone pratiche
+## Regola importante per gli header
 
-**Non usare `using namespace std` nei file header (.h)**: può causare conflitti per chi include il tuo header.
+Non scrivere mai `using namespace std;` dentro un file header (`.h`). Chi include il tuo header si ritroverebbe importato tutto `std` senza saperlo — potrebbe causare conflitti di nomi inaspettati:
 
 ```cpp
-// header.h - SBAGLIATO
-using namespace std;  // inquina il namespace di chi include
+// mio_header.h — SBAGLIATO
+using namespace std;   // "inquina" il namespace di chi include questo file
 
-// header.h - CORRETTO
-void funzione(std::string s);  // usa il prefisso esplicito
+// mio_header.h — CORRETTO
+void funzione(std::string s);   // usa il prefisso esplicito
 ```
 
-**Usa `using` in modo limitato**: in un file `.cpp` va bene `using namespace std`, ma sii consapevole di cosa importi.
-
-## Esempio pratico
+## Esempio pratico: calcolo geometrico
 
 ```cpp
 #include <iostream>
@@ -158,28 +161,14 @@ using namespace std;
 
 namespace Cerchio {
     const double PI = 3.14159265358979;
-
-    double area(double r) {
-        return PI * r * r;
-    }
-
-    double perimetro(double r) {
-        return 2 * PI * r;
-    }
+    double area(double r) { return PI * r * r; }
+    double perimetro(double r) { return 2 * PI * r; }
 }
 
 namespace Rettangolo {
-    double area(double b, double a) {
-        return b * a;
-    }
-
-    double perimetro(double b, double a) {
-        return 2 * (b + a);
-    }
-
-    double diagonale(double b, double a) {
-        return sqrt(b*b + a*a);
-    }
+    double area(double b, double a) { return b * a; }
+    double perimetro(double b, double a) { return 2 * (b + a); }
+    double diagonale(double b, double a) { return sqrt(b*b + a*a); }
 }
 
 int main() {

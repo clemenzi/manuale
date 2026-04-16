@@ -3,65 +3,65 @@ title: Librerie Standard
 description: Le librerie standard del C++ più utili per iniziare a programmare.
 ---
 
-## Cos'è la libreria standard?
+## Perché ti serve questo?
 
-La **libreria standard del C++** (Standard Library) è un insieme di librerie già pronte che vengono fornite con ogni compilatore C++. Contengono funzioni, classi e costanti per le operazioni più comuni: input/output, matematica, stringhe, contenitori, algoritmi, e molto altro.
+Non devi inventare tutto da zero. Il C++ include una collezione enorme di strumenti già pronti — funzioni matematiche, gestione dei file, algoritmi di ordinamento e molto altro.
 
-Per usare una libreria, la includi con `#include`.
+Si chiama **libreria standard** (Standard Library) ed è disponibile su ogni computer con un compilatore C++. Basta includerla con `#include`.
 
-## `<iostream>` - Input e Output
+## `<iostream>` — Input e Output
 
-La libreria fondamentale per input e output:
+La libreria indispensabile: serve per stampare a schermo e leggere da tastiera.
 
 ```cpp
 #include <iostream>
 using namespace std;
 
 int main() {
-    cout << "Output su schermo" << endl;
-    cerr << "Messaggio di errore" << endl;
-    
+    cout << "Ciao!" << endl;    // stampa a schermo
+
     int x;
-    cin >> x;
-    
+    cin >> x;                   // legge un valore da tastiera
+
+    cerr << "Errore!" << endl;  // stampa un messaggio di errore
+
     return 0;
 }
 ```
 
-Principali oggetti:
-- `cout`: output su schermo
-- `cin`: input da tastiera
-- `cerr`: output degli errori
-- `endl`: vai a capo e svuota il buffer
+- `cout` — stampa a schermo
+- `cin` — legge da tastiera
+- `cerr` — stampa messaggi di errore (canale separato)
+- `endl` — va a capo
 
-## `<string>` - Stringhe
+## `<string>` — Testo
 
-Per usare il tipo `string`:
+Per usare il tipo `string` e tutte le sue funzionalità:
 
 ```cpp
 #include <string>
 using namespace std;
 
 string nome = "Alice";
-int lunghezza = nome.length();
-string maiuscola = "";
-for (char c : nome) {
-    maiuscola += toupper(c);
-}
-cout << maiuscola << endl;   // ALICE
+int lunghezza = nome.length();    // 5
+string inizio = nome.substr(0, 3); // "Ali"
+
+// Converte numero in stringa e viceversa
+string s = to_string(42);   // "42"
+int n = stoi("123");        // 123
+double d = stod("3.14");    // 3.14
 ```
 
-## `<cmath>` - Funzioni Matematiche
+## `<cmath>` — Funzioni Matematiche
 
-Contiene funzioni matematiche avanzate:
+Contiene funzioni matematiche avanzate (potenza, radice, arrotondamento, trigonometria):
 
 ```cpp
 #include <cmath>
 using namespace std;
 
-// Potenza
-cout << pow(2, 10) << endl;     // 1024 (2^10)
-cout << pow(3, 3) << endl;      // 27
+// Potenza: 2 elevato alla 10
+cout << pow(2, 10) << endl;     // 1024
 
 // Radice quadrata
 cout << sqrt(25) << endl;       // 5
@@ -69,66 +69,56 @@ cout << sqrt(2) << endl;        // 1.41421
 
 // Valore assoluto
 cout << abs(-5) << endl;        // 5
-cout << fabs(-3.14) << endl;    // 3.14 (per double)
+cout << fabs(-3.14) << endl;    // 3.14 (per numeri decimali)
 
 // Arrotondamento
 cout << floor(3.7) << endl;     // 3 (arrotonda in giù)
 cout << ceil(3.2) << endl;      // 4 (arrotonda in su)
 cout << round(3.5) << endl;     // 4 (arrotonda al più vicino)
 
-// Funzioni trigonometriche (in radianti)
-cout << sin(0) << endl;         // 0
-cout << cos(0) << endl;         // 1
-
-// Logaritmo
-cout << log(M_E) << endl;       // 1 (logaritmo naturale)
-cout << log10(1000) << endl;    // 3
-
-// Costante PI
-cout << M_PI << endl;           // 3.14159...
+// Costante PI greco
+cout << M_PI << endl;           // 3.14159265...
 ```
 
-## `<cstdlib>` - Funzioni di utilità generali
+## `<cstdlib>` e `<ctime>` — Numeri Casuali e Utilità
 
 ```cpp
 #include <cstdlib>
 #include <ctime>
 using namespace std;
 
-// Numeri casuali
-srand(time(0));   // inizializza il generatore
-int casuale = rand() % 100;   // numero tra 0 e 99
-int dado = rand() % 6 + 1;   // numero tra 1 e 6
+// Inizializza il generatore di numeri casuali (fallo una sola volta)
+srand(time(0));
 
-// Conversione stringa -> numero (alternativa a stoi/stod)
-int n = atoi("42");
-double d = atof("3.14");
+int casuale = rand() % 100;   // numero casuale tra 0 e 99
+int dado = rand() % 6 + 1;   // numero casuale tra 1 e 6
 
-// Uscita dal programma
-// exit(0);    // esce con successo
-// exit(1);    // esce con errore
+// Conversione da stringa a numero (alternativa a stoi/stod)
+int n = atoi("42");      // stringa → intero
+double d = atof("3.14"); // stringa → decimale
 ```
 
-## `<cctype>` - Funzioni sui caratteri
+## `<cctype>` — Funzioni sui Caratteri
+
+Per controllare e trasformare singoli caratteri:
 
 ```cpp
 #include <cctype>
 using namespace std;
 
-char c = 'A';
-cout << isupper(c) << endl;    // 1 (true): è maiuscolo?
-cout << islower(c) << endl;    // 0 (false): è minuscolo?
-cout << isdigit('5') << endl;  // 1: è una cifra?
-cout << isalpha('x') << endl;  // 1: è una lettera?
-cout << isspace(' ') << endl;  // 1: è uno spazio?
+cout << isupper('A') << endl;   // 1 (vero): è maiuscolo?
+cout << islower('a') << endl;   // 1 (vero): è minuscolo?
+cout << isdigit('5') << endl;   // 1 (vero): è una cifra?
+cout << isalpha('x') << endl;   // 1 (vero): è una lettera?
+cout << isspace(' ') << endl;   // 1 (vero): è uno spazio?
 
-cout << tolower('A') << endl;  // 'a': converti in minuscolo
-cout << toupper('a') << endl;  // 'A': converti in maiuscolo
+cout << (char)tolower('A') << endl;   // 'a'
+cout << (char)toupper('a') << endl;   // 'A'
 ```
 
-## `<algorithm>` - Algoritmi
+## `<algorithm>` — Algoritmi Pronti
 
-Contiene algoritmi già implementati per lavorare su sequenze:
+Contiene algoritmi già implementati per lavorare con collezioni di dati:
 
 ```cpp
 #include <algorithm>
@@ -137,64 +127,66 @@ using namespace std;
 
 vector<int> v = {5, 2, 8, 1, 9, 3};
 
-// Ordinamento
+// Ordina dal più piccolo al più grande
 sort(v.begin(), v.end());
 // v è ora: {1, 2, 3, 5, 8, 9}
 
-// Ordinamento decrescente
+// Ordina dal più grande al più piccolo
 sort(v.begin(), v.end(), greater<int>());
 // v è ora: {9, 8, 5, 3, 2, 1}
 
-// Valore minimo e massimo
+// Trova il minimo e il massimo
 cout << *min_element(v.begin(), v.end()) << endl;  // 1
 cout << *max_element(v.begin(), v.end()) << endl;  // 9
 
-// Ricerca
+// Cerca un elemento
 auto it = find(v.begin(), v.end(), 5);
 if (it != v.end()) {
     cout << "Trovato!" << endl;
 }
 
-// Inversione
+// Inverte l'ordine degli elementi
 reverse(v.begin(), v.end());
 ```
 
-## `<vector>` - Vettori
+## `<vector>` — Array Dinamici
 
-Array dinamici (vedi sezione dedicata):
+Per usare array che cambiano dimensione (vedi la sezione dedicata):
 
 ```cpp
 #include <vector>
 using namespace std;
 
 vector<int> v = {1, 2, 3};
-v.push_back(4);
+v.push_back(4);          // aggiunge 4 alla fine
 v.push_back(5);
 cout << v.size() << endl;   // 5
 ```
 
-## `<limits>` - Limiti dei tipi
+## `<limits>` — Valori Massimi e Minimi dei Tipi
+
+Per sapere i limiti di ogni tipo numerico:
 
 ```cpp
 #include <limits>
 using namespace std;
 
-cout << numeric_limits<int>::max() << endl;    // 2147483647
-cout << numeric_limits<int>::min() << endl;    // -2147483648
-cout << numeric_limits<double>::max() << endl; // 1.79769e+308
+cout << numeric_limits<int>::max() << endl;    // 2147483647 (il più grande int)
+cout << numeric_limits<int>::min() << endl;    // -2147483648 (il più piccolo int)
+cout << numeric_limits<double>::max() << endl; // ~1.8×10^308
 ```
 
-## Riepilogo delle librerie più utili
+## Tabella riassuntiva
 
-| Libreria | Contenuto |
+| Libreria | Cosa contiene |
 |---|---|
-| `<iostream>` | cout, cin, cerr, endl |
-| `<string>` | string, getline, stoi, stod, to_string |
-| `<cmath>` | sqrt, pow, abs, sin, cos, floor, ceil, M_PI |
-| `<algorithm>` | sort, find, min, max, reverse |
-| `<vector>` | vector |
-| `<fstream>` | ofstream, ifstream, fstream |
-| `<cstdlib>` | rand, srand, atoi, atof |
-| `<cctype>` | isupper, islower, isdigit, tolower, toupper |
-| `<limits>` | numeric_limits |
-| `<ctime>` | time, clock |
+| `<iostream>` | `cout`, `cin`, `cerr`, `endl` |
+| `<string>` | `string`, `getline`, `stoi`, `stod`, `to_string` |
+| `<cmath>` | `sqrt`, `pow`, `abs`, `floor`, `ceil`, `M_PI` |
+| `<algorithm>` | `sort`, `find`, `min_element`, `max_element`, `reverse` |
+| `<vector>` | `vector` |
+| `<fstream>` | `ofstream`, `ifstream`, `fstream` |
+| `<cstdlib>` | `rand`, `srand`, `atoi`, `atof` |
+| `<cctype>` | `isupper`, `islower`, `isdigit`, `tolower`, `toupper` |
+| `<limits>` | `numeric_limits` |
+| `<ctime>` | `time` |

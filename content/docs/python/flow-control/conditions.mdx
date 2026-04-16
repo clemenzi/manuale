@@ -1,20 +1,24 @@
 ---
 title: Condizioni
-description: Prendere decisioni nel codice con if, elif ed else.
+description: Come insegnare al programma a prendere decisioni con if, elif ed else.
 ---
 
-## Cosa sono le condizioni?
+## Perché le condizioni?
 
-Le **condizioni** permettono al programma di eseguire blocchi di codice diversi a seconda che una situazione sia vera o falsa. Sono fondamentali per creare programmi che si comportano in modo diverso in base ai dati.
+Un programma che fa sempre le stesse cose, senza mai adattarsi alla situazione, è poco utile. Le **condizioni** permettono al programma di prendere decisioni: fare una cosa se qualcosa è vero, un'altra cosa se è falso.
 
-## L'istruzione `if`
+È come un semaforo: se la luce è verde, vai; se è rossa, fermati.
 
-La sintassi base è:
+## Il blocco `if` — "se"
+
+La parola `if` significa "se" in inglese. Dice a Python: "esegui questo blocco di codice solo se la condizione è vera".
 
 ```python
 if condizione:
-    # codice da eseguire se la condizione è vera
+    # questo codice viene eseguito solo se la condizione è vera
 ```
+
+Esempio pratico:
 
 ```python
 eta = 18
@@ -23,11 +27,13 @@ if eta >= 18:
     print("Sei maggiorenne.")
 ```
 
-Se `eta` è 18 o più, viene stampato il messaggio. Altrimenti non succede nulla.
+Se `eta` vale 18 o più, viene stampato il messaggio. Se vale meno di 18, non succede nulla.
 
-## L'istruzione `else`
+> **Ricorda l'indentazione!** Il codice dentro l'`if` deve essere rientrato di 4 spazi. Questa è la regola fondamentale di Python.
 
-`else` definisce cosa fare quando la condizione è falsa:
+## Il blocco `else` — "altrimenti"
+
+`else` significa "altrimenti". Si usa per definire cosa fare quando la condizione dell'`if` è falsa:
 
 ```python
 eta = 15
@@ -38,9 +44,11 @@ else:
     print("Sei minorenne.")
 ```
 
-## L'istruzione `elif`
+Python controlla la condizione. Se è vera, esegue il blocco `if`. Se è falsa, esegue il blocco `else`. Non possono essere eseguiti entrambi.
 
-`elif` (abbreviazione di "else if") permette di controllare più condizioni in sequenza:
+## Il blocco `elif` — "altrimenti se"
+
+`elif` è l'abbreviazione di "else if" (altrimenti se). Serve quando hai più di due possibilità da gestire:
 
 ```python
 voto = 75
@@ -55,11 +63,15 @@ else:
     print("Insufficiente.")
 ```
 
-Python controlla le condizioni dall'alto verso il basso e si ferma alla prima vera.
+Python controlla le condizioni dall'alto verso il basso e si ferma alla **prima** che è vera. Le altre vengono saltate.
+
+Con `voto = 75`:
+1. `voto >= 90`? No (75 non è >= 90)
+2. `voto >= 70`? Sì! → stampa "Buono!" e si ferma
 
 ## Condizioni annidate
 
-Puoi mettere un `if` dentro un altro `if`:
+Puoi mettere un `if` dentro un altro `if`. Si chiama annidamento:
 
 ```python
 eta = 20
@@ -74,66 +86,43 @@ else:
     print("Sei minorenne, non puoi guidare.")
 ```
 
-## Operatori logici nelle condizioni
+Ogni livello di annidamento aggiunge altri 4 spazi di indentazione. Tieni d'occhio gli spazi!
 
-Puoi combinare più condizioni con `and`, `or` e `not`:
+## Combinare condizioni con `and` e `or`
+
+Invece di annidare, spesso puoi combinare due condizioni in una sola riga:
 
 ```python
+eta = 20
+ha_patente = True
+
+# Con 'and': entrambe devono essere vere
+if eta >= 18 and ha_patente:
+    print("Puoi guidare.")
+
+# Con 'or': basta che una sia vera
 eta = 16
 con_accompagnatore = True
 
 if eta >= 18 or con_accompagnatore:
     print("Puoi entrare.")
+```
+
+## Controllare se un valore è in una lista
+
+L'operatore `in` è molto comodo per verificare se un elemento è presente in una sequenza:
+
+```python
+frutta_disponibile = ["mela", "banana", "uva"]
+scelta = "mela"
+
+if scelta in frutta_disponibile:
+    print("Ottima scelta, ce l'abbiamo!")
 else:
-    print("Non puoi entrare.")
+    print("Mi dispiace, quella frutta non c'è.")
 ```
 
-```python
-nome = "Alice"
-eta = 16
-
-if nome and eta:  # controlla che né nome né eta siano vuoti/zero
-    print(f"Benvenuto/a {nome}, hai {eta} anni.")
-```
-
-## Condizioni con `in`
-
-```python
-frutta_preferita = "mela"
-disponibili = ["mela", "banana", "uva"]
-
-if frutta_preferita in disponibili:
-    print("Abbiamo la frutta che preferisci!")
-else:
-    print("Mi dispiace, non abbiamo quella frutta.")
-```
-
-## Espressione condizionale (operatore ternario)
-
-Python permette di scrivere un if-else su una sola riga:
-
-```python
-eta = 20
-stato = "maggiorenne" if eta >= 18 else "minorenne"
-print(stato)  # maggiorenne
-```
-
-La forma è: `valore_se_vero if condizione else valore_se_falso`
-
-## Confrontare con `None`
-
-Per verificare se una variabile è `None`, usa `is None` invece di `== None`:
-
-```python
-risultato = None
-
-if risultato is None:
-    print("Nessun risultato disponibile.")
-else:
-    print(f"Il risultato è: {risultato}")
-```
-
-## Esempio pratico
+## Esempio completo
 
 ```python
 numero = int(input("Inserisci un numero: "))
@@ -145,3 +134,8 @@ elif numero < 0:
 else:
     print("Il numero è zero.")
 ```
+
+Con questo programma:
+- Se scrivi `5` → "Il numero è positivo."
+- Se scrivi `-3` → "Il numero è negativo."
+- Se scrivi `0` → "Il numero è zero."

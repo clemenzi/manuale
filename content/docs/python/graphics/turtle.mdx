@@ -3,30 +3,37 @@ title: Grafica con Turtle
 description: Disegnare con la libreria Turtle in Python.
 ---
 
+## Perché ti serve questo?
+
+Turtle è il modo più semplice e divertente per vedere i risultati del tuo codice in modo visivo. Invece di stampare numeri sul terminale, disegni figure sullo schermo — e puoi vedere ogni riga del tuo programma "prendere vita".
+
+È anche un ottimo strumento per capire come funzionano i cicli e la geometria.
+
+---
+
 ## Cos'è Turtle?
 
-**Turtle** è una libreria inclusa in Python che permette di disegnare figure geometriche muovendo una "tartaruga" virtuale su uno schermo. È un ottimo modo per iniziare a programmare in modo visivo e divertente.
+**Turtle** è una libreria già inclusa in Python — non devi installare nulla. Ti permette di controllare una "tartaruga" virtuale su uno schermo. La tartaruga ha una penna sotto il guscio: quando si muove, lascia una traccia. Tu dai i comandi e la tartaruga disegna.
 
-L'idea viene dal linguaggio Logo degli anni '60: immagina una tartaruga con una penna sotto al guscio. Quando si muove, lascia un segno.
+L'idea viene dal linguaggio Logo degli anni '60, usato proprio per insegnare la programmazione ai bambini.
 
-## Iniziare con Turtle
+---
 
-Turtle è già incluso in Python, non serve installare nulla:
+## Il primo programma
 
 ```python
 import turtle
 
-# Crea la finestra e la tartaruga
-t = turtle.Turtle()
+t = turtle.Turtle()   # Crea la tartaruga
 
-# Muovi la tartaruga
-t.forward(100)   # avanza di 100 pixel
-t.right(90)      # gira a destra di 90 gradi
-t.forward(100)
+t.forward(100)        # Avanza di 100 pixel
+t.right(90)           # Gira a destra di 90°
+t.forward(100)        # Avanza ancora
 
-# Chiudi la finestra al click (opzionale)
-turtle.done()
+turtle.done()         # Mantieni la finestra aperta
 ```
+
+---
 
 ## Comandi di movimento
 
@@ -34,33 +41,39 @@ turtle.done()
 import turtle
 t = turtle.Turtle()
 
-t.forward(100)   # (o t.fd(100)) avanza
-t.backward(50)   # (o t.bk(50)) arretra
-t.right(90)      # (o t.rt(90)) gira a destra
-t.left(90)       # (o t.lt(90)) gira a sinistra
-t.goto(100, 50)  # vai alle coordinate (x, y)
-t.home()         # torna all'origine (0, 0)
-t.setx(200)      # imposta solo la x
-t.sety(-50)      # imposta solo la y
+t.forward(100)    # Avanza di 100 pixel (abbreviazione: t.fd(100))
+t.backward(50)    # Arretra di 50 pixel (abbreviazione: t.bk(50))
+t.right(90)       # Gira a destra di 90° (abbreviazione: t.rt(90))
+t.left(90)        # Gira a sinistra di 90° (abbreviazione: t.lt(90))
+t.goto(100, 50)   # Vai alle coordinate (x, y) — l'origine è al centro
+t.home()          # Torna all'origine (0, 0) e guarda a destra
 ```
 
-## Penna su e giù
+---
+
+## Alzare e abbassare la penna
 
 ```python
-t.penup()    # (o t.pu()) alza la penna: si muove senza disegnare
-t.pendown()  # (o t.pd()) abbassa la penna: torna a disegnare
+t.penup()    # Alza la penna: la tartaruga si muove senza disegnare
+t.pendown()  # Abbassa la penna: torna a disegnare
 ```
 
-## Personalizzare la penna
+Utile per "saltare" in un altro punto senza lasciare tracce.
+
+---
+
+## Personalizzare il disegno
 
 ```python
-t.pensize(3)            # spessore della linea
-t.pencolor("red")       # colore della linea
-t.fillcolor("yellow")   # colore di riempimento
-t.speed(5)              # velocità (1=lenta, 10=veloce, 0=massima)
+t.pensize(3)           # Spessore della linea (in pixel)
+t.pencolor("red")      # Colore della linea
+t.fillcolor("yellow")  # Colore di riempimento (usato con begin_fill / end_fill)
+t.speed(5)             # Velocità: 1=lenta, 10=veloce, 0=massima (instantanea)
 ```
 
-## Disegnare figure base
+---
+
+## Disegnare figure geometriche
 
 ### Quadrato
 
@@ -68,19 +81,21 @@ t.speed(5)              # velocità (1=lenta, 10=veloce, 0=massima)
 import turtle
 t = turtle.Turtle()
 
+# Un quadrato ha 4 lati uguali e 4 angoli di 90°
 for _ in range(4):
-    t.forward(100)
-    t.right(90)
+    t.forward(100)   # Disegna un lato
+    t.right(90)      # Gira di 90°
 
 turtle.done()
 ```
 
-### Triangolo
+### Triangolo equilatero
 
 ```python
 import turtle
 t = turtle.Turtle()
 
+# Un triangolo equilatero ha 3 lati e angoli esterni di 120°
 for _ in range(3):
     t.forward(100)
     t.left(120)
@@ -94,41 +109,46 @@ turtle.done()
 import turtle
 t = turtle.Turtle()
 
-t.circle(50)    # cerchio con raggio 50
+t.circle(50)    # Disegna un cerchio con raggio 50 pixel
 
 turtle.done()
 ```
 
-### Stelle
+### Stella a 5 punte
 
 ```python
 import turtle
 t = turtle.Turtle()
 t.speed(0)
 
+# Per una stella a 5 punte l'angolo esterno è 144°
 for _ in range(5):
     t.forward(100)
-    t.right(144)  # angolo esterno di una stella a 5 punte
+    t.right(144)
 
 turtle.done()
 ```
 
-## Riempimento con il colore
+---
+
+## Riempire una figura con il colore
 
 ```python
 import turtle
 t = turtle.Turtle()
 
-t.fillcolor("blue")
-t.begin_fill()     # inizia a riempire
+t.fillcolor("blue")   # Scegli il colore di riempimento
+t.begin_fill()        # Da qui inizia il riempimento
 
-for _ in range(4):
+for _ in range(4):    # Disegna il quadrato
     t.forward(100)
     t.right(90)
 
-t.end_fill()       # finisce il riempimento
+t.end_fill()          # Riempi la figura chiusa
 turtle.done()
 ```
+
+---
 
 ## Personalizzare la finestra
 
@@ -136,31 +156,37 @@ turtle.done()
 import turtle
 
 schermo = turtle.Screen()
-schermo.title("Il mio disegno Turtle")
-schermo.bgcolor("black")
-schermo.setup(width=800, height=600)
+schermo.title("Il mio disegno")       # Titolo della finestra
+schermo.bgcolor("black")              # Colore dello sfondo
+schermo.setup(width=800, height=600)  # Dimensioni in pixel
 
 t = turtle.Turtle()
-t.pencolor("white")
+t.pencolor("white")   # Disegna in bianco su sfondo nero
 t.forward(200)
 
 turtle.done()
 ```
 
-## Esempio: spirale colorata
+---
+
+## Esempio: spirale arcobaleno
+
+Combina un ciclo, colori e geometria per creare qualcosa di bello:
 
 ```python
 import turtle
 
 t = turtle.Turtle()
-t.speed(0)
+t.speed(0)   # Velocità massima
 
 colori = ["red", "orange", "yellow", "green", "blue", "purple"]
 
 for i in range(100):
-    t.pencolor(colori[i % len(colori)])
-    t.forward(i * 2)
-    t.right(91)
+    t.pencolor(colori[i % len(colori)])  # Cambia colore ciclicamente
+    t.forward(i * 2)                      # Ogni volta avanza un po' di più
+    t.right(91)                           # 91° invece di 90° crea la spirale
 
 turtle.done()
 ```
+
+Prova a modificare l'angolo (91°) o il numero di passi (100) per ottenere effetti diversi.

@@ -3,11 +3,11 @@ title: Enumerazioni (enum)
 description: Come usare le enumerazioni in C++ per definire insiemi di costanti con nome.
 ---
 
-## Cosa sono le enumerazioni?
+## Perché ti serve questo?
 
-Un'**enumerazione** (`enum`) è un tipo di dato che definisce un insieme di valori costanti con nome. È utile quando una variabile può assumere solo un numero limitato di valori predefiniti.
+Supponi di dover rappresentare i giorni della settimana nel tuo programma. Potresti usare i numeri 0, 1, 2... ma chi si ricorda che 3 è giovedì?
 
-Ad esempio, i giorni della settimana, le stagioni, i colori di un semaforo, o i livelli di difficoltà di un gioco.
+Un'**enumerazione** (`enum`) ti permette di dare nomi significativi a un insieme fisso di valori. Invece di `3`, scrivi `GIOVEDI`. Il codice diventa leggibile come l'italiano.
 
 ## Definire un `enum`
 
@@ -18,6 +18,8 @@ enum NomeEnum {
     VALORE3
 };
 ```
+
+Esempio concreto:
 
 ```cpp
 enum GiornoSettimana {
@@ -31,12 +33,12 @@ enum GiornoSettimana {
 };
 ```
 
-Per convenzione, i valori dell'enum si scrivono in **MAIUSCOLO**.
+Per convenzione, i valori si scrivono tutti in **MAIUSCOLO**.
 
 ## Usare un `enum`
 
 ```cpp
-GiornoSettimana oggi = MERCOLEDI;
+GiornoSettimana oggi = MERCOLEDI;   // dichiara una variabile di tipo GiornoSettimana
 
 if (oggi == SABATO || oggi == DOMENICA) {
     cout << "Weekend!" << endl;
@@ -45,9 +47,9 @@ if (oggi == SABATO || oggi == DOMENICA) {
 }
 ```
 
-## I valori numerici
+## I valori numerici nascosti
 
-Internamente, ogni valore dell'enum è un numero intero. Per default, il primo vale 0, il secondo 1, e così via:
+Internamente, ogni valore dell'enum è un numero. Per default, il primo vale 0, il secondo 1, e così via:
 
 ```cpp
 enum Stagione {
@@ -58,14 +60,14 @@ enum Stagione {
 };
 
 Stagione s = ESTATE;
-cout << s << endl;   // 1 (il valore numerico)
+cout << s << endl;   // stampa 1 (il numero interno)
 ```
 
-Puoi assegnare valori espliciti:
+Puoi assegnare valori specifici:
 
 ```cpp
 enum Mese {
-    GENNAIO = 1,   // inizia da 1 invece di 0
+    GENNAIO = 1,   // parte da 1 invece di 0
     FEBBRAIO,      // 2
     MARZO,         // 3
     // ...
@@ -76,9 +78,9 @@ Mese m = MARZO;
 cout << m << endl;  // 3
 ```
 
-## Usare `enum` con `switch`
+## Abbinare `enum` e `switch`
 
-`enum` e `switch` si abbinano molto bene:
+`enum` e `switch` si abbinano perfettamente — il codice è chiaro e privo di ambiguità:
 
 ```cpp
 enum Semaforo {
@@ -108,65 +110,45 @@ int main() {
 }
 ```
 
-## `enum class` (C++11)
+## `enum class`: la versione moderna e più sicura
 
-Il C++ moderno introduce `enum class` (o `enum struct`), che è più sicuro perché i valori sono "scoped" (appartengono all'enum, non allo scope globale):
+Il C++ moderno introduce `enum class`, che evita un problema degli enum classici: i nomi possono andare in conflitto tra enum diversi.
 
 ```cpp
-enum class Colore {
-    ROSSO,
-    VERDE,
-    BLU
-};
+// Problema con enum classico:
+enum Colore { ROSSO, VERDE, BLU };
+enum Frutto { ROSSO, VERDE, GIALLO };  // ERRORE: ROSSO è già definito!
 
-enum class Frutto {
-    ROSSO,   // non c'è conflitto con Colore::ROSSO
-    VERDE,
-    GIALLO
-};
+// Soluzione con enum class:
+enum class Colore { ROSSO, VERDE, BLU };
+enum class Frutto { ROSSO, VERDE, GIALLO };   // nessun conflitto!
 
 int main() {
-    Colore c = Colore::ROSSO;   // devi specificare il namespace
-    Frutto f = Frutto::ROSSO;   // nessun conflitto
+    Colore c = Colore::ROSSO;   // devi specificare il nome dell'enum
+    Frutto f = Frutto::ROSSO;   // completamente separato da Colore::ROSSO
 
     if (c == Colore::ROSSO) {
         cout << "Il colore è rosso" << endl;
     }
-
     return 0;
 }
 ```
 
-Con `enum class`, puoi avere lo stesso nome in enum diversi senza conflitti. È la scelta preferita nel C++ moderno.
+Con `enum class` devi sempre scrivere `NomeEnum::VALORE` — è più lungo, ma non ci sono mai ambiguità. È la scelta preferita nel C++ moderno.
 
-## Limitazioni degli enum classici
-
-```cpp
-enum A { X, Y };
-enum B { X, Z };   // ERRORE: X è già definito!
-```
-
-Con `enum class`:
-
-```cpp
-enum class A { X, Y };
-enum class B { X, Z };   // OK: A::X e B::X non confliggono
-```
-
-## Convertire tra enum e int
+## Convertire tra `enum` e numeri
 
 ```cpp
 enum Livello { FACILE, MEDIO, DIFFICILE };
 
 Livello l = MEDIO;
-int n = static_cast<int>(l);   // enum -> int
-cout << n << endl;              // 1
+int n = static_cast<int>(l);      // da enum a numero → 1
+cout << n << endl;
 
-Livello l2 = static_cast<Livello>(2);  // int -> enum
-// l2 è DIFFICILE
+Livello l2 = static_cast<Livello>(2);  // da numero a enum → DIFFICILE
 ```
 
-## Esempio pratico: sistema di votazione
+## Esempio pratico: sistema di voti
 
 ```cpp
 #include <iostream>
@@ -179,6 +161,7 @@ enum class Giudizio {
     INSUFFICIENTE
 };
 
+// Converte un voto numerico nel giudizio corrispondente
 Giudizio classificaVoto(int voto) {
     if (voto >= 9) return Giudizio::OTTIMO;
     if (voto >= 7) return Giudizio::BUONO;
@@ -186,20 +169,13 @@ Giudizio classificaVoto(int voto) {
     return Giudizio::INSUFFICIENTE;
 }
 
+// Stampa il giudizio in parole
 void stampaGiudizio(Giudizio g) {
     switch (g) {
-        case Giudizio::OTTIMO:
-            cout << "Ottimo!" << endl;
-            break;
-        case Giudizio::BUONO:
-            cout << "Buono" << endl;
-            break;
-        case Giudizio::SUFFICIENTE:
-            cout << "Sufficiente" << endl;
-            break;
-        case Giudizio::INSUFFICIENTE:
-            cout << "Insufficiente" << endl;
-            break;
+        case Giudizio::OTTIMO:        cout << "Ottimo!" << endl;        break;
+        case Giudizio::BUONO:         cout << "Buono" << endl;          break;
+        case Giudizio::SUFFICIENTE:   cout << "Sufficiente" << endl;    break;
+        case Giudizio::INSUFFICIENTE: cout << "Insufficiente" << endl;  break;
     }
 }
 

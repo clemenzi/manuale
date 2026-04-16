@@ -3,101 +3,116 @@ title: Uso di pacchetti (pip)
 description: Come installare e gestire pacchetti Python con pip.
 ---
 
+## Perché ti serve questo?
+
+Python ha già molte funzionalità integrate, ma la sua vera forza è l'enorme numero di **librerie esterne** create dalla comunità: strumenti per fare grafica, analisi dati, intelligenza artificiale, giochi, siti web e molto altro.
+
+**pip** è lo strumento che ti permette di scaricare e installare queste librerie in pochi secondi.
+
+---
+
 ## Cos'è pip?
 
-**pip** è il gestore di pacchetti ufficiale di Python. Permette di installare, aggiornare e rimuovere librerie di terze parti dal **Python Package Index** (PyPI), il repository ufficiale con oltre 400.000 pacchetti gratuiti.
+**pip** è il "gestore di pacchetti" ufficiale di Python. È come un negozio online: ti permette di cercare e installare gratuitamente oltre 400.000 librerie da **PyPI** (il deposito ufficiale di Python, all'indirizzo pypi.org).
 
-## Verificare pip
+Pip è già incluso con Python — non devi installarlo separatamente.
 
-Verifica che pip sia installato:
+---
+
+## Verificare che pip funzioni
+
+Apri il terminale (o il prompt dei comandi su Windows) e digita:
 
 ```bash
 pip --version
 # pip 24.0 from /usr/lib/python3/dist-packages/pip (python 3.x)
 ```
 
-Se hai sia Python 2 che Python 3, potrebbe essere necessario usare `pip3`:
+Se hai sia Python 2 che Python 3, potrebbe servire `pip3`:
 
 ```bash
 pip3 --version
 ```
 
-## Installare un pacchetto
+---
+
+## Installare una libreria
 
 ```bash
-pip install nome-pacchetto
+pip install nome-libreria
 ```
 
-Esempio: installare `requests` (per fare richieste HTTP):
+Esempio: installare `requests`, la libreria più usata per fare richieste al web:
 
 ```bash
 pip install requests
 ```
 
-Installare una versione specifica:
+Installare una versione specifica (utile quando un progetto richiede esattamente una certa versione):
 
 ```bash
 pip install requests==2.31.0
 ```
 
-Installare l'ultima versione disponibile:
+Aggiornare una libreria all'ultima versione disponibile:
 
 ```bash
 pip install --upgrade requests
 ```
 
-## Disinstallare un pacchetto
+---
+
+## Disinstallare una libreria
 
 ```bash
-pip uninstall nome-pacchetto
 pip uninstall requests
 ```
 
-## Elenco dei pacchetti installati
+---
+
+## Vedere le librerie installate
 
 ```bash
 pip list
 ```
 
-Output:
+Output di esempio:
 ```
 Package    Version
 ---------- -------
 pip        24.0
 requests   2.31.0
 numpy      1.26.0
-...
 ```
 
-## Il file `requirements.txt`
+---
 
-Il file `requirements.txt` elenca tutti i pacchetti necessari per il progetto, in modo che chiunque possa installarli facilmente:
+## Il file `requirements.txt`: condividere le dipendenze
+
+Quando condividi un progetto con altri, devono sapere quali librerie installare. Il file `requirements.txt` elenca tutto quello che serve.
+
+**Creare il file** (salva le librerie attualmente installate):
 
 ```bash
-# Creare requirements.txt con i pacchetti installati
 pip freeze > requirements.txt
-
-# Installare tutti i pacchetti da requirements.txt
-pip install -r requirements.txt
 ```
 
-Esempio di `requirements.txt`:
-
+Contenuto tipico di `requirements.txt`:
 ```
 requests==2.31.0
 numpy==1.26.0
 pandas==2.1.0
 ```
 
-## Cercare pacchetti
+**Installare tutto** da un `requirements.txt` (utile quando ricevi un progetto da qualcun altro):
 
 ```bash
-pip search nome-pacchetto
+pip install -r requirements.txt
 ```
 
-Oppure vai direttamente su [pypi.org](https://pypi.org) per cercare e scoprire pacchetti.
+---
 
-## Informazioni su un pacchetto
+## Ottenere informazioni su una libreria
 
 ```bash
 pip show requests
@@ -109,38 +124,28 @@ Name: requests
 Version: 2.31.0
 Summary: Python HTTP for Humans.
 Home-page: https://requests.readthedocs.io
-Author: Kenneth Reitz
-...
 ```
 
-## Pacchetti più popolari
+---
 
-| Pacchetto | Utilizzo |
-|-----------|---------|
-| `requests` | Richieste HTTP |
-| `numpy` | Calcolo numerico |
-| `pandas` | Analisi dati |
-| `matplotlib` | Grafici |
-| `flask` | Web app leggera |
-| `django` | Web app completa |
-| `pillow` | Elaborazione immagini |
-| `pygame` | Sviluppo giochi |
-| `beautifulsoup4` | Web scraping |
+## Librerie popolari da conoscere
 
-## Installare dall'interno di Python
+| Libreria | A cosa serve |
+|----------|-------------|
+| `requests` | Scaricare dati dal web, fare richieste HTTP |
+| `numpy` | Calcoli matematici veloci su grandi quantità di numeri |
+| `pandas` | Analisi e manipolazione di dati (come Excel ma programmabile) |
+| `matplotlib` | Creare grafici e visualizzazioni |
+| `flask` | Creare siti web semplici |
+| `django` | Creare siti web completi |
+| `pillow` | Modificare immagini |
+| `pygame` | Sviluppare videogiochi 2D |
+| `beautifulsoup4` | Estrarre dati da pagine web |
 
-Puoi installare pacchetti direttamente da uno script Python (utile in certi ambienti):
-
-```python
-import subprocess
-import sys
-
-subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
-```
+---
 
 ## Buone pratiche
 
-- Usa sempre un **ambiente virtuale** (vedi il capitolo successivo) per ogni progetto
-- Mantieni aggiornato il file `requirements.txt`
-- Installa solo i pacchetti che ti servono davvero
-- Verifica la reputazione di un pacchetto prima di installarlo (stelle su GitHub, numero di download su PyPI)
+- Usa sempre un **ambiente virtuale** per ogni progetto (vedi il capitolo successivo)
+- Tieni aggiornato il file `requirements.txt` quando aggiungi librerie
+- Prima di installare una libreria sconosciuta, verifica che sia affidabile: guarda quante stelle ha su GitHub e quanti download ha su PyPI

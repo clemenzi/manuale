@@ -1,49 +1,42 @@
 ---
-title: Gestione errori
-description: Come gestire le eccezioni con try ed except in Python.
+title: Gestione degli errori
+description: Come evitare che il programma si blocchi quando qualcosa va storto.
 ---
 
-## Cosa sono le eccezioni?
+## Cosa succede quando si verifica un errore?
 
-Quando qualcosa va storto durante l'esecuzione di un programma, Python "lancia" (raise) un **eccezione**. Se l'eccezione non viene gestita, il programma si interrompe e mostra un messaggio di errore.
+Ogni tanto il programma incontra una situazione che non riesce a gestire: l'utente scrive del testo quando ci si aspetta un numero, si cerca di dividere per zero, si prova ad aprire un file che non esiste.
+
+In questi casi Python "lancia" un **errore** (chiamato tecnicamente *eccezione*) e, se non lo gestisci, il programma si blocca e mostra un messaggio di errore.
 
 Esempi di errori comuni:
 
 ```python
-# ZeroDivisionError
-print(10 / 0)
+print(10 / 0)               # ZeroDivisionError — non si può dividere per zero
+print("ciao" + 5)           # TypeError — non puoi sommare testo e numero
+int("pippo")                # ValueError — "pippo" non è un numero
+print(variabile_che_non_c_e)  # NameError — variabile non definita
 
-# TypeError
-print("ciao" + 5)
-
-# ValueError
-int("pippo")
-
-# NameError
-print(variabile_inesistente)
-
-# IndexError
 lista = [1, 2, 3]
-print(lista[10])
-
-# FileNotFoundError
-open("file_che_non_esiste.txt")
+print(lista[10])            # IndexError — la lista non ha la posizione 10
 ```
 
 ## Il blocco `try / except`
 
-Usa `try/except` per gestire le eccezioni invece di far crashare il programma:
+Per evitare che il programma si blocchi, "avvolgi" il codice rischioso in un blocco `try`. Se si verifica un errore, Python salta al blocco `except` invece di fermarsi:
 
 ```python
 try:
-    # codice che potrebbe causare un errore
     risultato = 10 / 0
 except ZeroDivisionError:
-    # cosa fare se si verifica l'errore
     print("Non puoi dividere per zero!")
 ```
 
+Traduzione in parole: "**Prova** a eseguire questo codice. Se si verifica un `ZeroDivisionError`, **invece** fai questo."
+
 ## Gestire più tipi di errori
+
+Puoi avere più blocchi `except`, uno per ogni tipo di errore che vuoi gestire:
 
 ```python
 try:
@@ -51,23 +44,14 @@ try:
     risultato = 10 / numero
     print(f"10 / {numero} = {risultato}")
 except ValueError:
-    print("Devi inserire un numero valido.")
+    print("Devi inserire un numero valido, non del testo.")
 except ZeroDivisionError:
     print("Non puoi dividere per zero.")
 ```
 
-Puoi anche gestire più eccezioni in una sola riga:
+## Il blocco `else` — "tutto è andato bene"
 
-```python
-try:
-    operazione_rischiosa()
-except (ValueError, TypeError):
-    print("Errore di valore o di tipo")
-```
-
-## Il blocco `else`
-
-Il blocco `else` viene eseguito **solo se non si è verificata alcuna eccezione**:
+Il blocco `else` viene eseguito **solo se non si è verificato nessun errore**:
 
 ```python
 try:
@@ -76,12 +60,12 @@ try:
 except (ValueError, ZeroDivisionError) as e:
     print(f"Errore: {e}")
 else:
-    print(f"Risultato: {risultato}")  # eseguito solo se non ci sono errori
+    print(f"Risultato: {risultato}")   # viene eseguito solo se tutto è ok
 ```
 
-## Il blocco `finally`
+## Il blocco `finally` — "sempre, in ogni caso"
 
-Il blocco `finally` viene **sempre eseguito**, con o senza errori. È utile per liberare risorse (chiudere file, connessioni, ecc.):
+Il blocco `finally` viene **sempre eseguito**, che ci sia stato un errore o no. Torna utile per fare "pulizia" (chiudere un file, liberare risorse):
 
 ```python
 try:
@@ -90,63 +74,48 @@ try:
 except FileNotFoundError:
     print("File non trovato.")
 finally:
-    file.close()   # viene eseguito sempre
-    print("File chiuso.")
+    print("Operazione completata (con o senza errori).")
 ```
 
-## Accedere all'eccezione con `as`
+## Leggere il messaggio di errore
 
-Puoi ottenere l'oggetto eccezione con `as` per leggere il messaggio di errore:
+Puoi salvare il messaggio di errore con `as` e stamaparlo:
 
 ```python
 try:
     x = int("pippo")
 except ValueError as e:
-    print(f"Errore specifico: {e}")
-    # Errore specifico: invalid literal for int() with base 10: 'pippo'
+    print(f"Dettaglio errore: {e}")
+    # Dettaglio errore: invalid literal for int() with base 10: 'pippo'
 ```
 
-## Eccezioni comuni
+## Gli errori più comuni
 
-| Eccezione | Quando si verifica |
-|-----------|-------------------|
-| `ValueError` | Valore non adatto al tipo (es. `int("abc")`) |
-| `TypeError` | Tipo sbagliato (es. `"a" + 5`) |
+| Errore | Quando succede |
+|--------|----------------|
+| `ValueError` | Valore sbagliato per il tipo (es. `int("abc")`) |
+| `TypeError` | Tipo sbagliato (es. `"ciao" + 5`) |
 | `ZeroDivisionError` | Divisione per zero |
 | `NameError` | Variabile non definita |
-| `IndexError` | Indice fuori dal range |
-| `KeyError` | Chiave non trovata in dizionario |
+| `IndexError` | Indice fuori dalla lista |
+| `KeyError` | Chiave non trovata nel dizionario |
 | `FileNotFoundError` | File non trovato |
-| `AttributeError` | Attributo o metodo inesistente |
-| `ImportError` | Modulo non trovato |
-| `OverflowError` | Numero troppo grande |
 
-## Esempio pratico completo
+## Esempio pratico: input sicuro
 
 ```python
-def dividi(a, b):
-    try:
-        risultato = a / b
-    except ZeroDivisionError:
-        return None
-    else:
-        return risultato
-
-# Test
-print(dividi(10, 2))   # 5.0
-print(dividi(10, 0))   # None
-
-# Uso con input utente
 while True:
     try:
         a = float(input("Numeratore: "))
         b = float(input("Denominatore: "))
-        r = dividi(a, b)
-        if r is None:
-            print("Non si può dividere per zero!")
-        else:
-            print(f"Risultato: {r}")
-        break
+        risultato = a / b
     except ValueError:
         print("Inserisci solo numeri validi.")
+        continue
+    except ZeroDivisionError:
+        print("Non si può dividere per zero.")
+        continue
+    else:
+        print(f"Risultato: {risultato}")
+        break
 ```

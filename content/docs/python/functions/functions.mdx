@@ -1,95 +1,92 @@
 ---
 title: Funzioni
-description: Come definire e usare le funzioni in Python.
+description: Come creare blocchi di codice riutilizzabili per non ripetere sempre le stesse cose.
 ---
 
-## Cosa sono le funzioni?
+## Perché usare le funzioni?
 
-Una **funzione** è un blocco di codice riutilizzabile che esegue un compito specifico. Invece di scrivere lo stesso codice più volte, lo scrivi una volta in una funzione e la chiami quando ne hai bisogno.
+Immagina di dover calcolare la media dei voti tre volte in un programma. Senza funzioni, dovresti scrivere la stessa formula tre volte. Se poi vuoi cambiare come si calcola la media, devi ricordarti di cambiarla in tutti e tre i posti.
 
-I vantaggi delle funzioni:
-- **Riutilizzo**: scrivi il codice una volta, usalo più volte
-- **Organizzazione**: il codice è diviso in parti logiche
-- **Leggibilità**: il codice è più facile da capire
-- **Manutenzione**: modifichi un solo posto per cambiare il comportamento
+Con le funzioni, scrivi il calcolo **una volta sola**, gli dai un nome, e lo riusi quante volte vuoi. Se cambia qualcosa, modifichi solo la funzione.
 
-## Definire una funzione
+## Creare una funzione
 
-Si usa la parola chiave `def`, seguita dal nome della funzione e dalle parentesi:
+Si usa la parola chiave `def` (abbreviazione di "define", definire):
 
 ```python
 def saluta():
     print("Ciao!")
 ```
 
+Questa funzione si chiama `saluta` e, quando viene eseguita, stampa "Ciao!". Ma attenzione: definire la funzione non la esegue ancora.
+
 ## Chiamare una funzione
 
-Per eseguire la funzione, la "chiami" con il suo nome e le parentesi:
+Per eseguire la funzione, la "chiami" scrivendone il nome seguito dalle parentesi:
 
 ```python
-saluta()  # Output: Ciao!
-saluta()  # puoi chiamarla quante volte vuoi
+saluta()  # esegue la funzione → stampa "Ciao!"
+saluta()  # puoi richiamarla quante volte vuoi
+saluta()
 ```
 
-## Parametri e argomenti
+## Passare informazioni: i parametri
 
-Le funzioni possono ricevere **parametri** (valori di input):
+Le funzioni diventano molto più utili quando possono ricevere informazioni dall'esterno. Queste informazioni si chiamano **parametri**:
 
 ```python
 def saluta(nome):
     print(f"Ciao, {nome}!")
 
-saluta("Alice")  # Ciao, Alice!
-saluta("Bob")    # Ciao, Bob!
+saluta("Alice")   # Ciao, Alice!
+saluta("Bob")     # Ciao, Bob!
+saluta("Carlo")   # Ciao, Carlo!
 ```
 
-Puoi avere più parametri:
+La stessa funzione si comporta in modo diverso in base a cosa le passi. Puoi avere più parametri:
 
 ```python
 def somma(a, b):
     print(a + b)
 
-somma(3, 5)   # 8
-somma(10, 20) # 30
+somma(3, 5)    # 8
+somma(10, 20)  # 30
 ```
 
-## Il valore di ritorno (`return`)
+## Restituire un risultato: `return`
 
-Le funzioni possono **restituire** un valore con `return`:
+Finora le funzioni hanno solo stampato qualcosa. Ma spesso vuoi che la funzione **calcoli qualcosa e ti restituisca il risultato**, in modo da poterlo usare dopo.
+
+Si usa la parola chiave `return`:
 
 ```python
 def somma(a, b):
     return a + b
 
 risultato = somma(3, 5)
-print(risultato)  # 8
+print(risultato)         # 8
+print(somma(10, 20) * 2) # 60 — puoi usarlo direttamente nelle espressioni
 ```
 
-Quando Python incontra `return`, esce dalla funzione e restituisce il valore. Puoi usarlo nelle espressioni:
+Quando Python incontra `return`, esce dalla funzione e consegna il valore. Se una funzione non ha `return`, restituisce `None` automaticamente.
 
-```python
-print(somma(10, 20) * 2)  # 60
-```
+## Valori predefiniti per i parametri
 
-Se non c'è `return`, la funzione restituisce `None`.
-
-## Valori di default
-
-Puoi assegnare valori di default ai parametri:
+Puoi assegnare un valore di default a un parametro. Se non viene passato, usa quel valore:
 
 ```python
 def saluta(nome, saluto="Ciao"):
     print(f"{saluto}, {nome}!")
 
-saluta("Alice")           # Ciao, Alice!
-saluta("Bob", "Buongiorno")  # Buongiorno, Bob!
+saluta("Alice")               # Ciao, Alice!  — usa il default
+saluta("Bob", "Buongiorno")   # Buongiorno, Bob!  — sovrascrive il default
 ```
 
-I parametri con default devono essere dopo quelli senza default.
+I parametri con valore di default devono sempre venire **dopo** quelli senza.
 
-## Argomenti con nome (keyword arguments)
+## Passare argomenti per nome
 
-Puoi specificare gli argomenti per nome quando chiami la funzione:
+Puoi specificare il nome di ogni parametro quando chiami la funzione. L'ordine diventa irrilevante:
 
 ```python
 def descrivi_persona(nome, eta, citta):
@@ -98,38 +95,13 @@ def descrivi_persona(nome, eta, citta):
 # Ordine normale
 descrivi_persona("Alice", 16, "Roma")
 
-# Con nomi (l'ordine non importa)
+# Con i nomi — l'ordine non importa più
 descrivi_persona(eta=16, citta="Roma", nome="Alice")
 ```
 
-## Numero variabile di argomenti
+## Restituire più valori
 
-### `*args` - argomenti posizionali variabili
-
-```python
-def somma_tutto(*numeri):
-    totale = 0
-    for n in numeri:
-        totale += n
-    return totale
-
-print(somma_tutto(1, 2, 3))        # 6
-print(somma_tutto(1, 2, 3, 4, 5)) # 15
-```
-
-`*numeri` raccoglie tutti gli argomenti in una tupla.
-
-### `**kwargs` - argomenti con nome variabili
-
-```python
-def mostra_info(**info):
-    for chiave, valore in info.items():
-        print(f"{chiave}: {valore}")
-
-mostra_info(nome="Alice", eta=16, citta="Roma")
-```
-
-## Funzioni che restituiscono più valori
+Una funzione può restituire più di un valore contemporaneamente:
 
 ```python
 def min_max(numeri):
@@ -138,19 +110,6 @@ def min_max(numeri):
 piccolo, grande = min_max([3, 1, 4, 1, 5, 9])
 print(piccolo)  # 1
 print(grande)   # 9
-```
-
-## Scope delle variabili
-
-Le variabili definite dentro una funzione sono **locali**: esistono solo dentro la funzione:
-
-```python
-def mia_funzione():
-    x = 10  # variabile locale
-    print(x)
-
-mia_funzione()
-# print(x)  # NameError: x non esiste fuori dalla funzione
 ```
 
 ## Esempio pratico
@@ -175,6 +134,8 @@ voti_alice = [8, 7, 9, 6, 10]
 media = calcola_media(voti_alice)
 giudizio = classifica_voto(media)
 
-print(f"Media: {media:.1f} - {giudizio}")
-# Media: 8.0 - Buono
+print(f"Media: {media:.1f} — {giudizio}")
+# Media: 8.0 — Buono
 ```
+
+Nota come il programma principale è facile da leggere: capisce cosa fa senza dover sapere come funziona ogni funzione internamente.

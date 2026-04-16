@@ -3,13 +3,17 @@ title: JSON
 description: Lavorare con il formato JSON in Python.
 ---
 
-## Cos'è JSON?
+## Perché ti serve questo?
 
-**JSON** (JavaScript Object Notation) è un formato di testo leggibile sia dagli esseri umani che dai computer, usato per scambiare dati tra applicazioni e sistemi diversi.
+Ogni volta che un'app sul tuo telefono mostra dati dal web — il meteo, i risultati di una ricerca, i post di un social network — quei dati spesso arrivano in formato **JSON**.
 
-È molto usato nelle API web: quando un'app chiede dati a un server, spesso li riceve in formato JSON.
+JSON è il "linguaggio comune" che i programmi usano per scambiarsi informazioni. Imparare a lavorare con JSON ti permette di fare cose concrete: scaricare dati da internet, salvarli, leggerli.
 
-Un esempio di JSON:
+---
+
+## Cos'è il JSON?
+
+**JSON** (si legge "djèizon") è un formato di testo per rappresentare dati strutturati. Assomiglia molto ai dizionari e alle liste Python:
 
 ```json
 {
@@ -24,17 +28,21 @@ Un esempio di JSON:
 }
 ```
 
-## Il modulo `json` di Python
+È leggibile dagli esseri umani (se ben indentato) e facilmente interpretabile dai computer.
 
-Python include il modulo `json` per lavorare con questo formato:
+---
+
+## Importare il modulo
 
 ```python
 import json
 ```
 
+---
+
 ## Da Python a JSON: `json.dumps()`
 
-`dumps()` converte un oggetto Python in una stringa JSON:
+`dumps()` converte un dizionario (o una lista) Python in una **stringa** JSON. Utile per inviare dati o stamparli.
 
 ```python
 import json
@@ -43,23 +51,21 @@ dati = {
     "nome": "Alice",
     "eta": 16,
     "voti": [8, 7, 9],
-    "attivo": True,
-    "media": None
+    "attivo": True,    # Python: True → JSON: true
+    "media": None      # Python: None → JSON: null
 }
 
+# Converti in stringa JSON (su una riga)
 json_stringa = json.dumps(dati)
 print(json_stringa)
-# {"nome": "Alice", "eta": 16, "voti": [8, 7, 9], "attivo": true, "media": null}
-```
+# → {"nome": "Alice", "eta": 16, "voti": [8, 7, 9], "attivo": true, "media": null}
 
-Per un output più leggibile (indentato):
-
-```python
+# Converti in stringa JSON leggibile (con indentazione)
 json_bello = json.dumps(dati, indent=4)
 print(json_bello)
 ```
 
-Output:
+Output indentato:
 ```json
 {
     "nome": "Alice",
@@ -70,7 +76,7 @@ Output:
 }
 ```
 
-Nota la conversione automatica dei tipi:
+### Conversione dei tipi: Python ↔ JSON
 
 | Python | JSON |
 |--------|------|
@@ -81,22 +87,29 @@ Nota la conversione automatica dei tipi:
 | `True` / `False` | `true` / `false` |
 | `None` | `null` |
 
+---
+
 ## Da JSON a Python: `json.loads()`
 
-`loads()` converte una stringa JSON in un oggetto Python:
+`loads()` fa il contrario: prende una stringa JSON e la converte in un dizionario (o lista) Python.
 
 ```python
 import json
 
 stringa_json = '{"nome": "Alice", "eta": 16, "voti": [8, 7, 9]}'
 
-dati = json.loads(stringa_json)
+dati = json.loads(stringa_json)   # Converti la stringa in dizionario Python
+
 print(dati["nome"])    # Alice
 print(dati["voti"])    # [8, 7, 9]
 print(type(dati))      # <class 'dict'>
 ```
 
+---
+
 ## Scrivere JSON su file: `json.dump()`
+
+`dump()` (senza la "s") scrive direttamente su un file:
 
 ```python
 import json
@@ -107,40 +120,64 @@ studenti = [
 ]
 
 with open("studenti.json", "w") as file:
-    json.dump(studenti, file, indent=4)
+    json.dump(studenti, file, indent=4)   # Scrive il JSON nel file, ben indentato
 ```
 
+Il file `studenti.json` conterrà:
+```json
+[
+    {
+        "nome": "Alice",
+        "eta": 16,
+        "voto": 8
+    },
+    ...
+]
+```
+
+---
+
 ## Leggere JSON da file: `json.load()`
+
+`load()` legge un file JSON e lo converte in Python:
 
 ```python
 import json
 
 with open("studenti.json", "r") as file:
-    studenti = json.load(file)
+    studenti = json.load(file)   # Legge il file e converte in lista Python
 
 for studente in studenti:
     print(f"{studente['nome']}: {studente['voto']}")
+# → Alice: 8
+# → Bob: 7
 ```
 
-## Gestire errori JSON
+---
+
+## Gestire errori di formato
+
+Se la stringa JSON non è valida (ad esempio ha una virgola di troppo), Python lancia un errore. Puoi gestirlo con `try/except`:
 
 ```python
 import json
 
 try:
-    dati = json.loads("questo non è JSON valido")
+    dati = json.loads("questo non è JSON valido!!!")
 except json.JSONDecodeError as e:
-    print(f"Errore di decodifica JSON: {e}")
+    print(f"Errore: il testo non è JSON valido — {e}")
 ```
 
-## Esempio pratico: configurazione
+---
 
-JSON è spesso usato per file di configurazione:
+## Esempio pratico: file di configurazione
+
+Un uso comune di JSON è salvare le impostazioni di un programma in un file che l'utente può modificare:
 
 ```python
 import json
 
-# Salva configurazione
+# Salva le impostazioni
 config = {
     "tema": "scuro",
     "lingua": "italiano",
@@ -151,10 +188,10 @@ config = {
 with open("config.json", "w") as f:
     json.dump(config, f, indent=2)
 
-# Ricarica configurazione
+# La prossima volta che il programma parte, ricarica le impostazioni
 with open("config.json", "r") as f:
     config_caricata = json.load(f)
 
-print(f"Tema: {config_caricata['tema']}")
-print(f"Lingua: {config_caricata['lingua']}")
+print(f"Tema: {config_caricata['tema']}")       # Tema: scuro
+print(f"Lingua: {config_caricata['lingua']}")   # Lingua: italiano
 ```

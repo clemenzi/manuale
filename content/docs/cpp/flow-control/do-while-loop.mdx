@@ -3,33 +3,41 @@ title: Ciclo do...while
 description: Il ciclo do...while in C++, che esegue il blocco almeno una volta.
 ---
 
-## Il ciclo `do...while`
+## Perché ti serve questo?
 
-Il ciclo `do...while` è simile al `while`, con una differenza fondamentale: **il blocco di codice viene eseguito almeno una volta**, perché la condizione viene controllata alla fine.
+A volte vuoi che il tuo programma faccia qualcosa almeno una volta, e poi decida se ripeterlo.
 
-Sintassi:
+Per esempio: mostra il menu all'utente, poi chiedi se vuole continuare. Il menu deve apparire sempre almeno una volta, anche prima di sapere cosa vuole l'utente.
+
+Il ciclo `do...while` fa esattamente questo: **esegue il blocco, poi controlla la condizione**.
+
+## La struttura del `do...while`
 
 ```cpp
 do {
-    // codice da eseguire
+    // codice da eseguire almeno una volta
 } while (condizione);
 ```
 
-Nota il **punto e virgola** dopo la parentesi tonda finale, che è obbligatorio.
+Nota il **punto e virgola** dopo la parentesi tonda finale — è obbligatorio e facile da dimenticare.
 
-## Confronto con il `while`
+## Confronto con il `while` normale
+
+Il `while` controlla la condizione **prima** di eseguire il blocco. Se la condizione è già falsa, non esegue mai nulla:
 
 ```cpp
-// while: controlla PRIMA, potrebbe non eseguire mai
 int x = 10;
 while (x < 5) {
-    cout << "while: " << x << endl;  // non viene mai eseguito
+    cout << "while: " << x << endl;  // non viene mai stampato
 }
+```
 
-// do...while: esegue ALMENO UNA VOLTA
+Il `do...while` esegue il blocco **almeno una volta**, poi controlla:
+
+```cpp
 int y = 10;
 do {
-    cout << "do-while: " << y << endl;  // eseguito una volta!
+    cout << "do-while: " << y << endl;  // viene stampato una volta
 } while (y < 5);
 ```
 
@@ -39,9 +47,11 @@ Output:
 do-while: 10
 ```
 
-## Quando usare `do...while`
+Anche se `y = 10` non è minore di 5, il blocco viene eseguito lo stesso la prima volta.
 
-Il `do...while` è ideale quando vuoi che il codice venga eseguito almeno una volta prima di controllare la condizione. Il caso d'uso classico è chiedere un input all'utente e ripetere finché non inserisce qualcosa di valido:
+## Il caso d'uso classico: validare l'input
+
+Il `do...while` è perfetto quando vuoi chiedere qualcosa all'utente e ripetere finché non inserisce un valore corretto:
 
 ```cpp
 int numero;
@@ -58,11 +68,11 @@ do {
 cout << "Hai inserito: " << numero << endl;
 ```
 
-Con il `while` normale, dovresti leggere l'input anche prima del ciclo (duplicando il codice). Con `do...while` è più pulito.
+Con il `while` normale, dovresti leggere l'input anche prima del ciclo (duplicando il codice). Con `do...while` il codice è più pulito.
 
-## Esempio: menu interattivo
+## Menu interattivo
 
-Il `do...while` è perfetto per i menu:
+Il `do...while` è ideale per i menu: il menu deve sempre apparire almeno una volta, e si ripete finché l'utente non sceglie di uscire.
 
 ```cpp
 #include <iostream>
@@ -72,6 +82,7 @@ int main() {
     int scelta;
 
     do {
+        // Il menu viene mostrato all'inizio di ogni giro
         cout << "\n=== Menu ===" << endl;
         cout << "1. Saluta" << endl;
         cout << "2. Conta fino a 5" << endl;
@@ -96,13 +107,15 @@ int main() {
                 cout << "Scelta non valida." << endl;
         }
 
-    } while (scelta != 3);
+    } while (scelta != 3);  // ripete finché l'utente non sceglie "Esci"
 
     return 0;
 }
 ```
 
 ## Contatore con `do...while`
+
+Funziona anche per contare, come `while` e `for`:
 
 ```cpp
 int i = 1;
@@ -112,21 +125,20 @@ do {
     i++;
 } while (i <= 5);
 
-cout << endl;
 // Output: 1 2 3 4 5
 ```
 
-## Riepilogo dei tre cicli
+## Riepilogo dei tre tipi di ciclo
 
-| Ciclo | Quando si controlla | Minimo esecuzioni |
+| Ciclo | La condizione viene controllata | Esecuzioni minime |
 |---|---|---|
-| `while` | Prima | 0 |
-| `for` | Prima | 0 |
-| `do...while` | Dopo | 1 |
+| `while` | Prima del blocco | 0 — potrebbe non eseguire mai |
+| `for` | Prima del blocco | 0 — potrebbe non eseguire mai |
+| `do...while` | Dopo il blocco | 1 — esegue almeno una volta |
 
-Nella pratica, il `do...while` è meno usato degli altri due, ma è utile nei casi in cui l'esecuzione almeno una volta è garantita dalla logica del programma.
+Il `do...while` è meno frequente degli altri due, ma è la scelta più naturale quando sai con certezza che il blocco deve essere eseguito almeno una volta.
 
-## Esempio pratico: indovinare un numero
+## Esempio pratico: indovina il numero
 
 ```cpp
 #include <iostream>
@@ -135,8 +147,8 @@ Nella pratica, il `do...while` è meno usato degli altri due, ma è utile nei ca
 using namespace std;
 
 int main() {
-    srand(time(0));  // inizializza il generatore di numeri casuali
-    int numeroDaIndovinare = rand() % 100 + 1;  // numero tra 1 e 100
+    srand(time(0));  // inizializza il generatore di numeri casuali con l'ora attuale
+    int numeroDaIndovinare = rand() % 100 + 1;  // numero casuale tra 1 e 100
     int tentativo;
     int contatore = 0;
 
@@ -153,7 +165,7 @@ int main() {
             cout << "Troppo alto!" << endl;
         }
 
-    } while (tentativo != numeroDaIndovinare);
+    } while (tentativo != numeroDaIndovinare);  // ripeti finché non indovina
 
     cout << "Bravo! Hai indovinato in " << contatore << " tentativi!" << endl;
 

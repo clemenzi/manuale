@@ -3,14 +3,11 @@ title: Vettori (vector)
 description: Come usare il contenitore vector della STL in C++.
 ---
 
-## Cos'è un vector?
+## Perché ti serve questo?
 
-`vector` è un **array dinamico** della libreria standard del C++. A differenza degli array normali, un `vector`:
+Un array normale ha un problema fondamentale: la dimensione deve essere decisa prima di eseguire il programma. Se non sai in anticipo quanti dati avrai, sei bloccato.
 
-- Può cambiare dimensione durante l'esecuzione
-- Tiene traccia della propria dimensione
-- Gestisce la memoria automaticamente
-- Fornisce molte funzioni utili già pronte
+Il `vector` risolve questo problema: è come un array, ma **cambia dimensione automaticamente** mentre il programma gira. Aggiungi elementi e lui cresce. Rimuovili e lui si riduce.
 
 Per usarlo, includi `<vector>`:
 
@@ -22,21 +19,23 @@ using namespace std;
 ## Creare un vector
 
 ```cpp
-// Vector vuoto
+// Vector vuoto — aggiungeremo elementi dopo
 vector<int> v1;
 
-// Vector con dimensione iniziale (tutti zero)
+// Vector con 5 elementi, tutti a zero
 vector<int> v2(5);            // {0, 0, 0, 0, 0}
 
-// Vector con valori iniziali
+// Vector con valori già impostati
 vector<int> v3 = {1, 2, 3, 4, 5};
 
-// Vector con N elementi tutti uguali
+// Vector con 4 elementi, tutti uguali a 7
 vector<int> v4(4, 7);         // {7, 7, 7, 7}
 
 // Vector di stringhe
 vector<string> nomi = {"Alice", "Bob", "Carlo"};
 ```
+
+Il tipo tra `<>` indica cosa contiene il vector. `vector<int>` contiene interi, `vector<string>` contiene stringhe, e così via.
 
 ## Accedere agli elementi
 
@@ -45,20 +44,20 @@ Come gli array, si usa l'indice `[]` (parte da 0):
 ```cpp
 vector<int> v = {10, 20, 30, 40, 50};
 
-cout << v[0] << endl;   // 10
+cout << v[0] << endl;   // 10 — primo elemento
 cout << v[2] << endl;   // 30
-cout << v[4] << endl;   // 50
+cout << v[4] << endl;   // 50 — ultimo elemento
 
-// Modifica
+// Modifica di un elemento
 v[1] = 99;
 cout << v[1] << endl;   // 99
 ```
 
-Per accesso con controllo dei limiti (lancia un'eccezione se fuori range):
+Per un accesso più sicuro (il programma ti avvisa se esci dai limiti), usa `.at()`:
 
 ```cpp
-cout << v.at(2) << endl;   // 30 - più sicuro di []
-// v.at(10);               // lancia eccezione out_of_range
+cout << v.at(2) << endl;   // 30
+// v.at(10);               // lancia un errore se 10 è fuori range
 ```
 
 ## Aggiungere e rimuovere elementi
@@ -66,38 +65,36 @@ cout << v.at(2) << endl;   // 30 - più sicuro di []
 ```cpp
 vector<int> v;
 
-// Aggiunge in coda
+// Aggiunge in coda — il vector cresce automaticamente
 v.push_back(10);
 v.push_back(20);
 v.push_back(30);
-// v = {10, 20, 30}
+// v è ora {10, 20, 30}
 
 // Rimuove l'ultimo elemento
 v.pop_back();
-// v = {10, 20}
+// v è ora {10, 20}
 ```
 
-## Dimensione e capacità
+## Informazioni sul vector
 
 ```cpp
 vector<int> v = {1, 2, 3, 4, 5};
 
-cout << v.size() << endl;     // 5: numero di elementi
-cout << v.empty() << endl;    // 0 (false): è vuoto?
+cout << v.size() << endl;     // 5 — quanti elementi contiene
+cout << v.empty() << endl;    // false (0) — è vuoto?
 
-// Dopo pop_back
 v.pop_back();
 cout << v.size() << endl;     // 4
 
-// Svuota il vector
-v.clear();
+v.clear();                    // svuota completamente il vector
 cout << v.size() << endl;     // 0
-cout << v.empty() << endl;    // 1 (true)
+cout << v.empty() << endl;    // true (1)
 ```
 
-## Iterare su un vector
+## Scorrere un vector
 
-Con indice:
+Con indice (come un array):
 
 ```cpp
 vector<int> v = {10, 20, 30, 40, 50};
@@ -107,14 +104,18 @@ for (int i = 0; i < v.size(); i++) {
 }
 ```
 
-Con range-based for (il modo preferito):
+Con range-based for (il modo preferito — più semplice):
 
 ```cpp
 for (int n : v) {
     cout << n << " ";
 }
+```
 
-// Con riferimento per modificare
+Per modificare gli elementi mentre scorri, usa `&`:
+
+```cpp
+// Moltiplica ogni elemento per 2
 for (int& n : v) {
     n *= 2;
 }
@@ -125,76 +126,38 @@ for (int& n : v) {
 ```cpp
 vector<int> v = {10, 20, 30};
 
-cout << v.front() << endl;   // 10 (primo)
-cout << v.back() << endl;    // 30 (ultimo)
+cout << v.front() << endl;   // 10 — primo elemento
+cout << v.back() << endl;    // 30 — ultimo elemento
 ```
 
-## Inserire e rimuovere in posizioni arbitrarie
+## Inserire e rimuovere in posizioni specifiche
 
 ```cpp
 vector<int> v = {1, 2, 4, 5};
 
-// Inserisce 3 alla posizione 2 (indice 2)
+// Inserisce 3 alla posizione 2 (tra il 2 e il 4)
 v.insert(v.begin() + 2, 3);
-// v = {1, 2, 3, 4, 5}
+// v è ora {1, 2, 3, 4, 5}
 
-// Rimuove l'elemento alla posizione 1
+// Rimuove l'elemento alla posizione 1 (il 2)
 v.erase(v.begin() + 1);
-// v = {1, 3, 4, 5}
+// v è ora {1, 3, 4, 5}
 ```
 
 ## Ordinare un vector
+
+Per ordinare, includi anche `<algorithm>`:
 
 ```cpp
 #include <algorithm>
 
 vector<int> v = {5, 2, 8, 1, 9, 3};
 
-sort(v.begin(), v.end());
-// v = {1, 2, 3, 5, 8, 9}
-
-sort(v.begin(), v.end(), greater<int>());
-// v = {9, 8, 5, 3, 2, 1}
+sort(v.begin(), v.end());          // ordine crescente → {1, 2, 3, 5, 8, 9}
+sort(v.begin(), v.end(), greater<int>());  // ordine decrescente → {9, 8, 5, 3, 2, 1}
 ```
 
-## Vector di oggetti
-
-```cpp
-struct Studente {
-    string nome;
-    double media;
-};
-
-vector<Studente> classe;
-classe.push_back({"Alice", 8.5});
-classe.push_back({"Bob", 7.2});
-classe.push_back({"Carlo", 9.1});
-
-for (const Studente& s : classe) {
-    cout << s.nome << ": " << s.media << endl;
-}
-```
-
-## Vector 2D (matrice)
-
-```cpp
-// Matrice 3x3
-vector<vector<int>> matrice(3, vector<int>(3, 0));
-
-// Assegnazione
-matrice[0][0] = 1;
-matrice[1][1] = 5;
-
-// Iterazione
-for (const auto& riga : matrice) {
-    for (int el : riga) {
-        cout << el << " ";
-    }
-    cout << endl;
-}
-```
-
-## Esempio pratico
+## Esempio pratico: raccolta voti interattiva
 
 ```cpp
 #include <iostream>
@@ -210,8 +173,9 @@ int main() {
     while (true) {
         cin >> voto;
         if (voto == 0) break;
+
         if (voto >= 1 && voto <= 10) {
-            voti.push_back(voto);
+            voti.push_back(voto);  // aggiungiamo il voto al vector
         } else {
             cout << "Voto non valido, ignorato." << endl;
         }
@@ -222,17 +186,18 @@ int main() {
         return 0;
     }
 
-    // Statistiche
+    // Calcoliamo le statistiche
     int somma = 0;
     for (int v : voti) somma += v;
     double media = (double)somma / voti.size();
 
+    // Ordiniamo per trovare min e max
     sort(voti.begin(), voti.end());
 
     cout << "\nNumero di voti: " << voti.size() << endl;
     cout << "Media: " << media << endl;
-    cout << "Minimo: " << voti.front() << endl;
-    cout << "Massimo: " << voti.back() << endl;
+    cout << "Minimo: " << voti.front() << endl;   // primo dopo ordinamento
+    cout << "Massimo: " << voti.back() << endl;   // ultimo dopo ordinamento
 
     cout << "Voti ordinati: ";
     for (int v : voti) cout << v << " ";

@@ -3,51 +3,68 @@ title: Classi e oggetti
 description: Introduzione alla programmazione orientata agli oggetti in Python.
 ---
 
-## Programmazione orientata agli oggetti
+## Perché ti serve questo?
 
-La **programmazione orientata agli oggetti** (OOP, Object-Oriented Programming) è un modo di organizzare il codice basato su **oggetti**. Un oggetto è un'entità che combina **dati** (attributi) e **comportamenti** (metodi).
+Immagina di dover gestire le informazioni di 30 studenti in un programma. Senza un modo per organizzare i dati, ti ritroveresti con decine di variabili sparse ovunque: `nome1`, `eta1`, `voto1`, `nome2`, `eta2`, `voto2`...
 
-Pensa a un oggetto come a una cosa del mondo reale. Per esempio, una "macchina" ha attributi (colore, marca, velocità) e comportamenti (accelera, frena, suona il clacson).
+Le **classi** risolvono questo problema: ti permettono di raggruppare dati e funzioni correlate in un unico "pacchetto" chiamato **oggetto**.
 
-## Cos'è una classe?
+---
 
-Una **classe** è il "modello" o "schema" da cui si creano gli oggetti. È come il progetto di una casa: la classe descrive com'è fatta, ma gli oggetti sono le case vere e proprie.
+## La differenza tra classe e oggetto
+
+Una **classe** è come il **progetto di un'automobile**: descrive come deve essere fatta, ma non è un'auto vera.
+
+Un **oggetto** è l'**automobile vera**, costruita seguendo quel progetto.
+
+Dal stesso progetto (classe) puoi costruire molte auto (oggetti) diverse — ognuna con il suo colore, la sua targa, il suo chilometraggio.
+
+---
 
 ## Definire una classe
 
 ```python
 class Persona:
-    pass  # classe vuota per ora
+    pass   # "pass" significa: classe vuota per ora, aggiungeremo cose dopo
 ```
 
-## Il costruttore `__init__`
+---
 
-Il metodo speciale `__init__` viene chiamato automaticamente quando si crea un nuovo oggetto. Serve a inizializzare gli attributi:
+## Il costruttore: `__init__`
+
+Il metodo `__init__` è il **costruttore** — viene eseguito automaticamente ogni volta che crei un nuovo oggetto. Serve a impostare i dati iniziali dell'oggetto.
 
 ```python
 class Persona:
     def __init__(self, nome, eta):
-        self.nome = nome   # attributo
-        self.eta = eta     # attributo
+        # "self" è l'oggetto che stiamo creando
+        # self.nome e self.eta sono i dati dell'oggetto (chiamati "attributi")
+        self.nome = nome
+        self.eta = eta
 ```
 
-`self` rappresenta l'oggetto stesso. È sempre il primo parametro dei metodi di una classe.
+`self` è un riferimento all'oggetto stesso. È sempre il primo parametro di ogni metodo in una classe, anche se quando chiami il metodo non lo scrivi esplicitamente.
 
-## Creare un oggetto (istanza)
+---
+
+## Creare oggetti (istanze)
 
 ```python
-alice = Persona("Alice", 16)
-bob = Persona("Bob", 17)
+alice = Persona("Alice", 16)   # Crea una Persona con nome="Alice" e eta=16
+bob = Persona("Bob", 17)       # Crea una Persona diversa
 
-print(alice.nome)  # Alice
-print(bob.eta)     # 17
+# Accedere ai dati dell'oggetto con il punto
+print(alice.nome)   # Alice
+print(bob.eta)      # 17
 ```
 
-`alice` e `bob` sono **istanze** della classe `Persona`.
+`alice` e `bob` sono due **istanze** diverse della stessa classe `Persona`. Hanno gli stessi "campi", ma valori diversi — come due auto dello stesso modello ma con targhe diverse.
+
+---
 
 ## Aggiungere metodi
 
-I **metodi** sono funzioni definite dentro la classe:
+I **metodi** sono funzioni definite dentro la classe. Descrivono le **azioni** che un oggetto può fare.
 
 ```python
 class Persona:
@@ -56,42 +73,48 @@ class Persona:
         self.eta = eta
 
     def saluta(self):
+        # Questo metodo usa i dati dell'oggetto (self.nome, self.eta)
         print(f"Ciao, mi chiamo {self.nome} e ho {self.eta} anni.")
 
     def compleanno(self):
+        # Questo metodo modifica un dato dell'oggetto
         self.eta += 1
         print(f"Buon compleanno {self.nome}! Ora hai {self.eta} anni.")
 
 alice = Persona("Alice", 16)
-alice.saluta()       # Ciao, mi chiamo Alice e ho 16 anni.
-alice.compleanno()   # Buon compleanno Alice! Ora hai 17 anni.
-alice.saluta()       # Ciao, mi chiamo Alice e ho 17 anni.
+alice.saluta()       # → Ciao, mi chiamo Alice e ho 16 anni.
+alice.compleanno()   # → Buon compleanno Alice! Ora hai 17 anni.
+alice.saluta()       # → Ciao, mi chiamo Alice e ho 17 anni.
 ```
+
+---
 
 ## Attributi di classe vs attributi di istanza
 
-- **Attributi di istanza**: appartengono al singolo oggetto (definiti con `self.`)
-- **Attributi di classe**: condivisi da tutti gli oggetti della classe
+- **Attributi di istanza**: appartengono al singolo oggetto (ogni oggetto ha il suo valore)
+- **Attributi di classe**: sono condivisi da tutti gli oggetti della classe (come una bacheca comune)
 
 ```python
 class Studente:
-    scuola = "Liceo Scientifico"  # attributo di classe
+    scuola = "Liceo Scientifico"   # Attributo di classe: uguale per tutti
 
     def __init__(self, nome):
-        self.nome = nome  # attributo di istanza
+        self.nome = nome           # Attributo di istanza: diverso per ciascuno
 
 alice = Studente("Alice")
 bob = Studente("Bob")
 
-print(alice.scuola)  # Liceo Scientifico
-print(bob.scuola)    # Liceo Scientifico
-print(alice.nome)    # Alice
-print(bob.nome)      # Bob
+print(alice.scuola)   # Liceo Scientifico
+print(bob.scuola)     # Liceo Scientifico  ← stesso valore per tutti
+print(alice.nome)     # Alice
+print(bob.nome)       # Bob               ← valore diverso per ciascuno
 ```
 
-## Il metodo `__str__`
+---
 
-`__str__` definisce come l'oggetto viene rappresentato come stringa (utile per `print()`):
+## Il metodo `__str__`: come stampare un oggetto
+
+Per default, se fai `print(alice)` Python stampa qualcosa di poco leggibile come `<__main__.Persona object at 0x...>`. Il metodo speciale `__str__` ti permette di decidere tu come appare l'oggetto quando viene stampato.
 
 ```python
 class Persona:
@@ -100,13 +123,16 @@ class Persona:
         self.eta = eta
 
     def __str__(self):
+        # Questo viene usato da print() e str()
         return f"Persona(nome={self.nome}, eta={self.eta})"
 
 alice = Persona("Alice", 16)
-print(alice)  # Persona(nome=Alice, eta=16)
+print(alice)   # → Persona(nome=Alice, eta=16)
 ```
 
-## Esempio completo: una classe `Rettangolo`
+---
+
+## Esempio completo: la classe `Rettangolo`
 
 ```python
 class Rettangolo:
@@ -115,16 +141,24 @@ class Rettangolo:
         self.altezza = altezza
 
     def area(self):
+        # Calcola l'area: base × altezza
         return self.base * self.altezza
 
     def perimetro(self):
+        # Calcola il perimetro: 2 × (base + altezza)
         return 2 * (self.base + self.altezza)
 
     def __str__(self):
-        return f"Rettangolo {self.base}x{self.altezza}"
+        return f"Rettangolo {self.base}×{self.altezza}"
 
 r = Rettangolo(5, 3)
-print(r)               # Rettangolo 5x3
-print(r.area())        # 15
-print(r.perimetro())   # 16
+print(r)               # → Rettangolo 5×3
+print(r.area())        # → 15
+print(r.perimetro())   # → 16
+
+# Puoi creare più rettangoli indipendenti
+r2 = Rettangolo(10, 4)
+print(r2.area())       # → 40
 ```
+
+Ogni rettangolo è un oggetto indipendente: cambiare `r` non influisce su `r2`.

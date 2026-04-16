@@ -1,27 +1,27 @@
 ---
 title: Cicli while
-description: Come ripetere operazioni con il ciclo while in Python.
+description: Come ripetere un'azione finché una condizione rimane vera.
 ---
 
-## Cos'è un ciclo?
+## Il ciclo `while` — "finché"
 
-Un **ciclo** permette di ripetere un blocco di codice più volte. Senza i cicli, dovresti scrivere la stessa istruzione decine di volte.
+Il ciclo `while` ripete un blocco di codice **finché una condizione rimane vera**. È diverso dal `for`: non sai in anticipo quante volte ripeterà, dipende da cosa succede durante l'esecuzione.
 
-## Il ciclo `while`
-
-Il ciclo `while` ripete il blocco di codice **finché la condizione rimane vera**:
+Pensa a un ascensore: le porte rimangono aperte finché non premi il pulsante di un piano. Non sai in anticipo quando lo premeranno.
 
 ```python
 while condizione:
     # codice da ripetere
 ```
 
+## Un primo esempio
+
 ```python
 contatore = 1
 
 while contatore <= 5:
     print(contatore)
-    contatore += 1
+    contatore += 1  # aumenta il contatore di 1 ogni giro
 ```
 
 Output:
@@ -33,57 +33,52 @@ Output:
 5
 ```
 
-Il ciclo continua finché `contatore <= 5` è vero. A ogni iterazione, `contatore` aumenta di 1. Quando arriva a 6, la condizione diventa falsa e il ciclo si ferma.
+Come funziona:
+1. Python controlla: `contatore <= 5`? Sì (1 ≤ 5) → esegue il blocco
+2. Stampa `1`, poi `contatore` diventa `2`
+3. Controlla ancora: `2 <= 5`? Sì → stampa `2`, `contatore` diventa `3`
+4. ... e così via fino a che `contatore` diventa `6`
+5. `6 <= 5`? No → il ciclo si ferma
 
-## Attenzione al ciclo infinito
+## Attenzione al ciclo infinito!
 
-Se la condizione non diventa mai falsa, il ciclo non finisce mai (ciclo infinito). Questo blocca il programma!
+Se la condizione non diventa mai falsa, il ciclo non finisce mai. Il programma si blocca per sempre:
 
 ```python
-# ATTENZIONE: questo è un ciclo infinito, non eseguirlo!
+# NON eseguire questo codice!
 x = 0
 while x < 10:
     print(x)
-    # dimenticato: x += 1
+    # manca x += 1 — x non cambia mai, la condizione è sempre vera!
 ```
 
-Per interrompere un ciclo infinito, usa `Ctrl + C` nel terminale.
+Se ti capita accidentalmente, puoi fermare il programma con **Ctrl+C** nel terminale.
 
-## L'istruzione `break`
+## Interrompere con `break`
 
-`break` interrompe il ciclo immediatamente, anche se la condizione è ancora vera:
+`break` ferma il ciclo immediatamente, anche se la condizione è ancora vera. È utile quando vuoi uscire dal ciclo in base a qualcosa che succede dentro:
 
 ```python
-contatore = 0
+while True:         # questo ciclo non finirebbe mai da solo...
+    risposta = input("Digita 'esci' per uscire: ")
+    if risposta == "esci":
+        break       # ...ma break lo ferma quando l'utente digita "esci"
 
-while True:  # ciclo potenzialmente infinito
-    print(contatore)
-    contatore += 1
-    if contatore == 5:
-        break  # esci quando contatore raggiunge 5
+print("Programma terminato.")
 ```
 
-Output:
-```
-0
-1
-2
-3
-4
-```
+## Saltare un giro con `continue`
 
-## L'istruzione `continue`
-
-`continue` salta il resto del codice nell'iterazione corrente e passa alla prossima:
+`continue` salta il resto del codice in questo giro e passa subito al prossimo controllo della condizione:
 
 ```python
 contatore = 0
 
 while contatore < 10:
     contatore += 1
-    if contatore % 2 == 0:  # se il numero è pari
-        continue             # salta la stampa
-    print(contatore)         # stampa solo i dispari
+    if contatore % 2 == 0:  # se il numero è pari...
+        continue             # ...salta la stampa e vai al giro successivo
+    print(contatore)         # stampa solo i numeri dispari
 ```
 
 Output:
@@ -95,52 +90,18 @@ Output:
 9
 ```
 
-## Il blocco `else`
-
-Un ciclo `while` può avere un blocco `else`, che viene eseguito quando il ciclo termina normalmente (senza `break`):
-
-```python
-contatore = 0
-
-while contatore < 3:
-    print(contatore)
-    contatore += 1
-else:
-    print("Ciclo terminato normalmente!")
-```
-
-Output:
-```
-0
-1
-2
-Ciclo terminato normalmente!
-```
-
-Se il ciclo termina con `break`, il blocco `else` non viene eseguito:
-
-```python
-contatore = 0
-
-while contatore < 10:
-    if contatore == 3:
-        break
-    print(contatore)
-    contatore += 1
-else:
-    print("Questo non viene stampato")
-```
-
 ## Esempi pratici
 
-### Chiedere input finché non è valido
+### Chiedere un input fino a quando è valido
+
+Un uso classico del `while`: continuare a chiedere all'utente di inserire qualcosa finché non inserisce un valore accettabile.
 
 ```python
 while True:
     risposta = input("Inserisci 'sì' o 'no': ")
     if risposta == "sì" or risposta == "no":
         break
-    print("Input non valido, riprova.")
+    print("Non ho capito, riprova.")
 
 print(f"Hai scelto: {risposta}")
 ```
@@ -156,3 +117,18 @@ while n > 0:
 
 print("Via!")
 ```
+
+Output:
+```
+5
+4
+3
+2
+1
+Via!
+```
+
+### Quando usare `while` invece di `for`?
+
+- Usa `for` quando sai già **su cosa** vuoi iterare (una lista, un range, ecc.)
+- Usa `while` quando vuoi ripetere qualcosa **finché una condizione cambia**, senza sapere in anticipo quante volte

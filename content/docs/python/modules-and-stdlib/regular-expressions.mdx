@@ -3,162 +3,197 @@ title: Espressioni regolari
 description: Introduzione alle espressioni regolari con il modulo re in Python.
 ---
 
+## Perché ti serve questo?
+
+Immagina di dover controllare se un indirizzo email è scritto correttamente, o di dover trovare tutti i numeri di telefono in un testo. Potresti farlo con decine di condizioni `if`, oppure usare uno strumento molto più potente: le **espressioni regolari**.
+
+---
+
 ## Cosa sono le espressioni regolari?
 
-Le **espressioni regolari** (regex o regexp) sono sequenze di caratteri che definiscono un **pattern di ricerca**. Sono usate per:
-- Verificare se una stringa corrisponde a un certo formato
-- Cercare pattern in un testo
-- Estrarre informazioni da una stringa
-- Sostituire parti di testo
+Le **espressioni regolari** (dette anche "regex" o "regexp") sono una mini-lingua per descrivere **schemi di testo**. Servono a:
+- Verificare se una stringa corrisponde a un certo formato ("è un'email valida?")
+- Trovare schemi in un testo ("tutti i numeri in questo paragrafo")
+- Estrarre informazioni ("dammi solo la data da questa riga")
+- Sostituire parti di testo ("sostituisci tutti i numeri con `X`")
 
-Il modulo Python per le regex è `re`:
+In Python si usano con il modulo `re`:
 
 ```python
 import re
 ```
 
-## I pattern di base
+---
 
-| Pattern | Significato |
+## I mattoncini di base: cosa significano i simboli
+
+| Simbolo | Significato | Esempio |
+|---------|-------------|---------|
+| `.` | Qualsiasi carattere (eccetto a capo) | `a.c` trova "abc", "aXc", "a3c"... |
+| `\d` | Una cifra (0-9) | `\d\d` trova "42", "07"... |
+| `\D` | Non una cifra | |
+| `\w` | Lettera, cifra o underscore | |
+| `\s` | Spazio, tab o a capo | |
+| `^` | Inizio della stringa | `^Ciao` trova solo stringhe che iniziano con "Ciao" |
+| `$` | Fine della stringa | `fine$` trova solo stringhe che terminano con "fine" |
+| `[abc]` | Uno tra a, b, c | |
+| `[a-z]` | Una lettera minuscola qualsiasi | |
+| `[0-9]` | Una cifra qualsiasi (come `\d`) | |
+
+### Quantificatori: quante volte?
+
+| Simbolo | Significato |
 |---------|-------------|
-| `.` | Qualsiasi carattere (eccetto newline) |
-| `\d` | Una cifra (0-9) |
-| `\D` | Non una cifra |
-| `\w` | Lettera, cifra o underscore |
-| `\W` | Non lettera, cifra o underscore |
-| `\s` | Spazio, tab, newline |
-| `\S` | Non uno spazio |
-| `^` | Inizio della stringa |
-| `$` | Fine della stringa |
-| `[abc]` | a, b oppure c |
-| `[^abc]` | Nessuno tra a, b, c |
-| `[a-z]` | Qualsiasi lettera minuscola |
-| `[0-9]` | Qualsiasi cifra |
+| `*` | Zero o più volte |
+| `+` | Una o più volte |
+| `?` | Zero o una volta |
+| `{3}` | Esattamente 3 volte |
+| `{2,5}` | Da 2 a 5 volte |
 
-## Quantificatori
+---
 
-| Quantificatore | Significato |
-|----------------|-------------|
-| `*` | 0 o più ripetizioni |
-| `+` | 1 o più ripetizioni |
-| `?` | 0 o 1 ripetizione |
-| `{n}` | Esattamente n ripetizioni |
-| `{n,m}` | Da n a m ripetizioni |
+## Cercare uno schema in una stringa
 
-## `re.match()` - cerca all'inizio
-
-```python
-import re
-
-testo = "Ciao, mondo!"
-risultato = re.match(r"Ciao", testo)
-if risultato:
-    print("Trovato!")     # Trovato!
-else:
-    print("Non trovato.")
-```
-
-## `re.search()` - cerca ovunque
+### `re.search()` — cerca ovunque nella stringa
 
 ```python
 import re
 
 testo = "Il mio numero è 334-1234567"
+
+# Schema: 3 cifre, un trattino, 7 cifre
 risultato = re.search(r"\d{3}-\d{7}", testo)
+
 if risultato:
-    print(f"Numero trovato: {risultato.group()}")  # 334-1234567
+    print(f"Numero trovato: {risultato.group()}")   # → 334-1234567
+else:
+    print("Nessun numero trovato")
 ```
 
-## `re.findall()` - trova tutte le corrispondenze
+Il prefisso `r` prima delle virgolette (`r"..."`) indica una "raw string" — necessario con le regex perché alcuni caratteri come `\d` verrebbero interpretati in modo sbagliato.
+
+---
+
+### `re.match()` — cerca solo all'inizio della stringa
+
+```python
+import re
+
+testo = "Ciao, mondo!"
+risultato = re.match(r"Ciao", testo)   # La stringa inizia con "Ciao"?
+
+if risultato:
+    print("Trovato!")
+else:
+    print("Non trovato.")
+```
+
+---
+
+### `re.findall()` — trova TUTTE le corrispondenze
 
 ```python
 import re
 
 testo = "Ho 3 mele, 5 banane e 2 arance."
-numeri = re.findall(r"\d+", testo)
-print(numeri)  # ['3', '5', '2']
+numeri = re.findall(r"\d+", testo)   # Trova tutti i gruppi di cifre
+print(numeri)   # ['3', '5', '2']
 ```
 
-## `re.sub()` - sostituisci
+---
+
+## Sostituire testo: `re.sub()`
 
 ```python
 import re
 
 testo = "Il prezzo è 10 euro, poi 20 euro."
-# Sostituisce tutti i numeri con "X"
-nuovo = re.sub(r"\d+", "X", testo)
-print(nuovo)  # Il prezzo è X euro, poi X euro.
+nuovo = re.sub(r"\d+", "X", testo)   # Sostituisce tutti i numeri con "X"
+print(nuovo)   # Il prezzo è X euro, poi X euro.
 ```
 
-## `re.split()` - dividi con pattern
+---
+
+## Dividere testo: `re.split()`
+
+Come `str.split()`, ma puoi dividere su uno schema complesso invece che su un singolo carattere:
 
 ```python
 import re
 
 testo = "mela; banana, uva  ciliegia"
-# Divide su punto e virgola, virgola o spazi multipli
+# Divide su punto e virgola, virgola o spazi (anche multipli)
 parti = re.split(r"[;,\s]+", testo)
-print(parti)  # ['mela', 'banana', 'uva', 'ciliegia']
+print(parti)   # ['mela', 'banana', 'uva', 'ciliegia']
 ```
 
-## Gruppi con le parentesi
+---
 
-Le parentesi `()` creano dei **gruppi** che puoi estrarre separatamente:
+## Estrarre parti specifiche: i gruppi con `()`
+
+Le parentesi tonde creano dei **gruppi** — puoi estrarre separatamente ogni parte del risultato:
 
 ```python
 import re
 
-testo = "Data: 15/01/2024"
+testo = "Data di nascita: 15/03/2008"
 match = re.search(r"(\d{2})/(\d{2})/(\d{4})", testo)
+
 if match:
-    giorno = match.group(1)   # 15
-    mese = match.group(2)     # 01
-    anno = match.group(3)     # 2024
+    giorno = match.group(1)   # Primo gruppo → 15
+    mese = match.group(2)     # Secondo gruppo → 03
+    anno = match.group(3)     # Terzo gruppo → 2008
     print(f"Giorno: {giorno}, Mese: {mese}, Anno: {anno}")
 ```
 
-## Compilare un pattern (per riuso)
+---
 
-Se usi lo stesso pattern più volte, compilalo prima per maggiore efficienza:
+## Riutilizzare uno schema: `re.compile()`
+
+Se usi lo stesso schema molte volte, "compilalo" una volta sola per rendere il codice più efficiente:
 
 ```python
 import re
 
-pattern = re.compile(r"\d+")
+schema_numeri = re.compile(r"\d+")   # Compila lo schema una volta
 
-testi = ["Ho 3 mele", "Ho 10 banane", "nessun numero qui"]
-for testo in testi:
-    numeri = pattern.findall(testo)
-    if numeri:
-        print(f"Trovati: {numeri}")
+frasi = ["Ho 3 mele", "Ho 10 banane", "nessun numero qui"]
+for frase in frasi:
+    trovati = schema_numeri.findall(frase)
+    if trovati:
+        print(f"Trovati: {trovati}")
 ```
+
+---
 
 ## Esempi pratici
 
-### Validare un indirizzo email
+### Verificare se un'email è valida
 
 ```python
 import re
 
 def valida_email(email):
-    pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-    return bool(re.match(pattern, email))
+    # Schema: caratteri@caratteri.dominio (almeno 2 lettere)
+    schema = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+    return bool(re.match(schema, email))
 
-print(valida_email("alice@esempio.it"))    # True
-print(valida_email("non_valida.com"))      # False
-print(valida_email("@dominio.it"))         # False
+print(valida_email("alice@esempio.it"))    # True  ← valida
+print(valida_email("non_valida.com"))      # False ← manca la @
+print(valida_email("@dominio.it"))         # False ← manca la parte prima della @
 ```
 
-### Validare un numero di telefono italiano
+### Verificare un numero di telefono italiano
 
 ```python
 import re
 
 def valida_telefono(numero):
-    pattern = r"^(\+39)?[0-9]{9,10}$"
-    return bool(re.match(pattern, numero))
+    # Schema: opzionalmente +39, poi 9 o 10 cifre
+    schema = r"^(\+39)?[0-9]{9,10}$"
+    return bool(re.match(schema, numero))
 
-print(valida_telefono("3341234567"))    # True
-print(valida_telefono("+393341234567")) # True
-print(valida_telefono("abc"))           # False
+print(valida_telefono("3341234567"))     # True
+print(valida_telefono("+393341234567"))  # True
+print(valida_telefono("abc"))            # False
 ```

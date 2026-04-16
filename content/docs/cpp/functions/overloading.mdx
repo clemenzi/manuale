@@ -3,13 +3,15 @@ title: Overloading di Funzioni
 description: Come definire più funzioni con lo stesso nome ma parametri diversi in C++.
 ---
 
-## Cos'è l'overloading?
+## Perché ti serve questo?
 
-L'**overloading** (sovraccarico) di funzioni permette di definire più funzioni con lo **stesso nome** ma con **parametri diversi** (numero o tipo diverso). Il compilatore sceglie automaticamente quale versione chiamare in base agli argomenti forniti.
+Immagina di voler calcolare l'area di forme diverse: un cerchio, un rettangolo, un triangolo. Potresti chiamare le funzioni `areaDelCerchio`, `areaDelRettangolo`, `areaDelTriangolo`. Ma sarebbe più comodo chiamarle tutte `area` e lasciare al compilatore il compito di capire quale usare.
 
-Questo è una caratteristica del C++ non presente in C.
+In C++ questo si chiama **overloading** (sovraccarico): puoi avere più funzioni con lo stesso nome, purché abbiano parametri diversi.
 
-## Esempio base
+## Come funziona
+
+Il compilatore distingue le funzioni guardando il numero e il tipo dei parametri. Quando chiami la funzione, sceglie automaticamente quella giusta:
 
 ```cpp
 void stampa(int x) {
@@ -25,9 +27,9 @@ void stampa(string s) {
 }
 
 int main() {
-    stampa(42);           // chiama stampa(int)
-    stampa(3.14);         // chiama stampa(double)
-    stampa("Ciao");       // chiama stampa(string)
+    stampa(42);       // il compilatore sceglie stampa(int)
+    stampa(3.14);     // il compilatore sceglie stampa(double)
+    stampa("Ciao");   // il compilatore sceglie stampa(string)
     return 0;
 }
 ```
@@ -40,11 +42,9 @@ Decimale: 3.14
 Stringa: Ciao
 ```
 
-Il compilatore distingue le funzioni dalla **firma**: il nome più i tipi dei parametri.
-
 ## Overloading con numero diverso di parametri
 
-Puoi anche sovraccaricare con un numero diverso di parametri:
+Puoi anche avere versioni con un numero diverso di parametri:
 
 ```cpp
 int somma(int a, int b) {
@@ -67,9 +67,9 @@ int main() {
 }
 ```
 
-## Esempio: area di figure geometriche
+## Esempio pratico: area di figure diverse
 
-Un uso classico dell'overloading è calcolare l'area di forme diverse con la stessa funzione `area`:
+Un uso classico è calcolare l'area di figure geometriche diverse con lo stesso nome `area`:
 
 ```cpp
 #include <iostream>
@@ -77,17 +77,17 @@ using namespace std;
 
 const double PI = 3.14159265358979;
 
-// Area del cerchio
+// Area del cerchio — riceve solo il raggio
 double area(double raggio) {
     return PI * raggio * raggio;
 }
 
-// Area del rettangolo
+// Area del rettangolo — riceve base e altezza
 double area(double base, double altezza) {
     return base * altezza;
 }
 
-// Area del triangolo
+// Area del triangolo — riceve base, altezza e un flag per distinguerla dal rettangolo
 double area(double base, double altezza, bool triangolo) {
     return (base * altezza) / 2;
 }
@@ -100,78 +100,65 @@ int main() {
 }
 ```
 
-## Quando il compilatore sceglie la versione sbagliata
+## Cosa non funziona: il tipo di ritorno non basta
 
-A volte il compilatore può essere ambiguo. Pensa a questo esempio:
-
-```cpp
-void f(int x) { cout << "int" << endl; }
-void f(double x) { cout << "double" << endl; }
-
-int main() {
-    f(5);     // chiama f(int)
-    f(5.0);   // chiama f(double)
-    f(5.0f);  // chiama f(double) (float viene promosso a double)
-    // f(5L);  // potrebbe essere ambiguo su alcuni compilatori
-    return 0;
-}
-```
-
-## Cosa NON è overloading
-
-Il tipo di ritorno da solo **non distingue** le funzioni overloaded. Questo causa un errore:
+Il compilatore distingue le funzioni solo dai parametri, non dal tipo di ritorno. Questo causa un errore:
 
 ```cpp
 int calcola(int x) { return x * 2; }
-double calcola(int x) { return x * 2.0; }  // ERRORE: firma identica!
+double calcola(int x) { return x * 2.0; }  // ERRORE: i parametri sono identici!
 ```
 
-Il compilatore non può scegliere la versione corretta basandosi solo su dove viene usato il risultato.
+Il compilatore non sa quale delle due chiamare, e lo segnala come errore.
 
-## Overloading vs valori di default
+## Overloading o parametri di default?
 
-Spesso si può ottenere lo stesso effetto sia con l'overloading sia con i parametri di default:
+A volte si può ottenere lo stesso risultato con entrambi gli approcci:
 
 ```cpp
-// Con overloading
+// Con overloading — due funzioni separate
 void saluta() { cout << "Ciao, ospite!" << endl; }
 void saluta(string nome) { cout << "Ciao, " << nome << "!" << endl; }
 
-// Con parametro di default
+// Con parametro di default — una sola funzione
 void saluta(string nome = "ospite") {
     cout << "Ciao, " << nome << "!" << endl;
 }
 ```
 
-Usa i parametri di default quando la logica è la stessa con valori diversi; usa l'overloading quando la logica è effettivamente diversa.
+La regola generale:
+- Usa i **parametri di default** quando la funzione fa la stessa cosa con valori diversi
+- Usa l'**overloading** quando la funzione fa cose diverse per tipi diversi di input
 
-## Esempio pratico
+## Esempio pratico: confronto flessibile
 
 ```cpp
 #include <iostream>
 #include <string>
 using namespace std;
 
-// Overloading di "confronta"
+// Confronta due interi
 bool confronta(int a, int b) {
     return a == b;
 }
 
+// Confronta due decimali con una piccola tolleranza
+// (i numeri decimali raramente sono esattamente uguali)
 bool confronta(double a, double b) {
-    // Per i decimali, confronto con tolleranza
     return (a - b < 0.0001) && (b - a < 0.0001);
 }
 
+// Confronta due stringhe
 bool confronta(string a, string b) {
     return a == b;
 }
 
 int main() {
     cout << boolalpha;
-    cout << confronta(5, 5) << endl;           // true
-    cout << confronta(3.14, 3.14) << endl;     // true
-    cout << confronta("ciao", "ciao") << endl; // true
-    cout << confronta("ciao", "Ciao") << endl; // false
+    cout << confronta(5, 5) << endl;            // true
+    cout << confronta(3.14, 3.14) << endl;      // true
+    cout << confronta("ciao", "ciao") << endl;  // true
+    cout << confronta("ciao", "Ciao") << endl;  // false (maiuscole contano)
     return 0;
 }
 ```

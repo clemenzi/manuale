@@ -3,72 +3,86 @@ title: Moduli
 description: Come organizzare il codice in moduli e importarli in Python.
 ---
 
-## Cosa sono i moduli?
+## Perché ti serve questo?
 
-Un **modulo** è semplicemente un file Python (`.py`) che contiene funzioni, variabili e classi. I moduli permettono di organizzare il codice in file separati e di riutilizzarlo facilmente.
+Immagina di dover scrivere un programma grande. Mettere tutto il codice in un unico file lungo migliaia di righe sarebbe un disastro — impossibile da leggere o da modificare.
 
-Python viene con una grandissima **libreria standard** di moduli già pronti. Puoi anche creare i tuoi moduli o installarne di terze parti.
+I **moduli** sono il modo in cui Python ti permette di suddividere il codice in file separati, organizzati per argomento. Ogni file `.py` è già un modulo. E Python viene fornito con centinaia di moduli già pronti da usare — la cosiddetta **libreria standard**.
 
-## Importare un modulo
+---
 
-Usa la parola chiave `import`:
+## Importare un modulo con `import`
+
+Per usare un modulo, devi "importarlo" all'inizio del tuo file:
 
 ```python
-import math
+import math   # Importa il modulo "math" (matematica)
 
-print(math.pi)           # 3.141592653589793
-print(math.sqrt(16))     # 4.0
-print(math.floor(3.7))   # 3
-print(math.ceil(3.2))    # 4
+print(math.pi)           # 3.141592653589793 — il pi greco
+print(math.sqrt(16))     # 4.0 — radice quadrata
+print(math.floor(3.7))   # 3   — arrotondamento verso il basso
+print(math.ceil(3.2))    # 4   — arrotondamento verso l'alto
 ```
 
-## Importare funzioni specifiche
+Quando scrivi `math.sqrt`, stai dicendo: "usa la funzione `sqrt` che si trova nel modulo `math`".
 
-Con `from ... import ...` puoi importare solo ciò che ti serve, senza dover scrivere il nome del modulo ogni volta:
+---
+
+## Importare solo quello che ti serve con `from ... import`
+
+Se sai già quali funzioni ti servono, puoi importarle direttamente. Così non devi scrivere il nome del modulo ogni volta:
 
 ```python
-from math import pi, sqrt, floor
+from math import pi, sqrt, floor   # Importo solo queste tre cose
 
-print(pi)        # 3.141592653589793
-print(sqrt(25))  # 5.0
+print(pi)          # 3.141592653589793
+print(sqrt(25))    # 5.0
 print(floor(4.9))  # 4
 ```
 
-## Importare tutto (sconsigliato)
+---
+
+## `from math import *` — sconsigliato
+
+Si può importare tutto in una volta con `*`, ma è una cattiva abitudine:
 
 ```python
-from math import *  # importa tutto
+from math import *   # Importa TUTTO dal modulo math
 
-print(sin(0))  # 0.0
+print(sin(0))   # Funziona, ma...
 ```
 
-Questo è sconsigliato perché non è chiaro da dove viene ogni funzione e può creare conflitti di nome.
+Il problema: non si capisce più da dove vengono le funzioni. Se due moduli hanno una funzione con lo stesso nome, una sovrascrive l'altra senza avvertirti.
 
-## Alias con `as`
+---
 
-Puoi rinominare un modulo o una funzione con `as`:
+## Rinominare con `as`
+
+Puoi dare un soprannome a un modulo o a una funzione con la parola `as`. Utile se il nome è lungo o se vuoi evitare conflitti:
 
 ```python
-import math as m
-print(m.pi)       # 3.14159...
+import math as m   # D'ora in poi scrivo "m" invece di "math"
+print(m.pi)        # 3.14159...
 
-from math import sqrt as radice_quadrata
-print(radice_quadrata(9))  # 3.0
+from math import sqrt as radice_quadrata   # Rinomino la funzione
+print(radice_quadrata(9))   # 3.0
 ```
 
-Questo è comune con librerie come NumPy:
+Alcune librerie molto usate hanno soprannomi convenzionali che tutti usano:
 
 ```python
-import numpy as np       # convenzione standard
-import pandas as pd      # convenzione standard
+import numpy as np    # Convenzione universale per NumPy
+import pandas as pd   # Convenzione universale per Pandas
 ```
 
-## Creare un proprio modulo
+---
 
-Crea un file chiamato `calcolatrice.py`:
+## Creare il tuo modulo
+
+Un modulo è semplicemente un file `.py`. Crea un file chiamato `calcolatrice.py`:
 
 ```python
-# calcolatrice.py
+# calcolatrice.py — il mio modulo personale
 
 def somma(a, b):
     return a + b
@@ -82,19 +96,23 @@ def moltiplica(a, b):
 pi = 3.14159
 ```
 
-Poi in un altro file nella stessa cartella:
+Poi in un altro file nella **stessa cartella**:
 
 ```python
-# main.py
+# main.py — uso il mio modulo
 import calcolatrice
 
-print(calcolatrice.somma(3, 4))       # 7
-print(calcolatrice.pi)                # 3.14159
+print(calcolatrice.somma(3, 4))    # 7
+print(calcolatrice.pi)             # 3.14159
 ```
+
+---
 
 ## Il blocco `if __name__ == "__main__"`
 
-Questo costrutto è importante quando crei moduli. Permette di eseguire del codice solo se il file viene eseguito direttamente (non importato):
+Quando Python importa un modulo, esegue tutto il codice al suo interno. Questo può causare problemi se hai del codice di test che non vuoi far girare durante l'importazione.
+
+La soluzione è racchiudere il codice di test in questo blocco speciale:
 
 ```python
 # calcolatrice.py
@@ -103,43 +121,51 @@ def somma(a, b):
     return a + b
 
 if __name__ == "__main__":
-    # questo codice viene eseguito solo se avvii calcolatrice.py direttamente
-    print(somma(3, 4))  # test
+    # Questo viene eseguito SOLO se avvii calcolatrice.py direttamente
+    # NON viene eseguito se qualcuno fa "import calcolatrice"
+    print(somma(3, 4))   # Test
 ```
 
-## Moduli utili della libreria standard
+Regola semplice: `__name__ == "__main__"` è `True` solo per il file che hai avviato tu, non per quelli importati.
 
-| Modulo | Cosa fa |
-|--------|---------|
-| `math` | Funzioni matematiche |
+---
+
+## Moduli utili già inclusi in Python
+
+| Modulo | A cosa serve |
+|--------|-------------|
+| `math` | Funzioni matematiche (radici, trigonometria, logaritmi) |
 | `random` | Numeri casuali |
 | `datetime` | Date e orari |
-| `os` | Interazione con il sistema operativo |
-| `sys` | Informazioni sul sistema Python |
-| `json` | Lettura e scrittura JSON |
-| `re` | Espressioni regolari |
-| `time` | Funzioni temporali |
+| `os` | Interazione con il sistema operativo (file, cartelle) |
+| `json` | Leggere e scrivere file JSON |
+| `re` | Espressioni regolari (ricerche avanzate nel testo) |
+| `time` | Misurare il tempo, mettere in pausa il programma |
 
-## Esempio: modulo `random`
+---
+
+## Il modulo `random` — numeri casuali
 
 ```python
 import random
 
-print(random.random())          # numero casuale tra 0 e 1
-print(random.randint(1, 10))    # intero casuale tra 1 e 10
-print(random.choice(["mela", "banana", "uva"]))  # elemento casuale
+print(random.random())                          # Numero decimale casuale tra 0.0 e 1.0
+print(random.randint(1, 10))                    # Numero intero casuale tra 1 e 10 (inclusi)
+print(random.choice(["mela", "banana", "uva"])) # Sceglie un elemento a caso dalla lista
 
 lista = [1, 2, 3, 4, 5]
-random.shuffle(lista)           # mescola la lista in-place
-print(lista)
+random.shuffle(lista)   # Mescola la lista (modifica la lista originale)
+print(lista)            # Ordine casuale, es: [3, 1, 5, 2, 4]
 ```
 
-## Esempio: modulo `os`
+---
+
+## Il modulo `os` — interazione con il sistema
 
 ```python
 import os
 
-print(os.getcwd())              # directory corrente
-print(os.listdir("."))          # file nella directory corrente
-print(os.path.exists("file.txt"))  # True se il file esiste
+print(os.getcwd())                  # Mostra in quale cartella ti trovi ora
+print(os.listdir("."))              # Elenca i file nella cartella corrente
+print(os.path.exists("file.txt"))   # True se il file esiste, False altrimenti
 ```

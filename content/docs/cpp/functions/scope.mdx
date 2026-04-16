@@ -3,36 +3,61 @@ title: Scope delle Variabili
 description: La visibilità e la durata delle variabili in C++.
 ---
 
-## Cos'è lo scope?
+## Perché ti serve questo?
 
-Lo **scope** (o visibilità) di una variabile definisce **dove nel codice** quella variabile può essere usata. In C++, lo scope è determinato dalle parentesi graffe `{}`.
+Immagina un edificio con stanze. Quello che metti in una stanza non è visibile dalle altre stanze. Se esci dalla stanza, le cose che hai lasciato lì scompaiono.
 
-## Variabili locali
+In C++, le variabili funzionano allo stesso modo: esistono solo nel "posto" in cui vengono dichiarate, e spariscono quando quel posto termina.
 
-Una **variabile locale** è definita all'interno di un blocco di codice (funzione, ciclo, condizione). Esiste solo all'interno di quel blocco e non è accessibile dall'esterno:
+Questo "posto" si chiama **scope** (visibilità).
+
+## Le parentesi graffe creano lo scope
+
+In C++, ogni coppia di `{` `}` crea una nuova zona di codice con il proprio scope. Le variabili dichiarate dentro quella zona esistono solo lì:
+
+```cpp
+int main() {
+    int x = 10;
+
+    {
+        int y = 20;   // y esiste solo in questo blocco interno
+        cout << x;    // OK — x è visibile anche qui
+        cout << y;    // OK — y è visibile qui
+    }
+
+    cout << x;    // OK — x esiste ancora
+    // cout << y; // ERRORE — y non esiste più, il blocco è finito
+}
+```
+
+## Variabili locali: vivono dentro la funzione
+
+Una **variabile locale** è dichiarata dentro una funzione. Esiste solo finché quella funzione è in esecuzione, e non è visibile dall'esterno:
 
 ```cpp
 void miaFunzione() {
-    int x = 10;   // variabile locale a miaFunzione
+    int x = 10;   // x esiste solo dentro miaFunzione
     cout << x;    // OK
 }
 
 int main() {
     miaFunzione();
-    // cout << x;  // ERRORE: x non esiste qui
+    // cout << x;  // ERRORE — x non esiste qui
     return 0;
 }
 ```
 
-## Variabili globali
+Ogni chiamata alla funzione crea una nuova copia delle variabili locali, che poi sparisce quando la funzione termina.
 
-Una **variabile globale** è definita fuori da qualsiasi funzione. È accessibile da tutto il codice nel file:
+## Variabili globali: visibili ovunque
+
+Una **variabile globale** è dichiarata fuori da qualsiasi funzione. È visibile da tutto il codice nel file:
 
 ```cpp
-int contatore = 0;   // variabile globale
+int contatore = 0;   // variabile globale — visibile ovunque
 
 void incrementa() {
-    contatore++;     // accede alla variabile globale
+    contatore++;     // può accedere e modificare la variabile globale
 }
 
 int main() {
@@ -44,72 +69,51 @@ int main() {
 }
 ```
 
-Le variabili globali devono essere usate con cautela perché possono essere modificate da qualsiasi parte del codice, rendendo difficile il debugging.
+Usa le variabili globali con cautela. Il fatto che qualsiasi funzione possa modificarle le rende difficili da controllare nei programmi grandi.
 
-## Scope dei blocchi
+## Le variabili dei cicli
 
-Ogni coppia di `{}` crea un nuovo scope. Le variabili dichiarate in un blocco non sono visibili fuori da esso:
-
-```cpp
-int main() {
-    int x = 10;
-
-    {
-        int y = 20;   // y esiste solo in questo blocco
-        cout << x << " " << y << endl;  // OK: 10 20
-    }
-
-    cout << x << endl;   // OK: 10
-    // cout << y;        // ERRORE: y non esiste qui
-
-    return 0;
-}
-```
-
-## Scope nei cicli
-
-Le variabili dichiarate in un ciclo `for` esistono solo per la durata del ciclo:
+Le variabili dichiarate dentro un `for` esistono solo per la durata del ciclo:
 
 ```cpp
 for (int i = 0; i < 5; i++) {
-    cout << i << " ";  // OK
+    cout << i << " ";   // OK
 }
-// cout << i;  // ERRORE: i non esiste qui
+// cout << i;  // ERRORE — i non esiste più fuori dal ciclo
 ```
 
-## Shadowing (oscuramento)
+Questo è un vantaggio: il contatore `i` non inquina il resto del codice.
 
-Se una variabile locale ha lo stesso nome di una variabile globale, la variabile locale "oscura" (shadow) quella globale all'interno del suo scope:
+## Shadowing: quando due variabili hanno lo stesso nome
+
+Se dichiari una variabile locale con lo stesso nome di una globale, la locale "nasconde" la globale dentro il suo scope. Si chiama **shadowing**:
 
 ```cpp
 int x = 100;  // variabile globale
 
 void funzione() {
-    int x = 50;   // variabile locale, oscura quella globale
-    cout << x;    // 50 (usa la locale)
+    int x = 50;   // variabile locale — nasconde quella globale
+    cout << x;    // stampa 50 (usa la locale)
 }
 
 int main() {
-    cout << x;    // 100 (usa la globale)
+    cout << x;    // stampa 100 (usa la globale)
     funzione();
-    cout << x;    // 100 (la globale non è cambiata)
+    cout << x;    // stampa 100 (la globale non è cambiata)
     return 0;
 }
 ```
 
-Evita lo shadowing: può generare confusione. Usa nomi diversi per variabili diverse.
+Evita lo shadowing: usa nomi diversi per variabili diverse. Il codice è molto più chiaro.
 
-## Durata (lifetime) delle variabili
+## La variabile `static`: sopravvive tra le chiamate
 
-Lo scope e la durata sono concetti correlati:
-
-- **Variabili locali**: create quando si entra nel blocco, distrutte quando si esce
-- **Variabili globali**: create all'avvio del programma, distrutte alla fine
+Normalmente, una variabile locale ricomincia da zero ogni volta che la funzione viene chiamata. Con la parola chiave `static`, il valore viene conservato tra una chiamata e l'altra:
 
 ```cpp
 void contaChiamate() {
-    int locale = 0;         // ricreata a ogni chiamata
-    static int statica = 0; // persiste tra le chiamate!
+    int locale = 0;          // ricomincia da 0 ad ogni chiamata
+    static int statica = 0;  // conserva il valore tra le chiamate
 
     locale++;
     statica++;
@@ -125,11 +129,9 @@ int main() {
 }
 ```
 
-La keyword `static` davanti a una variabile locale la fa sopravvivere tra le chiamate alla funzione, mantenendo il suo valore.
+## I parametri delle funzioni
 
-## Scope e funzioni
-
-I parametri di una funzione hanno lo stesso scope delle variabili locali della funzione:
+I parametri di una funzione si comportano come variabili locali: esistono solo dentro la funzione.
 
 ```cpp
 void funzione(int a, int b) {
@@ -140,51 +142,18 @@ void funzione(int a, int b) {
 // a, b e somma non esistono qui
 ```
 
-## Buone pratiche sullo scope
+## Consigli pratici
 
-- **Principio del minimo scope**: dichiara le variabili il più vicino possibile a dove le usi
-- Evita le variabili globali quando possibile
-- Non riusare lo stesso nome in scope diversi (evita lo shadowing)
+- **Dichiara le variabili vicino a dove le usi**: non in cima alla funzione se le usi solo alla fine.
+- **Evita le variabili globali** quando possibile. Preferisci passare i valori come parametri.
+- **Evita lo shadowing**: dai nomi diversi alle variabili in scope diversi.
 
 ```cpp
-// Scarso: variabile dichiarata lontano dall'uso
+// Meno chiaro: variabile dichiarata lontano dall'uso
 int risultato;
-// ... 50 righe di codice ...
+// ... molte righe di codice ...
 risultato = a + b;
 
-// Meglio: dichiarazione vicina all'uso
+// Più chiaro: dichiarazione e uso insieme
 int risultato = a + b;
-```
-
-## Esempio completo
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int totale = 0;   // variabile globale
-
-void aggiungi(int valore) {
-    totale += valore;   // modifica la variabile globale
-    cout << "Aggiunto " << valore << ", totale: " << totale << endl;
-}
-
-int main() {
-    // scope di main
-    int x = 10;
-
-    aggiungi(x);   // totale = 10
-
-    {
-        // scope interno
-        int x = 20;    // shadowing: oscura la x di main
-        aggiungi(x);   // totale = 30
-    }
-
-    // x di main è ancora 10
-    aggiungi(x);   // totale = 40
-
-    cout << "Totale finale: " << totale << endl;
-    return 0;
-}
 ```

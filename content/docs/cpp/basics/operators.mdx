@@ -3,20 +3,22 @@ title: Operatori
 description: Gli operatori aritmetici, di confronto e logici in C++.
 ---
 
-## Cosa sono gli operatori?
+## Perché ti serve questo?
 
-Gli **operatori** sono simboli che eseguono operazioni su valori o variabili. In C++ ci sono diversi tipi di operatori: aritmetici, di confronto e logici.
+Un programma senza operatori non può fare quasi nulla. Gli **operatori** sono i simboli che usano il programma per fare calcoli, confrontare valori e prendere decisioni.
+
+Sono come i simboli matematici che già conosci (`+`, `-`, `*`, `/`), con qualche aggiunta specifica per la programmazione.
 
 ## Operatori aritmetici
 
-Eseguono operazioni matematiche:
+Questi operatori fanno calcoli matematici:
 
 | Operatore | Operazione | Esempio | Risultato |
 |---|---|---|---|
 | `+` | Addizione | `5 + 3` | `8` |
 | `-` | Sottrazione | `5 - 3` | `2` |
 | `*` | Moltiplicazione | `5 * 3` | `15` |
-| `/` | Divisione | `10 / 3` | `3` (divisione intera!) |
+| `/` | Divisione | `10 / 3` | `3` (intera!) |
 | `%` | Modulo (resto) | `10 % 3` | `1` |
 
 ```cpp
@@ -25,79 +27,79 @@ int a = 10, b = 3;
 cout << a + b << endl;  // 13
 cout << a - b << endl;  // 7
 cout << a * b << endl;  // 30
-cout << a / b << endl;  // 3 (divisione intera, non 3.33!)
-cout << a % b << endl;  // 1 (resto della divisione)
+cout << a / b << endl;  // 3 — attenzione, non 3.33!
+cout << a % b << endl;  // 1 — il resto della divisione
 ```
 
-### Divisione intera vs divisione decimale
+### La divisione intera
 
-Attenzione: quando si dividono due interi, il risultato è un intero (la parte decimale viene troncata):
+Quando si dividono due numeri interi, il risultato è sempre un intero. La parte decimale viene scartata, non arrotondata:
 
 ```cpp
 int x = 7, y = 2;
-cout << x / y << endl;         // 3 (non 3.5!)
+cout << x / y << endl;           // 3 (non 3.5!)
 
-// Per ottenere 3.5, almeno uno deve essere double
+// Per ottenere 3.5, converti uno dei due in double prima di dividere
 double risultato = (double)x / y;
-cout << risultato << endl;     // 3.5
+cout << risultato << endl;       // 3.5
 ```
 
 ### Il modulo `%`
 
-Il modulo restituisce il resto della divisione intera. È utile per sapere se un numero è pari o dispari:
+Il modulo restituisce il **resto** della divisione intera. È utile per capire se un numero è pari o dispari:
 
 ```cpp
-cout << 10 % 3 << endl;  // 1 (10 = 3*3 + 1)
-cout << 9 % 3 << endl;   // 0 (9 è divisibile per 3)
-cout << 7 % 2 << endl;   // 1 (7 è dispari)
-cout << 8 % 2 << endl;   // 0 (8 è pari)
+cout << 10 % 3 << endl;  // 1  (10 = 3×3 + 1)
+cout << 9 % 3 << endl;   // 0  (9 è divisibile per 3)
+cout << 7 % 2 << endl;   // 1  (7 è dispari)
+cout << 8 % 2 << endl;   // 0  (8 è pari)
 ```
 
 ## Operatori di assegnazione
 
-Oltre al semplice `=`, esistono operatori combinati che modificano una variabile:
+Oltre al semplice `=`, esistono operatori che modificano una variabile in un colpo solo:
 
-| Operatore | Equivalente | Esempio |
+| Operatore | Equivalente | Esempio con `x = 10` |
 |---|---|---|
-| `=` | assegnazione | `x = 5` |
-| `+=` | `x = x + y` | `x += 3` |
-| `-=` | `x = x - y` | `x -= 3` |
-| `*=` | `x = x * y` | `x *= 3` |
-| `/=` | `x = x / y` | `x /= 3` |
-| `%=` | `x = x % y` | `x %= 3` |
+| `=` | assegnazione semplice | `x = 5` → x vale 5 |
+| `+=` | `x = x + y` | `x += 3` → x vale 13 |
+| `-=` | `x = x - y` | `x -= 3` → x vale 7 |
+| `*=` | `x = x * y` | `x *= 2` → x vale 20 |
+| `/=` | `x = x / y` | `x /= 5` → x vale 2 |
+| `%=` | `x = x % y` | `x %= 3` → x vale 1 |
 
 ```cpp
 int x = 10;
-x += 5;   // x = 15
-x -= 3;   // x = 12
-x *= 2;   // x = 24
-x /= 4;   // x = 6
-x %= 4;   // x = 2
+x += 5;   // x è ora 15
+x -= 3;   // x è ora 12
+x *= 2;   // x è ora 24
+x /= 4;   // x è ora 6
+x %= 4;   // x è ora 2
 ```
 
 ## Operatori di incremento e decremento
 
-Molto usati in C++:
+Aggiungere o sottrarre 1 è così comune in C++ che esistono operatori appositi:
 
 ```cpp
 int x = 5;
-x++;   // x diventa 6 (equivalente a x = x + 1)
-x--;   // x diventa 5 (equivalente a x = x - 1)
-++x;   // x diventa 6 (pre-incremento)
---x;   // x diventa 5 (pre-decremento)
+x++;   // x diventa 6 (aggiunge 1)
+x--;   // x diventa 5 (sottrae 1)
 ```
 
-La differenza tra `x++` (post-incremento) e `++x` (pre-incremento) emerge quando li usi in un'espressione:
+Esistono anche nella forma con `++` prima della variabile:
 
 ```cpp
-int a = 5;
-int b = a++;  // b = 5, poi a diventa 6
-int c = ++a;  // a diventa 7, poi c = 7
+int x = 5;
+int b = x++;  // prima assegna x a b (b = 5), poi incrementa x (x = 6)
+int c = ++x;  // prima incrementa x (x = 7), poi assegna a c (c = 7)
 ```
+
+Per i principianti è sufficiente usare `x++` e `x--` da soli, senza usarli dentro espressioni complesse.
 
 ## Operatori di confronto
 
-Restituiscono `true` o `false` confrontando due valori:
+Confrontano due valori e restituiscono `true` (vero) o `false` (falso):
 
 | Operatore | Significato | Esempio | Risultato |
 |---|---|---|---|
@@ -111,28 +113,25 @@ Restituiscono `true` o `false` confrontando due valori:
 ```cpp
 int a = 5, b = 3;
 
-cout << (a == b) << endl;  // 0 (false)
-cout << (a != b) << endl;  // 1 (true)
-cout << (a > b) << endl;   // 1 (true)
-cout << (a < b) << endl;   // 0 (false)
-cout << (a >= 5) << endl;  // 1 (true)
-cout << (b <= 3) << endl;  // 1 (true)
+cout << (a == b) << endl;  // 0 (false — 5 non è uguale a 3)
+cout << (a != b) << endl;  // 1 (true  — 5 è diverso da 3)
+cout << (a > b)  << endl;  // 1 (true  — 5 è maggiore di 3)
+cout << (a < b)  << endl;  // 0 (false — 5 non è minore di 3)
 ```
 
-Attenzione: `==` (confronto) è diverso da `=` (assegnazione). Scrivere `if (x = 5)` invece di `if (x == 5)` è un errore comune!
+**Errore comune**: confondere `==` (confronto) con `=` (assegnazione). Scrivere `if (x = 5)` invece di `if (x == 5)` cambia il valore di `x` invece di confrontarlo!
 
 ## Operatori logici
 
-Combinano condizioni booleane:
+Combinano più condizioni insieme:
 
 | Operatore | Significato | Esempio | Risultato |
 |---|---|---|---|
-| `&&` | AND (e) | `true && false` | `false` |
-| `\|\|` | OR (o) | `true \|\| false` | `true` |
-| `!` | NOT (non) | `!true` | `false` |
+| `&&` | E (AND) | `true && false` | `false` |
+| `\|\|` | O (OR) | `true \|\| false` | `true` |
+| `!` | NON (NOT) | `!true` | `false` |
 
-### AND (`&&`)
-Vero solo se entrambe le condizioni sono vere:
+### AND (`&&`): entrambe le condizioni devono essere vere
 
 ```cpp
 int eta = 20;
@@ -141,10 +140,10 @@ bool haPatente = true;
 if (eta >= 18 && haPatente) {
     cout << "Puoi guidare." << endl;
 }
+// Entrambe le condizioni sono vere → stampa il messaggio
 ```
 
-### OR (`||`)
-Vero se almeno una delle condizioni è vera:
+### OR (`||`): basta che almeno una condizione sia vera
 
 ```cpp
 int ora = 14;
@@ -154,10 +153,10 @@ if (ora < 9 || ora > 18) {
 } else {
     cout << "Il negozio è aperto." << endl;
 }
+// ora = 14, nessuna delle due condizioni è vera → "aperto"
 ```
 
-### NOT (`!`)
-Inverte il valore booleano:
+### NOT (`!`): inverte il valore booleano
 
 ```cpp
 bool piove = false;
@@ -165,13 +164,14 @@ bool piove = false;
 if (!piove) {
     cout << "Possiamo uscire!" << endl;
 }
+// !false è true → stampa il messaggio
 ```
 
-## Priorità degli operatori
+## La priorità degli operatori
 
-Come in matematica, gli operatori hanno una priorità. Da maggiore a minore:
+Come in matematica, alcuni operatori hanno la precedenza su altri. Da quella più alta a quella più bassa:
 
-1. `!`, `++`, `--` (unari)
+1. `!`, `++`, `--`
 2. `*`, `/`, `%`
 3. `+`, `-`
 4. `<`, `>`, `<=`, `>=`
@@ -180,11 +180,11 @@ Come in matematica, gli operatori hanno una priorità. Da maggiore a minore:
 7. `||`
 8. `=`, `+=`, `-=`, ecc.
 
-Usa le parentesi per rendere esplicito l'ordine delle operazioni:
+Quando hai dubbi, usa le parentesi per rendere esplicito l'ordine:
 
 ```cpp
-int risultato = 2 + 3 * 4;      // 14 (moltiplicazione prima)
-int risultato2 = (2 + 3) * 4;   // 20 (parentesi prima)
+int risultato = 2 + 3 * 4;      // 14 — la moltiplicazione va prima
+int risultato2 = (2 + 3) * 4;   // 20 — le parentesi cambiano tutto
 ```
 
 ## Esempio pratico
@@ -196,19 +196,22 @@ using namespace std;
 int main() {
     int a = 15, b = 4;
 
-    cout << "a = " << a << ", b = " << b << endl;
-    cout << "Somma: " << a + b << endl;
-    cout << "Differenza: " << a - b << endl;
-    cout << "Prodotto: " << a * b << endl;
-    cout << "Quoziente: " << a / b << endl;
-    cout << "Resto: " << a % b << endl;
+    // Operatori aritmetici
+    cout << "Somma: " << a + b << endl;       // 19
+    cout << "Differenza: " << a - b << endl;  // 11
+    cout << "Prodotto: " << a * b << endl;    // 60
+    cout << "Quoziente: " << a / b << endl;   // 3 (divisione intera)
+    cout << "Resto: " << a % b << endl;       // 3
 
     cout << endl;
-    cout << "a > b: " << (a > b) << endl;
-    cout << "a == b: " << (a == b) << endl;
 
-    bool condizione = (a > 10) && (b < 10);
-    cout << "a>10 E b<10: " << condizione << endl;
+    // Operatori di confronto
+    cout << "a > b: " << (a > b) << endl;   // 1 (true)
+    cout << "a == b: " << (a == b) << endl; // 0 (false)
+
+    // Operatori logici
+    bool cond = (a > 10) && (b < 10);
+    cout << "a>10 E b<10: " << cond << endl; // 1 (true)
 
     return 0;
 }

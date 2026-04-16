@@ -3,13 +3,17 @@ title: Input con cin
 description: Come leggere dati inseriti dall'utente con cin in C++.
 ---
 
+## Perché ti serve questo?
+
+Un programma che fa sempre la stessa cosa con gli stessi dati non è molto utile. `cin` ti permette di leggere quello che l'utente scrive dalla tastiera, rendendo il programma interattivo.
+
 ## Cos'è `cin`?
 
-`cin` (pronuncia "si-in", da "character input") è lo strumento del C++ per leggere l'input dall'utente tramite tastiera. Come `cout`, fa parte della libreria `<iostream>`.
+`cin` è lo strumento del C++ per leggere l'input dall'utente tramite tastiera. Come `cout`, fa parte della libreria `<iostream>`.
 
 ## L'operatore `>>`
 
-L'operatore `>>` si chiama **operatore di estrazione**. Serve a "estrarre" dati dal flusso di input e salvarli in una variabile:
+L'operatore `>>` "estrae" un valore dall'input e lo salva in una variabile:
 
 ```cpp
 int x;
@@ -26,8 +30,8 @@ using namespace std;
 
 int main() {
     int eta;
-    cout << "Inserisci la tua eta: ";
-    cin >> eta;
+    cout << "Inserisci la tua età: ";  // spiega cosa vuoi
+    cin >> eta;                          // leggi il valore
     cout << "Hai " << eta << " anni." << endl;
     return 0;
 }
@@ -36,7 +40,7 @@ int main() {
 Esempio di esecuzione:
 
 ```
-Inserisci la tua eta: 16
+Inserisci la tua età: 16
 Hai 16 anni.
 ```
 
@@ -49,9 +53,9 @@ cin >> altezza;
 cout << "Alta/o " << altezza << " m." << endl;
 ```
 
-## Leggere una parola (stringa senza spazi)
+## Leggere una parola
 
-Con `cin >>` puoi leggere una parola, ma si ferma al primo spazio:
+Con `cin >>` puoi leggere una parola sola. Il problema: si ferma al primo spazio.
 
 ```cpp
 string nome;
@@ -65,11 +69,11 @@ Inserisci il tuo nome: Alice
 Ciao, Alice!
 ```
 
-Se l'utente scrive "Alice Bianchi", `cin >> nome` legge solo "Alice".
+Se l'utente scrive "Alice Bianchi", `cin >> nome` legge solo "Alice" e scarta "Bianchi".
 
 ## Leggere una riga intera (con spazi)
 
-Per leggere una riga intera inclusi gli spazi, usa `getline()`:
+Per leggere tutta la riga compreso gli spazi, usa `getline()`:
 
 ```cpp
 #include <iostream>
@@ -79,7 +83,7 @@ using namespace std;
 int main() {
     string nome_completo;
     cout << "Inserisci il tuo nome completo: ";
-    getline(cin, nome_completo);
+    getline(cin, nome_completo);  // legge tutta la riga
     cout << "Ciao, " << nome_completo << "!" << endl;
     return 0;
 }
@@ -92,7 +96,7 @@ Ciao, Alice Bianchi!
 
 ## Leggere più valori
 
-Puoi leggere più valori nella stessa riga:
+Puoi leggere più valori in una volta sola, separati da spazio:
 
 ```cpp
 int a, b;
@@ -106,23 +110,23 @@ Inserisci due numeri separati da spazio: 5 3
 Somma: 8
 ```
 
-## Mescolare cin e getline
+## Attenzione: `cin` e `getline` insieme
 
-Attenzione: se usi `cin >>` e poi `getline()`, potresti avere un problema. Quando premi Invio dopo `cin >>`, il carattere `\n` rimane nel buffer e viene letto subito da `getline()`.
+Se usi `cin >>` e poi `getline()`, c'è una trappola: quando l'utente preme Invio dopo `cin >>`, il carattere "a capo" rimane nel buffer e viene letto subito da `getline()`, saltando l'input dell'utente.
 
-La soluzione è usare `cin.ignore()` per scartare quel carattere:
+La soluzione è aggiungere `cin.ignore()` per scartare quel carattere "a capo":
 
 ```cpp
 int eta;
 string nome;
 
-cout << "Eta: ";
+cout << "Età: ";
 cin >> eta;
 
-cin.ignore();  // scarta il '\n' rimasto nel buffer
+cin.ignore();  // scarta il 'Invio' rimasto nel buffer
 
 cout << "Nome completo: ";
-getline(cin, nome);
+getline(cin, nome);  // ora funziona correttamente
 
 cout << nome << " ha " << eta << " anni." << endl;
 ```
@@ -151,7 +155,7 @@ int main() {
     cout << endl;
     cout << "=== I tuoi dati ===" << endl;
     cout << "Nome:    " << nome << endl;
-    cout << "Eta:     " << eta << " anni" << endl;
+    cout << "Età:     " << eta << " anni" << endl;
     cout << "Altezza: " << altezza << " m" << endl;
 
     return 0;
@@ -167,10 +171,10 @@ Quanto sei alto/a (in metri)? 1.65
 
 === I tuoi dati ===
 Nome:    Alice
-Eta:     16 anni
+Età:     16 anni
 Altezza: 1.65 m
 ```
 
-## Cosa succede se l'utente inserisce il tipo sbagliato?
+## Cosa succede se l'utente sbaglia tipo?
 
-Se l'utente inserisce un valore del tipo sbagliato (es. testo dove si aspetta un numero), `cin` va in uno stato di errore e le letture successive non funzionano. Per ora, puoi assumere che l'utente inserisca sempre il tipo corretto. La gestione degli errori di input è un argomento più avanzato.
+Se l'utente scrive del testo dove il programma si aspetta un numero, `cin` entra in uno stato di errore e le letture successive non funzionano. Per ora, puoi supporre che l'utente inserisca sempre il tipo corretto. La gestione degli errori di input è un argomento più avanzato.

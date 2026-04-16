@@ -3,13 +3,13 @@ title: Ciclo while
 description: Come ripetere istruzioni con il ciclo while in C++.
 ---
 
-## Cosa sono i cicli?
+## Perché ti serve questo?
 
-Un **ciclo** (o loop) permette di ripetere un blocco di codice più volte. Invece di scrivere la stessa istruzione dieci volte, la scrivi una volta e dici al programma di ripeterla.
+A volte non sai in anticipo quante volte dovrai ripetere qualcosa. Per esempio: continua a chiedere all'utente un numero finché non inserisce uno valido. Oppure: elabora dati finché non hai finito la lista.
 
-## Il ciclo `while`
+Il ciclo `while` ripete un blocco di codice **finché una condizione rimane vera**. Si ferma solo quando la condizione diventa falsa.
 
-Il ciclo `while` ripete un blocco di codice finché una condizione rimane vera:
+## La struttura del ciclo `while`
 
 ```cpp
 while (condizione) {
@@ -17,12 +17,14 @@ while (condizione) {
 }
 ```
 
+Un esempio concreto:
+
 ```cpp
 int i = 1;
 
 while (i <= 5) {
     cout << i << endl;
-    i++;
+    i++;  // aumentiamo i di 1 ad ogni giro
 }
 ```
 
@@ -36,46 +38,47 @@ Output:
 5
 ```
 
-Come funziona:
+Come funziona, passo per passo:
+
 1. Controlla la condizione `i <= 5`
 2. Se è vera, esegue il blocco
-3. Dopo il blocco, controlla di nuovo la condizione
-4. Continua finché la condizione diventa falsa
+3. Torna al punto 1
+4. Quando la condizione è falsa, si ferma
 
-## La variabile contatore
+## Il contatore: non dimenticarlo!
 
-Di solito si usa una **variabile contatore** per tenere traccia di quante volte il ciclo è stato eseguito. Ricordati di:
+Di solito si usa una variabile **contatore** per tenere traccia dei giri. Devi:
 
-1. Inizializzare il contatore prima del ciclo
-2. Aggiornare il contatore all'interno del ciclo
+1. Inizializzarla **prima** del ciclo
+2. Aggiornarla **dentro** il ciclo
 
 ```cpp
 int contatore = 0;
 
 while (contatore < 3) {
     cout << "Esecuzione " << contatore + 1 << endl;
-    contatore++;  // IMPORTANTE: senza questo, ciclo infinito!
+    contatore++;  // senza questa riga: ciclo infinito!
 }
 ```
 
-## Il ciclo infinito
+## Il ciclo infinito: cosa evitare
 
-Se la condizione non diventa mai falsa, il ciclo va avanti all'infinito (loop infinito). Il programma si blocca:
+Se la condizione non diventa mai falsa, il ciclo gira per sempre. Il programma si blocca:
 
 ```cpp
-// ATTENZIONE: questo è un loop infinito!
+// ATTENZIONE: questo è un ciclo infinito!
 int i = 1;
 while (i <= 5) {
     cout << i << endl;
-    // manca i++: i rimane sempre 1, la condizione sempre vera
+    // manca i++ — i rimane sempre 1, la condizione non cambia mai
 }
 ```
 
-Se ti succede, puoi fermare il programma con `Ctrl+C`.
+Se ti capita, puoi fermare il programma premendo `Ctrl+C` nel terminale.
 
-## Ciclo con input dell'utente
+## Quando il `while` è più adatto del `for`
 
-Il `while` è utile quando non sai quante volte ripetere qualcosa in anticipo:
+Il `while` eccelle quando non sai in anticipo quante ripetizioni ci saranno. Per esempio, continuare a leggere input finché l'utente non decide di uscire:
 
 ```cpp
 int numero;
@@ -83,7 +86,9 @@ cout << "Inserisci un numero (0 per uscire): ";
 cin >> numero;
 
 while (numero != 0) {
+    // calcoliamo il quadrato del numero inserito
     cout << "Il quadrato di " << numero << " è " << numero * numero << endl;
+
     cout << "Inserisci un numero (0 per uscire): ";
     cin >> numero;
 }
@@ -93,12 +98,12 @@ cout << "Arrivederci!" << endl;
 
 ## Ciclo con accumulatore
 
-Spesso si usa una variabile **accumulatore** per sommare o raccogliere valori:
+Un pattern molto comune: sommare o raccogliere valori uno per uno:
 
 ```cpp
-int somma = 0;
+int somma = 0;    // accumulatore — parte da zero
 int numero;
-int n = 5;
+int n = 5;        // quanti numeri vogliamo leggere
 
 cout << "Inserisci " << n << " numeri:" << endl;
 
@@ -106,7 +111,7 @@ int i = 0;
 while (i < n) {
     cout << "Numero " << (i + 1) << ": ";
     cin >> numero;
-    somma += numero;
+    somma += numero;  // aggiungiamo il numero alla somma totale
     i++;
 }
 
@@ -116,13 +121,14 @@ cout << "Media: " << (double)somma / n << endl;
 
 ## Condizioni complesse
 
-Puoi usare condizioni più elaborate con operatori logici:
+Puoi combinare più condizioni con `&&` e `||`:
 
 ```cpp
 int tentativi = 0;
 int password;
 const int PASSWORD_CORRETTA = 1234;
 
+// Continua finché la password è sbagliata E i tentativi sono meno di 3
 while (password != PASSWORD_CORRETTA && tentativi < 3) {
     cout << "Inserisci la password: ";
     cin >> password;
@@ -149,6 +155,7 @@ using namespace std;
 int main() {
     char continua = 's';
 
+    // Continuiamo finché l'utente vuole fare calcoli
     while (continua == 's' || continua == 'S') {
         double a, b;
         char operazione;

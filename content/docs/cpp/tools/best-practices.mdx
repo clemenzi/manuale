@@ -3,52 +3,60 @@ title: Buone Pratiche di Codice
 description: Come scrivere codice C++ leggibile, manutenibile e professionale.
 ---
 
-## Perché le buone pratiche?
+## Perché ti serve questo?
 
-Scrivere codice che funziona è il primo passo. Scrivere codice che si capisce, si modifica facilmente e non crea problemi nel tempo è il passo successivo.
+Scrivere codice che funziona è il primo traguardo. Scrivere codice che **si capisce, si modifica facilmente e non crea problemi nel tempo** è il secondo — ed è quello che distingue un programmatore che cresce da uno che rimane bloccato.
 
-Le buone pratiche di codice ti aiutano a:
-- Trovare i bug più facilmente
-- Lavorare in gruppo con altri programmatori
+Queste abitudini ti aiutano a:
+- Trovare i bug più in fretta
 - Capire il tuo stesso codice dopo settimane senza toccarlo
-- Evitare errori comuni
+- Lavorare con altri programmatori senza causare confusione
+- Evitare gli errori classici che fanno perdere tempo
 
-## Nomi significativi
+## Usa nomi che spiegano da soli
 
-Usa nomi che descrivono lo scopo della variabile o della funzione:
+Il nome di una variabile o di una funzione deve dire **cosa rappresenta** o **cosa fa**:
 
 ```cpp
-// Scarso: nomi criptici
-int x, y, z;
+// Scadente: cosa sono x, y, b?
+int x, y;
 double d;
 bool b;
-void f(int a, int b) { return a + b; }
 
-// Buono: nomi chiari
-int larghezza, altezza, area;
+// Buono: si capisce subito
+int larghezza, altezza;
 double prezzoUnitario;
 bool maggiorenne;
+```
+
+Lo stesso vale per le funzioni:
+
+```cpp
+// Scadente
+void f(int a, int b) { return a + b; }
+
+// Buono: si capisce cosa fa senza leggere il corpo
 int calcolaSomma(int primo, int secondo) { return primo + secondo; }
 ```
 
-## Commenti utili
+## Commenta il "perché", non il "cosa"
 
-Commenta il **perché**, non il cosa. Il codice spiega già cosa fa:
+Il codice mostra già **cosa** fa. I commenti devono spiegare **perché** lo fa:
 
 ```cpp
-// SCARSO: ovvio dal codice
-x = x + 1; // incrementa x
+// Scadente: ridondante, il codice lo dice già
+tentativi = tentativi + 1; // incrementa tentativi
 
-// BUONO: spiega il perché
-tentativi = tentativi + 1; // incremento dopo ogni risposta errata
+// Buono: spiega il ragionamento
+tentativi = tentativi + 1; // ogni risposta sbagliata aggiunge un tentativo
 ```
 
 Documenta le funzioni complesse:
 
 ```cpp
 // Calcola il massimo comun divisore di due interi positivi.
-// Usa l'algoritmo di Euclide.
 // Precondizione: a > 0 e b > 0
+// Usa l'algoritmo di Euclide (sottrazione ripetuta del resto).
 int mcd(int a, int b) {
     while (b != 0) {
         int temp = b;
@@ -59,17 +67,17 @@ int mcd(int a, int b) {
 }
 ```
 
-## Funzioni piccole e focalizzate
+## Ogni funzione fa una sola cosa
 
-Ogni funzione deve fare **una sola cosa** e farla bene. Se una funzione è troppo lunga, spezzala:
+Se una funzione è troppo lunga o fa troppe cose, spezzala. Una funzione ben fatta si capisce in pochi secondi:
 
 ```cpp
-// SCARSO: funzione che fa tutto
+// Scadente: una funzione enorme che legge, calcola e stampa tutto insieme
 void elaboraStudenti() {
-    // 100 righe che leggono, calcolano, stampano...
+    // 100 righe con tutto mescolato...
 }
 
-// BUONO: funzioni separate con responsabilità chiare
+// Buono: ogni funzione ha una responsabilità precisa
 void leggiVoti(vector<int>& voti);
 double calcolaMedia(const vector<int>& voti);
 int trovaMassimo(const vector<int>& voti);
@@ -84,17 +92,17 @@ void elaboraStudenti() {
 }
 ```
 
-## Costanti invece di numeri magici
+## Evita i "numeri magici"
 
-I "numeri magici" sono valori numerici nel codice senza spiegazione:
+Un numero scritto direttamente nel codice senza spiegazione si chiama "numero magico". Chi lo legge non capisce cosa rappresenta:
 
 ```cpp
-// SCARSO: cosa significa 86400? cosa è 3.14159?
+// Scadente: cosa sono 86400 e 3.14159?
 if (secondi > 86400) {
     area = 3.14159 * r * r;
 }
 
-// BUONO: costanti con nomi significativi
+// Buono: i nomi spiegano tutto
 const int SECONDI_PER_GIORNO = 86400;
 const double PI = 3.14159265358979;
 
@@ -105,31 +113,31 @@ if (secondi > SECONDI_PER_GIORNO) {
 
 ## Inizializza sempre le variabili
 
-Le variabili non inizializzate contengono valori casuali in C++:
+In C++, una variabile non inizializzata contiene un valore casuale (qualunque cosa ci fosse prima in quella zona di memoria):
 
 ```cpp
-// PERICOLOSO
+// Pericoloso: valore casuale!
 int x;
-cout << x;   // valore casuale!
+cout << x;   // stampa qualcosa di imprevedibile
 
-// CORRETTO
+// Sicuro
 int x = 0;
-cout << x;   // 0
+cout << x;   // stampa 0
 ```
 
-## Valida l'input
+## Valida l'input dell'utente
 
-Non fidarti mai dell'input dell'utente:
+Non fidarti mai di quello che l'utente inserisce:
 
 ```cpp
 int eta;
 cout << "Inserisci eta: ";
 cin >> eta;
 
-// SCARSO: nessuna validazione
+// Scadente: accetta qualsiasi valore, anche -500 o 9999
 cout << "Hai " << eta << " anni";
 
-// BUONO: validazione dell'input
+// Buono: controlla prima di usare
 if (eta < 0 || eta > 150) {
     cout << "Eta non valida!" << endl;
     return 1;
@@ -139,85 +147,67 @@ cout << "Hai " << eta << " anni";
 
 ## Evita le variabili globali
 
-Le variabili globali rendono difficile capire dove e quando vengono modificate:
+Le variabili globali rendono il codice difficile da capire: chiunque, in qualunque punto del programma, può modificarle. Meglio passare i dati come parametri:
 
 ```cpp
-// SCARSO
-int contatore = 0;   // globale, modificata ovunque
-
+// Scadente: la variabile globale può essere modificata ovunque
+int contatore = 0;
 void incrementa() { contatore++; }
-void resetta() { contatore = 0; }
 
-// MEGLIO: passa le variabili come parametri
+// Meglio: i dati vengono passati esplicitamente
 void incrementa(int& contatore) { contatore++; }
-void resetta(int& contatore) { contatore = 0; }
 ```
 
-## Usa `const` dove possibile
+## Usa `const` per i dati che non cambiano
 
-`const` comunica l'intenzione e previene modifiche accidentali:
+`const` comunica le intenzioni e previene modifiche accidentali:
 
 ```cpp
-// Parametri che non vengono modificati
-void stampa(const string& nome) {   // nome non verrà modificato
+// Parametri che la funzione non deve modificare
+void stampa(const string& nome) {
     cout << nome << endl;
+    // nome = "altro";  // il compilatore ti ferma se provi
 }
 
-// Variabili che non devono cambiare
-const int MAX = 100;
+// Valori fissi
+const int MAX_STUDENTI = 30;
 const double PI = 3.14159;
 ```
 
-## Gestisci gli errori
+## Verifica sempre le operazioni che possono fallire
 
-Non ignorare gli errori. Almeno verifica se le operazioni critiche hanno avuto successo:
+Non assumere che un'operazione sia andata a buon fine:
 
 ```cpp
-// SCARSO: apre il file senza verificare
+// Scadente: apre il file senza verificare
 ifstream file("dati.txt");
-// ... usa file senza verificare se è aperto ...
+string riga;
+getline(file, riga);   // e se il file non esiste?
 
-// BUONO: verifica prima di usare
+// Buono: controlla prima di usare
 ifstream file("dati.txt");
 if (!file.is_open()) {
     cerr << "Errore: impossibile aprire 'dati.txt'" << endl;
     return 1;
 }
+string riga;
+getline(file, riga);   // ora è sicuro
 ```
 
-## Struttura coerente del codice
+## Non ripetere il codice (DRY)
 
-Mantieni uno stile coerente in tutto il progetto:
-
-```cpp
-// Scegli UNO stile e usalo sempre
-// Esempio: apri la { sulla stessa riga
-if (condizione) {
-    // ...
-}
-
-// O sulla riga successiva
-if (condizione)
-{
-    // ...
-}
-```
-
-## Evita codice duplicato (DRY)
-
-DRY = "Don't Repeat Yourself". Se hai lo stesso codice in più punti, estrailo in una funzione:
+DRY significa "Don't Repeat Yourself" — non ripeterti. Se scrivi lo stesso codice in più punti, estrailo in una funzione:
 
 ```cpp
-// SCARSO: codice duplicato
+// Scadente: stessa struttura ripetuta
 cout << "===========" << endl;
 cout << "Alice: 8.5" << endl;
 cout << "===========" << endl;
-cout << endl;
 cout << "===========" << endl;
 cout << "Bob: 7.2" << endl;
 cout << "===========" << endl;
 
-// BUONO: funzione riutilizzabile
+// Buono: una funzione riutilizzabile
 void stampaScheda(const string& nome, double voto) {
     cout << "===========" << endl;
     cout << nome << ": " << voto << endl;
@@ -228,16 +218,16 @@ stampaScheda("Alice", 8.5);
 stampaScheda("Bob", 7.2);
 ```
 
-## Test del codice
+## Testa con casi diversi
 
-Testa il tuo codice con:
+Quando scrivi una funzione, testala con:
 - Valori normali (caso standard)
-- Valori limite (il minimo e il massimo)
-- Valori non validi (errori)
+- Valori limite (il minimo e il massimo consentiti)
+- Valori non validi (cosa succede se riceve dati sbagliati?)
 
 ```cpp
-// Testa la funzione massimo con diversi casi
-cout << massimo(5, 3) << endl;    // 5 (caso normale)
-cout << massimo(-1, -5) << endl;  // -1 (numeri negativi)
-cout << massimo(7, 7) << endl;    // 7 (valori uguali)
+// Testa la funzione massimo con vari casi
+cout << massimo(5, 3) << endl;    // 5 — caso normale
+cout << massimo(-1, -5) << endl;  // -1 — numeri negativi
+cout << massimo(7, 7) << endl;    // 7 — valori uguali
 ```

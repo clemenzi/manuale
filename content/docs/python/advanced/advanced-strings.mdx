@@ -3,147 +3,169 @@ title: Stringhe avanzate
 description: Metodi avanzati per la manipolazione delle stringhe in Python.
 ---
 
-## Metodi avanzati delle stringhe
+## Perché ti serve questo?
 
-Abbiamo già visto i metodi base delle stringhe. In questo capitolo esploriamo i metodi più utili e come usarli in pratica.
+Le stringhe sono ovunque: nomi, messaggi, dati da file, risposte dal web. Python ha decine di strumenti pronti per cercare, modificare, tagliare e unire testo. In questa pagina vediamo quelli più utili nella pratica.
 
-## Ricerca e sostituzione
+---
 
-### `find()` e `index()`
+## Cercare testo dentro una stringa
+
+### `find()` — trova la posizione di una sottostringa
 
 ```python
 testo = "Ciao, mi chiamo Alice e vivo a Roma."
 
-print(testo.find("Alice"))    # 15 (indice della prima occorrenza)
-print(testo.find("Mario"))    # -1 (non trovato, nessun errore)
-print(testo.rfind("a"))       # 31 (ultima occorrenza)
-
-print(testo.index("Alice"))   # 15 (come find, ma...
-# testo.index("Mario")        # ValueError se non trovato!
+print(testo.find("Alice"))    # 15 → "Alice" inizia alla posizione 15
+print(testo.find("Mario"))    # -1 → non trovato (restituisce -1 invece di errore)
+print(testo.rfind("a"))       # 31 → posizione dell'ULTIMA "a"
 ```
 
-### `count()`
+### `count()` — conta quante volte appare qualcosa
 
 ```python
 testo = "banana"
-print(testo.count("a"))   # 3
-print(testo.count("na"))  # 2
-print(testo.count("an"))  # 2
+print(testo.count("a"))    # 3
+print(testo.count("na"))   # 2
 ```
 
-### `replace()`
+### `replace()` — sostituisci una parte del testo
 
 ```python
 testo = "Ciao mondo! Ciao Python!"
-print(testo.replace("Ciao", "Salve"))    # Salve mondo! Salve Python!
-print(testo.replace("Ciao", "Salve", 1)) # Salve mondo! Ciao Python! (solo la prima)
+print(testo.replace("Ciao", "Salve"))       # Salve mondo! Salve Python!
+print(testo.replace("Ciao", "Salve", 1))    # Salve mondo! Ciao Python! (solo la prima)
 ```
 
-## Divisione e unione
+---
 
-### `split()`
+## Tagliare e unire
+
+### `split()` — divide una stringa in una lista di pezzi
 
 ```python
 frase = "mela banana ciliegia uva"
-parole = frase.split()          # divide sugli spazi
-print(parole)  # ['mela', 'banana', 'ciliegia', 'uva']
+parole = frase.split()            # Divide sugli spazi (di default)
+print(parole)   # ['mela', 'banana', 'ciliegia', 'uva']
 
+# Dividere su un altro separatore
 dati = "Alice,16,Roma"
-campi = dati.split(",")         # divide sulla virgola
-print(campi)  # ['Alice', '16', 'Roma']
+campi = dati.split(",")           # Divide sulle virgole
+print(campi)    # ['Alice', '16', 'Roma']
 
-# Limitare il numero di suddivisioni
-print("a:b:c:d".split(":", 2)) # ['a', 'b', 'c:d']
+# Limitare il numero di divisioni
+print("a:b:c:d".split(":", 2))   # ['a', 'b', 'c:d']  ← si ferma dopo 2 tagli
 ```
 
-### `splitlines()`
+### `splitlines()` — divide su ogni fine riga
 
 ```python
 testo = "Prima riga\nSeconda riga\nTerza riga"
 righe = testo.splitlines()
-print(righe)  # ['Prima riga', 'Seconda riga', 'Terza riga']
+print(righe)   # ['Prima riga', 'Seconda riga', 'Terza riga']
 ```
 
-### `join()`
+### `join()` — unisce una lista di stringhe in una sola
 
-`join()` unisce una lista di stringhe in una sola:
+`join()` è l'opposto di `split()`: prende una lista e la incolla insieme usando un separatore.
 
 ```python
 parole = ["mela", "banana", "ciliegia"]
-print(", ".join(parole))   # mela, banana, ciliegia
-print(" - ".join(parole))  # mela - banana - ciliegia
-print("".join(parole))     # melebananaciliegia
+print(", ".join(parole))    # mela, banana, ciliegia
+print(" - ".join(parole))   # mela - banana - ciliegia
+print("".join(parole))      # melebananaciliegia
 ```
 
-## Rimozione di spazi e caratteri
+---
+
+## Pulizia del testo
+
+### Rimuovere spazi in eccesso
 
 ```python
 testo = "   ciao mondo   "
-print(testo.strip())       # "ciao mondo"    (entrambi i lati)
-print(testo.lstrip())      # "ciao mondo   " (solo sinistra)
-print(testo.rstrip())      # "   ciao mondo" (solo destra)
+print(testo.strip())    # "ciao mondo"     ← rimuove da entrambi i lati
+print(testo.lstrip())   # "ciao mondo   "  ← rimuove solo a sinistra
+print(testo.rstrip())   # "   ciao mondo"  ← rimuove solo a destra
 
-# Rimuovere caratteri specifici
+# Rimuovere caratteri specifici (non solo spazi)
 testo2 = "###ciao###"
 print(testo2.strip("#"))   # "ciao"
 ```
 
-## Maiuscole e minuscole
+---
+
+## Cambiare maiuscole e minuscole
 
 ```python
 testo = "ciao mondo"
 print(testo.upper())        # CIAO MONDO
 print(testo.lower())        # ciao mondo
-print(testo.capitalize())   # Ciao mondo (prima lettera maiuscola)
-print(testo.title())        # Ciao Mondo (ogni parola con maiuscola)
-print(testo.swapcase())     # CIAO MONDO (inverte maiuscole/minuscole)
+print(testo.capitalize())   # Ciao mondo   ← solo la prima lettera maiuscola
+print(testo.title())        # Ciao Mondo   ← prima lettera di ogni parola maiuscola
+print(testo.swapcase())     # CIAO MONDO   ← inverte: minuscole↔maiuscole
 ```
 
-## Verifica del contenuto
+---
+
+## Verificare il contenuto di una stringa
+
+Questi metodi restituiscono `True` o `False`:
 
 ```python
-print("Hello".islower())    # False
-print("hello".islower())    # True
-print("HELLO".isupper())    # True
-print("Hello World".istitle()) # True
+print("hello".islower())        # True  ← tutto minuscolo
+print("HELLO".isupper())        # True  ← tutto maiuscolo
+print("Hello World".istitle())  # True  ← ogni parola inizia con maiuscola
 
-print("abc123".isalnum())   # True (solo lettere e numeri)
-print("abc".isalpha())      # True (solo lettere)
-print("123".isdigit())      # True (solo cifre)
-print("   ".isspace())      # True (solo spazi)
+print("abc123".isalnum())  # True  ← solo lettere e numeri
+print("abc".isalpha())     # True  ← solo lettere
+print("123".isdigit())     # True  ← solo cifre
+print("   ".isspace())     # True  ← solo spazi
 ```
 
-## Padding (riempimento)
+---
+
+## Allineamento e riempimento
+
+Utili per creare tabelle o output ben formattato:
 
 ```python
-print("42".zfill(5))        # "00042" (riempie con zeri)
-print("ciao".ljust(10))     # "ciao      " (allinea a sinistra)
-print("ciao".rjust(10))     # "      ciao" (allinea a destra)
-print("ciao".center(10))    # "   ciao   " (centra)
-print("ciao".center(10, "-"))  # "---ciao---"
+print("42".zfill(5))             # "00042"     ← riempie con zeri a sinistra
+print("ciao".ljust(10))          # "ciao      " ← allinea a sinistra (spazi a destra)
+print("ciao".rjust(10))          # "      ciao" ← allinea a destra (spazi a sinistra)
+print("ciao".center(10))         # "   ciao   " ← centra
+print("ciao".center(10, "-"))    # "---ciao---" ← centra con carattere personalizzato
 ```
 
-## Partizione
+---
+
+## Dividere in tre parti con `partition()`
+
+`partition()` divide la stringa in esattamente tre parti: prima del separatore, il separatore stesso, dopo il separatore.
 
 ```python
 testo = "nome: Alice"
 prima, sep, dopo = testo.partition(":")
-print(prima)  # "nome"
-print(sep)    # ":"
-print(dopo)   # " Alice"
+print(prima)   # "nome"
+print(sep)     # ":"
+print(dopo)    # " Alice"
 ```
 
-## Esempio pratico: parsing di dati CSV
+---
+
+## Esempio pratico: leggere dati separati da virgole
+
+Un formato molto comune per i dati è il CSV (valori separati da virgole). Ecco come estrarre le informazioni da una riga:
 
 ```python
 riga_csv = "Alice,16,Roma,8.5"
-campi = riga_csv.split(",")
+campi = riga_csv.split(",")   # Divide sulle virgole
 
-nome = campi[0].strip()
-eta = int(campi[1].strip())
+nome = campi[0].strip()       # Rimuove eventuali spazi
+eta = int(campi[1].strip())   # Converte in numero intero
 citta = campi[2].strip()
-voto = float(campi[3].strip())
+voto = float(campi[3].strip())  # Converte in numero decimale
 
 print(f"{nome} ha {eta} anni, vive a {citta} e ha voto {voto}")
-# Alice ha 16 anni, vive a Roma e ha voto 8.5
+# → Alice ha 16 anni, vive a Roma e ha voto 8.5
 ```

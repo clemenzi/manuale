@@ -3,117 +3,129 @@ title: Array (Liste come array)
 description: Come usare le liste Python come array e quando usare librerie specifiche.
 ---
 
-## Array in Python
+## Perché ti serve questo?
 
-In molti linguaggi di programmazione (come C++ o Java), un **array** è una struttura dati che contiene elementi dello stesso tipo, con una dimensione fissa.
+In altri linguaggi come C++ o Java, un **array** è una sequenza di elementi tutti dello stesso tipo, con una posizione numerata che parte da 0. In Python, le **liste** svolgono questo ruolo nella maggior parte dei casi — e sono ancora più flessibili.
 
-Python non ha un tipo "array" nativo nel senso classico, ma le **liste** svolgono il ruolo degli array nella maggior parte dei casi. Per applicazioni scientifiche e numeriche, si usa la libreria NumPy (che vedremo più avanti).
+---
 
 ## Le liste come array
 
-Per uso generico, le liste Python funzionano come array:
+Per uso generico, le liste Python si comportano esattamente come array:
 
 ```python
-# Array di interi
+# Una sequenza di numeri interi, con indici 0, 1, 2, 3, 4
 numeri = [10, 20, 30, 40, 50]
 
-# Accesso per indice
-print(numeri[0])   # 10
-print(numeri[2])   # 30
-print(numeri[-1])  # 50
+# Accedere a un elemento tramite il suo indice (la posizione)
+print(numeri[0])    # 10  ← primo elemento
+print(numeri[2])    # 30  ← terzo elemento
+print(numeri[-1])   # 50  ← ultimo elemento (si conta da destra)
 
-# Modifica
+# Modificare un elemento
 numeri[1] = 25
-print(numeri)  # [10, 25, 30, 40, 50]
+print(numeri)   # [10, 25, 30, 40, 50]
 ```
 
-## Il modulo `array`
+---
 
-Python ha un modulo standard chiamato `array` che offre array più efficienti in memoria rispetto alle liste, ma che possono contenere solo elementi dello stesso tipo:
+## Il modulo `array`: più efficiente per grandi quantità di numeri
+
+Python ha un modulo chiamato `array` che offre array più efficienti in memoria rispetto alle liste normali. A differenza delle liste, però, possono contenere solo elementi dello **stesso tipo**.
 
 ```python
 import array
 
-# Crea un array di interi (tipo 'i' = integer)
+# Crea un array di interi ('i' = integer)
 numeri = array.array('i', [1, 2, 3, 4, 5])
 
-print(numeri)          # array('i', [1, 2, 3, 4, 5])
-print(numeri[0])       # 1
+print(numeri)        # array('i', [1, 2, 3, 4, 5])
+print(numeri[0])     # 1
 
-numeri.append(6)
-print(numeri)          # array('i', [1, 2, 3, 4, 5, 6])
+numeri.append(6)     # Aggiunge un elemento in fondo
+print(numeri)        # array('i', [1, 2, 3, 4, 5, 6])
 
-numeri.insert(2, 99)
-print(numeri)          # array('i', [1, 2, 99, 3, 4, 5, 6])
+numeri.insert(2, 99) # Inserisce 99 alla posizione 2
+print(numeri)        # array('i', [1, 2, 99, 3, 4, 5, 6])
 
-numeri.remove(99)
-print(numeri)          # array('i', [1, 2, 3, 4, 5, 6])
+numeri.remove(99)    # Rimuove la prima occorrenza di 99
+print(numeri)        # array('i', [1, 2, 3, 4, 5, 6])
 ```
 
-I codici tipo più comuni:
+I codici tipo più usati:
 
-| Codice | Tipo | Dimensione |
-|--------|------|------------|
-| `'i'` | int (intero con segno) | 2 byte |
-| `'l'` | long (intero lungo) | 4 byte |
-| `'f'` | float (decimale) | 4 byte |
-| `'d'` | double (decimale doppia precisione) | 8 byte |
+| Codice | Tipo | Descrizione |
+|--------|------|-------------|
+| `'i'` | int | Numero intero |
+| `'l'` | long | Numero intero lungo |
+| `'f'` | float | Numero decimale (singola precisione) |
+| `'d'` | double | Numero decimale (doppia precisione) |
 
-## Array 2D (matrici) con liste
+---
 
-Per simulare un array bidimensionale (matrice) si usano le liste annidate:
+## Matrici: array a due dimensioni
+
+Una **matrice** è come una tabella con righe e colonne. In Python si rappresenta come una lista di liste:
 
 ```python
-# Matrice 3x3
+# Una tabella 3×3
 matrice = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
+    [1, 2, 3],   # riga 0
+    [4, 5, 6],   # riga 1
+    [7, 8, 9]    # riga 2
 ]
 
-# Accesso per riga e colonna
-print(matrice[0][0])  # 1 (riga 0, colonna 0)
-print(matrice[1][2])  # 6 (riga 1, colonna 2)
-print(matrice[2])     # [7, 8, 9] (tutta la riga 2)
+# Accedere a un elemento: prima la riga, poi la colonna
+print(matrice[0][0])   # 1   ← riga 0, colonna 0
+print(matrice[1][2])   # 6   ← riga 1, colonna 2
+print(matrice[2])      # [7, 8, 9]  ← tutta la riga 2
 
 # Modificare un elemento
 matrice[1][1] = 99
-print(matrice[1])  # [4, 99, 6]
+print(matrice[1])      # [4, 99, 6]
 ```
 
-## Iterare su un array
+---
+
+## Scorrere un array (o una matrice) con `for`
 
 ```python
 numeri = [10, 20, 30, 40, 50]
 
-# Iterare su tutti gli elementi
+# Scorrere tutti gli elementi
 for n in numeri:
     print(n)
 
-# Iterare con indice
+# Scorrere con l'indice
 for i in range(len(numeri)):
     print(f"numeri[{i}] = {numeri[i]}")
 
-# Iterare su una matrice
+# Scorrere una matrice riga per riga, elemento per elemento
 matrice = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 for riga in matrice:
     for elemento in riga:
-        print(elemento, end=" ")
-    print()  # a capo dopo ogni riga
+        print(elemento, end=" ")   # Stampa sulla stessa riga
+    print()   # Va a capo dopo ogni riga
 ```
+
+---
 
 ## Operazioni comuni
 
 ```python
 numeri = [5, 2, 8, 1, 9, 3]
 
-print(max(numeri))     # 9
-print(min(numeri))     # 1
-print(sum(numeri))     # 28
-print(len(numeri))     # 6
-print(sorted(numeri))  # [1, 2, 3, 5, 8, 9]
+print(max(numeri))     # 9  — il valore più grande
+print(min(numeri))     # 1  — il valore più piccolo
+print(sum(numeri))     # 28 — la somma di tutti
+print(len(numeri))     # 6  — quanti elementi ci sono
+print(sorted(numeri))  # [1, 2, 3, 5, 8, 9] — copia ordinata
 ```
+
+---
 
 ## Quando usare NumPy invece delle liste?
 
-Se hai bisogno di fare operazioni matematiche su grandi quantità di numeri (media, deviazione standard, moltiplicazione di matrici, ecc.), usa **NumPy**. Le liste Python sono ottime per uso generale, ma NumPy è molto più veloce per il calcolo numerico.
+Le liste Python vanno bene per la maggior parte degli usi. Ma se devi fare **calcoli matematici su grandi quantità di numeri** — come la media di 10.000 valori, moltiplicare matrici, o applicare funzioni statistiche — usa la libreria **NumPy**.
+
+NumPy fa le stesse cose delle liste, ma è molto più veloce per i calcoli numerici intensivi. Lo vedremo nella sezione dedicata all'ecosistema Python.

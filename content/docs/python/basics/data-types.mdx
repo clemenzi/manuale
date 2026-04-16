@@ -1,103 +1,112 @@
 ---
 title: Tipi di dati
-description: I tipi di dati fondamentali in Python.
+description: I diversi tipi di informazione che Python sa gestire.
 ---
 
-## Cosa sono i tipi di dati?
+## Perché esistono i tipi di dati?
 
-Ogni valore in Python appartiene a un **tipo di dato** che determina cosa può contenere e quali operazioni si possono fare su di esso. Python assegna automaticamente il tipo in base al valore che gli dai.
+Il computer gestisce informazioni molto diverse tra loro: numeri, testi, valori vero/falso. Non ha senso sommare del testo come se fossero numeri, o confrontare un nome con un prezzo.
 
-## Tipi principali
+Per questo ogni valore in Python ha un **tipo di dato**: una categoria che dice a Python com'è fatto quel valore e cosa puoi farci.
 
-### Intero (`int`)
+## I tipi principali
 
-Rappresenta numeri interi, positivi o negativi, senza decimali:
+### Numero intero — `int`
+
+Un numero senza virgola. Può essere positivo, negativo o zero.
 
 ```python
 eta = 16
 temperatura = -5
 anno = 2024
-grandi = 1_000_000  # l'underscore aiuta la leggibilità
+milione = 1_000_000  # puoi usare _ come separatore per leggere meglio i grandi numeri
+
 print(type(eta))  # <class 'int'>
 ```
 
-### Numero decimale (`float`)
+### Numero decimale — `float`
 
-Rappresenta numeri con la virgola (il punto decimale in Python):
+Un numero con la virgola. In Python (e nella programmazione in generale) si usa il **punto** invece della virgola.
 
 ```python
 altezza = 1.75
-pi = 3.14159
+pi_greco = 3.14159
 temperatura = -2.5
+
 print(type(altezza))  # <class 'float'>
 ```
 
-### Stringa (`str`)
+### Testo — `str` (stringa)
 
-Rappresenta del testo. Si scrive tra virgolette singole `'...'` o doppie `"..."`:
+Qualsiasi sequenza di caratteri: lettere, numeri, simboli. Si scrive tra virgolette singole `'...'` o doppie `"..."`:
 
 ```python
 nome = "Alice"
 messaggio = 'Ciao, mondo!'
-frase_lunga = """Questa è
-una stringa
+frase = """Questa è una stringa
 su più righe."""
+
 print(type(nome))  # <class 'str'>
 ```
 
-### Booleano (`bool`)
+Il termine "stringa" deriva dall'inglese *string* (filo), perché è come una sequenza di caratteri infilati uno dopo l'altro.
 
-Rappresenta un valore logico: `True` (vero) o `False` (falso). Notare la lettera maiuscola iniziale.
+### Vero o Falso — `bool` (booleano)
+
+Solo due valori possibili: `True` (vero) o `False` (falso). Nota la lettera maiuscola.
 
 ```python
 maggiorenne = True
 piove = False
+
 print(type(maggiorenne))  # <class 'bool'>
 ```
 
-### Nessun valore (`NoneType`)
+### Assenza di valore — `None`
 
-Il valore speciale `None` rappresenta l'assenza di un valore (simile a `null` in altri linguaggi):
+`None` è un valore speciale che significa "niente". È utile per indicare che una variabile esiste ma non contiene ancora nessun dato.
 
 ```python
 risultato = None
+
 print(type(risultato))  # <class 'NoneType'>
 ```
 
-## Tipi di sequenza e raccolta
+È come una scatola vuota: la scatola c'è, ma non c'è niente dentro.
 
-Oltre ai tipi base, Python ha tipi per raccogliere più valori insieme:
+## Tipi per raccogliere più valori insieme
 
-| Tipo | Esempio | Ordinato | Modificabile | Duplicati |
-|------|---------|----------|--------------|-----------|
-| `list` | `[1, 2, 3]` | Si | Si | Si |
-| `tuple` | `(1, 2, 3)` | Si | No | Si |
-| `set` | `{1, 2, 3}` | No | Si | No |
-| `dict` | `{"a": 1}` | Si | Si | Chiavi no |
+Oltre ai tipi semplici, Python ha tipi che contengono più valori contemporaneamente. Li vedremo in dettaglio nei capitoli successivi, ma è bene sapere che esistono:
 
-Questi tipi verranno approfonditi nei capitoli successivi.
+| Tipo | Esempio | Cosa è |
+|------|---------|--------|
+| `list` (lista) | `[1, 2, 3]` | Una sequenza ordinata di elementi, modificabile |
+| `tuple` | `(1, 2, 3)` | Come una lista, ma non modificabile |
+| `set` (insieme) | `{1, 2, 3}` | Una raccolta senza duplicati e senza ordine fisso |
+| `dict` (dizionario) | `{"nome": "Alice"}` | Coppie chiave-valore, come un vocabolario |
 
-## Numeri complessi (`complex`)
+## Come Python assegna il tipo automaticamente
 
-Python supporta anche i numeri complessi, con la parte immaginaria indicata con `j`:
+In Python non devi dichiarare esplicitamente il tipo di una variabile: Python lo intuisce dal valore che assegni.
 
 ```python
-c = 2 + 3j
-print(type(c))  # <class 'complex'>
+x = 10       # Python capisce che è un int
+y = 3.14     # Python capisce che è un float
+z = "ciao"   # Python capisce che è una str
 ```
 
-Non ti serviranno spesso da principiante, ma è utile sapere che esistono.
+Questo si chiama **tipizzazione dinamica**: il tipo non è fisso, e puoi anche cambiarlo nel corso del programma (anche se di solito non è una buona idea).
 
-## Riepilogo
+## Riepilogo rapido
 
 ```python
-intero = 10               # int
-decimale = 3.14           # float
-testo = "Python"          # str
-vero_o_falso = True       # bool
-niente = None             # NoneType
-lista = [1, 2, 3]         # list
-tupla = (1, 2, 3)         # tuple
-insieme = {1, 2, 3}       # set
-dizionario = {"a": 1}     # dict
+intero       = 10               # int    — numero senza virgola
+decimale     = 3.14             # float  — numero con virgola
+testo        = "Python"         # str    — testo
+vero_o_falso = True             # bool   — vero o falso
+niente       = None             # None   — assenza di valore
+lista        = [1, 2, 3]        # list   — sequenza modificabile
+tupla        = (1, 2, 3)        # tuple  — sequenza fissa
+insieme      = {1, 2, 3}        # set    — raccolta senza duplicati
+dizionario   = {"a": 1}         # dict   — coppie chiave-valore
 ```

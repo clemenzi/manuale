@@ -1,15 +1,15 @@
 ---
-title: Formattazione output
-description: Come formattare e presentare i dati in Python.
+title: Formattazione dell'output
+description: Come presentare i dati in modo leggibile e ordinato.
 ---
 
-## Metodi di formattazione delle stringhe
+## Perché formattare l'output?
 
-Python offre diversi modi per costruire stringhe con valori inseriti dentro.
+Stampare dati grezzi funziona, ma non è sempre leggibile. Formattare l'output significa presentare le informazioni in modo chiaro: numeri con il numero giusto di cifre decimali, testo allineato in colonne ordinate.
 
-## 1. F-string (raccomandato, Python 3.6+)
+## Le f-string: il metodo consigliato
 
-Le **f-string** sono il metodo più moderno e leggibile. Si scrivono mettendo `f` prima delle virgolette:
+Le **f-string** (disponibili da Python 3.6) sono il modo più comodo e leggibile per costruire stringhe con variabili. Si scrivono mettendo `f` prima delle virgolette:
 
 ```python
 nome = "Alice"
@@ -18,7 +18,7 @@ print(f"Mi chiamo {nome} e ho {eta} anni.")
 # Mi chiamo Alice e ho 16 anni.
 ```
 
-Puoi inserire espressioni Python dentro le parentesi graffe:
+Dentro le parentesi graffe puoi scrivere qualsiasi espressione Python:
 
 ```python
 a, b = 5, 3
@@ -26,95 +26,84 @@ print(f"{a} + {b} = {a + b}")
 print(f"Il quadrato di {a} è {a**2}")
 ```
 
-## 2. Metodo `.format()`
+## Controllare i decimali
 
-```python
-print("Mi chiamo {} e ho {} anni.".format("Alice", 16))
-print("Mi chiamo {nome} e ho {eta} anni.".format(nome="Alice", eta=16))
-print("{0} è maggiore di {1}: {2}".format(5, 3, 5 > 3))
-```
-
-## 3. Operatore `%` (vecchio stile)
-
-Ancora presente in molto codice, ma meno usato nelle versioni moderne:
-
-```python
-print("Mi chiamo %s e ho %d anni." % ("Alice", 16))
-print("Pi greco: %.2f" % 3.14159)
-```
-
-## Formattazione numerica con f-string
-
-Le f-string supportano opzioni di formattazione avanzate:
-
-### Numeri decimali
+Per i numeri decimali puoi specificare quante cifre mostrare dopo la virgola:
 
 ```python
 pi = 3.14159265
-print(f"{pi:.2f}")    # 3.14  (2 cifre decimali)
-print(f"{pi:.4f}")    # 3.1416 (4 cifre decimali)
-print(f"{pi:.0f}")    # 3     (nessuna cifra decimale)
+print(f"{pi:.2f}")   # 3.14    — 2 cifre decimali
+print(f"{pi:.4f}")   # 3.1416  — 4 cifre decimali
+print(f"{pi:.0f}")   # 3       — nessuna cifra decimale
 ```
 
-### Larghezza e allineamento
+La sintassi è `{valore:.Nf}` dove `N` è il numero di cifre decimali.
+
+## Percentuali
 
 ```python
-print(f"{'sinistra':<15}|")   # allineato a sinistra (15 caratteri)
-print(f"{'centro':^15}|")     # centrato
-print(f"{'destra':>15}|")     # allineato a destra
-
-# Con numeri
-print(f"{42:10d}")    # "        42" (10 caratteri, allineato a destra)
-print(f"{42:<10d}")   # "42        " (10 caratteri, allineato a sinistra)
+percentuale = 0.75
+print(f"{percentuale:.0%}")   # 75%
+print(f"{percentuale:.2%}")   # 75.00%
 ```
 
-### Separatore delle migliaia
+Python moltiplica per 100 e aggiunge il simbolo `%` automaticamente.
+
+## Separatore delle migliaia
+
+Per i numeri grandi, puoi aggiungere la virgola come separatore:
 
 ```python
-numero_grande = 1234567
-print(f"{numero_grande:,}")     # 1,234,567
-print(f"{numero_grande:_}")     # 1_234_567
+numero = 1234567
+print(f"{numero:,}")   # 1,234,567
 ```
 
-### Percentuali
+## Allineare il testo in colonne
+
+Quando vuoi creare tabelle con colonne ordinate, puoi specificare la larghezza e l'allineamento:
 
 ```python
-valore = 0.75
-print(f"{valore:.0%}")    # 75%
-print(f"{valore:.2%}")    # 75.00%
+print(f"{'Sinistra':<15}|")   # allineato a sinistra — 15 caratteri
+print(f"{'Centro':^15}|")     # centrato
+print(f"{'Destra':>15}|")     # allineato a destra
 ```
 
-### Notazione scientifica
-
-```python
-piccolo = 0.000123
-grande = 1234567890
-print(f"{piccolo:.2e}")   # 1.23e-04
-print(f"{grande:.3e}")    # 1.235e+09
+Output:
+```
+Sinistra       |
+     Centro    |
+         Destra|
 ```
 
-## La funzione `print()`
+## Opzioni di `print()`
 
-`print()` ha alcune opzioni utili:
+La funzione `print()` ha due opzioni utili:
+
+**`sep`** — il testo che viene messo tra gli argomenti (default: uno spazio):
 
 ```python
-# sep: separatore tra gli argomenti (default: spazio)
-print("mela", "banana", "uva")           # mela banana uva
-print("mela", "banana", "uva", sep=", ") # mela, banana, uva
-print("mela", "banana", "uva", sep="-")  # mela-banana-uva
+print("mela", "banana", "uva")            # mela banana uva
+print("mela", "banana", "uva", sep=", ")  # mela, banana, uva
+print("mela", "banana", "uva", sep=" | ") # mela | banana | uva
+```
 
-# end: carattere finale (default: \n = a capo)
+**`end`** — il testo aggiunto alla fine (default: va a capo `\n`):
+
+```python
 print("Ciao", end=" ")
-print("mondo!")         # Ciao mondo! (sulla stessa riga)
+print("mondo!")         # Ciao mondo!  — sulla stessa riga
+```
 
-# Scrivere senza andare a capo in un ciclo
+Utile per stampare più elementi sulla stessa riga in un ciclo:
+
+```python
 for i in range(5):
     print(i, end=" ")
-print()  # a capo finale
+print()   # va a capo alla fine
 # Output: 0 1 2 3 4
 ```
 
-## Esempio pratico: tabella formattata
+## Esempio: una tabella formattata
 
 ```python
 studenti = [
@@ -123,8 +112,11 @@ studenti = [
     ("Carlo", 17, 9.2),
 ]
 
+# Intestazione della tabella
 print(f"{'Nome':<10} {'Età':>5} {'Media':>8}")
 print("-" * 25)
+
+# Righe della tabella
 for nome, eta, media in studenti:
     print(f"{nome:<10} {eta:>5} {media:>8.1f}")
 ```

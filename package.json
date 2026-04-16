@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "start": "serve .output/public --config ../../serve.json",
     "preview": "vite preview",
     "types:check": "fumadocs-mdx && tsc --noEmit",
     "postinstall": "fumadocs-mdx",
@@ -29,17 +28,18 @@
     "vite": "^8.0.8"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.32.3",
     "@tailwindcss/vite": "^4.2.2",
     "@types/mdx": "^2.0.13",
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
-    "nitro": "^3.0.260311-beta",
     "oxlint": "^1.60.0",
     "serve": "^14.2.6",
     "srvx": "^0.11.15",
     "tailwindcss": "^4.2.2",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.2",
+    "wrangler": "^4.83.0"
   }
 }

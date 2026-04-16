@@ -1,71 +1,64 @@
 ---
 title: Scope delle variabili
-description: Dove le variabili sono accessibili in Python.
+description: Dove le variabili esistono e dove sono accessibili nel codice.
 ---
 
 ## Cos'è lo scope?
 
-Lo **scope** (o ambito) di una variabile è la parte del programma in cui quella variabile è accessibile e può essere usata. Se provi a usare una variabile fuori dal suo scope, Python darà un `NameError`.
+Immagina di avere una variabile `x` dentro una funzione. Quella `x` esiste solo dentro quella funzione. Fuori non la puoi usare, come se non esistesse.
 
-## Le regole LEGB
+Questo concetto si chiama **scope** (o "ambito"): la zona del programma in cui una variabile è accessibile.
 
-Python segue la regola **LEGB** per trovare una variabile:
+## Variabili locali — dentro la funzione
 
-1. **L**ocal: la funzione corrente
-2. **E**nclosing: le funzioni esterne (nel caso di funzioni annidate)
-3. **G**lobal: il livello principale del file
-4. **B**uilt-in: le funzioni e costanti predefinite di Python (`print`, `len`, `True`, ecc.)
-
-Python cerca in questo ordine e usa la prima che trova.
-
-## Scope locale
-
-Le variabili create **dentro** una funzione esistono solo dentro quella funzione:
+Una variabile creata dentro una funzione è **locale**: vive solo per la durata di quella funzione e poi scompare.
 
 ```python
 def mia_funzione():
-    x = 10   # variabile locale
+    x = 10   # variabile locale: esiste solo dentro questa funzione
     print(x)
 
 mia_funzione()  # 10
-# print(x)      # NameError: 'x' non è definita qui fuori
+# print(x)      # NameError: 'x' non esiste qui fuori!
 ```
 
-## Scope globale
+Questo è un comportamento voluto, non un difetto. Significa che le funzioni sono **indipendenti**: le variabili dentro una funzione non possono interferire con quelle fuori.
 
-Le variabili create **fuori** da qualsiasi funzione sono globali e accessibili da tutta la parte principale del programma:
+## Variabili globali — fuori dalle funzioni
+
+Una variabile definita fuori da qualsiasi funzione è **globale**: è visibile da tutta la parte principale del programma.
 
 ```python
 nome = "Alice"  # variabile globale
 
 def saluta():
-    print(f"Ciao, {nome}!")  # accede alla variabile globale
+    print(f"Ciao, {nome}!")  # può leggere la variabile globale
 
 saluta()  # Ciao, Alice!
 ```
 
-## Modificare una variabile globale dentro una funzione
+## Puoi leggere le variabili globali, ma non modificarle (di solito)
 
-Per default, puoi **leggere** una variabile globale da dentro una funzione, ma non **modificarla** (Python crea una variabile locale con lo stesso nome):
+Una funzione può **leggere** una variabile globale, ma se prova a modificarla, Python crea una nuova variabile locale con lo stesso nome invece di cambiare quella globale:
 
 ```python
 contatore = 0
 
 def incrementa():
-    contatore = 1  # crea una variabile LOCALE, non modifica quella globale!
+    contatore = 1  # ATTENZIONE: crea una variabile locale, non modifica quella globale!
     print(f"Dentro la funzione: {contatore}")
 
 incrementa()
-print(f"Fuori dalla funzione: {contatore}")  # ancora 0
+print(f"Fuori dalla funzione: {contatore}")  # ancora 0, non è cambiato!
 ```
 
-Per modificare la variabile globale, usa la parola chiave `global`:
+Se vuoi davvero modificare una variabile globale dall'interno di una funzione, devi usare la parola chiave `global`:
 
 ```python
 contatore = 0
 
 def incrementa():
-    global contatore   # dichiara che usi la variabile globale
+    global contatore   # ora si riferisce alla variabile globale
     contatore += 1
 
 incrementa()
@@ -73,69 +66,33 @@ incrementa()
 print(contatore)  # 2
 ```
 
-Usare `global` è generalmente sconsigliato: rende il codice più difficile da capire. Meglio usare parametri e valori di ritorno.
+> **Consiglio:** Usare `global` è generalmente una cattiva abitudine. Rende il codice difficile da capire e da correggere. È meglio passare i valori come parametri e usare `return` per restituirli.
 
-## Scope nelle funzioni annidate (`nonlocal`)
+## Variabili con lo stesso nome a livelli diversi
 
-Se hai una funzione dentro un'altra funzione (annidata), e vuoi modificare una variabile della funzione esterna, usa `nonlocal`:
-
-```python
-def esterna():
-    x = 10
-
-    def interna():
-        nonlocal x   # si riferisce alla x di esterna()
-        x += 5
-        print(f"Dentro interna: {x}")
-
-    interna()
-    print(f"Dentro esterna: {x}")
-
-esterna()
-# Dentro interna: 15
-# Dentro esterna: 15
-```
-
-## Variabili con lo stesso nome
-
-Se hai una variabile locale e una globale con lo stesso nome, la locale ha la precedenza dentro la funzione:
+Se hai una variabile locale e una globale con lo stesso nome, dentro la funzione vince quella locale:
 
 ```python
 x = "globale"
 
 def funzione():
     x = "locale"
-    print(x)   # locale
+    print(x)   # locale — la variabile locale ha la precedenza
 
 funzione()
-print(x)       # globale
+print(x)       # globale — fuori dalla funzione, x è ancora quella globale
 ```
 
-## Riepilogo visivo
+Non vengono confuse: sono due variabili separate che condividono solo il nome.
+
+## Le funzioni predefinite di Python
+
+Funzioni come `print`, `len`, `range`, `input` sono sempre disponibili ovunque nel codice. Python le cerca per ultime, ma le trova sempre.
+
+Per questo non dovresti mai chiamare una tua variabile `print` o `list`: sovrascriveresti la funzione predefinita e poi non potresti più usarla!
 
 ```python
-x = "globale"            # scope globale
-
-def esterna():
-    y = "enclosing"      # scope enclosing
-
-    def interna():
-        z = "locale"     # scope locale
-        print(x)         # "globale" - trovato nel global scope
-        print(y)         # "enclosing" - trovato nell'enclosing scope
-        print(z)         # "locale" - trovato nel local scope
-
-    interna()
-
-esterna()
-```
-
-## Built-in scope
-
-Le funzioni built-in di Python (`print`, `len`, `range`, `input`, ecc.) sono sempre disponibili ovunque, perché fanno parte del livello built-in. Evita di sovrascriverle con variabili dello stesso nome:
-
-```python
-# Da evitare assolutamente:
-# list = [1, 2, 3]  # sovrascrive la funzione built-in list()
-# print = "ciao"    # sovrascrive la funzione print()!
+# Da non fare mai!
+# list = [1, 2, 3]   — ora non puoi più usare list() come funzione
+# print = "ciao"     — ora print() non funziona più!
 ```

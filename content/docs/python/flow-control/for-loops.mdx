@@ -1,18 +1,26 @@
 ---
 title: Cicli for
-description: Come iterare su sequenze con il ciclo for in Python.
+description: Come ripetere un'azione per ogni elemento di una lista o sequenza.
 ---
 
-## Il ciclo `for`
+## Perché usare i cicli?
 
-Il ciclo `for` in Python è usato per **iterare su una sequenza**: una lista, una stringa, una tupla, un range, ecc. Esegue il blocco di codice una volta per ogni elemento della sequenza.
+Immagina di dover salutare 100 studenti uno per uno. Senza i cicli, dovresti scrivere `print("Ciao!")` cento volte. Con un ciclo, lo scrivi una volta sola e Python lo ripete quante volte vuoi.
+
+Il ciclo `for` in particolare è perfetto quando sai già **cosa** vuoi scorrere: una lista di nomi, le lettere di una parola, i numeri da 1 a 10.
+
+## Come funziona
 
 ```python
 for elemento in sequenza:
-    # codice da eseguire
+    # codice da eseguire per ogni elemento
 ```
 
-## Iterare su una lista
+Ad ogni giro del ciclo, la variabile `elemento` assume il valore successivo della sequenza. Quando la sequenza finisce, il ciclo si ferma.
+
+## Scorrere una lista
+
+L'uso più comune: fare qualcosa per ogni elemento di una lista.
 
 ```python
 frutta = ["mela", "banana", "ciliegia"]
@@ -28,9 +36,11 @@ banana
 ciliegia
 ```
 
-## Iterare su una stringa
+La variabile `frutto` (che hai scelto tu) prende il valore `"mela"` al primo giro, `"banana"` al secondo, `"ciliegia"` al terzo.
 
-Una stringa è una sequenza di caratteri, quindi puoi iterarci sopra:
+## Scorrere una stringa
+
+Una stringa è una sequenza di caratteri, quindi puoi scorrerne le lettere una ad una:
 
 ```python
 for carattere in "Python":
@@ -47,58 +57,22 @@ o
 n
 ```
 
-## Iterare su un range
+## Ripetere un numero preciso di volte con `range()`
 
-`range()` è spesso usato con `for` per ripetere qualcosa un numero preciso di volte:
-
-```python
-for i in range(5):
-    print(i)
-```
-
-Output:
-```
-0
-1
-2
-3
-4
-```
-
-## `break` e `continue`
-
-Funzionano come nel ciclo `while`:
-
-```python
-# break: interrompe il ciclo
-for i in range(10):
-    if i == 5:
-        break
-    print(i)
-# stampa 0, 1, 2, 3, 4
-
-# continue: salta all'iterazione successiva
-for i in range(10):
-    if i % 2 == 0:
-        continue
-    print(i)
-# stampa 1, 3, 5, 7, 9
-```
-
-## Il blocco `else`
-
-Come nel `while`, un `for` può avere un `else` che viene eseguito quando il ciclo termina senza `break`:
+Se vuoi eseguire qualcosa esattamente N volte, usa `range()`:
 
 ```python
 for i in range(5):
-    print(i)
-else:
-    print("Ciclo completato!")
+    print("Ciao!")
 ```
 
-## La funzione `enumerate()`
+Questo stampa "Ciao!" 5 volte. La variabile `i` vale 0, poi 1, poi 2, poi 3, poi 4.
 
-`enumerate()` restituisce sia l'indice che il valore di ogni elemento:
+Vedi la sezione su `range()` per tutti i dettagli su come usarla.
+
+## Sapere anche la posizione con `enumerate()`
+
+A volte, mentre scorri una lista, vuoi sapere sia il valore sia la sua posizione (indice). Usa `enumerate()`:
 
 ```python
 frutta = ["mela", "banana", "ciliegia"]
@@ -114,11 +88,11 @@ Output:
 2: ciliegia
 ```
 
-Puoi anche specificare da quale numero partire:
+Puoi anche scegliere da quale numero partire:
 
 ```python
-for indice, frutto in enumerate(frutta, start=1):
-    print(f"{indice}. {frutto}")
+for numero, frutto in enumerate(frutta, start=1):
+    print(f"{numero}. {frutto}")
 ```
 
 Output:
@@ -128,9 +102,9 @@ Output:
 3. ciliegia
 ```
 
-## La funzione `zip()`
+## Scorrere due liste insieme con `zip()`
 
-`zip()` permette di iterare su più sequenze contemporaneamente:
+`zip()` abbina gli elementi di due liste, uno a uno:
 
 ```python
 nomi = ["Alice", "Bob", "Carlo"]
@@ -147,23 +121,31 @@ Bob ha preso 7
 Carlo ha preso 9
 ```
 
-## Iterare su un dizionario
+## Interrompere il ciclo: `break` e `continue`
+
+**`break`** — ferma il ciclo immediatamente:
 
 ```python
-persona = {"nome": "Alice", "eta": 16, "citta": "Roma"}
-
-# Solo le chiavi (default)
-for chiave in persona:
-    print(chiave)
-
-# Chiavi e valori
-for chiave, valore in persona.items():
-    print(f"{chiave}: {valore}")
+for i in range(10):
+    if i == 5:
+        break        # quando i vale 5, esci dal ciclo
+    print(i)
+# stampa: 0, 1, 2, 3, 4
 ```
 
-## Cicli annidati
+**`continue`** — salta questo giro e va al prossimo:
 
-Puoi mettere un ciclo dentro un altro:
+```python
+for i in range(10):
+    if i % 2 == 0:
+        continue     # se il numero è pari, saltalo
+    print(i)
+# stampa solo i numeri dispari: 1, 3, 5, 7, 9
+```
+
+## Cicli dentro cicli (annidati)
+
+Puoi mettere un ciclo `for` dentro un altro. Per esempio, per costruire una tabellina:
 
 ```python
 for i in range(1, 4):
@@ -179,5 +161,24 @@ Output:
 1 x 3 = 3
 ---
 2 x 1 = 2
+2 x 2 = 4
+2 x 3 = 6
+---
 ...
+```
+
+## Scorrere un dizionario
+
+I dizionari possono essere scorsi in modi diversi:
+
+```python
+persona = {"nome": "Alice", "eta": 16, "citta": "Roma"}
+
+# Solo le chiavi
+for chiave in persona:
+    print(chiave)   # nome, eta, citta
+
+# Chiavi e valori insieme
+for chiave, valore in persona.items():
+    print(f"{chiave}: {valore}")
 ```

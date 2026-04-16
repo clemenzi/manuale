@@ -4,60 +4,71 @@ description: Cos'è il C++, come funziona e perché impararlo.
 icon: BookOpen
 ---
 
+## Perché ti serve il C++?
+
+Ogni volta che giochi a un videogioco, usi un browser, o guardi un film in streaming, stai usando software scritto (almeno in parte) in C++.
+
+Il C++ è il linguaggio che si usa quando le prestazioni contano davvero: quando un programma deve essere velocissimo, consumare poca memoria, o controllare direttamente l'hardware del computer.
+
+Imparare il C++ ti dà una comprensione profonda di come funziona davvero un computer — e questa conoscenza ti tornerà utile qualunque linguaggio userai in futuro.
+
+---
+
 ## Cos'è il C++?
 
-Il **C++** è un linguaggio di programmazione creato da **Bjarne Stroustrup** nei primi anni '80 come estensione del linguaggio C. Il nome stesso ("C plus plus") indica che è un passo avanti rispetto al C.
+Il **C++** è un linguaggio di programmazione creato da **Bjarne Stroustrup** nei primi anni '80. Il nome ("C più più") indica che è un'evoluzione del linguaggio C, con molte funzionalità aggiunte.
 
-È uno dei linguaggi più potenti e diffusi al mondo. Lo trovi in:
+Lo trovi ovunque:
 
-- sistemi operativi (Windows, Linux usano parti scritte in C++)
-- videogiochi (motori grafici come Unreal Engine)
-- applicazioni ad alte prestazioni (browser, database)
-- sistemi embedded e dispositivi hardware
-- software scientifico e finanziario
+- **Sistemi operativi** — parti di Windows e Linux sono scritte in C++
+- **Videogiochi** — motori grafici come Unreal Engine usano C++
+- **Browser** — Chrome e Firefox hanno il motore di rendering scritto in C++
+- **Software scientifico e finanziario** — dove la velocità è fondamentale
+- **Dispositivi embedded** — microcontrollori, robot, sistemi industriali
 
-## Perché imparare il C++?
-
-- Ti insegna come funziona davvero il computer (memoria, processore, ecc.)
-- È velocissimo: spesso il programma più veloce possibile si scrive in C++
-- Una volta capito il C++, tutti gli altri linguaggi sembrano più semplici
-- È ancora molto richiesto nel mondo del lavoro
+---
 
 ## C++ vs Python: le differenze principali
 
+Se hai già studiato Python, ecco le differenze più importanti:
+
 | Caratteristica | C++ | Python |
 |---|---|---|
-| Tipo di linguaggio | Compilato | Interpretato |
+| Come funziona | Compilato — tradotto prima di eseguire | Interpretato — tradotto durante l'esecuzione |
 | Velocità | Molto veloce | Più lento |
-| Sintassi | Più complessa | Più semplice |
-| Dichiarazione tipi | Obbligatoria | Non necessaria |
-| Gestione memoria | Manuale (a volte) | Automatica |
+| Sintassi | Più precisa e rigida | Più semplice e flessibile |
+| Tipi delle variabili | Obbligatori da dichiarare | Non obbligatori |
+| Gestione della memoria | Spesso manuale | Automatica |
 
-In C++ devi essere più preciso: devi dichiarare i tipi delle variabili, chiudere le istruzioni con `;` e gestire alcune cose a mano. In cambio, ottieni programmi molto più veloci e un controllo totale su ciò che fa il computer.
+In C++ devi essere più preciso: devi dichiarare il tipo di ogni variabile, chiudere ogni istruzione con `;`, e fare attenzione a come usi la memoria. In cambio, ottieni programmi molto più veloci e un controllo totale su ciò che fa il computer.
+
+---
 
 ## Come funziona il C++?
 
-Il C++ è un linguaggio **compilato**: prima di eseguire il programma, il codice sorgente viene trasformato in un file eseguibile da un programma chiamato **compilatore**.
+Il C++ è un linguaggio **compilato**. Significa che, prima di eseguire il programma, il codice che scrivi viene trasformato in istruzioni dirette per il processore da un programma chiamato **compilatore**.
 
 Il flusso di lavoro è:
 
 1. Scrivi il codice in un file con estensione `.cpp`
-2. Il compilatore legge il file e lo trasforma in un eseguibile (`.exe` su Windows, senza estensione su Linux/macOS)
+2. Il compilatore legge il file e lo trasforma in un programma eseguibile (`.exe` su Windows, senza estensione su Linux e macOS)
 3. Esegui il programma
 
-Questo processo rende i programmi C++ molto veloci, perché il computer esegue direttamente le istruzioni già tradotte nella sua lingua.
+Questo processo rende i programmi C++ molto veloci: il processore esegue direttamente le istruzioni già tradotte nella sua lingua, senza dover interpretare il codice ogni volta.
+
+---
 
 ## Il primo programma
 
-Per tradizione, il primo programma che si scrive è "Hello, World!":
+Per tradizione, il primo programma che si scrive in qualsiasi linguaggio è "Hello, World!" — un programma che stampa un saluto sullo schermo:
 
 ```cpp
-#include <iostream>
-using namespace std;
+#include <iostream>   // include la libreria per stampare
+using namespace std;  // semplifica la scrittura del codice
 
-int main() {
-    cout << "Hello, World!" << endl;
-    return 0;
+int main() {          // il punto di partenza del programma
+    cout << "Hello, World!" << endl;  // stampa il messaggio
+    return 0;         // segnala che il programma è finito correttamente
 }
 ```
 
@@ -67,14 +78,16 @@ Output:
 Hello, World!
 ```
 
-Non preoccuparti se non capisci ancora tutto: nelle prossime sezioni spiegheremo ogni parte in dettaglio.
+Non preoccuparti se non capisci ancora tutte le parti: nelle prossime sezioni spiegheremo ogni elemento in dettaglio, passo dopo passo.
+
+---
 
 ## Le versioni del C++
 
-Il C++ viene aggiornato periodicamente. Le versioni più importanti sono:
+Il C++ viene aggiornato periodicamente con nuove funzionalità. Le versioni principali sono:
 
-- **C++98**: la prima versione standardizzata
-- **C++11**: grande aggiornamento con molte funzionalità moderne
-- **C++14, C++17, C++20**: miglioramenti successivi
+- **C++98** — la prima versione standardizzata
+- **C++11** — un grande aggiornamento con molte funzionalità moderne
+- **C++14, C++17, C++20** — miglioramenti successivi
 
-In questo handbook useremo le funzionalità moderne (C++11 e successive), che sono quelle che si usano oggi nella pratica.
+In questo manuale useremo le funzionalità moderne (C++11 e successive), che sono quelle usate nella pratica oggi.

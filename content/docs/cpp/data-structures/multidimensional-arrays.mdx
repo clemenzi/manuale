@@ -3,23 +3,25 @@ title: Array Multidimensionali
 description: Come usare array a due o più dimensioni in C++.
 ---
 
-## Cosa sono gli array multidimensionali?
+## Perché ti serve questo?
 
-Un **array multidimensionale** è un array di array. Il caso più comune è l'array a due dimensioni, che puoi immaginare come una tabella con righe e colonne.
+Un array normale è come una fila di scatole. Ma a volte i dati sono naturalmente organizzati in una **griglia**: i voti di più studenti in più materie, le celle di una scacchiera, i pixel di un'immagine.
 
-## Array bidimensionali
+Un **array bidimensionale** è come una tabella con righe e colonne: hai bisogno di due numeri per identificare ogni cella.
 
-Dichiarazione:
+## Dichiarare un array 2D
 
 ```cpp
 tipo nome[righe][colonne];
 ```
 
 ```cpp
-int tabella[3][4];  // 3 righe, 4 colonne (12 elementi totali)
+int tabella[3][4];  // 3 righe, 4 colonne — 12 celle in totale
 ```
 
 ## Inizializzare un array 2D
+
+Puoi inizializzarlo riga per riga, usando parentesi graffe interne:
 
 ```cpp
 int matrice[2][3] = {
@@ -28,15 +30,9 @@ int matrice[2][3] = {
 };
 ```
 
-Oppure su una sola riga:
-
-```cpp
-int matrice[2][3] = {1, 2, 3, 4, 5, 6};  // riempito riga per riga
-```
-
 ## Accedere agli elementi
 
-Si usano due indici: `[riga][colonna]`, entrambi partendo da 0:
+Devi usare **due indici**: `[riga][colonna]`. Entrambi partono da 0.
 
 ```cpp
 int matrice[2][3] = {
@@ -44,14 +40,16 @@ int matrice[2][3] = {
     {4, 5, 6}
 };
 
-cout << matrice[0][0] << endl;  // 1 (riga 0, colonna 0)
-cout << matrice[0][2] << endl;  // 3 (riga 0, colonna 2)
-cout << matrice[1][1] << endl;  // 5 (riga 1, colonna 1)
+cout << matrice[0][0] << endl;  // 1 — riga 0, colonna 0
+cout << matrice[0][2] << endl;  // 3 — riga 0, colonna 2
+cout << matrice[1][1] << endl;  // 5 — riga 1, colonna 1
 ```
 
-## Iterare su un array 2D
+Immagina le coordinate come `[Y][X]`: prima la riga (verticale), poi la colonna (orizzontale).
 
-Si usano due cicli `for` annidati:
+## Scorrere con due cicli annidati
+
+Per visitare tutti gli elementi di una matrice, si usano due cicli `for` annidati: uno per le righe, uno per le colonne:
 
 ```cpp
 int matrice[3][3] = {
@@ -60,11 +58,11 @@ int matrice[3][3] = {
     {7, 8, 9}
 };
 
-for (int i = 0; i < 3; i++) {       // righe
-    for (int j = 0; j < 3; j++) {   // colonne
+for (int i = 0; i < 3; i++) {       // ciclo esterno: scorre le righe
+    for (int j = 0; j < 3; j++) {   // ciclo interno: scorre le colonne della riga i
         cout << matrice[i][j] << "\t";
     }
-    cout << endl;
+    cout << endl;  // vai a capo dopo ogni riga
 }
 ```
 
@@ -76,7 +74,9 @@ Output:
 7   8   9
 ```
 
-## Esempio: registro voti
+## Esempio: registro voti degli studenti
+
+Un uso pratico: memorizzare i voti di più studenti in più materie.
 
 ```cpp
 #include <iostream>
@@ -86,7 +86,7 @@ int main() {
     const int STUDENTI = 3;
     const int MATERIE = 4;
 
-    // Voti: [studente][materia]
+    // voti[studente][materia]
     int voti[STUDENTI][MATERIE] = {
         {8, 7, 9, 6},   // Alice
         {5, 8, 7, 9},   // Bob
@@ -96,22 +96,16 @@ int main() {
     string nomi[] = {"Alice", "Bob", "Carlo"};
     string materie[] = {"Matematica", "Italiano", "Inglese", "Storia"};
 
-    // Stampa tabella
-    cout << "\t\t";
-    for (int m = 0; m < MATERIE; m++) {
-        cout << materie[m] << "\t";
-    }
-    cout << "Media" << endl;
-
+    // Stampa la tabella con le medie
     for (int s = 0; s < STUDENTI; s++) {
-        cout << nomi[s] << "\t\t";
+        cout << nomi[s] << ": ";
         int somma = 0;
         for (int m = 0; m < MATERIE; m++) {
-            cout << voti[s][m] << "\t\t";
+            cout << voti[s][m] << " ";
             somma += voti[s][m];
         }
         double media = (double)somma / MATERIE;
-        cout << media << endl;
+        cout << "→ media: " << media << endl;
     }
 
     return 0;
@@ -127,9 +121,10 @@ using namespace std;
 int main() {
     char scacchiera[8][8];
 
-    // Inizializza la scacchiera con un pattern alternato
+    // Riempiamo la scacchiera alternando # e .
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
+            // Se la somma degli indici è pari, casella nera
             if ((i + j) % 2 == 0) {
                 scacchiera[i][j] = '#';
             } else {
@@ -150,25 +145,25 @@ int main() {
 }
 ```
 
-## Array tridimensionali
+## Array a tre dimensioni
 
-Puoi anche avere array con più di due dimensioni, anche se diventano rapidamente difficili da visualizzare:
+Puoi avere anche array con tre o più dimensioni, anche se diventano difficili da visualizzare:
 
 ```cpp
-int cubo[2][3][4];  // 2 "livelli", 3 righe, 4 colonne
+int cubo[2][3][4];  // 2 "strati", 3 righe, 4 colonne
 
 // Accesso con tre indici
 cubo[0][1][2] = 42;
 ```
 
-Per la maggior parte dei casi pratici, gli array 2D sono sufficienti.
+Un array 3D è come un cubo: ha profondità, altezza e larghezza. Nella pratica, gli array 2D coprono la maggior parte dei casi.
 
-## Limitazioni degli array C-style
+## Limitazioni degli array C++
 
-Gli array classici del C++ hanno alcune limitazioni:
+Gli array tradizionali hanno alcuni svantaggi:
 
-- La dimensione deve essere fissa e nota a compile-time
-- Non puoi sapere la dimensione "da dentro" l'array se lo passi a una funzione
-- Non controllano i limiti (out-of-bounds)
+- La dimensione deve essere fissa e nota prima dell'esecuzione
+- Non si "ricordano" quanti elementi contengono
+- Non controllano se stai uscendo dai limiti
 
-Per questi motivi, nelle applicazioni moderne si preferisce usare `vector` (vedi la sezione apposita), che è più flessibile e sicuro.
+Per questi motivi, nelle applicazioni moderne si usa spesso `vector` (vedi la sezione apposita), che è più flessibile e sicuro.

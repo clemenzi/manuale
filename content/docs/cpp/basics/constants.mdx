@@ -3,35 +3,36 @@ title: Costanti
 description: Come definire valori costanti in C++ con const e #define.
 ---
 
-## Cosa sono le costanti?
+## Perché ti serve questo?
 
-Una **costante** è un valore che non può essere modificato dopo l'inizializzazione. È utile per valori che non devono cambiare durante l'esecuzione del programma, come pi greco, il numero di ore in un giorno, o la velocità della luce.
+Immagina di scrivere un programma che usa il numero pi greco (3.14159...) in dieci punti diversi. Se un giorno vuoi usare una versione più precisa, devi cambiarla in dieci posti.
 
-Usare le costanti rende il codice:
-- Più sicuro (il compilatore impedisce modifiche accidentali)
-- Più leggibile (un nome significativo al posto di un numero)
-- Più facile da modificare (cambi il valore in un solo posto)
+Oppure potresti avere il numero `18` sparso nel codice. Chi legge non sa se è l'età minima, un limite di velocità o qualcos'altro.
+
+Le **costanti** risolvono entrambi i problemi: dai un nome a un valore che non cambia mai, e lo scrivi in un unico posto.
 
 ## La parola chiave `const`
 
-La parola chiave `const` davanti a una variabile la rende costante:
+Scrivi `const` prima del tipo per rendere una variabile costante. Una volta assegnato il valore, non può più essere cambiato.
 
 ```cpp
 const double PI = 3.14159265358979;
 const int ORE_PER_GIORNO = 24;
-const string LINGUA = "Italiano";
+const int ETA_MINIMA = 18;
 ```
 
-Se provi a modificare una costante, il compilatore dà un errore:
+Se provi a modificare una costante, il compilatore ti blocca con un errore:
 
 ```cpp
 const int MAX = 100;
-MAX = 200;  // ERRORE: assignment of read-only variable 'MAX'
+MAX = 200;  // ERRORE: non puoi modificare una costante
 ```
 
-## Convenzioni di naming
+Questo è un vantaggio: il compilatore ti protegge da modifiche accidentali.
 
-Per le costanti, la convenzione in C++ è usare **tutto maiuscolo con underscore**:
+## La convenzione dei nomi
+
+Per le costanti si usa la convenzione di scrivere **tutto in maiuscolo**, con le parole separate da underscore. Così si riconoscono a colpo d'occhio nel codice:
 
 ```cpp
 const double PI = 3.14159;
@@ -40,18 +41,16 @@ const int MAX_TENTATIVI = 3;
 const double VELOCITA_LUCE = 299792458.0;
 ```
 
-Questa convenzione le distingue visivamente dalle variabili normali.
+## Un altro modo: `#define`
 
-## Costanti con `#define`
-
-Un altro modo per definire costanti è la direttiva del preprocessore `#define`:
+Prima che esistesse `const`, i programmatori usavano la direttiva `#define`:
 
 ```cpp
 #define PI 3.14159
 #define MAX_STUDENTI 30
 ```
 
-Con `#define`, il preprocessore sostituisce ogni occorrenza di `PI` con `3.14159` prima della compilazione. Non è una variabile: è una semplice sostituzione testuale.
+Con `#define`, il compilatore sostituisce ogni occorrenza di `PI` con `3.14159` prima di compilare il codice. Non è una vera variabile: è una semplice sostituzione di testo.
 
 ```cpp
 #include <iostream>
@@ -61,42 +60,44 @@ Con `#define`, il preprocessore sostituisce ogni occorrenza di `PI` con `3.14159
 using namespace std;
 
 int main() {
+    // Il compilatore sostituisce PI con 3.14159 e RAGGIO con 5
     double area = PI * RAGGIO * RAGGIO;
     cout << "Area: " << area << endl;
     return 0;
 }
 ```
 
-### `const` vs `#define`: quale usare?
+## `const` o `#define`? Usa `const`
 
-Oggi si preferisce `const` rispetto a `#define` per questi motivi:
+Oggi si preferisce sempre `const`. Ecco perché:
 
 | Caratteristica | `const` | `#define` |
 |---|---|---|
-| Ha un tipo | Sì | No |
-| Viene controllata dal compilatore | Sì | No |
+| Ha un tipo definito | Sì | No |
+| Il compilatore la controlla | Sì | No |
 | Visibile nel debugger | Sì | No |
-| Rispetta lo scope | Sì | No |
+| Rispetta i blocchi di codice | Sì | No |
 
 ```cpp
 // Meglio: const ha tipo e viene controllata
 const double PI = 3.14159;
 
-// Evita: #define non ha tipo
+// Meno sicuro: #define non ha tipo
 #define PI 3.14159
 ```
 
-## Costanti `constexpr` (C++11)
+## `constexpr`: costanti calcolate durante la compilazione
 
-In C++ moderno esiste anche `constexpr`, che indica una costante calcolata a compile-time (durante la compilazione, non durante l'esecuzione):
+In C++ moderno esiste anche `constexpr`. Si usa per costanti il cui valore può essere calcolato già durante la compilazione (prima ancora che il programma venga eseguito):
 
 ```cpp
 constexpr int SECONDI_PER_MINUTO = 60;
 constexpr int MINUTI_PER_ORA = 60;
-constexpr int SECONDI_PER_ORA = SECONDI_PER_MINUTO * MINUTI_PER_ORA; // 3600
+// Il compilatore calcola 60 * 60 = 3600 prima ancora di eseguire il programma
+constexpr int SECONDI_PER_ORA = SECONDI_PER_MINUTO * MINUTI_PER_ORA;
 ```
 
-`constexpr` è ancora più sicuro e performante di `const`. Per ora, puoi usare `const` senza problemi.
+Per ora puoi usare tranquillamente `const`. Imparerai `constexpr` più avanti.
 
 ## Esempio pratico
 
@@ -104,19 +105,20 @@ constexpr int SECONDI_PER_ORA = SECONDI_PER_MINUTO * MINUTI_PER_ORA; // 3600
 #include <iostream>
 using namespace std;
 
+// Costanti definite una volta sola, usate ovunque nel programma
 const double PI = 3.14159265358979;
-const double GRAVITA = 9.81;     // m/s^2
+const double GRAVITA = 9.81;  // accelerazione di gravità in m/s²
 const int MAX_VOTO = 10;
 
 int main() {
-    // Calcolo area cerchio
+    // Calcolo dell'area di un cerchio con raggio 4
     double raggio = 4.0;
     double area = PI * raggio * raggio;
     cout << "Area cerchio (r=" << raggio << "): " << area << endl;
 
-    // Calcolo energia potenziale
-    double massa = 70.0;   // kg
-    double altezza = 5.0;  // m
+    // Calcolo dell'energia potenziale di un oggetto
+    double massa = 70.0;    // kg
+    double altezza = 5.0;   // m
     double energia = massa * GRAVITA * altezza;
     cout << "Energia potenziale: " << energia << " J" << endl;
 

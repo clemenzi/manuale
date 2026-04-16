@@ -3,21 +3,25 @@ title: Cenni alla STL
 description: Panoramica della Standard Template Library del C++ con i contenitori più utili.
 ---
 
-## Cos'è la STL?
+## Perché ti serve questo?
 
-La **STL** (Standard Template Library) è una parte importante della libreria standard del C++. Fornisce:
+Quando programmi, ti ritrovi spesso ad avere gli stessi problemi: "devo memorizzare una lista di elementi", "devo associare nomi a valori", "devo gestire una coda". Risolverli da zero ogni volta sarebbe faticoso.
 
-- **Contenitori**: strutture dati per memorizzare collezioni di elementi
-- **Algoritmi**: funzioni per operare sulle collezioni (ordinamento, ricerca, ecc.)
-- **Iteratori**: oggetti per scorrere i contenitori
+La **STL** (Standard Template Library) è una raccolta di "strumenti pronti all'uso" inclusa nel C++. Fornisce strutture dati già pronte (liste, dizionari, code...) e algoritmi già scritti (ordinamento, ricerca...).
 
-La STL usa i **template** (generici): puoi usare gli stessi contenitori con qualsiasi tipo di dato.
+## Cosa contiene la STL
 
-## I principali contenitori
+La STL ha tre componenti principali:
 
-### `vector` - Array dinamico
+- **Contenitori**: strutture per memorizzare dati (`vector`, `map`, `set`, ...)
+- **Algoritmi**: funzioni per operare sui dati (`sort`, `find`, `count`, ...)
+- **Iteratori**: oggetti per scorrere i contenitori (trattati nella sezione apposita)
 
-Già visto nella sezione precedente. È il contenitore più usato.
+## I contenitori principali
+
+### `vector` — Lista dinamica
+
+Già trattato nella sezione dedicata. È il contenitore più usato in assoluto.
 
 ```cpp
 #include <vector>
@@ -25,28 +29,9 @@ vector<int> v = {1, 2, 3, 4, 5};
 v.push_back(6);
 ```
 
-### `list` - Lista doppiamente collegata
+### `map` — Dizionario (chiave → valore)
 
-Utile quando aggiungi/rimuovi spesso elementi in mezzo alla lista:
-
-```cpp
-#include <list>
-using namespace std;
-
-list<int> l = {1, 2, 4, 5};
-l.insert(next(l.begin(), 2), 3);  // inserisce 3 alla posizione 2
-// l = {1, 2, 3, 4, 5}
-
-l.push_front(0);   // aggiunge all'inizio
-l.push_back(6);    // aggiunge alla fine
-l.pop_front();     // rimuove il primo
-
-for (int n : l) cout << n << " ";
-```
-
-### `map` - Dizionario (chiave-valore)
-
-Memorizza coppie chiave-valore, ordinate per chiave. Simile ai dizionari di Python:
+Un `map` associa ogni chiave a un valore. È come un dizionario: cerchi una parola (chiave) e trovi la sua definizione (valore). Le chiavi sono mantenute in ordine alfabetico/numerico.
 
 ```cpp
 #include <map>
@@ -57,11 +42,12 @@ eta["Alice"] = 16;
 eta["Bob"] = 17;
 eta["Carlo"] = 15;
 
-// Accesso
+// Leggi il valore associato a una chiave
 cout << eta["Alice"] << endl;   // 16
 
-// Iterazione
+// Scorri tutte le coppie
 for (auto& coppia : eta) {
+    // .first è la chiave, .second è il valore
     cout << coppia.first << ": " << coppia.second << endl;
 }
 // Output (in ordine alfabetico):
@@ -69,24 +55,25 @@ for (auto& coppia : eta) {
 // Bob: 17
 // Carlo: 15
 
-// Verifica esistenza
+// Controlla se una chiave esiste
 if (eta.count("Alice") > 0) {
     cout << "Alice è nel registro" << endl;
 }
 
-// Rimozione
+// Rimuovi una coppia
 eta.erase("Bob");
 ```
 
-### `unordered_map` - Dizionario non ordinato (più veloce)
+### `unordered_map` — Dizionario veloce
 
-Come `map` ma non mantiene l'ordine delle chiavi. Accesso più veloce:
+Come `map`, ma non mantiene l'ordine delle chiavi. In cambio è più veloce:
 
 ```cpp
 #include <unordered_map>
+using namespace std;
 
 unordered_map<string, int> contaParole;
-contaParole["ciao"]++;
+contaParole["ciao"]++;   // se la chiave non esiste, viene creata con valore 0
 contaParole["mondo"]++;
 contaParole["ciao"]++;
 
@@ -95,15 +82,18 @@ for (auto& p : contaParole) {
 }
 ```
 
-### `set` - Insieme (senza duplicati, ordinato)
+Usa `map` se ti serve l'ordine, `unordered_map` se ti serve la velocità.
 
-Memorizza elementi unici in ordine:
+### `set` — Insieme (senza duplicati)
+
+Un `set` memorizza elementi unici, in ordine. Se inserisci un valore già presente, non cambia nulla.
 
 ```cpp
 #include <set>
+using namespace std;
 
-set<int> numeri = {5, 2, 8, 2, 1, 9, 1};  // duplicati rimossi!
-// numeri = {1, 2, 5, 8, 9}
+set<int> numeri = {5, 2, 8, 2, 1, 9, 1};  // i duplicati vengono ignorati
+// numeri contiene: {1, 2, 5, 8, 9}
 
 numeri.insert(3);   // aggiunge 3
 numeri.erase(8);    // rimuove 8
@@ -116,83 +106,98 @@ for (int n : numeri) cout << n << " ";
 // Output: 1 2 3 5 9
 ```
 
-### `stack` - Pila (LIFO)
+### `list` — Lista collegata
 
-Struttura LIFO (Last In, First Out): l'ultimo elemento inserito è il primo a uscire:
+Una `list` è efficiente quando aggiungi e rimuovi elementi in mezzo alla lista molto spesso:
+
+```cpp
+#include <list>
+using namespace std;
+
+list<int> l = {1, 2, 4, 5};
+l.push_front(0);   // aggiunge all'inizio
+l.push_back(6);    // aggiunge alla fine
+l.pop_front();     // rimuove il primo
+
+for (int n : l) cout << n << " ";
+```
+
+Per la maggior parte dei casi usa `vector`. Usa `list` solo se fai molte inserzioni/rimozioni nel mezzo.
+
+### `stack` — Pila (ultimo entrato, primo uscito)
+
+Una pila (stack) funziona come una pila di piatti: metti sempre sopra, e prendi sempre dall'alto. L'ultimo elemento aggiunto è il primo a uscire (LIFO: Last In, First Out).
 
 ```cpp
 #include <stack>
+using namespace std;
 
 stack<int> pila;
-pila.push(1);   // inserisce in cima
-pila.push(2);
-pila.push(3);
+pila.push(1);   // metti 1 in cima
+pila.push(2);   // metti 2 sopra all'1
+pila.push(3);   // metti 3 sopra al 2
 
-cout << pila.top() << endl;  // 3 (elemento in cima)
-pila.pop();                  // rimuove l'elemento in cima
+cout << pila.top() << endl;  // 3 — elemento in cima
+pila.pop();                  // rimuovi l'elemento in cima
 cout << pila.top() << endl;  // 2
-cout << pila.size() << endl; // 2
 ```
 
-### `queue` - Coda (FIFO)
+### `queue` — Coda (primo entrato, primo uscito)
 
-Struttura FIFO (First In, First Out): il primo elemento inserito è il primo a uscire:
+Una coda (queue) funziona come la cassa al supermercato: il primo ad arrivare è il primo ad essere servito (FIFO: First In, First Out).
 
 ```cpp
 #include <queue>
+using namespace std;
 
 queue<string> coda;
-coda.push("Alice");
+coda.push("Alice");   // Alice arriva per prima
 coda.push("Bob");
 coda.push("Carlo");
 
-cout << coda.front() << endl;  // "Alice" (primo entrato)
-coda.pop();                    // rimuove il primo
-cout << coda.front() << endl;  // "Bob"
+cout << coda.front() << endl;  // "Alice" — la prima ad essere servita
+coda.pop();                    // Alice viene servita e va via
+cout << coda.front() << endl;  // ora tocca a "Bob"
 ```
 
-## Riepilogo dei contenitori
+## Riepilogo: quale contenitore usare?
 
-| Contenitore | Caratteristica principale | Quando usarlo |
-|---|---|---|
-| `vector` | Array dinamico, accesso per indice O(1) | Uso generale, accesso diretto |
-| `list` | Lista collegata, inserimento O(1) | Molte inserzioni/rimozioni in mezzo |
-| `map` | Chiave-valore, ordinato | Dizionario con ordine |
-| `unordered_map` | Chiave-valore, non ordinato, veloce | Dizionario senza ordine |
-| `set` | Elementi unici, ordinati | Raccolta senza duplicati |
-| `stack` | LIFO | Algoritmi ricorsivi, backtracking |
-| `queue` | FIFO | Code di elaborazione |
+| Contenitore | Quando usarlo |
+|---|---|
+| `vector` | Uso generale, accesso per posizione |
+| `map` | Associare chiavi a valori, con ordine |
+| `unordered_map` | Associare chiavi a valori, più veloce |
+| `set` | Memorizzare valori unici |
+| `list` | Molte inserzioni/rimozioni in mezzo |
+| `stack` | Algoritmi che tornano indietro (backtracking) |
+| `queue` | Code di elaborazione |
 
-## Algoritmi della STL
+## Gli algoritmi della STL
 
-Con `#include <algorithm>`:
+Con `#include <algorithm>` hai accesso a molti algoritmi già pronti:
 
 ```cpp
 #include <algorithm>
 #include <vector>
+#include <numeric>
 using namespace std;
 
 vector<int> v = {5, 2, 8, 1, 9, 3};
 
-// Ordinamento
+// Ordina in ordine crescente
 sort(v.begin(), v.end());
 
-// Ricerca binaria (il vector deve essere ordinato)
+// Cerca se un valore è presente (richiede il vector ordinato)
 bool trovato = binary_search(v.begin(), v.end(), 5);
 
-// Somma
-int somma = 0;
-for (int n : v) somma += n;
-
-// Oppure con accumulate (<numeric>)
-#include <numeric>
-int somma2 = accumulate(v.begin(), v.end(), 0);
-
-// Conta occorrenze
+// Conta quante volte appare un valore
 int quanti = count(v.begin(), v.end(), 3);
 
 // Trova il massimo e il minimo
-auto max_it = max_element(v.begin(), v.end());
-auto min_it = min_element(v.begin(), v.end());
-cout << "Max: " << *max_it << ", Min: " << *min_it << endl;
+auto massimo = *max_element(v.begin(), v.end());
+auto minimo = *min_element(v.begin(), v.end());
+cout << "Max: " << massimo << ", Min: " << minimo << endl;
+
+// Somma tutti gli elementi (da <numeric>)
+int somma = accumulate(v.begin(), v.end(), 0);
 ```

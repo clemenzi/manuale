@@ -3,68 +3,78 @@ title: Struttura di un Programma C++
 description: Le parti fondamentali che compongono ogni programma C++.
 ---
 
+## Perché ti serve questo?
+
+Prima di scrivere il tuo primo programma, devi capire la sua struttura. È come imparare a costruire una casa: devi sapere dove vanno le fondamenta, i muri e il tetto, prima di poter arredare.
+
+Ogni programma C++ segue una struttura fissa. Conoscerla ti permette di capire qualsiasi codice tu incontrerai.
+
 ## La struttura minima
 
-Ogni programma C++ ha una struttura di base che devi conoscere. Vediamola con un esempio:
+Ecco il programma C++ più semplice possibile:
 
 ```cpp
 #include <iostream>
 using namespace std;
 
 int main() {
-    cout << "Ciao!" << endl;
+    cout << "Ciao!";
     return 0;
 }
 ```
 
-Questo programma è composto da quattro parti principali. Analizziamole una per una.
+Questo programma stampa la parola "Ciao!" sullo schermo. Solo cinque righe, ma ognuna ha un ruolo preciso.
 
-## 1. Le direttive `#include`
+## Parte 1: `#include <iostream>`
 
 ```cpp
 #include <iostream>
 ```
 
-La riga `#include <iostream>` dice al compilatore di includere la libreria `iostream` (input/output stream). Questa libreria contiene strumenti per visualizzare testo sullo schermo (`cout`) e leggere l'input dell'utente (`cin`).
+Questa riga dice al compilatore: "Ho bisogno della libreria `iostream`."
 
-Il `#include` è una **direttiva del preprocessore**: viene elaborata prima della compilazione vera e propria. Ogni volta che hai bisogno di una funzionalità esterna, la includi con `#include`.
+Pensa alle librerie come a delle cassette degli attrezzi: `iostream` è la cassetta che contiene gli strumenti per scrivere sullo schermo (`cout`) e leggere l'input dell'utente (`cin`).
 
-## 2. Il namespace
+Senza questa riga, il compilatore non saprebbe cosa significa `cout` e il programma non funzionerebbe.
+
+## Parte 2: `using namespace std;`
 
 ```cpp
 using namespace std;
 ```
 
-Questa riga dice al programma di usare il **namespace** `std` (standard). Un namespace è come un gruppo di nomi: evita che nomi uguali in librerie diverse si scontrino.
+Pensa a un **namespace** come a un cognome. Se in classe ci sono due ragazzi chiamati Marco, li distingui con il cognome: "Marco Rossi" e "Marco Bianchi".
 
-Senza questa riga, dovresti scrivere `std::cout` invece di `cout`, e `std::endl` invece di `endl`. Con `using namespace std;` puoi usare i nomi brevi direttamente.
+`cout` e `cin` appartengono alla "famiglia" `std`. Scrivere `using namespace std;` dice al programma: "quando uso `cout`, intendo `std::cout`." Così puoi scrivere `cout` invece del nome completo `std::cout`.
 
-## 3. La funzione `main()`
+## Parte 3: `int main() { ... }`
 
 ```cpp
 int main() {
-    // codice qui
+    // il programma inizia qui
     return 0;
 }
 ```
 
-La funzione `main()` è il **punto di partenza** di ogni programma C++. Quando esegui un programma, il computer inizia sempre dall'esecuzione di `main()`.
+La funzione `main()` è il **punto di partenza** di ogni programma C++. Quando avvii un programma, il computer cerca sempre `main()` e inizia a eseguire le istruzioni al suo interno.
 
-- `int` indica che la funzione restituisce un numero intero
-- Le parentesi graffe `{` e `}` delimitano il corpo della funzione
-- `return 0;` indica che il programma è terminato correttamente (0 = nessun errore)
+- `int` — indica che `main` restituisce un numero intero al termine
+- Le parentesi graffe `{` e `}` — delimitano il corpo della funzione
+- `return 0;` — segnala che il programma è terminato senza errori (0 = tutto ok)
 
-## 4. Le istruzioni
+## Parte 4: le istruzioni dentro `main()`
 
 ```cpp
-cout << "Ciao!" << endl;
+cout << "Ciao!";
 ```
 
-Dentro `main()` scrivi le istruzioni del programma. Ogni istruzione in C++ termina con un **punto e virgola** (`;`). Questo è diverso da Python, dove non è necessario.
+Dentro `main()` scrivi le istruzioni del programma, una per riga. Ogni istruzione termina con il punto e virgola `;`.
 
-`cout` stampa testo sullo schermo. `endl` va a capo (come `\n`).
+`cout` stampa qualcosa sullo schermo. La freccia `<<` indica "manda questo testo a cout".
 
 ## Un esempio più completo
+
+Quando hai bisogno di più funzionalità, includi più librerie:
 
 ```cpp
 #include <iostream>
@@ -72,15 +82,14 @@ Dentro `main()` scrivi le istruzioni del programma. Ogni istruzione in C++ termi
 using namespace std;
 
 int main() {
-    // Dichiarazione di variabili
+    // Dichiariamo due variabili
     string nome = "Alice";
     int eta = 16;
 
-    // Output
+    // Le stampiamo sullo schermo
     cout << "Nome: " << nome << endl;
-    cout << "Eta: " << eta << endl;
+    cout << "Età: " << eta << endl;
 
-    // Fine del programma
     return 0;
 }
 ```
@@ -89,66 +98,69 @@ Output:
 
 ```
 Nome: Alice
-Eta: 16
+Età: 16
 ```
+
+Qui abbiamo aggiunto `#include <string>` perché vogliamo usare le stringhe di testo.
 
 ## L'ordine delle sezioni
 
-La struttura tipica di un file C++ segue quest'ordine:
+Un file C++ tipico segue sempre quest'ordine dall'alto verso il basso:
 
-1. **Direttive `#include`**: le librerie da includere
-2. **Direttive `using`**: i namespace da usare
-3. **Dichiarazioni globali** (variabili, costanti, prototipi di funzioni)
-4. **Funzione `main()`**
-5. **Altre funzioni** (definite dopo il main)
+1. **Le librerie** — cosa includiamo
+2. **Il namespace** — quale "famiglia" di nomi usare
+3. **Variabili e costanti globali** — valori disponibili ovunque (opzionale)
+4. **La funzione `main()`** — da dove parte il programma
+5. **Altre funzioni** — pezzi di codice riutilizzabili (opzionale)
 
 ```cpp
-// 1. Include
+// 1. Librerie
 #include <iostream>
 #include <cmath>
 
 // 2. Namespace
 using namespace std;
 
-// 3. Costanti globali (opzionale)
+// 3. Costante globale (opzionale)
 const double PI = 3.14159;
 
 // 4. Funzione main
 int main() {
     double raggio = 5.0;
+    // PI * r * r calcola l'area del cerchio
     double area = PI * raggio * raggio;
     cout << "Area: " << area << endl;
     return 0;
 }
 ```
 
-## Le parentesi graffe
+## Le parentesi graffe delimitano i blocchi
 
-Le parentesi graffe `{` e `}` delimitano i **blocchi di codice**. Le troverai ovunque in C++: nelle funzioni, nei cicli, nelle condizioni.
+Le parentesi graffe `{` `}` compaiono ovunque in C++: nelle funzioni, nei cicli, nelle condizioni. Ogni coppia apre e chiude un **blocco di codice**.
 
 ```cpp
-int main() {          // apre il blocco main
-    if (true) {       // apre il blocco if
+int main() {          // apre il blocco di main
+    if (true) {       // apre un blocco if
         cout << "Ciao";
     }                 // chiude il blocco if
     return 0;
-}                     // chiude il blocco main
+}                     // chiude il blocco di main
 ```
 
-A differenza di Python, in C++ l'indentazione non è obbligatoria per il funzionamento del codice. Tuttavia, è fortemente consigliata per rendere il codice leggibile.
+Ogni `{` deve avere il suo `}` corrispondente. Se ne manca uno, il compilatore segnala un errore.
 
-## Il punto e virgola
+## Il punto e virgola alla fine di ogni istruzione
 
-In C++, quasi tutte le istruzioni terminano con `;`. Dimenticarlo è uno degli errori più comuni per i principianti:
+In C++, quasi tutte le istruzioni terminano con `;`. Dimenticarlo è uno degli errori più comuni:
 
 ```cpp
 // Corretto
 cout << "Ciao!" << endl;
 int x = 5;
 
-// Errato (manca il ;)
-cout << "Ciao!" << endl   // errore di compilazione
-int x = 5                  // errore di compilazione
+// Errato — manca il ;
+cout << "Ciao!" << endl   // il compilatore segnala un errore
+int x = 5                  // anche qui
 ```
 
-Il compilatore ti segnalerà l'errore se dimentichi il punto e virgola.
+Se non capisci un errore del compilatore, prima di tutto controlla che non manchi un punto e virgola.

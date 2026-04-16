@@ -3,11 +3,11 @@ title: Strutture (struct)
 description: Come raggruppare dati correlati in strutture in C++.
 ---
 
-## Cosa sono le strutture?
+## Perché ti serve questo?
 
-Una **struttura** (`struct`) è un tipo di dato personalizzato che raggruppa più variabili (chiamate **campi** o **membri**) sotto un unico nome. È utile per rappresentare entità del mondo reale che hanno più attributi.
+Immagina di dover tenere traccia di 30 studenti. Ogni studente ha un nome, un'età e un voto. Potresti usare tre array separati — ma è un disastro da gestire.
 
-Ad esempio, uno studente ha un nome, un'età e un voto: invece di avere tre variabili separate, le raggruppi in una struttura `Studente`.
+Una **struttura** (`struct`) ti permette di raggruppare tutte le informazioni di uno studente in un unico "pacchetto". Così hai un array di studenti, non tre array separati.
 
 ## Definire una struttura
 
@@ -16,8 +16,10 @@ struct NomeStruttura {
     tipo1 campo1;
     tipo2 campo2;
     // ...
-};   // nota il punto e virgola!
+};   // nota il punto e virgola finale!
 ```
+
+Esempio concreto:
 
 ```cpp
 struct Studente {
@@ -27,44 +29,34 @@ struct Studente {
 };
 ```
 
-## Creare variabili di tipo struttura
+## Creare e usare una struttura
 
 ```cpp
-Studente s1;   // crea una variabile di tipo Studente
+Studente s1;         // crea una variabile di tipo Studente
 
 // Accedi ai campi con il punto .
 s1.nome = "Alice";
 s1.eta = 16;
 s1.media = 8.5;
+
+cout << s1.nome << endl;   // Alice
+cout << s1.media << endl;  // 8.5
 ```
 
-## Inizializzazione
+## Inizializzazione rapida
 
-Puoi inizializzare una struttura con la lista di valori:
+Puoi impostare tutti i valori in una sola riga:
 
 ```cpp
-Studente s1 = {"Alice", 16, 8.5};
+Studente s1 = {"Alice", 16, 8.5};   // ordine: nome, eta, media
 
-// C++11: inizializzazione con nome dei campi
+// C++11: puoi anche specificare il nome dei campi
 Studente s2 = {.nome = "Bob", .eta = 17, .media = 7.2};
 ```
 
-## Accedere ai campi
-
-Si usa l'operatore `.` (punto):
-
-```cpp
-Studente s = {"Alice", 16, 8.5};
-
-cout << s.nome << endl;   // Alice
-cout << s.eta << endl;    // 16
-cout << s.media << endl;  // 8.5
-
-// Modifica
-s.media = 9.0;
-```
-
 ## Strutture come parametri di funzioni
+
+Le strutture si passano alle funzioni esattamente come le variabili normali:
 
 ```cpp
 struct Punto {
@@ -72,6 +64,7 @@ struct Punto {
     double y;
 };
 
+// Calcola la distanza tra due punti
 double distanza(Punto p1, Punto p2) {
     double dx = p1.x - p2.x;
     double dy = p1.y - p2.y;
@@ -87,9 +80,7 @@ int main() {
 }
 ```
 
-## Strutture con riferimento (per modificarle)
-
-Per modificare una struttura in una funzione, passala per riferimento:
+Per modificare una struttura dentro una funzione, passa per riferimento (`&`):
 
 ```cpp
 struct Contatore {
@@ -98,7 +89,7 @@ struct Contatore {
 };
 
 void incrementa(Contatore& c, int n) {
-    c.valore += n;
+    c.valore += n;   // modifica l'originale, non una copia
     c.passi++;
 }
 
@@ -114,6 +105,8 @@ int main() {
 
 ## Array di strutture
 
+Puoi creare array di strutture per gestire più elementi dello stesso tipo:
+
 ```cpp
 struct Prodotto {
     string nome;
@@ -123,24 +116,24 @@ struct Prodotto {
 
 int main() {
     Prodotto magazzino[3] = {
-        {"Mela", 0.50, 100},
+        {"Mela",   0.50, 100},
         {"Banana", 0.30, 150},
         {"Arancia", 0.80, 80}
     };
 
     cout << "Prodotti in magazzino:" << endl;
     for (int i = 0; i < 3; i++) {
-        cout << magazzino[i].nome << " - €"
-             << magazzino[i].prezzo
-             << " (qty: " << magazzino[i].quantita << ")" << endl;
+        cout << magazzino[i].nome << " - "
+             << magazzino[i].prezzo << " euro"
+             << " (quantita: " << magazzino[i].quantita << ")" << endl;
     }
 
-    // Calcola valore totale del magazzino
+    // Calcola il valore totale
     double totale = 0;
     for (int i = 0; i < 3; i++) {
         totale += magazzino[i].prezzo * magazzino[i].quantita;
     }
-    cout << "Valore totale: €" << totale << endl;
+    cout << "Valore totale: " << totale << " euro" << endl;
 
     return 0;
 }
@@ -171,18 +164,18 @@ int main() {
     p.indirizzo.citta = "Milano";
     p.indirizzo.cap = "20100";
 
-    cout << p.nome << " vive in " << p.indirizzo.citta << endl;
+    cout << p.nome << " vive a " << p.indirizzo.citta << endl;
     return 0;
 }
 ```
 
 ## Differenza tra `struct` e `class`
 
-In C++, `struct` e `class` sono molto simili. La differenza principale è che:
-- In `struct`, i membri sono **public** (accessibili dall'esterno) per default
-- In `class`, i membri sono **private** (non accessibili dall'esterno) per default
+In C++, `struct` e `class` sono quasi identiche. L'unica differenza:
+- In `struct` tutto è **pubblico** per default
+- In `class` tutto è **privato** per default
 
-Nella pratica, si usa `struct` per raggruppare dati semplici senza logica, e `class` per oggetti più complessi con comportamenti (vedi la sezione sulle classi).
+Nella pratica, si usa `struct` per raggruppare dati semplici senza logica, e `class` per oggetti più complessi con comportamenti e dati protetti.
 
 ## Esempio pratico: registro studenti
 
@@ -197,6 +190,7 @@ struct Studente {
     double voto;
 };
 
+// Passa per const & per leggere senza copiare
 void stampa(const Studente& s) {
     cout << s.nome << " (" << s.eta << " anni) - Voto: " << s.voto << endl;
 }
@@ -205,7 +199,7 @@ int main() {
     const int N = 3;
     Studente classe[N] = {
         {"Alice", 16, 8.5},
-        {"Bob", 17, 7.0},
+        {"Bob",   17, 7.0},
         {"Carlo", 16, 9.2}
     };
 
@@ -216,8 +210,18 @@ int main() {
         somma += classe[i].voto;
     }
 
-    cout << "Media classe: " << somma / N << endl;
+    cout << "Media della classe: " << somma / N << endl;
 
     return 0;
 }
+```
+
+Output:
+
+```
+=== Registro ===
+Alice (16 anni) - Voto: 8.5
+Bob (17 anni) - Voto: 7
+Carlo (16 anni) - Voto: 9.2
+Media della classe: 8.23333
 ```

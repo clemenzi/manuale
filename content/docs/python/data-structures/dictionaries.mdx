@@ -1,20 +1,23 @@
 ---
 title: Dizionari
-description: Strutture chiave-valore per organizzare i dati in Python.
+description: Come associare informazioni tramite chiavi e valori, come un vero vocabolario.
 ---
 
 ## Cosa sono i dizionari?
 
-Un **dizionario** (`dict`) è una raccolta di coppie **chiave-valore**. Ogni elemento ha una chiave univoca che permette di accedere al suo valore, un po' come un dizionario reale dove cerchi una parola (chiave) per trovare la sua definizione (valore).
+Un **dizionario** è una raccolta di informazioni organizzate in coppie **chiave → valore**.
 
-Le caratteristiche principali:
-- Le chiavi devono essere uniche e immutabili (stringhe, numeri, tuple)
-- I valori possono essere di qualsiasi tipo
-- L'ordine è mantenuto (da Python 3.7+)
+Funziona come un vero vocabolario: cerchi una parola (la **chiave**) e trovi la sua definizione (il **valore**). Oppure come una rubrica telefonica: cerchi il nome di una persona e trovi il suo numero.
+
+```
+"nome"  →  "Alice"
+"eta"   →  16
+"citta" →  "Roma"
+```
 
 ## Creare un dizionario
 
-I dizionari si scrivono con le **parentesi graffe** `{}`, con coppie `chiave: valore` separate da virgole:
+I dizionari si scrivono con le **parentesi graffe** `{}`, con coppie `"chiave": valore` separate da virgole:
 
 ```python
 studente = {
@@ -23,10 +26,12 @@ studente = {
     "classe": "3A"
 }
 
-vuoto = {}
+vuoto = {}   # dizionario senza elementi
 ```
 
-## Accedere ai valori
+## Accedere a un valore
+
+Usi il nome della chiave tra parentesi quadre, come se fosse un indice:
 
 ```python
 studente = {"nome": "Alice", "eta": 16, "classe": "3A"}
@@ -35,20 +40,23 @@ print(studente["nome"])   # Alice
 print(studente["eta"])    # 16
 ```
 
-Se la chiave non esiste, `[]` dà un errore. Usa `.get()` per evitarlo:
+Se la chiave non esiste, ottieni un errore. Per evitarlo, usa `.get()`, che restituisce `None` (o un valore di default) invece di causare errore:
 
 ```python
-print(studente.get("cognome"))           # None (nessun errore)
-print(studente.get("cognome", "N/D"))    # N/D (valore di default)
+print(studente.get("cognome"))          # None — nessun errore
+print(studente.get("cognome", "N/D"))   # N/D  — valore di default
 ```
 
 ## Aggiungere e modificare
 
+I dizionari sono modificabili. Assegni un valore a una chiave: se la chiave esiste, modifica il valore; se non esiste, crea una nuova coppia:
+
 ```python
 studente = {"nome": "Alice", "eta": 16}
 
-studente["eta"] = 17           # modifica un valore esistente
-studente["cognome"] = "Rossi"  # aggiunge una nuova coppia
+studente["eta"] = 17              # modifica il valore esistente
+studente["cognome"] = "Rossi"     # aggiunge una nuova coppia
+
 print(studente)
 # {'nome': 'Alice', 'eta': 17, 'cognome': 'Rossi'}
 ```
@@ -58,28 +66,26 @@ print(studente)
 ```python
 studente = {"nome": "Alice", "eta": 16, "classe": "3A"}
 
-del studente["classe"]           # elimina la coppia
+del studente["classe"]        # elimina la coppia "classe"
 print(studente)  # {'nome': 'Alice', 'eta': 16}
 
-eta = studente.pop("eta")        # rimuove e restituisce il valore
+eta = studente.pop("eta")     # rimuove e restituisce il valore
 print(eta)       # 16
 print(studente)  # {'nome': 'Alice'}
-
-studente.clear()                 # svuota il dizionario
 ```
 
-## Metodi principali
+## Strumenti utili
 
 ```python
 persona = {"nome": "Alice", "eta": 16, "citta": "Roma"}
 
-# Ottenere tutte le chiavi
+# Tutte le chiavi
 print(persona.keys())    # dict_keys(['nome', 'eta', 'citta'])
 
-# Ottenere tutti i valori
+# Tutti i valori
 print(persona.values())  # dict_values(['Alice', 16, 'Roma'])
 
-# Ottenere tutte le coppie chiave-valore
+# Tutte le coppie chiave-valore
 print(persona.items())   # dict_items([('nome', 'Alice'), ('eta', 16), ('citta', 'Roma')])
 
 # Verificare se una chiave esiste
@@ -87,14 +93,14 @@ print("nome" in persona)      # True
 print("cognome" in persona)   # False
 ```
 
-## Iterare su un dizionario
+## Scorrere un dizionario
 
 ```python
 persona = {"nome": "Alice", "eta": 16, "citta": "Roma"}
 
 # Solo le chiavi
 for chiave in persona:
-    print(chiave)
+    print(chiave)   # nome, eta, citta
 
 # Chiavi e valori insieme
 for chiave, valore in persona.items():
@@ -108,32 +114,16 @@ eta: 16
 citta: Roma
 ```
 
-## Dizionari annidati
+## Dizionari dentro dizionari
 
-I valori possono essere altri dizionari:
+I valori possono essere qualsiasi cosa, anche altri dizionari. Utile per rappresentare strutture complesse:
 
 ```python
-scuola = {
-    "studente1": {"nome": "Alice", "eta": 16},
-    "studente2": {"nome": "Bob", "eta": 17}
+classe = {
+    "Alice": {"eta": 16, "voto": 8},
+    "Bob":   {"eta": 17, "voto": 7}
 }
 
-print(scuola["studente1"]["nome"])  # Alice
-print(scuola["studente2"]["eta"])   # 17
-```
-
-## Unire dizionari
-
-```python
-d1 = {"a": 1, "b": 2}
-d2 = {"b": 3, "c": 4}
-
-# Metodo update (modifica il dizionario originale)
-d1.update(d2)
-print(d1)  # {'a': 1, 'b': 3, 'c': 4}  (b è stato sovrascritto)
-
-# Metodo con ** (crea un nuovo dizionario)
-d1 = {"a": 1, "b": 2}
-d3 = {**d1, **d2}
-print(d3)  # {'a': 1, 'b': 3, 'c': 4}
+print(classe["Alice"]["voto"])  # 8
+print(classe["Bob"]["eta"])     # 17
 ```

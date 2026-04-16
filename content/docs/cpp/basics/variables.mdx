@@ -3,27 +3,27 @@ title: Variabili
 description: Come dichiarare e usare le variabili in C++.
 ---
 
-## Cos'è una variabile?
+## Perché ti serve questo?
 
-Una **variabile** è un contenitore che serve a conservare un valore nella memoria del computer. Puoi immaginare una variabile come una scatola con un'etichetta: l'etichetta è il nome della variabile, il contenuto della scatola è il suo valore.
+Un programma deve ricordare delle informazioni mentre lavora: il nome dell'utente, il punteggio di un gioco, il risultato di un calcolo.
 
-In C++, ogni variabile ha un **tipo**: devi specificare che tipo di dato vuoi conservare (un numero intero, un numero decimale, un carattere, ecc.).
+Le **variabili** sono i contenitori in cui il programma memorizza queste informazioni. Pensa a una variabile come a una scatola con un'etichetta: l'etichetta è il nome della variabile, il contenuto della scatola è il suo valore.
 
 ## Dichiarare una variabile
 
-In C++ devi **dichiarare** una variabile prima di usarla. La dichiarazione specifica il tipo e il nome:
+In C++ devi **dichiarare** una variabile prima di usarla. La dichiarazione specifica due cose: il **tipo** (che genere di valore conterrà) e il **nome** (come si chiama):
 
 ```cpp
-int eta;           // dichiara una variabile intera chiamata "eta"
-double altezza;    // dichiara una variabile decimale
-char iniziale;     // dichiara una variabile carattere
+int eta;        // una scatola per numeri interi, chiamata "eta"
+double altezza; // una scatola per numeri decimali, chiamata "altezza"
+char iniziale;  // una scatola per un singolo carattere, chiamata "iniziale"
 ```
 
-Dopo la dichiarazione, la variabile esiste in memoria ma non ha ancora un valore definito.
+Dopo la dichiarazione, la scatola esiste in memoria, ma è vuota (o meglio: contiene un valore casuale imprevedibile).
 
 ## Inizializzare una variabile
 
-**Inizializzare** significa assegnare un valore alla variabile al momento della dichiarazione:
+**Inizializzare** significa mettere subito un valore nella scatola al momento in cui la crei:
 
 ```cpp
 int eta = 16;
@@ -32,84 +32,83 @@ char iniziale = 'A';
 bool maggiorenne = false;
 ```
 
-In C++ moderno puoi anche usare le parentesi graffe:
+In C++ moderno puoi anche usare le parentesi graffe per inizializzare:
 
 ```cpp
-int x{10};      // equivalente a int x = 10;
+int x{10};       // equivalente a int x = 10;
 double pi{3.14};
 ```
 
-Questa forma è preferita dai programmatori moderni perché evita alcune conversioni implicite rischiose.
+Questa forma è preferita dai programmatori più esperti perché il compilatore la controlla più attentamente.
 
-## Assegnare un valore
+## Cambiare il valore
 
-Puoi cambiare il valore di una variabile in qualsiasi momento con l'operatore `=`:
+Puoi cambiare il contenuto di una variabile in qualsiasi momento con l'operatore `=`:
 
 ```cpp
 int x = 5;
-cout << x << endl;  // 5
+cout << x;  // stampa 5
 
-x = 10;
-cout << x << endl;  // 10
+x = 10;     // cambiamo il valore
+cout << x;  // stampa 10
 
-x = x + 3;
-cout << x << endl;  // 13
+x = x + 3; // usiamo il valore corrente per calcolarne uno nuovo
+cout << x;  // stampa 13
 ```
 
-## Dichiarare più variabili dello stesso tipo
+## Dichiarare più variabili insieme
 
-Puoi dichiarare più variabili dello stesso tipo in una riga:
+Puoi dichiarare più variabili dello stesso tipo in una riga sola:
 
 ```cpp
-int a, b, c;
-int x = 1, y = 2, z = 3;
+int a, b, c;             // tre variabili intere non inizializzate
+int x = 1, y = 2, z = 3; // tre variabili con valori diversi
 ```
 
-## Regole per i nomi
+## Le regole per i nomi
 
 I nomi delle variabili devono seguire queste regole:
 
 - Devono iniziare con una lettera (`a-z`, `A-Z`) o un underscore `_`
 - Possono contenere lettere, numeri e underscore
-- Non possono contenere spazi o caratteri speciali
+- Non possono contenere spazi o simboli speciali
 - Non possono essere parole riservate del linguaggio (`int`, `if`, `return`, ecc.)
-- Il C++ è **case-sensitive**: `eta` e `Eta` sono variabili diverse
+- Le maiuscole contano: `eta` e `Eta` sono variabili diverse
 
 ```cpp
 // Nomi validi
 int eta;
 double altezza_media;
 string nomeUtente;
-int _valore;
 int x1;
 
 // Nomi non validi
-int 2x;          // inizia con un numero
-int nome utente; // contiene uno spazio
-int int;         // parola riservata
+int 2x;          // inizia con un numero — ERRORE
+int nome utente; // contiene uno spazio — ERRORE
+int int;         // è una parola riservata — ERRORE
 ```
 
-## Convenzioni di stile
+## Le convenzioni di stile
 
-In C++ le convenzioni più usate per le variabili sono:
+Non ci sono regole fisse sullo stile, ma due convenzioni sono molto diffuse:
 
 - **camelCase**: `nomeUtente`, `etaMinima`, `numeroDiStudenti`
 - **snake_case**: `nome_utente`, `eta_minima`, `numero_di_studenti`
 
-Scegli uno stile e usalo in modo coerente.
+Scegli una e usala in modo coerente in tutto il progetto.
 
-## Variabili non inizializzate
+## Attenzione: variabili non inizializzate
 
-Attenzione: in C++, una variabile dichiarata ma non inizializzata contiene un valore casuale (qualsiasi valore era in quella zona di memoria):
+In C++, una variabile dichiarata ma non inizializzata contiene un valore casuale (quello che c'era in quella zona di memoria prima):
 
 ```cpp
 int x;
-cout << x;  // stampa un valore imprevedibile! (comportamento non definito)
+cout << x;  // stampa un numero imprevedibile — comportamento non definito!
 ```
 
-In Python questo non è possibile perché Python ti darebbe un errore. In C++ invece il compilatore può non avvertire, e il programma si comporta in modo imprevedibile.
+In Python questo causa un errore chiaro. In C++ il compilatore potrebbe non avvertire, e il programma si comporta in modo strano.
 
-**Regola pratica**: inizializza sempre le variabili quando le dichiari.
+**Regola pratica: inizializza sempre le variabili quando le dichiari.**
 
 ## Esempio completo
 
@@ -119,21 +118,21 @@ In Python questo non è possibile perché Python ti darebbe un errore. In C++ in
 using namespace std;
 
 int main() {
-    // Dichiarazione e inizializzazione
+    // Dichiariamo e inizializziamo quattro variabili di tipo diverso
     string nome = "Alice";
     int eta = 16;
     double altezza = 1.65;
     bool haPatente = false;
 
-    // Utilizzo delle variabili
+    // Stampiamo i valori
     cout << "Nome: " << nome << endl;
-    cout << "Eta: " << eta << endl;
+    cout << "Età: " << eta << endl;
     cout << "Altezza: " << altezza << " m" << endl;
-    cout << "Ha la patente: " << haPatente << endl;
+    cout << "Ha la patente: " << boolalpha << haPatente << endl;
 
-    // Modifica di una variabile
+    // Modifichiamo il valore di eta
     eta = 17;
-    cout << "Eta aggiornata: " << eta << endl;
+    cout << "Età aggiornata: " << eta << endl;
 
     return 0;
 }
@@ -143,10 +142,8 @@ Output:
 
 ```
 Nome: Alice
-Eta: 16
+Età: 16
 Altezza: 1.65 m
-Ha la patente: 0
-Eta aggiornata: 17
+Ha la patente: false
+Età aggiornata: 17
 ```
-
-(Nota: `false` viene stampato come `0` e `true` come `1` per default)

@@ -1,36 +1,51 @@
 ---
 title: Sintassi di base
-description: Le regole fondamentali della sintassi Python.
+description: Le regole fondamentali della sintassi Python — come "parla" il linguaggio.
 ---
 
-## Cos'è la sintassi?
+## Perché le regole esistono?
 
-La **sintassi** è l'insieme di regole che definisce come si scrive il codice in un linguaggio di programmazione. Se non rispetti la sintassi, l'interprete non capisce cosa vuoi fare e ti segnala un errore.
+Ogni linguaggio, anche quelli umani come l'italiano, ha delle regole grammaticali. Se scrivi "io mangio la pizza" funziona, ma se scrivi "pizza la mangio io" il significato cambia, e in certi casi non si capisce più nulla.
 
-## Indentazione
+Python funziona allo stesso modo: ha delle **regole di sintassi** che devi rispettare. Se le rompi, Python si ferma e ti mostra un errore. Non perché sia cattivo, ma perché non riesce a capire cosa vuoi fare.
 
-In Python, l'**indentazione** (gli spazi all'inizio di una riga) non è solo estetica: è **obbligatoria** e fa parte della sintassi.
+## L'indentazione: gli spazi contano!
 
-Mentre in altri linguaggi si usano le parentesi graffe `{}` per raggruppare blocchi di codice, Python usa l'indentazione:
+Questa è la regola più importante e più diversa rispetto ad altri linguaggi.
 
-```python
-if 5 > 3:
-    print("Cinque è maggiore di tre")  # questo è dentro l'if
-print("Questo è fuori dall'if")         # questo è fuori
+In Python, gli **spazi all'inizio di una riga** non sono opzionali o decorativi: **fanno parte del codice**. Servono a dire a Python quali istruzioni stanno "dentro" ad un blocco (come un `if` o un ciclo) e quali invece stanno "fuori".
+
+Immagina di scrivere una ricetta:
+
+```
+Se hai la farina:
+    mescola con l'acqua
+    aggiungi il sale
+prepara il forno
 ```
 
-Lo standard è usare **4 spazi** per ogni livello di indentazione. Non mescolare spazi e tabulazioni.
-
-Se l'indentazione è sbagliata, Python darà un errore:
+Le righe rientrate (con gli spazi davanti) appartengono alla condizione "se hai la farina". L'ultima riga invece vale sempre, indipendentemente dalla farina. Python funziona esattamente così.
 
 ```python
 if 5 > 3:
-print("Errore!")  # IndentationError: manca l'indentazione
+    print("Cinque è maggiore di tre")  # questa riga è DENTRO l'if
+print("Questa riga è FUORI dall'if")   # questa viene eseguita sempre
+```
+
+Lo standard è usare **4 spazi** per ogni livello di rientro. Non mescolare spazi e tabulazioni (il tasto Tab): causa problemi.
+
+Se dimentichi il rientro, Python ti avvisa con un errore chiarissimo:
+
+```python
+if 5 > 3:
+print("Errore!")  # IndentationError: expected an indented block
 ```
 
 ## Maiuscole e minuscole
 
-Python è **case-sensitive**: distingue tra maiuscole e minuscole. `nome`, `Nome` e `NOME` sono tre variabili diverse.
+Python distingue sempre tra lettere maiuscole e minuscole. Questo si chiama essere **case-sensitive**.
+
+Quindi `nome`, `Nome` e `NOME` sono **tre cose completamente diverse** per Python:
 
 ```python
 nome = "Alice"
@@ -39,9 +54,11 @@ print(nome)  # Alice
 print(Nome)  # Bob
 ```
 
+Fai attenzione anche a `True` e `False`: devono avere la prima lettera maiuscola. `true` o `TRUE` causano un errore.
+
 ## Istruzioni su più righe
 
-Di solito ogni istruzione occupa una riga. Se hai un'istruzione molto lunga, puoi continuarla sulla riga successiva usando il carattere `\`:
+Di solito scrivi un'istruzione per riga. Se un'istruzione è molto lunga e vuoi spezzarla, puoi usare il carattere `\` alla fine della riga per dire a Python "continua alla riga successiva":
 
 ```python
 risultato = 10 + 20 + \
@@ -49,24 +66,36 @@ risultato = 10 + 20 + \
 print(risultato)  # 100
 ```
 
-Oppure, quando apri una parentesi, Python capisce che l'istruzione continua:
+Oppure, se apri una parentesi, Python capisce da solo che l'istruzione non è ancora finita:
 
 ```python
 numeri = (1, 2, 3,
           4, 5, 6)
 ```
 
-## Punto e virgola
+## Il punto e virgola (non è necessario)
 
-Python non richiede il punto e virgola `;` alla fine di ogni riga (diversamente da C++ o Java). Puoi però usarlo per mettere più istruzioni sulla stessa riga, anche se è sconsigliato per leggibilità:
+In alcuni linguaggi, ogni istruzione deve finire con `;`. In Python **non serve**. Una riga = un'istruzione, e basta.
+
+Potresti scrivere più istruzioni sulla stessa riga usando `;`, ma è una cattiva abitudine che rende il codice difficile da leggere:
 
 ```python
-a = 1; b = 2; print(a + b)  # funziona, ma meglio evitarlo
+# Funziona, ma è meglio evitarlo
+a = 1; b = 2; print(a + b)
+
+# Molto meglio così:
+a = 1
+b = 2
+print(a + b)
 ```
 
-## Le parole chiave (keywords)
+## Le parole riservate (keywords)
 
-Python ha alcune parole riservate che non puoi usare come nomi di variabili. Sono le **keyword**:
+Python ha alcune parole speciali che hanno già un significato preciso nel linguaggio. Non puoi usarle come nomi di variabili.
+
+Per esempio, `if` significa "se" per Python. Se provi a creare una variabile chiamata `if`, Python si confonde e dà errore.
+
+Queste parole si chiamano **keyword**:
 
 ```
 False    await    else     import   pass
@@ -78,4 +107,4 @@ assert   del      global   not      with
 async    elif     if       or       yield
 ```
 
-Se provi a usarle come variabili, otterrai un errore di sintassi.
+Non devi memorizzarle tutte ora. Le imparerai una alla volta quando ne avrai bisogno. L'importante è sapere che esistono: se Python ti dà un errore strano su un nome di variabile, controlla che non sia una keyword.

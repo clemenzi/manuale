@@ -5,50 +5,55 @@ description: Come installare il compilatore GCC e configurare Visual Studio Code
 
 ## Cosa ti serve
 
-Per scrivere ed eseguire programmi C++ hai bisogno di due cose:
+Per scrivere programmi in C++ hai bisogno di due cose:
 
-1. Un **compilatore**: il programma che trasforma il tuo codice C++ in un eseguibile
-2. Un **editor di testo** (o IDE): dove scrivi il codice
+1. Un **compilatore**: il programma che trasforma il tuo codice C++ in qualcosa che il computer può eseguire
+2. Un **editor di testo**: dove scrivi il codice
 
-In questa guida usiamo **GCC** come compilatore e **Visual Studio Code** come editor.
+In questa guida usiamo **GCC** come compilatore e **Visual Studio Code** (VS Code) come editor. Entrambi sono gratuiti.
+
+---
+
+## Differenza tra C++ e Python: la compilazione
+
+In Python, scrivi il codice e lo esegui subito. In C++ c'è un passaggio intermedio: la **compilazione**.
+
+È come la differenza tra un interprete simultaneo (Python — traduce mentre parli) e un traduttore che prima legge tutto il testo, poi ti consegna il testo tradotto (C++ — prima compila, poi esegui).
+
+Il vantaggio è che i programmi C++ compilati sono molto più veloci di quelli Python.
+
+---
 
 ## Installare il compilatore GCC
 
-GCC (GNU Compiler Collection) è il compilatore C++ più usato al mondo, gratuito e open source.
+**GCC** (GNU Compiler Collection) è il compilatore C++ più usato al mondo. È gratuito e open source.
 
 ### Su Windows
 
-Il modo più semplice su Windows è installare **MinGW-w64** (una versione di GCC per Windows):
+Il modo più semplice è installare **MSYS2** che include GCC:
 
-1. Scarica il programma di installazione da [winlibs.com](https://winlibs.com/) oppure usa **MSYS2** (consigliato)
+1. Vai su **msys2.org** e scarica il programma di installazione
 2. Segui le istruzioni di installazione
-3. Aggiungi la cartella `bin` di MinGW alla variabile d'ambiente `PATH`
+3. Apri il terminale MSYS2 e digita: `pacman -S mingw-w64-ucrt-x86_64-gcc`
+4. Aggiungi la cartella `C:\msys64\ucrt64\bin` alla variabile d'ambiente PATH
 
-In alternativa, puoi installare il **Windows Subsystem for Linux (WSL)** e usare GCC direttamente su Linux all'interno di Windows.
-
-Verifica l'installazione aprendo il terminale (PowerShell o cmd) e digitando:
+Verifica che funzioni aprendo il prompt dei comandi e digitando:
 
 ```bash
 g++ --version
 ```
 
-Se vedi un numero di versione, GCC è installato correttamente.
+Se vedi un numero di versione, l'installazione è riuscita.
 
 ### Su macOS
 
-Su macOS puoi installare gli **Xcode Command Line Tools** che includono il compilatore Clang (compatibile con GCC):
+Su macOS puoi installare gli strumenti di sviluppo di Apple con questo comando nel terminale:
 
 ```bash
 xcode-select --install
 ```
 
-Oppure installa GCC tramite **Homebrew**:
-
-```bash
-brew install gcc
-```
-
-Verifica l'installazione:
+Una finestra ti chiederà conferma — clicca "Installa". Al termine, verifica:
 
 ```bash
 g++ --version
@@ -56,45 +61,47 @@ g++ --version
 
 ### Su Linux (Ubuntu/Debian)
 
-Su Linux l'installazione è semplicissima:
+Su Linux è il più semplice:
 
 ```bash
 sudo apt update
 sudo apt install g++
 ```
 
-Verifica l'installazione:
+Verifica:
 
 ```bash
 g++ --version
 ```
 
+---
+
 ## Installare Visual Studio Code
 
-Visual Studio Code (VS Code) è un editor di testo gratuito, leggero e molto potente.
+VS Code è un editor di testo gratuito, leggero e molto popolare tra i programmatori.
 
-1. Scaricalo da [code.visualstudio.com](https://code.visualstudio.com/)
-2. Installa il programma come qualsiasi altra applicazione
+1. Vai su **code.visualstudio.com** e scaricalo
+2. Installalo come qualsiasi altro programma
 
 ### Estensioni consigliate
 
-Dopo aver aperto VS Code, installa queste estensioni:
+Dopo aver aperto VS Code, installa queste estensioni (clicca sull'icona delle estensioni nella barra laterale sinistra):
 
-- **C/C++** (di Microsoft): fornisce evidenziazione della sintassi, autocompletamento e debugging
-- **Code Runner**: permette di eseguire il codice con un tasto
+- **C/C++** (di Microsoft): colora il codice, suggerisce completamenti, aiuta col debugging
+- **Code Runner**: esegue il codice con un clic
 
-Per installare un'estensione: clicca sull'icona delle estensioni nella barra laterale sinistra, cerca il nome e clicca "Install".
+---
 
-## Il primo programma: Hello World
+## Il primo programma: Hello, World!
 
-### Creare il file
+### Crea il file
 
 1. Apri VS Code
 2. Crea una nuova cartella per i tuoi progetti (es. `progetti-cpp`)
-3. Apri quella cartella in VS Code (File > Open Folder)
+3. Apri quella cartella in VS Code (File > Apri cartella)
 4. Crea un nuovo file chiamato `hello.cpp`
 
-### Scrivere il codice
+### Scrivi il codice
 
 ```cpp
 #include <iostream>
@@ -106,19 +113,19 @@ int main() {
 }
 ```
 
-### Compilare ed eseguire
+### Compila il programma
 
-Apri il terminale integrato in VS Code (View > Terminal oppure `Ctrl+`\`).
-
-Compila il programma:
+Apri il terminale integrato in VS Code (View > Terminal):
 
 ```bash
 g++ hello.cpp -o hello
 ```
 
-Questo comando dice a GCC di compilare `hello.cpp` e salvare l'eseguibile come `hello`.
+Questo comando dice al compilatore GCC di:
+- leggere il file `hello.cpp`
+- creare un eseguibile chiamato `hello`
 
-Esegui il programma:
+### Esegui il programma
 
 ```bash
 # Su Linux/macOS
@@ -134,38 +141,28 @@ Output:
 Hello, World!
 ```
 
-## Struttura del comando di compilazione
+---
 
-```bash
-g++ nomefile.cpp -o nomeeseguibile
-```
-
-- `g++`: il compilatore
-- `nomefile.cpp`: il file sorgente da compilare
-- `-o nomeeseguibile`: il nome del file eseguibile da creare
-
-Puoi aggiungere opzioni utili:
+## Il comando di compilazione in dettaglio
 
 ```bash
 g++ hello.cpp -o hello -Wall -std=c++17
 ```
 
-- `-Wall`: mostra tutti i warning (avvisi) durante la compilazione
-- `-std=c++17`: usa lo standard C++17
+| Parte | Significato |
+|-------|-------------|
+| `g++` | Il compilatore |
+| `hello.cpp` | Il file sorgente da compilare |
+| `-o hello` | Il nome dell'eseguibile da creare |
+| `-Wall` | Mostra tutti gli avvisi (consigliato!) |
+| `-std=c++17` | Usa la versione C++17 del linguaggio |
 
-## Configurare il build task in VS Code
+---
 
-Per non dover digitare ogni volta il comando di compilazione, puoi configurare VS Code per farlo automaticamente:
+## Non vuoi installare niente? Usa Replit
 
-1. Premi `Ctrl+Shift+P` e cerca "Configure Default Build Task"
-2. Seleziona "g++ build active file"
-3. Ora puoi compilare con `Ctrl+Shift+B`
+Se preferisci iniziare senza installare nulla, puoi usare **Replit** — un ambiente di sviluppo online che funziona direttamente nel browser. Vai su **replit.com**, crea un account gratuito, crea un nuovo progetto C++ e scrivi il codice lì.
 
-## Alternative a VS Code
-
-Se preferisci, puoi usare altri ambienti di sviluppo:
-
-- **Code::Blocks**: IDE specifico per C/C++, semplice da usare
-- **CLion**: IDE professionale (a pagamento, ma gratuito per studenti)
-- **Dev-C++**: semplice IDE per Windows, ideale per chi inizia
-- **Replit**: ambiente online, non richiede installazione (vai su [replit.com](https://replit.com))
+Altre alternative:
+- **Code::Blocks** — IDE specifico per C/C++, facile da usare
+- **Dev-C++** — semplice IDE per Windows

@@ -3,17 +3,19 @@ title: Condizioni
 description: Prendere decisioni nel codice con if, else if, else e switch in C++.
 ---
 
-## Cosa sono le condizioni?
+## Perché ti serve questo?
 
-Le **condizioni** permettono al programma di eseguire blocchi di codice diversi a seconda che una situazione sia vera o falsa. Sono fondamentali per creare programmi che si comportano in modo diverso in base ai dati.
+Un programma che fa sempre la stessa cosa non è molto utile. I programmi interessanti prendono **decisioni**: se l'utente è maggiorenne, mostra il contenuto; se il voto è sufficiente, passa alla classe successiva; se piove, porta l'ombrello.
+
+Le condizioni permettono al programma di scegliere tra strade diverse in base a una situazione.
 
 ## L'istruzione `if`
 
-La sintassi base è:
+`if` significa "se". Se la condizione tra parentesi è vera, il blocco di codice viene eseguito. Altrimenti viene saltato.
 
 ```cpp
 if (condizione) {
-    // codice da eseguire se la condizione è vera
+    // questo codice viene eseguito solo se la condizione è vera
 }
 ```
 
@@ -23,15 +25,14 @@ int eta = 18;
 if (eta >= 18) {
     cout << "Sei maggiorenne." << endl;
 }
+// Se eta fosse 15, questa riga non verrebbe mai stampata
 ```
 
-Se `eta` è 18 o più, viene stampato il messaggio. Altrimenti non succede nulla.
-
-Nota: in C++ la condizione deve essere tra parentesi tonde `()`.
+Nota: in C++ la condizione **deve** stare tra parentesi tonde `()`.
 
 ## L'istruzione `else`
 
-`else` definisce cosa fare quando la condizione è falsa:
+`else` significa "altrimenti". Definisce cosa fare quando la condizione è falsa:
 
 ```cpp
 int eta = 15;
@@ -41,11 +42,12 @@ if (eta >= 18) {
 } else {
     cout << "Sei minorenne." << endl;
 }
+// Stampa: "Sei minorenne."
 ```
 
 ## L'istruzione `else if`
 
-`else if` permette di controllare più condizioni in sequenza:
+Quando hai più di due possibilità, usa `else if` per controllare più condizioni in sequenza:
 
 ```cpp
 int voto = 75;
@@ -53,7 +55,7 @@ int voto = 75;
 if (voto >= 90) {
     cout << "Ottimo!" << endl;
 } else if (voto >= 70) {
-    cout << "Buono!" << endl;
+    cout << "Buono!" << endl;       // ← questa viene stampata
 } else if (voto >= 60) {
     cout << "Sufficiente." << endl;
 } else {
@@ -61,17 +63,18 @@ if (voto >= 90) {
 }
 ```
 
-Il programma controlla le condizioni dall'alto verso il basso e si ferma alla prima vera.
+Il programma controlla le condizioni dall'alto verso il basso e si ferma alla prima che risulta vera. Le successive vengono ignorate.
 
 ## Condizioni annidate
 
-Puoi mettere un `if` dentro un altro `if`:
+Puoi mettere un `if` dentro un altro `if`. Pensa a esso come a una serie di domande: prima la domanda principale, poi le sotto-domande.
 
 ```cpp
 int eta = 20;
 bool haPatente = true;
 
 if (eta >= 18) {
+    // siamo maggiorenni — ora controlliamo la patente
     if (haPatente) {
         cout << "Puoi guidare." << endl;
     } else {
@@ -82,18 +85,17 @@ if (eta >= 18) {
 }
 ```
 
-## Usare gli operatori logici nelle condizioni
+## Usare gli operatori logici
 
-Puoi combinare più condizioni con `&&` (AND), `||` (OR) e `!` (NOT):
+Puoi combinare più condizioni in una sola usando `&&` (E), `||` (O) e `!` (NON):
 
 ```cpp
 int eta = 16;
 bool conAccompagnatore = true;
 
+// Può entrare se è maggiorenne OPPURE se ha un accompagnatore
 if (eta >= 18 || conAccompagnatore) {
     cout << "Puoi entrare." << endl;
-} else {
-    cout << "Non puoi entrare." << endl;
 }
 ```
 
@@ -101,6 +103,7 @@ if (eta >= 18 || conAccompagnatore) {
 int temperatura = 22;
 bool piove = false;
 
+// Perfetto per uscire se è caldo E non piove
 if (temperatura > 20 && !piove) {
     cout << "Perfetto per uscire!" << endl;
 }
@@ -108,49 +111,43 @@ if (temperatura > 20 && !piove) {
 
 ## Il costrutto `switch`
 
-`switch` è utile quando devi confrontare una variabile con molti valori fissi. È un'alternativa più leggibile a una lunga catena di `else if`:
+Quando devi confrontare una variabile con molti valori fissi, `switch` è più leggibile di una lunga serie di `else if`. Funziona come un selettore: vai direttamente al caso corrispondente.
 
 ```cpp
 int giorno = 3;
 
 switch (giorno) {
     case 1:
-        cout << "Lunedi" << endl;
+        cout << "Lunedì" << endl;
         break;
     case 2:
-        cout << "Martedi" << endl;
+        cout << "Martedì" << endl;
         break;
     case 3:
-        cout << "Mercoledi" << endl;
+        cout << "Mercoledì" << endl;  // ← questo viene eseguito
         break;
     case 4:
-        cout << "Giovedi" << endl;
+        cout << "Giovedì" << endl;
         break;
     case 5:
-        cout << "Venerdi" << endl;
-        break;
-    case 6:
-        cout << "Sabato" << endl;
-        break;
-    case 7:
-        cout << "Domenica" << endl;
+        cout << "Venerdì" << endl;
         break;
     default:
-        cout << "Giorno non valido" << endl;
+        cout << "Weekend" << endl;    // eseguito se nessun case corrisponde
 }
 ```
 
-Output: `Mercoledi`
+Output: `Mercoledì`
 
-### Componenti di `switch`:
+### I componenti di `switch`
 
-- **`case valore:`**: esegue il codice se la variabile corrisponde a quel valore
-- **`break`**: esce dallo switch (senza `break`, l'esecuzione continua nel case successivo!)
-- **`default`**: viene eseguito se nessun case corrisponde (opzionale)
+- **`case valore:`** — esegue il codice se la variabile vale quel numero
+- **`break`** — esce dallo switch. Senza di esso, l'esecuzione continua nei case successivi!
+- **`default`** — viene eseguito se nessun case corrisponde (facoltativo)
 
 ### Attenzione al `break`!
 
-Senza `break`, dopo aver trovato il case corrispondente l'esecuzione continua fino al prossimo `break` o alla fine dello switch (comportamento chiamato "fall-through"):
+Dimenticare il `break` è un errore comune. Senza di esso, dopo aver trovato il case giusto il programma continua ad eseguire anche i case successivi:
 
 ```cpp
 int x = 2;
@@ -158,25 +155,23 @@ switch (x) {
     case 1:
         cout << "uno" << endl;
     case 2:
-        cout << "due" << endl;   // eseguito
+        cout << "due" << endl;   // eseguito (corretto)
     case 3:
         cout << "tre" << endl;   // eseguito anche questo! (manca break)
         break;
-    case 4:
-        cout << "quattro" << endl;
 }
-// Output:
-// due
-// tre
+// Output: due
+//         tre
 ```
 
-A volte il fall-through è intenzionale:
+A volte questo comportamento è intenzionale. Per esempio, se vuoi che più case eseguano lo stesso codice:
 
 ```cpp
 char voto = 'B';
 switch (voto) {
     case 'A':
     case 'B':
+        // sia A che B arrivano qui
         cout << "Promosso con lode" << endl;
         break;
     case 'C':
@@ -189,14 +184,16 @@ switch (voto) {
 
 ## L'operatore ternario
 
-Per condizioni semplici su una sola riga:
+Per condizioni semplici con solo due risultati, esiste una forma compatta su una riga sola:
 
 ```cpp
-// sintassi: condizione ? valore_se_vero : valore_se_falso
+// condizione ? valore_se_vero : valore_se_falso
 int eta = 20;
 string stato = (eta >= 18) ? "maggiorenne" : "minorenne";
 cout << stato << endl;  // maggiorenne
 ```
+
+Usa questa forma solo quando è chiara da leggere. Se la condizione è complessa, preferisci un normale `if`/`else`.
 
 ## Esempio pratico
 
@@ -209,18 +206,19 @@ int main() {
     cout << "Inserisci il punteggio (0-100): ";
     cin >> punteggio;
 
+    // Prima controlliamo che il valore sia valido
     if (punteggio < 0 || punteggio > 100) {
         cout << "Punteggio non valido!" << endl;
     } else if (punteggio >= 90) {
-        cout << "Voto: A - Eccellente!" << endl;
+        cout << "Voto: A — Eccellente!" << endl;
     } else if (punteggio >= 80) {
-        cout << "Voto: B - Molto buono" << endl;
+        cout << "Voto: B — Molto buono" << endl;
     } else if (punteggio >= 70) {
-        cout << "Voto: C - Buono" << endl;
+        cout << "Voto: C — Buono" << endl;
     } else if (punteggio >= 60) {
-        cout << "Voto: D - Sufficiente" << endl;
+        cout << "Voto: D — Sufficiente" << endl;
     } else {
-        cout << "Voto: F - Insufficiente" << endl;
+        cout << "Voto: F — Insufficiente" << endl;
     }
 
     return 0;

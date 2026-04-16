@@ -3,18 +3,18 @@ title: Costruttori
 description: Come usare i costruttori per inizializzare gli oggetti in C++.
 ---
 
-## Cos'è un costruttore?
+## Perché ti serve questo?
 
-Un **costruttore** è un metodo speciale che viene chiamato automaticamente quando viene creato un oggetto. Il suo scopo è **inizializzare** i dati dell'oggetto.
+Ogni volta che crei un oggetto, i suoi campi inizialmente contengono valori casuali. Se dimentichi di impostarli prima di usarli, il programma si comporta in modo imprevedibile.
 
-Caratteristiche del costruttore:
-- Ha lo **stesso nome della classe**
-- **Non ha tipo di ritorno** (neanche `void`)
-- Viene chiamato automaticamente quando si crea un oggetto
+Il **costruttore** risolve questo: è una funzione speciale che viene chiamata **automaticamente** ogni volta che crei un oggetto, e il suo compito è impostare i valori iniziali. Come il modulo di registrazione che compili quando apri un conto in banca.
 
-## Costruttore di default
+## Come funziona un costruttore
 
-Se non definisci nessun costruttore, il compilatore fornisce un **costruttore di default** vuoto. Ma è buona pratica definirne uno tu stesso:
+Un costruttore ha tre caratteristiche speciali:
+1. Ha lo **stesso nome della classe**
+2. **Non ha tipo di ritorno** (nemmeno `void`)
+3. Viene chiamato **automaticamente** alla creazione dell'oggetto
 
 ```cpp
 class Persona {
@@ -22,15 +22,15 @@ public:
     string nome;
     int eta;
 
-    // Costruttore di default
+    // Questo è il costruttore (stesso nome della classe, nessun tipo di ritorno)
     Persona() {
-        nome = "Sconosciuto";
+        nome = "Sconosciuto";   // imposta valori di default
         eta = 0;
     }
 };
 
 int main() {
-    Persona p;   // chiama automaticamente il costruttore
+    Persona p;   // il costruttore viene chiamato qui, automaticamente
     cout << p.nome << ", " << p.eta << endl;  // Sconosciuto, 0
     return 0;
 }
@@ -38,7 +38,7 @@ int main() {
 
 ## Costruttore con parametri
 
-Puoi definire un costruttore che accetta parametri per inizializzare l'oggetto con valori specifici:
+Puoi passare dati al costruttore per inizializzare l'oggetto con valori specifici:
 
 ```cpp
 class Persona {
@@ -46,6 +46,7 @@ public:
     string nome;
     int eta;
 
+    // Costruttore con parametri
     Persona(string n, int e) {
         nome = n;
         eta = e;
@@ -53,8 +54,8 @@ public:
 };
 
 int main() {
-    Persona p1("Alice", 16);   // chiama il costruttore con parametri
-    Persona p2("Bob", 17);
+    Persona p1("Alice", 16);   // crea Alice di 16 anni
+    Persona p2("Bob", 17);     // crea Bob di 17 anni
 
     cout << p1.nome << ", " << p1.eta << endl;  // Alice, 16
     cout << p2.nome << ", " << p2.eta << endl;  // Bob, 17
@@ -62,9 +63,9 @@ int main() {
 }
 ```
 
-## Lista di inizializzazione
+## La lista di inizializzazione
 
-Il modo più efficiente per inizializzare i campi nel costruttore è usare la **lista di inizializzazione** (dopo i `:`):
+Un modo più efficiente di impostare i campi nel costruttore è la **lista di inizializzazione**, che si scrive dopo i due punti `:`:
 
 ```cpp
 class Rettangolo {
@@ -73,20 +74,20 @@ private:
     double altezza;
 
 public:
-    // Lista di inizializzazione: più efficiente di assegnare nel corpo
+    // base(b) significa: inizializza base con il valore di b
     Rettangolo(double b, double a) : base(b), altezza(a) {
-        // il corpo può restare vuoto o contenere altra logica
+        // il corpo può restare vuoto
     }
 
     double area() const { return base * altezza; }
 };
 ```
 
-La lista di inizializzazione è preferita perché inizializza i campi direttamente, senza prima crearli e poi assegnarli.
+È preferita perché inizializza i campi direttamente, senza prima crearli vuoti e poi assegnarli.
 
-## Overloading dei costruttori
+## Più costruttori per la stessa classe
 
-Puoi avere più costruttori con parametri diversi:
+Puoi avere più costruttori con parametri diversi — il compilatore sceglie quello giusto in base a come crei l'oggetto:
 
 ```cpp
 class Punto {
@@ -94,10 +95,10 @@ public:
     double x;
     double y;
 
-    // Costruttore di default: origine
+    // Costruttore senza parametri: crea il punto nell'origine
     Punto() : x(0.0), y(0.0) {}
 
-    // Costruttore con un valore: stesso valore per x e y
+    // Costruttore con un valore: stessa coordinata per x e y
     Punto(double v) : x(v), y(v) {}
 
     // Costruttore con due valori
@@ -105,14 +106,16 @@ public:
 };
 
 int main() {
-    Punto p1;          // (0, 0)
-    Punto p2(5.0);     // (5, 5)
-    Punto p3(3.0, 4.0);// (3, 4)
+    Punto p1;           // (0, 0) — usa il primo costruttore
+    Punto p2(5.0);      // (5, 5) — usa il secondo costruttore
+    Punto p3(3.0, 4.0); // (3, 4) — usa il terzo costruttore
     return 0;
 }
 ```
 
-## Costruttore con valori di default
+## Valori di default nei parametri
+
+Puoi dare valori predefiniti ai parametri del costruttore, così non sei obbligato a fornirli tutti:
 
 ```cpp
 class Cane {
@@ -121,6 +124,7 @@ public:
     string razza;
     int eta;
 
+    // Se non specifichi razza o eta, usano i valori di default
     Cane(string n, string r = "Meticcio", int e = 0)
         : nome(n), razza(r), eta(e) {}
 
@@ -130,9 +134,9 @@ public:
 };
 
 int main() {
-    Cane d1("Fido", "Labrador", 3);
-    Cane d2("Rex", "Pastore");      // eta default = 0
-    Cane d3("Luna");                // razza default, eta default
+    Cane d1("Fido", "Labrador", 3);   // tutti i parametri
+    Cane d2("Rex", "Pastore");         // eta usa il default (0)
+    Cane d3("Luna");                   // razza e eta usano i default
 
     d1.descrivi();  // Fido (Labrador, 3 anni)
     d2.descrivi();  // Rex (Pastore, 0 anni)
@@ -141,11 +145,9 @@ int main() {
 }
 ```
 
-## Il distruttore
+## Il distruttore: il contrario del costruttore
 
-Il **distruttore** è il complemento del costruttore: viene chiamato automaticamente quando l'oggetto viene distrutto (quando esce dallo scope o quando la memoria viene liberata).
-
-Si definisce con `~NomeClasse()`:
+Come il costruttore crea e inizializza, il **distruttore** fa la pulizia quando l'oggetto non serve più. Si definisce con il simbolo `~` davanti al nome della classe:
 
 ```cpp
 class Risorsa {
@@ -162,9 +164,9 @@ public:
 int main() {
     cout << "Inizio" << endl;
     {
-        Risorsa r;   // costruttore chiamato qui
-        cout << "Dentro il blocco" << endl;
-    }   // distruttore chiamato qui (r esce dallo scope)
+        Risorsa r;              // costruttore chiamato qui
+        cout << "In uso" << endl;
+    }                           // qui r esce dal blocco → distruttore chiamato
     cout << "Fine" << endl;
     return 0;
 }
@@ -175,14 +177,14 @@ Output:
 ```
 Inizio
 Risorsa creata
-Dentro il blocco
+In uso
 Risorsa distrutta
 Fine
 ```
 
-Il distruttore è fondamentale per liberare risorse (memoria, file aperti, connessioni) quando l'oggetto non serve più.
+Il distruttore è utile soprattutto per liberare risorse (memoria, file aperti, connessioni di rete) quando l'oggetto viene eliminato.
 
-## Esempio pratico
+## Esempio pratico: conto bancario
 
 ```cpp
 #include <iostream>
@@ -195,13 +197,13 @@ private:
     double saldo;
 
 public:
-    // Costruttore
+    // Costruttore: apre il conto
     ContoBancario(string nome, double saldoIniziale = 0.0)
         : intestatario(nome), saldo(saldoIniziale) {
         cout << "Conto aperto per " << intestatario << endl;
     }
 
-    // Distruttore
+    // Distruttore: chiude il conto
     ~ContoBancario() {
         cout << "Conto di " << intestatario << " chiuso." << endl;
     }
@@ -212,13 +214,13 @@ public:
 };
 
 int main() {
-    ContoBancario c1("Alice", 1000.0);
-    ContoBancario c2("Bob");    // saldo iniziale = 0
+    ContoBancario c1("Alice", 1000.0);   // saldo iniziale 1000
+    ContoBancario c2("Bob");             // saldo iniziale 0 (default)
 
     c1.deposita(500.0);
-    cout << c1.getNome() << ": €" << c1.getSaldo() << endl;
-    cout << c2.getNome() << ": €" << c2.getSaldo() << endl;
+    cout << c1.getNome() << ": " << c1.getSaldo() << " euro" << endl;
+    cout << c2.getNome() << ": " << c2.getSaldo() << " euro" << endl;
 
-    return 0;
+    return 0;   // qui i distruttori vengono chiamati automaticamente
 }
 ```

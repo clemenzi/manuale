@@ -1,85 +1,89 @@
 ---
 title: Commenti
-description: Come usare i commenti per documentare il codice Python.
+description: Come lasciare note nel codice per te stesso e per chi leggerà il tuo lavoro.
 ---
 
-## Cosa sono i commenti?
+## Perché scrivere commenti?
 
-I **commenti** sono parti del codice che vengono ignorate dall'interprete Python. Servono a spiegare cosa fa il codice, sia a te stesso quando lo rileggi dopo qualche tempo, sia ad altri che potrebbero leggere il tuo lavoro.
+Immagina di aprire un tuo vecchio quaderno di appunti dopo sei mesi. Se hai scritto solo formule e numeri senza spiegazioni, probabilmente non ricordi più cosa significano.
 
-Un buon programmatore scrive commenti chiari e utili.
+Nel codice succede la stessa cosa. Un **commento** è una nota che scrivi nel codice per spiegare cosa sta succedendo. Python ignora completamente i commenti quando esegue il programma: sono messaggi solo per gli esseri umani.
+
+Scrivere buoni commenti è una delle abitudini più importanti di un programmatore.
 
 ## Commenti su una riga
 
-In Python, un commento su una singola riga inizia con il simbolo `#`. Tutto ciò che viene dopo `#` sulla stessa riga viene ignorato:
+In Python, un commento inizia con il simbolo `#`. Tutto quello che viene scritto dopo `#` sulla stessa riga viene ignorato da Python:
 
 ```python
-# Questo è un commento
-print("Ciao!")  # Anche questo è un commento (inline)
+# Questo è un commento: Python lo ignora completamente
+print("Ciao!")  # Puoi mettere un commento anche dopo il codice
 
-# Il codice sotto non viene eseguito:
-# print("Questa riga non viene stampata")
+# Puoi usare i commenti per "disattivare" del codice temporaneamente:
+# print("Questa riga non viene eseguita")
 ```
 
 ## Commenti su più righe
 
-Python non ha un simbolo dedicato per i commenti multiriga come altri linguaggi. Hai due opzioni:
+Se vuoi scrivere un commento lungo, hai due opzioni.
 
-**Opzione 1:** Usare `#` su ogni riga
+**Opzione 1:** Metti `#` all'inizio di ogni riga
 
 ```python
-# Questa è la prima riga del commento
-# Questa è la seconda riga
-# Questa è la terza riga
+# Questo programma calcola l'area di un rettangolo.
+# Prende la base e l'altezza come input
+# e stampa il risultato.
 ```
 
-**Opzione 2:** Usare le stringhe triple apici (tecnicamente non sono commenti, ma vengono spesso usate così)
+**Opzione 2:** Usa le virgolette triple `"""..."""`
 
 ```python
 """
-Questo è un testo su più righe.
-Viene spesso usato come commento multiriga
-o come documentazione di funzioni e classi.
+Questo è un blocco di testo su più righe.
+Python non lo esegue come codice.
+Viene spesso usato all'inizio di un file per descriverlo.
 """
 ```
 
-Le stringhe con triple apici `"""..."""` o `'''...'''` sono tecnicamente delle stringhe che non vengono assegnate a nessuna variabile, quindi Python le ignora. Vengono però usate ufficialmente come **docstring** (documentazione) per funzioni, classi e moduli.
+Tecnicamente le virgolette triple creano una stringa di testo, non un vero commento. Ma se non la assegni a nessuna variabile, Python la ignora lo stesso. Vengono usate moltissimo in pratica.
 
-## Quando usare i commenti?
+## Cosa scrivere (e cosa NON scrivere)
 
-Usa i commenti per:
-
-- Spiegare **perché** hai fatto una scelta (non solo cosa fa il codice)
-- Documentare parti complesse o non ovvie
-- Disabilitare temporaneamente del codice durante il debug
+Un buon commento spiega il **perché** di una scelta, non il **cosa** fa il codice (quello si dovrebbe capire già leggendo il codice).
 
 ```python
-# Calcoliamo l'area del cerchio con la formula pi * r^2
-raggio = 5
-area = 3.14159 * raggio ** 2
-print(area)
-```
-
-Evita commenti ovvi che non aggiungono informazioni:
-
-```python
-# Male: commento inutile
+# Male: il commento dice l'ovvio, non aggiunge nulla
 x = 10  # assegna 10 a x
 
-# Bene: nessun commento necessario, il codice è già chiaro
-eta = 16
+# Bene: spiega perché usiamo quel numero specifico
+VELOCITA_MASSIMA = 130  # limite autostradale in Italia, in km/h
+
+# Bene: spiega una formula non ovvia
+area = 3.14159 * raggio ** 2  # formula del cerchio: pi * r²
 ```
 
-## Docstring
+## Le docstring: commenti per le funzioni
 
-Le **docstring** sono commenti speciali usati per documentare funzioni, classi e moduli. Si scrivono subito dopo la definizione con triple apici:
+Le **docstring** sono commenti speciali che si mettono subito dentro una funzione (o una classe) per spiegare cosa fa. Si scrivono con le virgolette triple:
 
 ```python
-def saluta(nome):
-    """Questa funzione stampa un saluto personalizzato."""
-    print("Ciao, " + nome + "!")
+def calcola_area(base, altezza):
+    """Calcola e restituisce l'area di un rettangolo."""
+    return base * altezza
 
-saluta("Marco")
+def saluta(nome):
+    """
+    Stampa un messaggio di benvenuto personalizzato.
+
+    Parametri:
+    - nome: il nome della persona da salutare
+    """
+    print("Ciao, " + nome + "!")
 ```
 
-Le docstring possono essere lette dal programma con `help()` o con l'attributo `__doc__`.
+Le docstring sono utili anche perché puoi leggerle dal programma stesso con la funzione `help()`:
+
+```python
+help(calcola_area)
+# Stampa: Calcola e restituisce l'area di un rettangolo.
+```

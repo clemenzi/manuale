@@ -3,102 +3,102 @@ title: Commenti
 description: Come usare i commenti in C++ per documentare il codice.
 ---
 
-## Cosa sono i commenti?
+## Perché ti serve questo?
 
-I **commenti** sono parti del codice che il compilatore ignora completamente. Servono a:
+Immagina di tornare a leggere un codice che hai scritto sei mesi fa. Senza commenti, potresti non capire più cosa fa o perché lo hai scritto in quel modo.
 
-- Spiegare cosa fa il codice
-- Lasciare note per se stessi o per altri programmatori
-- Disabilitare temporaneamente del codice durante il debugging
+I **commenti** sono note che scrivi nel codice per spiegare cosa sta succedendo. Il compilatore le ignora completamente: esistono solo per chi legge il codice (tu, un compagno, un professore).
 
-Scrivere buoni commenti è un'abitudine fondamentale per ogni programmatore.
+Scrivere buoni commenti è un'abitudine che distingue un programmatore attento da uno frettoloso.
 
-## Commento su riga singola
+## Commento su riga singola: `//`
 
-Il commento su riga singola inizia con `//`. Tutto ciò che segue fino alla fine della riga viene ignorato:
+Il commento su riga singola inizia con `//`. Tutto ciò che viene dopo `//`, fino alla fine della riga, viene ignorato dal compilatore.
 
 ```cpp
-// Questo è un commento su riga singola
-int x = 5; // questo commento è dopo il codice
+// Questo intero commento viene ignorato
+int x = 5; // anche questo, solo la parte dopo //
 
-// Puoi commentare una riga intera
-// int y = 10;  // questa riga è disabilitata
+// Puoi usare i commenti per disabilitare temporaneamente una riga
+// int y = 10;  ← questa riga non viene eseguita
 ```
 
-## Commento su più righe
+## Commento su più righe: `/* ... */`
 
-Il commento su più righe inizia con `/*` e termina con `*/`. Tutto ciò che sta in mezzo viene ignorato:
+Il commento su più righe inizia con `/*` e finisce con `*/`. Tutto ciò che sta in mezzo viene ignorato, anche se occupa più righe.
 
 ```cpp
 /* Questo è un commento
-   su più righe.
-   Utile per spiegazioni più lunghe. */
+   che occupa più righe.
+   Utile per spiegazioni lunghe. */
 
 int x = 5;
 
 /*
- * Alcuni programmatori usano
- * questo stile con l'asterisco
- * all'inizio di ogni riga per leggibilità.
+ * Alcuni programmatori aggiungono un asterisco
+ * all'inizio di ogni riga per migliorare la leggibilità.
+ * È solo una convenzione stilistica.
  */
 ```
 
-## Quando usare i commenti
+## Cosa commentare: il "perché", non il "cosa"
 
-### Spiegare il perché, non il cosa
-
-Un buon commento spiega **perché** si fa qualcosa, non **cosa** si fa. Il codice stesso dovrebbe essere chiaro abbastanza da spiegare il "cosa":
+Un buon commento spiega **perché** fai qualcosa, non **cosa** stai facendo. Il codice stesso dovrebbe essere abbastanza chiaro da spiegare il "cosa".
 
 ```cpp
-// Scarso: il codice lo si capisce già
-int x = x + 1; // incrementa x di 1
+// Commento inutile — il codice si capisce già da solo
+x = x + 1; // incrementa x di 1
 
-// Buono: spiega il perché
-int tentativi = tentativi + 1; // conteggio dei tentativi falliti per bloccare dopo 3
+// Commento utile — spiega il motivo
+tentativi = tentativi + 1; // blocchiamo l'accesso dopo 3 tentativi falliti
 ```
 
-### Documentare le funzioni
+## Documentare le funzioni
 
-I commenti sono utili per spiegare cosa fa una funzione, i suoi parametri e cosa restituisce:
+Usa i commenti per spiegare cosa fa una funzione, i valori che riceve e quello che restituisce:
 
 ```cpp
 // Calcola l'area di un rettangolo.
-// base: la larghezza del rettangolo
-// altezza: l'altezza del rettangolo
+// base: la larghezza del rettangolo (in centimetri)
+// altezza: l'altezza del rettangolo (in centimetri)
 // Restituisce l'area come numero decimale.
 double calcolaArea(double base, double altezza) {
     return base * altezza;
 }
 ```
 
-### Disabilitare codice temporaneamente
+Chi usa questa funzione capisce subito come usarla, senza dover leggere il codice al suo interno.
 
-Durante il debugging, puoi commentare del codice per escluderlo temporaneamente:
+## Disabilitare codice temporaneamente
+
+Durante il debug, puoi commentare del codice per escluderlo momentaneamente dall'esecuzione:
 
 ```cpp
 int main() {
     int x = 10;
-    // cout << "Debug: x = " << x << endl;  // disabilitato temporaneamente
+    // cout << "Valore intermedio: " << x << endl;  ← disabilitato per ora
     cout << "Valore finale: " << x << endl;
     return 0;
 }
 ```
 
+Questo è più veloce che cancellare il codice e poi riscriverlo.
+
 ## Commenti da evitare
 
-Evita i commenti ovvi che non aggiungono informazioni:
+Evita i commenti che non aggiungono alcuna informazione rispetto al codice:
 
 ```cpp
-// Da evitare
+// Da evitare — sono ovvi
 int eta = 16;    // imposta eta a 16
 x = x + 1;      // aggiunge 1 a x
 return 0;        // ritorna 0
 ```
 
-Evita i commenti errati, cioè commenti che non corrispondono più al codice (possono essere peggio di nessun commento):
+Evita anche i commenti sbagliati, cioè che non corrispondono più al codice. Sono peggio di nessun commento, perché ingannano chi legge:
 
 ```cpp
-// Somma due numeri  ← SBAGLIATO, in realtà moltiplica!
+// Somma due numeri  ← SBAGLIATO! In realtà moltiplica
 int risultato = a * b;
 ```
 
@@ -109,25 +109,23 @@ int risultato = a * b;
 using namespace std;
 
 /*
- * Programma: Calcolatore dell'area
+ * Programma: Calcolatore dell'area di un cerchio
  * Autore: Alice
- * Data: 2024
  *
- * Questo programma calcola l'area di un cerchio
- * dato il raggio inserito dall'utente.
+ * Legge il raggio dall'utente e calcola l'area.
  */
 
-// Valore approssimato di pi greco
+// Valore approssimato di pi greco — non cambia mai
 const double PI = 3.14159265358979;
 
 int main() {
     double raggio;
 
-    // Chiedi il raggio all'utente
+    // Chiediamo il raggio all'utente
     cout << "Inserisci il raggio: ";
     cin >> raggio;
 
-    // Calcola l'area con la formula: A = pi * r^2
+    // Calcoliamo l'area con la formula: A = pi * r²
     double area = PI * raggio * raggio;
 
     cout << "L'area del cerchio è: " << area << endl;

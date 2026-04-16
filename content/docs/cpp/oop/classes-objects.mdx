@@ -3,42 +3,31 @@ title: Classi e Oggetti
 description: Introduzione alla programmazione orientata agli oggetti con classi e oggetti in C++.
 ---
 
-## Cos'è la programmazione orientata agli oggetti?
+## Perché ti serve questo?
 
-La **programmazione orientata agli oggetti** (OOP, Object-Oriented Programming) è un modo di organizzare il codice che combina **dati** e **comportamenti** in un'unica entità chiamata **oggetto**.
+Immagina di dover gestire le informazioni di una classe scolastica con 30 studenti. Ogni studente ha un nome, un'età e dei voti.
 
-In OOP si pensa al codice come a un insieme di "oggetti" che interagiscono tra loro, ognuno con le proprie caratteristiche (dati) e le proprie azioni (funzioni).
+Senza classi, avresti 30 variabili per i nomi, 30 per le età, 30 per i voti — un caos totale. Con le classi, puoi creare un "modello Studente" e poi creare 30 studenti, ognuno con i suoi dati ben organizzati.
 
-## Classe vs Oggetto
+## Classe vs Oggetto: lo stampo e il prodotto
 
-- Una **classe** è lo "stampo" o il "progetto": definisce la struttura e il comportamento
-- Un **oggetto** è un'istanza concreta della classe: è la "cosa reale" creata dallo stampo
+Pensa a una **classe** come allo **stampo per fare i biscotti**. Lo stampo definisce la forma — ma non è un biscotto.
 
-Analogia: se `Automobile` è la classe (il progetto), allora `tuaMacchina` e `miaFordFocus` sono oggetti (istanze concrete di quella classe).
+Un **oggetto** è il biscotto vero, creato usando quello stampo. Puoi usare lo stesso stampo per fare decine di biscotti, ognuno diverso (con cioccolato, con glassa, ecc.).
 
-## Definire una classe
+- **Classe** = lo stampo (il progetto)
+- **Oggetto** = il prodotto concreto (l'istanza)
 
-```cpp
-class NomeClasse {
-public:
-    // membri pubblici (accessibili dall'esterno)
-    tipo campo1;
-    tipo campo2;
-
-    void metodo() {
-        // codice
-    }
-};
-```
+## Come si definisce una classe
 
 ```cpp
 class Cane {
 public:
-    string nome;
+    string nome;   // caratteristiche (dati)
     string razza;
     int eta;
 
-    void abbaia() {
+    void abbaia() {                           // azioni (funzioni)
         cout << nome << " dice: Bau!" << endl;
     }
 
@@ -49,11 +38,15 @@ public:
 };
 ```
 
-## Creare oggetti
+La parola `public:` significa che questi dati e queste funzioni sono accessibili dall'esterno della classe.
+
+## Come si creano oggetti
+
+Una volta definita la classe, puoi creare quanti oggetti vuoi:
 
 ```cpp
-Cane c1;               // crea un oggetto Cane
-c1.nome = "Fido";
+Cane c1;               // crea un cane (oggetto vuoto)
+c1.nome = "Fido";      // imposta i dati con il punto .
 c1.razza = "Labrador";
 c1.eta = 3;
 
@@ -62,27 +55,13 @@ c2.nome = "Rex";
 c2.razza = "Pastore Tedesco";
 c2.eta = 5;
 
-c1.abbaia();   // Fido dice: Bau!
-c2.descrivi(); // Rex è un/a Pastore Tedesco di 5 anni.
+c1.abbaia();    // Fido dice: Bau!
+c2.descrivi();  // Rex è un/a Pastore Tedesco di 5 anni.
 ```
 
-## Accedere ai membri con `.`
+Il punto `.` si usa per accedere sia ai dati che alle funzioni di un oggetto.
 
-Come per le strutture, si usa il punto `.` per accedere ai campi e ai metodi di un oggetto:
-
-```cpp
-Cane c;
-c.nome = "Buddy";    // accesso al campo
-c.abbaia();          // chiamata al metodo
-```
-
-## Differenza tra `class` e `struct`
-
-Tecnicamente, l'unica differenza è il livello di accesso predefinito:
-- **`class`**: i membri sono `private` per default
-- **`struct`**: i membri sono `public` per default
-
-Nella pratica, si usa `class` per oggetti con logica e comportamenti, e `struct` per semplici contenitori di dati.
+## Un esempio più completo: Rettangolo
 
 ```cpp
 class Rettangolo {
@@ -90,18 +69,20 @@ public:
     double base;
     double altezza;
 
+    // Funzione che calcola l'area
     double area() {
         return base * altezza;
     }
 
+    // Funzione che calcola il perimetro
     double perimetro() {
         return 2 * (base + altezza);
     }
 };
 
 int main() {
-    Rettangolo r;
-    r.base = 5.0;
+    Rettangolo r;       // crea un rettangolo
+    r.base = 5.0;       // imposta i dati
     r.altezza = 3.0;
 
     cout << "Area: " << r.area() << endl;        // 15
@@ -111,11 +92,22 @@ int main() {
 }
 ```
 
-## Oggetti come parametri di funzioni
+La cosa bella è che `area()` usa automaticamente `base` e `altezza` dell'oggetto su cui viene chiamata. Non devi passarle come parametri.
 
-Puoi passare oggetti a funzioni (per valore o per riferimento):
+## Differenza tra `class` e `struct`
+
+In C++, `class` e `struct` sono quasi identiche. L'unica differenza:
+- In `struct` tutto è **pubblico** per default (accessibile dall'esterno)
+- In `class` tutto è **privato** per default (non accessibile dall'esterno)
+
+In pratica, si usa `struct` per semplici raggruppamenti di dati, e `class` per oggetti più complessi con logica interna.
+
+## Passare oggetti alle funzioni
+
+Puoi passare un oggetto a una funzione come qualsiasi altra variabile. Per evitare di copiarlo, usa `const &`:
 
 ```cpp
+// Legge i dati del cane senza modificarli
 void stampaInfoCane(const Cane& c) {
     cout << "Nome: " << c.nome << endl;
     cout << "Razza: " << c.razza << endl;
@@ -123,22 +115,13 @@ void stampaInfoCane(const Cane& c) {
 }
 
 int main() {
-    Cane fido = {"Fido", "Labrador", 3};
-    stampaInfoCane(fido);
+    Cane fido;
+    fido.nome = "Fido";
+    fido.razza = "Labrador";
+    fido.eta = 3;
+
+    stampaInfoCane(fido);   // passa il cane alla funzione
     return 0;
-}
-```
-
-## Array di oggetti
-
-```cpp
-Cane canile[3];
-canile[0] = {"Fido", "Labrador", 3};
-canile[1] = {"Rex", "Pastore", 5};
-canile[2] = {"Luna", "Beagle", 2};
-
-for (int i = 0; i < 3; i++) {
-    canile[i].descrivi();
 }
 ```
 
@@ -153,12 +136,14 @@ using namespace std;
 class Studente {
 public:
     string nome;
-    vector<int> voti;
+    vector<int> voti;   // lista di voti
 
+    // Aggiunge un voto alla lista
     void aggiungiVoto(int voto) {
         voti.push_back(voto);
     }
 
+    // Calcola la media dei voti
     double calcolaMedia() {
         if (voti.empty()) return 0.0;
         int somma = 0;
@@ -168,6 +153,7 @@ public:
         return (double)somma / voti.size();
     }
 
+    // Stampa la scheda completa dello studente
     void stampaScheda() {
         cout << "Studente: " << nome << endl;
         cout << "Voti: ";
@@ -191,4 +177,12 @@ int main() {
 
     return 0;
 }
+```
+
+Output:
+
+```
+Studente: Alice
+Voti: 8 9 7 10
+Media: 8.5
 ```

@@ -3,11 +3,13 @@ title: Polimorfismo
 description: Il concetto di polimorfismo in C++, con funzioni virtuali e override.
 ---
 
-## Cos'è il polimorfismo?
+## Perché ti serve questo?
 
-Il **polimorfismo** (dal greco "molte forme") è un principio OOP che permette a oggetti di classi diverse di rispondere allo stesso messaggio in modi diversi.
+Immagina di avere una fattoria con cani, gatti e mucche. Vuoi far "parlare" tutti gli animali, uno per uno. Senza il polimorfismo, dovresti scrivere un ciclo separato per ogni tipo di animale.
 
-In pratica: puoi avere un puntatore (o riferimento) alla classe base, e chiamare un metodo che si comporta diversamente a seconda del tipo reale dell'oggetto.
+Con il **polimorfismo**, puoi mettere tutti gli animali in una stessa lista e far sì che ognuno risponda al comando "emetti suono" a modo suo — automaticamente, senza controllare di che tipo è.
+
+Polimorfismo significa "molte forme": lo stesso comando, comportamenti diversi a seconda dell'oggetto.
 
 ## Il problema senza polimorfismo
 
@@ -22,30 +24,29 @@ public:
     void suona() { cout << "Miao!" << endl; }
 };
 
-// Per gestire animali diversi, devi usare codice duplicato
+// Senza polimorfismo, serve una funzione per ogni tipo
 void faiSuonare(Cane& c) { c.suona(); }
 void faiSuonare(Gatto& g) { g.suona(); }
+// E se aggiungi Mucca? Devi aggiungere un'altra funzione...
 ```
 
-Con il polimorfismo puoi gestire tutti i tipi con un unico meccanismo.
+## La parola chiave `virtual`
 
-## Funzioni virtuali
-
-La parola chiave `virtual` davanti a un metodo abilita il polimorfismo dinamico (late binding):
+Aggiungendo `virtual` davanti a un metodo nella classe madre, dici al C++ di usare il comportamento della classe figlia, non della madre:
 
 ```cpp
 class Animale {
 public:
     string nome;
 
-    virtual void emettiSuono() {
+    virtual void emettiSuono() {   // virtual = usa il metodo della figlia
         cout << nome << " emette un suono." << endl;
     }
 };
 
 class Cane : public Animale {
 public:
-    void emettiSuono() override {   // override indica che sovrascrive
+    void emettiSuono() override {   // override = sovrascrive il metodo base
         cout << nome << " dice: Bau!" << endl;
     }
 };
@@ -58,44 +59,43 @@ public:
 };
 ```
 
-La parola chiave `override` (C++11) non è obbligatoria ma è una buona pratica: il compilatore ti avvisa se stai sovrascrivendo un metodo che non esiste nella classe base.
+La parola `override` non è obbligatoria, ma è una buona abitudine: il compilatore ti avvisa se stai cercando di sovrascrivere un metodo che non esiste nella classe madre.
 
-## Polimorfismo con puntatori
+## Il polimorfismo in azione
 
-Il polimorfismo si manifesta quando usi un **puntatore alla classe base**:
+La "magia" si vede quando usi un **puntatore alla classe madre** per gestire oggetti di classi figlie diverse:
 
 ```cpp
-Animale* a1 = new Cane();
-Animale* a2 = new Gatto();
+Animale* a1 = new Cane();   // puntatore ad Animale, ma è un Cane
+Animale* a2 = new Gatto();  // puntatore ad Animale, ma è un Gatto
 
 a1->nome = "Fido";
 a2->nome = "Luna";
 
-a1->emettiSuono();   // Fido dice: Bau!   (comportamento da Cane)
-a2->emettiSuono();   // Luna dice: Miao!  (comportamento da Gatto)
+a1->emettiSuono();   // Fido dice: Bau!   (usa il metodo di Cane!)
+a2->emettiSuono();   // Luna dice: Miao!  (usa il metodo di Gatto!)
 
 delete a1;
 delete a2;
 ```
 
-Senza `virtual`, entrambi avrebbero chiamato il metodo di `Animale` (suono generico). Con `virtual`, chiamano il metodo del tipo reale dell'oggetto.
+Senza `virtual`, entrambi avrebbero chiamato il metodo di `Animale` (suono generico). Con `virtual`, il C++ sa di dover usare il metodo del tipo reale dell'oggetto.
 
-## Array di oggetti polimorfici
+## Gestire una lista mista di oggetti
 
-Il polimorfismo è particolarmente utile per gestire collezioni di oggetti diversi:
+Questo è il punto di forza del polimorfismo: puoi mettere tipi diversi in una stessa lista e trattarli tutti allo stesso modo:
 
 ```cpp
 #include <iostream>
 #include <vector>
-#include <memory>
 using namespace std;
 
 class Animale {
 public:
     string nome;
     Animale(string n) : nome(n) {}
-    virtual void emettiSuono() = 0;   // funzione pura virtuale
-    virtual ~Animale() {}             // distruttore virtuale
+    virtual void emettiSuono() = 0;   // obbliga le classi figlie a implementarlo
+    virtual ~Animale() {}             // distruttore virtuale (importante!)
 };
 
 class Cane : public Animale {
@@ -123,12 +123,12 @@ int main() {
     fattoria.push_back(new Mucca("Bessie"));
     fattoria.push_back(new Cane("Rex"));
 
-    cout << "Tutti gli animali della fattoria:" << endl;
+    // Un solo ciclo gestisce tutti i tipi di animali!
     for (Animale* a : fattoria) {
-        a->emettiSuono();   // ognuno emette il suo suono!
+        a->emettiSuono();
     }
 
-    // Pulizia memoria
+    // Libera la memoria
     for (Animale* a : fattoria) {
         delete a;
     }
@@ -140,24 +140,26 @@ int main() {
 Output:
 
 ```
-Tutti gli animali della fattoria:
 Fido: Bau!
 Luna: Miao!
 Bessie: Mu!
 Rex: Bau!
 ```
 
-## Classi astratte e funzioni pure virtuali
+## Classi astratte: il modello obbligatorio
 
-Una **funzione pure virtuale** si dichiara con `= 0`. Una classe con almeno una funzione pure virtuale è **astratta**: non puoi creare oggetti di quella classe direttamente.
+Quando scrivi `= 0` dopo un metodo virtuale, quel metodo diventa **puro virtuale**: non ha corpo nella classe madre e ogni classe figlia è obbligata a implementarlo.
+
+Una classe con almeno un metodo puro virtuale è **astratta**: non puoi creare oggetti direttamente da essa.
 
 ```cpp
 class Forma {
 public:
-    // Funzione pure virtuale: ogni forma deve implementarla
+    // Ogni forma DEVE implementare questi due metodi
     virtual double area() const = 0;
     virtual double perimetro() const = 0;
 
+    // Questo metodo usa i precedenti (funziona grazie al polimorfismo)
     void stampa() const {
         cout << "Area: " << area() << ", Perimetro: " << perimetro() << endl;
     }
@@ -182,7 +184,7 @@ public:
 };
 
 int main() {
-    // Forma f;  // ERRORE: Forma è astratta!
+    // Forma f;  // ERRORE: Forma è astratta, non puoi creare oggetti diretti
 
     Cerchio c(5.0);
     Rettangolo r(4.0, 6.0);
@@ -196,12 +198,12 @@ int main() {
 
 ## Il distruttore virtuale
 
-Quando usi il polimorfismo, dichiara sempre il distruttore della classe base come `virtual`:
+Quando usi il polimorfismo con puntatori alla classe madre, dichiara sempre il distruttore della classe madre come `virtual`. Altrimenti, quando elimini un oggetto con `delete`, viene chiamato solo il distruttore della madre — non quello della figlia:
 
 ```cpp
 class Base {
 public:
-    virtual ~Base() {   // distruttore virtuale
+    virtual ~Base() {          // distruttore virtuale
         cout << "Base distrutta" << endl;
     }
 };
@@ -214,6 +216,6 @@ public:
 };
 
 Base* ptr = new Derivata();
-delete ptr;   // senza virtual, chiamerebbe solo il distruttore di Base!
-// Con virtual, chiama quello di Derivata prima, poi di Base
+delete ptr;   // con virtual: chiama Derivata prima, poi Base
+              // senza virtual: chiama solo Base (bug!)
 ```

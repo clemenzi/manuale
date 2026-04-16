@@ -3,28 +3,15 @@ title: Incapsulamento
 description: Come usare public e private per proteggere i dati nelle classi C++.
 ---
 
-## Cos'è l'incapsulamento?
+## Perché ti serve questo?
 
-L'**incapsulamento** è uno dei principi fondamentali dell'OOP. Significa nascondere i dettagli interni di un oggetto e fornire solo un'interfaccia pubblica controllata per interagire con esso.
+Immagina un distributore automatico. Puoi premere i pulsanti (interfaccia pubblica), ma non puoi mettere le mani nel meccanismo interno (dati privati). Questo è l'**incapsulamento**: nascondere i dettagli interni e offrire solo un accesso controllato dall'esterno.
 
-In pratica: i dati (campi) di una classe vengono dichiarati **privati**, e si accede a essi solo tramite metodi **pubblici** (getter e setter).
+In pratica: i dati di una classe vengono dichiarati **privati**, così nessuno può modificarli direttamente dall'esterno. Per accedervi, si usano metodi pubblici appositamente creati.
 
-Vantaggi:
-- Protezione dei dati da modifiche accidentali
-- Possibilità di validare i valori prima di modificarli
-- Libertà di cambiare l'implementazione interna senza rompere il codice esterno
+## Il problema senza incapsulamento
 
-## I modificatori di accesso
-
-In C++ ci sono tre livelli di accesso:
-
-| Modificatore | Accessibile da |
-|---|---|
-| `public` | ovunque |
-| `private` | solo dall'interno della classe |
-| `protected` | dalla classe e dalle sue derivate (ereditarietà) |
-
-## Esempio senza incapsulamento
+Quando i dati sono pubblici, chiunque può modificarli — anche con valori assurdi:
 
 ```cpp
 class Eta {
@@ -34,21 +21,21 @@ public:
 
 int main() {
     Eta e;
-    e.valore = -5;   // nessuno impedisce valori assurdi!
-    e.valore = 1000; // nessun controllo!
+    e.valore = -5;     // nessuno impedisce valori assurdi!
+    e.valore = 9999;   // nessun controllo!
     return 0;
 }
 ```
 
-## Esempio con incapsulamento
+## La soluzione: dati privati, metodi pubblici
 
 ```cpp
 class Eta {
 private:
-    int valore;   // privato: nessuno può accedervi direttamente
+    int valore;   // privato: nessuno può accedervi direttamente dall'esterno
 
 public:
-    // Setter: valida il valore
+    // Setter: imposta il valore, ma solo se è valido
     void setValore(int v) {
         if (v >= 0 && v <= 120) {
             valore = v;
@@ -57,7 +44,7 @@ public:
         }
     }
 
-    // Getter: restituisce il valore
+    // Getter: restituisce il valore corrente
     int getValore() const {
         return valore;
     }
@@ -65,19 +52,28 @@ public:
 
 int main() {
     Eta e;
-    e.setValore(16);      // OK
-    e.setValore(-5);      // "Eta non valida!"
-    e.setValore(1000);    // "Eta non valida!"
+    e.setValore(16);     // OK
+    e.setValore(-5);     // "Eta non valida!" — il controllo blocca il valore
+    e.setValore(9999);   // "Eta non valida!"
 
     cout << e.getValore() << endl;   // 16
 
-    // e.valore = 5;  // ERRORE: valore è privato!
-
+    // e.valore = 5;  // ERRORE di compilazione: valore è privato!
     return 0;
 }
 ```
 
-## Un esempio completo: classe Persona
+## I tre livelli di accesso
+
+In C++ ci sono tre parole chiave per controllare chi può accedere ai dati:
+
+| Parola chiave | Chi può accedere |
+|---|---|
+| `public` | Tutti — dall'interno della classe e dall'esterno |
+| `private` | Solo dall'interno della classe |
+| `protected` | Dalla classe e dalle classi che la estendono (ereditarietà) |
+
+## Esempio completo: classe Persona
 
 ```cpp
 #include <iostream>
@@ -86,19 +82,19 @@ using namespace std;
 
 class Persona {
 private:
-    string nome;
+    string nome;    // dati privati
     int eta;
     string email;
 
 public:
-    // Costruttore
+    // Costruttore: usa i setter per validare i valori fin dall'inizio
     Persona(string n, int e, string em) {
         nome = n;
-        setEta(e);     // usa il setter per validare
+        setEta(e);      // passa attraverso il setter
         email = em;
     }
 
-    // Getter
+    // Getter: leggono i dati privati (sola lettura)
     string getNome() const { return nome; }
     int getEta() const { return eta; }
     string getEmail() const { return email; }
@@ -114,15 +110,14 @@ public:
     }
 
     void setEmail(string em) {
-        // Controllo minimo: deve contenere @
-        if (em.find('@') != string::npos) {
+        if (em.find('@') != string::npos) {   // deve contenere @
             email = em;
         } else {
             cout << "Email non valida!" << endl;
         }
     }
 
-    // Metodo pubblico per stampa
+    // Metodo per stampare le informazioni
     void stampa() const {
         cout << "Nome: " << nome << endl;
         cout << "Eta: " << eta << endl;
@@ -134,39 +129,23 @@ int main() {
     Persona p("Alice", 16, "alice@esempio.it");
     p.stampa();
 
-    cout << endl;
-    p.setEta(17);       // OK
-    p.setEmail("non-una-email");  // Email non valida!
-    p.setEmail("alice.nuovo@esempio.it");  // OK
+    p.setEta(17);                         // OK
+    p.setEmail("non-una-email");          // Email non valida!
+    p.setEmail("alice.nuovo@esempio.it"); // OK
 
-    cout << "Eta: " << p.getEta() << endl;
-    cout << "Email: " << p.getEmail() << endl;
+    cout << "Nuova eta: " << p.getEta() << endl;
+    cout << "Nuova email: " << p.getEmail() << endl;
 
     return 0;
 }
 ```
 
-## Private per default nelle classi
+## Il vantaggio nascosto: libertà di cambiare l'interno
 
-Ricorda: in una `class`, i membri sono `private` per default (al contrario della `struct`):
-
-```cpp
-class Esempio {
-    int x;   // privato per default!
-
-public:
-    int y;   // pubblico
-};
-```
-
-È buona pratica specificare sempre esplicitamente `public:` e `private:` per chiarezza.
-
-## Incapsulamento e modifica dell'implementazione
-
-L'incapsulamento ti permette di cambiare come funziona internamente una classe senza cambiare come si usa:
+L'incapsulamento ti permette di modificare come funziona internamente una classe **senza dover cambiare il codice che la usa**:
 
 ```cpp
-// Versione 1: temperature in Celsius
+// Versione 1: memorizza la temperatura in Celsius
 class Termometro {
 private:
     double celsius;
@@ -175,16 +154,28 @@ public:
     double getTemperatura() const { return celsius; }
 };
 
-// Versione 2: memorizza in Kelvin internamente
-// Ma l'interfaccia pubblica è identica!
+// Versione 2: internamente usa Kelvin, ma l'interfaccia è identica!
+// Chi usa questa classe non sa (e non deve sapere) del cambiamento interno.
 class Termometro {
 private:
-    double kelvin;  // cambiato internamente
+    double kelvin;   // cambiato internamente
 public:
     void setTemperatura(double celsius) { kelvin = celsius + 273.15; }
     double getTemperatura() const { return kelvin - 273.15; }
-    // Chi usa questa classe non sa (e non deve sapere) del cambio!
 };
 ```
 
-Questa è la forza dell'incapsulamento: il codice che usa la classe non deve cambiare.
+Chi scrive `t.setTemperatura(100)` non deve cambiare nulla — l'interfaccia è la stessa.
+
+## Ricorda: nelle `class`, tutto è privato per default
+
+```cpp
+class Esempio {
+    int x;   // privato per default (nessun public/private specificato)
+
+public:
+    int y;   // pubblico (esplicitamente)
+};
+```
+
+È buona abitudine specificare sempre `public:` e `private:` per chiarezza, anche se tecnicamente non sarebbe necessario.

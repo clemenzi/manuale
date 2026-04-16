@@ -1,13 +1,13 @@
 ---
 title: Liste
-description: Come creare e usare le liste in Python.
+description: Come raccogliere più valori in una sequenza ordinata e modificabile.
 ---
 
 ## Cosa sono le liste?
 
-Una **lista** (`list`) è una raccolta ordinata di elementi. Puoi metterci valori di qualsiasi tipo, anche misti, e puoi modificarla dopo averla creata.
+Immagina un foglio con una lista della spesa: ci scrivi sopra gli elementi uno sotto l'altro, puoi aggiungerne di nuovi, cancellarne, cambiarli. In Python le **liste** funzionano esattamente così.
 
-Le liste sono uno degli strumenti più usati in Python.
+Una lista è una raccolta ordinata di elementi. Puoi metterci qualsiasi tipo di valore, anche misti, e puoi modificarla liberamente dopo averla creata.
 
 ## Creare una lista
 
@@ -16,135 +16,122 @@ Le liste si scrivono con le **parentesi quadre** `[]`, con gli elementi separati
 ```python
 frutta = ["mela", "banana", "ciliegia"]
 numeri = [1, 2, 3, 4, 5]
-mista = [1, "ciao", True, 3.14]
-vuota = []
+mista = [1, "ciao", True, 3.14]   # anche tipi diversi vanno bene
+vuota = []                          # lista senza elementi
 ```
 
 ## Accedere agli elementi
 
-Gli elementi sono accessibili tramite indice (che parte da `0`):
+Ogni elemento ha una **posizione** (chiamata indice) che parte da `0`, non da `1`. È una convenzione tipica della programmazione.
 
 ```python
 frutta = ["mela", "banana", "ciliegia"]
-print(frutta[0])   # mela
-print(frutta[1])   # banana
-print(frutta[-1])  # ciliegia (l'ultimo)
-print(frutta[-2])  # banana (il penultimo)
+print(frutta[0])   # mela      — il primo elemento
+print(frutta[1])   # banana    — il secondo
+print(frutta[-1])  # ciliegia  — l'ultimo (conta dalla fine)
+print(frutta[-2])  # banana    — il penultimo
 ```
 
-## Slicing (taglio)
+## Estrarre una parte della lista (slicing)
 
-Come per le stringhe, puoi estrarre una parte della lista:
+Puoi estrarre una "fetta" della lista indicando da dove a dove:
 
 ```python
 numeri = [0, 1, 2, 3, 4, 5]
-print(numeri[1:4])   # [1, 2, 3]
-print(numeri[:3])    # [0, 1, 2]
-print(numeri[3:])    # [3, 4, 5]
-print(numeri[::2])   # [0, 2, 4]
-print(numeri[::-1])  # [5, 4, 3, 2, 1, 0] (rovesciata)
+print(numeri[1:4])   # [1, 2, 3]    — dalla posizione 1 alla 3 (4 esclusa)
+print(numeri[:3])    # [0, 1, 2]    — dall'inizio alla posizione 2
+print(numeri[3:])    # [3, 4, 5]    — dalla posizione 3 alla fine
+print(numeri[::-1])  # [5, 4, 3, 2, 1, 0]  — la lista al contrario
 ```
 
 ## Modificare gli elementi
 
-Le liste sono **modificabili** (mutabili):
+A differenza delle tuple (che vedremo dopo), le liste **si possono modificare**:
 
 ```python
 frutta = ["mela", "banana", "ciliegia"]
-frutta[1] = "kiwi"
-print(frutta)  # ['mela', 'kiwi', 'ciliegia']
+frutta[1] = "kiwi"   # sostituisce "banana" con "kiwi"
+print(frutta)         # ['mela', 'kiwi', 'ciliegia']
 ```
 
-## Metodi delle liste
-
-### Aggiungere elementi
+## Aggiungere elementi
 
 ```python
 frutta = ["mela", "banana"]
-frutta.append("ciliegia")    # aggiunge alla fine
+
+frutta.append("ciliegia")     # aggiunge alla fine
 print(frutta)  # ['mela', 'banana', 'ciliegia']
 
-frutta.insert(1, "kiwi")     # inserisce alla posizione 1
+frutta.insert(1, "kiwi")      # inserisce nella posizione 1
 print(frutta)  # ['mela', 'kiwi', 'banana', 'ciliegia']
 
 altra = ["uva", "pesca"]
-frutta.extend(altra)         # aggiunge tutti gli elementi di un'altra lista
+frutta.extend(altra)           # aggiunge tutti gli elementi di un'altra lista
 print(frutta)  # ['mela', 'kiwi', 'banana', 'ciliegia', 'uva', 'pesca']
 ```
 
-### Rimuovere elementi
+## Rimuovere elementi
 
 ```python
 frutta = ["mela", "banana", "ciliegia", "banana"]
-frutta.remove("banana")      # rimuove la prima occorrenza
+
+frutta.remove("banana")   # rimuove la prima "banana" che trova
 print(frutta)  # ['mela', 'ciliegia', 'banana']
 
-frutta.pop()                 # rimuove e restituisce l'ultimo elemento
+frutta.pop()              # rimuove e restituisce l'ultimo elemento
 print(frutta)  # ['mela', 'ciliegia']
-
-frutta.pop(0)                # rimuove e restituisce l'elemento all'indice 0
-print(frutta)  # ['ciliegia']
 
 frutta = ["mela", "banana", "ciliegia"]
-del frutta[1]                # elimina l'elemento all'indice 1
+del frutta[1]             # elimina l'elemento in posizione 1
 print(frutta)  # ['mela', 'ciliegia']
 
-frutta.clear()               # svuota la lista
+frutta.clear()            # svuota completamente la lista
 print(frutta)  # []
 ```
 
-### Cercare e contare
+## Cercare e contare
 
 ```python
 numeri = [1, 2, 3, 2, 4, 2]
-print(numeri.count(2))   # 3 (quante volte compare 2)
-print(numeri.index(3))   # 2 (indice della prima occorrenza di 3)
+print(numeri.count(2))   # 3  — quante volte compare il numero 2
+print(numeri.index(3))   # 2  — in quale posizione si trova il numero 3
+print(len(numeri))       # 6  — quanti elementi ha la lista
 ```
 
-### Ordinare
+## Ordinare una lista
 
 ```python
 numeri = [3, 1, 4, 1, 5, 9, 2]
-numeri.sort()                   # ordina la lista (modifica l'originale)
+
+numeri.sort()                  # ordina la lista (modifica l'originale)
 print(numeri)  # [1, 1, 2, 3, 4, 5, 9]
 
-numeri.sort(reverse=True)       # ordine decrescente
+numeri.sort(reverse=True)      # ordine decrescente
 print(numeri)  # [9, 5, 4, 3, 2, 1, 1]
 
+# sorted() non modifica l'originale, restituisce una nuova lista
 originale = [3, 1, 4, 1, 5]
-ordinata = sorted(originale)    # restituisce una nuova lista ordinata
-print(originale)  # [3, 1, 4, 1, 5] (invariata)
-print(ordinata)   # [1, 1, 3, 4, 5]
+ordinata = sorted(originale)
+print(originale)  # [3, 1, 4, 1, 5]  — invariata
+print(ordinata)   # [1, 1, 3, 4, 5]  — nuova lista ordinata
 ```
 
-### Invertire
+## Copiare una lista
 
-```python
-frutta = ["mela", "banana", "ciliegia"]
-frutta.reverse()
-print(frutta)  # ['ciliegia', 'banana', 'mela']
-```
-
-### Copiare
+Attenzione: se scrivi `copia = originale`, non stai copiando la lista, stai solo creando un secondo nome per la stessa lista! Usa `.copy()`:
 
 ```python
 originale = [1, 2, 3]
-copia = originale.copy()   # o anche: copia = list(originale)
+copia = originale.copy()    # copia vera e propria
 copia.append(4)
-print(originale)  # [1, 2, 3]
-print(copia)      # [1, 2, 3, 4]
+
+print(originale)  # [1, 2, 3]    — non cambiata
+print(copia)      # [1, 2, 3, 4] — modificata
 ```
 
-## Lunghezza di una lista
+## Liste di liste
 
-```python
-frutta = ["mela", "banana", "ciliegia"]
-print(len(frutta))  # 3
-```
-
-## Liste di liste (matrici)
-
-Puoi mettere liste dentro altre liste per creare strutture bidimensionali:
+Puoi mettere liste dentro altre liste, utile per rappresentare griglie o tabelle:
 
 ```python
 matrice = [
@@ -152,6 +139,5 @@ matrice = [
     [4, 5, 6],
     [7, 8, 9]
 ]
-print(matrice[0])     # [1, 2, 3]
-print(matrice[1][2])  # 6
+print(matrice[1][2])  # 6  — seconda riga, terza colonna
 ```

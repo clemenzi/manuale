@@ -1,27 +1,29 @@
 ---
 title: Operatori
-description: Tutti gli operatori disponibili in Python.
+description: I simboli con cui fare calcoli, confronti e operazioni logiche in Python.
 ---
 
 ## Cosa sono gli operatori?
 
-Gli **operatori** sono simboli speciali che eseguono operazioni su valori e variabili. I valori su cui agiscono si chiamano **operandi**.
+Un **operatore** è un simbolo che esegue un'operazione su uno o più valori. Li usi già ogni giorno: `+`, `-`, `*` sono operatori matematici. In Python ce ne sono molti altri.
 
-Python ha diversi tipi di operatori.
+## Operatori aritmetici — per i calcoli
 
-## Operatori aritmetici
+Funzionano come la matematica che conosci già, con qualche aggiunta:
 
-Servono per fare calcoli matematici:
-
-| Operatore | Nome | Esempio | Risultato |
-|-----------|------|---------|-----------|
+| Operatore | Significato | Esempio | Risultato |
+|-----------|-------------|---------|-----------|
 | `+` | Addizione | `5 + 3` | `8` |
 | `-` | Sottrazione | `5 - 3` | `2` |
 | `*` | Moltiplicazione | `5 * 3` | `15` |
-| `/` | Divisione | `5 / 2` | `2.5` |
-| `//` | Divisione intera | `5 // 2` | `2` |
-| `%` | Modulo (resto) | `5 % 2` | `1` |
+| `/` | Divisione (con decimali) | `5 / 2` | `2.5` |
+| `//` | Divisione intera (senza decimali) | `5 // 2` | `2` |
+| `%` | Resto della divisione | `5 % 2` | `1` |
 | `**` | Potenza | `5 ** 2` | `25` |
+
+L'operatore `//` (doppio slash) divide e butta via i decimali. È come chiedere "quante volte 2 entra in 5?" — la risposta è 2, con 1 di resto.
+
+L'operatore `%` (modulo) restituisce solo il resto. Torna utilissimo per sapere se un numero è pari o dispari: se `numero % 2` vale `0`, il numero è pari.
 
 ```python
 a = 10
@@ -30,23 +32,23 @@ print(a + b)   # 13
 print(a - b)   # 7
 print(a * b)   # 30
 print(a / b)   # 3.3333...
-print(a // b)  # 3
-print(a % b)   # 1
-print(a ** b)  # 1000
+print(a // b)  # 3   (10 diviso 3 fa 3 con il resto)
+print(a % b)   # 1   (il resto è 1)
+print(a ** b)  # 1000  (10 alla potenza 3)
 ```
 
-## Operatori di confronto
+## Operatori di confronto — per fare domande
 
-Confrontano due valori e restituiscono `True` o `False`:
+Confrontano due valori e restituiscono sempre `True` o `False`:
 
-| Operatore | Significato |
-|-----------|-------------|
-| `==` | Uguale a |
-| `!=` | Diverso da |
-| `>` | Maggiore di |
-| `<` | Minore di |
-| `>=` | Maggiore o uguale |
-| `<=` | Minore o uguale |
+| Operatore | Significato | Esempio |
+|-----------|-------------|---------|
+| `==` | È uguale a? | `5 == 5` → `True` |
+| `!=` | È diverso da? | `5 != 3` → `True` |
+| `>` | È maggiore di? | `5 > 4` → `True` |
+| `<` | È minore di? | `5 < 3` → `False` |
+| `>=` | È maggiore o uguale? | `5 >= 5` → `True` |
+| `<=` | È minore o uguale? | `5 <= 4` → `False` |
 
 ```python
 x = 5
@@ -56,29 +58,28 @@ print(x > 4)   # True
 print(x < 3)   # False
 ```
 
-## Operatori logici
+## Operatori logici — per combinare condizioni
 
-Combinano condizioni booleane:
+Servono a mettere insieme più condizioni:
 
-| Operatore | Descrizione |
+| Operatore | Significato |
 |-----------|-------------|
-| `and` | Vero se entrambe le condizioni sono vere |
-| `or` | Vero se almeno una condizione è vera |
-| `not` | Inverte il valore |
+| `and` | Vero solo se **tutte** le condizioni sono vere |
+| `or` | Vero se **almeno una** condizione è vera |
+| `not` | Inverte il valore (vero diventa falso e viceversa) |
 
 ```python
-print(5 > 3 and 10 > 7)  # True
-print(5 > 3 or 10 < 7)   # True
-print(not 5 > 3)          # False
+print(5 > 3 and 10 > 7)  # True  — entrambe vere
+print(5 > 3 or 10 < 7)   # True  — almeno una vera
+print(not 5 > 3)          # False — 5 > 3 è True, not lo inverte
 ```
 
-## Operatori di assegnazione
+## Operatori di assegnazione — scorciatoie per aggiornare variabili
 
-Assegnano valori alle variabili. L'operatore base è `=`, ma esistono versioni abbreviate:
+Invece di scrivere `x = x + 3`, puoi usare la versione abbreviata `x += 3`. Significano la stessa cosa:
 
-| Operatore | Equivalente a |
-|-----------|---------------|
-| `x = 5` | Assegna 5 a x |
+| Abbreviazione | Equivalente completo |
+|---------------|----------------------|
 | `x += 3` | `x = x + 3` |
 | `x -= 3` | `x = x - 3` |
 | `x *= 3` | `x = x * 3` |
@@ -88,68 +89,36 @@ Assegnano valori alle variabili. L'operatore base è `=`, ma esistono versioni a
 | `x **= 3` | `x = x ** 3` |
 
 ```python
-x = 10
-x += 5
-print(x)  # 15
-x *= 2
-print(x)  # 30
+punteggio = 100
+punteggio += 50   # il giocatore ha guadagnato 50 punti
+print(punteggio)  # 150
+
+punteggio -= 20   # penalità di 20 punti
+print(punteggio)  # 130
 ```
 
-## Operatori di identità
+## Operatori `in` e `not in` — per cercare elementi
 
-Controllano se due variabili puntano allo **stesso oggetto in memoria**:
-
-| Operatore | Descrizione |
-|-----------|-------------|
-| `is` | Vero se sono lo stesso oggetto |
-| `is not` | Vero se non sono lo stesso oggetto |
-
-```python
-a = [1, 2, 3]
-b = a
-c = [1, 2, 3]
-
-print(a is b)      # True  (stessa lista in memoria)
-print(a is c)      # False (stessa struttura, ma oggetti diversi)
-print(a == c)      # True  (stessi valori)
-print(a is not c)  # True
-```
-
-## Operatori di appartenenza
-
-Verificano se un valore è presente in una sequenza:
-
-| Operatore | Descrizione |
-|-----------|-------------|
-| `in` | Vero se il valore è nella sequenza |
-| `not in` | Vero se il valore non è nella sequenza |
+Verificano se un valore è presente (o assente) in una lista, in una stringa o in qualsiasi altra sequenza:
 
 ```python
 frutta = ["mela", "banana", "ciliegia"]
-print("mela" in frutta)      # True
-print("uva" in frutta)       # False
-print("uva" not in frutta)   # True
+print("mela" in frutta)      # True  — c'è la mela
+print("uva" in frutta)       # False — non c'è l'uva
+print("uva" not in frutta)   # True  — l'uva non c'è
 
 testo = "Ciao, mondo!"
 print("mondo" in testo)      # True
+print("pizza" in testo)      # False
 ```
 
-## Precedenza degli operatori
+## L'ordine delle operazioni
 
-Come in matematica, Python segue un ordine di precedenza (dall'alto al basso):
-
-1. `()` Parentesi
-2. `**` Potenza
-3. `+x`, `-x` Segno unario
-4. `*`, `/`, `//`, `%`
-5. `+`, `-`
-6. `==`, `!=`, `>`, `<`, `>=`, `<=`, `is`, `is not`, `in`, `not in`
-7. `not`
-8. `and`
-9. `or`
+Come in matematica, Python esegue le operazioni in un ordine preciso. Le parentesi hanno sempre la precedenza massima:
 
 ```python
-print(2 + 3 * 4)     # 14 (prima la moltiplicazione)
-print((2 + 3) * 4)   # 20 (prima le parentesi)
-print(2 ** 3 ** 2)   # 512 (la potenza è associativa a destra: 2 ** (3**2) = 2**9)
+print(2 + 3 * 4)    # 14 — prima la moltiplicazione, poi l'addizione
+print((2 + 3) * 4)  # 20 — prima le parentesi
 ```
+
+Se non sei sicuro dell'ordine, usa le parentesi: rendono il codice più chiaro e sicuro.

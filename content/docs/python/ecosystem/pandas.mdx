@@ -3,33 +3,44 @@ title: Pandas
 description: Introduzione alla libreria Pandas per l'analisi dei dati in Python.
 ---
 
+## Perché ti serve questo?
+
+Immagina di avere un foglio Excel con migliaia di righe e di dover trovare tutti gli studenti con media superiore all'8, ordinarli per cognome, e salvare il risultato in un nuovo file. A mano richiederebbe ore.
+
+Con **Pandas** lo fai in poche righe di codice Python — e puoi ripeterlo automaticamente ogni volta che i dati cambiano.
+
+---
+
 ## Cos'è Pandas?
 
-**Pandas** è la libreria Python più usata per l'**analisi e la manipolazione di dati**. Fornisce strutture dati potenti e strumenti per lavorare con dati tabellari (come i fogli Excel o i database).
+**Pandas** è la libreria Python più usata per lavorare con **dati tabellari** — cioè dati organizzati in righe e colonne, come un foglio Excel o una tabella di database.
 
-Le due strutture dati principali di Pandas sono:
-- **Series**: una colonna di dati (come un array 1D con etichette)
-- **DataFrame**: una tabella di dati (come un foglio Excel o una tabella SQL)
+Le due strutture principali sono:
+- **Series**: una singola colonna di dati (come una lista con etichette)
+- **DataFrame**: una tabella completa con righe e colonne
 
-## Installazione
+---
+
+## Installazione e importazione
 
 ```bash
 pip install pandas
 ```
 
-## Importazione (convenzione)
+Per convenzione, Pandas si importa con il soprannome `pd`:
 
 ```python
 import pandas as pd
 ```
 
-## Series
+---
 
-Una **Series** è una lista di valori con un indice:
+## Series: una colonna di dati
 
 ```python
 import pandas as pd
 
+# Crea una Series da una lista
 voti = pd.Series([8, 7, 9, 6, 10])
 print(voti)
 # 0     8
@@ -39,27 +50,29 @@ print(voti)
 # 4    10
 # dtype: int64
 
-# Con indice personalizzato
-voti_nominativi = pd.Series(
+# Crea una Series con etichette personalizzate (invece dei numeri 0, 1, 2...)
+voti_classe = pd.Series(
     [8, 7, 9, 6],
     index=["Alice", "Bob", "Carlo", "Diana"]
 )
-print(voti_nominativi["Alice"])  # 8
-print(voti_nominativi.mean())    # 7.5
+print(voti_classe["Alice"])   # 8
+print(voti_classe.mean())     # 7.5 — media
 ```
 
-## DataFrame
+---
 
-Un **DataFrame** è una tabella con righe e colonne:
+## DataFrame: la tabella di dati
+
+Un **DataFrame** è come un foglio Excel: ha righe e colonne con nomi.
 
 ```python
 import pandas as pd
 
-# Da dizionario
+# Crea un DataFrame da un dizionario (ogni chiave è una colonna)
 studenti = pd.DataFrame({
-    "nome": ["Alice", "Bob", "Carlo", "Diana"],
-    "eta": [16, 15, 17, 16],
-    "voto": [8, 7, 9, 6],
+    "nome":  ["Alice", "Bob", "Carlo", "Diana"],
+    "eta":   [16, 15, 17, 16],
+    "voto":  [8, 7, 9, 6],
     "citta": ["Roma", "Milano", "Roma", "Napoli"]
 })
 
@@ -75,87 +88,98 @@ Output:
 3  Diana   16     6   Napoli
 ```
 
-## Accesso ai dati
+---
+
+## Accedere ai dati
 
 ```python
-# Selezionare una colonna
+# Selezionare una colonna (come accedere a un dizionario)
 print(studenti["nome"])
-print(studenti.nome)          # alternativa con il punto
 
 # Selezionare più colonne
 print(studenti[["nome", "voto"]])
 
-# Selezionare righe per indice (loc)
-print(studenti.loc[0])         # prima riga
-print(studenti.loc[0:2])       # righe 0, 1, 2
+# Selezionare righe per numero (iloc = integer location)
+print(studenti.iloc[0])       # Prima riga (indice 0)
+print(studenti.iloc[0:2])     # Righe 0 e 1
 
-# Selezionare per posizione (iloc)
-print(studenti.iloc[0, 1])     # riga 0, colonna 1
+# Selezionare un singolo valore (riga, colonna)
+print(studenti.iloc[0, 2])    # Riga 0, colonna 2 → 8 (il voto di Alice)
 ```
 
-## Filtri
+---
+
+## Filtrare i dati
+
+Qui Pandas diventa potente: puoi selezionare solo le righe che soddisfano una condizione.
 
 ```python
-# Studenti con voto >= 8
+# Tutti gli studenti con voto maggiore o uguale a 8
 promossi = studenti[studenti["voto"] >= 8]
 print(promossi)
 
-# Studenti di Roma
+# Tutti gli studenti di Roma
 romani = studenti[studenti["citta"] == "Roma"]
 print(romani)
 
-# Filtri combinati
-print(studenti[(studenti["voto"] >= 7) & (studenti["eta"] >= 16)])
+# Filtri combinati: voto >= 7 E età >= 16
+risultato = studenti[(studenti["voto"] >= 7) & (studenti["eta"] >= 16)]
+print(risultato)
 ```
 
-## Statistiche di base
+---
+
+## Statistiche in un colpo solo
 
 ```python
-print(studenti["voto"].mean())    # media
-print(studenti["voto"].max())     # massimo
-print(studenti["voto"].min())     # minimo
+print(studenti["voto"].mean())    # 7.5  — media dei voti
+print(studenti["voto"].max())     # 9    — voto più alto
+print(studenti["voto"].min())     # 6    — voto più basso
 print(studenti["voto"].std())     # deviazione standard
-print(studenti.describe())        # riepilogo statistico di tutte le colonne numeriche
+
+# Riepilogo statistico di tutte le colonne numeriche
+print(studenti.describe())
 ```
+
+---
 
 ## Leggere e scrivere file
 
+Una delle funzionalità più utili: Pandas legge e scrive file CSV ed Excel direttamente.
+
 ```python
-# Leggere un CSV
+# Leggere un file CSV (valori separati da virgole)
 df = pd.read_csv("dati.csv")
 
-# Scrivere un CSV
-studenti.to_csv("studenti.csv", index=False)
+# Scrivere su CSV (index=False evita di scrivere i numeri di riga)
+studenti.to_csv("studenti_export.csv", index=False)
 
 # Leggere un file Excel
 df_excel = pd.read_excel("dati.xlsx")
 
-# Scrivere un Excel
-studenti.to_excel("studenti.xlsx", index=False)
+# Scrivere su Excel
+studenti.to_excel("studenti_export.xlsx", index=False)
 ```
+
+---
 
 ## Operazioni comuni
 
 ```python
-# Aggiungere una colonna
-studenti["promosso"] = studenti["voto"] >= 6
+# Aggiungere una nuova colonna calcolata
+studenti["promosso"] = studenti["voto"] >= 6   # True o False per ogni riga
 print(studenti)
 
-# Ordinare
+# Ordinare per voto (dal più alto al più basso)
 ordinati = studenti.sort_values("voto", ascending=False)
 print(ordinati)
 
-# Raggruppare
+# Raggruppare e calcolare statistiche per gruppo
+# (media dei voti per ogni città)
 per_citta = studenti.groupby("citta")["voto"].mean()
 print(per_citta)
 
-# Informazioni sul DataFrame
-print(studenti.shape)    # (4, 4) - righe, colonne
-print(studenti.dtypes)   # tipi di ogni colonna
-print(studenti.info())   # riepilogo completo
+# Informazioni generali sul DataFrame
+print(studenti.shape)    # (4, 4) — 4 righe, 4 colonne
+print(studenti.dtypes)   # tipo di dati in ogni colonna
 ```
-
-## Dove approfondire
-
-Pandas è molto ricco. Per approfondire:
-- Documentazione ufficiale: [pandas.pydata.org](https://pandas.pydata.org)

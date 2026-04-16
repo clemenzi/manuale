@@ -3,13 +3,19 @@ title: Interfacce grafiche con Tkinter
 description: Creare finestre e interfacce grafiche semplici con Tkinter in Python.
 ---
 
+## Perché ti serve questo?
+
+Finora i tuoi programmi comunicano con l'utente tramite il terminale: testo che appare e testo che viene scritto. Con **Tkinter** puoi creare vere finestre grafiche con pulsanti, campi di testo, menu a tendina — come i programmi che usi ogni giorno.
+
+---
+
 ## Cos'è Tkinter?
 
-**Tkinter** è la libreria standard di Python per la creazione di interfacce grafiche (GUI, Graphical User Interface). È già inclusa in Python, non serve installarla.
+**Tkinter** è la libreria per creare interfacce grafiche già inclusa in Python. Non devi installare nulla. Permette di creare finestre con tutti i classici elementi: etichette, pulsanti, caselle di testo, caselle di spunta, e molto altro.
 
-Con Tkinter puoi creare finestre con pulsanti, campi di testo, menu, etichette, e molto altro.
+---
 
-## Prima finestra
+## La prima finestra
 
 ```python
 import tkinter as tk
@@ -17,34 +23,43 @@ import tkinter as tk
 # Crea la finestra principale
 root = tk.Tk()
 root.title("La mia prima finestra")
-root.geometry("400x300")  # larghezza x altezza
+root.geometry("400x300")   # larghezza × altezza in pixel
 
-# Avvia il loop degli eventi (necessario per mostrare la finestra)
+# Avvia il "loop degli eventi" — mantiene la finestra aperta e risponde ai click
 root.mainloop()
 ```
 
-## Widget principali
+Il metodo `mainloop()` è fondamentale: è il ciclo che mantiene la finestra in vita e reagisce a tutto ciò che l'utente fa (click, digitazione, ecc.).
 
-### Label (etichetta)
+---
+
+## I componenti principali (Widget)
+
+In Tkinter, ogni elemento visibile si chiama **widget**.
+
+### Label — testo fisso
 
 ```python
 import tkinter as tk
 
 root = tk.Tk()
 
+# Crea un'etichetta di testo
 etichetta = tk.Label(root, text="Ciao, mondo!", font=("Arial", 16))
-etichetta.pack(pady=20)  # pack() posiziona il widget
+etichetta.pack(pady=20)   # pack() posiziona il widget nella finestra
 
 root.mainloop()
 ```
 
-### Button (pulsante)
+---
+
+### Button — pulsante cliccabile
 
 ```python
 import tkinter as tk
 
 def saluta():
-    print("Ciao!")
+    print("Ciao!")   # Questa funzione viene chiamata al click
 
 root = tk.Tk()
 
@@ -54,18 +69,23 @@ pulsante.pack(pady=20)
 root.mainloop()
 ```
 
-### Entry (campo di testo)
+`command=saluta` indica quale funzione chiamare quando il pulsante viene premuto.
+
+---
+
+### Entry — campo per inserire testo
 
 ```python
 import tkinter as tk
 
 root = tk.Tk()
 
+# Crea un campo dove l'utente può scrivere
 campo = tk.Entry(root, width=30)
 campo.pack(pady=10)
 
 def leggi_input():
-    testo = campo.get()
+    testo = campo.get()   # Leggi il testo scritto dall'utente
     print(f"Hai scritto: {testo}")
 
 pulsante = tk.Button(root, text="Leggi", command=leggi_input)
@@ -74,7 +94,11 @@ pulsante.pack()
 root.mainloop()
 ```
 
+---
+
 ## Esempio completo: app di saluto
+
+Metti insieme Label, Entry e Button per fare una piccola app interattiva:
 
 ```python
 import tkinter as tk
@@ -90,7 +114,7 @@ root = tk.Tk()
 root.title("App di saluto")
 root.geometry("300x200")
 
-# Etichetta istruzione
+# Istruzione per l'utente
 tk.Label(root, text="Inserisci il tuo nome:").pack(pady=10)
 
 # Campo di testo
@@ -100,16 +124,18 @@ campo_nome.pack()
 # Pulsante
 tk.Button(root, text="Saluta", command=saluta).pack(pady=10)
 
-# Etichetta per il risultato
+# Etichetta per mostrare il risultato (inizialmente vuota)
 etichetta_risultato = tk.Label(root, text="", font=("Arial", 14))
 etichetta_risultato.pack()
 
 root.mainloop()
 ```
 
-## Posizionamento con `grid()`
+---
 
-Il metodo `grid()` permette di posizionare i widget in una griglia (righe e colonne):
+## Posizionare i widget in griglia con `grid()`
+
+`pack()` mette i widget uno sotto l'altro. Con `grid()` puoi posizionarli in una **tabella** di righe e colonne — utile per form o calcolatrici:
 
 ```python
 import tkinter as tk
@@ -117,10 +143,12 @@ import tkinter as tk
 root = tk.Tk()
 root.title("Calcolatrice semplice")
 
+# Riga 0: etichetta e campo per il primo numero
 tk.Label(root, text="Primo numero:").grid(row=0, column=0, padx=5, pady=5)
 campo_a = tk.Entry(root)
 campo_a.grid(row=0, column=1)
 
+# Riga 1: etichetta e campo per il secondo numero
 tk.Label(root, text="Secondo numero:").grid(row=1, column=0, padx=5, pady=5)
 campo_b = tk.Entry(root)
 campo_b.grid(row=1, column=1)
@@ -129,18 +157,21 @@ def calcola():
     try:
         a = float(campo_a.get())
         b = float(campo_b.get())
-        risultato = a + b
-        etichetta_ris.config(text=f"Somma: {risultato}")
+        etichetta_ris.config(text=f"Somma: {a + b}")
     except ValueError:
-        etichetta_ris.config(text="Inserisci numeri validi")
+        etichetta_ris.config(text="Inserisci numeri validi!")
 
+# Riga 2: pulsante che occupa entrambe le colonne
 tk.Button(root, text="Somma", command=calcola).grid(row=2, column=0, columnspan=2, pady=10)
 
+# Riga 3: etichetta risultato
 etichetta_ris = tk.Label(root, text="")
 etichetta_ris.grid(row=3, column=0, columnspan=2)
 
 root.mainloop()
 ```
+
+---
 
 ## Altri widget utili
 
@@ -149,28 +180,32 @@ import tkinter as tk
 
 root = tk.Tk()
 
-# Text: area di testo multiriga
+# Text: area di testo su più righe (come un piccolo editor)
 area = tk.Text(root, height=5, width=30)
 area.pack()
 
-# Checkbutton
+# Checkbutton: casella di spunta
 var_check = tk.BooleanVar()
 check = tk.Checkbutton(root, text="Accetta i termini", variable=var_check)
 check.pack()
 
-# Radiobutton
+# Radiobutton: scelta esclusiva tra opzioni
 var_radio = tk.StringVar(value="mela")
 for frutto in ["mela", "banana", "uva"]:
     tk.Radiobutton(root, text=frutto, variable=var_radio, value=frutto).pack()
 
-# Scale (cursore)
+# Scale: cursore scorrevole
 cursore = tk.Scale(root, from_=0, to=100, orient=tk.HORIZONTAL)
 cursore.pack()
 
 root.mainloop()
 ```
 
-## Messaggi dialog
+---
+
+## Finestre di dialogo
+
+Tkinter ha anche finestre di dialogo già pronte — quelle che compaiono davanti alla finestra principale con un messaggio o una domanda:
 
 ```python
 import tkinter as tk
@@ -179,15 +214,17 @@ from tkinter import messagebox
 root = tk.Tk()
 
 def mostra_info():
+    # Finestra di informazione con un solo pulsante OK
     messagebox.showinfo("Info", "Operazione completata!")
 
 def chiedi_conferma():
-    risposta = messagebox.askyesno("Conferma", "Sei sicuro?")
+    # Finestra con pulsanti Sì e No
+    risposta = messagebox.askyesno("Conferma", "Sei sicuro di voler uscire?")
     if risposta:
-        print("Confermato!")
+        root.quit()   # Chiudi il programma
 
-tk.Button(root, text="Info", command=mostra_info).pack(pady=5)
-tk.Button(root, text="Conferma", command=chiedi_conferma).pack(pady=5)
+tk.Button(root, text="Mostra info", command=mostra_info).pack(pady=5)
+tk.Button(root, text="Esci", command=chiedi_conferma).pack(pady=5)
 
 root.mainloop()
 ```

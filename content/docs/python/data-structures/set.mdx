@@ -1,108 +1,96 @@
 ---
-title: Set
-description: Insiemi di elementi unici e non ordinati in Python.
+title: Set (Insiemi)
+description: Raccolte di elementi unici — perfetti per eliminare i duplicati e fare operazioni sugli insiemi.
 ---
 
 ## Cosa sono i set?
 
-Un **set** (insieme) è una raccolta di elementi **unici** e **non ordinati**. Questo significa che:
-- Non ci possono essere duplicati
-- L'ordine degli elementi non è garantito
+Un **set** (insieme) è una raccolta di elementi con due regole fondamentali:
+1. **Nessun duplicato**: ogni elemento può comparire al massimo una volta
+2. **Nessun ordine garantito**: gli elementi non hanno una posizione fissa
 
-I set sono utili per rimuovere duplicati, fare operazioni insiemistiche (unione, intersezione, differenza).
+Pensa a un set come a un sacchetto di palline colorate: sai quali colori ci sono dentro, ma non puoi dire "dammi la terza pallina".
 
 ## Creare un set
 
-I set si scrivono con le **parentesi graffe** `{}` (ma attenzione: le parentesi graffe vuote creano un dizionario, non un set!):
+Si usano le **parentesi graffe** `{}`, come per i dizionari, ma senza le chiavi:
 
 ```python
 frutta = {"mela", "banana", "ciliegia"}
 numeri = {1, 2, 3, 4, 5}
-
-# Set vuoto: si usa set(), non {}
-vuoto = set()
-print(type(vuoto))     # <class 'set'>
-print(type({}))        # <class 'dict'>  (attenzione!)
 ```
+
+> **Attenzione:** `{}` da solo crea un **dizionario vuoto**, non un set vuoto! Per creare un set vuoto usa `set()`:
+>
+> ```python
+> vuoto = set()      # set vuoto ✓
+> anche_vuoto = {}   # dizionario vuoto, non un set! ✗
+> ```
 
 I duplicati vengono rimossi automaticamente:
 
 ```python
 con_duplicati = {1, 2, 2, 3, 3, 3}
-print(con_duplicati)  # {1, 2, 3}
+print(con_duplicati)  # {1, 2, 3}  — solo valori unici
 ```
 
 ## Aggiungere e rimuovere elementi
 
 ```python
 frutta = {"mela", "banana"}
-frutta.add("ciliegia")        # aggiunge un elemento
-print(frutta)  # {'mela', 'banana', 'ciliegia'} (ordine non garantito)
 
-frutta.remove("banana")       # rimuove (errore se non esiste)
-frutta.discard("uva")         # rimuove (nessun errore se non esiste)
-frutta.pop()                  # rimuove un elemento casuale
-frutta.clear()                # svuota il set
+frutta.add("ciliegia")      # aggiunge un elemento
+frutta.remove("banana")     # rimuove (dà errore se non esiste)
+frutta.discard("uva")       # rimuove senza errore se non esiste
 ```
 
-## Controllare l'appartenenza
+## Controllare se un elemento è presente
 
 ```python
 frutta = {"mela", "banana", "ciliegia"}
 print("mela" in frutta)     # True
 print("uva" in frutta)      # False
-print("uva" not in frutta)  # True
 ```
 
-## Operazioni insiemistiche
+I set sono molto veloci per questo tipo di ricerca, anche più delle liste.
 
-I set supportano le operazioni matematiche degli insiemi:
+## Operazioni sugli insiemi
+
+Qui i set diventano particolarmente utili: puoi fare operazioni tipiche della matematica degli insiemi.
 
 ```python
 A = {1, 2, 3, 4}
 B = {3, 4, 5, 6}
-
-# Unione: tutti gli elementi di A e B
-print(A | B)              # {1, 2, 3, 4, 5, 6}
-print(A.union(B))         # stessa cosa
-
-# Intersezione: solo gli elementi presenti in entrambi
-print(A & B)              # {3, 4}
-print(A.intersection(B))  # stessa cosa
-
-# Differenza: elementi in A ma non in B
-print(A - B)              # {1, 2}
-print(A.difference(B))    # stessa cosa
-
-# Differenza simmetrica: elementi in A o B ma non in entrambi
-print(A ^ B)                         # {1, 2, 5, 6}
-print(A.symmetric_difference(B))     # stessa cosa
 ```
 
-## Relazioni tra insiemi
+**Unione** — tutti gli elementi di A e di B:
+```python
+print(A | B)   # {1, 2, 3, 4, 5, 6}
+```
+
+**Intersezione** — solo gli elementi presenti in entrambi:
+```python
+print(A & B)   # {3, 4}
+```
+
+**Differenza** — gli elementi in A ma non in B:
+```python
+print(A - B)   # {1, 2}
+```
+
+## Il trucco più utile: eliminare i duplicati
+
+Il modo più semplice per eliminare i duplicati da una lista è convertirla in set e poi riconvertirla in lista:
 
 ```python
-A = {1, 2, 3}
-B = {1, 2, 3, 4, 5}
-C = {7, 8}
-
-print(A.issubset(B))       # True (A è sottoinsieme di B)
-print(B.issuperset(A))     # True (B è soprainsieme di A)
-print(A.isdisjoint(C))     # True (A e C non hanno elementi in comune)
+lista = [1, 2, 2, 3, 3, 4, 1]
+lista_pulita = list(set(lista))
+print(lista_pulita)  # [1, 2, 3, 4]
 ```
 
-## Convertire tra set e lista
+> **Nota:** L'ordine originale non viene preservato, perché i set non hanno un ordine fisso.
 
-```python
-lista = [1, 2, 2, 3, 3, 4]
+## Limiti dei set
 
-# Rimuovere i duplicati facilmente
-lista_senza_duplicati = list(set(lista))
-print(lista_senza_duplicati)  # [1, 2, 3, 4]
-```
-
-## Limitazioni dei set
-
-- Gli elementi di un set devono essere **immutabili** (non puoi mettere liste dentro un set, ma puoi mettere tuple)
-- Non puoi accedere agli elementi tramite indice (`frutta[0]` darebbe un errore)
-- L'ordine non è garantito
+- Non puoi accedere agli elementi per posizione: `frutta[0]` causa errore
+- Gli elementi devono essere immutabili: puoi mettere numeri, stringhe, tuple, ma non liste

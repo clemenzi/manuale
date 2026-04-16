@@ -1,11 +1,13 @@
 ---
 title: Tuple
-description: Sequenze immutabili di elementi in Python.
+description: Sequenze di elementi che non cambiano mai.
 ---
 
 ## Cosa sono le tuple?
 
-Una **tupla** (`tuple`) è simile a una lista: è una raccolta ordinata di elementi. La differenza principale è che le tuple sono **immutabili**: una volta create, non si possono modificare.
+Una **tupla** è simile a una lista: contiene elementi in ordine. La differenza fondamentale è che le tuple sono **immutabili**: una volta create, non si possono modificare. Non puoi aggiungere, togliere o cambiare gli elementi.
+
+Pensa alle tuple come a dati "fissi": le coordinate GPS di un posto, i giorni della settimana, i colori del semaforo. Sono informazioni che non devono cambiare.
 
 ## Creare una tupla
 
@@ -18,80 +20,52 @@ mista = (1, "ciao", True, 3.14)
 vuota = ()
 ```
 
-Puoi anche creare una tupla senza parentesi (ma è meno leggibile):
-
-```python
-giorni = "lun", "mar", "mer"
-print(type(giorni))  # <class 'tuple'>
-```
-
-**Tupla con un solo elemento:** devi aggiungere una virgola finale, altrimenti Python lo interpreta come una semplice espressione tra parentesi:
-
-```python
-non_e_tupla = (42)
-print(type(non_e_tupla))   # <class 'int'>
-
-e_una_tupla = (42,)
-print(type(e_una_tupla))   # <class 'tuple'>
-```
+> **Attenzione:** Una tupla con un solo elemento richiede una virgola finale, altrimenti Python la interpreta come una normale espressione tra parentesi:
+>
+> ```python
+> non_e_tupla = (42)       # è solo il numero 42 tra parentesi!
+> e_una_tupla = (42,)      # la virgola la rende una tupla
+> ```
 
 ## Accedere agli elementi
 
-L'accesso funziona esattamente come per le liste, con gli indici:
+Funziona esattamente come per le liste, con gli indici:
 
 ```python
 colori = ("rosso", "verde", "blu")
 print(colori[0])    # rosso
-print(colori[-1])   # blu
-print(colori[1:3])  # ('verde', 'blu')
+print(colori[-1])   # blu       — l'ultimo elemento
+print(colori[1:3])  # ('verde', 'blu')  — slicing
 ```
 
-## Immutabilità
+## Non si possono modificare
 
-Tentare di modificare una tupla causa un errore:
+Se provi a cambiare un elemento, Python dà errore:
 
 ```python
 colori = ("rosso", "verde", "blu")
 colori[0] = "giallo"  # TypeError: 'tuple' object does not support item assignment
 ```
 
-## Metodi delle tuple
-
-Le tuple hanno meno metodi delle liste, proprio perché non sono modificabili:
-
-```python
-numeri = (1, 2, 3, 2, 4, 2)
-print(numeri.count(2))   # 3
-print(numeri.index(3))   # 2
-print(len(numeri))       # 6
-```
+Questo è il comportamento voluto: garantisce che i dati rimangano intatti.
 
 ## Operazioni sulle tuple
+
+Anche se non si modificano, puoi comunque combinarle e controllarle:
 
 ```python
 a = (1, 2, 3)
 b = (4, 5, 6)
 
-print(a + b)    # (1, 2, 3, 4, 5, 6)  (concatenazione)
-print(a * 2)    # (1, 2, 3, 1, 2, 3)  (ripetizione)
-print(3 in a)   # True
-print(7 in a)   # False
+print(a + b)    # (1, 2, 3, 4, 5, 6)  — crea una nuova tupla unendo le due
+print(a * 2)    # (1, 2, 3, 1, 2, 3)  — ripete
+print(3 in a)   # True  — controlla se 3 è presente
+print(len(a))   # 3     — numero di elementi
 ```
 
-## Conversione tra tuple e liste
+## Spacchettare una tupla (unpacking)
 
-```python
-lista = [1, 2, 3]
-tupla = tuple(lista)
-print(tupla)          # (1, 2, 3)
-
-di_nuovo = list(tupla)
-print(di_nuovo)       # [1, 2, 3]
-```
-
-## Tuple unpacking
-
-Puoi assegnare gli elementi di una tupla a più variabili in una sola riga:
+Puoi assegnare gli elementi di una tupla a più variabili in una sola riga. Si chiama **unpacking** (spacchettamento):
 
 ```python
 coordinate = (10, 20)
@@ -105,15 +79,26 @@ print(eta)    # 16
 print(citta)  # Roma
 ```
 
-Questo funziona anche con le liste.
+Funziona anche con le liste. L'importante è che il numero di variabili corrisponda al numero di elementi.
+
+## Convertire tra tuple e liste
+
+Se hai una tupla e hai bisogno di modificarla, convertila in lista, modificala e riconvertila:
+
+```python
+t = (1, 2, 3)
+l = list(t)      # converte in lista
+l.append(4)      # modifica la lista
+t = tuple(l)     # riconverte in tupla
+
+print(t)  # (1, 2, 3, 4)
+```
 
 ## Quando usare una tupla invece di una lista?
 
 Usa una **tupla** quando:
-- I dati non devono cambiare (es. coordinate, giorni della settimana, colori fissi)
-- Vuoi usarla come chiave di un dizionario (le liste non si possono usare come chiavi)
-- Vuoi comunicare che quei dati sono "sola lettura"
+- I dati non devono mai cambiare (coordinate, giorni della settimana, codici fissi)
+- Vuoi comunicare a chi legge il codice che quei dati sono "di sola lettura"
+- Hai bisogno di usarla come chiave di un dizionario (le liste non si possono usare come chiavi)
 
-Usa una **lista** quando hai bisogno di aggiungere, rimuovere o modificare elementi.
-
-Le tuple sono anche leggermente più veloci delle liste.
+Usa una **lista** per tutto il resto, quando i dati possono cambiare.

@@ -1,62 +1,72 @@
 ---
 title: Funzioni ricorsive
-description: Introduzione alla ricorsione in Python.
+description: Funzioni che risolvono un problema chiamando se stesse.
 ---
 
 ## Cos'è la ricorsione?
 
-Una funzione si dice **ricorsiva** quando chiama se stessa. È un concetto potente che permette di risolvere problemi complessi dividendoli in sottoproblemi più semplici.
+Una funzione ricorsiva è una funzione che, per risolvere un problema, **chiama se stessa** con una versione più piccola dello stesso problema.
+
+Un'analogia: immagina di dover smontare una bambola matrioska (quelle russe una dentro l'altra). Come la apri? Apri la prima, trovi un'altra matrioska più piccola, la apri, trovi un'altra ancora più piccola... finché non trovi quella tinyissima che non si apre più. Quella è il **caso base**.
+
+## Le due parti fondamentali
 
 Ogni funzione ricorsiva deve avere:
-1. **Caso base**: la condizione che ferma la ricorsione
-2. **Caso ricorsivo**: la chiamata a se stessa con un argomento "più piccolo"
 
-Senza un caso base, la funzione chiamrebbe se stessa all'infinito (come un ciclo infinito) finché Python non esaurisce la memoria.
+1. **Il caso base** — la condizione che fa fermare la ricorsione
+2. **Il caso ricorsivo** — dove la funzione chiama se stessa con un problema più piccolo
+
+Senza il caso base, la funzione si chiamerebbe all'infinito e il programma si bloccherebbe con un errore.
 
 ## Esempio classico: il fattoriale
 
-Il fattoriale di `n` (scritto `n!`) è il prodotto di tutti i numeri da 1 a n:
-- `5! = 5 × 4 × 3 × 2 × 1 = 120`
-- `3! = 3 × 2 × 1 = 6`
-- `1! = 1`
-- `0! = 1` (per definizione)
+Il fattoriale di un numero (scritto con il simbolo `!`) è il prodotto di tutti i numeri interi da 1 fino a quel numero:
+
+```
+5! = 5 × 4 × 3 × 2 × 1 = 120
+3! = 3 × 2 × 1 = 6
+1! = 1
+```
+
+Si può anche scrivere così: `5! = 5 × 4!`. E `4! = 4 × 3!`. Vedi il pattern? Il problema si riduce sempre.
 
 ```python
 def fattoriale(n):
-    # Caso base
+    # Caso base: se n è 0 o 1, il fattoriale è 1
     if n == 0 or n == 1:
         return 1
-    # Caso ricorsivo
+    # Caso ricorsivo: n * fattoriale del numero precedente
     return n * fattoriale(n - 1)
 
 print(fattoriale(5))   # 120
 print(fattoriale(3))   # 6
-print(fattoriale(0))   # 1
 ```
 
-Come funziona `fattoriale(5)`:
+Ecco cosa succede passo per passo quando chiami `fattoriale(5)`:
+
 ```
 fattoriale(5)
-  5 * fattoriale(4)
-       4 * fattoriale(3)
-            3 * fattoriale(2)
-                 2 * fattoriale(1)
-                      1  (caso base!)
+  → 5 × fattoriale(4)
+         → 4 × fattoriale(3)
+                → 3 × fattoriale(2)
+                       → 2 × fattoriale(1)
+                              → 1  ← caso base, si ferma!
 ```
 
-## Esempio: successione di Fibonacci
+Poi si torna indietro calcolando: `2×1=2`, `3×2=6`, `4×6=24`, `5×24=120`.
 
-La successione di Fibonacci: 0, 1, 1, 2, 3, 5, 8, 13, 21, ...
-Ogni numero è la somma dei due precedenti.
+## Esempio: la successione di Fibonacci
+
+La successione di Fibonacci è famosa in matematica e in natura: `0, 1, 1, 2, 3, 5, 8, 13, 21, ...`
+
+Ogni numero è la somma dei due che lo precedono. Anche questo si presta alla ricorsione:
 
 ```python
 def fibonacci(n):
-    # Casi base
     if n == 0:
         return 0
     if n == 1:
         return 1
-    # Caso ricorsivo
     return fibonacci(n - 1) + fibonacci(n - 2)
 
 for i in range(8):
@@ -64,67 +74,12 @@ for i in range(8):
 # 0 1 1 2 3 5 8 13
 ```
 
-## Esempio: somma degli elementi di una lista
+## Un limite importante
 
-```python
-def somma_lista(lista):
-    # Caso base: lista vuota
-    if len(lista) == 0:
-        return 0
-    # Caso ricorsivo: primo elemento + somma del resto
-    return lista[0] + somma_lista(lista[1:])
-
-print(somma_lista([1, 2, 3, 4, 5]))  # 15
-```
-
-## Esempio: invertire una stringa
-
-```python
-def inverti(testo):
-    # Caso base: stringa vuota o un carattere
-    if len(testo) <= 1:
-        return testo
-    # Caso ricorsivo
-    return inverti(testo[1:]) + testo[0]
-
-print(inverti("Python"))  # nohtyP
-```
-
-## Limite di ricorsione
-
-Python ha un limite di default di circa 1000 chiamate ricorsive. Se lo superi, ottieni un `RecursionError`:
-
-```python
-import sys
-print(sys.getrecursionlimit())  # 1000
-
-# Puoi aumentarlo, ma non è consigliato:
-# sys.setrecursionlimit(10000)
-```
-
-## Ricorsione vs iterazione
-
-La ricorsione è elegante ma può essere meno efficiente dell'iterazione per alcuni problemi. Ad esempio, `fibonacci()` ricorsivo è molto lento per grandi valori di `n` perché ricalcola gli stessi valori più volte.
-
-Per questi casi si usano tecniche come la **memoizzazione** (salvare i risultati già calcolati):
-
-```python
-from functools import lru_cache
-
-@lru_cache(maxsize=None)
-def fibonacci_veloce(n):
-    if n <= 1:
-        return n
-    return fibonacci_veloce(n - 1) + fibonacci_veloce(n - 2)
-
-print(fibonacci_veloce(100))  # veloce!
-```
+Python può gestire al massimo circa 1000 chiamate ricorsive in profondità. Se superi questo limite, ottieni un `RecursionError`. Per questo la ricorsione non è sempre la scelta migliore per problemi con numeri molto grandi.
 
 ## Quando usare la ricorsione?
 
-Usa la ricorsione quando:
-- Il problema si decompone naturalmente in sottoproblemi della stessa natura
-- Stai lavorando con strutture ad albero o grafi
-- Il codice ricorsivo è molto più semplice di quello iterativo
+La ricorsione è utile quando il problema ha una struttura naturalmente "annidata" — cioè quando si può descrivere un problema grande come una versione più piccola dello stesso problema.
 
-Usa l'iterazione per problemi semplici dove la ricorsione sarebbe eccessiva.
+Per problemi semplici (come contare fino a 100, o scorrere una lista), usa i cicli `for` o `while`: sono più veloci e più facili da capire.

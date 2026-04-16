@@ -1,126 +1,110 @@
 ---
 title: Booleani
-description: Valori vero/falso e logica booleana in Python.
+description: I valori vero/falso in Python — la base di ogni decisione nel codice.
 ---
 
-## Cosa sono i booleani?
+## Cos'è un booleano?
 
-Il tipo **booleano** (`bool`) può avere solo due valori: `True` (vero) o `False` (falso). Notare la prima lettera maiuscola, è importante!
+Nella vita di tutti i giorni facciamo continuamente valutazioni del tipo "vero o falso":
+- La luce è accesa? Sì o No.
+- Sono maggiorenne? Vero o Falso.
+- Fa freddo fuori? Vero o Falso.
 
-I booleani sono fondamentali per controllare il flusso del programma: decidono quale ramo del codice eseguire, quando fermare un ciclo, e molto altro.
+In Python esistono esattamente questi due valori: **`True`** (vero) e **`False`** (falso). Il tipo di dato che li contiene si chiama **booleano** (`bool`).
 
-## Creare un booleano
+Attenzione: la prima lettera è **sempre maiuscola**. `true` e `false` (tutto minuscolo) causano un errore.
 
 ```python
-vero = True
-falso = False
-print(type(vero))   # <class 'bool'>
-print(type(falso))  # <class 'bool'>
+luce_accesa = True
+fa_freddo = False
+print(type(luce_accesa))   # <class 'bool'>
 ```
 
-## Confronti e operatori di confronto
+## I confronti producono booleani
 
-I confronti restituiscono sempre un booleano:
+Ogni volta che confronti due valori, Python restituisce `True` o `False`:
 
 ```python
-print(5 > 3)    # True
-print(5 < 3)    # False
-print(5 == 5)   # True  (uguale)
-print(5 != 3)   # True  (diverso)
-print(5 >= 5)   # True  (maggiore o uguale)
-print(5 <= 4)   # False (minore o uguale)
+print(5 > 3)    # True  — 5 è maggiore di 3? Sì
+print(5 < 3)    # False — 5 è minore di 3? No
+print(5 == 5)   # True  — 5 è uguale a 5? Sì
+print(5 != 3)   # True  — 5 è diverso da 3? Sì
+print(5 >= 5)   # True  — 5 è maggiore o uguale a 5? Sì
+print(5 <= 4)   # False — 5 è minore o uguale a 4? No
 ```
 
-Nota la differenza tra `=` (assegnazione) e `==` (confronto di uguaglianza)!
+> **Attenzione:** `=` e `==` sono cose diverse!
+> - `=` assegna un valore a una variabile: `x = 5`
+> - `==` confronta due valori: `x == 5` (è uguale a 5?)
 
-## Operatori logici
+## Combinare condizioni con `and`, `or`, `not`
 
-Puoi combinare condizioni booleane con gli operatori logici:
+Spesso vuoi combinare più condizioni insieme. In Python si usano tre operatori logici.
 
-### `and` (e)
+### `and` — "e"
 
-Restituisce `True` solo se **entrambe** le condizioni sono vere:
+Restituisce `True` solo se **tutte** le condizioni sono vere. Come il semaforo verde: puoi passare solo se la strada è libera E il semaforo è verde.
 
 ```python
-print(True and True)   # True
-print(True and False)  # False
-print(False and True)  # False
-print(False and False) # False
+eta = 20
+ha_patente = True
 
-eta = 16
-ha_patente = False
-print(eta >= 18 and ha_patente)  # False
+# Puoi guidare solo se sei maggiorenne E hai la patente
+print(eta >= 18 and ha_patente)  # True
 ```
 
-### `or` (o)
+### `or` — "o"
 
-Restituisce `True` se **almeno una** delle condizioni è vera:
+Restituisce `True` se **almeno una** condizione è vera. Come entrare in un cinema: puoi entrare se hai il biglietto O sei un membro del club.
 
 ```python
-print(True or True)    # True
-print(True or False)   # True
-print(False or True)   # True
-print(False or False)  # False
+ha_biglietto = False
+e_membro = True
 
+print(ha_biglietto or e_membro)  # True — basta una delle due
+```
+
+### `not` — "non"
+
+Inverte il valore: trasforma `True` in `False` e viceversa.
+
+```python
 piove = False
-fa_freddo = True
-print(piove or fa_freddo)  # True
-```
+print(not piove)   # True — NON piove, quindi posso uscire
 
-### `not` (non)
-
-Inverte il valore booleano:
-
-```python
-print(not True)   # False
-print(not False)  # True
-
-maggiorenne = False
-print(not maggiorenne)  # True (non è maggiorenne)
+maggiorenne = True
+print(not maggiorenne)  # False
 ```
 
 ## Valori "truthy" e "falsy"
 
-In Python, ogni valore può essere valutato come booleano. I seguenti valori sono **falsy** (equivalenti a `False`):
+In Python, non solo `True` e `False` possono essere trattati come booleani. **Ogni valore** può essere interpretato come vero o falso.
 
+I valori che Python considera **falsi** (equivalenti a `False`):
 - `False`
 - `0` e `0.0`
-- `""` (stringa vuota)
+- `""` (stringa vuota, cioè nessun testo)
 - `[]` (lista vuota)
-- `()` (tupla vuota)
-- `{}` (dizionario o set vuoto)
-- `None`
+- `None` (assenza di valore)
 
-Tutti gli altri valori sono **truthy** (equivalenti a `True`):
+Tutto il resto è considerato **vero**. Un numero diverso da zero, una stringa con del testo, una lista con elementi.
 
 ```python
-print(bool(0))       # False
-print(bool(""))      # False
-print(bool([]))      # False
-print(bool(42))      # True
-print(bool("ciao"))  # True
-print(bool([1, 2]))  # True
+print(bool(0))       # False — zero è falso
+print(bool(""))      # False — stringa vuota è falsa
+print(bool([]))      # False — lista vuota è falsa
+
+print(bool(42))      # True  — qualsiasi numero non-zero è vero
+print(bool("ciao"))  # True  — qualsiasi testo non-vuoto è vero
+print(bool([1, 2]))  # True  — una lista con elementi è vera
 ```
 
-Questo torna utile nelle condizioni:
+Questo torna molto utile nelle condizioni. Per esempio, puoi controllare se un nome è stato inserito così:
 
 ```python
 nome = ""
 if nome:
-    print("Hai inserito un nome")
+    print("Ciao, " + nome + "!")
 else:
-    print("Il nome è vuoto")  # Questo viene stampato
+    print("Non hai inserito nessun nome.")  # questa viene stampata
 ```
-
-## Booleani come numeri
-
-In Python, `True` vale `1` e `False` vale `0`. Quindi puoi fare operazioni aritmetiche con i booleani:
-
-```python
-print(True + True)   # 2
-print(True + False)  # 1
-print(False + False) # 0
-print(True * 5)      # 5
-```
-
-Questo non è usato spesso, ma può capitare di vederlo.

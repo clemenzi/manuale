@@ -3,26 +3,24 @@ title: Funzioni
 description: Come definire e usare le funzioni in C++.
 ---
 
-## Cosa sono le funzioni?
+## Perché ti serve questo?
 
-Una **funzione** è un blocco di codice riutilizzabile che esegue un compito specifico. Invece di scrivere lo stesso codice più volte, lo scrivi una volta in una funzione e la chiami quando ne hai bisogno.
+Immagina di dover calcolare l'area di un cerchio in dieci punti diversi del tuo programma. Scriveresti la stessa formula dieci volte? E se poi vuoi cambiarla, la aggiorni in dieci posti?
 
-I vantaggi:
-- **Riutilizzo**: scrivi il codice una volta, usalo più volte
-- **Organizzazione**: il codice è diviso in parti logiche
-- **Leggibilità**: il codice è più facile da capire
-- **Manutenzione**: modifichi un solo posto per cambiare il comportamento
+Le **funzioni** risolvono questo problema: scrivi il codice una volta, gli dai un nome, e lo richiami ogni volta che ne hai bisogno. È come salvare una ricetta: la scrivi una volta, poi la segui ogni volta che vuoi cucinare quel piatto.
 
 ## Definire una funzione
 
-Sintassi:
+Una funzione si scrive così:
 
 ```cpp
-tipo_ritorno nomeFunzione(tipo param1, tipo param2, ...) {
-    // corpo della funzione
-    return valore;   // se il tipo di ritorno non è void
+tipo_ritorno nomeFunzione(tipo parametro1, tipo parametro2) {
+    // codice della funzione
+    return valore;  // se il tipo di ritorno non è void
 }
 ```
+
+La funzione più semplice: non riceve nulla e non restituisce nulla:
 
 ```cpp
 void saluta() {
@@ -30,9 +28,11 @@ void saluta() {
 }
 ```
 
-`void` significa che la funzione non restituisce alcun valore.
+`void` significa "niente": questa funzione non restituisce nessun valore.
 
 ## Chiamare una funzione
+
+Una volta definita, puoi "chiamarla" (cioè eseguirla) scrivendo il suo nome seguito dalle parentesi:
 
 ```cpp
 void saluta() {
@@ -40,31 +40,33 @@ void saluta() {
 }
 
 int main() {
-    saluta();   // chiama la funzione
-    saluta();   // puoi chiamarla più volte
+    saluta();   // esegue la funzione — stampa "Ciao!"
+    saluta();   // la puoi chiamare quante volte vuoi
     return 0;
 }
 ```
 
-## Funzioni con parametri
+## Passare informazioni: i parametri
 
-I **parametri** sono valori che passi alla funzione quando la chiami:
+I **parametri** sono informazioni che puoi passare alla funzione quando la chiami:
 
 ```cpp
+// Questa funzione riceve un nome e lo usa per salutare
 void saluta(string nome) {
     cout << "Ciao, " << nome << "!" << endl;
 }
 
 int main() {
-    saluta("Alice");   // Ciao, Alice!
-    saluta("Bob");     // Ciao, Bob!
+    saluta("Alice");   // stampa: Ciao, Alice!
+    saluta("Bob");     // stampa: Ciao, Bob!
     return 0;
 }
 ```
 
-Puoi avere più parametri:
+Puoi avere più parametri separati da virgola:
 
 ```cpp
+// Riceve base e altezza, calcola area e perimetro
 void stampaRettangolo(int base, int altezza) {
     cout << "Area: " << base * altezza << endl;
     cout << "Perimetro: " << 2 * (base + altezza) << endl;
@@ -77,11 +79,12 @@ int main() {
 }
 ```
 
-## Funzioni con valore di ritorno
+## Ricevere un risultato: il valore di ritorno
 
-Il **valore di ritorno** è il risultato che la funzione restituisce con `return`:
+Una funzione può anche **restituire** un valore al codice che la ha chiamata. Si usa `return`:
 
 ```cpp
+// Riceve due numeri e restituisce la loro somma
 int somma(int a, int b) {
     return a + b;
 }
@@ -97,14 +100,14 @@ int main() {
 }
 ```
 
-Quando il compilatore incontra `return`, la funzione termina immediatamente e restituisce il valore.
+Quando il compilatore incontra `return`, la funzione si ferma subito e restituisce il valore.
 
-## Prototipo di funzione
+## Il prototipo: dichiarare prima di usare
 
-In C++, le funzioni devono essere **dichiarate prima di essere usate**. Se la definizione viene dopo il punto in cui la chiami, devi fornire un **prototipo** (o dichiarazione anticipata):
+In C++, una funzione deve essere **dichiarata prima del punto in cui la chiami**. Se vuoi definire le funzioni dopo il `main`, devi prima scrivere il loro **prototipo** (una dichiarazione anticipata):
 
 ```cpp
-// Prototipo: dichiara la firma della funzione
+// Prototipo — dice al compilatore che questa funzione esisterà
 int somma(int a, int b);
 
 int main() {
@@ -112,15 +115,17 @@ int main() {
     return 0;
 }
 
-// Definizione completa (dopo main)
+// Definizione completa — scritta dopo il main
 int somma(int a, int b) {
     return a + b;
 }
 ```
 
-## Valori di default dei parametri
+Il prototipo ha la stessa firma della funzione ma termina con `;` invece del corpo.
 
-Puoi assegnare valori predefiniti ai parametri. Se l'utente non li specifica, vengono usati i default:
+## Valori di default
+
+Puoi dare un valore predefinito a un parametro. Se chi chiama la funzione non lo specifica, viene usato il valore di default:
 
 ```cpp
 void saluta(string nome, string saluto = "Ciao") {
@@ -128,34 +133,34 @@ void saluta(string nome, string saluto = "Ciao") {
 }
 
 int main() {
-    saluta("Alice");              // Ciao, Alice!
-    saluta("Bob", "Buongiorno"); // Buongiorno, Bob!
+    saluta("Alice");               // usa il default — stampa: Ciao, Alice!
+    saluta("Bob", "Buongiorno");  // usa il valore specificato — stampa: Buongiorno, Bob!
     return 0;
 }
 ```
 
-I parametri con valori di default devono essere gli ultimi nella lista.
+I parametri con valori di default devono stare sempre in fondo alla lista.
 
-## Funzioni con `return` multipli
+## Più istruzioni `return`
 
-Una funzione può avere più istruzioni `return`:
+Una funzione può avere più punti di uscita. Appena il programma incontra `return`, la funzione si ferma:
 
 ```cpp
 string classificaVoto(int voto) {
     if (voto >= 9) return "Ottimo";
     if (voto >= 7) return "Buono";
     if (voto >= 6) return "Sufficiente";
-    return "Insufficiente";
+    return "Insufficiente";  // raggiunto solo se nessun return precedente è scattato
 }
 ```
 
-## Passaggio per valore
+## Passaggio per valore: la funzione riceve una copia
 
-Di default, i parametri vengono passati **per valore**: la funzione riceve una copia del valore e le modifiche non si riflettono sulla variabile originale:
+Di default, una funzione riceve una **copia** del valore. Le modifiche che fa non cambiano la variabile originale:
 
 ```cpp
 void raddoppia(int x) {
-    x = x * 2;    // modifica solo la copia locale
+    x = x * 2;    // modifica solo la copia — l'originale non cambia
     cout << "Dentro la funzione: " << x << endl;
 }
 
@@ -174,41 +179,36 @@ Dentro la funzione: 10
 Fuori dalla funzione: 5
 ```
 
-Per modificare la variabile originale, si usano i riferimenti (vedi la sezione apposita).
+Per modificare la variabile originale, si usano i riferimenti (trattati nella sezione memoria).
 
 ## Esempio pratico
 
 ```cpp
 #include <iostream>
-#include <cmath>
 using namespace std;
 
+// Calcola l'area di un cerchio dato il raggio
 double calcolaAreaCerchio(double raggio) {
     const double PI = 3.14159265358979;
     return PI * raggio * raggio;
 }
 
-double calcolaPerimetroCerchio(double raggio) {
-    const double PI = 3.14159265358979;
-    return 2 * PI * raggio;
-}
-
+// Restituisce true se il numero è pari, false altrimenti
 bool isPari(int numero) {
     return numero % 2 == 0;
 }
 
+// Restituisce il maggiore dei due numeri
 int massimo(int a, int b) {
     return (a > b) ? a : b;
 }
 
 int main() {
     double raggio = 5.0;
-    cout << "Cerchio con raggio " << raggio << ":" << endl;
-    cout << "Area: " << calcolaAreaCerchio(raggio) << endl;
-    cout << "Perimetro: " << calcolaPerimetroCerchio(raggio) << endl;
+    cout << "Area cerchio (r=" << raggio << "): " << calcolaAreaCerchio(raggio) << endl;
 
     int n = 7;
-    cout << n << " e' " << (isPari(n) ? "pari" : "dispari") << endl;
+    cout << n << " è " << (isPari(n) ? "pari" : "dispari") << endl;
 
     cout << "Massimo tra 15 e 23: " << massimo(15, 23) << endl;
 

@@ -1,72 +1,64 @@
 ---
 title: Input utente
-description: Come ricevere dati dall'utente in Python.
+description: Come chiedere informazioni all'utente durante l'esecuzione del programma.
 ---
+
+## Perché l'input è importante?
+
+Un programma che fa sempre le stesse cose con gli stessi dati è limitato. Con l'**input utente**, il programma può fare domande e comportarsi in modo diverso in base alle risposte. Questo è il primo passo per creare programmi davvero interattivi.
 
 ## La funzione `input()`
 
-La funzione `input()` permette al programma di **ricevere dati dall'utente** durante l'esecuzione. Il programma si ferma, aspetta che l'utente digiti qualcosa e prema Invio, poi continua.
+`input()` mostra un messaggio e poi si mette in attesa: il programma si ferma finché l'utente non scrive qualcosa e preme Invio.
 
 ```python
 nome = input("Come ti chiami? ")
 print(f"Ciao, {nome}!")
 ```
 
+Esempio di esecuzione:
 ```
 Come ti chiami? Alice
 Ciao, Alice!
 ```
 
-## Importante: `input()` restituisce sempre una stringa
+Il testo dentro le parentesi di `input()` è il messaggio che viene mostrato all'utente.
 
-Anche se l'utente digita un numero, `input()` lo restituisce come stringa (`str`). Devi convertirlo manualmente:
+## Attenzione: `input()` restituisce sempre testo
+
+Anche se l'utente digita un numero, `input()` lo tratta sempre come **testo** (stringa). Se vuoi fare calcoli, devi convertire:
 
 ```python
-# Questo è una STRINGA, non un numero!
+# Questo NON funziona per fare calcoli:
 eta_testo = input("Quanti anni hai? ")
-print(type(eta_testo))  # <class 'str'>
+# eta_testo è una stringa, es. "16" — non il numero 16!
 
-# Devi convertire per fare operazioni numeriche
+# Converti con int() per avere un numero intero:
 eta = int(input("Quanti anni hai? "))
-print(type(eta))        # <class 'int'>
-
 print(f"Tra 10 anni avrai {eta + 10} anni.")
+
+# Converti con float() per numeri decimali:
+altezza = float(input("Altezza in metri: "))
+print(f"Altezza: {altezza} m")
 ```
 
-## Conversioni comuni
+## Cosa succede se l'utente sbaglia?
 
-```python
-# Intero
-eta = int(input("Inserisci la tua età: "))
+Se l'utente digita "pippo" invece di un numero e tu usi `int()`, il programma crasha con un errore.
 
-# Decimale
-altezza = float(input("Inserisci la tua altezza in metri: "))
-
-# Lista di numeri (separati da spazio)
-testo = input("Inserisci dei numeri separati da spazio: ")
-numeri = [int(n) for n in testo.split()]
-print(numeri)
-```
-
-Esempio:
-```
-Inserisci dei numeri separati da spazio: 1 2 3 4 5
-[1, 2, 3, 4, 5]
-```
-
-## Gestire input non valido
-
-Se l'utente inserisce qualcosa di inaspettato (es. "pippo" quando aspetti un numero), Python genera un errore. Puoi gestirlo con `try/except`:
+Per gestire questo caso elegantemente, usa `try/except`:
 
 ```python
 try:
-    numero = int(input("Inserisci un numero intero: "))
+    numero = int(input("Inserisci un numero: "))
     print(f"Hai inserito: {numero}")
 except ValueError:
-    print("Errore: quello che hai inserito non è un numero intero.")
+    print("Quello non era un numero! Riprova.")
 ```
 
-## Chiedere fino a ottenere una risposta valida
+## Continuare a chiedere finché la risposta è valida
+
+Un pattern molto comune: ripetere la domanda finché l'utente non inserisce un valore accettabile.
 
 ```python
 while True:
@@ -74,26 +66,15 @@ while True:
         eta = int(input("Inserisci la tua età: "))
         if eta < 0 or eta > 120:
             print("Età non valida. Inserisci un numero tra 0 e 120.")
-            continue
-        break  # uscire dal ciclo solo se l'input è valido
+            continue   # riparte dall'inizio del ciclo
+        break          # esce dal ciclo se tutto è ok
     except ValueError:
-        print("Inserisci un numero intero, non testo.")
+        print("Scrivi un numero, non del testo.")
 
 print(f"La tua età è: {eta}")
 ```
 
-## Input con risposta sì/no
-
-```python
-risposta = input("Vuoi continuare? (s/n): ").lower()
-
-if risposta == "s" or risposta == "si" or risposta == "sì":
-    print("Continuiamo!")
-else:
-    print("Arrivederci!")
-```
-
-## Esempio pratico: calcolatrice interattiva
+## Esempio pratico: calcolatrice
 
 ```python
 print("Calcolatrice semplice")
@@ -112,11 +93,11 @@ try:
         risultato = a * b
     elif operazione == "/":
         if b == 0:
-            print("Errore: divisione per zero!")
+            print("Errore: non si divide per zero!")
         else:
             risultato = a / b
     else:
-        print("Operazione non valida.")
+        print("Operazione non riconosciuta.")
 
     print(f"Risultato: {a} {operazione} {b} = {risultato}")
 

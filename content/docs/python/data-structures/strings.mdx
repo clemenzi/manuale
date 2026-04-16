@@ -5,47 +5,50 @@ description: Come lavorare con il testo in Python.
 
 ## Cosa sono le stringhe?
 
-Una **stringa** (`str`) è una sequenza di caratteri. In Python le stringhe si scrivono tra virgolette singole o doppie:
+Una **stringa** è semplicemente del testo: un nome, un messaggio, una frase. In Python le stringhe si scrivono tra virgolette singole `'...'` o doppie `"..."`:
 
 ```python
 nome = "Alice"
 saluto = 'Ciao, mondo!'
 ```
 
-## Creare stringhe
+Usa virgolette doppie se dentro il testo c'è un apostrofo, e singole se c'è già una virgoletta doppia:
 
 ```python
-semplice = "Hello"
-con_apice = "It's a great day"   # virgolette doppie con apostrofo dentro
-con_virgolette = 'Disse "ciao"'  # virgolette singole con doppie dentro
-multiriga = """Questa stringa
+con_apice = "It's a great day"       # apostrofo dentro → virgolette doppie fuori
+con_virgolette = 'Disse "ciao!"'     # virgolette doppie dentro → singole fuori
+```
+
+Per testo su più righe, usa le virgolette triple:
+
+```python
+poesia = """Questa stringa
 si estende su
 più righe."""
 ```
 
-## Accedere ai caratteri (indicizzazione)
+## Accedere ai singoli caratteri
 
-Ogni carattere in una stringa ha un **indice** (posizione), che parte da `0`:
+Come nelle liste, ogni carattere ha una posizione (indice) che parte da `0`:
 
 ```python
 testo = "Python"
-print(testo[0])   # P
+print(testo[0])   # P  — primo carattere
 print(testo[1])   # y
-print(testo[-1])  # n  (l'ultimo carattere)
-print(testo[-2])  # o  (il penultimo)
+print(testo[-1])  # n  — ultimo carattere
+print(testo[-2])  # o  — penultimo
 ```
 
-## Tagliare le stringhe (slicing)
+## Estrarre una parte di stringa (slicing)
 
-Puoi estrarre una parte di una stringa con la sintassi `[inizio:fine]`:
+Puoi estrarre una sottostringa indicando da dove a dove:
 
 ```python
 testo = "Python"
-print(testo[0:3])   # Pyt  (da 0 incluso a 3 escluso)
-print(testo[2:])    # thon (da 2 fino alla fine)
-print(testo[:4])    # Pyth (dall'inizio fino a 4 escluso)
-print(testo[::2])   # Pto  (ogni 2 caratteri)
-print(testo[::-1])  # nohtyP (stringa al contrario)
+print(testo[0:3])   # Pyt   — dalla posizione 0 alla 2 (3 esclusa)
+print(testo[2:])    # thon  — dalla posizione 2 alla fine
+print(testo[:4])    # Pyth  — dall'inizio alla posizione 3
+print(testo[::-1])  # nohtyP — la stringa al contrario
 ```
 
 ## Lunghezza di una stringa
@@ -55,7 +58,9 @@ testo = "Python"
 print(len(testo))  # 6
 ```
 
-## Concatenazione e ripetizione
+## Mettere stringhe insieme
+
+Puoi unire due stringhe con `+` e ripetere una stringa con `*`:
 
 ```python
 a = "Ciao"
@@ -64,70 +69,77 @@ print(a + b)   # Ciao mondo
 print(a * 3)   # CiaoCiaoCiao
 ```
 
-## Metodi delle stringhe
+## Le f-string: il modo migliore per inserire variabili
 
-Le stringhe hanno molti metodi incorporati. Eccone i principali:
-
-```python
-testo = "  Ciao, Mondo!  "
-
-print(testo.upper())      # "  CIAO, MONDO!  "
-print(testo.lower())      # "  ciao, mondo!  "
-print(testo.strip())      # "Ciao, Mondo!"  (rimuove spazi iniziali e finali)
-print(testo.replace("Mondo", "Python"))  # "  Ciao, Python!  "
-print(testo.split(","))   # ['  Ciao', ' Mondo!  ']
-
-testo2 = "ciao"
-print(testo2.capitalize())  # "Ciao"
-print(testo2.startswith("ci"))  # True
-print(testo2.endswith("ao"))    # True
-print(testo2.find("ia"))        # 1 (indice dove inizia "ia")
-print(testo2.count("a"))        # 1 (numero di occorrenze)
-```
-
-## Verifica del contenuto
-
-```python
-print("123".isdigit())    # True  (solo cifre)
-print("abc".isalpha())    # True  (solo lettere)
-print("abc123".isalnum()) # True  (lettere e cifre)
-print("   ".isspace())    # True  (solo spazi)
-```
-
-## Formattazione delle stringhe (f-string)
-
-Il modo più moderno e pratico per inserire variabili dentro le stringhe è la **f-string** (disponibile da Python 3.6):
+Invece di unire le stringhe con `+` (che è scomodo), usa le **f-string**: scrivi una `f` prima delle virgolette e metti le variabili tra parentesi graffe `{}`:
 
 ```python
 nome = "Alice"
 eta = 16
 print(f"Mi chiamo {nome} e ho {eta} anni.")
 # Mi chiamo Alice e ho 16 anni.
-```
 
-Puoi anche eseguire espressioni dentro le parentesi graffe:
-
-```python
 a = 5
 b = 3
 print(f"La somma di {a} e {b} è {a + b}.")
 # La somma di 5 e 3 è 8.
 ```
 
-## Stringhe e caratteri speciali
+Le f-string sono la forma moderna e più leggibile. Usale sempre quando devi mettere variabili nel testo.
 
-Alcune sequenze iniziano con `\` e hanno un significato speciale:
+## Metodi utili delle stringhe
 
-| Sequenza | Significato |
-|----------|-------------|
-| `\n` | Nuova riga |
-| `\t` | Tabulazione |
-| `\\` | Backslash letterale |
-| `\"` | Virgolette doppie |
-| `\'` | Virgolette singole |
+Le stringhe hanno molti strumenti integrati. Eccone i più utili:
+
+```python
+testo = "  Ciao, Mondo!  "
+
+print(testo.upper())      # "  CIAO, MONDO!  "  — tutto maiuscolo
+print(testo.lower())      # "  ciao, mondo!  "  — tutto minuscolo
+print(testo.strip())      # "Ciao, Mondo!"      — rimuove spazi iniziali e finali
+print(testo.replace("Mondo", "Python"))  # "  Ciao, Python!  "
+
+testo2 = "mela,banana,ciliegia"
+print(testo2.split(","))   # ['mela', 'banana', 'ciliegia']  — divide in lista
+print(",".join(["mela", "banana", "ciliegia"]))  # "mela,banana,ciliegia"  — unisce
+
+testo3 = "ciao"
+print(testo3.capitalize())       # "Ciao"   — prima lettera maiuscola
+print(testo3.startswith("ci"))   # True  — inizia con "ci"?
+print(testo3.endswith("ao"))     # True  — finisce con "ao"?
+print(testo3.find("ia"))         # 1     — dove inizia "ia"?
+print(testo3.count("a"))         # 1     — quante volte compare "a"?
+```
+
+## Caratteri speciali
+
+Alcune combinazioni di caratteri con `\` hanno un significato speciale:
+
+| Sequenza | Significato | Esempio |
+|----------|-------------|---------|
+| `\n` | Nuova riga | `"Prima riga\nSeconda riga"` |
+| `\t` | Tabulazione (spazi) | `"Nome:\tAlice"` |
+| `\\` | Un singolo backslash | `"C:\\Users\\Alice"` |
+| `\"` | Virgolette doppie dentro la stringa | `"Disse \"ciao!\""` |
 
 ```python
 print("Prima riga\nSeconda riga")
+# Prima riga
+# Seconda riga
+
 print("Nome:\tAlice")
-print("Dice: \"Ciao!\"")
+# Nome:	Alice
+```
+
+## Le stringhe non si modificano
+
+Attenzione: le stringhe sono **immutabili**. Non puoi cambiare un singolo carattere. Se hai bisogno di una stringa modificata, devi crearne una nuova:
+
+```python
+testo = "ciao"
+# testo[0] = "C"  — ERRORE! Non si può modificare
+
+# Crea invece una nuova stringa
+testo = "C" + testo[1:]
+print(testo)  # Ciao
 ```

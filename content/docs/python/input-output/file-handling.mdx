@@ -1,76 +1,63 @@
 ---
-title: Gestione file
-description: Come leggere e scrivere file in Python.
+title: Gestione dei file
+description: Come leggere e scrivere file con Python — per salvare e caricare dati.
 ---
 
-## Aprire un file: `open()`
+## Perché lavorare con i file?
 
-Per lavorare con i file, si usa la funzione `open()`. Restituisce un **oggetto file** con cui puoi leggere o scrivere.
+Quando un programma si chiude, tutto quello che era in memoria scompare. Se vuoi che i dati sopravvivano tra una esecuzione e l'altra (come i punteggi di un gioco, o una lista di nomi), devi **salvarli su file**.
 
-```python
-file = open("nome_file.txt", "modalità")
-```
+## Aprire un file
 
-Le modalità principali:
+Per lavorare con un file, lo "apri" con la funzione `open()`. Devi specificare il nome del file e la **modalità** (cosa vuoi fare):
 
-| Modalità | Descrizione |
-|----------|-------------|
-| `"r"` | Lettura (default). Errore se il file non esiste. |
-| `"w"` | Scrittura. Crea il file se non esiste, lo svuota se esiste. |
-| `"a"` | Aggiunta. Aggiunge alla fine senza cancellare il contenuto. |
-| `"x"` | Creazione esclusiva. Errore se il file esiste già. |
-| `"r+"` | Lettura e scrittura. |
-| `"b"` | Modalità binaria (es. `"rb"`, `"wb"`). |
+| Modalità | Cosa fa |
+|----------|---------|
+| `"r"` | Legge il file (deve esistere) |
+| `"w"` | Scrive nel file (lo crea se non esiste, lo svuota se esiste) |
+| `"a"` | Aggiunge alla fine del file senza cancellare il contenuto |
 
-## Leggere un file
+## Il modo corretto: il blocco `with`
 
-### Leggere tutto il contenuto
-
-```python
-file = open("esempio.txt", "r")
-contenuto = file.read()
-print(contenuto)
-file.close()
-```
-
-### Leggere riga per riga
-
-```python
-file = open("esempio.txt", "r")
-for riga in file:
-    print(riga, end="")  # riga include già \n
-file.close()
-```
-
-### Leggere come lista di righe
-
-```python
-file = open("esempio.txt", "r")
-righe = file.readlines()   # lista di stringhe, una per riga
-print(righe)
-file.close()
-```
-
-## Il modo corretto: `with`
-
-È **fortemente consigliato** usare il costrutto `with`, che chiude automaticamente il file anche se si verifica un errore:
+Usa sempre il costrutto `with` per aprire i file. Garantisce che il file venga chiuso correttamente anche se c'è un errore:
 
 ```python
 with open("esempio.txt", "r") as file:
     contenuto = file.read()
     print(contenuto)
-# Il file viene chiuso automaticamente qui
+# Il file viene chiuso automaticamente quando esci dal blocco with
 ```
+
+## Leggere un file
+
+**Leggere tutto il contenuto in una volta:**
+
+```python
+with open("esempio.txt", "r") as file:
+    contenuto = file.read()
+    print(contenuto)
+```
+
+**Leggere riga per riga** (utile per file grandi):
 
 ```python
 with open("esempio.txt", "r") as file:
     for riga in file:
-        print(riga.strip())  # strip() rimuove \n e spazi
+        print(riga.strip())   # strip() rimuove il carattere di a capo alla fine
+```
+
+**Ottenere tutte le righe come lista:**
+
+```python
+with open("esempio.txt", "r") as file:
+    righe = file.readlines()   # lista di stringhe, una per riga
+
+print(righe)
 ```
 
 ## Scrivere su un file
 
-### Creare/sovrascrivere un file
+**Creare un nuovo file (o sovrascriverlo):**
 
 ```python
 with open("output.txt", "w") as file:
@@ -79,57 +66,42 @@ with open("output.txt", "w") as file:
     file.write("Terza riga\n")
 ```
 
-### Scrivere più righe con `writelines()`
+> **Attenzione:** La modalità `"w"` cancella tutto il contenuto precedente del file. Se vuoi aggiungere senza cancellare, usa `"a"`.
 
-```python
-righe = ["Prima riga\n", "Seconda riga\n", "Terza riga\n"]
-
-with open("output.txt", "w") as file:
-    file.writelines(righe)
-```
-
-### Aggiungere a un file esistente
+**Aggiungere righe a un file esistente:**
 
 ```python
 with open("output.txt", "a") as file:
-    file.write("Riga aggiunta\n")
+    file.write("Questa riga viene aggiunta alla fine\n")
 ```
 
-## Verificare se un file esiste
+## Gestire il caso in cui il file non esiste
 
-```python
-import os
-
-if os.path.exists("esempio.txt"):
-    print("Il file esiste")
-else:
-    print("Il file non esiste")
-```
-
-## Gestire gli errori con i file
+Se provi ad aprire un file che non esiste in modalità `"r"`, Python dà un errore. Usa `try/except` per gestirlo:
 
 ```python
 try:
-    with open("file_inesistente.txt", "r") as file:
+    with open("dati.txt", "r") as file:
         contenuto = file.read()
+        print(contenuto)
 except FileNotFoundError:
-    print("Errore: il file non esiste.")
-except PermissionError:
-    print("Errore: non hai i permessi per aprire il file.")
+    print("Il file non esiste ancora.")
 ```
 
-## Esempio pratico: registro studenti
+## Esempio pratico: salvare e caricare una lista
 
 ```python
-def salva_studenti(studenti, filename):
-    with open(filename, "w") as file:
+def salva_studenti(studenti, nome_file):
+    """Salva la lista degli studenti su file."""
+    with open(nome_file, "w") as file:
         for nome, voto in studenti:
             file.write(f"{nome},{voto}\n")
 
-def carica_studenti(filename):
+def carica_studenti(nome_file):
+    """Carica la lista degli studenti dal file."""
     studenti = []
     try:
-        with open(filename, "r") as file:
+        with open(nome_file, "r") as file:
             for riga in file:
                 parti = riga.strip().split(",")
                 if len(parti) == 2:
@@ -140,12 +112,19 @@ def carica_studenti(filename):
         print("File non trovato, parto con lista vuota.")
     return studenti
 
-# Salva i dati
+# Salva i dati su file
 studenti = [("Alice", 8.5), ("Bob", 7.0), ("Carlo", 9.2)]
 salva_studenti(studenti, "studenti.csv")
 
-# Ricarica i dati
+# Ricarica i dati dal file
 caricati = carica_studenti("studenti.csv")
 for nome, voto in caricati:
     print(f"{nome}: {voto}")
+```
+
+Il file `studenti.csv` conterrà:
+```
+Alice,8.5
+Bob,7.0
+Carlo,9.2
 ```

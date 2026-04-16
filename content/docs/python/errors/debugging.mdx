@@ -3,44 +3,61 @@ title: Debugging di base
 description: Come trovare e correggere gli errori nei programmi Python.
 ---
 
-## Cos'è il debugging?
+## Perché ti serve questo?
 
-Il **debugging** (o debug) è il processo di trovare e correggere gli errori (bug) in un programma. Anche i programmatori esperti passano molto tempo a fare debug.
+Scrivere codice senza errori al primo colpo è praticamente impossibile — anche per i programmatori più esperti al mondo. Il **debugging** (o "debug") è l'arte di trovare e correggere gli errori nel tuo programma.
 
-## Tipi di errori in Python
+Pensa a un detective: quando qualcosa non funziona, devi raccogliere indizi, fare ipotesi e testare le tue teorie finché non trovi il colpevole.
 
-### 1. Errori di sintassi (SyntaxError)
+---
 
-Il codice non rispetta le regole del linguaggio. Python li segnala prima di eseguire il programma:
+## I tre tipi di errori
+
+### 1. Errori di sintassi
+
+Sono come errori grammaticali: hai scritto qualcosa che Python non capisce. Vengono segnalati **prima ancora che il programma parta**.
 
 ```python
-# Manca i due punti dopo if
+# Manca i due punti alla fine della riga "if"
 if x > 0
     print(x)
 # SyntaxError: expected ':'
 ```
 
-### 2. Errori a runtime
+Sono i più semplici da correggere: Python ti dice esattamente dove si trova il problema.
 
-Il codice è sintatticamente corretto ma qualcosa va storto durante l'esecuzione:
+---
+
+### 2. Errori durante l'esecuzione
+
+Il codice è scritto correttamente, ma qualcosa va storto **mentre il programma sta girando**.
 
 ```python
 lista = [1, 2, 3]
-print(lista[10])   # IndexError: list index out of range
+print(lista[10])   # Stai chiedendo il decimo elemento, ma ne esistono solo 3!
+# IndexError: list index out of range
 ```
+
+È come chiedere alla cassiera di un negozio il prodotto numero 10, ma sullo scaffale ce ne sono solo 3.
+
+---
 
 ### 3. Errori logici
 
-Il programma gira senza errori ma produce risultati sbagliati. Sono i più difficili da trovare:
+Questi sono i più insidiosi: il programma **gira senza errori**, ma produce risultati sbagliati. Python non se ne accorge — sei tu che devi trovarli.
 
 ```python
-def media(numeri):
-    return sum(numeri) / len(numeri) - 1  # Bug: il -1 non dovrebbe esserci
+def calcola_media(numeri):
+    return sum(numeri) / len(numeri) - 1  # Bug! Il "-1" non dovrebbe esserci
+
+print(calcola_media([8, 7, 9]))  # Stampa 7.0 invece di 8.0 — sbagliato!
 ```
 
-## Leggere i messaggi di errore (Traceback)
+---
 
-Quando Python incontra un errore, mostra un **traceback**. Imparare a leggerlo è fondamentale:
+## Leggere il messaggio di errore (Traceback)
+
+Quando Python trova un errore, stampa un **traceback** — una specie di "mappa" che ti mostra cosa stava succedendo nel momento dell'errore.
 
 ```
 Traceback (most recent call last):
@@ -51,102 +68,133 @@ Traceback (most recent call last):
 ZeroDivisionError: division by zero
 ```
 
-Leggi dal basso verso l'alto:
-- L'ultima riga ti dice il **tipo di errore** e il messaggio
-- Le righe precedenti mostrano la **sequenza di chiamate** che ha portato all'errore
+**Come leggerlo:** parti dall'ultima riga e vai su.
+- **Ultima riga:** il tipo di errore e la descrizione (`ZeroDivisionError: division by zero`)
+- **Righe precedenti:** la sequenza di passaggi che ha portato all'errore (prima è stato chiamato `dividi`, che è a riga 10, e dentro `dividi` l'errore è a riga 4)
 
-## Debug con `print()`
+---
 
-Il metodo più semplice: inserire `print()` strategici per vedere il valore delle variabili:
+## Tecnica 1: usare `print()` come spia
+
+Il modo più semplice per capire cosa sta succedendo dentro il tuo programma è inserire delle `print()` temporanee per "spiare" i valori delle variabili.
 
 ```python
 def calcola_media(voti):
-    print(f"DEBUG: voti ricevuti: {voti}")   # stampa di debug
+    print(f"DEBUG: voti ricevuti → {voti}")   # Spia: cosa arriva alla funzione?
     totale = sum(voti)
-    print(f"DEBUG: totale = {totale}")        # stampa di debug
+    print(f"DEBUG: totale calcolato → {totale}")  # Spia: il totale è giusto?
     media = totale / len(voti)
-    print(f"DEBUG: media = {media}")          # stampa di debug
+    print(f"DEBUG: media calcolata → {media}")    # Spia: la media è giusta?
     return media
 
 risultato = calcola_media([8, 7, 9])
 print(f"Risultato finale: {risultato}")
 ```
 
-Ricorda di rimuovere le stampe di debug quando hai finito!
+Quando hai trovato il bug e corretto il codice, **ricordati di eliminare le righe di debug** prima di consegnare o condividere il programma.
 
-## Il modulo `logging`
+---
 
-Meglio delle print per il debug: il modulo `logging` permette di filtrare e disattivare facilmente i messaggi:
+## Tecnica 2: il modulo `logging`
+
+Le `print()` funzionano, ma hanno un problema: devi ricordarti di eliminarle tutte. Il modulo `logging` è più elegante: puoi **accenderlo o spegnerlo** con una sola riga.
 
 ```python
 import logging
 
-# Configura il livello di log
+# Questa riga "accende" tutti i messaggi di debug
 logging.basicConfig(level=logging.DEBUG)
 
 def calcola_media(voti):
-    logging.debug(f"voti ricevuti: {voti}")
+    logging.debug(f"Voti ricevuti: {voti}")
     totale = sum(voti)
-    logging.debug(f"totale = {totale}")
+    logging.debug(f"Totale: {totale}")
     return totale / len(voti)
 
 calcola_media([8, 7, 9])
 ```
 
-Livelli di log (dal meno al più grave): DEBUG, INFO, WARNING, ERROR, CRITICAL.
+I livelli di gravità, dal meno al più grave:
 
-## Il debugger interattivo: `pdb`
+| Livello | Quando usarlo |
+|---------|--------------|
+| `DEBUG` | Dettagli per il debug |
+| `INFO` | Informazioni generali ("il programma è partito") |
+| `WARNING` | Qualcosa di strano, ma il programma continua |
+| `ERROR` | Qualcosa è andato storto |
+| `CRITICAL` | Errore gravissimo |
 
-Python include un debugger a riga di comando chiamato `pdb`:
+---
+
+## Tecnica 3: il debugger interattivo `pdb`
+
+Immagina di poter **mettere in pausa** il tuo programma nel mezzo dell'esecuzione e guardare dentro. È esattamente quello che fa `pdb`.
 
 ```python
-import pdb
-
 def funzione_problematica(x, y):
-    pdb.set_trace()   # il programma si ferma qui
+    breakpoint()   # Il programma si ferma qui e aspetta i tuoi comandi
     risultato = x / y
     return risultato
 
 funzione_problematica(10, 2)
 ```
 
-Comandi base di `pdb`:
-- `n` (next): esegui la riga successiva
-- `s` (step): entra in una funzione
-- `p variabile` (print): stampa il valore di una variabile
-- `c` (continue): continua fino al prossimo breakpoint
-- `q` (quit): esci dal debugger
+Quando il programma si ferma, puoi scrivere comandi:
 
-Da Python 3.7+, puoi usare `breakpoint()` invece di `pdb.set_trace()`.
+| Comando | Significato |
+|---------|------------|
+| `n` | Esegui la riga successiva (next) |
+| `s` | Entra dentro una funzione (step) |
+| `p nome_variabile` | Stampa il valore di una variabile |
+| `c` | Continua fino al prossimo punto di pausa (continue) |
+| `q` | Esci dal debugger (quit) |
 
-## Usare un IDE con debugger grafico
+> `breakpoint()` è disponibile da Python 3.7 in poi. Nelle versioni precedenti si usava `import pdb; pdb.set_trace()`.
 
-Editor come **VS Code** o **PyCharm** offrono un debugger grafico molto più comodo:
-- Puoi cliccare per aggiungere **breakpoint** (punti di fermata)
-- Puoi vedere tutte le variabili in una finestra apposita
-- Puoi avanzare riga per riga con pulsanti
+---
 
-## Tecniche di debug utili
+## Tecnica 4: il debugger grafico (VS Code o PyCharm)
 
-### Controllare il tipo di una variabile
+Se usi un editor come **VS Code** o **PyCharm**, hai a disposizione un debugger grafico molto più comodo di `pdb`:
+
+- Clicca sul numero di riga per aggiungere un **punto di pausa** (breakpoint)
+- Avanza riga per riga con i pulsanti
+- Guarda tutte le variabili in una finestra apposita, senza dover digitare nulla
+
+---
+
+## Trucchi utili
+
+### Controlla il tipo di una variabile
+
+A volte il bug è che una variabile contiene un tipo di dato inaspettato (ad esempio una stringa invece di un numero).
 
 ```python
 x = qualche_funzione()
-print(type(x), x)   # mostra tipo e valore
+print(type(x), x)   # Stampa sia il tipo che il valore
 ```
 
-### `assert` per verificare condizioni
+---
+
+### Usa `assert` per aggiungere controlli
+
+`assert` ti permette di scrivere "mi aspetto che questa condizione sia vera — se non lo è, fermati e dimmi perché".
 
 ```python
 def calcola_area(base, altezza):
-    assert base > 0, f"La base deve essere positiva, ricevuto: {base}"
-    assert altezza > 0, f"L'altezza deve essere positiva, ricevuta: {altezza}"
+    assert base > 0, f"La base deve essere positiva, ma ho ricevuto: {base}"
+    assert altezza > 0, f"L'altezza deve essere positiva, ma ho ricevuto: {altezza}"
     return base * altezza
 
-calcola_area(5, 3)     # funziona
-calcola_area(-1, 3)    # AssertionError: La base deve essere positiva, ricevuto: -1
+calcola_area(5, 3)     # Funziona, area = 15
+calcola_area(-1, 3)    # AssertionError: La base deve essere positiva, ma ho ricevuto: -1
 ```
 
-### Isolare il problema
+---
 
-Quando hai un bug, cerca di isolare la parte di codice che lo causa. Crea un piccolo esempio riproducibile e testalo separatamente.
+### Isola il problema
+
+Se il bug è in un programma lungo, crea un piccolo programma separato che riproduce solo il problema. Questo ti aiuta a:
+- Eliminare tutto il codice non rilevante
+- Concentrarti solo sul pezzo problematico
+- Testare soluzioni più rapidamente

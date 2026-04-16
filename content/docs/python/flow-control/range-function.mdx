@@ -1,27 +1,19 @@
 ---
-title: Funzione range()
-description: Come usare range() per generare sequenze numeriche in Python.
+title: La funzione range()
+description: Come generare sequenze di numeri per i cicli in Python.
 ---
 
 ## Cos'è `range()`?
 
-`range()` è una funzione integrata di Python che genera una **sequenza di numeri interi**. È usata principalmente nei cicli `for` per ripetere qualcosa un numero preciso di volte.
+`range()` è una funzione di Python che genera una **sequenza di numeri interi**. Si usa moltissimo nei cicli `for` quando vuoi ripetere qualcosa un numero preciso di volte, o quando vuoi lavorare con numeri in sequenza.
 
-Non genera una lista vera e propria, ma un oggetto `range` che produce i numeri uno alla volta (più efficiente in memoria).
+Pensa a `range()` come a un contatore automatico: tu gli dici da dove partire, dove fermarsi e di quanto saltare ad ogni passo.
 
-## Sintassi
+## Le tre forme di `range()`
 
-`range()` accetta da uno a tre argomenti:
+### Solo il numero finale: `range(fine)`
 
-```python
-range(fine)
-range(inizio, fine)
-range(inizio, fine, passo)
-```
-
-## `range(fine)` - da zero a n-1
-
-Con un solo argomento, genera numeri da `0` a `fine - 1`:
+Genera numeri da `0` fino a `fine - 1` (il numero finale non è incluso):
 
 ```python
 for i in range(5):
@@ -37,7 +29,11 @@ Output:
 4
 ```
 
-## `range(inizio, fine)` - da a a b-1
+> **Perché parte da 0?** In programmazione si conta quasi sempre da 0. È una convenzione che incontrerai spesso. `range(5)` genera 5 numeri, partendo da 0.
+
+### Inizio e fine: `range(inizio, fine)`
+
+Genera numeri da `inizio` fino a `fine - 1`:
 
 ```python
 for i in range(2, 7):
@@ -53,12 +49,14 @@ Output:
 6
 ```
 
-## `range(inizio, fine, passo)` - con incremento
+Il numero finale (`7`) non è incluso. È come dire "da 2 incluso a 7 escluso".
 
-Il terzo argomento è il **passo** (quanto si incrementa a ogni iterazione):
+### Con il passo: `range(inizio, fine, passo)`
+
+Il terzo parametro indica di quanto avanzare ad ogni passo:
 
 ```python
-# Numeri pari da 0 a 10
+# Solo i numeri pari da 0 a 10
 for i in range(0, 11, 2):
     print(i)
 ```
@@ -73,44 +71,34 @@ Output:
 10
 ```
 
+Il passo può anche essere negativo, per contare al contrario:
+
 ```python
-# Conto alla rovescia
-for i in range(10, 0, -1):
+# Conto alla rovescia da 5 a 1
+for i in range(5, 0, -1):
     print(i)
+
+print("Via!")
 ```
 
 Output:
 ```
-10
-9
-8
-7
-6
 5
 4
 3
 2
 1
+Via!
 ```
 
-## Convertire range in lista
+## Convertire range in una lista
 
-Puoi convertire un `range` in una lista con `list()`:
-
-```python
-print(list(range(5)))       # [0, 1, 2, 3, 4]
-print(list(range(1, 6)))    # [1, 2, 3, 4, 5]
-print(list(range(0, 10, 2))) # [0, 2, 4, 6, 8]
-```
-
-## Lunghezza di un range
-
-Puoi usare `len()` su un range:
+Se vuoi vedere tutti i numeri generati da un `range`, convertilo in lista con `list()`:
 
 ```python
-print(len(range(10)))      # 10
-print(len(range(2, 8)))    # 6
-print(len(range(0, 10, 2))) # 5
+print(list(range(5)))         # [0, 1, 2, 3, 4]
+print(list(range(1, 6)))      # [1, 2, 3, 4, 5]
+print(list(range(0, 10, 2)))  # [0, 2, 4, 6, 8]
 ```
 
 ## Esempi pratici
@@ -119,12 +107,29 @@ print(len(range(0, 10, 2))) # 5
 
 ```python
 totale = 0
-for i in range(1, 101):
+for i in range(1, 101):  # da 1 a 100 incluso
     totale += i
+
 print(totale)  # 5050
 ```
 
-### Accedere a elementi di una lista tramite indice
+### La tabellina di un numero
+
+```python
+n = 7
+for i in range(1, 11):
+    print(f"{n} x {i} = {n * i}")
+```
+
+Output:
+```
+7 x 1 = 7
+7 x 2 = 14
+...
+7 x 10 = 70
+```
+
+### Accedere agli elementi di una lista tramite posizione
 
 ```python
 frutta = ["mela", "banana", "ciliegia"]
@@ -140,12 +145,4 @@ Posizione 1: banana
 Posizione 2: ciliegia
 ```
 
-Nota: spesso è più elegante usare `enumerate()` per questo scopo.
-
-### Tabellina
-
-```python
-n = 7
-for i in range(1, 11):
-    print(f"{n} x {i} = {n * i}")
-```
+> **Suggerimento:** Nella maggior parte dei casi, è più semplice e leggibile usare `enumerate()` invece di `range(len(...))`. Vedi il capitolo sui cicli `for`.

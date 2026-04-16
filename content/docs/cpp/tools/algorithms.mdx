@@ -3,25 +3,21 @@ title: Algoritmi di Base
 description: Introduzione agli algoritmi di ricerca e ordinamento più comuni, implementati in C++.
 ---
 
-## Cosa è un algoritmo?
+## Perché ti serve questo?
 
-Un **algoritmo** è una sequenza di istruzioni ben definite che, partendo da un input, produce un output in un numero finito di passi.
+Un **algoritmo** è una sequenza di passi ben definiti per risolvere un problema — come una ricetta di cucina.
 
-In parole semplici: è una "ricetta" per risolvere un problema.
+Capire gli algoritmi di base ti insegna a pensare in modo strutturato e a valutare quanto "veloce" o "lento" è il tuo codice. Sono fondamentali in informatica.
 
-Gli algoritmi si valutano principalmente per:
-- **Correttezza**: produce sempre il risultato giusto?
-- **Efficienza**: quanto tempo e memoria richiede?
-
-In questa sezione vediamo i quattro algoritmi di base più importanti per chi inizia: ricerca lineare, ricerca binaria, bubble sort e selection sort.
+Vediamo i quattro algoritmi più importanti per chi inizia: ricerca lineare, ricerca binaria, bubble sort e selection sort.
 
 ## Ricerca Lineare
 
 ### Come funziona
 
-La **ricerca lineare** (o ricerca sequenziale) è l'algoritmo più semplice: scorre l'array dall'inizio alla fine, confrontando ogni elemento con il valore cercato.
+La **ricerca lineare** è la più semplice: guardi gli elementi uno per uno dall'inizio alla fine, finché non trovi quello che cerchi.
 
-È come cercare le chiavi di casa guardando in ogni posto uno alla volta.
+È come cercare il tuo nome in un elenco scritto a mano: leggi il primo nome, poi il secondo, poi il terzo... finché lo trovi o arrivi in fondo.
 
 ### Implementazione
 
@@ -29,7 +25,7 @@ La **ricerca lineare** (o ricerca sequenziale) è l'algoritmo più semplice: sco
 #include <iostream>
 using namespace std;
 
-// Restituisce l'indice dell'elemento cercato, o -1 se non trovato
+// Cerca target nell'array. Restituisce la posizione (indice) oppure -1 se non trovato.
 int ricercaLineare(int arr[], int dimensione, int target) {
     for (int i = 0; i < dimensione; i++) {
         if (arr[i] == target) {
@@ -63,24 +59,23 @@ Trovato 42 alla posizione 3
 
 ### Caratteristiche
 
-- **Funziona su array non ordinati**: non importa l'ordine degli elementi
-- **Nel caso peggiore** (elemento non presente o alla fine): controlla tutti gli `n` elementi
-- **Nel caso migliore** (elemento in prima posizione): controlla solo 1 elemento
-- **Semplicissimo** da implementare e capire
+- Funziona su array **non ordinati** — l'ordine non importa
+- Nel caso peggiore (elemento non presente o all'ultimo posto): controlla tutti gli `n` elementi
+- Semplicissimo da scrivere e capire
 
 ## Ricerca Binaria
 
 ### Come funziona
 
-La **ricerca binaria** è molto più efficiente della ricerca lineare, ma richiede che l'array sia **già ordinato**.
+La **ricerca binaria** è molto più veloce, ma richiede che l'array sia **già ordinato**.
 
-L'idea è simile a cercare una parola nel dizionario: non inizi dalla prima pagina, ma apri il dizionario a metà, capisci se la parola cercata viene prima o dopo, e ripeti dimezzando lo spazio di ricerca ogni volta.
+Pensa a quando cerchi una parola nel dizionario. Non inizi dalla prima pagina — apri il dizionario a metà. Se la parola viene prima, guardi nella prima metà; se viene dopo, guardi nella seconda metà. Ripeti, dimezzando ogni volta lo spazio di ricerca.
 
-Passi dell'algoritmo:
+Passi:
 1. Guarda l'elemento al centro dell'array
 2. Se è quello cercato, hai finito
-3. Se il cercato è più piccolo, continua solo nella metà sinistra
-4. Se il cercato è più grande, continua solo nella metà destra
+3. Se quello cercato è più piccolo, continua solo nella metà sinistra
+4. Se quello cercato è più grande, continua solo nella metà destra
 5. Ripeti finché trovi l'elemento o lo spazio si esaurisce
 
 ### Implementazione
@@ -97,11 +92,11 @@ int ricercaBinaria(int arr[], int dimensione, int target) {
         int centro = sinistra + (destra - sinistra) / 2;
 
         if (arr[centro] == target) {
-            return centro;       // trovato!
+            return centro;              // trovato!
         } else if (arr[centro] < target) {
-            sinistra = centro + 1;  // cerca nella metà destra
+            sinistra = centro + 1;      // cerca nella metà destra
         } else {
-            destra = centro - 1;    // cerca nella metà sinistra
+            destra = centro - 1;        // cerca nella metà sinistra
         }
     }
 
@@ -136,33 +131,18 @@ Trovato 23 alla posizione 5
 Cerchiamo `23` in `{2, 5, 8, 12, 16, 23, 38, 45, 72, 91}`:
 
 ```
-Passo 1: sinistra=0, destra=9, centro=4
-         arr[4] = 16, cercato=23 → 16 < 23, vai a destra
-         sinistra = 5
-
-Passo 2: sinistra=5, destra=9, centro=7
-         arr[7] = 45, cercato=23 → 45 > 23, vai a sinistra
-         destra = 6
-
-Passo 3: sinistra=5, destra=6, centro=5
-         arr[5] = 23, cercato=23 → TROVATO! indice=5
+Passo 1: centro = 4 → arr[4] = 16 < 23 → vai a destra (sinistra = 5)
+Passo 2: centro = 7 → arr[7] = 45 > 23 → vai a sinistra (destra = 6)
+Passo 3: centro = 5 → arr[5] = 23 → TROVATO!
 ```
 
-In soli 3 passi su un array di 10 elementi!
-
-### Caratteristiche
-
-- **Richiede array ordinato**: fondamentale!
-- **Molto efficiente**: su un array di un milione di elementi, bastano circa 20 confronti
-- **Più complessa** da implementare rispetto alla ricerca lineare
+Soli 3 passi su un array di 10 elementi. Con un milione di elementi, ne basterebbero circa 20.
 
 ## Bubble Sort
 
 ### Come funziona
 
-Il **bubble sort** (ordinamento a bolla) è uno degli algoritmi di ordinamento più semplici da capire.
-
-Funziona così: scorre l'array più volte, ogni volta confrontando elementi adiacenti e scambiandoli se sono nell'ordine sbagliato. Gli elementi "grandi" risalgono verso la fine dell'array come bolle d'acqua, da qui il nome.
+Il **bubble sort** (ordinamento a bolla) scorre l'array più volte. A ogni passata, confronta gli elementi vicini a coppie e li scambia se sono nell'ordine sbagliato. I valori grandi "salgono" verso la fine, come bolle d'acqua.
 
 ### Implementazione
 
@@ -172,10 +152,10 @@ using namespace std;
 
 void bubbleSort(int arr[], int dimensione) {
     for (int i = 0; i < dimensione - 1; i++) {
-        // Dopo ogni passata, l'elemento più grande è già in posizione
+        // Ogni passata sposta il valore più grande in fondo
         for (int j = 0; j < dimensione - 1 - i; j++) {
             if (arr[j] > arr[j + 1]) {
-                // Scambia arr[j] e arr[j+1]
+                // Scambia i due elementi vicini
                 int temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
@@ -216,39 +196,15 @@ Dopo l'ordinamento:     11, 12, 22, 25, 34, 64, 90
 
 ### Visualizzazione di una passata
 
-Array iniziale: `{64, 34, 25, 12}`
+Array: `{64, 34, 25, 12}`
 
 ```
-Confronto 64 e 34: 64 > 34 → scambia → {34, 64, 25, 12}
-Confronto 64 e 25: 64 > 25 → scambia → {34, 25, 64, 12}
-Confronto 64 e 12: 64 > 12 → scambia → {34, 25, 12, 64}
+64 e 34: 64 > 34 → scambia → {34, 64, 25, 12}
+64 e 25: 64 > 25 → scambia → {34, 25, 64, 12}
+64 e 12: 64 > 12 → scambia → {34, 25, 12, 64}
 ```
 
-Dopo la prima passata, il 64 (il più grande) è in fondo. Si ripete per il resto.
-
-### Versione ottimizzata
-
-Se l'array è già ordinato, la versione base continua a fare passate inutili. Possiamo aggiungere un controllo:
-
-```cpp
-void bubbleSortOttimizzato(int arr[], int dimensione) {
-    for (int i = 0; i < dimensione - 1; i++) {
-        bool scambioAvvenuto = false;
-
-        for (int j = 0; j < dimensione - 1 - i; j++) {
-            if (arr[j] > arr[j + 1]) {
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-                scambioAvvenuto = true;
-            }
-        }
-
-        // Se non è avvenuto nessuno scambio, l'array è già ordinato
-        if (!scambioAvvenuto) break;
-    }
-}
-```
+Il 64 è finito in fondo. Si ripete per il resto.
 
 ## Selection Sort
 
@@ -256,11 +212,11 @@ void bubbleSortOttimizzato(int arr[], int dimensione) {
 
 Il **selection sort** (ordinamento per selezione) funziona in modo diverso:
 
-1. Trova il valore più piccolo nell'array e mettilo in prima posizione
+1. Trova il valore più piccolo e mettilo in prima posizione
 2. Trova il secondo valore più piccolo e mettilo in seconda posizione
 3. Ripeti fino alla fine
 
-È come ordinare le carte: ogni volta "selezioni" la carta più bassa e la metti al suo posto.
+Come ordinare le carte: ogni volta "scegli" la carta più bassa e la metti al suo posto.
 
 ### Implementazione
 
@@ -270,9 +226,8 @@ using namespace std;
 
 void selectionSort(int arr[], int dimensione) {
     for (int i = 0; i < dimensione - 1; i++) {
-        // Trova l'indice del minimo nella parte non ancora ordinata
+        // Trova il minimo nella parte non ancora ordinata
         int indiceMinimo = i;
-
         for (int j = i + 1; j < dimensione; j++) {
             if (arr[j] < arr[indiceMinimo]) {
                 indiceMinimo = j;
@@ -288,25 +243,19 @@ void selectionSort(int arr[], int dimensione) {
     }
 }
 
-void stampaArray(int arr[], int dimensione) {
-    for (int i = 0; i < dimensione; i++) {
-        cout << arr[i];
-        if (i < dimensione - 1) cout << ", ";
-    }
-    cout << endl;
-}
-
 int main() {
     int numeri[] = {64, 25, 12, 22, 11};
     int dim = 5;
 
-    cout << "Prima dell'ordinamento: ";
-    stampaArray(numeri, dim);
+    cout << "Prima: ";
+    for (int i = 0; i < dim; i++) cout << numeri[i] << " ";
+    cout << endl;
 
     selectionSort(numeri, dim);
 
-    cout << "Dopo l'ordinamento:     ";
-    stampaArray(numeri, dim);
+    cout << "Dopo:  ";
+    for (int i = 0; i < dim; i++) cout << numeri[i] << " ";
+    cout << endl;
 
     return 0;
 }
@@ -314,63 +263,45 @@ int main() {
 
 Output:
 ```
-Prima dell'ordinamento: 64, 25, 12, 22, 11
-Dopo l'ordinamento:     11, 12, 22, 25, 64
-```
-
-### Visualizzazione passo per passo
-
-Array: `{64, 25, 12, 22, 11}`
-
-```
-Passata 1: minimo = 11 (indice 4) → scambia con 64 → {11, 25, 12, 22, 64}
-Passata 2: minimo = 12 (indice 2) → scambia con 25 → {11, 12, 25, 22, 64}
-Passata 3: minimo = 22 (indice 3) → scambia con 25 → {11, 12, 22, 25, 64}
-Passata 4: minimo = 25 (indice 3) → già al suo posto → {11, 12, 22, 25, 64}
+Prima: 64 25 12 22 11
+Dopo:  11 12 22 25 64
 ```
 
 ## Confronto tra gli algoritmi
 
-| Algoritmo | Array ordinato richiesto | Caso peggiore | Semplicità |
-|-----------|--------------------------|---------------|------------|
-| Ricerca Lineare | No | N confronti | Molto semplice |
-| Ricerca Binaria | Sì | log₂(N) confronti | Moderata |
-| Bubble Sort | — (ordina lui) | N² confronti | Semplice |
-| Selection Sort | — (ordina lui) | N² confronti | Semplice |
+| Algoritmo | Array ordinato richiesto? | Velocità (caso peggiore) | Difficoltà |
+|-----------|--------------------------|--------------------------|------------|
+| Ricerca Lineare | No | N confronti | Facilissima |
+| Ricerca Binaria | Sì | ~20 confronti per 1 milione di elementi | Moderata |
+| Bubble Sort | No (ordina lui) | N² confronti | Facile |
+| Selection Sort | No (ordina lui) | N² confronti | Facile |
 
-### Quando usarli
+- Usa la **ricerca lineare** su array piccoli o non ordinati
+- Usa la **ricerca binaria** su array grandi e già ordinati
+- **Bubble sort** e **selection sort** sono utili per capire i concetti, ma lenti su array grandi
 
-- **Ricerca lineare**: array piccoli o non ordinati, quando la semplicità è prioritaria
-- **Ricerca binaria**: array grandi e già ordinati, quando la velocità conta
-- **Bubble sort**: a scopo didattico, array molto piccoli, o quando l'array è quasi ordinato
-- **Selection sort**: a scopo didattico, array piccoli; fa sempre lo stesso numero di scambi
+## La soluzione pronta in C++: `std::sort`
 
-## Usare l'STL per ordinare
-
-In un programma reale, non dovresti mai scrivere bubble sort o selection sort da zero. La libreria standard C++ offre `std::sort`, che è molto più efficiente:
+Nella pratica, non scrivere mai bubble sort o selection sort in un programma vero. La libreria standard ha `sort()` che è molto più veloce:
 
 ```cpp
 #include <iostream>
-#include <algorithm>  // per sort e binary_search
+#include <algorithm>
 #include <vector>
 using namespace std;
 
 int main() {
     vector<int> numeri = {64, 25, 12, 22, 11, 90, 38};
 
-    // Ordina con std::sort (algoritmo efficiente)
-    sort(numeri.begin(), numeri.end());
+    sort(numeri.begin(), numeri.end());   // ordina in modo efficiente
 
     cout << "Ordinato: ";
-    for (int n : numeri) {
-        cout << n << " ";
-    }
+    for (int n : numeri) cout << n << " ";
     cout << endl;
 
-    // Ricerca binaria con std::binary_search
-    int cercato = 22;
-    if (binary_search(numeri.begin(), numeri.end(), cercato)) {
-        cout << cercato << " trovato!" << endl;
+    // Ricerca binaria già pronta
+    if (binary_search(numeri.begin(), numeri.end(), 22)) {
+        cout << "22 trovato!" << endl;
     }
 
     return 0;
@@ -383,41 +314,4 @@ Ordinato: 11 12 22 25 38 64 90
 22 trovato!
 ```
 
-## Esercizi pratici
-
-### Esercizio 1: ricerca con messaggi dettagliati
-
-Modifica la ricerca lineare per stampare ogni confronto effettuato, così puoi vedere quanti passi richiede.
-
-### Esercizio 2: ordina e cerca
-
-Scrivi un programma che:
-1. Legge 10 numeri dall'utente
-2. Li ordina con bubble sort (stampando l'array dopo ogni passata)
-3. Chiede un numero da cercare e usa la ricerca binaria
-
-### Esercizio 3: ricerca su stringhe
-
-Adatta la ricerca lineare per lavorare con un array di `string` invece di `int`. Cerca un nome in una lista.
-
-```cpp
-int ricercaNome(string nomi[], int dimensione, string cercato) {
-    for (int i = 0; i < dimensione; i++) {
-        if (nomi[i] == cercato) {
-            return i;
-        }
-    }
-    return -1;
-}
-```
-
-## Riepilogo
-
-Gli algoritmi di ricerca e ordinamento sono fondamentali in informatica:
-
-- La **ricerca lineare** è semplice ma lenta su array grandi
-- La **ricerca binaria** è velocissima, ma richiede un array ordinato
-- Il **bubble sort** e il **selection sort** sono semplici da capire e implementare, ma lenti su array grandi
-- In pratica, usa sempre `std::sort` e `std::binary_search` dalla libreria standard
-
-Studiare questi algoritmi "di base" ti insegna a ragionare passo per passo e a capire il concetto di efficienza, che è una delle basi dell'informatica.
+Studiare gli algoritmi "di base" ti insegna a ragionare passo per passo e a capire il concetto di efficienza — due delle basi più importanti dell'informatica.

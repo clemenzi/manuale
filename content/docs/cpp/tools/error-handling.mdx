@@ -3,23 +3,27 @@ title: Gestione degli Errori
 description: Come gestire gli errori di base in C++ senza eccezioni avanzate.
 ---
 
-## Tipi di errori
+## Perché ti serve questo?
 
-In C++ esistono diversi tipi di errori:
+Tutti i programmi possono ricevere input sbagliati, trovare file mancanti o fare operazioni impossibili (come dividere per zero). Un programma che "esplode" senza spiegazioni è inutilizzabile.
 
-- **Errori di compilazione**: il codice non è valido (sintassi errata, tipi incompatibili). Il compilatore li segnala e non produce l'eseguibile.
-- **Errori di runtime**: si verificano durante l'esecuzione (divisione per zero, accesso fuori dai limiti di un array). Il programma si blocca o si comporta in modo imprevedibile.
-- **Errori logici**: il programma gira senza crash ma produce risultati sbagliati. Sono i più difficili da trovare.
+La **gestione degli errori** è l'arte di intercettare queste situazioni e rispondere in modo sensato, senza far crashare il programma.
 
-## Gestione degli errori semplice: codici di ritorno
+## I tre tipi di errori
 
-Un approccio comune è far restituire alle funzioni un valore che indica se l'operazione è andata a buon fine:
+- **Errori di compilazione:** il codice non è scritto correttamente. Il compilatore li trova prima ancora di eseguire il programma (es. hai dimenticato un `;`).
+- **Errori di runtime:** il codice è scritto bene, ma succede qualcosa di sbagliato durante l'esecuzione (es. divisione per zero, file non trovato).
+- **Errori logici:** il programma gira senza crashare, ma produce risultati sbagliati. Sono i più difficili da trovare.
+
+## Gestione semplice: codici di ritorno
+
+Un approccio comune è far restituire alle funzioni `true` se tutto è andato bene, `false` se c'è stato un errore:
 
 ```cpp
-// Ritorna true se ok, false se errore
+// La funzione restituisce true se riesce, false se c'è un errore
 bool dividi(int a, int b, int& risultato) {
     if (b == 0) {
-        return false;   // errore: divisione per zero
+        return false;   // errore: non si può dividere per zero
     }
     risultato = a / b;
     return true;
@@ -27,8 +31,9 @@ bool dividi(int a, int b, int& risultato) {
 
 int main() {
     int risultato;
+
     if (dividi(10, 2, risultato)) {
-        cout << "Risultato: " << risultato << endl;
+        cout << "Risultato: " << risultato << endl;   // 5
     } else {
         cout << "Errore: divisione per zero!" << endl;
     }
@@ -36,16 +41,16 @@ int main() {
     if (dividi(10, 0, risultato)) {
         cout << "Risultato: " << risultato << endl;
     } else {
-        cout << "Errore: divisione per zero!" << endl;
+        cout << "Errore: divisione per zero!" << endl;   // questo viene stampato
     }
 
     return 0;
 }
 ```
 
-## Validazione dell'input
+## Validare l'input dell'utente
 
-Uno degli errori più comuni è ricevere input non valido dall'utente. Valida sempre i dati prima di usarli:
+L'errore più comune è ricevere dati non validi dall'utente. Controlla sempre prima di usare:
 
 ```cpp
 int leggiEtaValida() {
@@ -61,9 +66,9 @@ int leggiEtaValida() {
 }
 ```
 
-## Verificare cin dopo la lettura
+## Controllare se `cin` ha letto correttamente
 
-`cin` può entrare in uno stato di errore se l'utente inserisce il tipo sbagliato. Puoi verificarlo:
+Se l'utente inserisce una lettera dove ti aspetti un numero, `cin` va in errore. Puoi verificarlo:
 
 ```cpp
 int numero;
@@ -73,14 +78,18 @@ if (cin >> numero) {
     cout << "Hai inserito: " << numero << endl;
 } else {
     cout << "Errore: non hai inserito un numero valido." << endl;
-    cin.clear();    // resetta lo stato di errore
-    cin.ignore(1000, '\n');  // scarta l'input non valido
+    cin.clear();             // resetta lo stato di errore di cin
+    cin.ignore(1000, '\n'); // scarta il testo non valido
 }
 ```
 
-## Eccezioni base
+## Le eccezioni: per errori gravi
 
-Le **eccezioni** sono il meccanismo C++ per gestire errori gravi. Si usa `try`, `catch` e `throw`:
+Le **eccezioni** sono il meccanismo del C++ per gestire errori che interrompono il flusso normale. Funzionano con tre parole chiave: `try`, `catch`, `throw`.
+
+- `throw` lancia un errore
+- `try` racchiude il codice da monitorare
+- `catch` intercetta l'errore e gestisce la situazione
 
 ```cpp
 #include <stdexcept>
@@ -88,42 +97,38 @@ using namespace std;
 
 double dividi(double a, double b) {
     if (b == 0) {
-        throw runtime_error("Divisione per zero!");
+        throw runtime_error("Divisione per zero!");   // lancia l'errore
     }
     return a / b;
 }
 
 int main() {
     try {
-        cout << dividi(10, 2) << endl;   // 5
-        cout << dividi(10, 0) << endl;   // lancia eccezione
+        cout << dividi(10, 2) << endl;   // 5 — va bene
+        cout << dividi(10, 0) << endl;   // lancia l'eccezione
     } catch (runtime_error& e) {
-        cout << "Errore: " << e.what() << endl;
+        // Il programma non crasha — gestiamo l'errore qui
+        cout << "Errore catturato: " << e.what() << endl;
     }
 
-    cout << "Il programma continua." << endl;
+    cout << "Il programma continua normalmente." << endl;
     return 0;
 }
 ```
 
-- `throw`: lancia un'eccezione
-- `try`: blocco da monitorare per le eccezioni
-- `catch`: blocco che gestisce l'eccezione se si verifica
+## Tipi di eccezioni già pronti
 
-## Tipi di eccezioni standard
-
-La libreria `<stdexcept>` fornisce classi di eccezione già pronte:
+La libreria `<stdexcept>` fornisce tipi di errore già pronti da usare:
 
 ```cpp
 #include <stdexcept>
 
-throw runtime_error("Errore generico a runtime");
-throw invalid_argument("Argomento non valido");
-throw out_of_range("Valore fuori intervallo");
-throw logic_error("Errore di logica");
+throw runtime_error("Errore generico durante l'esecuzione");
+throw invalid_argument("L'argomento passato non è valido");
+throw out_of_range("Il valore è fuori dall'intervallo consentito");
 ```
 
-## Esempio: calcolo sicuro della radice quadrata
+## Esempio pratico: radice quadrata sicura
 
 ```cpp
 #include <iostream>
@@ -131,6 +136,7 @@ throw logic_error("Errore di logica");
 #include <stdexcept>
 using namespace std;
 
+// Calcola la radice quadrata, ma solo per numeri non negativi
 double radiceQuadrata(double x) {
     if (x < 0) {
         throw invalid_argument("Impossibile calcolare la radice di un numero negativo");
@@ -162,9 +168,9 @@ sqrt(25) = 5
 sqrt(0) = 0
 ```
 
-## Verificare i file
+## Controllare l'apertura di un file
 
-Quando lavori con i file, verifica sempre se l'apertura è andata a buon fine:
+Prima di leggere o scrivere un file, verifica sempre che sia stato aperto:
 
 ```cpp
 #include <fstream>
@@ -173,17 +179,18 @@ ifstream file("dati.txt");
 
 if (!file.is_open()) {
     cerr << "Errore: impossibile aprire il file 'dati.txt'" << endl;
-    return 1;   // codice di errore: il main può restituire un valore != 0
+    return 1;   // restituisce 1 per indicare che c'è stato un errore
 }
+
+// Qui sei sicuro che il file è aperto correttamente
 ```
 
-`cerr` è come `cout` ma invia il testo al flusso di errore standard. Questo è utile per distinguere i messaggi di errore dall'output normale.
+`cerr` funziona come `cout`, ma manda il messaggio al canale degli errori — utile per distinguere i messaggi di errore dall'output normale.
 
-## Buone pratiche per la gestione degli errori
+## Regole pratiche
 
-- Valida sempre l'input dell'utente
-- Controlla i valori di ritorno delle funzioni critiche
-- Non ignorare gli errori (silent failure)
-- Fornisci messaggi di errore chiari e utili
-- Usa `cerr` per i messaggi di errore invece di `cout`
-- Gestisci gli errori il prima possibile, vicino a dove si verificano
+- Valida sempre l'input dell'utente prima di usarlo
+- Controlla sempre il risultato delle operazioni che possono fallire (apertura file, divisioni, ecc.)
+- Non ignorare mai un errore in silenzio — il programma sembrerà funzionare ma darà risultati sbagliati
+- Scrivi messaggi di errore chiari: l'utente deve capire cosa è andato storto
+- Usa `cerr` per i messaggi di errore, non `cout`
