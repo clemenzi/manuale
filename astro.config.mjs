@@ -87,7 +87,7 @@ export default defineConfig({
           ],
         },
         {
-          label: 'C++',
+          label: 'CPP',
           items: [
             'cpp',
             {
