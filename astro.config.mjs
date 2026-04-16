@@ -20,13 +20,15 @@ export default defineConfig({
           href: 'https://github.com/clemenzi/programming-handbook-it',
         },
       ],
+      components: {
+        Sidebar: './src/components/starlight/Sidebar.astro',
+      },
       disable404Route: true,
       sidebar: [
-        { slug: 'docs' },
         {
           label: 'Python',
           items: [
-            'docs/python',
+            'python',
             {
               label: 'Le basi',
               collapsed: false,
@@ -87,7 +89,7 @@ export default defineConfig({
         {
           label: 'C++',
           items: [
-            'docs/cpp',
+            'cpp',
             {
               label: 'Le basi',
               collapsed: false,
