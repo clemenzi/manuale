@@ -1,0 +1,51 @@
+---
+import MobileMenuFooter from "@astrojs/starlight/components/MobileMenuFooter.astro";
+import SidebarSublist from "@astrojs/starlight/components/SidebarSublist.astro";
+
+const homeLinks = [
+  { slug: "python", link: "/python/" },
+  { slug: "cpp", link: "/cpp/" },
+];
+
+const { sidebar = [] } = Astro.locals.starlightRoute;
+const filteredSidebar = getSidebarContentForSection(
+  sidebar,
+  Astro.url.pathname,
+);
+
+function getSidebarSection(pathname: string) {
+  const [, section] = pathname.split("/");
+  return section?.toLowerCase() ?? "";
+}
+
+function getSidebarContentForSection(sidebar: unknown, pathname: string) {
+  if (!Array.isArray(sidebar)) {
+    return [];
+  }
+
+  const section = getSidebarSection(pathname);
+  if (!section) {
+    return homeLinks.map(({ slug, link }) => ({
+      type: "link",
+      label: slug === "cpp" ? "C++" : slug[0].toUpperCase() + slug.slice(1),
+      href: link,
+      attrs: {},
+    }));
+  }
+
+  const entry = sidebar.find(
+    (item) => String(item?.label).toLowerCase() === section,
+  );
+  if (!entry) {
+    return [];
+  }
+
+  return entry.type === "group" ? (entry.entries ?? []) : [entry];
+}
+---
+
+<SidebarSublist sublist={filteredSidebar} />
+
+<div class="md:sl-hidden">
+  <MobileMenuFooter />
+</div>

@@ -1,13 +1,15 @@
 # Programming Handbook - Italian
 
-A comprehensive programming handbook with guides for Python, C++, and programming fundamentals, built with TanStack Start and Fumadocs.
+Handbook di programmazione in italiano costruito con Astro e Starlight.
 
 Run development server:
 
 ```bash
-npm run dev
-# or
 pnpm dev
-# or
-yarn dev
+```
+
+Build del sito:
+
+```bash
+pnpm build
 ```
