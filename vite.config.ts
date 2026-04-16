@@ -15,10 +15,10 @@ export default defineConfig({
     tanstackStart({
       spa: {
         enabled: true,
-        prerender: {
-          enabled: true,
-          crawlLinks: true,
-        },
+        // prerender: {
+        //   enabled: true,
+        //   crawlLinks: true,
+        // },
       },
 
       pages: [
