@@ -3,10 +3,10 @@
   "icon": "Puzzle",
   "defaultOpen": false,
   "pages": [
-    "moduli",
-    "date-e-orari",
-    "matematica",
+    "modules",
+    "dates-and-times",
+    "math",
     "json",
-    "espressioni-regolari"
+    "regular-expressions"
   ]
 }

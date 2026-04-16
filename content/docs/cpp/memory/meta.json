@@ -3,8 +3,8 @@
   "icon": "Cpu",
   "defaultOpen": false,
   "pages": [
-    "puntatori",
-    "riferimenti",
-    "gestione-memoria"
+    "pointers",
+    "references",
+    "memory-management"
   ]
 }

@@ -4,14 +4,14 @@
   "root": true,
   "pages": [
     "index",
-    "basi",
+    "basics",
     "input-output",
-    "controllo-del-flusso",
-    "strutture-dati",
-    "funzioni",
-    "memoria",
+    "flow-control",
+    "data-structures",
+    "functions",
+    "memory",
     "oop",
-    "avanzato",
-    "strumenti"
+    "advanced",
+    "tools"
   ]
 }

@@ -4,8 +4,8 @@
   "defaultOpen": false,
   "pages": [
     "pip",
-    "ambiente-virtuale",
-    "librerie-esterne",
+    "virtual-environment",
+    "external-libraries",
     "numpy",
     "pandas"
   ]

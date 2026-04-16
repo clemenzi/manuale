@@ -3,11 +3,11 @@
   "icon": "Wrench",
   "defaultOpen": false,
   "pages": [
-    "librerie-standard",
+    "standard-libraries",
     "file-handling",
-    "gestione-errori",
+    "error-handling",
     "debugging",
-    "buone-pratiche",
-    "algoritmi"
+    "best-practices",
+    "algorithms"
   ]
 }

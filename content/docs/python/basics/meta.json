@@ -1,0 +1,14 @@
+{
+  "title": "Le basi",
+  "defaultOpen": true,
+  "icon": "WholeWord",
+  "pages": [
+    "base-syntax",
+    "comments",
+    "variables",
+    "data-types",
+    "type-conversion",
+    "booleans",
+    "operators"
+  ]
+}

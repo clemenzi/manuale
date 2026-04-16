@@ -3,8 +3,8 @@
   "icon": "Bug",
   "defaultOpen": false,
   "pages": [
-    "gestione-errori",
-    "eccezioni-avanzate",
+    "error-handling",
+    "advanced-exceptions",
     "debugging"
   ]
 }

@@ -3,9 +3,9 @@
   "icon": "Workflow",
   "defaultOpen": true,
   "pages": [
-    "condizioni",
-    "cicli-while",
-    "cicli-for",
-    "funzione-range"
+    "conditions",
+    "while-loops",
+    "for-loops",
+    "range-function"
   ]
 }

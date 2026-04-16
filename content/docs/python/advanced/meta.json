@@ -3,9 +3,9 @@
   "icon": "Zap",
   "defaultOpen": false,
   "pages": [
-    "namespace",
-    "preprocessor",
-    "organizzazione-codice",
-    "compilazione-linking"
+    "advanced-strings",
+    "advanced-lists",
+    "advanced-dictionaries",
+    "array"
   ]
 }
