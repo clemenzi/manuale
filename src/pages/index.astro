@@ -1,13 +1,22 @@
 ---
-import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { LinkButton } from '@astrojs/starlight/components';
 ---
 
-<StarlightPage frontmatter={{
-  title: 'Home',
-}}>
-  <h1>Welcome to Starlight</h1>
-  <p>This is the default page for your new Starlight project.</p>
+<StarlightPage
+  frontmatter={{
+    title: "Handbook di Programmazione",
+  }}
+>
   <p>
-    To get started, edit <code>src/pages/index.astro</code> and save to reload.
+    Benvenuto nel handbook di programmazione scritto per neofiti, qui troverai
+    guide per iniziare. Questo handbook non può essere usato singolarmente come unico riferimento ma è pensato per essere affiancato a corsi, video o altre risorse. Se vuoi contribuire o hai suggerimenti, non esitare a contattarmi!
   </p>
+
+  <LinkButton href="/getting-started" variant="primary">
+    Handbook di Python
+  </LinkButton>
+  <LinkButton href="/cpp" variant="primary">
+    Handbook di C++
+  </LinkButton>
 </StarlightPage>

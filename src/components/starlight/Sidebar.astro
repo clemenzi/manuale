@@ -2,6 +2,11 @@
 import MobileMenuFooter from "@astrojs/starlight/components/MobileMenuFooter.astro";
 import SidebarSublist from "@astrojs/starlight/components/SidebarSublist.astro";
 
+const homeLinks = [
+  { slug: "python", link: "/python/" },
+  { slug: "cpp", link: "/cpp/" },
+];
+
 const { sidebar = [] } = Astro.locals.starlightRoute;
 const filteredSidebar = getSidebarContentForSection(
   sidebar,
@@ -20,7 +25,12 @@ function getSidebarContentForSection(sidebar: unknown, pathname: string) {
 
   const section = getSidebarSection(pathname);
   if (!section) {
-    return [];
+    return homeLinks.map(({ slug, link }) => ({
+      type: "link",
+      label: slug === "cpp" ? "C++" : slug[0].toUpperCase() + slug.slice(1),
+      href: link,
+      attrs: {},
+    }));
   }
 
   const entry = sidebar.find(
