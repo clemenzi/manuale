@@ -3,10 +3,10 @@
   "icon": "Workflow",
   "defaultOpen": true,
   "pages": [
-    "condizioni",
-    "ciclo-while",
-    "ciclo-for",
-    "ciclo-do-while",
+    "conditions",
+    "while-loop",
+    "for-loop",
+    "do-while-loop",
     "break-continue"
   ]
 }

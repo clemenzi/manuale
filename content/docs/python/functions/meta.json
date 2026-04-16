@@ -3,9 +3,9 @@
   "icon": "SquareFunction",
   "defaultOpen": true,
   "pages": [
-    "funzioni",
+    "functions",
     "lambda",
     "scope",
-    "funzioni-ricorsive"
+    "recursive-functions"
   ]
 }

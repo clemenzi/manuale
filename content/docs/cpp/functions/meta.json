@@ -3,7 +3,7 @@
   "icon": "SquareFunction",
   "defaultOpen": false,
   "pages": [
-    "funzioni",
+    "functions",
     "overloading",
     "scope"
   ]

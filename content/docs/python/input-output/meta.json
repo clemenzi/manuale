@@ -3,8 +3,8 @@
   "icon": "Terminal",
   "defaultOpen": false,
   "pages": [
-    "input-utente",
-    "formattazione-output",
-    "gestione-file"
+    "user-input",
+    "output-formatting",
+    "file-handling"
   ]
 }

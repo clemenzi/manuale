@@ -4,10 +4,10 @@
   "defaultOpen": false,
   "pages": [
     "array",
-    "array-multidimensionali",
-    "stringhe-c-style",
+    "multidimensional-arrays",
+    "c-style-strings",
     "vector",
     "stl",
-    "iteratori"
+    "iterators"
   ]
 }

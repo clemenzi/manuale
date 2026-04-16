@@ -5,11 +5,11 @@
   "pages": [
     "struct",
     "enum",
-    "classi-oggetti",
-    "metodi",
-    "costruttori",
-    "incapsulamento",
-    "ereditarieta",
-    "polimorfismo"
+    "classes-objects",
+    "methods",
+    "constructors",
+    "encapsulation",
+    "inheritance",
+    "polymorphism"
   ]
 }

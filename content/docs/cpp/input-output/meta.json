@@ -5,7 +5,7 @@
   "pages": [
     "output",
     "input",
-    "stringhe",
-    "io-formattato"
+    "strings",
+    "formatted-io"
   ]
 }

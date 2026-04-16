@@ -3,8 +3,8 @@
   "icon": "Blocks",
   "defaultOpen": false,
   "pages": [
-    "classi-e-oggetti",
-    "ereditarieta",
-    "iteratori"
+    "classes-and-objects",
+    "inheritance",
+    "iterators"
   ]
 }

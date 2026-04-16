@@ -3,10 +3,10 @@
   "icon": "Boxes",
   "defaultOpen": true,
   "pages": [
-    "stringhe",
-    "liste",
-    "tuple",
+    "strings",
+    "lists",
+    "tuples",
     "set",
-    "dizionari"
+    "dictionaries"
   ]
 }

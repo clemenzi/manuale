@@ -4,16 +4,16 @@
   "root": true,
   "pages": [
     "index",
-    "basi",
-    "strutture-dati",
-    "controllo-del-flusso",
-    "funzioni",
+    "basics",
+    "data-structures",
+    "flow-control",
+    "functions",
     "oop",
-    "moduli-e-stdlib",
+    "modules-and-stdlib",
     "input-output",
-    "errori",
-    "avanzato",
-    "ecosistema",
-    "grafica"
+    "errors",
+    "advanced",
+    "ecosystem",
+    "graphics"
   ]
 }
