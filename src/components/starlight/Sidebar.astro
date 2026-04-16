@@ -1,13 +1,17 @@
 ---
-import MobileMenuFooter from '@astrojs/starlight/components/MobileMenuFooter.astro';
-import SidebarSublist from '@astrojs/starlight/components/SidebarSublist.astro';
+import { LinkButton } from "@astrojs/starlight/components";
+import MobileMenuFooter from "@astrojs/starlight/components/MobileMenuFooter.astro";
+import SidebarSublist from "@astrojs/starlight/components/SidebarSublist.astro";
 
 const { sidebar = [] } = Astro.locals.starlightRoute;
-const filteredSidebar = getSidebarContentForSection(sidebar, Astro.url.pathname);
+const filteredSidebar = getSidebarContentForSection(
+  sidebar,
+  Astro.url.pathname,
+);
 
 function getSidebarSection(pathname: string) {
-  const [, section] = pathname.split('/');
-  return section?.toLowerCase() ?? '';
+  const [, section] = pathname.split("/");
+  return section?.toLowerCase() ?? "";
 }
 
 function getSidebarContentForSection(sidebar: unknown, pathname: string) {
@@ -20,12 +24,14 @@ function getSidebarContentForSection(sidebar: unknown, pathname: string) {
     return [];
   }
 
-  const entry = sidebar.find((item) => String(item?.label).toLowerCase() === section);
+  const entry = sidebar.find(
+    (item) => String(item?.label).toLowerCase() === section,
+  );
   if (!entry) {
     return [];
   }
 
-  return entry.type === 'group' ? entry.entries ?? [] : [entry];
+  return entry.type === "group" ? (entry.entries ?? []) : [entry];
 }
 ---
 

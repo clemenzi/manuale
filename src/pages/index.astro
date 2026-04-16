@@ -1,3 +1,13 @@
 ---
-return Astro.redirect('/python/');
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 ---
+
+<StarlightPage frontmatter={{
+  title: 'Home',
+}}>
+  <h1>Welcome to Starlight</h1>
+  <p>This is the default page for your new Starlight project.</p>
+  <p>
+    To get started, edit <code>src/pages/index.astro</code> and save to reload.
+  </p>
+</StarlightPage>

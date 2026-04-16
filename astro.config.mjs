@@ -4,26 +4,20 @@ import starlight from '@astrojs/starlight';
 
 import cloudflare from '@astrojs/cloudflare';
 
+import tailwindcss from '@tailwindcss/vite';
+
 export default defineConfig({
   integrations: [
     starlight({
       title: 'Programming Handbook',
       description:
         'Una guida pratica alla programmazione in Python e C++ per chi parte da zero.',
-      editLink: {
-        baseUrl: 'https://github.com/clemenzi/programming-handbook-it/edit/main/src/content/docs/',
-      },
-      social: [
-        {
-          icon: 'github',
-          label: 'GitHub',
-          href: 'https://github.com/clemenzi/programming-handbook-it',
-        },
-      ],
       components: {
         Sidebar: './src/components/starlight/Sidebar.astro',
       },
-      disable404Route: true,
+      customCss: [
+        './src/styles/global.css',
+      ],
       sidebar: [
         {
           label: 'Python',
@@ -142,4 +136,8 @@ export default defineConfig({
   ],
 
   adapter: cloudflare(),
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });
