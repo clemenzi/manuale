@@ -1,6 +1,6 @@
-# Programming Handbook - Italian
+# manuale
 
-Handbook di programmazione in italiano costruito con Astro e Starlight.
+manuale di programmazione in italiano costruito con Astro e Starlight.
 
 Run development server:
 

@@ -9,7 +9,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   integrations: [
     starlight({
-      title: 'Programming Handbook',
+      title: 'manuale',
       description:
         'Una guida pratica alla programmazione in Python e C++ per chi parte da zero.',
       components: {
