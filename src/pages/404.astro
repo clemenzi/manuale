@@ -6,6 +6,7 @@ import { LinkButton } from "@astrojs/starlight/components";
 <StarlightPage
   frontmatter={{
     title: "Pagina non trovata",
+    head: [{ tag: "meta", attrs: { name: "robots", content: "noindex" } }],
   }}
 >
   <p>
