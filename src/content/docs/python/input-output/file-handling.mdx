@@ -11,11 +11,11 @@ Quando un programma si chiude, tutto quello che era in memoria scompare. Se vuoi
 
 Per lavorare con un file, lo "apri" con la funzione `open()`. Devi specificare il nome del file e la **modalità** (cosa vuoi fare):
 
-| Modalità | Cosa fa |
-|----------|---------|
-| `"r"` | Legge il file (deve esistere) |
-| `"w"` | Scrive nel file (lo crea se non esiste, lo svuota se esiste) |
-| `"a"` | Aggiunge alla fine del file senza cancellare il contenuto |
+| Modalità | Cosa fa                                                      |
+| -------- | ------------------------------------------------------------ |
+| `"r"`    | Legge il file (deve esistere)                                |
+| `"w"`    | Scrive nel file (lo crea se non esiste, lo svuota se esiste) |
+| `"a"`    | Aggiunge alla fine del file senza cancellare il contenuto    |
 
 ## Il modo corretto: il blocco `with`
 
@@ -123,6 +123,7 @@ for nome, voto in caricati:
 ```
 
 Il file `studenti.csv` conterrà:
+
 ```
 Alice,8.5
 Bob,7.0

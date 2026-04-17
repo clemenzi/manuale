@@ -1,133 +1,130 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
+import { defineConfig } from "astro/config";
+import starlight from "@astrojs/starlight";
 
-import cloudflare from '@astrojs/cloudflare';
+import cloudflare from "@astrojs/cloudflare";
 
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   integrations: [
     starlight({
-      title: 'Manuale',
-      description:
-        'Una guida pratica alla programmazione in Python e C++ per chi parte da zero.',
+      title: "Manuale",
+      description: "Una guida pratica alla programmazione in Python e C++ per chi parte da zero.",
       components: {
-        Sidebar: './src/components/starlight/Sidebar.astro',
+        Sidebar: "./src/components/starlight/Sidebar.astro",
       },
-      customCss: [
-        './src/styles/global.css',
-      ],
+      customCss: ["./src/styles/global.css"],
       sidebar: [
         {
-          label: 'Python',
+          label: "Python",
           items: [
-            'python',
+            "python",
             {
-              label: 'Le basi',
+              label: "Le basi",
               collapsed: false,
-              autogenerate: { directory: 'python/basics' },
+              autogenerate: { directory: "python/basics" },
             },
             {
-              label: 'Strutture dati',
+              label: "Strutture dati",
               collapsed: false,
-              autogenerate: { directory: 'python/data-structures' },
+              autogenerate: { directory: "python/data-structures" },
             },
             {
-              label: 'Controllo del flusso',
+              label: "Controllo del flusso",
               collapsed: false,
-              autogenerate: { directory: 'python/flow-control' },
+              autogenerate: { directory: "python/flow-control" },
             },
             {
-              label: 'Funzioni',
+              label: "Funzioni",
               collapsed: false,
-              autogenerate: { directory: 'python/functions' },
+              autogenerate: { directory: "python/functions" },
             },
             {
-              label: 'Programmazione a oggetti',
+              label: "Programmazione a oggetti",
               collapsed: true,
-              autogenerate: { directory: 'python/oop' },
+              autogenerate: { directory: "python/oop" },
             },
             {
-              label: 'Moduli e libreria standard',
+              label: "Moduli e libreria standard",
               collapsed: true,
-              autogenerate: { directory: 'python/modules-and-stdlib' },
+              autogenerate: { directory: "python/modules-and-stdlib" },
             },
             {
-              label: 'Input e output',
+              label: "Input e output",
               collapsed: true,
-              autogenerate: { directory: 'python/input-output' },
+              autogenerate: { directory: "python/input-output" },
             },
             {
-              label: 'Gestione degli errori',
+              label: "Gestione degli errori",
               collapsed: true,
-              autogenerate: { directory: 'python/errors' },
+              autogenerate: { directory: "python/errors" },
             },
             {
-              label: 'Tecniche avanzate',
+              label: "Tecniche avanzate",
               collapsed: true,
-              autogenerate: { directory: 'python/advanced' },
+              autogenerate: { directory: "python/advanced" },
             },
             {
-              label: 'Ecosistema Python',
+              label: "Ecosistema Python",
               collapsed: true,
-              autogenerate: { directory: 'python/ecosystem' },
+              autogenerate: { directory: "python/ecosystem" },
             },
             {
-              label: 'Grafica e interfacce',
+              label: "Grafica e interfacce",
               collapsed: true,
-              autogenerate: { directory: 'python/graphics' },
+              autogenerate: { directory: "python/graphics" },
             },
           ],
         },
         {
-          label: 'CPP',
+          label: "CPP",
           items: [
-            'cpp',
+            "cpp",
             {
-              label: 'Le basi',
+              label: "Le basi",
               collapsed: false,
-              autogenerate: { directory: 'cpp/basics' },
+              autogenerate: { directory: "cpp/basics" },
             },
             {
-              label: 'Input e output',
+              label: "Input e output",
               collapsed: false,
-              autogenerate: { directory: 'cpp/input-output' },
+              autogenerate: { directory: "cpp/input-output" },
             },
             {
-              label: 'Controllo del flusso',
+              label: "Controllo del flusso",
               collapsed: false,
-              autogenerate: { directory: 'cpp/flow-control' },
+              autogenerate: { directory: "cpp/flow-control" },
             },
             {
-              label: 'Strutture dati',
+              label: "Strutture dati",
               collapsed: true,
-              autogenerate: { directory: 'cpp/data-structures' },
+              autogenerate: { directory: "cpp/data-structures" },
             },
             {
-              label: 'Funzioni',
+              label: "Funzioni",
               collapsed: true,
-              autogenerate: { directory: 'cpp/functions' },
+              autogenerate: { directory: "cpp/functions" },
             },
             {
-              label: 'Memoria e puntatori',
+              label: "Memoria e puntatori",
               collapsed: true,
-              autogenerate: { directory: 'cpp/memory' },
+              autogenerate: { directory: "cpp/memory" },
             },
             {
-              label: 'Programmazione a oggetti',
+              label: "Programmazione a oggetti",
               collapsed: true,
-              autogenerate: { directory: 'cpp/oop' },
+              autogenerate: { directory: "cpp/oop" },
             },
             {
-              label: 'Tecniche avanzate',
+              label: "Tecniche avanzate",
               collapsed: true,
-              autogenerate: { directory: 'cpp/advanced' },
+              autogenerate: { directory: "cpp/advanced" },
             },
             {
-              label: 'Strumenti e tecniche',
+              label: "Strumenti e tecniche",
               collapsed: true,
-              autogenerate: { directory: 'cpp/tools' },
+              autogenerate: { directory: "cpp/tools" },
             },
           ],
         },

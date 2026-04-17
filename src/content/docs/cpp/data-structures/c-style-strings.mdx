@@ -90,14 +90,14 @@ Tutto quello che con le C-style strings richiedeva funzioni speciali, con `std::
 
 ## Confronto diretto
 
-| Operazione | C-style (`char[]`) | `std::string` |
-|---|---|---|
-| Dichiarazione | `char s[20] = "ciao";` | `string s = "ciao";` |
-| Lunghezza | `strlen(s)` | `s.length()` |
-| Copia | `strcpy(dest, src)` | `dest = src` |
-| Concatenazione | `strcat(a, b)` | `a + b` |
-| Confronto | `strcmp(a, b) == 0` | `a == b` |
-| Accesso a un carattere | `s[i]` | `s[i]` |
+| Operazione             | C-style (`char[]`)     | `std::string`        |
+| ---------------------- | ---------------------- | -------------------- |
+| Dichiarazione          | `char s[20] = "ciao";` | `string s = "ciao";` |
+| Lunghezza              | `strlen(s)`            | `s.length()`         |
+| Copia                  | `strcpy(dest, src)`    | `dest = src`         |
+| Concatenazione         | `strcat(a, b)`         | `a + b`              |
+| Confronto              | `strcmp(a, b) == 0`    | `a == b`             |
+| Accesso a un carattere | `s[i]`                 | `s[i]`               |
 
 ## Convertire tra i due tipi
 

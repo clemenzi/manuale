@@ -1,44 +1,44 @@
 @layer base, starlight, theme, components, utilities;
 
-@import '@astrojs/starlight-tailwind';
-@import 'tailwindcss/theme.css' layer(theme);
-@import 'tailwindcss/utilities.css' layer(utilities);
+@import "@astrojs/starlight-tailwind";
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
 
 /* Dark mode colors. */
 :root {
-	--sl-color-accent-low: #002932;
-	--sl-color-accent: #00778b;
-	--sl-color-accent-high: #7fd8ed;
-	--sl-color-white: #ffffff;
-	--sl-color-gray-1: #efedec;
-	--sl-color-gray-2: #cac7c7;
-	--sl-color-gray-3: #a8a2a1;
-	--sl-color-gray-4: #5c5756;
-	--sl-color-gray-5: #3c3736;
-	--sl-color-gray-6: #2a2625;
-	--sl-color-black: #1a1817;
+  --sl-color-accent-low: #002932;
+  --sl-color-accent: #00778b;
+  --sl-color-accent-high: #7fd8ed;
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #efedec;
+  --sl-color-gray-2: #cac7c7;
+  --sl-color-gray-3: #a8a2a1;
+  --sl-color-gray-4: #5c5756;
+  --sl-color-gray-5: #3c3736;
+  --sl-color-gray-6: #2a2625;
+  --sl-color-black: #1a1817;
 }
 /* Light mode colors. */
-:root[data-theme='light'] {
-	--sl-color-accent-low: #a3e3f3;
-	--sl-color-accent: #005463;
-	--sl-color-accent-high: #003944;
-	--sl-color-white: #1a1817;
-	--sl-color-gray-1: #2a2625;
-	--sl-color-gray-2: #3c3736;
-	--sl-color-gray-3: #5c5756;
-	--sl-color-gray-4: #8f8a89;
-	--sl-color-gray-5: #c4c1c0;
-	--sl-color-gray-6: #efedec;
-	--sl-color-gray-7: #f7f6f6;
-	--sl-color-black: #ffffff;
+:root[data-theme="light"] {
+  --sl-color-accent-low: #a3e3f3;
+  --sl-color-accent: #005463;
+  --sl-color-accent-high: #003944;
+  --sl-color-white: #1a1817;
+  --sl-color-gray-1: #2a2625;
+  --sl-color-gray-2: #3c3736;
+  --sl-color-gray-3: #5c5756;
+  --sl-color-gray-4: #8f8a89;
+  --sl-color-gray-5: #c4c1c0;
+  --sl-color-gray-6: #efedec;
+  --sl-color-gray-7: #f7f6f6;
+  --sl-color-black: #ffffff;
 }
 
 @theme {
   /* Your preferred text font. Starlight uses a system font stack by default. */
-  --font-sans: 'Atkinson Hyperlegible';
+  --font-sans: "Atkinson Hyperlegible";
   /* Your preferred code font. Starlight uses system monospace fonts by default. */
-  --font-mono: 'IBM Plex Mono';
+  --font-mono: "IBM Plex Mono";
   /* Your preferred accent color. Indigo is closest to Starlight’s defaults. */
   --color-accent-50: var(--color-indigo-50);
   --color-accent-100: var(--color-indigo-100);

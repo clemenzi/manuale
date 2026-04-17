@@ -9,6 +9,8 @@
     "preview": "astro preview",
     "types:check": "astro check",
     "lint": "oxlint",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
     "generate-types": "wrangler types"
   },
   "dependencies": {
@@ -24,6 +26,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
     "@types/node": "^25.6.0",
+    "oxfmt": "^0.45.0",
     "oxlint": "^1.60.0",
     "typescript": "^6.0.2"
   },

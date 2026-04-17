@@ -53,6 +53,7 @@ int main() {
 ```
 
 Output:
+
 ```
 Trovato 42 alla posizione 3
 ```
@@ -72,6 +73,7 @@ La **ricerca binaria** è molto più veloce, ma richiede che l'array sia **già 
 Pensa a quando cerchi una parola nel dizionario. Non inizi dalla prima pagina — apri il dizionario a metà. Se la parola viene prima, guardi nella prima metà; se viene dopo, guardi nella seconda metà. Ripeti, dimezzando ogni volta lo spazio di ricerca.
 
 Passi:
+
 1. Guarda l'elemento al centro dell'array
 2. Se è quello cercato, hai finito
 3. Se quello cercato è più piccolo, continua solo nella metà sinistra
@@ -122,6 +124,7 @@ int main() {
 ```
 
 Output:
+
 ```
 Trovato 23 alla posizione 5
 ```
@@ -189,6 +192,7 @@ int main() {
 ```
 
 Output:
+
 ```
 Prima dell'ordinamento: 64, 34, 25, 12, 22, 11, 90
 Dopo l'ordinamento:     11, 12, 22, 25, 34, 64, 90
@@ -262,6 +266,7 @@ int main() {
 ```
 
 Output:
+
 ```
 Prima: 64 25 12 22 11
 Dopo:  11 12 22 25 64
@@ -269,12 +274,12 @@ Dopo:  11 12 22 25 64
 
 ## Confronto tra gli algoritmi
 
-| Algoritmo | Array ordinato richiesto? | Velocità (caso peggiore) | Difficoltà |
-|-----------|--------------------------|--------------------------|------------|
-| Ricerca Lineare | No | N confronti | Facilissima |
-| Ricerca Binaria | Sì | ~20 confronti per 1 milione di elementi | Moderata |
-| Bubble Sort | No (ordina lui) | N² confronti | Facile |
-| Selection Sort | No (ordina lui) | N² confronti | Facile |
+| Algoritmo       | Array ordinato richiesto? | Velocità (caso peggiore)                | Difficoltà  |
+| --------------- | ------------------------- | --------------------------------------- | ----------- |
+| Ricerca Lineare | No                        | N confronti                             | Facilissima |
+| Ricerca Binaria | Sì                        | ~20 confronti per 1 milione di elementi | Moderata    |
+| Bubble Sort     | No (ordina lui)           | N² confronti                            | Facile      |
+| Selection Sort  | No (ordina lui)           | N² confronti                            | Facile      |
 
 - Usa la **ricerca lineare** su array piccoli o non ordinati
 - Usa la **ricerca binaria** su array grandi e già ordinati
@@ -309,6 +314,7 @@ int main() {
 ```
 
 Output:
+
 ```
 Ordinato: 11 12 22 25 38 64 90
 22 trovato!

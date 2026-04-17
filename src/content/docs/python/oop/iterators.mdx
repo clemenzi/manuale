@@ -15,6 +15,7 @@ Ogni volta che scrivi `for elemento in lista`, Python sta usando un meccanismo n
 - **Iteratore**: un oggetto che "sa dove si trova" nella sequenza e sa come ottenere l'elemento successivo.
 
 Pensa a un libro:
+
 - Il **libro** è l'iterabile (contiene tutti i capitoli)
 - Il **segnalibro** è l'iteratore (ricorda a quale pagina sei arrivato)
 
@@ -30,6 +31,7 @@ for x in [1, 2, 3]:
 ```
 
 Python esegue in realtà questi passi:
+
 1. Chiama `iter([1, 2, 3])` per creare un iteratore dalla lista
 2. Chiama ripetutamente `next(iteratore)` per ottenere un elemento alla volta
 3. Quando la lista è finita, `next()` lancia `StopIteration` e il ciclo si ferma
@@ -51,6 +53,7 @@ print(next(iteratore))    # 3 ← prende il terzo elemento e avanza
 ## Creare un iteratore personalizzato
 
 Puoi creare una classe che si comporta come un iteratore implementando due metodi speciali:
+
 - `__iter__`: restituisce l'iteratore stesso
 - `__next__`: restituisce il valore successivo (o lancia `StopIteration` se è finita)
 

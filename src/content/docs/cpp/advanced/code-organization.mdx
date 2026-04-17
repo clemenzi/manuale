@@ -10,6 +10,7 @@ Quando scrivi un programma piccolo, un unico file `.cpp` va benissimo. Ma immagi
 Dividere il codice in più file risolve questo problema. Ogni file ha uno scopo preciso, come i capitoli di un libro.
 
 Vantaggi:
+
 - **Leggibilità:** ogni file è focalizzato su un argomento
 - **Riutilizzo:** puoi usare le stesse funzioni in più programmi
 - **Manutenzione:** modifichi una parte senza toccare il resto
@@ -19,10 +20,10 @@ Vantaggi:
 
 In C++ il codice viene diviso in due tipi di file:
 
-| Tipo | Estensione | Cosa contiene |
-|------|-----------|---------------|
-| Header | `.h` o `.hpp` | Le **dichiarazioni** (cosa esiste) |
-| Implementazione | `.cpp` | Le **definizioni** (come funziona) |
+| Tipo            | Estensione    | Cosa contiene                      |
+| --------------- | ------------- | ---------------------------------- |
+| Header          | `.h` o `.hpp` | Le **dichiarazioni** (cosa esiste) |
+| Implementazione | `.cpp`        | Le **definizioni** (come funziona) |
 
 Il file header è come il **sommario di un libro**: ti dice cosa c'è, ma non ti mostra tutto il contenuto. Il file `.cpp` è il contenuto vero e proprio.
 
@@ -123,6 +124,7 @@ Nell'header hai visto queste righe "strane":
 Si chiamano **include guard**. Servono a evitare un errore comune: se lo stesso header venisse incluso due volte nello stesso file, il compilatore si lamenterebbe di funzioni "ridefinite".
 
 Come funzionano:
+
 1. `#ifndef MATEMATICA_H` — "se MATEMATICA_H non è ancora definito..."
 2. `#define MATEMATICA_H` — "...definiscilo..."
 3. "...ed esegui tutto questo contenuto"
@@ -233,17 +235,19 @@ g++ main.cpp studente.cpp -o programma
 ## Cosa va dove
 
 **Nell'header (`.h`) metti:**
+
 - Le firme delle funzioni (prototipi)
 - Le dichiarazioni delle classi
 - Le definizioni di `struct` ed `enum`
 - Le costanti (`const`)
 
 **Nel file `.cpp` metti:**
+
 - Il corpo delle funzioni
 - Il corpo dei metodi delle classi
 - La logica del programma
 
-**Regola pratica:** se qualcuno ha bisogno di *sapere che esiste*, mettilo nell'header. Se qualcuno ha bisogno di *vedere come funziona*, mettilo nel `.cpp`.
+**Regola pratica:** se qualcuno ha bisogno di _sapere che esiste_, mettilo nell'header. Se qualcuno ha bisogno di _vedere come funziona_, mettilo nel `.cpp`.
 
 ## Errori comuni
 

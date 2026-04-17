@@ -11,15 +11,15 @@ Un **operatore** è un simbolo che esegue un'operazione su uno o più valori. Li
 
 Funzionano come la matematica che conosci già, con qualche aggiunta:
 
-| Operatore | Significato | Esempio | Risultato |
-|-----------|-------------|---------|-----------|
-| `+` | Addizione | `5 + 3` | `8` |
-| `-` | Sottrazione | `5 - 3` | `2` |
-| `*` | Moltiplicazione | `5 * 3` | `15` |
-| `/` | Divisione (con decimali) | `5 / 2` | `2.5` |
-| `//` | Divisione intera (senza decimali) | `5 // 2` | `2` |
-| `%` | Resto della divisione | `5 % 2` | `1` |
-| `**` | Potenza | `5 ** 2` | `25` |
+| Operatore | Significato                       | Esempio  | Risultato |
+| --------- | --------------------------------- | -------- | --------- |
+| `+`       | Addizione                         | `5 + 3`  | `8`       |
+| `-`       | Sottrazione                       | `5 - 3`  | `2`       |
+| `*`       | Moltiplicazione                   | `5 * 3`  | `15`      |
+| `/`       | Divisione (con decimali)          | `5 / 2`  | `2.5`     |
+| `//`      | Divisione intera (senza decimali) | `5 // 2` | `2`       |
+| `%`       | Resto della divisione             | `5 % 2`  | `1`       |
+| `**`      | Potenza                           | `5 ** 2` | `25`      |
 
 L'operatore `//` (doppio slash) divide e butta via i decimali. È come chiedere "quante volte 2 entra in 5?" — la risposta è 2, con 1 di resto.
 
@@ -41,14 +41,14 @@ print(a ** b)  # 1000  (10 alla potenza 3)
 
 Confrontano due valori e restituiscono sempre `True` o `False`:
 
-| Operatore | Significato | Esempio |
-|-----------|-------------|---------|
-| `==` | È uguale a? | `5 == 5` → `True` |
-| `!=` | È diverso da? | `5 != 3` → `True` |
-| `>` | È maggiore di? | `5 > 4` → `True` |
-| `<` | È minore di? | `5 < 3` → `False` |
-| `>=` | È maggiore o uguale? | `5 >= 5` → `True` |
-| `<=` | È minore o uguale? | `5 <= 4` → `False` |
+| Operatore | Significato          | Esempio            |
+| --------- | -------------------- | ------------------ |
+| `==`      | È uguale a?          | `5 == 5` → `True`  |
+| `!=`      | È diverso da?        | `5 != 3` → `True`  |
+| `>`       | È maggiore di?       | `5 > 4` → `True`   |
+| `<`       | È minore di?         | `5 < 3` → `False`  |
+| `>=`      | È maggiore o uguale? | `5 >= 5` → `True`  |
+| `<=`      | È minore o uguale?   | `5 <= 4` → `False` |
 
 ```python
 x = 5
@@ -62,11 +62,11 @@ print(x < 3)   # False
 
 Servono a mettere insieme più condizioni:
 
-| Operatore | Significato |
-|-----------|-------------|
-| `and` | Vero solo se **tutte** le condizioni sono vere |
-| `or` | Vero se **almeno una** condizione è vera |
-| `not` | Inverte il valore (vero diventa falso e viceversa) |
+| Operatore | Significato                                        |
+| --------- | -------------------------------------------------- |
+| `and`     | Vero solo se **tutte** le condizioni sono vere     |
+| `or`      | Vero se **almeno una** condizione è vera           |
+| `not`     | Inverte il valore (vero diventa falso e viceversa) |
 
 ```python
 print(5 > 3 and 10 > 7)  # True  — entrambe vere
@@ -79,14 +79,14 @@ print(not 5 > 3)          # False — 5 > 3 è True, not lo inverte
 Invece di scrivere `x = x + 3`, puoi usare la versione abbreviata `x += 3`. Significano la stessa cosa:
 
 | Abbreviazione | Equivalente completo |
-|---------------|----------------------|
-| `x += 3` | `x = x + 3` |
-| `x -= 3` | `x = x - 3` |
-| `x *= 3` | `x = x * 3` |
-| `x /= 3` | `x = x / 3` |
-| `x //= 3` | `x = x // 3` |
-| `x %= 3` | `x = x % 3` |
-| `x **= 3` | `x = x ** 3` |
+| ------------- | -------------------- |
+| `x += 3`      | `x = x + 3`          |
+| `x -= 3`      | `x = x - 3`          |
+| `x *= 3`      | `x = x * 3`          |
+| `x /= 3`      | `x = x / 3`          |
+| `x //= 3`     | `x = x // 3`         |
+| `x %= 3`      | `x = x % 3`          |
+| `x **= 3`     | `x = x ** 3`         |
 
 ```python
 punteggio = 100

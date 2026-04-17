@@ -7,7 +7,7 @@ description: Come evitare che il programma si blocchi quando qualcosa va storto.
 
 Ogni tanto il programma incontra una situazione che non riesce a gestire: l'utente scrive del testo quando ci si aspetta un numero, si cerca di dividere per zero, si prova ad aprire un file che non esiste.
 
-In questi casi Python "lancia" un **errore** (chiamato tecnicamente *eccezione*) e, se non lo gestisci, il programma si blocca e mostra un messaggio di errore.
+In questi casi Python "lancia" un **errore** (chiamato tecnicamente _eccezione_) e, se non lo gestisci, il programma si blocca e mostra un messaggio di errore.
 
 Esempi di errori comuni:
 
@@ -91,15 +91,15 @@ except ValueError as e:
 
 ## Gli errori più comuni
 
-| Errore | Quando succede |
-|--------|----------------|
-| `ValueError` | Valore sbagliato per il tipo (es. `int("abc")`) |
-| `TypeError` | Tipo sbagliato (es. `"ciao" + 5`) |
-| `ZeroDivisionError` | Divisione per zero |
-| `NameError` | Variabile non definita |
-| `IndexError` | Indice fuori dalla lista |
-| `KeyError` | Chiave non trovata nel dizionario |
-| `FileNotFoundError` | File non trovato |
+| Errore              | Quando succede                                  |
+| ------------------- | ----------------------------------------------- |
+| `ValueError`        | Valore sbagliato per il tipo (es. `int("abc")`) |
+| `TypeError`         | Tipo sbagliato (es. `"ciao" + 5`)               |
+| `ZeroDivisionError` | Divisione per zero                              |
+| `NameError`         | Variabile non definita                          |
+| `IndexError`        | Indice fuori dalla lista                        |
+| `KeyError`          | Chiave non trovata nel dizionario               |
+| `FileNotFoundError` | File non trovato                                |
 
 ## Esempio pratico: input sicuro
 

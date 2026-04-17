@@ -12,6 +12,7 @@ Immagina di dover controllare se un indirizzo email è scritto correttamente, o 
 ## Cosa sono le espressioni regolari?
 
 Le **espressioni regolari** (dette anche "regex" o "regexp") sono una mini-lingua per descrivere **schemi di testo**. Servono a:
+
 - Verificare se una stringa corrisponde a un certo formato ("è un'email valida?")
 - Trovare schemi in un testo ("tutti i numeri in questo paragrafo")
 - Estrarre informazioni ("dammi solo la data da questa riga")
@@ -27,28 +28,28 @@ import re
 
 ## I mattoncini di base: cosa significano i simboli
 
-| Simbolo | Significato | Esempio |
-|---------|-------------|---------|
-| `.` | Qualsiasi carattere (eccetto a capo) | `a.c` trova "abc", "aXc", "a3c"... |
-| `\d` | Una cifra (0-9) | `\d\d` trova "42", "07"... |
-| `\D` | Non una cifra | |
-| `\w` | Lettera, cifra o underscore | |
-| `\s` | Spazio, tab o a capo | |
-| `^` | Inizio della stringa | `^Ciao` trova solo stringhe che iniziano con "Ciao" |
-| `$` | Fine della stringa | `fine$` trova solo stringhe che terminano con "fine" |
-| `[abc]` | Uno tra a, b, c | |
-| `[a-z]` | Una lettera minuscola qualsiasi | |
-| `[0-9]` | Una cifra qualsiasi (come `\d`) | |
+| Simbolo | Significato                          | Esempio                                              |
+| ------- | ------------------------------------ | ---------------------------------------------------- |
+| `.`     | Qualsiasi carattere (eccetto a capo) | `a.c` trova "abc", "aXc", "a3c"...                   |
+| `\d`    | Una cifra (0-9)                      | `\d\d` trova "42", "07"...                           |
+| `\D`    | Non una cifra                        |                                                      |
+| `\w`    | Lettera, cifra o underscore          |                                                      |
+| `\s`    | Spazio, tab o a capo                 |                                                      |
+| `^`     | Inizio della stringa                 | `^Ciao` trova solo stringhe che iniziano con "Ciao"  |
+| `$`     | Fine della stringa                   | `fine$` trova solo stringhe che terminano con "fine" |
+| `[abc]` | Uno tra a, b, c                      |                                                      |
+| `[a-z]` | Una lettera minuscola qualsiasi      |                                                      |
+| `[0-9]` | Una cifra qualsiasi (come `\d`)      |                                                      |
 
 ### Quantificatori: quante volte?
 
-| Simbolo | Significato |
-|---------|-------------|
-| `*` | Zero o più volte |
-| `+` | Una o più volte |
-| `?` | Zero o una volta |
-| `{3}` | Esattamente 3 volte |
-| `{2,5}` | Da 2 a 5 volte |
+| Simbolo | Significato         |
+| ------- | ------------------- |
+| `*`     | Zero o più volte    |
+| `+`     | Una o più volte     |
+| `?`     | Zero o una volta    |
+| `{3}`   | Esattamente 3 volte |
+| `{2,5}` | Da 2 a 5 volte      |
 
 ---
 

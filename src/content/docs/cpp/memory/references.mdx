@@ -30,12 +30,12 @@ cout << x << endl;    // 100 — anche x è cambiata!
 
 ## Differenze tra riferimenti e puntatori
 
-| Caratteristica | Riferimento (`&`) | Puntatore (`*`) |
-|---|---|---|
-| Come si usa | `ref` (direttamente) | `*ptr` (con la stella) |
-| Può essere nullo? | No | Sì (`nullptr`) |
-| Può cambiare a cosa si riferisce? | No | Sì |
-| Deve essere inizializzato subito? | Sì | No (ma è pericoloso) |
+| Caratteristica                    | Riferimento (`&`)    | Puntatore (`*`)        |
+| --------------------------------- | -------------------- | ---------------------- |
+| Come si usa                       | `ref` (direttamente) | `*ptr` (con la stella) |
+| Può essere nullo?                 | No                   | Sì (`nullptr`)         |
+| Può cambiare a cosa si riferisce? | No                   | Sì                     |
+| Deve essere inizializzato subito? | Sì                   | No (ma è pericoloso)   |
 
 I riferimenti sono più comodi e sicuri: una volta creati, puntano sempre alla stessa variabile.
 

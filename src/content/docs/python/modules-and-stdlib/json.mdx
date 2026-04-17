@@ -66,26 +66,27 @@ print(json_bello)
 ```
 
 Output indentato:
+
 ```json
 {
-    "nome": "Alice",
-    "eta": 16,
-    "voti": [8, 7, 9],
-    "attivo": true,
-    "media": null
+  "nome": "Alice",
+  "eta": 16,
+  "voti": [8, 7, 9],
+  "attivo": true,
+  "media": null
 }
 ```
 
 ### Conversione dei tipi: Python ↔ JSON
 
-| Python | JSON |
-|--------|------|
-| `dict` | `{}` (oggetto) |
-| `list` | `[]` (array) |
-| `str` | `"..."` (stringa) |
-| `int`, `float` | numero |
-| `True` / `False` | `true` / `false` |
-| `None` | `null` |
+| Python           | JSON              |
+| ---------------- | ----------------- |
+| `dict`           | `{}` (oggetto)    |
+| `list`           | `[]` (array)      |
+| `str`            | `"..."` (stringa) |
+| `int`, `float`   | numero            |
+| `True` / `False` | `true` / `false`  |
+| `None`           | `null`            |
 
 ---
 
@@ -124,6 +125,7 @@ with open("studenti.json", "w") as file:
 ```
 
 Il file `studenti.json` conterrà:
+
 ```json
 [
     {

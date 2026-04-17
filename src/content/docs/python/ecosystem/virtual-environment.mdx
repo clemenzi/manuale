@@ -6,6 +6,7 @@ description: Come isolare le dipendenze dei progetti Python con gli ambienti vir
 ## Perché ti serve un ambiente virtuale
 
 Immagina di avere due progetti Python sul tuo computer:
+
 - **Progetto A** funziona con la versione 2.25 della libreria `requests`
 - **Progetto B** ha bisogno della versione 2.31 della stessa libreria
 
@@ -40,16 +41,19 @@ Questo crea una sottocartella chiamata `venv` con tutto il necessario. Puoi darl
 Prima di poterlo usare, devi "attivarlo":
 
 **Su macOS e Linux:**
+
 ```bash
 source venv/bin/activate
 ```
 
 **Su Windows:**
+
 ```bash
 venv\Scripts\activate
 ```
 
 Quando l'ambiente è attivo, il nome appare all'inizio del prompt del terminale:
+
 ```bash
 (venv) $
 ```
@@ -126,13 +130,13 @@ __pycache__/
 
 ## Strumenti alternativi (per il futuro)
 
-| Strumento | Descrizione |
-|-----------|-------------|
-| `venv` | Già incluso in Python — ideale per iniziare |
-| `virtualenv` | Come `venv` ma con qualche funzione in più |
-| `conda` | Molto usato in ambito scientifico (Anaconda) |
-| `poetry` | Gestisce dipendenze e packaging in modo moderno |
-| `uv` | Strumento moderno e molto veloce |
+| Strumento    | Descrizione                                     |
+| ------------ | ----------------------------------------------- |
+| `venv`       | Già incluso in Python — ideale per iniziare     |
+| `virtualenv` | Come `venv` ma con qualche funzione in più      |
+| `conda`      | Molto usato in ambito scientifico (Anaconda)    |
+| `poetry`     | Gestisce dipendenze e packaging in modo moderno |
+| `uv`         | Strumento moderno e molto veloce                |
 
 Per ora, `venv` è più che sufficiente.
 

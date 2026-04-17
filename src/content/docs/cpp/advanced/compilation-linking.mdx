@@ -8,6 +8,7 @@ description: Come funziona il processo di trasformazione del codice C++ in un pr
 Quando premi "compila" nel tuo editor, sembra che il programma parta magicamente. In realtà, dietro le quinte succedono tre cose distinte.
 
 Capire questo processo ti aiuta a:
+
 - **interpretare gli errori** — ci sono errori di compilazione ed errori di linking, e si risolvono in modi diversi
 - **lavorare con progetti grandi** — con più file `.cpp`, devi sapere come metterli insieme
 - **usare il terminale** — spesso si compila da riga di comando, specialmente in ambito professionale
@@ -26,7 +27,7 @@ Pensa al tuo codice come a una ricetta scritta in italiano. Per "eseguirla" su u
 
 ## Fase 1: Preprocessing
 
-Il preprocessore elabora il tuo codice *prima* della compilazione. Sostituisce ogni `#include` con il contenuto del file incluso, espande le macro e gestisce i blocchi `#ifdef`.
+Il preprocessore elabora il tuo codice _prima_ della compilazione. Sostituisce ogni `#include` con il contenuto del file incluso, espande le macro e gestisce i blocchi `#ifdef`.
 
 ```cpp
 #include <iostream>   // viene sostituito con tutto il contenuto di iostream
@@ -272,17 +273,17 @@ Non devi padroneggiare il Makefile subito — ma è utile sapere che esiste.
 
 ## Riepilogo dei flag principali
 
-| Flag | Cosa fa |
-|------|---------|
-| `-o nome` | Specifica il nome del file di output |
-| `-Wall` | Abilita i warning principali |
-| `-Wextra` | Warning aggiuntivi |
-| `-g` | Aggiunge informazioni per il debug |
-| `-O2` | Ottimizzazione (consigliata per la versione finale) |
-| `-std=c++17` | Usa lo standard C++17 |
-| `-c` | Solo compilazione, senza collegamento |
-| `-I percorso` | Aggiunge una cartella dove cercare gli header |
-| `-E` | Solo preprocessing |
+| Flag          | Cosa fa                                             |
+| ------------- | --------------------------------------------------- |
+| `-o nome`     | Specifica il nome del file di output                |
+| `-Wall`       | Abilita i warning principali                        |
+| `-Wextra`     | Warning aggiuntivi                                  |
+| `-g`          | Aggiunge informazioni per il debug                  |
+| `-O2`         | Ottimizzazione (consigliata per la versione finale) |
+| `-std=c++17`  | Usa lo standard C++17                               |
+| `-c`          | Solo compilazione, senza collegamento               |
+| `-I percorso` | Aggiunge una cartella dove cercare gli header       |
+| `-E`          | Solo preprocessing                                  |
 
 ---
 

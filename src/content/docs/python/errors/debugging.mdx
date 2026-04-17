@@ -69,6 +69,7 @@ ZeroDivisionError: division by zero
 ```
 
 **Come leggerlo:** parti dall'ultima riga e vai su.
+
 - **Ultima riga:** il tipo di errore e la descrizione (`ZeroDivisionError: division by zero`)
 - **Righe precedenti:** la sequenza di passaggi che ha portato all'errore (prima è stato chiamato `dividi`, che è a riga 10, e dentro `dividi` l'errore è a riga 4)
 
@@ -116,13 +117,13 @@ calcola_media([8, 7, 9])
 
 I livelli di gravità, dal meno al più grave:
 
-| Livello | Quando usarlo |
-|---------|--------------|
-| `DEBUG` | Dettagli per il debug |
-| `INFO` | Informazioni generali ("il programma è partito") |
-| `WARNING` | Qualcosa di strano, ma il programma continua |
-| `ERROR` | Qualcosa è andato storto |
-| `CRITICAL` | Errore gravissimo |
+| Livello    | Quando usarlo                                    |
+| ---------- | ------------------------------------------------ |
+| `DEBUG`    | Dettagli per il debug                            |
+| `INFO`     | Informazioni generali ("il programma è partito") |
+| `WARNING`  | Qualcosa di strano, ma il programma continua     |
+| `ERROR`    | Qualcosa è andato storto                         |
+| `CRITICAL` | Errore gravissimo                                |
 
 ---
 
@@ -141,13 +142,13 @@ funzione_problematica(10, 2)
 
 Quando il programma si ferma, puoi scrivere comandi:
 
-| Comando | Significato |
-|---------|------------|
-| `n` | Esegui la riga successiva (next) |
-| `s` | Entra dentro una funzione (step) |
-| `p nome_variabile` | Stampa il valore di una variabile |
-| `c` | Continua fino al prossimo punto di pausa (continue) |
-| `q` | Esci dal debugger (quit) |
+| Comando            | Significato                                         |
+| ------------------ | --------------------------------------------------- |
+| `n`                | Esegui la riga successiva (next)                    |
+| `s`                | Entra dentro una funzione (step)                    |
+| `p nome_variabile` | Stampa il valore di una variabile                   |
+| `c`                | Continua fino al prossimo punto di pausa (continue) |
+| `q`                | Esci dal debugger (quit)                            |
 
 > `breakpoint()` è disponibile da Python 3.7 in poi. Nelle versioni precedenti si usava `import pdb; pdb.set_trace()`.
 
@@ -195,6 +196,7 @@ calcola_area(-1, 3)    # AssertionError: La base deve essere positiva, ma ho ric
 ### Isola il problema
 
 Se il bug è in un programma lungo, crea un piccolo programma separato che riproduce solo il problema. Questo ti aiuta a:
+
 - Eliminare tutto il codice non rilevante
 - Concentrarti solo sul pezzo problematico
 - Testare soluzioni più rapidamente
