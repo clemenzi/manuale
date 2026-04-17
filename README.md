@@ -1,6 +1,6 @@
 # manuale
 
-manuale di programmazione in italiano costruito con Astro e Starlight.
+Manuale di programmazione in italiano costruito con Astro e Starlight.
 
 Run development server:
 
