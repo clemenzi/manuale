@@ -40,6 +40,9 @@
     "*.{js,ts,jsx,tsx,astro,css,mdx,md}": [
       "pnpm run fmt:check",
       "pnpm run lint"
+    ],
+    "*.{yml,yaml}": [
+      "pnpm run fmt:check"
     ]
   }
 }
