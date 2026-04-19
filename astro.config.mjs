@@ -14,6 +14,7 @@ export default defineConfig({
       components: {
         Sidebar: "./src/components/starlight/Sidebar.astro",
       },
+      social: [{ icon: "github", label: "GitHub", href: "https://github.com/clemenzi/manuale" }],
       customCss: ["./src/styles/global.css"],
       sidebar: [
         {

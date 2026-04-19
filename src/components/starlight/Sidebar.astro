@@ -19,25 +19,39 @@ function getSidebarSection(pathname: string) {
 }
 
 function getSidebarContentForSection(sidebar: unknown, pathname: string) {
+  const defaultEntries = [
+    {
+      type: "link",
+      label: "Introduzione",
+      href: "/",
+      attrs: {},
+    },
+    ...homeLinks.map((item) => ({
+      type: "link",
+      label:
+        item.slug === "cpp"
+          ? "C++"
+          : item.slug[0].toUpperCase() + item.slug.slice(1),
+      href: item.link,
+      attrs: {},
+    })),
+  ];
+
   if (!Array.isArray(sidebar)) {
-    return [];
+    return defaultEntries;
   }
 
   const section = getSidebarSection(pathname);
   if (!section) {
-    return homeLinks.map(({ slug, link }) => ({
-      type: "link",
-      label: slug === "cpp" ? "C++" : slug[0].toUpperCase() + slug.slice(1),
-      href: link,
-      attrs: {},
-    }));
+    return defaultEntries;
   }
 
   const entry = sidebar.find(
     (item) => String(item?.label).toLowerCase() === section,
   );
+
   if (!entry) {
-    return [];
+    return defaultEntries;
   }
 
   return entry.type === "group" ? (entry.entries ?? []) : [entry];
