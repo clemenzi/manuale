@@ -12,9 +12,8 @@ export default defineConfig({
       title: "Manuale",
       description: "Una guida pratica alla programmazione in Python e C++ per chi parte da zero.",
       favicon: "/favicon.ico",
-      components: {
-        Sidebar: "./src/components/starlight/Sidebar.astro",
-      },
+      routeMiddleware: "./src/route-middleware.ts",
+      components: {},
       social: [{ icon: "github", label: "GitHub", href: "https://github.com/clemenzi/manuale" }],
       customCss: ["./src/styles/global.css"],
       sidebar: [
