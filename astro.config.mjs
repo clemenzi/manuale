@@ -11,6 +11,7 @@ export default defineConfig({
     starlight({
       title: "Manuale",
       description: "Una guida pratica alla programmazione in Python e C++ per chi parte da zero.",
+      favicon: "/favicon.ico",
       components: {
         Sidebar: "./src/components/starlight/Sidebar.astro",
       },
