@@ -12,7 +12,9 @@ export const onRequest = defineRouteMiddleware((context) => {
 
   const matched = sections.find((s) => s.slug === section);
   if (matched) {
-    route.siteTitle = `Manuale di ${matched.label}`;
+    route.siteTitle = matched.label;
+  } else {
+    route.siteTitle = "";
   }
 
   const defaultSidebar = [
