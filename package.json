@@ -37,11 +37,11 @@
     "vite": "^7"
   },
   "lint-staged": {
-    "*.{js,ts,jsx,tsx,astro,css,mdx,md}": [
+    "*.{js,ts,jsx,tsx,astro,css}": [
       "pnpm run fmt:check",
       "pnpm run lint"
     ],
-    "*.{yml,yaml}": [
+    "*.{yml,yaml,md,mdx}": [
       "pnpm run fmt:check"
     ]
   }
