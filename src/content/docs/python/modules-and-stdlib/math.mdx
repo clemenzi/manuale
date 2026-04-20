@@ -7,6 +7,8 @@ description: Operazioni matematiche avanzate con il modulo math in Python.
 
 Gli operatori base (`+`, `-`, `*`, `/`, `**`) coprono la maggior parte dei calcoli quotidiani. Ma appena ti servono radici quadrate, logaritmi, seno e coseno, o il valore di pi greco, hai bisogno del modulo `math`.
 
+Per usarlo, basta questa riga all'inizio del tuo programma:
+
 ```python
 import math   # Importa il modulo matematica
 ```
@@ -15,18 +17,22 @@ import math   # Importa il modulo matematica
 
 ## Costanti matematiche
 
+Il modulo `math` include alcune costanti fondamentali già pronte. Eccole tutte:
+
 ```python
 import math
 
 print(math.pi)    # 3.141592653589793 — il pi greco (π)
 print(math.e)     # 2.718281828459045 — il numero di Nepero (base dei logaritmi naturali)
-print(math.inf)   # inf — infinito (utile per confronti)
-print(math.nan)   # nan — "Not a Number" (risultato di operazioni non valide)
+print(math.inf)   # inf — infinito (utile per confronti: nessun numero è più grande)
+print(math.nan)   # nan — "Not a Number", cioè "non è un numero" (risultato di operazioni impossibili, come 0/0)
 ```
 
 ---
 
 ## Arrotondamento
+
+Queste funzioni arrotondano un numero decimale in modi diversi. Guarda come si comportano:
 
 ```python
 import math

@@ -71,7 +71,7 @@ else:
     print("Nessun numero trovato")
 ```
 
-Il prefisso `r` prima delle virgolette (`r"..."`) indica una "raw string" — necessario con le regex perché alcuni caratteri come `\d` verrebbero interpretati in modo sbagliato.
+Il prefisso `r` prima delle virgolette (`r"..."`) indica una **raw string** (stringa "grezza"). Senza la `r`, Python interpreterebbe `\d` come una sequenza speciale (come `\n` per andare a capo), stravolgendo il significato della regex. Con la `r`, Python lascia il testo esattamente come l'hai scritto, senza trasformare niente. Usa sempre `r"..."` quando scrivi espressioni regolari.
 
 ---
 

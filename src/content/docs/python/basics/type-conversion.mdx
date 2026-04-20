@@ -30,6 +30,8 @@ Altre volte devi essere tu a dire a Python di convertire. Si usano funzioni appo
 
 ### `int()` — trasforma in numero intero
 
+Ecco come `int()` converte valori di tipo diverso in un numero intero:
+
 ```python
 x = int(3.9)     # 3  — la parte decimale viene TAGLIATA (non arrotondata!)
 y = int("42")    # 42 — una stringa numerica diventa un numero
@@ -42,6 +44,8 @@ print(x, y, z, w)  # 3 42 1 0
 > **Attenzione:** `int(3.9)` restituisce `3`, non `4`. Il decimale viene tagliato, non arrotondato. Se vuoi arrotondare, usa `round(3.9)` che fa `4`.
 
 ### `float()` — trasforma in numero decimale
+
+Ecco come `float()` trasforma un valore in un numero con la virgola:
 
 ```python
 a = float(5)       # 5.0

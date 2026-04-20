@@ -89,26 +89,40 @@ Le f-string sono la forma moderna e più leggibile. Usale sempre quando devi met
 
 ## Metodi utili delle stringhe
 
-Le stringhe hanno molti strumenti integrati. Eccone i più utili:
+Le stringhe hanno molti strumenti integrati. Ecco i più usati, divisi per categoria.
+
+### Cambiare maiuscole e rimuovere spazi
 
 ```python
 testo = "  Ciao, Mondo!  "
 
-print(testo.upper())      # "  CIAO, MONDO!  "  — tutto maiuscolo
-print(testo.lower())      # "  ciao, mondo!  "  — tutto minuscolo
-print(testo.strip())      # "Ciao, Mondo!"      — rimuove spazi iniziali e finali
-print(testo.replace("Mondo", "Python"))  # "  Ciao, Python!  "
+print(testo.upper())   # "  CIAO, MONDO!  "  — tutto maiuscolo
+print(testo.lower())   # "  ciao, mondo!  "  — tutto minuscolo
+print(testo.strip())   # "Ciao, Mondo!"      — rimuove spazi iniziali e finali
+```
 
-testo2 = "mela,banana,ciliegia"
-print(testo2.split(","))   # ['mela', 'banana', 'ciliegia']  — divide in lista
+### Cercare, sostituire e dividere
+
+```python
+testo = "Ciao, Mondo!"
+
+print(testo.replace("Mondo", "Python"))  # "Ciao, Python!"
+
+frutta = "mela,banana,ciliegia"
+print(frutta.split(","))   # ['mela', 'banana', 'ciliegia']  — divide in lista
 print(",".join(["mela", "banana", "ciliegia"]))  # "mela,banana,ciliegia"  — unisce
+```
 
-testo3 = "ciao"
-print(testo3.capitalize())       # "Ciao"   — prima lettera maiuscola
-print(testo3.startswith("ci"))   # True  — inizia con "ci"?
-print(testo3.endswith("ao"))     # True  — finisce con "ao"?
-print(testo3.find("ia"))         # 1     — dove inizia "ia"?
-print(testo3.count("a"))         # 1     — quante volte compare "a"?
+### Controllare il contenuto
+
+```python
+testo = "ciao"
+
+print(testo.capitalize())       # "Ciao"   — prima lettera maiuscola
+print(testo.startswith("ci"))   # True  — inizia con "ci"?
+print(testo.endswith("ao"))     # True  — finisce con "ao"?
+print(testo.find("ia"))         # 1     — dove inizia "ia"? (-1 se non trovato)
+print(testo.count("a"))         # 1     — quante volte compare "a"?
 ```
 
 ## Caratteri speciali
