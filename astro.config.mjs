@@ -7,6 +7,7 @@ import cloudflare from "@astrojs/cloudflare";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
+  site: "https://www.manuale.dev",
   integrations: [
     starlight({
       title: "Manuale",
