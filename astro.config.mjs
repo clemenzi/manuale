@@ -14,7 +14,8 @@ export default defineConfig({
       description: "Una guida pratica alla programmazione in Python e C++ per chi parte da zero.",
       favicon: "/favicon.ico",
       logo: {
-        src: "./src/assets/logo.svg",
+        dark: "./src/assets/logo-dark.svg",
+        light: "./src/assets/logo-light.svg",
         alt: "Manuale Logo",
       },
       routeMiddleware: "./src/route-middleware.ts",
