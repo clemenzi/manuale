@@ -1,0 +1,39 @@
+---
+title: Subquery
+description: Come usare una query dentro un'altra per costruire richieste a più passaggi.
+---
+
+## A volte una domanda ha bisogno di una domanda interna
+
+**Una subquery è una query dentro un'altra query.** È utile quando vuoi risolvere il problema in due passaggi: prima trovi un insieme di risultati, poi usi quel risultato dentro una query più grande.
+
+```sql
+SELECT nome
+FROM clienti
+WHERE id IN (
+    SELECT cliente_id
+    FROM ordini
+    WHERE totale > 100
+);
+```
+
+Prima trovi gli ordini con totale sopra 100. Poi usi quegli identificatori per trovare i clienti collegati.
+
+## Perché può essere comoda
+
+La subquery è utile quando vuoi ragionare per tappe.
+
+Invece di cercare una formula gigante tutta insieme, spezzetti il problema:
+
+1. trovi un sottoinsieme
+2. usi quel sottoinsieme nella query principale
+
+## Dove può comparire
+
+Una subquery può trovarsi in vari punti, per esempio:
+
+- dentro `WHERE`
+- dentro `FROM`
+- dentro `SELECT`, in casi più avanzati
+
+**È uno strumento molto potente, ma va usato in modo leggibile.** Se la query diventa troppo contorta, a volte una CTE è una scelta più chiara.

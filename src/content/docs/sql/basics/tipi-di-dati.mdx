@@ -1,0 +1,60 @@
+---
+title: Tipi di dati
+description: Come scegliere il tipo giusto per numeri, testi, date e valori logici.
+---
+
+## Ogni colonna ha bisogno della forma giusta
+
+**Quando crei una colonna, devi decidere che cosa potrà contenere.** È come scegliere il contenitore corretto prima di sistemare gli oggetti in cucina.
+
+Un barattolo per il sale non è la scelta migliore per conservare la pasta. Allo stesso modo, una colonna pensata per una data non dovrebbe contenere una frase lunga.
+
+## Alcuni tipi che userai spesso
+
+| Tipo            | Significato semplice    | Esempio         |
+| --------------- | ----------------------- | --------------- |
+| `INT`           | numero intero           | `42`            |
+| `VARCHAR(100)`  | testo corto             | `'Luca'`        |
+| `TEXT`          | testo lungo             | una descrizione |
+| `DATE`          | data                    | `2026-04-24`    |
+| `BOOLEAN`       | vero o falso            | `TRUE`          |
+| `DECIMAL(10,2)` | numero decimale preciso | `19.99`         |
+
+## Perché la scelta conta davvero
+
+**Il tipo di dato non è un dettaglio estetico.** Aiuta il database a capire come salvare l'informazione, come confrontarla e come difenderla da errori banali.
+
+Per esempio, una colonna prezzo va trattata in modo diverso da una colonna nome. Una colonna data si comporta in modo diverso da un testo normale.
+
+## `VARCHAR` e `TEXT`: sembrano simili, ma non sono uguali
+
+Quando inizi è normale pensare: "se entrambi tengono testo, perché esistono due tipi?"
+
+- `VARCHAR(100)` dice: **qui entra testo, ma con un limite di lunghezza**
+- `TEXT` dice: **qui può entrare anche testo molto lungo**
+
+Per un nome o un'email, spesso `VARCHAR` è una scelta naturale. Per una recensione o una descrizione dettagliata, `TEXT` può avere più senso.
+
+## Numeri interi o numeri con virgola
+
+**`INT` è comodo per quantità, contatori e identificatori.** Se devi salvare quante unità hai in magazzino, è un buon candidato.
+
+**`DECIMAL` è più adatto per prezzi, importi e valori dove la precisione conta.** Quando ci sono di mezzo soldi, conviene essere precisi.
+
+## Un esempio dentro una tabella
+
+Qui sotto vedi una tabella dove i tipi di dato raccontano già molto delle colonne:
+
+```sql
+CREATE TABLE prodotti (
+    id INT,
+    nome VARCHAR(100),
+    prezzo DECIMAL(10,2),
+    disponibile BOOLEAN,
+    data_creazione DATE
+);
+```
+
+Leggendo questa struttura capisci subito che `prezzo` è un valore numerico preciso, `disponibile` è un sì/no e `data_creazione` è una data.
+
+> **Suggerimento:** Se sei indeciso sul tipo, chiediti: "che aspetto ha questo dato nel mondo reale?" La risposta spesso ti guida bene.

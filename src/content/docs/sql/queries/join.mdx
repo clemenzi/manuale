@@ -1,0 +1,48 @@
+---
+title: Join
+description: Come collegare tabelle diverse con INNER JOIN, LEFT JOIN, RIGHT JOIN e FULL JOIN.
+---
+
+## Una join mette due fogli sullo stesso tavolo
+
+**Le join servono a leggere insieme dati che stanno in tabelle diverse.** È uno dei superpoteri dei database relazionali.
+
+Pensa a due fogli:
+
+- uno con i clienti
+- uno con gli ordini
+
+Separati sono utili. Insieme raccontano molto di più.
+
+```sql
+SELECT clienti.nome, ordini.totale
+FROM clienti
+INNER JOIN ordini ON clienti.id = ordini.cliente_id;
+```
+
+Questa query mette in relazione il cliente con i suoi ordini usando il collegamento tra `clienti.id` e `ordini.cliente_id`.
+
+## `INNER JOIN`: solo le corrispondenze
+
+`INNER JOIN` mostra soltanto le righe che trovano un abbinamento in entrambe le tabelle.
+
+Se un cliente non ha ordini, non apparirà nel risultato.
+
+## Gli altri tipi principali
+
+Tipi principali:
+
+- `INNER JOIN`: solo le corrispondenze
+- `LEFT JOIN`: tutto da sinistra
+- `RIGHT JOIN`: tutto da destra
+- `FULL JOIN`: tutto da entrambe
+
+## Perché sono così importanti
+
+Con le join puoi rispondere a domande come:
+
+- quali clienti hanno fatto ordini?
+- quali ordini appartengono a quale cliente?
+- quali prodotti non sono ancora stati acquistati?
+
+**Senza join, i database relazionali perderebbero gran parte del loro valore pratico.**

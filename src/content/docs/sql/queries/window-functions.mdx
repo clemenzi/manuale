@@ -1,0 +1,45 @@
+---
+title: Window functions
+description: ROW_NUMBER, RANK, DENSE_RANK e OVER per fare classifiche e confronti riga per riga.
+---
+
+## Qui guardi il gruppo senza schiacciarlo in una sola riga
+
+**Le window functions sono funzioni molto utili quando vuoi analizzare un gruppo di righe, ma senza trasformarlo in una sola riga come fa `GROUP BY`.**
+
+Sono perfette per classifiche, posizioni e confronti tra righe vicine.
+
+```sql
+SELECT
+    nome,
+    totale,
+    ROW_NUMBER() OVER (ORDER BY totale DESC) AS posizione
+FROM ordini;
+```
+
+Questa query assegna un numero di posizione a ogni riga, ordinando i risultati per `totale` dal più grande al più piccolo.
+
+## Le funzioni più famose
+
+Funzioni famose:
+
+- `ROW_NUMBER()`
+- `RANK()`
+- `DENSE_RANK()`
+
+## Il ruolo di `OVER`
+
+La parte `OVER (...)` dice alla funzione **su quale finestra di righe deve lavorare** e con quale ordine.
+
+Senza `OVER`, questa famiglia di funzioni non saprebbe su quale insieme ragionare.
+
+## Quando sono utili
+
+Le window functions servono spesso per:
+
+- creare classifiche
+- numerare le righe
+- confrontare risultati vicini
+- aggiungere analisi senza perdere il dettaglio riga per riga
+
+**Sono un tema un po' più avanzato, ma molto importante quando inizi a fare analisi più ricche.**

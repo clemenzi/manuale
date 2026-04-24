@@ -1,0 +1,44 @@
+---
+title: Join avanzati
+description: SELF JOIN e CROSS JOIN per casi meno comuni ma molto utili.
+---
+
+## Quando le join normali non bastano
+
+**Non tutte le join servono a collegare due tabelle diverse.** A volte devi unire una tabella con se stessa. Altre volte vuoi generare tutte le combinazioni possibili tra due insiemi.
+
+Qui entrano in gioco `SELF JOIN` e `CROSS JOIN`.
+
+## SELF JOIN
+
+Con `SELF JOIN` una tabella viene collegata a se stessa.
+
+```sql
+SELECT d.nome AS dipendente, r.nome AS responsabile
+FROM dipendenti AS d
+LEFT JOIN dipendenti AS r ON d.responsabile_id = r.id;
+```
+
+Questo succede perché nella tabella `dipendenti` ogni persona può avere un responsabile che è, a sua volta, un altro dipendente.
+
+## CROSS JOIN
+
+`CROSS JOIN` crea tutte le combinazioni possibili tra due tabelle.
+
+```sql
+SELECT colori.nome, taglie.nome
+FROM colori
+CROSS JOIN taglie;
+```
+
+Se hai 3 colori e 4 taglie, il risultato avrà 12 righe.
+
+## Quando hanno senso
+
+`SELF JOIN` è utile per strutture gerarchiche, come:
+
+- dipendente e responsabile
+- categoria e sotto-categoria
+- persona e referente
+
+`CROSS JOIN` è utile quando vuoi costruire tutte le combinazioni teoriche, per esempio colori e taglie di un catalogo.

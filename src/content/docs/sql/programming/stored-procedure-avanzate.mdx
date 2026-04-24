@@ -1,0 +1,27 @@
+---
+title: Stored procedure avanzate
+description: Controllo di flusso, condizioni, cicli e variabili dentro le stored procedure.
+---
+
+## Qui il database smette di essere solo una lista di query isolate
+
+**Dentro una stored procedure puoi trovare logica più ricca di una semplice sequenza lineare.** Per questo si parla di versioni più avanzate.
+
+Per esempio puoi incontrare:
+
+- `IF`
+- `CASE`
+- cicli
+- variabili locali
+
+## Cosa significa in pratica
+
+Vuol dire che il database può prendere piccole decisioni da solo, ripetere un passaggio o scegliere un comportamento in base ai dati.
+
+Questo può essere utile, ma va usato con equilibrio. **Troppa logica nascosta nel database può rendere il progetto più difficile da seguire.**
+
+## Il criterio più sano
+
+Usa questa potenza quando porta chiarezza o affidabilità reali.
+
+Se invece complica troppo la comprensione del sistema, probabilmente stai spostando troppa logica nel posto sbagliato.

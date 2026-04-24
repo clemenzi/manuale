@@ -1,0 +1,59 @@
+---
+title: DELETE
+description: Come eliminare righe da una tabella senza cancellare più del necessario.
+---
+
+## Qui togli una riga, non la tabella
+
+**`DELETE` serve a rimuovere righe da una tabella.** Non elimina la tabella stessa. Elimina solo i dati selezionati.
+
+Se pensi a una rubrica, è come cancellare un contatto, non buttare via tutta la rubrica.
+
+```sql
+DELETE FROM clienti
+WHERE id = 3;
+```
+
+Così elimini solo la riga con `id = 3`.
+
+> **Attenzione:** Anche qui, senza `WHERE`, puoi cancellare tutto.
+
+## Come leggere questa query
+
+La frase nascosta è:
+
+- `DELETE FROM clienti`: lavora dentro la tabella `clienti`
+- `WHERE id = 3`: elimina solo la riga che rispetta questa condizione
+
+**La parte più importante, di nuovo, è il filtro.**
+
+## Quando è la scelta giusta
+
+Usa `DELETE` quando un record non deve più esistere.
+
+Per esempio:
+
+- un elemento di test va rimosso
+- un dato duplicato è stato identificato
+- una riga è stata inserita per errore
+
+## Un trucco prudente da imparare presto
+
+Prima di lanciare il `DELETE`, prova questa query:
+
+```sql
+SELECT *
+FROM clienti
+WHERE id = 3;
+```
+
+Se il risultato è quello che ti aspetti, allora sai con più sicurezza quali righe stai per eliminare.
+
+## `DELETE` non è `DROP TABLE`
+
+È utile tenerli distinti nella testa:
+
+- `DELETE` elimina alcune o tutte le righe
+- `DROP TABLE` elimina la tabella intera
+
+Questa distinzione è fondamentale e ti evita errori molto pesanti.

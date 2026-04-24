@@ -1,0 +1,51 @@
+---
+title: WHERE
+description: Come filtrare le righe che ti servono davvero, senza leggere tutto.
+---
+
+## Qui scegli cosa far passare
+
+**`WHERE` è il filtro delle query SQL.** Ti permette di leggere solo le righe che rispettano una certa condizione.
+
+Senza `WHERE`, spesso ottieni troppe righe. Con `WHERE`, chiedi al database di mostrarti solo quello che ti interessa.
+
+```sql
+SELECT *
+FROM clienti
+WHERE citta = 'Roma';
+```
+
+Qui ottieni solo i clienti di Roma.
+
+## Perché è così importante
+
+In un database reale le tabelle possono avere migliaia o milioni di righe. **Leggere tutto quasi mai è la mossa giusta.**
+
+Con `WHERE` trasformi una richiesta vaga in una richiesta precisa.
+
+## Come ragionare sulla condizione
+
+La condizione dopo `WHERE` deve rispondere a una domanda del tipo:
+
+- questa riga ha la città giusta?
+- il totale è abbastanza alto?
+- il cliente è attivo?
+- la data rientra nell'intervallo che mi interessa?
+
+Se la risposta è sì, la riga passa. Se la risposta è no, viene esclusa.
+
+## Un altro esempio utile
+
+```sql
+SELECT nome, totale
+FROM ordini
+WHERE totale > 100;
+```
+
+Qui stai chiedendo di vedere solo gli ordini con totale superiore a 100.
+
+## Un'idea da tenere in testa
+
+`WHERE` non cambia i dati. **Serve solo a restringere il risultato della query.**
+
+Questa distinzione è importante: stai scegliendo cosa vedere, non cosa riscrivere.

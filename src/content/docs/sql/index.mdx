@@ -1,0 +1,50 @@
+---
+title: Introduzione
+description: Una mappa chiara della sezione SQL per chi parte da zero.
+icon: Database
+---
+
+## Benvenuto nella sezione SQL
+
+**Questa parte del manuale ti accompagna dentro SQL un passo alla volta.** Se altri linguaggi ti insegnano a scrivere programmi, SQL ti insegna a parlare con i dati salvati in un database.
+
+Pensa a un database come a un archivio ordinato. SQL è il linguaggio con cui chiedi all'archivio di mostrarti qualcosa, registrare nuovi dati, correggere un'informazione o collegare tabelle diverse.
+
+## Come è organizzata questa guida
+
+**Qui seguiamo una regola precisa: un concetto per file.** Questo rende la documentazione più facile da studiare e molto più utile quando vuoi tornare su un argomento specifico senza rileggere una pagina enorme.
+
+In pratica, se vuoi capire solo `WHERE`, hai una pagina per `WHERE`. Se vuoi capire solo `JOIN`, trovi una pagina dedicata a `JOIN`.
+
+## Il percorso più semplice per iniziare
+
+Se stai partendo da zero, segui questo ordine:
+
+1. `Cos'è SQL`
+2. `Database relazionali`
+3. `Tipi di dati`
+4. `CREATE DATABASE`
+5. `CREATE TABLE`
+6. `INSERT`, `SELECT`, `WHERE`, `UPDATE`, `DELETE`
+7. `GROUP BY`, `JOIN`, `Subquery`, `CTE`
+8. i temi più avanzati come indici, transazioni e performance
+
+**Non devi leggere tutto in una volta.** SQL si impara meglio come una cassetta degli attrezzi: oggi un attrezzo, domani un altro.
+
+## Quale SQL useremo
+
+**Useremo soprattutto SQL standard.** Questo ti aiuta a capire i concetti senza dipendere subito da un database preciso.
+
+Quando PostgreSQL, MySQL, SQLite o SQL Server si comportano in modo diverso, lo segnaleremo in modo chiaro.
+
+## Un assaggio immediato
+
+La query qui sotto legge tutto il contenuto di una tabella:
+
+```sql
+SELECT * FROM clienti;
+```
+
+Tradotta in italiano semplice significa: **"mostrami tutte le colonne di tutte le righe della tabella `clienti`"**.
+
+Hai già visto un primo pezzo importante. Adesso possiamo costruire il resto con calma.

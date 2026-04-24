@@ -1,0 +1,62 @@
+---
+title: Operatori logici
+description: AND, OR e NOT per combinare più condizioni nella stessa query.
+---
+
+## Quando una sola condizione non basta
+
+**Gli operatori logici servono a combinare più condizioni.** Sono il modo con cui SQL ragiona su frasi come:
+
+- clienti di Roma **e** attivi
+- clienti di Roma **o** di Milano
+- ordini **non** ancora spediti
+
+```sql
+SELECT *
+FROM clienti
+WHERE citta = 'Roma' AND attivo = TRUE;
+```
+
+`AND` richiede che entrambe le condizioni siano vere.
+
+`OR` ne accetta almeno una. `NOT` la ribalta.
+
+## `AND`: tutto deve essere vero
+
+`AND` funziona come una doppia porta. La riga passa solo se supera entrambe.
+
+```sql
+SELECT *
+FROM clienti
+WHERE citta = 'Roma' AND attivo = TRUE;
+```
+
+Qui restano solo i clienti che vivono a Roma **e** sono attivi.
+
+## `OR`: basta una delle due
+
+Con `OR` la logica è più permissiva.
+
+```sql
+SELECT *
+FROM clienti
+WHERE citta = 'Roma' OR citta = 'Milano';
+```
+
+Qui basta che la città sia Roma oppure Milano.
+
+## `NOT`: capovolgere la condizione
+
+`NOT` serve a negare una condizione.
+
+```sql
+SELECT *
+FROM clienti
+WHERE NOT attivo;
+```
+
+Questa query prende i clienti che non risultano attivi.
+
+## Perché conviene leggere la query come una frase
+
+Quando una query ha più condizioni, il trucco migliore è leggerla ad alta voce in italiano semplice. Se la frase suona chiara, di solito anche la query è costruita bene.

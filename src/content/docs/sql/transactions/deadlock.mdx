@@ -1,0 +1,29 @@
+---
+title: Deadlock
+description: Quando due transazioni si bloccano a vicenda e come capirlo.
+---
+
+## Qui il problema non è il carico: è l'incastro sbagliato
+
+**Un deadlock succede quando due transazioni si aspettano a vicenda e nessuna può proseguire.** È come due persone ferme in un corridoio stretto, ognuna in attesa che si sposti l'altra.
+
+## Un esempio mentale semplice
+
+- la transazione A blocca la riga 1 e poi vuole la riga 2
+- la transazione B blocca la riga 2 e poi vuole la riga 1
+
+Risultato: si fermano entrambe.
+
+## Cosa fa il database
+
+Molti database sanno rilevare questa situazione e annullano una delle due transazioni per sbloccare il sistema.
+
+## Come ridurre il rischio
+
+Puoi abbassare la probabilità di deadlock se:
+
+- tieni le transazioni brevi
+- accedi alle tabelle sempre nello stesso ordine
+- eviti operazioni inutilmente lunghe mentre i lock sono attivi
+
+**Capire i deadlock è importante perché ti insegna che la concorrenza non è magia: è coordinazione.**

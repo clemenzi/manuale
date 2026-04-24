@@ -1,0 +1,36 @@
+---
+title: Modellazione dati
+description: Come progettare uno schema ordinato prima ancora di iniziare a riempirlo.
+---
+
+## Prima di scrivere query, conviene disegnare la mappa
+
+**La modellazione dati è il momento in cui decidi come organizzare il mondo dentro il database.** Prima di scrivere query, conviene fermarsi a capire quali oggetti esistono e come si collegano.
+
+È come disegnare la pianta di una casa prima di iniziare i lavori.
+
+Decidi:
+
+- quali tabelle servono
+- quali colonne deve avere ogni tabella
+- come si collegano tra loro
+
+## Perché questa fase conta così tanto
+
+Uno schema chiaro rende più semplice:
+
+- scrivere query corrette
+- evitare duplicazioni inutili
+- capire dove deve vivere ogni dato
+- far crescere il progetto senza caos
+
+## Un piccolo esempio mentale
+
+Se stai costruendo un e-commerce, potresti identificare entità come:
+
+- clienti
+- prodotti
+- ordini
+- righe ordine
+
+**Ogni tabella dovrebbe rappresentare un concetto chiaro.** Se una tabella prova a fare troppe cose insieme, di solito è un campanello d'allarme.

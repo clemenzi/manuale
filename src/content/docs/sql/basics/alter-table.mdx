@@ -1,0 +1,61 @@
+---
+title: ALTER TABLE
+description: Come cambiare una tabella esistente senza ricrearla da zero.
+---
+
+## I progetti cambiano, e le tabelle con loro
+
+**È raro che una struttura resti perfetta per sempre.** All'inizio di un progetto fai una prima scelta. Poi arrivano nuove esigenze, nuovi campi, nomi migliori o regole più precise.
+
+`ALTER TABLE` serve proprio a modificare una tabella che esiste già.
+
+## Aggiungere una colonna
+
+Uno degli usi più comuni è questo:
+
+```sql
+ALTER TABLE clienti
+ADD telefono VARCHAR(20);
+```
+
+Qui stai dicendo al database di aggiungere una nuova colonna chiamata `telefono`.
+
+## Rinominare una colonna
+
+A volte il problema non è il contenuto, ma il nome.
+
+```sql
+ALTER TABLE clienti
+RENAME COLUMN telefono TO numero_telefono;
+```
+
+Con questa modifica rendi la colonna più chiara senza dover ricreare la tabella intera.
+
+## Altri cambiamenti possibili
+
+A seconda del database, `ALTER TABLE` può servire anche per:
+
+- eliminare una colonna
+- cambiare un tipo di dato
+- aggiungere un vincolo
+- togliere una regola esistente
+- rinominare la tabella
+
+**L'idea centrale resta sempre la stessa:** stai facendo manutenzione sulla struttura.
+
+## Perché conviene essere prudenti
+
+Quando modifichi una tabella vuota, il rischio è basso. Quando modifichi una tabella piena di dati, la faccenda si fa più delicata.
+
+Per esempio, cambiare tipo a una colonna può creare problemi se i vecchi valori non si adattano bene. Eliminare una colonna significa perdere tutti i dati che conteneva.
+
+## Una buona abitudine operativa
+
+Prima di fare un `ALTER TABLE`, è utile:
+
+1. capire bene l'effetto della modifica
+2. verificare se altre query o applicazioni dipendono da quella tabella
+3. provare la modifica in un ambiente di test
+4. fare un backup quando il contesto lo richiede
+
+> **Attenzione:** `ALTER TABLE` è indispensabile nella vita reale, ma proprio perché tocca la struttura conviene usarlo con metodo.

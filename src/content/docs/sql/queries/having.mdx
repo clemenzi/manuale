@@ -1,0 +1,34 @@
+---
+title: HAVING
+description: Come filtrare i gruppi creati da GROUP BY dopo averli costruiti.
+---
+
+## Qui il filtro arriva dopo il raggruppamento
+
+**`HAVING` serve a filtrare i gruppi prodotti da `GROUP BY`.** Se `WHERE` lavora sulle righe prima di creare i gruppi, `HAVING` lavora dopo.
+
+```sql
+SELECT citta, COUNT(*)
+FROM clienti
+GROUP BY citta
+HAVING COUNT(*) >= 2;
+```
+
+Qui restano solo le città con almeno due clienti.
+
+## Come ricordare la differenza
+
+Puoi pensarla così:
+
+- `WHERE` sceglie **quali righe entrano**
+- `HAVING` sceglie **quali gruppi restano**
+
+## Quando ti serve davvero
+
+`HAVING` è utile quando vuoi dire cose come:
+
+- mostra solo le città con più di 10 clienti
+- mostra solo i prodotti con vendite sopra una certa soglia
+- mostra solo i mesi in cui sono stati fatti almeno 100 ordini
+
+**Se nella condizione compare un risultato aggregato, spesso stai cercando proprio `HAVING`.**

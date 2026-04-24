@@ -1,0 +1,51 @@
+---
+title: DROP TABLE
+description: Come eliminare completamente una tabella e quando farlo con cautela.
+---
+
+## Qui non stai riordinando: stai togliendo tutto
+
+**`DROP TABLE` elimina una tabella intera.** Non cancella solo le righe. Fa sparire anche la struttura della tabella.
+
+È come gettare via un intero raccoglitore, non solo i fogli che contiene.
+
+## Il comando base
+
+```sql
+DROP TABLE clienti;
+```
+
+Dopo questo comando la tabella `clienti` non esiste più.
+
+## Cosa viene eliminato davvero
+
+Con `DROP TABLE` perdi:
+
+- il nome della tabella
+- le sue colonne
+- i dati salvati dentro
+- eventuali collegamenti o dipendenze da gestire
+
+Per questo è molto diverso da `DELETE`, che toglie righe ma lascia viva la tabella.
+
+## Quando può avere senso
+
+Ci sono casi in cui è una scelta legittima:
+
+- hai creato una tabella di prova
+- una tabella temporanea non serve più
+- stai rifacendo lo schema in ambiente di sviluppo
+
+**In un database importante o condiviso, però, questo comando richiede molta attenzione.**
+
+## Le domande da farti prima
+
+Prima di lanciare il comando, fermati e controlla:
+
+1. voglio davvero eliminare anche la struttura?
+2. ci sono altre tabelle che dipendono da questa?
+3. esiste un backup o un piano di recupero?
+
+Queste verifiche ti proteggono da errori costosi.
+
+> **Attenzione:** Se il tuo obiettivo è solo svuotare la tabella ma lasciarla esistente, `DROP TABLE` non è lo strumento giusto.

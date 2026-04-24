@@ -1,0 +1,43 @@
+---
+title: Vincoli
+description: PRIMARY KEY, FOREIGN KEY, UNIQUE, NOT NULL, CHECK e DEFAULT spiegati in modo pratico.
+---
+
+## Le regole non servono a complicare: servono a proteggere
+
+**I vincoli sono le regole del database.** Non sono decorazioni. Servono a tenere i dati puliti, coerenti e più difficili da rovinare per errore.
+
+È come mettere regole chiare all'ingresso di un magazzino: qui entra solo materiale etichettato bene, qui non si accettano duplicati, qui non si lasciano campi vuoti.
+
+## I più importanti da conoscere
+
+- `PRIMARY KEY`
+- `FOREIGN KEY`
+- `UNIQUE`
+- `NOT NULL`
+- `CHECK`
+- `DEFAULT`
+
+```sql
+prezzo DECIMAL(10,2) CHECK (prezzo >= 0)
+```
+
+## Cosa fanno in parole semplici
+
+- `PRIMARY KEY`: identifica in modo unico ogni riga
+- `FOREIGN KEY`: collega una tabella a un'altra
+- `UNIQUE`: impedisce i duplicati
+- `NOT NULL`: rende un campo obbligatorio
+- `CHECK`: impone una regola personalizzata
+- `DEFAULT`: assegna un valore automatico se non ne specifichi uno
+
+## Perché sono così utili
+
+Senza vincoli, il database accetterebbe molti dati sbagliati:
+
+- email duplicate quando non dovrebbero esserlo
+- prezzi negativi
+- righe senza nome
+- ordini riferiti a clienti inesistenti
+
+**I vincoli ti aiutano a spostare il controllo vicino ai dati, non solo nel codice dell'applicazione.**

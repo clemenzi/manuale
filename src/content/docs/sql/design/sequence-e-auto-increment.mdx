@@ -1,0 +1,31 @@
+---
+title: Sequence e auto-increment
+description: Come generare identificatori automatici senza sceglierli a mano.
+---
+
+## Dare numeri a mano è scomodo e rischioso
+
+**Molte tabelle hanno una colonna `id` che cresce automaticamente.** È come il numeretto preso in fila: ogni volta il sistema assegna il successivo.
+
+Questo evita di dover scegliere gli identificatori a mano, con il rischio di errori o duplicati.
+
+I nomi cambiano a seconda del database:
+
+- PostgreSQL: `IDENTITY` o `SERIAL`
+- MySQL: `AUTO_INCREMENT`
+- SQL Server: `IDENTITY`
+- SQLite: `INTEGER PRIMARY KEY`
+
+## Perché è comodo
+
+L'auto-incremento è utile quando:
+
+- hai bisogno di una chiave primaria numerica
+- vuoi evitare collisioni tra identificatori
+- non vuoi preoccuparti di scegliere il prossimo numero
+
+## Una cosa importante da capire
+
+**Il numero automatico serve soprattutto come identificatore tecnico.** Non sempre è una buona idea attribuirgli significati di business, come numero fattura o codice pubblico visibile all'utente.
+
+Per quei casi, spesso servono regole diverse.

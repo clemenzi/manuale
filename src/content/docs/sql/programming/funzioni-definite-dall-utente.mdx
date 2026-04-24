@@ -1,0 +1,31 @@
+---
+title: Funzioni definite dall'utente
+description: Funzioni SQL create da te per restituire valori o risultati riutilizzabili.
+---
+
+## Quando vuoi insegnare al database una piccola operazione nuova
+
+**Una funzione definita dall'utente permette di aggiungere una nuova funzione al tuo database.** È simile a una stored procedure, ma in genere nasce per restituire un valore o un risultato.
+
+```sql
+CREATE FUNCTION prezzo_con_iva(prezzo DECIMAL(10,2))
+RETURNS DECIMAL(10,2)
+BEGIN
+    RETURN prezzo * 1.22;
+END;
+```
+
+## Perché può tornare utile
+
+Se hai un calcolo o una trasformazione che si ripete spesso, racchiuderla in una funzione può rendere il codice più ordinato.
+
+Invece di riscrivere sempre la stessa formula, dai un nome a quell'idea.
+
+## Una distinzione semplice da ricordare
+
+Non è una regola assoluta per tutti i database, ma puoi pensare così:
+
+- la **procedura** esegue passi
+- la **funzione** restituisce qualcosa
+
+Questa scorciatoia mentale aiuta molto quando inizi.

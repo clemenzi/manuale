@@ -1,0 +1,45 @@
+---
+title: LIMIT e OFFSET
+description: Come mostrare solo una parte dei risultati quando l'elenco è troppo lungo.
+---
+
+## Qui impari a dosare il risultato
+
+**A volte non vuoi vedere tutte le righe.** Vuoi solo le prime 5, oppure vuoi saltare le prime 10 e leggere le successive.
+
+`LIMIT` e `OFFSET` servono proprio a questo.
+
+```sql
+SELECT *
+FROM clienti
+LIMIT 5;
+```
+
+Questa query restituisce solo le prime 5 righe del risultato.
+
+## Saltare le prime righe
+
+Per saltare le prime righe:
+
+```sql
+SELECT *
+FROM clienti
+LIMIT 5 OFFSET 5;
+```
+
+Qui stai chiedendo: **"salta le prime 5 righe e poi mostrami le successive 5"**.
+
+## Perché è utile nella pratica
+
+Questi strumenti sono molto usati quando costruisci:
+
+- pagine di risultati
+- liste prodotti
+- tabelle amministrative
+- schermate con paginazione
+
+## Un'accoppiata frequente
+
+Spesso `LIMIT` e `OFFSET` si usano insieme a `ORDER BY`.
+
+Per esempio, se vuoi mostrare i 10 ordini più recenti, prima ordini per data e poi limiti il risultato. **Senza ordine, il taglio delle righe può diventare poco prevedibile.**

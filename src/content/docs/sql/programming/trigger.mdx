@@ -1,0 +1,28 @@
+---
+title: Trigger
+description: Azioni automatiche che scattano quando una tabella cambia.
+---
+
+## Un trigger è una reazione automatica
+
+**Un trigger è una regola automatica.** Succede un evento su una tabella, e il database reagisce.
+
+Può scattare prima o dopo un `INSERT`, `UPDATE` o `DELETE`.
+
+## Un'immagine utile
+
+Pensa a una porta con un sensore: appena qualcuno passa, succede qualcosa. Il trigger lavora in modo simile, ma sugli eventi del database.
+
+## Quando è utile
+
+Può servire per:
+
+- registrare modifiche in una tabella di log
+- controllare certe regole automaticamente
+- aggiornare dati collegati
+
+## Il lato da gestire con attenzione
+
+I trigger possono essere potenti, ma anche un po' invisibili. Se un comportamento importante dipende da un trigger, chi legge il codice deve saperlo.
+
+**Per questo vanno usati con chiarezza e moderazione.**

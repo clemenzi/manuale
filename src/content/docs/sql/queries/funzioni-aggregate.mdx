@@ -1,0 +1,54 @@
+---
+title: Funzioni aggregate
+description: COUNT, SUM, AVG, MIN e MAX per riassumere molte righe in un solo risultato.
+---
+
+## Qui non guardi il dettaglio: guardi il riassunto
+
+**Le funzioni aggregate prendono molte righe e restituiscono un solo risultato.** Sono perfette quando non vuoi leggere ogni record uno per uno, ma vuoi un'informazione riassuntiva.
+
+È come guardare uno scontrino e chiedere: quanti articoli ci sono? Qual è il totale? Qual è il prezzo più alto?
+
+```sql
+SELECT COUNT(*) FROM ordini;
+```
+
+Questa query conta quante righe ci sono nella tabella `ordini`.
+
+## Le più usate
+
+Le funzioni aggregate più comuni sono:
+
+- `SUM()`
+- `AVG()`
+- `MIN()`
+- `MAX()`
+
+## Un paio di esempi utili
+
+Per sommare i totali degli ordini:
+
+```sql
+SELECT SUM(totale)
+FROM ordini;
+```
+
+Per trovare il prezzo massimo:
+
+```sql
+SELECT MAX(prezzo)
+FROM prodotti;
+```
+
+## Quando usarle
+
+Le aggregate servono tantissimo in report, dashboard e statistiche rapide.
+
+Per esempio:
+
+- quanti clienti hai
+- quanto hai incassato
+- qual è la media dei voti
+- qual è il valore minimo o massimo in una colonna
+
+**Sono uno dei punti in cui SQL diventa davvero potente.**

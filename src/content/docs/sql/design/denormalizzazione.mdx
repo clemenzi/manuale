@@ -1,0 +1,24 @@
+---
+title: Denormalizzazione
+description: Quando duplicare un po' di dati può migliorare letture o report.
+---
+
+## A volte un po' di disordine controllato è una scelta intenzionale
+
+**La denormalizzazione è la scelta di duplicare alcuni dati per ottenere vantaggi pratici**, spesso in velocità di lettura o semplicità di certe query.
+
+È il contrario della normalizzazione pura, ma non è per forza sbagliata. Dipende dal problema che stai cercando di risolvere.
+
+## Quando può avere senso
+
+Può essere utile quando:
+
+- hai report pesanti letti continuamente
+- fai molte query complicate con join costose
+- la velocità di lettura conta più della perfezione teorica
+
+## Qual è il prezzo da pagare
+
+Il rischio è introdurre incoerenze.
+
+Se un dato è copiato in più posti, quando cambia devi ricordarti di aggiornarlo ovunque. **La denormalizzazione va quindi fatta con un motivo preciso, non per comodità momentanea.**

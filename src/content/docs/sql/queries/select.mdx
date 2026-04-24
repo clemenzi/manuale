@@ -1,0 +1,57 @@
+---
+title: SELECT
+description: Come leggere i dati da una tabella scegliendo colonne e risultati utili.
+---
+
+## Questo è il verbo più usato di SQL
+
+**`SELECT` è il comando con cui chiedi al database di mostrarti dei dati.** Se SQL fosse una conversazione, `SELECT` sarebbe il verbo che useresti più spesso.
+
+Con `SELECT` non modifichi nulla. Stai solo leggendo.
+
+## Vedere tutto
+
+Questa è la forma più conosciuta:
+
+```sql
+SELECT * FROM clienti;
+```
+
+`*` significa "tutte le colonne".
+
+Quindi la query dice: **"mostrami tutte le informazioni della tabella `clienti`"**.
+
+## Vedere solo le colonne che ti servono
+
+Molto spesso non hai bisogno di tutto. Hai bisogno solo di alcune colonne:
+
+```sql
+SELECT nome, email FROM clienti;
+```
+
+Questa versione è spesso migliore, perché il risultato è più pulito e l'intenzione è più chiara.
+
+## Come si legge la struttura
+
+In una query base con `SELECT` trovi quasi sempre questi pezzi:
+
+- `SELECT`: quali colonne vuoi vedere
+- `FROM`: da quale tabella vuoi leggerle
+
+Più avanti aggiungerai altri pezzi, come `WHERE`, `ORDER BY` e `GROUP BY`.
+
+## Perché evitare `SELECT *` come abitudine fissa
+
+Quando stai esplorando una tabella, `SELECT *` è comodissimo. Ma nelle query più curate è spesso meglio elencare le colonne che ti servono davvero.
+
+Questo aiuta a:
+
+- leggere meglio il risultato
+- evitare dati inutili
+- rendere più esplicita la tua intenzione
+
+## Un buon modo di pensarla
+
+Quando scrivi `SELECT`, stai dicendo al database: **"fammi vedere proprio questo pezzo di realtà"**.
+
+Più sei preciso, più la query diventa utile.

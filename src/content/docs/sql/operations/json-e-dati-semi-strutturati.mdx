@@ -1,0 +1,28 @@
+---
+title: JSON e dati semi-strutturati
+description: Lavorare con campi JSON dentro un database relazionale senza perdere la bussola.
+---
+
+## Non tutti i dati sono rigidi come una tabella classica
+
+**Alcuni dati hanno una parte stabile e una parte più flessibile.** I campi JSON servono quando vuoi conservare informazioni con struttura meno rigida dentro un database relazionale.
+
+SQL resta relazionale, ma molti database moderni sanno gestire anche dati semi-strutturati.
+
+## Quando può essere utile
+
+Per esempio:
+
+- impostazioni personalizzate di un utente
+- metadati variabili
+- configurazioni che cambiano da caso a caso
+
+## Il punto da ricordare
+
+JSON è utile, ma non dovrebbe diventare una scusa per buttare tutto in un campo indistinto. **Se un dato è davvero strutturato e importante, spesso merita ancora una colonna o una tabella dedicata.**
+
+## La scelta giusta è quasi sempre mista
+
+Molti progetti usano una base relazionale solida e aggiungono JSON solo dove la flessibilità serve davvero.
+
+Questo equilibrio di solito è più sano di un approccio tutto o niente.

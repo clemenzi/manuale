@@ -1,0 +1,42 @@
+---
+title: Funzioni su date e tempo
+description: Lavorare con date, orari e timestamp in modo più preciso.
+---
+
+## Il tempo nei database conta tantissimo
+
+**Date e orari compaiono ovunque.** Ordini, iscrizioni, appuntamenti, scadenze, ultime modifiche: quasi ogni applicazione ha bisogno di ricordare quando è successo qualcosa.
+
+Per questo SQL offre funzioni dedicate al tempo.
+
+```sql
+SELECT CURRENT_DATE;
+```
+
+```sql
+SELECT CURRENT_TIMESTAMP;
+```
+
+La prima query restituisce la data di oggi. La seconda restituisce data e ora correnti.
+
+## Un uso tipico: estrarre una parte della data
+
+Molti database permettono di estrarre anno, mese o giorno da una data:
+
+```sql
+SELECT EXTRACT(YEAR FROM data_ordine)
+FROM ordini;
+```
+
+Qui stai chiedendo solo l'anno della colonna `data_ordine`.
+
+## Quando ti tornano utili
+
+Le funzioni su date e tempo servono spesso per:
+
+- filtrare ordini recenti
+- raggruppare per mese o anno
+- calcolare scadenze
+- capire quando un dato è stato creato o modificato
+
+**Appena lavori con dati reali, queste funzioni smettono subito di essere opzionali.**

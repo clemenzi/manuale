@@ -1,0 +1,35 @@
+---
+title: CTE
+description: Usare WITH per creare risultati temporanei leggibili e riutilizzabili nella query.
+---
+
+## Una CTE è un appunto temporaneo con un nome
+
+**CTE** significa **Common Table Expression**. Il nome tecnico può spaventare, ma l'idea pratica è molto semplice: crei un risultato temporaneo e gli dai un nome.
+
+Questo rende le query lunghe più facili da leggere.
+
+```sql
+WITH ordini_grandi AS (
+    SELECT *
+    FROM ordini
+    WHERE totale > 100
+)
+SELECT * FROM ordini_grandi;
+```
+
+Qui `ordini_grandi` è un nome temporaneo. Dentro quel nome hai messo tutti gli ordini sopra 100.
+
+## Perché piace tanto a chi scrive query
+
+Le CTE aiutano a:
+
+- spezzare una query lunga in parti più leggibili
+- dare nomi chiari ai passaggi intermedi
+- evitare di ripetere lo stesso blocco più volte
+
+## Quando sceglierla al posto di una subquery
+
+Se la query interna è piccola e molto locale, una subquery può andare benissimo.
+
+Se invece la logica ha più passaggi o vuoi leggere il codice con più chiarezza, **una CTE spesso è più elegante e più facile da mantenere**.

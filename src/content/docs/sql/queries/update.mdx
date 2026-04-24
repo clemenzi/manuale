@@ -1,0 +1,68 @@
+---
+title: UPDATE
+description: Come modificare dati già presenti nel database senza toccare le righe sbagliate.
+---
+
+## Qui non aggiungi: correggi
+
+**`UPDATE` serve a cambiare dati che esistono già.** È come prendere una scheda già compilata e correggere un'informazione diventata sbagliata o superata.
+
+Per esempio, un cliente cambia città. Non devi creare una nuova riga: devi aggiornare quella giusta.
+
+## La struttura base
+
+```sql
+UPDATE clienti
+SET citta = 'Bologna'
+WHERE id = 1;
+```
+
+Questa query cambia la città del cliente con `id = 1`.
+
+## Come leggere il comando
+
+La logica è questa:
+
+- `UPDATE clienti`: scegli la tabella su cui vuoi lavorare
+- `SET citta = 'Bologna'`: decidi quale colonna cambiare e con quale valore
+- `WHERE id = 1`: indichi quale riga deve essere modificata
+
+**Il punto davvero delicato è `WHERE`.**
+
+> **Attenzione:** Senza `WHERE`, rischi di aggiornare tutte le righe.
+
+## Aggiornare più colonne insieme
+
+Puoi cambiare più informazioni in una sola query:
+
+```sql
+UPDATE clienti
+SET citta = 'Bologna', email = 'luca.nuova@email.it'
+WHERE id = 1;
+```
+
+Questo è comodo quando più dati della stessa riga devono essere corretti nello stesso momento.
+
+## Un'abitudine molto sana
+
+Quando la query è importante, prima di fare `UPDATE` puoi eseguire una `SELECT` con la stessa condizione:
+
+```sql
+SELECT *
+FROM clienti
+WHERE id = 1;
+```
+
+Così controlli in anticipo quali righe stai per toccare.
+
+## Quando usare `UPDATE`
+
+`UPDATE` ha senso quando il record resta lo stesso, ma alcuni dettagli cambiano.
+
+Per esempio:
+
+- un prezzo viene aggiornato
+- un cliente cambia email
+- un ordine passa da `in_preparazione` a `spedito`
+
+Se invece stai creando un elemento nuovo, non ti serve `UPDATE`: ti serve `INSERT`.

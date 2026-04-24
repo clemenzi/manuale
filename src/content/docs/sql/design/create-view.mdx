@@ -1,0 +1,31 @@
+---
+title: CREATE VIEW
+description: Come salvare una query con un nome e riusarla come se fosse una tabella.
+---
+
+## Una view è una finestra salvata sui dati
+
+**Una view è una query salvata con un nome.** Invece di riscrivere ogni volta la stessa richiesta, puoi salvarla e riutilizzarla.
+
+```sql
+CREATE VIEW clienti_attivi AS
+SELECT id, nome, email
+FROM clienti
+WHERE attivo = TRUE;
+```
+
+Da quel momento puoi interrogare `clienti_attivi` come se fosse una tabella.
+
+## Perché è comoda
+
+Le view aiutano quando:
+
+- una query viene usata spesso
+- vuoi nascondere complessità dietro un nome più semplice
+- vuoi offrire una vista più pulita di dati più grandi
+
+## Cosa NON è
+
+Una view, di base, non è una copia indipendente dei dati. **È più simile a una finestra su una query.**
+
+Quando guardi dentro, vedi il risultato di quella definizione.
