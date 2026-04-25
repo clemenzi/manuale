@@ -2,8 +2,8 @@
   "name": "programming-handbook-it",
   "private": true,
   "scripts": {
-    "dev": "turbo dev --filter=www",
-    "start": "turbo dev --filter=www",
+    "dev": "turbo dev",
+    "start": "turbo start",
     "build": "turbo build",
     "preview": "pnpm --filter www preview",
     "types:check": "turbo types:check",
@@ -11,7 +11,11 @@
     "fmt": "pnpm exec oxfmt --write .",
     "fmt:check": "pnpm exec oxfmt --check .",
     "generate-types": "pnpm --filter www generate-types",
+    "tools:review": "turbo start --filter=docreview --",
     "prepare": "husky"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2"
   },
   "devDependencies": {
     "husky": "^9.1.7",

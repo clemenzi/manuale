@@ -20,6 +20,9 @@
     "generate-types": {
       "cache": false,
       "outputs": ["worker-configuration.d.ts"]
+    },
+    "start": {
+      "cache": false
     }
   }
 }
