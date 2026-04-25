@@ -1,0 +1,41 @@
+---
+title: Testing di query SQL
+description: Verificare che le query facciano davvero ciò che ti aspetti, non solo ciò che speri.
+---
+
+## Anche le query meritano test, non solo il codice dell'applicazione
+
+**Una query può essere sintatticamente corretta e comunque fare la cosa sbagliata.** Per questo anche le query vanno testate.
+
+È come una calcolatrice: può darti un numero, ma devi comunque sapere se hai scritto l'operazione giusta.
+
+È utile avere:
+
+- dati di prova
+- risultati attesi
+- controlli automatici dove possibile
+
+## Cosa stai verificando davvero
+
+Quando testi una query, stai controllando:
+
+- che selezioni le righe giuste
+- che escluda quelle sbagliate
+- che faccia i calcoli corretti
+- che continui a funzionare quando cambiano i dati di contesto
+
+**Testare significa ridurre sorprese, non perdere tempo.**
+
+## Un esempio piccolo
+
+Se una query deve trovare solo clienti attivi, prepara dati di prova con:
+
+- un cliente attivo
+- un cliente non attivo
+- un cliente con dati mancanti
+
+Poi controlla che nel risultato compaia solo chi deve comparire.
+
+:::tip
+I casi strani sono preziosi. Spesso sono proprio loro a scoprire errori nascosti.
+:::

@@ -1,0 +1,36 @@
+---
+title: Locking e concorrenza
+description: Come il database gestisce accessi simultanei agli stessi dati senza farli scontrare.
+---
+
+## Quando due mani cercano lo stesso oggetto nello stesso momento
+
+**La concorrenza nasce quando più utenti o processi lavorano sugli stessi dati nello stesso momento.** Il database deve evitare che si creino conflitti o risultati incoerenti.
+
+Un **lock** è come il cartello "occupato" appeso a una porta. Dice agli altri: aspetta un attimo, questa parte è già in uso.
+
+In SQL, quel cartello può riguardare una riga, una tabella o altre parti interne del database.
+
+## Perché servono i lock
+
+Senza meccanismi di locking, due aggiornamenti contemporanei potrebbero:
+
+- sovrascriversi a vicenda
+- leggere dati a metà
+- produrre risultati difficili da prevedere
+
+## La cosa importante da capire
+
+**Il locking non è un difetto. È una protezione.** Il problema nasce solo quando i lock durano troppo o vengono gestiti male.
+
+Per questo conviene scrivere transazioni brevi e mirate, invece di lasciarle aperte inutilmente.
+
+## Un esempio mentale
+
+Se due casse del supermercato provano a vendere l'ultimo pezzo dello stesso prodotto nello stesso momento, serve una regola. Il database deve evitare che entrambe dicano "venduto" come se il pezzo fosse doppio.
+
+I lock aiutano a coordinare questi momenti delicati.
+
+:::tip
+Quando una query resta bloccata, non pensare subito a un errore. Potrebbe essere in attesa che un'altra transazione finisca.
+:::

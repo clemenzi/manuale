@@ -1,0 +1,61 @@
+---
+title: Database relazionali
+description: Cosa sono tabelle, righe, colonne e relazioni tra i dati.
+---
+
+## Immaginalo come un insieme di fogli collegati
+
+**Un database relazionale assomiglia a una raccolta di tabelle.** Se hai mai visto un foglio Excel, hai già un'immagine utile in testa.
+
+La differenza importante è questa: qui le tabelle possono collegarsi tra loro in modo ordinato.
+
+## I tre pezzi da riconoscere subito
+
+Dentro una tabella trovi sempre:
+
+- una **tabella**: l'intero elenco, per esempio `clienti`
+- una **riga**: un elemento preciso, per esempio un cliente
+- una **colonna**: un tipo di informazione, per esempio `nome` o `email`
+
+Guarda questa mini tabella:
+
+| id  | nome  | citta  |
+| --- | ----- | ------ |
+| 1   | Luca  | Roma   |
+| 2   | Marta | Milano |
+
+Qui ogni riga è una persona. Ogni colonna descrive un aspetto di quella persona.
+
+## Perché si usa la parola relazionale
+
+**Perché le tabelle possono fare riferimento una all'altra.** Per esempio puoi avere:
+
+- una tabella `clienti`
+- una tabella `ordini`
+
+Ogni ordine può contenere un collegamento al cliente che lo ha effettuato. In questo modo i dati restano più ordinati e non devi riscrivere tutto ogni volta.
+
+## Un'analogia che aiuta davvero
+
+Pensa a una biblioteca.
+
+- un foglio tiene i **lettori**
+- un altro foglio tiene i **prestiti**
+
+Nei prestiti non hai bisogno di riscrivere sempre l'indirizzo completo del lettore. Ti basta un riferimento al lettore giusto. **Questo è il cuore del modello relazionale: collegare bene le informazioni senza duplicarle troppo.**
+
+## Cosa rende utile questo modello
+
+Un database relazionale aiuta a:
+
+- mantenere i dati più puliti
+- evitare ripetizioni inutili
+- cercare informazioni con precisione
+- combinare dati di tabelle diverse
+- applicare regole per ridurre gli errori
+
+## Un'anticipazione dei prossimi passi
+
+Più avanti incontrerai termini come `PRIMARY KEY`, `FOREIGN KEY` e `JOIN`. Non serve padroneggiarli subito.
+
+Per ora ti basta questa immagine: **un database relazionale è un insieme di tabelle che collaborano tra loro in modo controllato.**

@@ -1,0 +1,43 @@
+---
+title: ORDER BY
+description: Come ordinare i risultati in modo crescente o decrescente.
+---
+
+## Dopo aver trovato i dati, puoi metterli in ordine
+
+**`ORDER BY` serve a scegliere l'ordine con cui il database ti mostra i risultati.** Senza di lui, l'ordine non è qualcosa su cui conviene fare affidamento.
+
+Pensa a una lista di nomi o a un elenco di prezzi. Stesso contenuto, ma un ordine diverso può renderlo molto più utile.
+
+```sql
+SELECT nome
+FROM clienti
+ORDER BY nome ASC;
+```
+
+`ASC` vuol dire crescente. `DESC` vuol dire decrescente.
+
+## Quando lo usi davvero
+
+`ORDER BY` è utilissimo quando vuoi:
+
+- nomi in ordine alfabetico
+- prezzi dal più alto al più basso
+- date dalla più recente alla più vecchia
+- punteggi in classifica
+
+## Un altro esempio chiaro
+
+```sql
+SELECT nome, totale
+FROM ordini
+ORDER BY totale DESC;
+```
+
+Qui gli ordini con il totale più alto compariranno per primi.
+
+## Un dettaglio importante
+
+**L'ordinamento avviene sul risultato della query.** Prima selezioni le righe, poi decidi come disporle.
+
+Questo rende `ORDER BY` perfetto da usare dopo `WHERE`, quando hai già filtrato ciò che ti interessa.

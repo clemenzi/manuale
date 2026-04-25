@@ -1,0 +1,74 @@
+---
+title: CREATE TABLE
+description: Come definire una tabella, le sue colonne e le prime regole di base.
+---
+
+## Qui inizi a dare forma ai dati
+
+**Con `CREATE TABLE` stai decidendo come sarà fatta una tabella.** In altre parole, stai progettando quali colonne avrà, che tipo di valori conterranno e quali regole dovranno rispettare.
+
+È un passaggio importante, perché una tabella ben pensata rende più semplice tutto il lavoro successivo.
+
+È come preparare un modulo prima di farlo compilare a qualcuno. Decidi prima quali campi servono: nome, email, città, data di iscrizione.
+
+## Un esempio semplice ma realistico
+
+Questa query crea una tabella per salvare alcuni clienti:
+
+```sql
+CREATE TABLE clienti (
+    id INT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(150)
+);
+```
+
+Questa istruzione crea una tabella chiamata `clienti`.
+
+Il risultato non è una tabella piena di dati. È una tabella vuota, pronta a ricevere righe con `INSERT`.
+
+## Come leggere il comando riga per riga
+
+Ecco cosa stai dicendo al database:
+
+- `id INT PRIMARY KEY`: ogni riga avrà un identificatore unico
+- `nome VARCHAR(100) NOT NULL`: il nome è testo e non può mancare
+- `email VARCHAR(150)`: l'email è testo e qui è facoltativa
+- `data_iscrizione DATE`: questa colonna contiene una data
+
+**Una buona tabella è leggibile già solo osservandone la struttura.**
+
+## Perché la chiave primaria conta così tanto
+
+La **chiave primaria** è la colonna che identifica una riga senza ambiguità. Due righe diverse non devono avere lo stesso valore di chiave primaria.
+
+Nel mondo reale è come il numero di tessera di una palestra: due persone possono chiamarsi allo stesso modo, ma non dovrebbero condividere lo stesso identificatore.
+
+## Perché `NOT NULL` è utile
+
+**`NOT NULL` è una regola di qualità.** Dice al database che quella colonna non può essere lasciata vuota.
+
+Se in una tabella clienti il nome è indispensabile, ha senso dirlo subito. Così il database ti aiuta a evitare righe incomplete.
+
+:::tip
+Metti `NOT NULL` sui dati davvero necessari. Se un'informazione può mancare nella vita reale, non renderla obbligatoria solo per abitudine.
+:::
+
+## Un piccolo controllo mentale prima di scrivere una tabella
+
+Prima di premere invio, prova a chiederti:
+
+- qual è il dato che identifica ogni riga?
+- quali colonne sono obbligatorie?
+- quali colonne sono facoltative?
+- i tipi scelti descrivono bene i dati?
+
+Queste domande sembrano semplici, ma migliorano molto la qualità dello schema.
+
+## Mini riepilogo
+
+- `CREATE TABLE` crea la struttura di una tabella
+- ogni colonna ha un nome e un tipo
+- `PRIMARY KEY` identifica ogni riga
+- `NOT NULL` rende una colonna obbligatoria
+- dopo aver creato la tabella, puoi riempirla con `INSERT`

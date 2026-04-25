@@ -1,0 +1,56 @@
+---
+title: Relazioni tra tabelle
+description: Uno a uno, uno a molti e molti a molti spiegati con esempi concreti.
+---
+
+## Un database diventa interessante quando le tabelle si parlano
+
+**Le relazioni descrivono il legame tra tabelle diverse.** È qui che il modello relazionale mostra davvero la sua forza.
+
+Non hai solo tabelle isolate. Hai tabelle che raccontano pezzi diversi della stessa storia.
+
+Pensa a una scuola. Hai studenti, classi, insegnanti e voti. Ogni elenco ha senso da solo, ma il valore vero arriva quando capisci come si collegano.
+
+- **uno a uno**
+- **uno a molti**
+- **molti a molti**
+
+## Uno a uno
+
+Una riga di una tabella corrisponde a una sola riga di un'altra tabella.
+
+Per esempio: un utente può avere un solo profilo esteso.
+
+È come una persona e la sua carta d'identità: una persona ha una carta, e quella carta appartiene a quella persona.
+
+## Uno a molti
+
+È il caso più frequente.
+
+Per esempio: un cliente può avere molti ordini, ma ogni ordine appartiene a un solo cliente.
+
+È come una biblioteca: un lettore può fare molti prestiti, ma ogni prestito appartiene a un lettore preciso.
+
+## Molti a molti
+
+Qui entrambe le parti possono collegarsi a molte righe dell'altra tabella.
+
+Per esempio: un ordine può contenere molti prodotti e un prodotto può apparire in molti ordini.
+
+In questi casi si usa spesso una **tabella ponte**, come `righe_ordine`.
+
+```sql
+CREATE TABLE righe_ordine (
+    ordine_id INT,
+    prodotto_id INT,
+    quantita INT
+);
+```
+
+Questa tabella collega ordini e prodotti, e aggiunge anche la quantità.
+
+## Perché queste relazioni contano
+
+Capire bene il tipo di relazione ti aiuta a costruire uno schema ordinato e a scrivere query corrette.
+
+**Se sbagli qui, tutto il resto del database diventa più confuso.**

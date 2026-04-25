@@ -1,0 +1,47 @@
+---
+title: Valori NULL
+description: Come rappresentare e controllare l'assenza di un valore in SQL.
+---
+
+## `NULL` vuol dire: qui il dato non c'è
+
+**`NULL` è un concetto fondamentale in SQL.** Non vuol dire zero. Non vuol dire testo vuoto. Vuol dire che il valore è assente o sconosciuto.
+
+Questa distinzione è importantissima, perché molti errori nascono proprio dal trattare `NULL` come se fosse un valore normale.
+
+```sql
+SELECT *
+FROM clienti
+WHERE email IS NULL;
+```
+
+Questa query cerca i clienti che non hanno un'email salvata.
+
+## Perché non si usa `= NULL`
+
+Con `NULL` si usano operatori speciali:
+
+- `IS NULL`
+- `IS NOT NULL`
+
+Non si usa `= NULL`, perché `NULL` non si comporta come un valore normale da confrontare.
+
+## Il contrario
+
+Se vuoi trovare solo le righe dove il valore esiste, puoi scrivere:
+
+```sql
+SELECT *
+FROM clienti
+WHERE email IS NOT NULL;
+```
+
+## Quando compare `NULL` nella pratica
+
+Lo incontri spesso quando:
+
+- un campo è facoltativo
+- il dato non è stato ancora inserito
+- l'informazione non è disponibile
+
+**Pensarlo come “dato mancante” è la scorciatoia mentale più utile.**

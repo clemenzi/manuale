@@ -1,0 +1,49 @@
+---
+title: Materialized view
+description: Una vista che salva anche il risultato per rendere certe letture più veloci.
+---
+
+## Qui non salvi solo la ricetta: salvi anche il piatto pronto
+
+**Una materialized view è simile a una view, ma con una differenza importante:** salva anche il risultato della query.
+
+È come avere una fotografia già pronta, invece di rifare il calcolo ogni volta da zero.
+
+Una view normale ricalcola la scena quando guardi. Una materialized view conserva una copia del risultato, così alcune letture possono essere molto più veloci.
+
+## Perché può essere utile
+
+Se una query è pesante e viene letta spesso, avere il risultato già materializzato può velocizzare molto le consultazioni.
+
+Questo succede spesso in report e dashboard.
+
+## Un esempio piccolo
+
+Immagina un report che somma gli ordini per giorno:
+
+```sql
+CREATE MATERIALIZED VIEW vendite_giornaliere AS
+SELECT data_ordine, SUM(totale) AS totale_giorno
+FROM ordini
+GROUP BY data_ordine;
+```
+
+Invece di rifare la somma ogni volta, il database può leggere il risultato già preparato.
+
+## Il punto da ricordare
+
+La materialized view non si aggiorna sempre da sola nello stesso modo di una view normale. **Ogni tanto il risultato va rigenerato o aggiornato.**
+
+:::note
+Non tutti i database la supportano nello stesso modo.
+:::
+
+## Quando può avere senso sceglierla
+
+È una buona candidata quando il risultato è costoso da calcolare ma viene letto spesso.
+
+Per report e dashboard, questa differenza può essere molto importante.
+
+:::caution
+Se i dati cambiano spesso, chiediti quanto puoi accettare un risultato non aggiornato al secondo.
+:::

@@ -1,0 +1,38 @@
+---
+title: Gestione utenti e permessi
+description: Controllare chi può leggere, scrivere o amministrare il database.
+---
+
+## Un database serio non è una stanza aperta a tutti
+
+**Gestire utenti e permessi significa decidere chi può fare cosa.** Non tutte le persone o applicazioni che usano un database devono avere gli stessi poteri.
+
+Pensa alle chiavi di un edificio. Non dai la chiave della cassaforte a chi deve solo entrare nella sala riunioni.
+
+Di solito si gestiscono:
+
+- utenti
+- ruoli
+- permessi di lettura
+- permessi di scrittura
+- permessi amministrativi
+
+## Perché conta così tanto
+
+Se dai troppi permessi a tutti, aumenti il rischio di:
+
+- errori accidentali
+- modifiche indesiderate
+- accessi impropri
+
+**La regola più sana è dare a ciascuno solo ciò che serve davvero.**
+
+## Un esempio semplice
+
+Un'applicazione che mostra un catalogo prodotti potrebbe avere solo il permesso di leggere.
+
+Un pannello amministrativo, invece, potrebbe avere anche il permesso di modificare prezzi e descrizioni.
+
+:::note
+Dare meno permessi non significa fidarsi meno delle persone. Significa ridurre il danno possibile se qualcosa va storto.
+:::

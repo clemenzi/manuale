@@ -1,0 +1,32 @@
+---
+title: GROUP BY
+description: Come raggruppare le righe che condividono lo stesso valore.
+---
+
+## Qui passi dal dettaglio ai gruppi
+
+**`GROUP BY` mette insieme righe che hanno qualcosa in comune.** Invece di guardare ogni record separatamente, inizi a ragionare per gruppi.
+
+È come prendere una pila di schede e dividerla per città, categoria o anno.
+
+```sql
+SELECT citta, COUNT(*)
+FROM clienti
+GROUP BY citta;
+```
+
+Così ottieni una riga per ogni città, insieme al numero di clienti che appartengono a quella città.
+
+## Quando diventa utile
+
+`GROUP BY` è molto usato quando vuoi rispondere a domande come:
+
+- quanti clienti ho per città?
+- quanti ordini ho per mese?
+- qual è il totale venduto per categoria?
+
+## Perché spesso va insieme alle aggregate
+
+Da solo `GROUP BY` crea gruppi. Poi, dentro quei gruppi, funzioni come `COUNT()`, `SUM()` o `AVG()` calcolano qualcosa.
+
+**La coppia `GROUP BY` + funzioni aggregate è uno dei motori principali dei report SQL.**

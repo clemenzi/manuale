@@ -1,0 +1,44 @@
+---
+title: Differenze tra dialetti SQL
+description: MySQL, PostgreSQL, SQLite e SQL Server a confronto in modo semplice.
+---
+
+## SQL è una lingua comune con accenti diversi
+
+**SQL è uno standard, ma ogni database ha il suo accento.** Le idee di base sono molto simili, però alcuni dettagli cambiano.
+
+Pensa all'italiano parlato in regioni diverse. La lingua è la stessa, ma certe parole, espressioni e abitudini cambiano.
+
+Controlla sempre:
+
+- tipi di dati
+- auto-increment
+- funzioni disponibili
+- sintassi di `LIMIT` o equivalenti
+- supporto a feature avanzate
+
+## Perché conta per chi studia
+
+All'inizio può sembrare fastidioso. In realtà è normale. **Prima impari la logica comune, poi impari le differenze del database che stai usando.**
+
+Questo approccio evita di confondere il concetto con la variante.
+
+## Un esempio semplice
+
+Per limitare i risultati, molti database usano:
+
+```sql
+SELECT nome
+FROM clienti
+LIMIT 10;
+```
+
+SQL Server usa spesso una forma diversa, come `TOP`.
+
+Non cambia l'idea: vuoi solo vedere pochi risultati.
+
+## La buona notizia
+
+Una volta capiti bene i concetti centrali, passare da un dialetto all'altro è molto più facile di quanto sembri.
+
+Di solito cambi alcuni dettagli, non l'intero modo di ragionare.

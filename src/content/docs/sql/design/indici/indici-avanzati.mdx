@@ -1,0 +1,46 @@
+---
+title: Indici avanzati
+description: Indici composti, full-text, B-tree e hash spiegati senza gergo inutile.
+---
+
+## Esistono indici diversi perché i problemi da risolvere sono diversi
+
+**Non tutti gli indici funzionano nello stesso modo.** Alcuni sono pensati per confronti classici, altri per più colonne insieme, altri ancora per cercare dentro grandi testi.
+
+È come avere strumenti diversi in cucina: un coltello, una grattugia e un colino non fanno lo stesso lavoro. Sono tutti utili, ma solo nel contesto giusto.
+
+## Alcuni tipi importanti
+
+- **composti**: su più colonne
+- **B-tree**: il tipo più comune
+- **hash**: utile in casi specifici
+- **full-text**: per cercare dentro grandi testi
+
+## Indici composti
+
+Un indice composto riguarda più colonne insieme, per esempio `(cognome, nome)`.
+
+È utile quando le query filtrano o ordinano spesso usando proprio quella combinazione.
+
+```sql
+CREATE INDEX idx_clienti_cognome_nome
+ON clienti(cognome, nome);
+```
+
+Questo indice può aiutare quando cerchi spesso per cognome e poi per nome.
+
+## B-tree, hash e full-text
+
+**B-tree** è il tipo più comune e versatile.  
+**hash** può aiutare in alcuni confronti di uguaglianza.  
+**full-text** è pensato per ricerche testuali più ricche, dove non basta un semplice confronto.
+
+Per esempio, una ricerca full-text può essere utile quando vuoi cercare parole dentro descrizioni lunghe, articoli o commenti.
+
+## Un promemoria importante
+
+Ogni database offre opzioni diverse. **Non è necessario imparare tutti i tipi in una volta.** La cosa più utile all'inizio è capire che esistono indici specializzati per problemi diversi.
+
+:::tip
+Parti dagli indici semplici. Gli indici avanzati hanno senso quando hai già una query reale da migliorare.
+:::

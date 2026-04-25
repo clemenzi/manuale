@@ -1,0 +1,70 @@
+---
+title: WHERE
+description: Come filtrare le righe che ti servono davvero, senza leggere tutto.
+---
+
+## Qui scegli cosa far passare
+
+**`WHERE` è il filtro delle query SQL.** Ti permette di leggere solo le righe che rispettano una certa condizione.
+
+Senza `WHERE`, spesso ottieni troppe righe. Con `WHERE`, chiedi al database di mostrarti solo quello che ti interessa.
+
+Pensa a un colino in cucina. Il colino lascia passare solo quello che rispetta una certa forma. `WHERE` fa una cosa simile con le righe di una tabella.
+
+Questa query mostra solo i clienti che vivono a Roma:
+
+```sql
+SELECT nome, citta
+FROM clienti
+WHERE citta = 'Roma';
+```
+
+In parole semplici significa: **"mostrami nome e città dei clienti che hanno `Roma` nella colonna `citta`"**.
+
+Se la tabella contiene clienti di città diverse, il risultato mostrerà solo le righe in cui `citta` vale `Roma`.
+
+## Perché è così importante
+
+In un database reale le tabelle possono avere migliaia o milioni di righe. **Leggere tutto quasi mai è la mossa giusta.**
+
+Con `WHERE` trasformi una richiesta vaga in una richiesta precisa.
+
+## Come ragionare sulla condizione
+
+La condizione dopo `WHERE` deve rispondere a una domanda del tipo:
+
+- questa riga ha la città giusta?
+- il totale è abbastanza alto?
+- il cliente è attivo?
+- la data rientra nell'intervallo che mi interessa?
+
+Se la risposta è sì, la riga passa. Se la risposta è no, viene esclusa.
+
+:::note
+I testi in SQL si scrivono di solito tra apici singoli, come `'Roma'`. I numeri invece si scrivono senza apici, come `18`.
+:::
+
+## Un altro esempio utile
+
+Questa query mostra solo gli ordini con totale superiore a 100:
+
+```sql
+SELECT nome, totale
+FROM ordini
+WHERE totale > 100;
+```
+
+Qui stai chiedendo di vedere solo gli ordini con totale superiore a 100.
+
+## Un'idea da tenere in testa
+
+`WHERE` non cambia i dati. **Serve solo a restringere il risultato della query.**
+
+Questa distinzione è importante: stai scegliendo cosa vedere, non cosa riscrivere.
+
+## Mini riepilogo
+
+- `WHERE` filtra le righe
+- la condizione deve essere vera o falsa
+- SQL controlla la condizione una riga alla volta
+- nei comandi che modificano dati, un `WHERE` sbagliato può cambiare troppe righe

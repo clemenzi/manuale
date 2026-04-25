@@ -1,0 +1,42 @@
+---
+title: Best practice SQL
+description: Abitudini sane quando scrivi schema, query e manutenzione del database.
+---
+
+## Le buone pratiche sono piccole scelte che fanno risparmiare molto dopo
+
+**In SQL la qualità raramente nasce da un colpo di genio.** Nasce più spesso da abitudini sane ripetute con costanza.
+
+Pensa alla manutenzione di una bicicletta. Gonfiare le gomme, controllare i freni e pulire la catena sembrano gesti piccoli. Insieme evitano grossi problemi.
+
+- usa nomi chiari
+- evita `SELECT *` quando non serve
+- aggiungi vincoli
+- testa `UPDATE` e `DELETE` con una `SELECT` prima
+- fai backup regolari
+
+## Alcune abitudini da adottare subito
+
+Scrivi query leggibili:
+
+```sql
+SELECT nome, email
+FROM clienti
+WHERE attivo = TRUE;
+```
+
+Questa versione dice chiaramente quali colonne vuoi, da dove arrivano e quale filtro usi.
+
+## Il valore vero di queste abitudini
+
+Ogni singola pratica può sembrare piccola. Insieme, però, rendono il database più leggibile, più stabile e meno fragile.
+
+**Le best practice non servono a sembrare esperti. Servono a farti trovare meno problemi domani.**
+
+## Un buon modo per usarle
+
+Non serve inseguirle come una checklist perfetta in ogni momento. Serve usarle come bussola mentre progetti, scrivi e mantieni query e schema.
+
+:::caution
+La pratica più importante con `UPDATE` e `DELETE` è controllare prima il filtro. Sono comandi utili, ma possono fare molti danni se usati senza attenzione.
+:::

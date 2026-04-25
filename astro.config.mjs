@@ -11,7 +11,8 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "Manuale",
-      description: "Una guida pratica alla programmazione in Python e C++ per chi parte da zero.",
+      description:
+        "Una guida pratica alla programmazione in Python, SQL e C++ per chi parte da zero.",
       favicon: "/favicon.ico",
       logo: {
         dark: "./src/assets/logo-dark.svg",
@@ -81,6 +82,172 @@ export default defineConfig({
               label: "Grafica e interfacce",
               collapsed: true,
               autogenerate: { directory: "python/graphics" },
+            },
+          ],
+        },
+        {
+          label: "SQL",
+          items: [
+            "sql",
+            {
+              label: "Le basi",
+              collapsed: false,
+              items: [
+                "sql/basics/cos-e-sql",
+                "sql/basics/database-relazionali",
+                "sql/basics/tipi-di-dati",
+                "sql/basics/create-database",
+                "sql/basics/create-table",
+                "sql/basics/alter-table",
+                "sql/basics/drop-table",
+              ],
+            },
+            {
+              label: "Query",
+              collapsed: false,
+              items: [
+                {
+                  label: "Lettura dei dati",
+                  collapsed: true,
+                  items: [
+                    "sql/queries/lettura/select",
+                    "sql/queries/lettura/alias",
+                    "sql/queries/lettura/where",
+                    "sql/queries/lettura/operatori-di-confronto",
+                    "sql/queries/lettura/operatori-logici",
+                    "sql/queries/lettura/null",
+                    "sql/queries/lettura/order-by",
+                    "sql/queries/lettura/limit-e-offset",
+                  ],
+                },
+                {
+                  label: "Manipolazione dei dati",
+                  collapsed: true,
+                  items: [
+                    "sql/queries/manipolazione/insert",
+                    "sql/queries/manipolazione/update",
+                    "sql/queries/manipolazione/delete",
+                  ],
+                },
+                {
+                  label: "Aggregazione e funzioni",
+                  collapsed: true,
+                  items: [
+                    "sql/queries/aggregazione/funzioni-aggregate",
+                    "sql/queries/aggregazione/group-by",
+                    "sql/queries/aggregazione/having",
+                    "sql/queries/aggregazione/funzioni-stringhe",
+                    "sql/queries/aggregazione/funzioni-date-tempo",
+                    "sql/queries/aggregazione/cast-e-convert",
+                  ],
+                },
+                {
+                  label: "Join e sottoquery",
+                  collapsed: true,
+                  items: [
+                    "sql/queries/join-sottoquery/join",
+                    "sql/queries/join-sottoquery/join-avanzati",
+                    "sql/queries/join-sottoquery/subquery",
+                    "sql/queries/join-sottoquery/cte",
+                  ],
+                },
+                {
+                  label: "Query avanzate",
+                  collapsed: true,
+                  items: [
+                    "sql/queries/avanzate/set-operations",
+                    "sql/queries/avanzate/window-functions",
+                    "sql/queries/avanzate/query-ricorsive",
+                  ],
+                },
+              ],
+            },
+            {
+              label: "Progettazione dati",
+              collapsed: false,
+              items: [
+                {
+                  label: "Progettazione dello schema",
+                  collapsed: true,
+                  items: [
+                    "sql/design/schema/schema-design",
+                    "sql/design/schema/vincoli",
+                    "sql/design/schema/relazioni-tra-tabelle",
+                    "sql/design/schema/sequence-e-auto-increment",
+                  ],
+                },
+                {
+                  label: "Normalizzazione",
+                  collapsed: true,
+                  items: [
+                    "sql/design/normalizzazione/normalizzazione-1nf",
+                    "sql/design/normalizzazione/normalizzazione-2nf",
+                    "sql/design/normalizzazione/normalizzazione-3nf",
+                    "sql/design/normalizzazione/denormalizzazione",
+                  ],
+                },
+                {
+                  label: "Indici",
+                  collapsed: true,
+                  items: [
+                    "sql/design/indici/create-index",
+                    "sql/design/indici/indici-avanzati",
+                    "sql/design/indici/drop-index",
+                  ],
+                },
+                {
+                  label: "Viste",
+                  collapsed: true,
+                  items: ["sql/design/viste/create-view", "sql/design/viste/materialized-view"],
+                },
+              ],
+            },
+            {
+              label: "Transazioni e concorrenza",
+              collapsed: true,
+              items: [
+                "sql/transactions/transazioni",
+                "sql/transactions/acid",
+                "sql/transactions/livelli-di-isolamento",
+                "sql/transactions/locking-e-concorrenza",
+                "sql/transactions/deadlock",
+              ],
+            },
+            {
+              label: "Programmazione lato database",
+              collapsed: true,
+              items: [
+                "sql/programming/stored-procedure",
+                "sql/programming/stored-procedure-avanzate",
+                "sql/programming/funzioni-definite-dall-utente",
+                "sql/programming/trigger",
+                "sql/programming/cursori",
+              ],
+            },
+            {
+              label: "Operazioni e performance",
+              collapsed: true,
+              items: [
+                "sql/operations/gestione-utenti-e-permessi",
+                "sql/operations/sicurezza-del-database",
+                "sql/operations/backup-e-restore",
+                "sql/operations/import-export-dati",
+                "sql/operations/etl",
+                "sql/operations/json-e-dati-semi-strutturati",
+                "sql/operations/testing-query-sql",
+                "sql/operations/versioning-e-migrazioni-database",
+                "sql/operations/explain-e-query-plan",
+                "sql/operations/analisi-delle-performance",
+                "sql/operations/logging-e-monitoring",
+                "sql/operations/gestione-di-grandi-dataset",
+                "sql/operations/partizionamento-delle-tabelle",
+                "sql/operations/sharding",
+                "sql/operations/best-practice-sql",
+                "sql/operations/anti-pattern-comuni",
+                "sql/operations/differenze-tra-dialetti-sql",
+                "sql/operations/introduzione-a-orm",
+                "sql/operations/sql-vs-nosql",
+              ],
             },
           ],
         },

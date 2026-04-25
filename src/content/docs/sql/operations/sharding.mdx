@@ -1,0 +1,35 @@
+---
+title: Sharding
+description: Il concetto generale di dividere i dati tra server diversi.
+---
+
+## Qui non dividi solo una tabella: dividi il carico su più macchine
+
+**Lo sharding distribuisce i dati su più server.** Invece di tenere tutto in una sola macchina, dividi il carico in più parti.
+
+Pensa a una catena di negozi. Se un solo negozio non riesce a servire tutti i clienti, apri più sedi. Ogni sede gestisce una parte del lavoro.
+
+## Perché si fa
+
+Quando un sistema cresce moltissimo, un solo server può non bastare più. In questi casi si può distribuire il carico e i dati su più nodi.
+
+Per esempio, potresti mettere alcuni clienti su un server e altri clienti su un altro server, seguendo una regola precisa.
+
+## Il prezzo del vantaggio
+
+Aiuta a scalare sistemi molto grandi, ma aumenta parecchio la complessità tecnica e operativa.
+
+**Per questo è un concetto da conoscere, ma non una soluzione da applicare troppo presto.**
+
+Con lo sharding diventano più difficili domande come:
+
+- dove si trova questo dato?
+- come faccio una query che attraversa più server?
+- come faccio backup e manutenzione?
+- cosa succede se uno shard ha molto più traffico degli altri?
+
+## La lezione pratica
+
+Prima di pensare allo sharding, di solito conviene migliorare schema, indici, query e infrastruttura normale.
+
+Molti progetti non ne avranno mai bisogno, ed è perfettamente normale.

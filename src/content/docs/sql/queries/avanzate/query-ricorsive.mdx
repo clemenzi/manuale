@@ -1,0 +1,39 @@
+---
+title: Query ricorsive
+description: CTE che si richiamano da sole per esplorare strutture a livelli.
+---
+
+## Qui una query costruisce il passo successivo da sola
+
+**Le query ricorsive servono quando i dati hanno una struttura a livelli.** Per esempio:
+
+- cartelle e sottocartelle
+- categorie e sotto-categorie
+- dipendenti e responsabili
+
+In questi casi non basta guardare solo un livello. Devi poter salire o scendere nella gerarchia.
+
+```sql
+WITH RECURSIVE numeri AS (
+    SELECT 1 AS n
+    UNION ALL
+    SELECT n + 1
+    FROM numeri
+    WHERE n < 5
+)
+SELECT * FROM numeri;
+```
+
+Questo esempio non usa una gerarchia vera, ma mostra il meccanismo: la query parte da un valore iniziale e poi genera il successivo finché la condizione resta valida.
+
+## Perché si chiamano ricorsive
+
+Si chiamano così perché **una parte della query usa il risultato generato dalla query stessa**. È un'idea potente, ma richiede ordine mentale.
+
+Per chi inizia, la chiave è questa: c'è un punto di partenza e c'è una regola che produce il passo seguente.
+
+## Quando diventano preziose
+
+Sono molto utili quando vuoi percorrere un albero o una gerarchia senza farlo manualmente riga per riga.
+
+All'inizio possono sembrare avanzate, ma con la giusta immagine mentale diventano molto più comprensibili.

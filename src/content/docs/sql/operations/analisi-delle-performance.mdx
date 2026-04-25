@@ -1,0 +1,46 @@
+---
+title: Analisi delle performance
+description: Come ragionare sulle query lente e sui colli di bottiglia senza andare a tentoni.
+---
+
+## Migliorare le performance significa osservare, non indovinare
+
+**Quando qualcosa è lento, il primo riflesso giusto è misurare.** Non basta dire "mi sembra lenta". Bisogna capire dove si perde tempo.
+
+È come sentire un rumore strano in auto. Prima di cambiare pezzi a caso, apri il cofano, ascolti, controlli e cerchi la causa.
+
+Controlla soprattutto:
+
+- query lente
+- tabelle grandi
+- indici mancanti
+- join costose
+- uso inutile di `SELECT *`
+
+## La domanda giusta
+
+Non chiederti solo: "come faccio a renderla veloce?"
+
+Chiediti prima: **"cosa sta rallentando davvero?"**
+
+È questo il passo che separa una correzione utile da un tentativo casuale.
+
+## Un piccolo percorso pratico
+
+Quando una query è lenta, puoi procedere così:
+
+1. guarda quanto tempo impiega
+2. controlla quante righe legge
+3. osserva il piano con `EXPLAIN`
+4. verifica se manca un indice utile
+5. riscrivi la query solo dopo aver capito il problema
+
+:::caution
+Una query veloce con 100 righe può diventare lenta con 10 milioni di righe. I test devono assomigliare il più possibile alla realtà.
+:::
+
+## Un'abitudine molto utile
+
+Guarda il problema nel contesto: volume dei dati, frequenza della query, presenza di indici, piano di esecuzione e pattern di utilizzo.
+
+Le performance non si migliorano bene guardando un solo pezzo isolato.

@@ -1,0 +1,40 @@
+---
+title: Gestione di grandi dataset
+description: Idee pratiche quando i dati diventano molto numerosi e le abitudini piccole non bastano più.
+---
+
+## Quando i dati crescono, cambiano anche le domande giuste
+
+**Con pochi dati, quasi tutto sembra veloce.** Quando i dati crescono davvero, iniziano a contare scelte che prima sembravano secondarie.
+
+È come cucinare per quattro persone o per quattrocento. La ricetta può essere simile, ma organizzazione, tempi e strumenti cambiano molto.
+
+Diventano importanti:
+
+- indici ben scelti
+- query efficienti
+- partizionamento
+- monitoraggio
+- archiviazione dei dati vecchi
+
+## La lezione principale
+
+Gestire grandi dataset non significa solo avere hardware migliore. Significa soprattutto progettare meglio query, struttura e processi.
+
+**La scala grande punisce le scorciatoie piccole.**
+
+## Un esempio pratico
+
+Una query che legge tutti gli ordini può andare bene con 500 righe.
+
+Con 50 milioni di righe, la stessa query può diventare un problema. A quel punto servono filtri, indici, archiviazione e magari partizionamento.
+
+## Cosa cambia nella mentalità
+
+Con molti dati diventa ancora più importante pensare in anticipo a manutenzione, osservabilità e crescita futura.
+
+Non basta che qualcosa funzioni oggi. Deve continuare a funzionare bene anche quando il volume aumenta molto.
+
+:::tip
+Quando progetti una tabella, chiediti anche come verrà letta tra un anno, non solo come viene scritta oggi.
+:::

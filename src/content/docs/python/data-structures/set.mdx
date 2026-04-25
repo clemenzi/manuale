@@ -21,12 +21,15 @@ frutta = {"mela", "banana", "ciliegia"}
 numeri = {1, 2, 3, 4, 5}
 ```
 
-> **Attenzione:** `{}` da solo crea un **dizionario vuoto**, non un set vuoto! Per creare un set vuoto usa `set()`:
->
-> ```python
-> vuoto = set()      # set vuoto ✓
-> anche_vuoto = {}   # dizionario vuoto, non un set! ✗
-> ```
+:::caution
+`{}` da solo crea un **dizionario vuoto**, non un set vuoto! Per creare un set vuoto usa `set()`:
+
+```python
+vuoto = set()      # set vuoto ✓
+anche_vuoto = {}   # dizionario vuoto, non un set! ✗
+```
+
+:::
 
 I duplicati vengono rimossi automaticamente:
 
@@ -92,7 +95,9 @@ lista_pulita = list(set(lista))
 print(lista_pulita)  # [1, 2, 3, 4]
 ```
 
-> **Nota:** L'ordine originale non viene preservato, perché i set non hanno un ordine fisso.
+:::note
+L'ordine originale non viene preservato, perché i set non hanno un ordine fisso.
+:::
 
 ## Limiti dei set
 

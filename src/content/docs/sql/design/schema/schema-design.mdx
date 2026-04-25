@@ -1,0 +1,72 @@
+---
+title: Modellazione dati
+description: Come progettare uno schema ordinato prima ancora di iniziare a riempirlo.
+---
+
+## Prima di scrivere query, conviene disegnare la mappa
+
+**La modellazione dati è il momento in cui decidi come organizzare il mondo dentro il database.** Prima di scrivere query, conviene fermarsi a capire quali oggetti esistono e come si collegano.
+
+È come disegnare la pianta di una casa prima di iniziare i lavori.
+
+Decidi:
+
+- quali tabelle servono
+- quali colonne deve avere ogni tabella
+- come si collegano tra loro
+
+:::note
+Uno schema è il progetto del database. Pensa allo schema come alla mappa dell'armadio: ti dice quali ripiani esistono e cosa va messo in ognuno.
+:::
+
+## Perché questa fase conta così tanto
+
+Uno schema chiaro rende più semplice:
+
+- scrivere query corrette
+- evitare duplicazioni inutili
+- capire dove deve vivere ogni dato
+- far crescere il progetto senza caos
+
+## Un piccolo esempio mentale
+
+Se stai costruendo un e-commerce, potresti identificare entità come:
+
+- clienti
+- prodotti
+- ordini
+- righe ordine
+
+**Ogni tabella dovrebbe rappresentare un concetto chiaro.** Se una tabella prova a fare troppe cose insieme, di solito è un campanello d'allarme.
+
+## Una domanda pratica per iniziare
+
+Quando non sai da dove partire, chiediti:
+
+1. quali cose devo ricordare?
+2. quali informazioni descrivono ogni cosa?
+3. quali cose sono collegate tra loro?
+
+Se stai progettando una biblioteca, le cose potrebbero essere `libri`, `lettori` e `prestiti`.
+
+## Un esempio piccolo
+
+Questa tabella rappresenta un solo concetto: i clienti.
+
+```sql
+CREATE TABLE clienti (
+    id INT PRIMARY KEY,
+    nome VARCHAR(100),
+    email VARCHAR(150)
+);
+```
+
+La tabella non contiene ordini, pagamenti o prodotti. **Contiene solo informazioni sui clienti.**
+
+Questa separazione rende il database più facile da capire e da far crescere.
+
+## Il segnale che qualcosa non va
+
+Fermati se una colonna sembra contenere una lista intera, per esempio `prodotti_comprati`, oppure se ripeti sempre gli stessi dati in tante righe.
+
+Di solito è il database che ti sta dicendo: **"forse qui serve una tabella in più"**.

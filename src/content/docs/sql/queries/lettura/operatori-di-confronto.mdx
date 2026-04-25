@@ -1,0 +1,55 @@
+---
+title: Operatori di confronto
+description: Uguale, maggiore, minore, BETWEEN, LIKE e IN spiegati con esempi chiari.
+---
+
+## Sono i simboli con cui SQL confronta i valori
+
+**Gli operatori di confronto dicono al database come confrontare i valori.** Senza di loro, SQL non saprebbe se una riga è abbastanza grande, abbastanza piccola, uguale a ciò che stai cercando o compresa in un elenco.
+
+## Quelli che incontrerai più spesso
+
+- `=` uguale
+- `>` maggiore
+- `<` minore
+- `BETWEEN` dentro un intervallo
+- `LIKE` testo che somiglia a un modello
+- `IN` valore dentro una lista
+
+## Un esempio con un intervallo
+
+```sql
+SELECT *
+FROM ordini
+WHERE totale BETWEEN 50 AND 100;
+```
+
+Questa query prende gli ordini il cui totale è compreso tra 50 e 100.
+
+## `LIKE`: utile per il testo
+
+Quando lavori con stringhe, `LIKE` ti aiuta a cercare un modello.
+
+```sql
+SELECT *
+FROM clienti
+WHERE nome LIKE 'L%';
+```
+
+Qui stai cercando nomi che iniziano con la lettera `L`.
+
+## `IN`: utile quando hai un piccolo elenco
+
+Se vuoi confrontare un valore con più possibilità, `IN` rende la query più pulita:
+
+```sql
+SELECT *
+FROM clienti
+WHERE citta IN ('Roma', 'Milano', 'Torino');
+```
+
+Invece di scrivere tante condizioni con `OR`, metti tutto in una lista leggibile.
+
+## Il modo giusto di pensarli
+
+Gli operatori di confronto sono il vocabolario di base dei filtri. **Più li conosci bene, più costruire condizioni diventa naturale.**

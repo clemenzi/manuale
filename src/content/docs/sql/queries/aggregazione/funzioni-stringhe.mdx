@@ -1,0 +1,55 @@
+---
+title: Funzioni su stringhe
+description: Operazioni comuni sui testi, come maiuscole, minuscole e concatenazione.
+---
+
+## Non sempre il testo va lasciato così com'è
+
+**Le stringhe sono i valori testuali.** Nomi, email, città, codici, descrizioni: in un database il testo è ovunque.
+
+SQL offre funzioni che ti aiutano a trasformarlo o combinarlo.
+
+```sql
+SELECT UPPER(nome) FROM clienti;
+```
+
+Questa query trasforma i nomi in maiuscolo.
+
+## Alcune funzioni che vedrai spesso
+
+Funzioni comuni:
+
+- `UPPER()`
+- `LOWER()`
+- `LENGTH()`
+- `TRIM()`
+- `CONCAT()`
+
+## Due esempi che parlano da soli
+
+Per togliere spazi inutili:
+
+```sql
+SELECT TRIM(nome)
+FROM clienti;
+```
+
+Per unire due pezzi di testo:
+
+```sql
+SELECT CONCAT(nome, ' - ', citta)
+FROM clienti;
+```
+
+Questa seconda query costruisce una piccola etichetta, per esempio `Luca - Roma`.
+
+## Quando servono davvero
+
+Le funzioni sulle stringhe sono utili quando:
+
+- vuoi pulire dati inseriti male
+- vuoi confrontare testi in modo più uniforme
+- vuoi costruire un'etichetta leggibile
+- vuoi fare piccoli controlli sulla lunghezza del contenuto
+
+**Sono strumenti piccoli, ma diventano molto preziosi nella pratica quotidiana.**

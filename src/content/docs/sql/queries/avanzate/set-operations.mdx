@@ -1,0 +1,38 @@
+---
+title: Set operations
+description: UNION, UNION ALL, INTERSECT ed EXCEPT per combinare risultati di query diverse.
+---
+
+## Qui lavori su insiemi di risultati
+
+**Le set operations permettono di combinare il risultato di più query.** Invece di pensare riga per riga, qui ragioni per insiemi.
+
+È un po' come mettere insieme due liste, tenere solo gli elementi in comune o togliere una lista dall'altra.
+
+- `UNION`: unisce senza duplicati
+- `UNION ALL`: unisce con duplicati
+- `INTERSECT`: tiene solo ciò che coincide
+- `EXCEPT`: toglie il secondo insieme dal primo
+
+```sql
+SELECT email FROM clienti_attivi
+UNION
+SELECT email FROM newsletter;
+```
+
+Questa query unisce le email provenienti da due fonti diverse, rimuovendo i duplicati.
+
+## La differenza più importante da ricordare
+
+`UNION` e `UNION ALL` si assomigliano, ma non fanno la stessa cosa:
+
+- `UNION` elimina i duplicati
+- `UNION ALL` conserva tutto
+
+Se vuoi tenere anche i ripetuti, scegli `UNION ALL`.
+
+## Una regola tecnica da non dimenticare
+
+Per combinare query con queste operazioni, **le colonne restituite devono essere compatibili** per numero e tipo.
+
+In pratica, le due query devono parlare la stessa lingua in uscita.

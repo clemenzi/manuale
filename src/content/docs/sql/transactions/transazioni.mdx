@@ -1,0 +1,53 @@
+---
+title: Transazioni
+description: BEGIN, COMMIT e ROLLBACK per trattare più operazioni come un unico blocco.
+---
+
+## Alcune operazioni devono riuscire insieme oppure fallire insieme
+
+**Una transazione è un gruppo di operazioni che il database tratta come un solo blocco logico.** Questo è fondamentale quando uno stato "a metà" sarebbe pericoloso o incoerente.
+
+Pensa a un trasferimento di denaro: togliere soldi da un conto e aggiungerli a un altro deve funzionare tutto insieme.
+
+## Un esempio concreto
+
+```sql
+BEGIN;
+UPDATE conti
+SET saldo = saldo - 100
+WHERE id = 1;
+
+UPDATE conti
+SET saldo = saldo + 100
+WHERE id = 2;
+
+COMMIT;
+```
+
+Qui il lavoro inizia con `BEGIN` e si conclude con `COMMIT`.
+
+## Il ruolo dei tre comandi chiave
+
+- `BEGIN`: inizia la transazione
+- `COMMIT`: conferma tutto in modo definitivo
+- `ROLLBACK`: annulla le modifiche della transazione
+
+## Quando entra in gioco `ROLLBACK`
+
+Se qualcosa va storto a metà, puoi fare marcia indietro:
+
+```sql
+ROLLBACK;
+```
+
+**Questa è la grande forza delle transazioni:** ti aiutano a evitare stati rotti o incompleti.
+
+## Come pensarla nella vita reale
+
+Immagina di spedire un pacco. Non basta stampare l'etichetta: devi anche pagare la spedizione e consegnarlo al corriere.
+
+Se uno di questi passaggi fallisce, non vuoi lasciare tutto in uno stato confuso. Vuoi tornare indietro e riprovare con ordine.
+
+:::tip
+Tieni le transazioni brevi. Più restano aperte, più possono bloccare il lavoro di altre operazioni.
+:::
