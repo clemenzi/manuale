@@ -141,7 +141,9 @@ yargs(hideBin(process.argv))
         }
       }
 
-      if (fileResults.length > 0) {
+      const hasReviews = fileResults.some(({ reviews }) => reviews.length > 0);
+
+      if (hasReviews) {
         await writeRunReviewFile(fileResults);
       }
 
