@@ -9,7 +9,11 @@ description: Come definire una tabella, le sue colonne e le prime regole di base
 
 È un passaggio importante, perché una tabella ben pensata rende più semplice tutto il lavoro successivo.
 
+È come preparare un modulo prima di farlo compilare a qualcuno. Decidi prima quali campi servono: nome, email, città, data di iscrizione.
+
 ## Un esempio semplice ma realistico
+
+Questa query crea una tabella per salvare alcuni clienti:
 
 ```sql
 CREATE TABLE clienti (
@@ -20,6 +24,8 @@ CREATE TABLE clienti (
 ```
 
 Questa istruzione crea una tabella chiamata `clienti`.
+
+Il risultato non è una tabella piena di dati. È una tabella vuota, pronta a ricevere righe con `INSERT`.
 
 ## Come leggere il comando riga per riga
 
@@ -44,6 +50,10 @@ Nel mondo reale è come il numero di tessera di una palestra: due persone posson
 
 Se in una tabella clienti il nome è indispensabile, ha senso dirlo subito. Così il database ti aiuta a evitare righe incomplete.
 
+:::tip
+Metti `NOT NULL` sui dati davvero necessari. Se un'informazione può mancare nella vita reale, non renderla obbligatoria solo per abitudine.
+:::
+
 ## Un piccolo controllo mentale prima di scrivere una tabella
 
 Prima di premere invio, prova a chiederti:
@@ -54,3 +64,11 @@ Prima di premere invio, prova a chiederti:
 - i tipi scelti descrivono bene i dati?
 
 Queste domande sembrano semplici, ma migliorano molto la qualità dello schema.
+
+## Mini riepilogo
+
+- `CREATE TABLE` crea la struttura di una tabella
+- ogni colonna ha un nome e un tipo
+- `PRIMARY KEY` identifica ogni riga
+- `NOT NULL` rende una colonna obbligatoria
+- dopo aver creato la tabella, puoi riempirla con `INSERT`

@@ -9,24 +9,37 @@ description: Come leggere i dati da una tabella scegliendo colonne e risultati u
 
 Con `SELECT` non modifichi nulla. Stai solo leggendo.
 
+Pensa a un cameriere che ti porta il menu. Tu non entri in cucina a cambiare le ricette: chiedi solo di vedere qualcosa.
+
 ## Vedere tutto
 
-Questa è la forma più conosciuta:
+Questa query mostra tutte le colonne della tabella `clienti`:
 
 ```sql
-SELECT * FROM clienti;
+SELECT *
+FROM clienti;
 ```
 
 `*` significa "tutte le colonne".
 
 Quindi la query dice: **"mostrami tutte le informazioni della tabella `clienti`"**.
 
+Se la tabella contiene questi dati:
+
+| id  | nome  | email             |
+| --- | ----- | ----------------- |
+| 1   | Luca  | luca@example.com  |
+| 2   | Marta | marta@example.com |
+
+il risultato mostrerà tutte e tre le colonne: `id`, `nome` ed `email`.
+
 ## Vedere solo le colonne che ti servono
 
-Molto spesso non hai bisogno di tutto. Hai bisogno solo di alcune colonne:
+Molto spesso non hai bisogno di tutto. Questa query chiede solo il nome e l'email:
 
 ```sql
-SELECT nome, email FROM clienti;
+SELECT nome, email
+FROM clienti;
 ```
 
 Questa versione è spesso migliore, perché il risultato è più pulito e l'intenzione è più chiara.
@@ -39,6 +52,10 @@ In una query base con `SELECT` trovi quasi sempre questi pezzi:
 - `FROM`: da quale tabella vuoi leggerle
 
 Più avanti aggiungerai altri pezzi, come `WHERE`, `ORDER BY` e `GROUP BY`.
+
+:::tip
+Quando leggi una query, prova a tradurla in italiano. `SELECT nome FROM clienti` diventa: "mostrami il nome dalla tabella clienti".
+:::
 
 ## Perché evitare `SELECT *` come abitudine fissa
 
@@ -55,3 +72,10 @@ Questo aiuta a:
 Quando scrivi `SELECT`, stai dicendo al database: **"fammi vedere proprio questo pezzo di realtà"**.
 
 Più sei preciso, più la query diventa utile.
+
+## Mini riepilogo
+
+- `SELECT` sceglie le colonne da mostrare
+- `FROM` dice da quale tabella leggere
+- `*` significa "tutte le colonne"
+- nelle query vere conviene chiedere solo i dati che servono davvero

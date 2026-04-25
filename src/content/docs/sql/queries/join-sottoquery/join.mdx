@@ -14,6 +14,10 @@ Pensa a due fogli:
 
 Separati sono utili. Insieme raccontano molto di più.
 
+È come avere un numero di tessera su una ricevuta. Quel numero ti permette di tornare alla scheda della persona senza riscrivere tutti i suoi dati ogni volta.
+
+Questa query mostra ogni ordine insieme al nome del cliente che lo ha fatto:
+
 ```sql
 SELECT clienti.nome, ordini.totale
 FROM clienti
@@ -21,6 +25,13 @@ INNER JOIN ordini ON clienti.id = ordini.cliente_id;
 ```
 
 Questa query mette in relazione il cliente con i suoi ordini usando il collegamento tra `clienti.id` e `ordini.cliente_id`.
+
+Il risultato potrebbe assomigliare a questo:
+
+| nome  | totale |
+| ----- | ------ |
+| Luca  | 49.90  |
+| Marta | 18.50  |
 
 ## `INNER JOIN`: solo le corrispondenze
 
@@ -37,6 +48,10 @@ Tipi principali:
 - `RIGHT JOIN`: tutto da destra
 - `FULL JOIN`: tutto da entrambe
 
+:::note
+Quando inizi, concentrati su `INNER JOIN` e `LEFT JOIN`. Sono quelle che incontrerai più spesso nelle query quotidiane.
+:::
+
 ## Perché sono così importanti
 
 Con le join puoi rispondere a domande come:
@@ -46,3 +61,10 @@ Con le join puoi rispondere a domande come:
 - quali prodotti non sono ancora stati acquistati?
 
 **Senza join, i database relazionali perderebbero gran parte del loro valore pratico.**
+
+## Mini riepilogo
+
+- una `JOIN` collega tabelle diverse
+- `INNER JOIN` mostra solo le righe che si incontrano davvero
+- la condizione dopo `ON` spiega come collegare le tabelle
+- le join evitano di duplicare informazioni inutilmente

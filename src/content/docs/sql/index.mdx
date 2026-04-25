@@ -1,20 +1,105 @@
 ---
 title: Introduzione
-description: Una mappa chiara della sezione SQL per chi parte da zero.
+description: Cos'è SQL, dove si usa e come iniziare a leggere i dati.
 icon: Database
 ---
 
-## Benvenuto nella sezione SQL
+## Perché ti serve SQL?
 
-**Questa parte del manuale ti accompagna dentro SQL un passo alla volta.** Se altri linguaggi ti insegnano a scrivere programmi, SQL ti insegna a parlare con i dati salvati in un database.
+Ogni volta che cerchi un prodotto in un negozio online, controlli il saldo del conto o apri lo storico degli ordini, qualcuno sta chiedendo dati a un archivio.
 
-Pensa a un database come a un archivio ordinato. SQL è il linguaggio con cui chiedi all'archivio di mostrarti qualcosa, registrare nuovi dati, correggere un'informazione o collegare tabelle diverse.
+**SQL è il linguaggio che usi per fare queste richieste.** Ti permette di leggere, aggiungere, modificare e cancellare informazioni salvate in un database.
 
-## Come è organizzata questa guida
+Pensa a SQL come al modo educato e preciso con cui parli a un archivista. Tu fai una domanda chiara. L'archivista cerca nei cassetti giusti e ti restituisce solo quello che hai chiesto.
 
-**Qui seguiamo una regola precisa: un concetto per file.** Questo rende la documentazione più facile da studiare e molto più utile quando vuoi tornare su un argomento specifico senza rileggere una pagina enorme.
+---
 
-In pratica, se vuoi capire solo `WHERE`, hai una pagina per `WHERE`. Se vuoi capire solo `JOIN`, trovi una pagina dedicata a `JOIN`.
+## Cos'è SQL?
+
+**SQL** sta per **Structured Query Language**. In italiano possiamo leggerlo come "linguaggio per fare richieste organizzate ai dati".
+
+Un database è come un insieme di tabelle, simili a fogli di calcolo. Ogni tabella raccoglie un tipo di informazione: clienti, prodotti, ordini, prenotazioni, pagamenti.
+
+Con SQL puoi dire cose come:
+
+- mostrami tutti i clienti di Roma
+- aggiungi un nuovo prodotto
+- cambia l'indirizzo di un cliente
+- elimina una prenotazione annullata
+- collega gli ordini ai clienti che li hanno fatti
+
+---
+
+## Dove si usa SQL nel mondo reale?
+
+**SQL è dietro a moltissimi strumenti quotidiani.** Anche quando non lo vedi, spesso lavora sotto la superficie.
+
+Lo trovi in:
+
+- **e-commerce**: per cercare prodotti, ordini e clienti
+- **app di prenotazione**: per controllare disponibilità e calendari
+- **banche**: per consultare movimenti e saldi
+- **gestionali aziendali**: per archiviare clienti, fatture e magazzino
+- **dashboard e report**: per riassumere dati e numeri importanti
+- **app web**: per salvare account, messaggi e impostazioni
+
+---
+
+## SQL vs Python e C++
+
+Python e C++ ti aiutano a scrivere programmi che fanno azioni. SQL ha un compito diverso: **ti aiuta a parlare con i dati**.
+
+| Linguaggio | A cosa serve soprattutto                         |
+| ---------- | ------------------------------------------------ |
+| Python     | Scrivere programmi, automazioni, analisi e app   |
+| C++        | Scrivere programmi veloci e vicini alla macchina |
+| SQL        | Leggere e modificare dati in un database         |
+
+Non devi scegliere tra loro. Spesso lavorano insieme. Un'app scritta in Python o C++ può usare SQL per salvare e recuperare informazioni.
+
+---
+
+## Come funziona SQL?
+
+SQL funziona attraverso comandi chiamati **query**. Una query è una domanda o un'istruzione che mandi al database.
+
+Il flusso di lavoro è semplice:
+
+1. scrivi una query
+2. il database la legge
+3. il database cerca o modifica i dati richiesti
+4. tu ricevi un risultato, oppure una conferma dell'operazione
+
+È come compilare un modulo molto preciso. Se scrivi bene la richiesta, il database sa esattamente cosa fare.
+
+---
+
+## La prima query
+
+Per tradizione, in SQL si parte spesso da `SELECT`, il comando che legge i dati.
+
+Questa query mostra tutti i dati della tabella `clienti`:
+
+```sql
+SELECT *
+FROM clienti;
+```
+
+In parole semplici significa: **"mostrami tutte le colonne di tutte le righe nella tabella `clienti`"**.
+
+Il simbolo `*` vuol dire "tutto". Più avanti imparerai anche a chiedere solo le colonne che ti servono.
+
+---
+
+## Quale SQL useremo?
+
+**Useremo soprattutto SQL standard.** Questo ti aiuta a capire i concetti senza dipendere subito da un database preciso.
+
+Nella pratica esistono diversi database, come PostgreSQL, MySQL, SQLite e SQL Server. Sono come dialetti della stessa lingua: si assomigliano molto, ma a volte usano parole o dettagli diversi.
+
+Quando una differenza conta davvero, la segnaleremo in modo chiaro.
+
+---
 
 ## Il percorso più semplice per iniziare
 
@@ -31,20 +116,18 @@ Se stai partendo da zero, segui questo ordine:
 
 **Non devi leggere tutto in una volta.** SQL si impara meglio come una cassetta degli attrezzi: oggi un attrezzo, domani un altro.
 
-## Quale SQL useremo
+---
 
-**Useremo soprattutto SQL standard.** Questo ti aiuta a capire i concetti senza dipendere subito da un database preciso.
+## Come è organizzata questa guida
 
-Quando PostgreSQL, MySQL, SQLite o SQL Server si comportano in modo diverso, lo segnaleremo in modo chiaro.
+**Qui seguiamo una regola precisa: un concetto per file.** Questo rende la documentazione più facile da studiare e più comoda quando vuoi tornare su un argomento specifico.
 
-## Un assaggio immediato
+In pratica, se vuoi capire solo `WHERE`, hai una pagina per `WHERE`. Se vuoi capire solo `JOIN`, trovi una pagina dedicata a `JOIN`.
 
-La query qui sotto legge tutto il contenuto di una tabella:
+---
 
-```sql
-SELECT * FROM clienti;
-```
+## Da portare a casa
 
-Tradotta in italiano semplice significa: **"mostrami tutte le colonne di tutte le righe della tabella `clienti`"**.
+**SQL è il linguaggio per fare domande ai dati.** All'inizio ti basta imparare poche parole chiave: `SELECT`, `FROM`, `WHERE`, `INSERT`, `UPDATE` e `DELETE`.
 
-Hai già visto un primo pezzo importante. Adesso possiamo costruire il resto con calma.
+Hai già visto il primo passo. Da qui in poi costruiremo il resto con calma, una query alla volta.
