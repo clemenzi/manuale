@@ -1,37 +1,24 @@
 {
-  "name": "manuale",
+  "name": "programming-handbook-it",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "types:check": "astro check",
-    "lint": "oxlint",
-    "fmt": "oxfmt",
-    "fmt:check": "oxfmt --check",
-    "generate-types": "wrangler types",
+    "dev": "turbo dev --filter=www",
+    "start": "turbo dev --filter=www",
+    "build": "turbo build",
+    "preview": "pnpm --filter www preview",
+    "types:check": "turbo types:check",
+    "lint": "pnpm exec oxlint .",
+    "fmt": "pnpm exec oxfmt --write .",
+    "fmt:check": "pnpm exec oxfmt --check .",
+    "generate-types": "pnpm --filter www generate-types",
     "prepare": "husky"
   },
-  "dependencies": {
-    "@astrojs/cloudflare": "^13.1.10",
-    "@astrojs/starlight": "^0.38.3",
-    "@astrojs/starlight-tailwind": "^5.0.0",
-    "@tailwindcss/vite": "^4.2.2",
-    "astro": "^6.0.1",
-    "sharp": "^0.34.2",
-    "tailwindcss": "^4.2.2",
-    "wrangler": "^4.83.0"
-  },
   "devDependencies": {
-    "@astrojs/check": "^0.9.8",
-    "@types/node": "^25.6.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "oxfmt": "^0.45.0",
     "oxlint": "^1.60.0",
-    "typescript": "^6.0.2"
+    "turbo": "^2.5.8"
   },
   "overrides": {
     "vite": "^7"
@@ -44,5 +31,6 @@
     "*.{yml,yaml,md,mdx}": [
       "pnpm run fmt:check"
     ]
-  }
+  },
+  "packageManager": "pnpm@10.33.0"
 }

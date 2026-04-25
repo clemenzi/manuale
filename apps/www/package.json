@@ -1,0 +1,27 @@
+{
+  "name": "www",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "types:check": "astro check",
+    "generate-types": "wrangler types"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^13.1.10",
+    "@astrojs/starlight": "^0.38.3",
+    "@astrojs/starlight-tailwind": "^5.0.0",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.0.1",
+    "sharp": "^0.34.2",
+    "tailwindcss": "^4.2.2",
+    "wrangler": "^4.83.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@types/node": "^25.6.0",
+    "typescript": "^6.0.2"
+  }
+}

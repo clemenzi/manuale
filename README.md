@@ -1,6 +1,8 @@
 # manuale
 
-Questo è il manuale di programmazione in italiano costruito con Astro e Starlight.
+Monorepo `pnpm` + Turborepo.
+
+L'applicazione Astro/Starlight si trova in `apps/www`.
 
 Run development server:
 

@@ -144,3 +144,5 @@ dist
 .svelte-kit
 
 .wrangler
+.turbo
+worker-configuration.d.ts
