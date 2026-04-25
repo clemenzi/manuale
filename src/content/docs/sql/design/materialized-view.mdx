@@ -34,7 +34,9 @@ Invece di rifare la somma ogni volta, il database può leggere il risultato già
 
 La materialized view non si aggiorna sempre da sola nello stesso modo di una view normale. **Ogni tanto il risultato va rigenerato o aggiornato.**
 
-> **Nota:** Non tutti i database la supportano nello stesso modo.
+:::note
+Non tutti i database la supportano nello stesso modo.
+:::
 
 ## Quando può avere senso sceglierla
 
@@ -42,4 +44,6 @@ La materialized view non si aggiorna sempre da sola nello stesso modo di una vie
 
 Per report e dashboard, questa differenza può essere molto importante.
 
-> **Attenzione:** Se i dati cambiano spesso, chiediti quanto puoi accettare un risultato non aggiornato al secondo.
+:::caution
+Se i dati cambiano spesso, chiediti quanto puoi accettare un risultato non aggiornato al secondo.
+:::
