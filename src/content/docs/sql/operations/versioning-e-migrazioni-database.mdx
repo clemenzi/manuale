@@ -9,14 +9,29 @@ description: Tenere traccia dei cambiamenti dello schema nel tempo senza perdere
 
 Versionarle aiuta il team a sapere sempre quale struttura deve avere il database.
 
+Pensa alle versioni di un regolamento condominiale. Se ognuno ha una copia diversa, nascono discussioni. Se ogni modifica ha data e ordine, tutti capiscono cosa vale.
+
 ## Perché è così importante
 
 Senza versioning, ogni ambiente rischia di diventare diverso dagli altri. Uno sviluppatore ha una colonna in più, un altro no, e iniziano confusione ed errori.
 
 **Le migrazioni portano ordine dove altrimenti regnerebbe memoria personale e improvvisazione.**
 
+## Un esempio semplice
+
+Una migrazione può dire:
+
+```sql
+ALTER TABLE clienti
+ADD telefono VARCHAR(30);
+```
+
+Questa modifica aggiunge la colonna `telefono`. Salvandola in una migrazione, puoi applicarla in modo ordinato anche su altri ambienti.
+
 ## Una buona abitudine da adottare presto
 
 Anche in progetti piccoli, tenere traccia dei cambiamenti dello schema è un investimento utile.
 
 Ti evita di affidarti al ricordo e rende il database parte integrante del lavoro di squadra.
+
+> **Attenzione:** Cambiare o cancellare colonne con dati reali richiede prudenza. Prima pensa a backup, compatibilità e piano di ritorno.

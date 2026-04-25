@@ -9,11 +9,25 @@ description: La seconda forma normale e l'idea di dipendere dall'intera chiave.
 
 Questo tema compare soprattutto quando la chiave primaria è composta da più colonne.
 
+Pensa a una ricevuta con due informazioni che identificano una riga: `ordine_id` e `prodotto_id`. Il prezzo comprato in quella riga dipende da quella combinazione. Il nome del prodotto, invece, dipende solo dal prodotto.
+
 ## Un modo semplice di pensarla
 
 Se una tabella usa una chiave composta, ogni informazione non chiave dovrebbe avere senso solo guardando **tutta** la chiave.
 
 Se basta un pezzo della chiave per determinare quel valore, probabilmente quel dato starebbe meglio in un'altra tabella.
+
+## Un esempio intuitivo
+
+Immagina questa tabella:
+
+| ordine_id | prodotto_id | nome_prodotto | quantita |
+| --------- | ----------- | ------------- | -------- |
+| 10        | 3           | Tastiera      | 2        |
+
+La quantità dipende dall'ordine e dal prodotto insieme. Il `nome_prodotto`, invece, dipende solo da `prodotto_id`.
+
+In 2NF, il nome del prodotto dovrebbe stare nella tabella `prodotti`.
 
 ## Perché serve
 

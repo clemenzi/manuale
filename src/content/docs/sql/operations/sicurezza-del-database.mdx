@@ -7,6 +7,8 @@ description: Buone pratiche per proteggere dati, accessi e operazioni sensibili.
 
 **La sicurezza del database non è un accessorio finale.** Fa parte del lavoro quotidiano, proprio come scrivere query corrette o progettare tabelle sensate.
 
+Pensa a un archivio con documenti personali. Non basta ordinarlo bene. Devi anche decidere chi può aprirlo, copiarlo o modificarlo.
+
 Buone abitudini:
 
 - dare solo i permessi necessari
@@ -16,7 +18,7 @@ Buone abitudini:
 
 ## Una mentalità utile
 
-Non pensare solo a \"come entro\". Pensa anche a:
+Non pensare solo a "come entro". Pensa anche a:
 
 - chi può vedere cosa
 - chi può modificare cosa
@@ -24,3 +26,11 @@ Non pensare solo a \"come entro\". Pensa anche a:
 - come registrare accessi ed errori importanti
 
 **Un database custodisce informazioni. Proteggerle è parte del suo mestiere.**
+
+## Un primo principio semplice
+
+Il principio del minimo privilegio dice: dai a ogni utente solo i permessi che gli servono davvero.
+
+Se un'app deve solo leggere dati pubblici, non dovrebbe poter cancellare tabelle.
+
+> **Attenzione:** Anche i backup vanno protetti. Spesso contengono gli stessi dati sensibili del database principale.

@@ -11,11 +11,22 @@ ETL significa:
 2. **Transform**: li sistemi
 3. **Load**: li carichi nel database
 
+Pensa a un pacco che arriva in magazzino. Prima lo scarichi, poi controlli e sistemi il contenuto, infine lo metti nello scaffale giusto.
+
 ## Un esempio concreto
 
 Immagina di ricevere ogni giorno un file CSV da un altro sistema.
 
 Prima lo leggi, poi sistemi i valori sporchi o incompleti, infine carichi i dati nel database. **Questo è ETL.**
+
+## Cosa succede nella fase di trasformazione
+
+Durante `Transform` potresti:
+
+- correggere date scritte in formati diversi
+- eliminare righe duplicate
+- convertire testi in maiuscolo o minuscolo
+- controllare valori mancanti
 
 ## Perché è importante
 
@@ -26,3 +37,5 @@ Prima lo leggi, poi sistemi i valori sporchi o incompleti, infine carichi i dati
 Non è solo spostare dati da A a B. È fare in modo che arrivino puliti, coerenti e nel formato giusto.
 
 Questo fa una grande differenza quando i sistemi coinvolti diventano molti.
+
+> **Nota:** ETL non è un singolo comando SQL. È un modo di organizzare un processo.

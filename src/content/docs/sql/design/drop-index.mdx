@@ -7,9 +7,17 @@ description: Come eliminare un indice che non sta aiutando o non serve più.
 
 **Un indice utile è prezioso. Un indice inutile è solo peso.** Se un indice non porta benefici reali, puoi rimuoverlo.
 
+È come tenere un vecchio indice cartaceo di un archivio che nessuno consulta più. Occupa spazio e va mantenuto, ma non aiuta davvero.
+
+## Un esempio piccolo
+
 ```sql
 DROP INDEX idx_clienti_email;
 ```
+
+Questa istruzione elimina l'indice chiamato `idx_clienti_email`.
+
+> **Attenzione:** Stai eliminando l'indice, non la tabella `clienti` e non i suoi dati.
 
 ## Quando può avere senso farlo
 
@@ -22,3 +30,5 @@ Puoi eliminare un indice quando:
 ## Un dettaglio pratico
 
 La sintassi precisa cambia un po' tra i database. L'idea però resta la stessa: **stai togliendo una struttura di supporto, non i dati veri della tabella.**
+
+Prima di rimuovere un indice in un progetto reale, controlla se qualche query importante lo usa ancora. In caso di dubbio, misura prima e cambia dopo.

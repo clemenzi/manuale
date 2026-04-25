@@ -18,6 +18,8 @@ Risultato: si fermano entrambe.
 
 Molti database sanno rilevare questa situazione e annullano una delle due transazioni per sbloccare il sistema.
 
+Questo non significa che il database "ha perso dati" a caso. Di solito annulla una transazione, segnala l'errore e lascia all'applicazione il compito di riprovare se ha senso.
+
 ## Come ridurre il rischio
 
 Puoi abbassare la probabilità di deadlock se:
@@ -27,3 +29,9 @@ Puoi abbassare la probabilità di deadlock se:
 - eviti operazioni inutilmente lunghe mentre i lock sono attivi
 
 **Capire i deadlock è importante perché ti insegna che la concorrenza non è magia: è coordinazione.**
+
+## Un'abitudine pratica
+
+Se due parti del programma modificano sempre `clienti` e poi `ordini`, è meglio che tutte seguano quell'ordine.
+
+Quando ogni pezzo del sistema prende le risorse nello stesso ordine, gli incastri diventano meno probabili.

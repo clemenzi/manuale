@@ -9,6 +9,10 @@ description: Quando duplicare un po' di dati può migliorare letture o report.
 
 È il contrario della normalizzazione pura, ma non è per forza sbagliata. Dipende dal problema che stai cercando di risolvere.
 
+Pensa a una ricetta che copi su un foglio da tenere vicino ai fornelli. La ricetta originale resta nel libro, ma la copia ti fa risparmiare tempo mentre cucini.
+
+Nel database, a volte copi un dato in più per leggere più in fretta.
+
 ## Quando può avere senso
 
 Può essere utile quando:
@@ -22,3 +26,16 @@ Può essere utile quando:
 Il rischio è introdurre incoerenze.
 
 Se un dato è copiato in più posti, quando cambia devi ricordarti di aggiornarlo ovunque. **La denormalizzazione va quindi fatta con un motivo preciso, non per comodità momentanea.**
+
+## Un esempio semplice
+
+In una tabella `ordini` potresti salvare anche `nome_cliente`, oltre a `cliente_id`, per rendere un report più rapido da leggere.
+
+```sql
+SELECT numero_ordine, nome_cliente, totale
+FROM ordini_report;
+```
+
+Questa scelta può essere utile per un report. Ma se il cliente cambia nome, devi sapere come aggiornare anche la copia.
+
+> **Suggerimento:** Prima normalizza per capire bene i dati. Denormalizza solo quando hai un motivo concreto e misurabile.

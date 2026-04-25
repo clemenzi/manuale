@@ -7,7 +7,9 @@ description: READ COMMITTED, REPEATABLE READ, SERIALIZABLE e gli altri livelli p
 
 **I livelli di isolamento stabiliscono quanto una transazione può vedere del lavoro delle altre transazioni in corso.**
 
-Se due persone modificano o leggono dati nello stesso momento, il database deve decidere quanta “privacy” dare a ciascuna operazione.
+Se due persone modificano o leggono dati nello stesso momento, il database deve decidere quanta "privacy" dare a ciascuna operazione.
+
+Pensa a due persone che aggiornano lo stesso documento. Possono vedere subito le modifiche dell'altra? Devono aspettare? Il sistema deve scegliere una regola.
 
 Livelli noti:
 
@@ -29,8 +31,16 @@ Non è indispensabile memorizzare subito i dettagli fini di ogni livello. All'in
 - i livelli bassi lasciano più libertà
 - i livelli alti proteggono di più dai comportamenti strani
 
+## Una scala mentale utile
+
+`READ COMMITTED` è una scelta comune: una transazione vede solo dati già confermati da altre transazioni.
+
+`REPEATABLE READ` protegge di più la lettura: se rileggi gli stessi dati nella stessa transazione, ti aspetti più stabilità.
+
 ## Il più rigoroso
 
 `SERIALIZABLE` è il livello più severo tra quelli classici. Fa comportare le transazioni come se passassero una alla volta.
 
 È molto protettivo, ma può essere più costoso in termini di concorrenza.
+
+> **Attenzione:** I dettagli precisi cambiano tra database. Prima impara l'idea generale, poi controlla il comportamento del database che stai usando.

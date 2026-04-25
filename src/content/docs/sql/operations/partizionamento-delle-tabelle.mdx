@@ -9,14 +9,28 @@ description: Dividere una tabella grande in parti più piccole per gestirla megl
 
 Questo può aiutare su dataset grandi e query mirate.
 
+È come dividere le bollette in raccoglitori per anno. Se cerchi una bolletta del 2025, non apri tutti i raccoglitori della casa.
+
 ## Perché funziona
 
 Se la query cerca solo un pezzo del totale, il database può evitare di attraversare tutto.
 
 Non è una bacchetta magica, ma in certi scenari è uno strumento molto utile.
 
+## Un esempio mentale
+
+Una tabella `ordini` può essere divisa per anno:
+
+- `ordini_2024`
+- `ordini_2025`
+- `ordini_2026`
+
+Dal punto di vista dell'utente puoi continuare a pensare a una tabella unica, ma il database sa che i dati sono organizzati in parti.
+
 ## Quando non basta da solo
 
 Il partizionamento non sostituisce query scritte bene, indici sensati e una buona progettazione.
 
 **Aiuta molto, ma funziona davvero bene quando si combina con altre scelte intelligenti.**
+
+> **Attenzione:** Il partizionamento aggiunge complessità. Ha senso quando il volume dei dati è davvero grande o quando hai un motivo operativo chiaro.

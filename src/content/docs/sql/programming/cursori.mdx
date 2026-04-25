@@ -7,11 +7,19 @@ description: Scorrere i risultati una riga alla volta quando un'elaborazione ins
 
 **Un cursore permette di scorrere un risultato riga per riga.** È come passare il dito lungo un elenco, fermandoti ogni volta su un elemento.
 
+Di solito SQL preferisce lavorare su tante righe insieme. Il cursore è l'eccezione: prende una riga, la guarda, poi passa alla successiva.
+
 ## Quando entra in scena
 
 I cursori diventano utili in casi particolari, quando davvero hai bisogno di trattare i risultati uno alla volta.
 
 Detto questo, SQL dà il meglio di sé quando ragiona su gruppi di righe insieme. **Per questo i cursori esistono, ma non sono lo strumento da preferire per tutto.**
+
+## Un esempio mentale
+
+Se devi calcolare lo stesso aggiornamento per tutti i prodotti, una normale query `UPDATE` è spesso la scelta migliore.
+
+Se invece devi chiamare una procedura diversa per ogni riga, con passaggi che dipendono dal risultato precedente, un cursore può avere senso.
 
 ## La regola pratica
 
@@ -22,3 +30,5 @@ Se riesci a risolvere il problema con una query normale, in genere è meglio. Se
 I cursori possono essere più lenti e più complessi da gestire rispetto alle operazioni insiemistiche tipiche di SQL.
 
 **Conoscerli è utile. Usarli come prima scelta quasi mai.**
+
+> **Suggerimento:** Prima di scegliere un cursore, prova a chiederti: "posso risolvere questo problema lavorando su tutte le righe insieme?"

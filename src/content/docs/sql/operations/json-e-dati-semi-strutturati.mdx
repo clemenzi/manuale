@@ -9,6 +9,8 @@ description: Lavorare con campi JSON dentro un database relazionale senza perder
 
 SQL resta relazionale, ma molti database moderni sanno gestire anche dati semi-strutturati.
 
+Pensa a una scheda prodotto. Nome, prezzo e codice sono campi stabili. Le caratteristiche tecniche, invece, possono cambiare molto da prodotto a prodotto.
+
 ## Quando può essere utile
 
 Per esempio:
@@ -20,6 +22,19 @@ Per esempio:
 ## Il punto da ricordare
 
 JSON è utile, ma non dovrebbe diventare una scusa per buttare tutto in un campo indistinto. **Se un dato è davvero strutturato e importante, spesso merita ancora una colonna o una tabella dedicata.**
+
+## Un esempio piccolo
+
+Un campo `preferenze` potrebbe contenere dati come:
+
+```json
+{
+  "tema": "scuro",
+  "lingua": "it"
+}
+```
+
+Queste preferenze possono cambiare nel tempo senza obbligarti subito a modificare molte colonne.
 
 ## La scelta giusta è quasi sempre mista
 

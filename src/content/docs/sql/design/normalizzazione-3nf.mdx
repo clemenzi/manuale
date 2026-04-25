@@ -9,11 +9,24 @@ description: La terza forma normale e l'idea di evitare dipendenze indirette.
 
 In pratica: evita passaggi indiretti che creano duplicazioni e confusione.
 
+Pensa a una scheda cliente con `cap` e `citta`. Se la città dipende dal CAP, e il CAP dipende dal cliente, hai una dipendenza indiretta.
+
 ## Un esempio intuitivo
 
 Se in una tabella ordini salvi anche informazioni che dipendono dal cliente, e non dall'ordine, rischi di ripetere dati inutilmente.
 
 Per esempio, se il nome della città dipende dal cliente, spesso non ha senso copiarlo dentro ogni ordine senza una buona ragione.
+
+## Un esempio in tabella
+
+| cliente_id | nome  | cap   | citta |
+| ---------- | ----- | ----- | ----- |
+| 1          | Luca  | 00100 | Roma  |
+| 2          | Marta | 00100 | Roma  |
+
+Se `00100` indica sempre `Roma`, ripetere la città in ogni cliente può creare errori. Qualcuno potrebbe scrivere `Rma` in una riga e `Roma` in un'altra.
+
+Una struttura più pulita può separare i CAP in una tabella dedicata.
 
 ## Perché è utile
 

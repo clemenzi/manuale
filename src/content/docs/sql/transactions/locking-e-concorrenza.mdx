@@ -9,6 +9,8 @@ description: Come il database gestisce accessi simultanei agli stessi dati senza
 
 Un **lock** è come il cartello "occupato" appeso a una porta. Dice agli altri: aspetta un attimo, questa parte è già in uso.
 
+In SQL, quel cartello può riguardare una riga, una tabella o altre parti interne del database.
+
 ## Perché servono i lock
 
 Senza meccanismi di locking, due aggiornamenti contemporanei potrebbero:
@@ -22,3 +24,11 @@ Senza meccanismi di locking, due aggiornamenti contemporanei potrebbero:
 **Il locking non è un difetto. È una protezione.** Il problema nasce solo quando i lock durano troppo o vengono gestiti male.
 
 Per questo conviene scrivere transazioni brevi e mirate, invece di lasciarle aperte inutilmente.
+
+## Un esempio mentale
+
+Se due casse del supermercato provano a vendere l'ultimo pezzo dello stesso prodotto nello stesso momento, serve una regola. Il database deve evitare che entrambe dicano "venduto" come se il pezzo fosse doppio.
+
+I lock aiutano a coordinare questi momenti delicati.
+
+> **Suggerimento:** Quando una query resta bloccata, non pensare subito a un errore. Potrebbe essere in attesa che un'altra transazione finisca.

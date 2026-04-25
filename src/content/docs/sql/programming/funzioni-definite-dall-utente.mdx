@@ -7,6 +7,10 @@ description: Funzioni SQL create da te per restituire valori o risultati riutili
 
 **Una funzione definita dall'utente permette di aggiungere una nuova funzione al tuo database.** È simile a una stored procedure, ma in genere nasce per restituire un valore o un risultato.
 
+Pensa a una calcolatrice con un tasto personalizzato. Premi quel tasto, gli dai un numero, e lei ti restituisce il risultato del calcolo che usi spesso.
+
+## Un esempio piccolo
+
 ```sql
 CREATE FUNCTION prezzo_con_iva(prezzo DECIMAL(10,2))
 RETURNS DECIMAL(10,2)
@@ -21,6 +25,15 @@ Se hai un calcolo o una trasformazione che si ripete spesso, racchiuderla in una
 
 Invece di riscrivere sempre la stessa formula, dai un nome a quell'idea.
 
+Potresti poi usarla in una query:
+
+```sql
+SELECT nome, prezzo_con_iva(prezzo) AS prezzo_finale
+FROM prodotti;
+```
+
+Qui `prezzo_con_iva` restituisce un valore calcolato per ogni prodotto.
+
 ## Una distinzione semplice da ricordare
 
 Non è una regola assoluta per tutti i database, ma puoi pensare così:
@@ -29,3 +42,5 @@ Non è una regola assoluta per tutti i database, ma puoi pensare così:
 - la **funzione** restituisce qualcosa
 
 Questa scorciatoia mentale aiuta molto quando inizi.
+
+> **Nota:** La sintassi delle funzioni cambia parecchio tra PostgreSQL, MySQL, SQL Server e altri database. L'idea di base, però, resta la stessa.

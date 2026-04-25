@@ -7,7 +7,23 @@ description: Object Relational Mapping spiegato senza gergo inutile.
 
 **ORM** significa **Object Relational Mapping**. In pratica è uno strumento che ti permette di lavorare con il database usando oggetti o classi del tuo linguaggio, senza scrivere sempre SQL a mano.
 
-Ti permette di lavorare spesso con oggetti e classi invece di scrivere sempre SQL a mano.
+Pensa a un cameriere che prende il tuo ordine e lo porta in cucina. Tu non parli direttamente con ogni cuoco, ma la cucina esiste comunque e deve lavorare bene.
+
+Un ORM fa qualcosa di simile: il tuo codice parla con l'ORM, e l'ORM prepara le query per il database.
+
+## Un esempio mentale
+
+Invece di scrivere a mano:
+
+```sql
+SELECT nome, email
+FROM clienti
+WHERE id = 1;
+```
+
+con un ORM potresti usare un metodo del tuo linguaggio, per esempio "trova il cliente con id 1".
+
+Il risultato sembra più comodo, ma sotto il database riceve comunque una query.
 
 ## Perché non sostituisce SQL
 
@@ -20,3 +36,5 @@ Un ORM può rendere comode molte operazioni ripetitive. Ma sotto c'è comunque u
 Un ORM è un assistente, non un sostituto della comprensione.
 
 Se sai già cosa significa fare una join, filtrare con `WHERE` o raggruppare con `GROUP BY`, allora usi l'ORM con molta più consapevolezza.
+
+> **Suggerimento:** Quando qualcosa è lento, prova sempre a guardare la query SQL generata dall'ORM. Spesso il problema diventa molto più chiaro.

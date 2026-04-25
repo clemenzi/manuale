@@ -7,12 +7,26 @@ description: Come creare un indice per velocizzare certe ricerche nel database.
 
 **Un indice aiuta il database a trovare più rapidamente certe righe.** Senza indice, a volte il database deve scorrere tantissimo contenuto. Con un buon indice, il percorso può diventare molto più rapido.
 
+Immagina un libro di 800 pagine. Se cerchi la parola "spedizione" senza indice, sfogli tutto. Con un indice, vai quasi subito alle pagine giuste.
+
+Nel database succede qualcosa di simile.
+
+## Un esempio piccolo
+
+Questa istruzione crea un indice sulla colonna `email` della tabella `clienti`:
+
 ```sql
 CREATE INDEX idx_clienti_email
 ON clienti(email);
 ```
 
-Questo comando crea un indice sulla colonna `email`.
+Da quel momento, una ricerca per email può diventare più veloce.
+
+```sql
+SELECT nome
+FROM clienti
+WHERE email = 'luca@email.it';
+```
 
 ## Quando ha senso aggiungerlo
 
@@ -27,3 +41,5 @@ Gli indici sono utili soprattutto su colonne che usi spesso per:
 **Gli indici accelerano alcune letture, ma non sono gratis.** Occupano spazio e possono rallentare un po' inserimenti, aggiornamenti ed eliminazioni.
 
 Per questo non si indicizza tutto a caso. Si indicizza ciò che serve davvero.
+
+> **Suggerimento:** Prima di aggiungere tanti indici, osserva quali query sono davvero lente. Un indice scelto bene aiuta. Dieci indici scelti a caso possono creare solo rumore.

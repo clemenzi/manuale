@@ -7,6 +7,10 @@ description: Blocchi di istruzioni salvati direttamente nel database per riutili
 
 **Una stored procedure è un blocco di istruzioni salvato nel database.** Invece di riscrivere sempre la stessa sequenza di comandi, puoi darle un nome e riutilizzarla.
 
+È come salvare una ricetta con un titolo. Invece di riscrivere ogni volta tutti i passaggi, dici "prepara questa ricetta".
+
+## Un esempio piccolo
+
 ```sql
 CREATE PROCEDURE aggiorna_prezzi ()
 BEGIN
@@ -26,3 +30,5 @@ Una stored procedure è comoda quando:
 ## Un dettaglio importante
 
 La sintassi cambia tra database diversi. **Il concetto però resta stabile:** salvi una procedura e poi la richiami quando ti serve.
+
+> **Attenzione:** Una procedura può modificare molti dati. Prima di usarla in un database reale, controlla bene cosa fa e su quali righe lavora.

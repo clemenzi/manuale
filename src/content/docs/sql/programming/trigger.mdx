@@ -21,8 +21,16 @@ Può servire per:
 - controllare certe regole automaticamente
 - aggiornare dati collegati
 
+## Un esempio mentale
+
+Immagina una tabella `prodotti` e una tabella `log_modifiche`. Ogni volta che cambia il prezzo di un prodotto, un trigger potrebbe registrare chi ha fatto la modifica e quando.
+
+Così non devi ricordarti di scrivere la riga di log in ogni punto dell'applicazione.
+
 ## Il lato da gestire con attenzione
 
 I trigger possono essere potenti, ma anche un po' invisibili. Se un comportamento importante dipende da un trigger, chi legge il codice deve saperlo.
 
 **Per questo vanno usati con chiarezza e moderazione.**
+
+> **Attenzione:** Se un trigger modifica altri dati senza che sia evidente, il sistema può diventare difficile da capire e da testare.
