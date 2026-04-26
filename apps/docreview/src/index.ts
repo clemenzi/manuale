@@ -13,8 +13,8 @@ import { z } from "zod/v4";
 
 const ROOT_DIR = path.join(__dirname, "../../..");
 const OUTPUT_DIR = path.join(process.cwd(), "dist");
-const WRITER_SKILL_PATH = path.join(ROOT_DIR, ".agents/skills/writer/SKILL.md");
-const MODEL = "openai/gpt-oss-120b:nitro";
+// const WRITER_SKILL_PATH = path.join(ROOT_DIR, ".agents/skills/writer/SKILL.md");
+const MODEL = process.env.MODEL || "openai/gpt-oss-120b:nitro";
 
 const reviewSchema = z.object({
   reviews: z
@@ -41,13 +41,20 @@ dotenv.config({
 });
 
 async function buildSystemPrompt(): Promise<string> {
-  const writingGuidelines = await fs.readFile(WRITER_SKILL_PATH, "utf-8");
+  // const writingGuidelines = await fs.readFile(WRITER_SKILL_PATH, "utf-8");
 
   return `
-Your job is to review the document, and, if you find anything that needs to be improved, make a review with the range of lines and the suggested change. If there is no need for changes, return an empty array.
-* There is no need to return the reviews if there are no changes needed, an empty array is a valid response.
-* The guidelines for writing a good quality document are the following contained in this skill:
-${writingGuidelines}
+Il tuo lavoro è revisionare il documento e, se trovi qualcosa che necessita di essere migliorato, fare una revisione con il range di righe e il suggerimento di modifica. Se non c'è nulla da modificare, restituisci un array vuoto.
+Il documento deve rispettare le seguenti linee guida:
+- Ogni termine tecnico è spiegato in parole semplici al primo utilizzo (devi considerare l'ipotesi che il termine sia gia stato spiegato in altri documenti)
+- Ogni nuovo concetto ha un'analogia della vita reale
+- Nessun paragrafo supera le 4 frasi
+- Ogni blocco di codice ha uno scopo chiaro e un solo concetto principale
+- Gli esempi di codice sono minimali e commentati in italiano semplice
+- I nomi usati nel codice sono semplici e facili da riconoscere
+- Se serve, l'output atteso o il risultato del codice è mostrato subito dopo
+- Il tono è caldo e incoraggiante dall'inizio alla fine
+- Un principiante potrebbe seguire ogni passaggio senza conoscenze pregresse
 `;
 }
 

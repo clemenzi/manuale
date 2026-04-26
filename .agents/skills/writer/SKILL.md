@@ -78,11 +78,7 @@ Prima di scrivere qualsiasi cosa, conferma:
 - **Obiettivo:** Cosa deve saper fare o capire il lettore dopo la lettura?
 - **Ambito:** Cosa è esplicitamente fuori scope per questa guida?
 
-### 2. Proponi una Struttura
-
-Abbozza un breve indice (titoli delle sezioni + descrizione di una riga). Presentalo e aspetta l'approvazione prima di scrivere il contenuto completo.
-
-### 3. Mappa delle Analogie
+### 2. Mappa delle Analogie
 
 Prima di scrivere il testo, abbozza l'analogia della vita reale che userai per ogni concetto chiave. Ad esempio:
 
@@ -95,13 +91,13 @@ Prima di scrivere il testo, abbozza l'analogia della vita reale che userai per o
 
 Questa mappa delle analogie ancora la scrittura e la mantiene coerente.
 
-### 4. Genera il Contenuto
+### 3. Genera il Contenuto
 
 Scrivi la guida completa in Markdown. Applica tutte le regole di stile sopra indicate.
 
 Se la guida include codice, verifica anche che ogni blocco sia facile da copiare, leggere e capire al primo colpo.
 
-### 5. Checklist di Revisione
+### 4. Checklist di Revisione
 
 Prima di consegnare la guida, verifica:
 
