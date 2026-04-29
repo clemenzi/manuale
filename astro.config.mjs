@@ -6,14 +6,22 @@ import cloudflare from "@astrojs/cloudflare";
 
 import tailwindcss from "@tailwindcss/vite";
 
+const site = "https://www.manuale.dev";
+
 export default defineConfig({
-  site: "https://www.manuale.dev",
+  site,
   integrations: [
     starlight({
       title: "Manuale",
       description:
         "Una guida pratica alla programmazione in Python, SQL e C++ per chi parte da zero.",
       favicon: "/favicon.ico",
+      locales: {
+        root: {
+          label: "Italiano",
+          lang: "it",
+        },
+      },
       logo: {
         dark: "./src/assets/logo-dark.svg",
         light: "./src/assets/logo-light.svg",
@@ -21,6 +29,7 @@ export default defineConfig({
       },
       routeMiddleware: "./src/route-middleware.ts",
       components: {},
+      disable404Route: true,
       social: [{ icon: "github", label: "GitHub", href: "https://github.com/clemenzi/manuale" }],
       customCss: ["./src/styles/global.css"],
       sidebar: [
