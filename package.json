@@ -12,7 +12,7 @@
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
     "generate-types": "wrangler types",
-    "prepare": "husky"
+    "prepare": "lefthook install"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.1.10",
@@ -27,22 +27,12 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
     "@types/node": "^25.6.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
+    "lefthook": "^2.1.6",
     "oxfmt": "^0.45.0",
     "oxlint": "^1.60.0",
     "typescript": "^6.0.2"
   },
   "overrides": {
     "vite": "^7"
-  },
-  "lint-staged": {
-    "*.{js,ts,jsx,tsx,astro,css}": [
-      "pnpm run fmt:check",
-      "pnpm run lint"
-    ],
-    "*.{yml,yaml,md,mdx}": [
-      "pnpm run fmt:check"
-    ]
   }
 }
