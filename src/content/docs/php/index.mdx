@@ -1,0 +1,438 @@
+---
+title: Introduzione a PHP
+description: Guida completa per iniziare con PHP da zero, con i concetti fondamentali spiegati in modo semplice.
+icon: BookOpen
+---
+
+## Cos'è PHP?
+
+Immagina un **cuoco in cucina** che riceve ordini e prepara piatti su richiesta. PHP funziona in modo simile: quando una persona apre una pagina web, PHP prepara il contenuto e lo consegna al browser.
+
+PHP è un **linguaggio di programmazione lato server** (cioè lavora “dietro le quinte” del sito, sul computer che ospita il sito). Serve per creare pagine dinamiche, gestire moduli, login, database e molto altro.
+
+> **Nota:** In passato PHP significava “Personal Home Page”. Oggi il nome ufficiale è ricorsivo: **PHP: Hypertext Preprocessor**.
+
+---
+
+## A cosa serve PHP nella vita reale?
+
+Pensa a un **negozio online**:
+
+- quando aggiungi un prodotto al carrello, PHP può salvare quel dato;
+- quando fai login, PHP controlla email e password;
+- quando completi un ordine, PHP registra tutto nel database.
+
+In breve, PHP è ottimo per costruire la parte “intelligente” dei siti web.
+
+---
+
+## Installazione: il modo più semplice per iniziare
+
+Per iniziare senza complicazioni, usa una “scatola già pronta” come **XAMPP** o **Laragon** (pacchetti che includono PHP + server web + database).
+
+Passi base:
+
+1. Scarica e installa XAMPP oppure Laragon.
+2. Apri il pannello del programma.
+3. Avvia il server web (di solito Apache).
+4. Crea un file `index.php` nella cartella del progetto.
+
+Per verificare PHP, crea questo file:
+
+```php
+<?php
+phpinfo();
+```
+
+Questo blocco ti mostra le informazioni dell'ambiente PHP.
+
+Apri nel browser `http://localhost/tuo-progetto`.
+Se vedi una pagina piena di dettagli tecnici, **hai configurato tutto correttamente**.
+
+---
+
+## Primo programma PHP
+
+Ora vediamo la tua prima istruzione. Serve a stampare un testo a schermo.
+
+```php
+<?php
+echo "Ciao, mondo!";
+```
+
+Output atteso nel browser:
+
+```text
+Ciao, mondo!
+```
+
+**Ottimo lavoro:** hai appena eseguito il tuo primo codice PHP.
+
+---
+
+## Variabili: scatole con etichetta
+
+Immagina una dispensa con barattoli etichettati (`nome`, `eta`, `citta`). In PHP, una **variabile** è proprio questo: una scatola con un nome che contiene un valore.
+
+```php
+<?php
+$nome = "Luca";
+$eta = 20;
+echo $nome;
+```
+
+Qui `$nome` contiene una stringa (testo), mentre `$eta` contiene un numero.
+
+---
+
+## Tipi di dati principali
+
+Come in una spesa, metti cose diverse in contenitori diversi. In PHP i contenitori più comuni sono:
+
+- `string` (testo), ad esempio `"ciao"`
+- `int` (numero intero), ad esempio `10`
+- `float` (numero con virgola), ad esempio `3.14`
+- `bool` (vero/falso), ad esempio `true`
+- `array` (lista di valori)
+- `null` (nessun valore)
+
+```php
+<?php
+$testo = "Pane";
+$quantita = 2;
+$prezzo = 1.50;
+$disponibile = true;
+```
+
+---
+
+## Operatori: piccoli strumenti matematici e logici
+
+Gli operatori sono come i pulsanti di una calcolatrice.
+
+```php
+<?php
+$totale = 10 + 5;   // somma
+$resto = 10 % 3;    // resto della divisione
+$uguale = (10 == "10"); // confronto "elastico"
+$identico = (10 === "10"); // confronto preciso
+```
+
+> **Attenzione:** `==` confronta il contenuto in modo più permissivo. `===` confronta valore **e tipo**. Per iniziare bene, preferisci spesso `===`.
+
+---
+
+## Condizioni if/else: semaforo decisionale
+
+Pensa a un semaforo: se è verde passi, altrimenti aspetti. `if` fa la stessa cosa.
+
+```php
+<?php
+$eta = 19;
+
+if ($eta >= 18) {
+    echo "Sei maggiorenne";
+} else {
+    echo "Sei minorenne";
+}
+```
+
+---
+
+## Cicli: ripetere senza riscrivere tutto
+
+Un ciclo è come premere “ripeti” su una playlist.
+
+### Ciclo `for`
+
+```php
+<?php
+for ($i = 1; $i <= 3; $i++) {
+    echo "Giro numero $i <br>";
+}
+```
+
+### Ciclo `while`
+
+```php
+<?php
+$numero = 1;
+while ($numero <= 3) {
+    echo "Numero: $numero <br>";
+    $numero++;
+}
+```
+
+---
+
+## Array: cassetti numerati
+
+Immagina una cassettiera: ogni cassetto contiene un valore.
+
+```php
+<?php
+$frutti = ["mela", "banana", "pera"];
+echo $frutti[0];
+```
+
+Output:
+
+```text
+mela
+```
+
+### Array associativi (etichette testuali)
+
+Qui invece dei numeri usi parole chiave, come etichette di cartelle.
+
+```php
+<?php
+$utente = [
+    "nome" => "Sara",
+    "eta" => 25
+];
+
+echo $utente["nome"];
+```
+
+---
+
+## Funzioni: ricette riutilizzabili
+
+Una funzione è come una ricetta: la scrivi una volta e la riusi quando vuoi.
+
+```php
+<?php
+function saluta($nome) {
+    return "Ciao, $nome!";
+}
+
+echo saluta("Marco");
+```
+
+Output:
+
+```text
+Ciao, Marco!
+```
+
+**Grande:** ora sai evitare ripetizioni nel codice.
+
+---
+
+## Form HTML + PHP: ricevere dati dall'utente
+
+Pensa a un modulo come a un foglio da compilare. L'utente scrive, PHP legge.
+
+```html
+<form method="POST">
+  <input type="text" name="nome" placeholder="Scrivi il tuo nome" />
+  <button type="submit">Invia</button>
+</form>
+```
+
+```php
+<?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $nome = $_POST["nome"];
+    echo "Ciao, " . htmlspecialchars($nome);
+}
+```
+
+`htmlspecialchars()` protegge dall'inserimento di codice HTML indesiderato.
+
+---
+
+## Superglobali: cassette degli attrezzi già pronte
+
+Le superglobali sono variabili speciali sempre disponibili.
+
+- `$_GET`: dati passati nell'URL
+- `$_POST`: dati inviati da un form
+- `$_SERVER`: informazioni sul server e la richiesta
+- `$_SESSION`: dati che restano tra una pagina e l'altra per lo stesso utente
+- `$_COOKIE`: piccoli dati salvati nel browser
+
+```php
+<?php
+echo $_SERVER["HTTP_HOST"];
+```
+
+---
+
+## Sessioni e cookie: memoria breve e memoria persistente
+
+- **Sessione**: come un braccialetto temporaneo in un evento.
+- **Cookie**: come un promemoria lasciato nel portafoglio dell'utente.
+
+```php
+<?php
+session_start();
+$_SESSION["utente"] = "Luca";
+```
+
+```php
+<?php
+setcookie("tema", "scuro", time() + 3600);
+```
+
+---
+
+## File: leggere e scrivere
+
+È come aprire un quaderno, leggere una riga, aggiungere una nota.
+
+```php
+<?php
+file_put_contents("note.txt", "Ciao\n");
+$contenuto = file_get_contents("note.txt");
+echo $contenuto;
+```
+
+---
+
+## PHP e database MySQL con PDO
+
+Pensa al database come a un archivio organizzato. PHP può cercare, aggiungere e aggiornare dati.
+
+```php
+<?php
+$pdo = new PDO("mysql:host=localhost;dbname=scuola;charset=utf8mb4", "root", "");
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+```
+
+Per leggere dati in modo sicuro:
+
+```php
+<?php
+$stmt = $pdo->prepare("SELECT nome FROM studenti WHERE eta >= :eta");
+$stmt->execute(["eta" => 18]);
+$studenti = $stmt->fetchAll(PDO::FETCH_ASSOC);
+```
+
+> **Suggerimento:** Usa sempre query preparate (`prepare`) per ridurre il rischio di SQL injection.
+
+---
+
+## Programmazione a oggetti (OOP) in PHP
+
+Immagina uno stampino per biscotti: lo stampino è la **classe**, ogni biscotto creato è un **oggetto**.
+
+```php
+<?php
+class Cane {
+    public $nome;
+
+    public function abbaia() {
+        return "Bau!";
+    }
+}
+
+$cane = new Cane();
+$cane->nome = "Fido";
+echo $cane->abbaia();
+```
+
+Concetti chiave da conoscere:
+
+- classe e oggetto
+- proprietà e metodi
+- costruttore (`__construct`)
+- ereditarietà
+- visibilità (`public`, `private`, `protected`)
+- interfacce e trait
+
+---
+
+## Gestione errori
+
+Gli errori sono normali: sono segnali utili, non fallimenti.
+
+```php
+<?php
+try {
+    $pdo = new PDO("mysql:host=localhost;dbname=test", "root", "");
+} catch (PDOException $errore) {
+    echo "Connessione fallita";
+}
+```
+
+> **Attenzione:** in produzione non mostrare dettagli sensibili dell'errore agli utenti.
+
+---
+
+## Composer: il gestore dei pacchetti
+
+Composer è come un app store per librerie PHP: installi componenti pronti senza riscriverli da zero.
+
+Comandi base:
+
+```bash
+composer init
+composer require monolog/monolog
+```
+
+Questo crea `composer.json` e scarica la libreria richiesta.
+
+---
+
+## Namespace e autoload
+
+Se il progetto cresce, i nomi possono scontrarsi. I **namespace** funzionano come cognomi: distinguono classi con lo stesso nome.
+
+```php
+<?php
+namespace App\Servizi;
+
+class Mailer {}
+```
+
+Con Composer puoi caricare classi automaticamente (autoload), senza `require` manuali ovunque.
+
+---
+
+## Sicurezza di base (fondamentale)
+
+Quando scrivi PHP, la sicurezza non è un extra. È parte del lavoro.
+
+Checklist minima:
+
+- valida sempre i dati in ingresso;
+- sanifica l'output con `htmlspecialchars` quando mostri testo utente;
+- usa password hashate con `password_hash`;
+- verifica password con `password_verify`;
+- usa query preparate con PDO;
+- non salvare segreti direttamente nel codice.
+
+---
+
+## Struttura di un progetto PHP moderno
+
+Una struttura tipica, semplice:
+
+- `public/` → file accessibili dal browser
+- `src/` → logica applicativa
+- `views/` → template HTML
+- `vendor/` → dipendenze installate da Composer
+- `.env` → configurazioni locali (non da pubblicare)
+
+Framework popolari (strumenti che accelerano lo sviluppo):
+
+- **Laravel** (molto usato, ricco di funzionalità)
+- **Symfony** (solido e modulare)
+
+---
+
+## Roadmap: cosa studiare dopo questa guida
+
+Hai visto la panoramica completa. Ora puoi continuare così:
+
+1. sintassi base (variabili, condizioni, cicli, funzioni);
+2. form, sessioni e autenticazione;
+3. database con PDO;
+4. OOP e organizzazione del codice;
+5. Composer, namespace, autoload;
+6. un framework (Laravel o Symfony);
+7. test, deploy e buone pratiche di sicurezza.
+
+**Complimenti:** ora hai una mappa chiara di PHP, dai primi passi fino agli argomenti avanzati.
