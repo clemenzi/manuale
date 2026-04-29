@@ -3,30 +3,107 @@ title: GROUP BY
 description: Come raggruppare le righe che condividono lo stesso valore.
 ---
 
-## Qui passi dal dettaglio ai gruppi
+## Ragionare per gruppi
 
-**`GROUP BY` mette insieme righe che hanno qualcosa in comune.** Invece di guardare ogni record separatamente, inizi a ragionare per gruppi.
+`GROUP BY` serve quando non vuoi guardare le righe una per una, ma vuoi **raggrupparle**.
 
-È come prendere una pila di schede e dividerla per città, categoria o anno.
+Immagina una pila di schede clienti. Invece di leggerle in ordine, le dividi per città: Roma da una parte, Milano da un’altra, Torino da un’altra ancora.
+
+SQL fa la stessa cosa con `GROUP BY`.
 
 ```sql
-SELECT citta, COUNT(*)
+SELECT citta, COUNT(*) AS numero_clienti
 FROM clienti
 GROUP BY citta;
 ```
 
-Così ottieni una riga per ogni città, insieme al numero di clienti che appartengono a quella città.
+Questa query dice:
 
-## Quando diventa utile
+> “Raggruppa i clienti per città e conta quanti clienti ci sono in ogni città.”
 
-`GROUP BY` è molto usato quando vuoi rispondere a domande come:
+## Un esempio con una tabella
 
-- quanti clienti ho per città?
-- quanti ordini ho per mese?
-- qual è il totale venduto per categoria?
+Partiamo da questi dati:
 
-## Perché spesso va insieme alle aggregate
+| nome  | citta  |
+| ----- | ------ |
+| Luca  | Roma   |
+| Marta | Milano |
+| Sara  | Roma   |
 
-Da solo `GROUP BY` crea gruppi. Poi, dentro quei gruppi, funzioni come `COUNT()`, `SUM()` o `AVG()` calcolano qualcosa.
+La query:
 
-**La coppia `GROUP BY` + funzioni aggregate è uno dei motori principali dei report SQL.**
+```sql
+SELECT citta, COUNT(*) AS numero_clienti
+FROM clienti
+GROUP BY citta;
+```
+
+produce:
+
+| citta  | numero_clienti |
+| ------ | -------------- |
+| Milano | 1              |
+| Roma   | 2              |
+
+SQL crea un gruppo per ogni città. Poi `COUNT(*)` conta quante righe ci sono in ciascun gruppo.
+
+## Perché va spesso insieme alle aggregate
+
+`GROUP BY` da solo crea i gruppi. Le funzioni aggregate fanno i calcoli dentro quei gruppi.
+
+Per esempio:
+
+- `COUNT(*)` conta quante righe ci sono nel gruppo.
+- `SUM(totale)` somma i totali del gruppo.
+- `AVG(prezzo)` calcola la media del gruppo.
+
+Per questo `GROUP BY` è così usato nei report.
+
+## Una regola da ricordare
+
+Quando usi `GROUP BY`, nel `SELECT` metti di solito:
+
+- la colonna con cui stai raggruppando
+- una o più funzioni aggregate
+
+Questa query è chiara:
+
+```sql
+SELECT citta, COUNT(*) AS numero_clienti
+FROM clienti
+GROUP BY citta;
+```
+
+Questa invece crea confusione:
+
+```sql
+SELECT citta, nome, COUNT(*)
+FROM clienti
+GROUP BY citta;
+```
+
+Il problema è `nome`. Se a Roma ci sono Luca e Sara, quale nome dovrebbe mostrare SQL per il gruppo “Roma”?
+
+Quando raggruppi, stai lasciando il dettaglio delle singole righe. Per questo devi mostrare il gruppo e i calcoli sul gruppo.
+
+## Raggruppare per più colonne
+
+Puoi anche raggruppare usando più colonne:
+
+```sql
+SELECT citta, stato, COUNT(*) AS numero_clienti
+FROM clienti
+GROUP BY citta, stato;
+```
+
+Qui SQL crea un gruppo per ogni combinazione di `citta` e `stato`.
+
+È come dividere prima le schede per città e poi, dentro ogni città, separarle per stato.
+
+## Riepilogo rapido
+
+- `GROUP BY` raggruppa righe con lo stesso valore.
+- Si usa spesso con `COUNT()`, `SUM()`, `AVG()`, `MIN()` e `MAX()`.
+- Nel `SELECT` mostri le colonne di raggruppamento e i calcoli aggregati.
+- Puoi raggruppare anche per più colonne.

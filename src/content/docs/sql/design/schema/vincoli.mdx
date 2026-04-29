@@ -3,41 +3,88 @@ title: Vincoli
 description: PRIMARY KEY, FOREIGN KEY, UNIQUE, NOT NULL, CHECK e DEFAULT spiegati in modo pratico.
 ---
 
-## Le regole non servono a complicare: servono a proteggere
+## Regole che proteggono i dati
 
-**I vincoli sono le regole del database.** Non sono decorazioni. Servono a tenere i dati puliti, coerenti e più difficili da rovinare per errore.
+I **vincoli** sono regole che il database controlla prima di salvare un dato.
 
-È come mettere regole chiare all'ingresso di un magazzino: qui entra solo materiale etichettato bene, qui non si accettano duplicati, qui non si lasciano campi vuoti.
+Non servono a complicare la vita. Servono a evitare dati rotti, duplicati o incoerenti.
 
-## I più importanti da conoscere
+È come avere qualcuno all’ingresso di un magazzino che controlla: “questo pacco ha l’etichetta?”, “questo codice esiste già?”, “questo valore ha senso?”.
 
-- `PRIMARY KEY`
-- `FOREIGN KEY`
-- `UNIQUE`
-- `NOT NULL`
-- `CHECK`
-- `DEFAULT`
+## I vincoli più comuni
+
+Ecco quelli che incontrerai più spesso:
+
+| Vincolo       | A cosa serve                           |
+| ------------- | -------------------------------------- |
+| `PRIMARY KEY` | identifica ogni riga                   |
+| `FOREIGN KEY` | collega una tabella a un’altra         |
+| `UNIQUE`      | impedisce valori duplicati             |
+| `NOT NULL`    | rende una colonna obbligatoria         |
+| `CHECK`       | controlla una regola personalizzata    |
+| `DEFAULT`     | assegna un valore se non lo specifichi |
+
+## Un esempio completo
+
+Questa tabella usa più vincoli insieme:
 
 ```sql
-prezzo DECIMAL(10,2) CHECK (prezzo >= 0)
+CREATE TABLE clienti (
+    id INT PRIMARY KEY,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    eta INT CHECK (eta >= 0),
+    attivo BOOLEAN DEFAULT TRUE
+);
 ```
 
-## Cosa fanno in parole semplici
+Leggiamola pezzo per pezzo:
 
-- `PRIMARY KEY`: identifica in modo unico ogni riga
-- `FOREIGN KEY`: collega una tabella a un'altra
-- `UNIQUE`: impedisce i duplicati
-- `NOT NULL`: rende un campo obbligatorio
-- `CHECK`: impone una regola personalizzata
-- `DEFAULT`: assegna un valore automatico se non ne specifichi uno
+- `id INT PRIMARY KEY`: ogni cliente ha un identificatore unico.
+- `email VARCHAR(150) UNIQUE NOT NULL`: l’email è obbligatoria e non può essere duplicata.
+- `nome VARCHAR(100) NOT NULL`: il nome è obbligatorio.
+- `eta INT CHECK (eta >= 0)`: l’età non può essere negativa.
+- `attivo BOOLEAN DEFAULT TRUE`: se non dici nulla, il cliente parte come attivo.
 
-## Perché sono così utili
+## Perché sono utili
 
-Senza vincoli, il database accetterebbe molti dati sbagliati:
+Senza vincoli, il database potrebbe accettare dati sbagliati:
 
-- email duplicate quando non dovrebbero esserlo
-- prezzi negativi
-- righe senza nome
-- ordini riferiti a clienti inesistenti
+- due utenti con la stessa email
+- un prodotto con prezzo negativo
+- un cliente senza nome
+- un ordine collegato a un cliente che non esiste
 
-**I vincoli ti aiutano a spostare il controllo vicino ai dati, non solo nel codice dell'applicazione.**
+I controlli nel codice dell’applicazione sono utili, ma non bastano sempre. Il database è l’ultimo posto in cui puoi fermare un dato sbagliato prima che venga salvato.
+
+## Un esempio con `CHECK`
+
+`CHECK` ti permette di scrivere una regola semplice.
+
+```sql
+prezzo DECIMAL(10, 2) CHECK (prezzo >= 0)
+```
+
+Questa regola dice: il prezzo deve essere maggiore o uguale a zero.
+
+Se qualcuno prova a inserire un prezzo negativo, il database rifiuta il dato.
+
+## Un esempio con `DEFAULT`
+
+`DEFAULT` entra in gioco quando non specifichi un valore.
+
+```sql
+attivo BOOLEAN DEFAULT TRUE
+```
+
+Se inserisci un cliente senza dire se è attivo, il database userà `TRUE`.
+
+È come dire: “se non ricevi istruzioni diverse, parti da questo valore”.
+
+## Riepilogo rapido
+
+- I vincoli sono regole applicate dal database.
+- `PRIMARY KEY` identifica le righe.
+- `FOREIGN KEY` protegge i collegamenti tra tabelle.
+- `UNIQUE` evita duplicati.
+- `NOT NULL`, `CHECK` e `DEFAULT` aiutano a mantenere dati più puliti.

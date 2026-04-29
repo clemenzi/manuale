@@ -3,13 +3,13 @@ title: UPDATE
 description: Come modificare dati già presenti nel database senza toccare le righe sbagliate.
 ---
 
-## Qui non aggiungi: correggi
+## Modificare una riga esistente
 
-**`UPDATE` serve a cambiare dati che esistono già.** È come prendere una scheda già compilata e correggere un'informazione diventata sbagliata o superata.
+`UPDATE` serve quando un dato esiste già, ma deve cambiare.
 
-Per esempio, un cliente cambia città. Non devi creare una nuova riga: devi aggiornare quella giusta.
+Un cliente cambia città. Un prodotto cambia prezzo. Un ordine passa da “in preparazione” a “spedito”. In tutti questi casi non vuoi creare una nuova riga: vuoi aggiornare quella giusta.
 
-## La struttura base
+Ecco la forma base:
 
 ```sql
 UPDATE clienti
@@ -17,25 +17,19 @@ SET citta = 'Bologna'
 WHERE id = 1;
 ```
 
-Questa query cambia la città del cliente con `id = 1`.
+Questa query dice:
 
-## Come leggere il comando
+> “Nella tabella `clienti`, cambia la città in `Bologna`, ma solo per la riga con `id = 1`.”
 
-La logica è questa:
+## Il ruolo di `SET`
 
-- `UPDATE clienti`: scegli la tabella su cui vuoi lavorare
-- `SET citta = 'Bologna'`: decidi quale colonna cambiare e con quale valore
-- `WHERE id = 1`: indichi quale riga deve essere modificata
+`SET` indica cosa deve cambiare:
 
-**Il punto davvero delicato è `WHERE`.**
+```sql
+SET citta = 'Bologna'
+```
 
-:::caution
-Senza `WHERE`, rischi di aggiornare tutte le righe.
-:::
-
-## Aggiornare più colonne insieme
-
-Puoi cambiare più informazioni in una sola query:
+Puoi aggiornare anche più colonne insieme:
 
 ```sql
 UPDATE clienti
@@ -43,11 +37,23 @@ SET citta = 'Bologna', email = 'luca.nuova@email.it'
 WHERE id = 1;
 ```
 
-Questo è comodo quando più dati della stessa riga devono essere corretti nello stesso momento.
+Qui cambi sia la città sia l’email dello stesso cliente.
 
-## Un'abitudine molto sana
+## Il ruolo di `WHERE`
 
-Quando la query è importante, prima di fare `UPDATE` puoi eseguire una `SELECT` con la stessa condizione:
+La parte più delicata è `WHERE`.
+
+```sql
+WHERE id = 1
+```
+
+Questa condizione sceglie la riga da modificare. Senza di lei, il database non sa che vuoi aggiornare un solo cliente.
+
+> **Attenzione:** Un `UPDATE` senza `WHERE` può modificare tutte le righe della tabella.
+
+## Una buona abitudine
+
+Prima di fare un aggiornamento importante, prova la condizione con una `SELECT`:
 
 ```sql
 SELECT *
@@ -55,16 +61,28 @@ FROM clienti
 WHERE id = 1;
 ```
 
-Così controlli in anticipo quali righe stai per toccare.
+Se la `SELECT` mostra una sola riga, sai che l’`UPDATE` toccherà una sola riga. Se ne mostra molte, fermati e controlla meglio il filtro.
 
-## Quando usare `UPDATE`
+## Usare il valore attuale
 
-`UPDATE` ha senso quando il record resta lo stesso, ma alcuni dettagli cambiano.
+A volte il nuovo valore dipende da quello già presente.
 
-Per esempio:
+Per esempio, questa query aumenta del 10% il prezzo di un prodotto:
 
-- un prezzo viene aggiornato
-- un cliente cambia email
-- un ordine passa da `in_preparazione` a `spedito`
+```sql
+UPDATE prodotti
+SET prezzo = prezzo * 1.10
+WHERE id = 5;
+```
 
-Se invece stai creando un elemento nuovo, non ti serve `UPDATE`: ti serve `INSERT`.
+`prezzo * 1.10` significa: “prendi il prezzo attuale e moltiplicalo per 1,10”.
+
+È una possibilità utile, ma va usata con attenzione. Anche qui, il filtro `WHERE` decide quali righe cambieranno.
+
+## Riepilogo rapido
+
+- `UPDATE` modifica righe già esistenti.
+- `SET` dice quali colonne cambiare.
+- `WHERE` dice quali righe modificare.
+- Prima di un aggiornamento importante, controlla il filtro con una `SELECT`.
+- Senza `WHERE`, rischi di aggiornare tutta la tabella.

@@ -3,32 +3,83 @@ title: HAVING
 description: Come filtrare i gruppi creati da GROUP BY dopo averli costruiti.
 ---
 
-## Qui il filtro arriva dopo il raggruppamento
+## Filtrare dopo il raggruppamento
 
-**`HAVING` serve a filtrare i gruppi prodotti da `GROUP BY`.** Se `WHERE` lavora sulle righe prima di creare i gruppi, `HAVING` lavora dopo.
+`HAVING` assomiglia a `WHERE`, ma lavora in un momento diverso.
+
+`WHERE` filtra le righe prima di creare i gruppi. `HAVING` filtra i gruppi dopo che `GROUP BY` li ha creati.
+
+Immagina di dividere gli studenti per classe. Prima crei i gruppi. Poi tieni solo le classi con almeno 20 studenti. Quel secondo filtro è il lavoro di `HAVING`.
 
 ```sql
-SELECT citta, COUNT(*)
+SELECT citta, COUNT(*) AS numero_clienti
 FROM clienti
 GROUP BY citta
 HAVING COUNT(*) >= 2;
 ```
 
-Qui restano solo le città con almeno due clienti.
+Questa query mostra solo le città con almeno due clienti.
 
-## Come ricordare la differenza
+## Un esempio piccolo
 
-Puoi pensarla così:
+Partiamo da questa tabella:
 
-- `WHERE` sceglie **quali righe entrano**
-- `HAVING` sceglie **quali gruppi restano**
+| nome  | citta  |
+| ----- | ------ |
+| Luca  | Roma   |
+| Sara  | Roma   |
+| Marta | Milano |
 
-## Quando ti serve davvero
+La query:
 
-`HAVING` è utile quando vuoi dire cose come:
+```sql
+SELECT citta, COUNT(*) AS numero_clienti
+FROM clienti
+GROUP BY citta
+HAVING COUNT(*) >= 2;
+```
 
-- mostra solo le città con più di 10 clienti
-- mostra solo i prodotti con vendite sopra una certa soglia
-- mostra solo i mesi in cui sono stati fatti almeno 100 ordini
+produce:
 
-**Se nella condizione compare un risultato aggregato, spesso stai cercando proprio `HAVING`.**
+| citta | numero_clienti |
+| ----- | -------------- |
+| Roma  | 2              |
+
+Milano non appare perché il suo gruppo contiene un solo cliente.
+
+## `WHERE` e `HAVING` insieme
+
+Puoi usare entrambi nella stessa query:
+
+```sql
+SELECT citta, COUNT(*) AS numero_clienti_attivi
+FROM clienti
+WHERE attivo = TRUE
+GROUP BY citta
+HAVING COUNT(*) >= 2;
+```
+
+Qui succedono due cose:
+
+1. `WHERE attivo = TRUE` tiene solo i clienti attivi.
+2. `HAVING COUNT(*) >= 2` tiene solo le città con almeno due clienti attivi.
+
+Prima filtri le righe. Poi crei i gruppi. Poi filtri i gruppi.
+
+## Quando ti serve `HAVING`
+
+Usa `HAVING` quando la condizione riguarda un risultato aggregato:
+
+- città con più di 10 clienti
+- prodotti con vendite sopra una certa soglia
+- mesi con almeno 100 ordini
+- categorie con prezzo medio superiore a 50
+
+Se nella condizione compare `COUNT()`, `SUM()`, `AVG()` o una funzione simile, probabilmente ti serve `HAVING`.
+
+## Riepilogo rapido
+
+- `WHERE` filtra righe singole.
+- `HAVING` filtra gruppi.
+- `HAVING` si usa dopo `GROUP BY`.
+- Si usa spesso con funzioni aggregate come `COUNT()`, `SUM()` e `AVG()`.

@@ -3,36 +3,50 @@ title: INSERT
 description: Come aggiungere nuove righe a una tabella in modo chiaro e sicuro.
 ---
 
-## Qui stai scrivendo un nuovo record
+## Aggiungere una nuova riga
 
-**`INSERT` serve ad aggiungere dati nuovi al database.** È l'equivalente di compilare una nuova scheda in un archivio o aggiungere una nuova riga in un foglio.
+`INSERT` serve quando vuoi **mettere nuovi dati dentro una tabella**.
 
-Se una tabella contiene clienti, con `INSERT` aggiungi un nuovo cliente. Se contiene prodotti, aggiungi un nuovo prodotto.
+Se la tabella è una rubrica, `INSERT` aggiunge un nuovo contatto. Se è un catalogo prodotti, aggiunge un nuovo prodotto.
 
-## La forma più comune
-
-Questa query inserisce una riga nella tabella `clienti`:
+Ecco un esempio semplice:
 
 ```sql
 INSERT INTO clienti (nome, email)
 VALUES ('Luca', 'luca@email.it');
 ```
 
-La parte tra parentesi dopo il nome della tabella indica **quali colonne stai riempiendo**. La parte dopo `VALUES` indica **quali valori vuoi inserire**.
+Puoi leggerlo così:
 
-## Perché conviene elencare le colonne
+> “Nella tabella `clienti`, riempi le colonne `nome` ed `email` con questi valori.”
 
-Molti database permettono forme più corte, ma per chi inizia è molto meglio scrivere sempre i nomi delle colonne.
+Il primo valore, `'Luca'`, finisce nella prima colonna indicata, cioè `nome`. Il secondo valore, `'luca@email.it'`, finisce in `email`.
 
-Questo ti aiuta a:
+## Perché scrivere i nomi delle colonne
 
-- capire meglio cosa stai inserendo
-- evitare errori se l'ordine delle colonne cambia
-- rendere la query più leggibile a colpo d'occhio
+SQL permette anche forme più brevi, ma quando stai imparando è meglio indicare sempre le colonne.
 
-## Inserire più righe in una volta
+Questa forma è poco chiara:
 
-Se vuoi aggiungere più elementi insieme, puoi farlo così:
+```sql
+INSERT INTO clienti
+VALUES (1, 'Luca', 'luca@email.it');
+```
+
+Funziona solo se conosci esattamente l’ordine delle colonne nella tabella.
+
+Questa invece si legge meglio:
+
+```sql
+INSERT INTO clienti (id, nome, email)
+VALUES (1, 'Luca', 'luca@email.it');
+```
+
+Anche tra qualche mese capirai subito cosa stai inserendo e dove.
+
+## Inserire più righe insieme
+
+Se devi aggiungere più clienti, puoi farlo con un solo `INSERT`:
 
 ```sql
 INSERT INTO clienti (nome, email)
@@ -41,20 +55,54 @@ VALUES
     ('Paolo', 'paolo@email.it');
 ```
 
-**Questo è utile quando hai più righe da caricare nello stesso momento.**
+Ogni coppia tra parentesi crea una nuova riga.
 
-## Cosa succede se una colonna manca
+## Quando manca un valore
 
-Se una colonna è facoltativa, puoi anche non inserirla. Se invece la colonna è obbligatoria, per esempio con `NOT NULL`, il database potrebbe rifiutare l'operazione.
+Non tutte le colonne devono essere sempre compilate.
 
-Per questo è importante conoscere bene la struttura della tabella prima di fare insert.
+Se una colonna è facoltativa, puoi non inserirla. Se invece è obbligatoria, per esempio perché ha `NOT NULL`, il database rifiuterà la riga.
 
-## Un piccolo controllo mentale utile
+Per esempio, se `nome` è obbligatorio, questa query può fallire:
 
-Prima di eseguire un `INSERT`, chiediti:
+```sql
+INSERT INTO clienti (email)
+VALUES ('senza.nome@email.it');
+```
 
-1. sto compilando tutte le colonne obbligatorie?
-2. i valori hanno il tipo giusto?
-3. l'ordine dei valori corrisponde all'ordine delle colonne?
+Il database ti sta proteggendo da un dato incompleto: non vuole salvare un cliente senza nome.
 
-Queste tre domande evitano molti errori da principiante.
+## Attenzione ai tipi di dato
+
+Ogni colonna si aspetta un certo tipo di valore.
+
+```sql
+INSERT INTO prodotti (nome, prezzo, disponibile)
+VALUES ('Tastiera', 39.90, TRUE);
+```
+
+Qui stai inserendo:
+
+- un testo: `'Tastiera'`
+- un numero decimale: `39.90`
+- un valore vero/falso: `TRUE`
+
+Non tutti i database scrivono i valori booleani nello stesso identico modo, ma l’idea resta la stessa: ogni valore deve essere adatto alla sua colonna.
+
+## Prima di eseguire un `INSERT`
+
+Fai un controllo veloce:
+
+- sto compilando le colonne obbligatorie?
+- i valori sono nell’ordine giusto?
+- ogni valore ha il tipo corretto?
+
+Sono domande semplici, ma evitano molti errori.
+
+## Riepilogo rapido
+
+- `INSERT INTO` aggiunge nuove righe.
+- Conviene indicare sempre le colonne.
+- `VALUES` contiene i dati da inserire.
+- L’ordine dei valori deve seguire l’ordine delle colonne.
+- Il database può rifiutare dati mancanti o del tipo sbagliato.

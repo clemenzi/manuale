@@ -3,79 +3,97 @@ title: SELECT
 description: Come leggere i dati da una tabella scegliendo colonne e risultati utili.
 ---
 
-## Questo è il verbo più usato di SQL
+## Leggere dati da una tabella
 
-**`SELECT` è il comando con cui chiedi al database di mostrarti dei dati.** Se SQL fosse una conversazione, `SELECT` sarebbe il verbo che useresti più spesso.
+`SELECT` è il comando che usi quando vuoi **vedere dei dati**.
 
-Con `SELECT` non modifichi nulla. Stai solo leggendo.
+Non aggiunge nulla, non cancella nulla e non modifica le informazioni salvate. Fa una cosa sola: chiede al database di mostrarti qualcosa.
 
-Pensa a un cameriere che ti porta il menu. Tu non entri in cucina a cambiare le ricette: chiedi solo di vedere qualcosa.
-
-## Vedere tutto
-
-Questa query mostra tutte le colonne della tabella `clienti`:
-
-```sql
-SELECT *
-FROM clienti;
-```
-
-`*` significa "tutte le colonne".
-
-Quindi la query dice: **"mostrami tutte le informazioni della tabella `clienti`"**.
-
-Se la tabella contiene questi dati:
+Immagina una tabella `clienti` fatta così:
 
 | id  | nome  | email             |
 | --- | ----- | ----------------- |
 | 1   | Luca  | luca@example.com  |
 | 2   | Marta | marta@example.com |
 
-il risultato mostrerà tutte e tre le colonne: `id`, `nome` ed `email`.
+Se vuoi vedere tutto quello che contiene, puoi scrivere:
 
-## Vedere solo le colonne che ti servono
+```sql
+SELECT *
+FROM clienti;
+```
 
-Molto spesso non hai bisogno di tutto. Questa query chiede solo il nome e l'email:
+Il simbolo `*` significa “tutte le colonne”. Quindi questa query dice: “mostrami tutto dalla tabella `clienti`”.
+
+È comoda quando stai esplorando una tabella per la prima volta. È un po’ come aprire un cassetto per vedere cosa c’è dentro.
+
+## Chiedere solo quello che ti serve
+
+Nella pratica, però, spesso non ti serve tutto. Magari vuoi vedere solo il nome e l’email dei clienti:
 
 ```sql
 SELECT nome, email
 FROM clienti;
 ```
 
-Questa versione è spesso migliore, perché il risultato è più pulito e l'intenzione è più chiara.
+Il risultato diventa più pulito:
 
-## Come si legge la struttura
+| nome  | email             |
+| ----- | ----------------- |
+| Luca  | luca@example.com  |
+| Marta | marta@example.com |
 
-In una query base con `SELECT` trovi quasi sempre questi pezzi:
+Hai ancora gli stessi clienti, ma stai guardando solo le colonne utili per la tua domanda.
 
-- `SELECT`: quali colonne vuoi vedere
-- `FROM`: da quale tabella vuoi leggerle
+Questa è una buona abitudine: più la query è precisa, più è facile da leggere.
 
-Più avanti aggiungerai altri pezzi, come `WHERE`, `ORDER BY` e `GROUP BY`.
+## Come leggere una query `SELECT`
 
-:::tip
-Quando leggi una query, prova a tradurla in italiano. `SELECT nome FROM clienti` diventa: "mostrami il nome dalla tabella clienti".
-:::
+Una query di lettura molto semplice ha due parti:
 
-## Perché evitare `SELECT *` come abitudine fissa
+- `SELECT` dice **quali colonne** vuoi vedere
+- `FROM` dice **da quale tabella** prenderle
 
-Quando stai esplorando una tabella, `SELECT *` è comodissimo. Ma nelle query più curate è spesso meglio elencare le colonne che ti servono davvero.
+Questa query:
 
-Questo aiuta a:
+```sql
+SELECT nome, email
+FROM clienti;
+```
 
-- leggere meglio il risultato
-- evitare dati inutili
-- rendere più esplicita la tua intenzione
+si può leggere così:
 
-## Un buon modo di pensarla
+> “Vai nella tabella `clienti` e mostrami le colonne `nome` ed `email`.”
 
-Quando scrivi `SELECT`, stai dicendo al database: **"fammi vedere proprio questo pezzo di realtà"**.
+Quando sei agli inizi, tradurre la query in italiano aiuta molto. Se la frase italiana suona confusa, probabilmente anche la query merita di essere riscritta meglio.
 
-Più sei preciso, più la query diventa utile.
+## Perché non usare sempre `SELECT *`
 
-## Mini riepilogo
+`SELECT *` va benissimo per curiosare in una tabella piccola o per fare prove veloci.
 
-- `SELECT` sceglie le colonne da mostrare
-- `FROM` dice da quale tabella leggere
-- `*` significa "tutte le colonne"
-- nelle query vere conviene chiedere solo i dati che servono davvero
+Quando però scrivi una query che vuoi conservare, condividere o usare in un’applicazione, è meglio indicare le colonne per nome:
+
+```sql
+SELECT nome, email
+FROM clienti;
+```
+
+Così chi legge capisce subito quali dati ti interessano. Inoltre eviti di portarti dietro colonne inutili, magari pesanti o sensibili.
+
+## Un esempio con i prodotti
+
+Se hai una tabella `prodotti` con colonne `id`, `nome`, `prezzo` e `disponibile`, e vuoi vedere solo nome e prezzo, scrivi:
+
+```sql
+SELECT nome, prezzo
+FROM prodotti;
+```
+
+Il gesto è sempre lo stesso: scegli la tabella, poi scegli le colonne.
+
+## Riepilogo rapido
+
+- `SELECT` legge dati.
+- `FROM` indica la tabella.
+- `*` significa “tutte le colonne”.
+- Nelle query curate, è meglio indicare solo le colonne che servono.

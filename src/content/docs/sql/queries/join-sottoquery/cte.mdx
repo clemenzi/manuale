@@ -3,33 +3,90 @@ title: CTE
 description: Usare WITH per creare risultati temporanei leggibili e riutilizzabili nella query.
 ---
 
-## Una CTE è un appunto temporaneo con un nome
+## Dare un nome a un passaggio intermedio
 
-**CTE** significa **Common Table Expression**. Il nome tecnico può spaventare, ma l'idea pratica è molto semplice: crei un risultato temporaneo e gli dai un nome.
+CTE significa **Common Table Expression**. Il nome è tecnico, ma l’idea è semplice: crei un risultato temporaneo, gli dai un nome e lo usi subito dopo.
 
-Questo rende le query lunghe più facili da leggere.
+È come prendere appunti mentre risolvi un problema. Invece di tenere tutto in testa, scrivi un passaggio, lo chiami in modo chiaro e poi continui.
 
 ```sql
 WITH ordini_grandi AS (
-    SELECT *
+    SELECT id, cliente_id, totale
     FROM ordini
     WHERE totale > 100
 )
-SELECT * FROM ordini_grandi;
+SELECT id, cliente_id, totale
+FROM ordini_grandi;
 ```
 
-Qui `ordini_grandi` è un nome temporaneo. Dentro quel nome hai messo tutti gli ordini sopra 100.
+Qui `ordini_grandi` è un nome temporaneo. Dentro ci sono gli ordini con totale maggiore di 100.
 
-## Perché piace tanto a chi scrive query
+La CTE esiste solo per questa query. Non crea una nuova tabella permanente nel database.
 
-Le CTE aiutano a:
+## Perché rende le query più leggibili
 
-- spezzare una query lunga in parti più leggibili
-- dare nomi chiari ai passaggi intermedi
-- evitare di ripetere lo stesso blocco più volte
+Senza CTE, una query lunga può diventare difficile da seguire.
 
-## Quando sceglierla al posto di una subquery
+Con una CTE, invece, puoi separare il ragionamento:
 
-Se la query interna è piccola e molto locale, una subquery può andare benissimo.
+1. prima preparo un gruppo di dati
+2. poi uso quel gruppo nella query principale
 
-Se invece la logica ha più passaggi o vuoi leggere il codice con più chiarezza, **una CTE spesso è più elegante e più facile da mantenere**.
+Il vantaggio è soprattutto mentale. Leggi la query come una piccola storia.
+
+## Un esempio con una join
+
+Troviamo prima gli ordini sopra 100 euro. Poi colleghiamoli ai clienti:
+
+```sql
+WITH ordini_grandi AS (
+    SELECT id, cliente_id, totale
+    FROM ordini
+    WHERE totale > 100
+)
+SELECT clienti.nome, ordini_grandi.totale
+FROM ordini_grandi
+INNER JOIN clienti ON clienti.id = ordini_grandi.cliente_id;
+```
+
+La CTE si occupa del primo passaggio: “quali sono gli ordini grandi?”.
+
+La query principale si occupa del secondo: “a quali clienti appartengono?”.
+
+## Più CTE nella stessa query
+
+Puoi anche creare più risultati temporanei:
+
+```sql
+WITH ordini_grandi AS (
+    SELECT id, cliente_id, totale
+    FROM ordini
+    WHERE totale > 100
+),
+clienti_attivi AS (
+    SELECT id, nome
+    FROM clienti
+    WHERE attivo = TRUE
+)
+SELECT clienti_attivi.nome, ordini_grandi.totale
+FROM ordini_grandi
+INNER JOIN clienti_attivi ON clienti_attivi.id = ordini_grandi.cliente_id;
+```
+
+Ogni CTE ha un nome e un compito. Questo aiuta molto quando una query cresce.
+
+## CTE o subquery?
+
+Una subquery va benissimo quando il passaggio interno è piccolo.
+
+Una CTE diventa più comoda quando vuoi dare un nome al passaggio, riusarlo o rendere la query più leggibile.
+
+Non è una gara tra strumenti. Scegli quello che rende più chiaro il ragionamento.
+
+## Riepilogo rapido
+
+- Una CTE nasce con `WITH`.
+- Crea un risultato temporaneo con un nome.
+- Vive solo per la durata della query.
+- Aiuta a leggere query lunghe o divise in più passaggi.
+- Spesso è più chiara di una subquery molto annidata.

@@ -3,20 +3,38 @@ title: Join
 description: Come collegare tabelle diverse con INNER JOIN, LEFT JOIN, RIGHT JOIN e FULL JOIN.
 ---
 
-## Una join mette due fogli sullo stesso tavolo
+## Mettere insieme dati che vivono in tabelle diverse
 
-**Le join servono a leggere insieme dati che stanno in tabelle diverse.** È uno dei superpoteri dei database relazionali.
+In un database relazionale, le informazioni non stanno sempre tutte nella stessa tabella.
 
-Pensa a due fogli:
+Per esempio, potresti avere una tabella `clienti` e una tabella `ordini`. La prima contiene le persone. La seconda contiene gli acquisti.
 
-- uno con i clienti
-- uno con gli ordini
+Da sole sono utili, ma insieme raccontano una storia più completa: **chi ha comprato cosa**.
 
-Separati sono utili. Insieme raccontano molto di più.
+Le `JOIN` servono proprio a questo: collegare tabelle diverse mentre leggi i dati.
 
-È come avere un numero di tessera su una ricevuta. Quel numero ti permette di tornare alla scheda della persona senza riscrivere tutti i suoi dati ogni volta.
+## Un primo esempio
 
-Questa query mostra ogni ordine insieme al nome del cliente che lo ha fatto:
+Immagina queste due tabelle.
+
+**clienti**
+
+| id  | nome  |
+| --- | ----- |
+| 1   | Luca  |
+| 2   | Marta |
+| 3   | Sara  |
+
+**ordini**
+
+| id  | cliente_id | totale |
+| --- | ---------- | ------ |
+| 10  | 1          | 49.90  |
+| 11  | 2          | 18.50  |
+
+Nella tabella `ordini`, la colonna `cliente_id` dice a quale cliente appartiene ogni ordine.
+
+Per mostrare il nome del cliente insieme al totale dell’ordine, scrivi:
 
 ```sql
 SELECT clienti.nome, ordini.totale
@@ -24,47 +42,84 @@ FROM clienti
 INNER JOIN ordini ON clienti.id = ordini.cliente_id;
 ```
 
-Questa query mette in relazione il cliente con i suoi ordini usando il collegamento tra `clienti.id` e `ordini.cliente_id`.
-
-Il risultato potrebbe assomigliare a questo:
+Il risultato sarà:
 
 | nome  | totale |
 | ----- | ------ |
 | Luca  | 49.90  |
 | Marta | 18.50  |
 
-## `INNER JOIN`: solo le corrispondenze
+Sara non appare perché non ha ordini collegati.
 
-`INNER JOIN` mostra soltanto le righe che trovano un abbinamento in entrambe le tabelle.
+## Cosa fa `INNER JOIN`
 
-Se un cliente non ha ordini, non apparirà nel risultato.
+`INNER JOIN` tiene solo le righe che trovano una corrispondenza in entrambe le tabelle.
 
-## Gli altri tipi principali
+Nel nostro esempio:
 
-Tipi principali:
+- Luca ha un ordine, quindi appare.
+- Marta ha un ordine, quindi appare.
+- Sara non ha ordini, quindi non appare.
 
-- `INNER JOIN`: solo le corrispondenze
-- `LEFT JOIN`: tutto da sinistra
-- `RIGHT JOIN`: tutto da destra
-- `FULL JOIN`: tutto da entrambe
+È come fare l’appello usando due liste e tenere solo i nomi che riesci ad abbinare.
 
-:::note
-Quando inizi, concentrati su `INNER JOIN` e `LEFT JOIN`. Sono quelle che incontrerai più spesso nelle query quotidiane.
-:::
+## La parte più importante: `ON`
 
-## Perché sono così importanti
+Questa riga è il collegamento:
 
-Con le join puoi rispondere a domande come:
+```sql
+ON clienti.id = ordini.cliente_id
+```
 
-- quali clienti hanno fatto ordini?
-- quali ordini appartengono a quale cliente?
-- quali prodotti non sono ancora stati acquistati?
+Significa:
 
-**Senza join, i database relazionali perderebbero gran parte del loro valore pratico.**
+> “Abbina un cliente a un ordine quando l’id del cliente è uguale al `cliente_id` salvato nell’ordine.”
 
-## Mini riepilogo
+Se sbagli questa condizione, la join collega righe sbagliate. Per questo conviene leggerla sempre con calma.
 
-- una `JOIN` collega tabelle diverse
-- `INNER JOIN` mostra solo le righe che si incontrano davvero
-- la condizione dopo `ON` spiega come collegare le tabelle
-- le join evitano di duplicare informazioni inutilmente
+## Perché scriviamo `clienti.nome`
+
+Quando usi più tabelle, possono esistere colonne con lo stesso nome.
+
+Per esempio, sia `clienti` sia `ordini` hanno una colonna `id`. Scrivere `clienti.id` o `ordini.id` evita ambiguità.
+
+È come usare nome e cognome quando in una stanza ci sono due persone chiamate Luca.
+
+## `LEFT JOIN`: tenere anche chi non ha corrispondenze
+
+A volte vuoi vedere tutti i clienti, anche quelli che non hanno ancora fatto ordini.
+
+In quel caso usi `LEFT JOIN`:
+
+```sql
+SELECT clienti.nome, ordini.totale
+FROM clienti
+LEFT JOIN ordini ON clienti.id = ordini.cliente_id;
+```
+
+Il risultato diventa:
+
+| nome  | totale |
+| ----- | ------ |
+| Luca  | 49.90  |
+| Marta | 18.50  |
+| Sara  | NULL   |
+
+`NULL` significa che manca un valore. Qui vuol dire: “per Sara non esiste un ordine collegato”.
+
+## Quale join scegliere?
+
+All’inizio concentrati su queste due:
+
+- `INNER JOIN` quando vuoi solo le righe che si abbinano.
+- `LEFT JOIN` quando vuoi tenere tutte le righe della tabella di sinistra.
+
+Esistono anche `RIGHT JOIN` e `FULL JOIN`, ma puoi incontrarle più avanti. Nelle query quotidiane, `INNER JOIN` e `LEFT JOIN` coprono già tantissimi casi.
+
+## Riepilogo rapido
+
+- Una `JOIN` legge insieme dati di tabelle diverse.
+- `INNER JOIN` mostra solo le corrispondenze.
+- `LEFT JOIN` tiene anche le righe senza corrispondenza a destra.
+- `ON` spiega come collegare le tabelle.
+- Scrivere `tabella.colonna` evita confusione quando più tabelle hanno colonne simili.

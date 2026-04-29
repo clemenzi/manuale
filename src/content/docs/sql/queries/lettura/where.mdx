@@ -3,15 +3,13 @@ title: WHERE
 description: Come filtrare le righe che ti servono davvero, senza leggere tutto.
 ---
 
-## Qui scegli cosa far passare
+## Scegliere quali righe vedere
 
-**`WHERE` è il filtro delle query SQL.** Ti permette di leggere solo le righe che rispettano una certa condizione.
+`WHERE` serve a dire al database: **mostrami solo le righe che rispettano questa condizione**.
 
-Senza `WHERE`, spesso ottieni troppe righe. Con `WHERE`, chiedi al database di mostrarti solo quello che ti interessa.
+Senza `WHERE`, una query legge tutte le righe della tabella. Con `WHERE`, invece, restringi il risultato.
 
-Pensa a un colino in cucina. Il colino lascia passare solo quello che rispetta una certa forma. `WHERE` fa una cosa simile con le righe di una tabella.
-
-Questa query mostra solo i clienti che vivono a Roma:
+È come cercare in una rubrica solo le persone che vivono a Roma, invece di leggere tutti i contatti uno per uno.
 
 ```sql
 SELECT nome, citta
@@ -19,52 +17,108 @@ FROM clienti
 WHERE citta = 'Roma';
 ```
 
-In parole semplici significa: **"mostrami nome e città dei clienti che hanno `Roma` nella colonna `citta`"**.
+Questa query significa:
 
-Se la tabella contiene clienti di città diverse, il risultato mostrerà solo le righe in cui `citta` vale `Roma`.
+> “Mostrami nome e città dei clienti che hanno `Roma` nella colonna `citta`.”
 
-## Perché è così importante
+Se nella tabella ci sono clienti di città diverse, vedrai solo quelli di Roma.
 
-In un database reale le tabelle possono avere migliaia o milioni di righe. **Leggere tutto quasi mai è la mossa giusta.**
+## La condizione dopo `WHERE`
 
-Con `WHERE` trasformi una richiesta vaga in una richiesta precisa.
-
-## Come ragionare sulla condizione
-
-La condizione dopo `WHERE` deve rispondere a una domanda del tipo:
-
-- questa riga ha la città giusta?
-- il totale è abbastanza alto?
-- il cliente è attivo?
-- la data rientra nell'intervallo che mi interessa?
-
-Se la risposta è sì, la riga passa. Se la risposta è no, viene esclusa.
-
-:::note
-I testi in SQL si scrivono di solito tra apici singoli, come `'Roma'`. I numeri invece si scrivono senza apici, come `18`.
-:::
-
-## Un altro esempio utile
-
-Questa query mostra solo gli ordini con totale superiore a 100:
+La parte importante è questa:
 
 ```sql
-SELECT nome, totale
+WHERE citta = 'Roma'
+```
+
+SQL controlla la condizione una riga alla volta.
+
+Se la riga ha `Roma` nella colonna `citta`, entra nel risultato. Se ha `Milano`, `Napoli` o qualsiasi altro valore, viene esclusa.
+
+> **Nota:** I testi si scrivono di solito tra apici singoli, come `'Roma'`. I numeri invece si scrivono senza apici, come `18`.
+
+## Un esempio con i numeri
+
+Ora immaginiamo una tabella `ordini`:
+
+| id  | totale |
+| --- | ------ |
+| 1   | 35.00  |
+| 2   | 120.00 |
+| 3   | 89.90  |
+
+Per vedere solo gli ordini sopra 100, scrivi:
+
+```sql
+SELECT id, totale
 FROM ordini
 WHERE totale > 100;
 ```
 
-Qui stai chiedendo di vedere solo gli ordini con totale superiore a 100.
+Il risultato sarà:
 
-## Un'idea da tenere in testa
+| id  | totale |
+| --- | ------ |
+| 2   | 120.00 |
 
-`WHERE` non cambia i dati. **Serve solo a restringere il risultato della query.**
+La query non ha “saltato” le altre righe per caso. Le ha controllate e ha tenuto solo quella in cui `totale > 100` era vero.
 
-Questa distinzione è importante: stai scegliendo cosa vedere, non cosa riscrivere.
+## Gli operatori più comuni
 
-## Mini riepilogo
+Dopo `WHERE` puoi usare diversi operatori:
 
-- `WHERE` filtra le righe
-- la condizione deve essere vera o falsa
-- SQL controlla la condizione una riga alla volta
-- nei comandi che modificano dati, un `WHERE` sbagliato può cambiare troppe righe
+| Operatore | Significato | Esempio                |
+| --------- | ----------- | ---------------------- |
+| `=`       | uguale a    | `citta = 'Roma'`       |
+| `<>`      | diverso da  | `stato <> 'annullato'` |
+| `>`       | maggiore di | `totale > 100`         |
+| `<`       | minore di   | `eta < 18`             |
+| `>=`      | almeno      | `prezzo >= 10`         |
+| `<=`      | al massimo  | `quantita <= 5`        |
+
+Non serve impararli tutti a memoria subito. Li userai così spesso che diventeranno familiari.
+
+## Testi, numeri e date
+
+Il valore che confronti deve essere scritto nel modo giusto.
+
+Per un testo usi gli apici:
+
+```sql
+SELECT nome
+FROM clienti
+WHERE citta = 'Roma';
+```
+
+Per un numero no:
+
+```sql
+SELECT id, totale
+FROM ordini
+WHERE totale >= 50;
+```
+
+Per una data si usa spesso il formato `AAAA-MM-GG`:
+
+```sql
+SELECT id, data_ordine
+FROM ordini
+WHERE data_ordine >= '2026-01-01';
+```
+
+Il database capisce che quel testo rappresenta una data se la colonna `data_ordine` è stata creata con un tipo adatto.
+
+## Una distinzione importante
+
+Con `SELECT`, `WHERE` filtra solo quello che vedi. Non cambia i dati.
+
+Ma più avanti userai `WHERE` anche con comandi come `UPDATE` e `DELETE`. Lì diventa molto più delicato, perché decide quali righe modificare o cancellare.
+
+> **Attenzione:** Prima di modificare o cancellare dati, controlla sempre il filtro con una `SELECT`. È una piccola abitudine che evita grandi guai.
+
+## Riepilogo rapido
+
+- `WHERE` filtra le righe.
+- La condizione può essere vera o falsa.
+- SQL controlla la condizione riga per riga.
+- Con `UPDATE` e `DELETE`, un `WHERE` sbagliato può toccare troppe righe.

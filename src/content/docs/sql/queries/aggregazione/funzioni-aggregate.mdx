@@ -3,52 +3,105 @@ title: Funzioni aggregate
 description: COUNT, SUM, AVG, MIN e MAX per riassumere molte righe in un solo risultato.
 ---
 
-## Qui non guardi il dettaglio: guardi il riassunto
+## Quando non vuoi vedere ogni riga
 
-**Le funzioni aggregate prendono molte righe e restituiscono un solo risultato.** Sono perfette quando non vuoi leggere ogni record uno per uno, ma vuoi un'informazione riassuntiva.
+A volte non ti interessa leggere tutti i dati uno per uno. Vuoi un riassunto.
 
-È come guardare uno scontrino e chiedere: quanti articoli ci sono? Qual è il totale? Qual è il prezzo più alto?
+Per esempio:
+
+- quanti ordini ci sono?
+- quanto abbiamo incassato?
+- qual è il prezzo più alto?
+- qual è la media dei voti?
+
+Le **funzioni aggregate** servono proprio a questo: prendono molte righe e restituiscono un risultato riassuntivo.
+
+## Contare le righe con `COUNT`
+
+Questa query conta quante righe ci sono nella tabella `ordini`:
 
 ```sql
-SELECT COUNT(*) FROM ordini;
+SELECT COUNT(*)
+FROM ordini;
 ```
 
-Questa query conta quante righe ci sono nella tabella `ordini`.
+Se la tabella contiene 125 ordini, il risultato sarà un numero solo: `125`.
 
-## Le più usate
+`COUNT(*)` significa “conta le righe”.
 
-Le funzioni aggregate più comuni sono:
+## Le funzioni più usate
 
-- `SUM()`
-- `AVG()`
-- `MIN()`
-- `MAX()`
+Ecco le aggregate che incontrerai più spesso:
 
-## Un paio di esempi utili
+| Funzione  | Cosa fa                   |
+| --------- | ------------------------- |
+| `COUNT()` | conta righe o valori      |
+| `SUM()`   | somma numeri              |
+| `AVG()`   | calcola una media         |
+| `MIN()`   | trova il valore più basso |
+| `MAX()`   | trova il valore più alto  |
 
-Per sommare i totali degli ordini:
+## Alcuni esempi
+
+Per sommare il totale degli ordini:
 
 ```sql
 SELECT SUM(totale)
 FROM ordini;
 ```
 
-Per trovare il prezzo massimo:
+Per calcolare il prezzo medio dei prodotti:
+
+```sql
+SELECT AVG(prezzo)
+FROM prodotti;
+```
+
+Per trovare il prezzo più alto:
 
 ```sql
 SELECT MAX(prezzo)
 FROM prodotti;
 ```
 
-## Quando usarle
+Per trovare il prezzo più basso:
 
-Le aggregate servono tantissimo in report, dashboard e statistiche rapide.
+```sql
+SELECT MIN(prezzo)
+FROM prodotti;
+```
 
-Per esempio:
+Ogni query restituisce un solo valore, perché stai chiedendo un riassunto.
 
-- quanti clienti hai
-- quanto hai incassato
-- qual è la media dei voti
-- qual è il valore minimo o massimo in una colonna
+## Dare un nome al risultato
 
-**Sono uno dei punti in cui SQL diventa davvero potente.**
+Il nome automatico della colonna può essere poco leggibile. Per questo puoi usare `AS`:
+
+```sql
+SELECT COUNT(*) AS numero_ordini
+FROM ordini;
+```
+
+Ora il risultato avrà una colonna chiamata `numero_ordini`.
+
+È un dettaglio piccolo, ma rende le query molto più chiare, soprattutto nei report.
+
+## Attenzione a `NULL`
+
+`NULL` significa “dato mancante”.
+
+Le aggregate lo trattano in modo particolare:
+
+- `COUNT(*)` conta le righe, anche se alcune colonne hanno valori mancanti.
+- `COUNT(colonna)` conta solo le righe in cui quella colonna ha un valore.
+- `SUM()`, `AVG()`, `MIN()` e `MAX()` di solito ignorano i valori `NULL`.
+
+La cosa importante da ricordare è questa: **mancante non significa zero**.
+
+## Riepilogo rapido
+
+- Le funzioni aggregate riassumono molte righe.
+- `COUNT(*)` conta le righe.
+- `SUM()` somma, `AVG()` calcola la media.
+- `MIN()` e `MAX()` trovano il valore più basso e più alto.
+- Con `AS` puoi dare un nome leggibile al risultato.

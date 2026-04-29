@@ -3,9 +3,18 @@ title: Subquery
 description: Come usare una query dentro un'altra per costruire richieste a più passaggi.
 ---
 
-## A volte una domanda ha bisogno di una domanda interna
+## Una domanda dentro un’altra domanda
 
-**Una subquery è una query dentro un'altra query.** È utile quando vuoi risolvere il problema in due passaggi: prima trovi un insieme di risultati, poi usi quel risultato dentro una query più grande.
+Una **subquery** è una query scritta dentro un’altra query.
+
+Ti serve quando la risposta finale dipende da un passaggio intermedio. Prima trovi qualcosa. Poi usi quel risultato per fare la domanda principale.
+
+Immagina di voler trovare i clienti che hanno fatto almeno un ordine sopra 100 euro. Puoi pensarla in due passi:
+
+1. trova gli ordini sopra 100 euro
+2. trova i clienti collegati a quegli ordini
+
+In SQL diventa:
 
 ```sql
 SELECT nome
@@ -17,23 +26,74 @@ WHERE id IN (
 );
 ```
 
-Prima trovi gli ordini con totale sopra 100. Poi usi quegli identificatori per trovare i clienti collegati.
+La query interna è questa:
 
-## Perché può essere comoda
+```sql
+SELECT cliente_id
+FROM ordini
+WHERE totale > 100
+```
 
-La subquery è utile quando vuoi ragionare per tappe.
+Produce una lista di id cliente. La query esterna usa quella lista per trovare i nomi nella tabella `clienti`.
 
-Invece di cercare una formula gigante tutta insieme, spezzetti il problema:
+## Perché usare una subquery
 
-1. trovi un sottoinsieme
-2. usi quel sottoinsieme nella query principale
+Una subquery è utile quando il problema si legge naturalmente a tappe.
 
-## Dove può comparire
+Per esempio:
 
-Una subquery può trovarsi in vari punti, per esempio:
+- trova i prodotti più costosi della media
+- mostra i clienti che hanno fatto ordini
+- cerca gli studenti iscritti a un certo corso
 
-- dentro `WHERE`
-- dentro `FROM`
-- dentro `SELECT`, in casi più avanzati
+In tutti questi casi, una parte della query prepara il risultato per l’altra.
 
-**È uno strumento molto potente, ma va usato in modo leggibile.** Se la query diventa troppo contorta, a volte una CTE è una scelta più chiara.
+## Subquery con una lista
+
+Quando la query interna restituisce più valori, spesso usi `IN`.
+
+```sql
+SELECT nome
+FROM clienti
+WHERE id IN (
+    SELECT cliente_id
+    FROM ordini
+);
+```
+
+Qui stai dicendo:
+
+> “Mostrami i clienti il cui id compare nella lista dei `cliente_id` presenti negli ordini.”
+
+## Subquery con un solo valore
+
+A volte la query interna restituisce un valore solo.
+
+Per esempio, questa query trova i prodotti che costano più della media:
+
+```sql
+SELECT nome, prezzo
+FROM prodotti
+WHERE prezzo > (
+    SELECT AVG(prezzo)
+    FROM prodotti
+);
+```
+
+La query interna calcola la media dei prezzi. La query esterna mostra solo i prodotti con prezzo superiore a quella media.
+
+Qui non usi `IN`, perché non stai confrontando con una lista. Stai confrontando con un solo numero.
+
+## Quando preferire una CTE
+
+Le subquery sono comode, ma possono diventare difficili da leggere quando si annidano troppo.
+
+Se senti che la query sta diventando una matrioska, spesso una CTE con `WITH` è più chiara. Le vediamo nella pagina dedicata.
+
+## Riepilogo rapido
+
+- Una subquery è una query dentro un’altra query.
+- Serve quando una domanda ha bisogno di un passaggio intermedio.
+- Con `IN` confronti un valore con una lista.
+- Con operatori come `>`, `<` o `=` confronti con un singolo valore.
+- Se la query diventa troppo annidata, valuta una CTE.

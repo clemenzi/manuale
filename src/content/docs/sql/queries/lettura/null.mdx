@@ -3,45 +3,87 @@ title: Valori NULL
 description: Come rappresentare e controllare l'assenza di un valore in SQL.
 ---
 
-## `NULL` vuol dire: qui il dato non c'è
+## Quando un dato manca
 
-**`NULL` è un concetto fondamentale in SQL.** Non vuol dire zero. Non vuol dire testo vuoto. Vuol dire che il valore è assente o sconosciuto.
+`NULL` significa che un valore **non c’è** oppure **non è conosciuto**.
 
-Questa distinzione è importantissima, perché molti errori nascono proprio dal trattare `NULL` come se fosse un valore normale.
+Non significa zero. Non significa testo vuoto. Non significa “no”. Significa proprio: “qui il dato manca”.
+
+È come una casella lasciata vuota in un modulo. La casella esiste, ma nessuno ci ha scritto dentro nulla.
+
+## Cercare valori mancanti
+
+Per trovare i clienti senza email, scrivi:
 
 ```sql
-SELECT *
+SELECT nome, email
 FROM clienti
 WHERE email IS NULL;
 ```
 
-Questa query cerca i clienti che non hanno un'email salvata.
+La parte importante è `IS NULL`.
 
-## Perché non si usa `= NULL`
+Con `NULL` non si usa `=`, perché `NULL` non si comporta come un valore normale.
 
-Con `NULL` si usano operatori speciali:
-
-- `IS NULL`
-- `IS NOT NULL`
-
-Non si usa `= NULL`, perché `NULL` non si comporta come un valore normale da confrontare.
-
-## Il contrario
-
-Se vuoi trovare solo le righe dove il valore esiste, puoi scrivere:
+Questa query sembra naturale, ma è sbagliata:
 
 ```sql
-SELECT *
+SELECT nome, email
+FROM clienti
+WHERE email = NULL;
+```
+
+La forma corretta è:
+
+```sql
+SELECT nome, email
+FROM clienti
+WHERE email IS NULL;
+```
+
+In pratica non chiedi “email è uguale a mancante?”. Chiedi “email è mancante?”.
+
+## Cercare valori presenti
+
+Il contrario di `IS NULL` è `IS NOT NULL`.
+
+```sql
+SELECT nome, email
 FROM clienti
 WHERE email IS NOT NULL;
 ```
 
-## Quando compare `NULL` nella pratica
+Questa query mostra solo i clienti che hanno un’email salvata.
 
-Lo incontri spesso quando:
+## `NULL`, zero e testo vuoto
 
-- un campo è facoltativo
-- il dato non è stato ancora inserito
-- l'informazione non è disponibile
+Questi tre casi sono diversi:
 
-**Pensarlo come “dato mancante” è la scorciatoia mentale più utile.**
+| Valore | Significato            |
+| ------ | ---------------------- |
+| `NULL` | il dato manca          |
+| `0`    | il dato c’è ed è zero  |
+| `''`   | il dato c’è ma è vuoto |
+
+Per esempio, se `sconto` è `NULL`, forse non sai ancora lo sconto. Se `sconto` è `0`, sai che lo sconto è zero.
+
+Questa differenza è importante nei calcoli, nei filtri e nei report.
+
+## Quando lo incontrerai
+
+`NULL` compare spesso quando:
+
+- una colonna è facoltativa
+- un dato non è stato ancora inserito
+- un’informazione non è disponibile
+- una `LEFT JOIN` non trova una riga collegata
+
+Pensarlo come “dato mancante” è la scorciatoia mentale più utile.
+
+## Riepilogo rapido
+
+- `NULL` significa dato mancante o sconosciuto.
+- Non è uguale a zero.
+- Non è uguale a testo vuoto.
+- Si controlla con `IS NULL`.
+- Il contrario si controlla con `IS NOT NULL`.
