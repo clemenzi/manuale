@@ -1,20 +1,73 @@
 ---
 title: Manuale di Programmazione
-description: "Una breve introduzione al manuale di programmazione."
-tableOfContents: false
+description: "Impara programmazione da zero con guide pratiche su Python, SQL e C++: percorsi completi, esercizi e approfondimenti."
+tableOfContents: true
 ---
 
-import { LinkButton } from "@astrojs/starlight/components";
+import { LinkButton, CardGrid, Card } from "@astrojs/starlight/components";
 
-Benvenuti al Manuale di Programmazione! Questo manuale è progettato per fornire una panoramica completa dei concetti fondamentali della programmazione.
-Il manuale è scritto in modo da essere accessibile a principianti, ma include anche argomenti avanzati per coloro che desiderano approfondire le proprie conoscenze.
+# Impara programmazione da zero con percorsi guidati
 
-<LinkButton href="/cpp/" variant="primary">
-  Inizia con C++
-</LinkButton>
+Manuale.dev è una raccolta di guide pratiche pensata per chi inizia da zero e per chi vuole consolidare le basi con un percorso ordinato.
+Ogni sezione contiene lezioni progressive e collegate tra loro, con esempi concreti e buone pratiche.
+
+## Scegli il tuo percorso principale
+
 <LinkButton href="/python/" variant="primary">
-  Inizia con Python
+  Percorso Python
 </LinkButton>
-<LinkButton href="/sql/" variant="primary">
-  Inizia con SQL
+<LinkButton href="/sql/" variant="secondary">
+  Percorso SQL
 </LinkButton>
+<LinkButton href="/cpp/" variant="minimal">
+  Percorso C++
+</LinkButton>
+
+## Hub principali
+
+<CardGrid>
+  <Card title="Python" href="/python/">
+    Dalle basi a strutture dati, funzioni, OOP, moduli e librerie.
+  </Card>
+  <Card title="SQL" href="/sql/">
+    Query, join, modellazione dati, performance e operazioni su database.
+  </Card>
+  <Card title="C++" href="/cpp/">
+    Sintassi, controllo del flusso, memoria, OOP e tecniche avanzate.
+  </Card>
+</CardGrid>
+
+## Guide essenziali da cui iniziare
+
+### Python
+
+- [Cos'è Python e come funziona la sintassi di base](/python/basics/base-syntax/)
+- [Variabili e tipi di dato in Python](/python/basics/data-types/)
+- [Liste, dizionari e tuple](/python/data-structures/lists/)
+- [Funzioni in Python](/python/functions/functions/)
+
+### SQL
+
+- [Cos'è SQL](/sql/basics/cos-e-sql/)
+- [SELECT, WHERE e ORDER BY](/sql/queries/lettura/select/)
+- [JOIN e sottoquery](/sql/queries/join-sottoquery/join/)
+- [CREATE TABLE e progettazione schema](/sql/basics/create-table/)
+
+### C++
+
+- [Struttura di un programma C++](/cpp/basics/program-structure/)
+- [Variabili, operatori e tipi](/cpp/basics/variables/)
+- [Condizioni e cicli](/cpp/flow-control/conditions/)
+- [Puntatori e gestione memoria](/cpp/memory/pointers/)
+
+## Come usare il manuale
+
+1. Parti dalla pagina indice del linguaggio.
+2. Segui le lezioni nell'ordine suggerito nella sidebar.
+3. Approfondisci gli argomenti collegati in fondo a ogni guida.
+
+Se vuoi iniziare subito:
+
+- [Vai al percorso Python](/python/)
+- [Vai al percorso SQL](/sql/)
+- [Vai al percorso C++](/cpp/)
