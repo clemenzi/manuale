@@ -49,4 +49,16 @@ export const onRequest = defineRouteMiddleware((context) => {
   }
 
   route.sidebar = entry.type === "group" ? entry.entries : [entry];
+
+  route.sidebar = route.sidebar.map((item) => {
+    if (item.type !== "group" || !item.entries) return item;
+
+    return {
+      ...item,
+      entries: item.entries.map((entry) => ({
+        ...entry,
+        label: entry.label.replace(/in .*/, ""),
+      })),
+    };
+  });
 });
