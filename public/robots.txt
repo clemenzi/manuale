@@ -1,3 +1,5 @@
-User-Agent: *
+User-agent: *
 Allow: /
+
+Sitemap: https://www.manuale.dev/sitemap.xml
 Sitemap: https://www.manuale.dev/sitemap-index.xml
