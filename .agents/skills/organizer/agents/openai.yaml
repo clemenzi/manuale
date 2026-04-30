@@ -1,0 +1,4 @@
+interface:
+  display_name: "Organizer"
+  short_description: "Organizza scheletri di guide MDX"
+  default_prompt: "Use $organizer to create a structured guide skeleton for a topic in src/content/docs."

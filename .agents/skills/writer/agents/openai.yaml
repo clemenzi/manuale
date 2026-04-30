@@ -1,0 +1,4 @@
+interface:
+  display_name: "Writer"
+  short_description: "Scrive lezioni dai TODO delle guide"
+  default_prompt: "Use $writer to turn TODO(writer) guide skeletons into clear Italian lessons for absolute beginners."
