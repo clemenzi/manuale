@@ -1,0 +1,112 @@
+---
+title: Upload di file
+description: Come ricevere file da un form e gestirli in modo controllato.
+---
+
+## Preparare il form
+
+Per inviare file, il form deve usare `method="post"` e `enctype="multipart/form-data"`.
+
+```php
+<form action="upload.php" method="post" enctype="multipart/form-data">
+    <input type="file" name="documento">
+    <button type="submit">Carica</button>
+</form>
+```
+
+Senza `enctype`, il file non arriva correttamente a PHP.
+
+## Leggere il file con $\_FILES
+
+In `upload.php`:
+
+```php
+<?php
+$file = $_FILES["documento"] ?? null;
+
+if ($file === null) {
+    echo "Nessun file inviato";
+    exit;
+}
+
+print_r($file);
+```
+
+`$_FILES` contiene informazioni come nome originale, tipo, dimensione, percorso temporaneo ed eventuale errore.
+
+## Controllare gli errori
+
+```php
+<?php
+if ($_FILES["documento"]["error"] !== UPLOAD_ERR_OK) {
+    echo "Errore durante il caricamento";
+    exit;
+}
+```
+
+Controlla sempre l'errore prima di usare il file.
+
+## Controllare dimensione e tipo
+
+```php
+<?php
+$dimensioneMassima = 2 * 1024 * 1024;
+
+if ($_FILES["documento"]["size"] > $dimensioneMassima) {
+    echo "File troppo grande";
+    exit;
+}
+```
+
+Per il tipo, non fidarti solo del nome del file. Usa controlli server-side e accetta solo formati previsti.
+
+## Salvare il file
+
+```php
+<?php
+$cartella = __DIR__ . "/uploads";
+$destinazione = $cartella . "/documento.pdf";
+
+move_uploaded_file($_FILES["documento"]["tmp_name"], $destinazione);
+```
+
+`move_uploaded_file` sposta il file dalla cartella temporanea alla cartella scelta.
+
+> **Attenzione:** non salvare file caricati dagli utenti con nomi non controllati e non permettere l'esecuzione di file caricati. L'upload e una zona delicata della sicurezza web.
+
+## Creare la cartella di destinazione
+
+Prima di spostare un file, assicurati che la cartella esista.
+
+```php
+<?php
+$cartella = __DIR__ . "/uploads";
+
+if (!is_dir($cartella)) {
+    mkdir($cartella);
+}
+```
+
+`__DIR__` indica la cartella del file PHP corrente. In questo modo costruisci un percorso stabile.
+
+## Evitare nomi pericolosi
+
+Il nome originale del file arriva dal computer dell'utente, quindi non va usato alla cieca.
+
+```php
+<?php
+$nomeSicuro = uniqid("file_", true) . ".pdf";
+$destinazione = $cartella . "/" . $nomeSicuro;
+```
+
+`uniqid` crea un nome abbastanza unico per evitare sovrascritture accidentali. In un progetto reale controlleresti anche il tipo effettivo del file.
+
+## Checklist minima
+
+Prima di salvare un file caricato, controlla sempre:
+
+- che non ci siano errori di upload
+- che la dimensione sia accettabile
+- che il tipo sia tra quelli consentiti
+- che il nome finale sia deciso dal server
+- che la cartella di upload non esegua codice PHP

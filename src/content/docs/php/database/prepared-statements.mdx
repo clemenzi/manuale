@@ -1,0 +1,111 @@
+---
+title: Query preparate
+description: Come inviare query sicure al database evitando SQL injection.
+---
+
+## Il problema
+
+Quando una query contiene dati inseriti dall'utente, non devi incollarli direttamente nella stringa SQL.
+
+Questo e pericoloso:
+
+```php
+<?php
+$sql = "SELECT * FROM utenti WHERE email = '$email'";
+```
+
+Se `$email` contiene testo malevolo, la query puo cambiare significato. Questo rischio si chiama **SQL injection**.
+
+## Prepared statement
+
+Una query preparata separa la struttura della query dai valori.
+
+```php
+<?php
+$sql = "SELECT * FROM utenti WHERE email = :email";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(["email" => $email]);
+
+$utente = $stmt->fetch();
+```
+
+`:email` e un placeholder, cioe un segnaposto. Il valore vero arriva dopo, in modo controllato.
+
+## SELECT sicura
+
+```php
+<?php
+$email = $_POST["email"] ?? "";
+
+$stmt = $pdo->prepare("SELECT * FROM utenti WHERE email = :email");
+$stmt->execute(["email" => $email]);
+
+$utente = $stmt->fetch();
+
+if ($utente) {
+    echo "Utente trovato";
+}
+```
+
+`fetch` legge una riga. Se non ci sono risultati, restituisce `false`.
+
+## INSERT sicuro
+
+```php
+<?php
+$stmt = $pdo->prepare(
+    "INSERT INTO utenti (nome, email) VALUES (:nome, :email)"
+);
+
+$stmt->execute([
+    "nome" => $nome,
+    "email" => $email,
+]);
+```
+
+Anche qui i valori non vengono incollati nella query.
+
+## Regola pratica
+
+Ogni volta che una query usa dati esterni, usa `prepare` ed `execute` con placeholder. E una delle abitudini piu importanti per scrivere PHP sicuro con i database.
+
+## Placeholder con punto interrogativo
+
+Oltre ai placeholder con nome, puoi usare `?`.
+
+```php
+<?php
+$stmt = $pdo->prepare("SELECT * FROM utenti WHERE email = ?");
+$stmt->execute([$email]);
+```
+
+Funziona bene per query piccole. I placeholder con nome sono spesso piu leggibili quando i valori sono molti.
+
+## Leggere piu righe
+
+Per una lista di risultati usa `fetchAll`.
+
+```php
+<?php
+$stmt = $pdo->prepare("SELECT * FROM prodotti WHERE prezzo < :massimo");
+$stmt->execute(["massimo" => 20]);
+
+$prodotti = $stmt->fetchAll();
+
+foreach ($prodotti as $prodotto) {
+    echo $prodotto["nome"] . "\n";
+}
+```
+
+La query resta sicura perche il valore `20` viene passato separatamente.
+
+## Errore comune: preparare e poi incollare lo stesso
+
+Questo non va bene:
+
+```php
+<?php
+$stmt = $pdo->prepare("SELECT * FROM utenti WHERE email = '$email'");
+```
+
+Anche se usi `prepare`, hai comunque incollato `$email` nella stringa. Il valore deve entrare tramite placeholder.

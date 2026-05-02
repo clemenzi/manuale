@@ -1,0 +1,137 @@
+---
+title: Tipi di dato
+description: Numeri, stringhe, booleani, null e altri valori fondamentali in PHP.
+---
+
+## Cosa significa tipo di dato
+
+Un tipo di dato dice che genere di valore stai usando. Un numero, un testo e un vero/falso non si comportano nello stesso modo.
+
+PHP capisce il tipo dal valore che assegni.
+
+## Numeri interi e decimali
+
+Gli interi sono numeri senza virgola.
+
+```php
+<?php
+$eta = 30;
+```
+
+I decimali si scrivono con il punto.
+
+```php
+<?php
+$prezzo = 12.50;
+```
+
+## Stringhe
+
+Una stringa e testo. Si scrive tra virgolette.
+
+```php
+<?php
+$nome = "Luca";
+$messaggio = 'Ciao';
+```
+
+Le virgolette doppie permettono di inserire variabili dentro il testo.
+
+```php
+<?php
+$nome = "Luca";
+echo "Ciao $nome";
+```
+
+## Booleani
+
+Un booleano puo essere solo `true` o `false`.
+
+```php
+<?php
+$maggiorenne = true;
+$pagato = false;
+```
+
+Li userai spesso nelle condizioni.
+
+## Null
+
+`null` significa: qui non c'e nessun valore.
+
+```php
+<?php
+$telefono = null;
+```
+
+Non vuol dire zero e non vuol dire stringa vuota. Vuol dire proprio assenza di valore.
+
+## Array
+
+Un array raccoglie piu valori in una sola variabile.
+
+```php
+<?php
+$colori = ["rosso", "verde", "blu"];
+```
+
+## Controllare il tipo
+
+Per osservare un valore puoi usare `var_dump`.
+
+```php
+<?php
+$eta = 30;
+var_dump($eta);
+```
+
+Output possibile:
+
+```text
+int(30)
+```
+
+`int` indica un numero intero.
+
+## Lo stesso valore puo avere tipi diversi
+
+Guarda questi due valori:
+
+```php
+<?php
+$numero = 25;
+$testo = "25";
+
+var_dump($numero);
+var_dump($testo);
+```
+
+Il primo e un numero intero. Il secondo e testo, anche se contiene cifre. Questa differenza conta quando fai confronti, calcoli o validazioni.
+
+## Conversioni semplici
+
+A volte un valore arriva come stringa, per esempio da un form. Se vuoi trattarlo come numero, puoi convertirlo.
+
+```php
+<?php
+$etaDalForm = "32";
+$eta = (int) $etaDalForm;
+
+var_dump($eta);
+```
+
+`(int)` chiede a PHP di trasformare il valore in un intero.
+
+## Errore comune: confondere null e stringa vuota
+
+```php
+<?php
+$telefono = null;
+$indirizzo = "";
+```
+
+`$telefono` non ha valore. `$indirizzo` ha un valore, ma e un testo vuoto. Nei controlli questa differenza puo essere importante.
+
+## Riepilogo
+
+Prima di usare un valore chiediti che cosa rappresenta: numero, testo, vero/falso, assenza di valore o raccolta di dati. Capire il tipo rende il codice piu prevedibile.

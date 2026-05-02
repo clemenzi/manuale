@@ -1,0 +1,99 @@
+---
+title: Eccezioni
+description: Come gestire situazioni impreviste con try, catch e throw.
+---
+
+## Cosa sono le eccezioni
+
+Un'eccezione segnala che qualcosa e andato storto e il flusso normale non puo continuare.
+
+Non tutti gli errori sono uguali. Un file mancante puo essere una situazione prevista da gestire. Una variabile scritta male e invece un bug da correggere.
+
+## try e catch
+
+Metti nel blocco `try` il codice che potrebbe fallire. Nel blocco `catch` gestisci il problema.
+
+```php
+<?php
+try {
+    $pdo = new PDO($dsn, $utente, $password);
+    echo "Connessione riuscita";
+} catch (PDOException $errore) {
+    echo "Connessione non riuscita";
+}
+```
+
+Se la connessione fallisce, PHP passa al `catch`.
+
+## throw
+
+Puoi lanciare tu un'eccezione quando trovi una situazione non valida.
+
+```php
+<?php
+function dividi(float $a, float $b): float {
+    if ($b === 0.0) {
+        throw new InvalidArgumentException("Non puoi dividere per zero");
+    }
+
+    return $a / $b;
+}
+```
+
+## finally
+
+`finally` viene eseguito comunque, sia se tutto va bene sia se c'e un'eccezione.
+
+```php
+<?php
+try {
+    echo "Apro una risorsa";
+} catch (Exception $errore) {
+    echo "Errore";
+} finally {
+    echo "Pulizia finale";
+}
+```
+
+## Errore previsto o bug?
+
+Usa le eccezioni per casi che il programma puo incontrare e gestire: connessione fallita, file mancante, dato non valido.
+
+Correggi invece i bug alla radice: nomi sbagliati, parentesi mancanti, logica errata. Un `catch` non deve nascondere codice rotto.
+
+## Recuperare il messaggio dell'eccezione
+
+L'oggetto ricevuto nel `catch` contiene informazioni sull'errore.
+
+```php
+<?php
+try {
+    throw new RuntimeException("File non trovato");
+} catch (RuntimeException $errore) {
+    echo $errore->getMessage();
+}
+```
+
+Output:
+
+```text
+File non trovato
+```
+
+Durante lo studio questo e utile. In produzione, invece, evita di mostrare dettagli tecnici agli utenti.
+
+## Eccezioni personalizzate
+
+Per programmi piccoli puoi usare le eccezioni gia pronte, come `RuntimeException` o `InvalidArgumentException`. Nei progetti piu grandi puoi creare eccezioni con nomi specifici.
+
+```php
+<?php
+class ProdottoNonDisponibile extends RuntimeException {
+}
+```
+
+Il nome rende piu chiaro che tipo di problema stai gestendo.
+
+## Errore comune: catturare tutto e continuare
+
+Un `catch` non deve far finta che vada tutto bene. Se non sai gestire davvero l'errore, registra il problema o mostra un messaggio chiaro. Nascondere l'errore rende il programma piu difficile da correggere.

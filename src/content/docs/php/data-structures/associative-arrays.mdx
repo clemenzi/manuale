@@ -1,0 +1,131 @@
+---
+title: Array associativi
+description: Come usare chiavi testuali per rappresentare dati strutturati.
+---
+
+## Dalle posizioni ai nomi
+
+Negli array indicizzati leggi i valori con numeri come `0` e `1`. Negli array associativi usi chiavi testuali.
+
+```php
+<?php
+$utente = [
+    "nome" => "Luca",
+    "eta" => 28,
+    "email" => "luca@example.com",
+];
+```
+
+Qui `"nome"`, `"eta"` ed `"email"` sono chiavi.
+
+## Leggere un valore
+
+```php
+<?php
+$utente = [
+    "nome" => "Luca",
+    "eta" => 28,
+];
+
+echo $utente["nome"];
+```
+
+Output:
+
+```text
+Luca
+```
+
+## Modificare un valore
+
+```php
+<?php
+$prodotto = [
+    "nome" => "Quaderno",
+    "prezzo" => 3.50,
+];
+
+$prodotto["prezzo"] = 3.20;
+```
+
+Stai cambiando solo il valore collegato alla chiave `"prezzo"`.
+
+## Aggiungere una chiave
+
+```php
+<?php
+$prodotto = [
+    "nome" => "Quaderno",
+];
+
+$prodotto["disponibile"] = true;
+```
+
+## Scorrere chiavi e valori
+
+```php
+<?php
+$utente = [
+    "nome" => "Sara",
+    "eta" => 31,
+];
+
+foreach ($utente as $chiave => $valore) {
+    echo "$chiave: $valore\n";
+}
+```
+
+Gli array associativi sono utili per rappresentare profili, prodotti, impostazioni e dati che hanno un nome preciso.
+
+## Un prodotto come array associativo
+
+Quando i dati descrivono una stessa cosa, le chiavi rendono il codice piu leggibile.
+
+```php
+<?php
+$prodotto = [
+    "nome" => "Penna",
+    "prezzo" => 1.20,
+    "disponibile" => true,
+];
+
+if ($prodotto["disponibile"]) {
+    echo $prodotto["nome"] . " costa " . $prodotto["prezzo"] . " euro";
+}
+```
+
+Leggendo le chiavi capisci subito che cosa rappresenta ogni valore.
+
+## Controllare se una chiave esiste
+
+Prima di leggere una chiave che potrebbe mancare, puoi usare `isset`.
+
+```php
+<?php
+if (isset($utente["email"])) {
+    echo $utente["email"];
+}
+```
+
+Oppure puoi usare `??` per dare un valore predefinito.
+
+```php
+<?php
+$email = $utente["email"] ?? "email non disponibile";
+```
+
+## Errore comune: usare il nome della chiave senza virgolette
+
+```php
+<?php
+echo $utente[nome];
+```
+
+Scrivi invece:
+
+```php
+<?php
+echo $utente["nome"];
+```
+
+Le virgolette fanno capire a PHP che `nome` e una chiave testuale.

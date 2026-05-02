@@ -1,0 +1,104 @@
+---
+title: Introduzione a PHP
+description: Cos'e PHP, dove viene usato e come iniziare a costruire pagine web dinamiche.
+icon: BookOpen
+---
+
+## Cos'e PHP?
+
+PHP e un **linguaggio di programmazione per il web**. Serve soprattutto a creare pagine che cambiano in base ai dati, all'utente o a quello che succede sul sito.
+
+Una pagina HTML normale e come un volantino stampato: tutti vedono la stessa cosa. Una pagina PHP, invece, puo preparare contenuti diversi prima di mandarli al browser.
+
+```php
+<?php
+$nome = "Luca";
+echo "Ciao, $nome!";
+```
+
+Questo codice crea un messaggio usando un valore salvato nella variabile `$nome`.
+
+## Lato server e lato client
+
+Quando apri un sito, il tuo browser riceve HTML, CSS e JavaScript. Questi lavorano sul tuo computer o telefono: per questo si dice **lato client**.
+
+PHP lavora prima, sul computer che ospita il sito: il **server**. Il server esegue PHP, produce HTML e poi manda il risultato al browser.
+
+```php
+<?php
+echo "<h1>Benvenuto</h1>";
+```
+
+Il browser non vede il codice PHP. Vede solo l'HTML prodotto.
+
+## Dove si usa PHP
+
+PHP e usato per:
+
+- pagine web dinamiche
+- form di contatto
+- aree riservate con login
+- siti con database
+- blog, negozi online e pannelli di amministrazione
+
+Molti progetti famosi, incluso WordPress, usano PHP.
+
+## Cosa imparerai in questa guida
+
+Partiremo dalle basi: installazione, sintassi, variabili e tipi di dato. Poi vedremo condizioni, cicli, funzioni e array.
+
+Dopo le fondamenta passeremo al web: HTML, form, sessioni, cookie e upload di file. Infine vedremo database, oggetti, gestione degli errori e strumenti come Composer.
+
+L'obiettivo non e imparare tutto a memoria. E capire abbastanza bene da leggere codice PHP semplice, modificarlo con sicurezza e costruire piccoli programmi web.
+
+## Cosa devi sapere prima di iniziare
+
+Puoi iniziare anche se non hai mai scritto PHP. Ti aiutera conoscere almeno l'idea di una pagina HTML, perche PHP viene spesso usato per produrre HTML dinamico.
+
+Non devi conoscere database, oggetti o strumenti professionali. Li incontrerai piu avanti, quando le basi saranno gia piu familiari.
+
+## Come studiare questa guida
+
+PHP si capisce meglio scrivendo codice piccolo e osservando cosa succede. Per ogni pagina prova a fare tre cose:
+
+1. copia l'esempio principale in un file `.php`
+2. eseguilo con il terminale o con il server locale
+3. cambia un valore e guarda come cambia il risultato
+
+Questo passaggio e importante. Leggere codice aiuta, ma modificarlo ti fa capire davvero quali parti contano.
+
+## Un esempio molto piccolo
+
+PHP puo prendere un dato e usarlo per costruire una risposta.
+
+```php
+<?php
+$prodotto = "quaderno";
+$prezzo = 3.50;
+
+echo "Il prodotto $prodotto costa $prezzo euro.";
+```
+
+Output:
+
+```text
+Il prodotto quaderno costa 3.5 euro.
+```
+
+In poche righe hai gia tre idee importanti: una variabile, un numero e un testo prodotto dal programma.
+
+## Percorso consigliato
+
+Se parti da zero, segui le sezioni in questo ordine:
+
+1. installazione e primo programma
+2. sintassi, variabili, tipi di dato e operatori
+3. condizioni e cicli
+4. funzioni e scope
+5. array, stringhe e date
+6. PHP dentro pagine HTML e form
+7. sessioni, cookie e upload
+8. database con PDO e query preparate
+9. classi, oggetti, errori e strumenti
+
+Le ultime sezioni sono piu vicine al lavoro su progetti reali. Non avere fretta di arrivarci: se variabili, condizioni, cicli e funzioni sono chiari, tutto il resto diventa meno misterioso.

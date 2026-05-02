@@ -1,0 +1,126 @@
+---
+title: Funzioni
+description: Come organizzare il codice PHP in blocchi riutilizzabili.
+---
+
+## Cosa e una funzione
+
+Una funzione e un blocco di codice con un nome. La scrivi una volta e puoi usarla piu volte.
+
+E come una ricetta: invece di riscrivere tutti i passaggi, richiami la ricetta quando serve.
+
+## Dichiarare una funzione
+
+```php
+<?php
+function saluta() {
+    echo "Ciao!";
+}
+```
+
+Questo codice crea la funzione, ma non la esegue ancora.
+
+## Chiamare una funzione
+
+Per eseguirla, scrivi il suo nome seguito da parentesi.
+
+```php
+<?php
+function saluta() {
+    echo "Ciao!";
+}
+
+saluta();
+```
+
+Output:
+
+```text
+Ciao!
+```
+
+## Riutilizzare codice
+
+Una funzione evita ripetizioni.
+
+```php
+<?php
+function mostraSeparatore() {
+    echo "---\n";
+}
+
+mostraSeparatore();
+echo "Prodotti\n";
+mostraSeparatore();
+echo "Totale\n";
+mostraSeparatore();
+```
+
+Se un giorno vuoi cambiare il separatore, modifichi una sola funzione.
+
+## Nomi chiari
+
+Il nome deve dire cosa fa la funzione.
+
+```php
+<?php
+function calcolaTotale() {
+    echo 10 + 5;
+}
+```
+
+`calcolaTotale` e piu utile di `faiCosa`.
+
+> **Suggerimento:** una funzione dovrebbe fare una cosa principale. Se fa troppe cose, diventa difficile da capire e da riusare.
+
+## Una funzione con un compito chiaro
+
+Immagina di dover mostrare piu volte il prezzo con la parola `euro`.
+
+```php
+<?php
+function mostraPrezzo($prezzo) {
+    echo $prezzo . " euro";
+}
+
+mostraPrezzo(12);
+```
+
+La funzione non conosce tutti i prodotti del programma. Si occupa solo di mostrare un prezzo. Questo la rende facile da capire.
+
+## Prima senza funzione, poi con funzione
+
+All'inizio potresti scrivere:
+
+```php
+<?php
+echo "Ciao Luca\n";
+echo "Ciao Sara\n";
+```
+
+Con una funzione elimini la ripetizione:
+
+```php
+<?php
+function saluta($nome) {
+    echo "Ciao $nome\n";
+}
+
+saluta("Luca");
+saluta("Sara");
+```
+
+Il vantaggio non e scrivere meno righe a tutti i costi. Il vantaggio e dare un nome a un'azione.
+
+## Errore comune: chiamare la funzione con un nome diverso
+
+```php
+<?php
+function saluta() {
+    echo "Ciao";
+}
+
+saluto();
+```
+
+`saluta` e `saluto` sono due nomi diversi. PHP cerchera una funzione che non esiste.

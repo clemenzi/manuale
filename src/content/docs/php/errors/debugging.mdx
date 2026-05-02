@@ -1,0 +1,113 @@
+---
+title: Debugging
+description: Come osservare cosa fa il codice PHP e trovare problemi passo dopo passo.
+---
+
+## Cosa significa debugging
+
+Fare debugging significa cercare e correggere un problema nel codice. Non e indovinare: e osservare con ordine.
+
+## var_dump
+
+`var_dump` mostra valore e tipo.
+
+```php
+<?php
+$eta = "25";
+var_dump($eta);
+```
+
+Output possibile:
+
+```text
+string(2) "25"
+```
+
+Questo ti dice che `$eta` sembra un numero, ma in realta e una stringa.
+
+## print_r
+
+`print_r` e comodo per array.
+
+```php
+<?php
+$utente = ["nome" => "Luca", "eta" => 28];
+print_r($utente);
+```
+
+Output:
+
+```text
+Array
+(
+    [nome] => Luca
+    [eta] => 28
+)
+```
+
+## Mostrare gli errori durante lo studio
+
+In ambiente di sviluppo puoi attivare la visualizzazione degli errori.
+
+```php
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+```
+
+> **Attenzione:** su un sito pubblico non mostrare errori tecnici agli utenti. Possono rivelare dettagli interni del progetto.
+
+## Log degli errori
+
+PHP puo scrivere errori nei log del server. I log sono file dove vengono registrati problemi e informazioni utili.
+
+Quando lavori su un hosting o un server, cerca la sezione dedicata agli error log.
+
+## Un metodo ordinato
+
+Quando qualcosa non funziona:
+
+1. riproduci il problema
+2. controlla il messaggio di errore
+3. stampa le variabili importanti con `var_dump`
+4. verifica una riga alla volta cosa succede
+5. togli le stampe di debug quando hai finito
+
+Il debugging migliora con la pratica. L'importante e fare un passo alla volta.
+
+## Restringere il punto del problema
+
+Quando una pagina e lunga, non cercare tutto insieme. Metti piccole stampe in punti strategici.
+
+```php
+<?php
+echo "Prima del calcolo\n";
+
+$totale = $prezzo * $quantita;
+
+echo "Dopo il calcolo\n";
+var_dump($totale);
+```
+
+Se vedi il primo messaggio ma non il secondo, il problema e tra i due punti.
+
+## Controllare i dati ricevuti
+
+Molti problemi nascono da dati diversi da quelli che immagini.
+
+```php
+<?php
+var_dump($_POST);
+```
+
+Questa stampa ti mostra tutti i campi arrivati dal form. Usala solo durante lo sviluppo e rimuovila quando hai finito.
+
+## Diario del bug
+
+Per problemi difficili, scrivi tre righe:
+
+1. cosa mi aspettavo
+2. cosa succede davvero
+3. quale valore controllo adesso
+
+Questo ti impedisce di cambiare codice a caso. Il debugging diventa una piccola indagine ordinata.

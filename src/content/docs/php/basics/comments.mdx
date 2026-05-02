@@ -1,0 +1,107 @@
+---
+title: Commenti
+description: Come usare i commenti per spiegare il codice PHP senza eseguirlo.
+---
+
+## Cosa sono i commenti
+
+Un commento e testo scritto per chi legge il codice. PHP lo ignora e non lo esegue.
+
+I commenti servono a spiegare una scelta, ricordare un dettaglio o rendere piu chiaro un passaggio non immediato.
+
+## Commenti su una riga
+
+Usa `//` per scrivere un commento breve.
+
+```php
+<?php
+// Salviamo il nome dell'utente
+$nome = "Giulia";
+
+echo $nome;
+```
+
+PHP esegue `$nome = "Giulia";` ed `echo $nome;`, ma ignora la riga che inizia con `//`.
+
+## Commenti su piu righe
+
+Usa `/*` e `*/` quando il commento occupa piu righe.
+
+```php
+<?php
+/*
+Questo esempio calcola il prezzo finale
+partendo da prezzo iniziale e sconto.
+*/
+$prezzo = 30;
+$sconto = 5;
+
+echo $prezzo - $sconto;
+```
+
+## Quando usare i commenti
+
+Un buon commento spiega il perche, non ripete l'ovvio.
+
+```php
+<?php
+// Applichiamo lo sconto solo agli ordini sopra i 50 euro
+if ($totale > 50) {
+    $totale = $totale - 10;
+}
+```
+
+Questo commento e utile perche spiega la regola.
+
+## Quando evitarli
+
+Questo commento non aiuta:
+
+```php
+<?php
+// Stampa il nome
+echo $nome;
+```
+
+Il codice e gia chiaro. Se devi commentare ogni riga, forse puoi scegliere nomi migliori o dividere il codice in pezzi piu piccoli.
+
+## Commentare una scelta
+
+Un commento diventa prezioso quando spiega una regola che non si vede subito dal codice.
+
+```php
+<?php
+$totale = 62;
+
+// La spedizione e gratuita dagli ordini sopra i 50 euro
+if ($totale > 50) {
+    $costoSpedizione = 0;
+} else {
+    $costoSpedizione = 4.90;
+}
+```
+
+Qui il commento non ripete `if ($totale > 50)`. Spiega la regola del negozio.
+
+## Usare i commenti mentre studi
+
+Quando impari, puoi usare i commenti per dividere un esercizio in passaggi.
+
+```php
+<?php
+// 1. Salvo i dati iniziali
+$prezzo = 20;
+$sconto = 5;
+
+// 2. Calcolo il totale
+$totale = $prezzo - $sconto;
+
+// 3. Mostro il risultato
+echo $totale;
+```
+
+Questo aiuta a leggere il programma come una piccola storia. Con il tempo userai meno commenti, perche i nomi delle variabili e delle funzioni faranno gia parte del lavoro.
+
+## Prova tu
+
+Prendi un esercizio breve e aggiungi tre commenti: dati iniziali, calcolo, risultato. Poi rileggilo e cancella i commenti che ripetono soltanto quello che il codice dice gia.

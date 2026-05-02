@@ -154,6 +154,7 @@ Regole:
 - Per la pagina `index.mdx`, usa solo lo slug della cartella: `"php"`, non `"php/index"`.
 - Mantieni `collapsed: false` per le prime sezioni essenziali e `collapsed: true` per sezioni avanzate o consultabili.
 - Non modificare sidebar di altre guide se non serve.
+- Scrivi le rotte in inglese (slug in kebab-case), ma il contenuto deve essere in italiano.
 
 ## Controlli Finali
 

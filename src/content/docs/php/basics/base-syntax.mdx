@@ -1,0 +1,115 @@
+---
+title: Sintassi di base
+description: Le regole essenziali per scrivere istruzioni PHP leggibili e corrette.
+---
+
+## Il tag di apertura
+
+Il codice PHP inizia con:
+
+```php
+<?php
+```
+
+Questo tag avvisa PHP che le righe successive contengono istruzioni da eseguire.
+
+```php
+<?php
+echo "Ciao";
+```
+
+Nei file che contengono solo PHP, di solito non si mette il tag di chiusura `?>`. Evitarlo riduce piccoli errori causati da spazi o righe vuote alla fine del file.
+
+## Il punto e virgola
+
+In PHP molte istruzioni finiscono con `;`.
+
+```php
+<?php
+$nome = "Marta";
+echo $nome;
+```
+
+Il punto e virgola dice: questa istruzione e finita. Se lo dimentichi, PHP spesso mostra un errore di sintassi.
+
+## Blocchi di codice
+
+Le parentesi graffe `{}` raccolgono piu istruzioni dentro un blocco.
+
+```php
+<?php
+$eta = 20;
+
+if ($eta >= 18) {
+    echo "Puoi entrare";
+}
+```
+
+Qui il messaggio viene mostrato solo se la condizione e vera.
+
+## PHP dentro HTML
+
+PHP puo vivere dentro una pagina HTML:
+
+```php
+<h1>Profilo</h1>
+
+<?php
+$nome = "Luca";
+echo "<p>Ciao, $nome</p>";
+?>
+```
+
+HTML descrive la struttura della pagina. PHP prepara parti dinamiche.
+
+## Spazi e leggibilita
+
+PHP non richiede spazi perfetti, ma il codice leggibile aiuta molto.
+
+```php
+<?php
+$prezzo = 10;
+$sconto = 2;
+$totale = $prezzo - $sconto;
+
+echo $totale;
+```
+
+Una riga vuota tra gruppi di istruzioni rende piu chiaro cosa sta succedendo.
+
+## Commenti, istruzioni e blocchi insieme
+
+Un piccolo file PHP puo contenere tutti questi elementi:
+
+```php
+<?php
+// Dati di partenza
+$nome = "Sara";
+$eta = 21;
+
+if ($eta >= 18) {
+    echo "Ciao $nome, puoi continuare.";
+} else {
+    echo "Ciao $nome, questa area non e disponibile.";
+}
+```
+
+La prima parte prepara i dati. La seconda parte controlla una condizione. Il blocco tra `{` e `}` contiene le istruzioni da eseguire se la condizione e vera.
+
+## Errore comune: confondere HTML e PHP
+
+HTML non usa il punto e virgola e non esegue calcoli. PHP invece esegue istruzioni.
+
+```php
+<p>Questo e HTML</p>
+
+<?php
+echo "Questo testo viene prodotto da PHP";
+?>
+```
+
+Quando una pagina contiene entrambi, chiediti sempre: questa riga descrive la pagina o deve essere eseguita come istruzione?
+
+## Riepilogo
+
+Per scrivere PHP corretto all'inizio ricorda quattro cose: apri il codice con `<?php`, chiudi le istruzioni con `;`, usa le graffe per i blocchi e tieni il codice leggibile con spazi e nomi chiari.

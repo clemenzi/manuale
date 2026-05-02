@@ -1,0 +1,115 @@
+---
+title: Sessioni e cookie
+description: Come conservare informazioni tra una richiesta web e l'altra.
+---
+
+## Il problema della memoria nel web
+
+Ogni richiesta web e separata dalle altre. Se apri una pagina e poi un'altra, PHP non ricorda automaticamente chi sei.
+
+Sessioni e cookie servono a conservare informazioni tra una richiesta e la successiva.
+
+## Cookie
+
+Un cookie e un piccolo dato salvato nel browser dell'utente.
+
+```php
+<?php
+setcookie("tema", "scuro", time() + 3600);
+```
+
+Questo cookie dura un'ora. `3600` sono secondi.
+
+Alla richiesta successiva puoi leggerlo:
+
+```php
+<?php
+$tema = $_COOKIE["tema"] ?? "chiaro";
+echo $tema;
+```
+
+I cookie sono utili per preferenze semplici, come lingua o tema.
+
+## Sessioni
+
+Una sessione salva i dati sul server e collega l'utente a quei dati tramite un identificatore.
+
+Devi chiamare `session_start()` prima di usare `$_SESSION`.
+
+```php
+<?php
+session_start();
+
+$_SESSION["nome"] = "Luca";
+```
+
+In un'altra pagina:
+
+```php
+<?php
+session_start();
+
+$nome = $_SESSION["nome"] ?? "ospite";
+echo "Ciao $nome";
+```
+
+## Quando usare le sessioni
+
+Le sessioni sono adatte per login, carrelli e dati temporanei legati alla visita.
+
+I cookie sono adatti per piccole preferenze che possono restare nel browser.
+
+## Chiudere una sessione
+
+Per un logout semplice:
+
+```php
+<?php
+session_start();
+session_destroy();
+```
+
+> **Attenzione:** non salvare password in chiaro dentro cookie o sessioni. Per un login reale servono controlli di sicurezza piu completi.
+
+## Un esempio di preferenza con cookie
+
+Un cookie e adatto per una preferenza semplice.
+
+```php
+<?php
+setcookie("lingua", "it", time() + 60 * 60 * 24 * 30);
+```
+
+Questo cookie dura circa 30 giorni. Alla visita successiva puoi leggere la lingua scelta.
+
+```php
+<?php
+$lingua = $_COOKIE["lingua"] ?? "it";
+```
+
+## Un esempio di login con sessione
+
+In un login reale dovresti controllare email e password nel database. Qui guardiamo solo il meccanismo della sessione.
+
+```php
+<?php
+session_start();
+
+$_SESSION["utente_id"] = 15;
+```
+
+Nelle pagine riservate puoi controllare se l'utente e presente.
+
+```php
+<?php
+session_start();
+
+if (!isset($_SESSION["utente_id"])) {
+    echo "Devi accedere";
+    exit;
+}
+```
+
+## Errore comune: dimenticare session_start
+
+Se usi `$_SESSION` senza `session_start()`, PHP non apre la sessione. Metti `session_start()` all'inizio del file, prima di stampare HTML.

@@ -1,0 +1,134 @@
+---
+title: Parametri e valori di ritorno
+description: Come passare dati a una funzione e ricevere un risultato.
+---
+
+## Parametri e argomenti
+
+Una funzione puo ricevere dati dall'esterno. I nomi scritti nella definizione si chiamano **parametri**.
+
+```php
+<?php
+function saluta($nome) {
+    echo "Ciao $nome";
+}
+
+saluta("Luca");
+```
+
+`$nome` e il parametro. `"Luca"` e l'argomento passato quando chiami la funzione.
+
+## Piu parametri
+
+```php
+<?php
+function somma($a, $b) {
+    echo $a + $b;
+}
+
+somma(3, 4);
+```
+
+Output:
+
+```text
+7
+```
+
+## return
+
+`return` restituisce un valore a chi ha chiamato la funzione.
+
+```php
+<?php
+function somma($a, $b) {
+    return $a + $b;
+}
+
+$totale = somma(3, 4);
+echo $totale;
+```
+
+La funzione non stampa direttamente. Calcola e consegna il risultato.
+
+## Valori predefiniti
+
+Puoi dare un valore di default a un parametro.
+
+```php
+<?php
+function saluta($nome = "ospite") {
+    return "Ciao $nome";
+}
+
+echo saluta();
+```
+
+Output:
+
+```text
+Ciao ospite
+```
+
+## Type declarations di base
+
+Puoi indicare che tipo di dato ti aspetti.
+
+```php
+<?php
+function calcolaIva(float $prezzo): float {
+    return $prezzo * 0.22;
+}
+```
+
+`float $prezzo` dice che il parametro deve essere un numero decimale. `: float` dice che la funzione restituisce un numero decimale.
+
+Queste indicazioni rendono gli errori piu facili da trovare.
+
+## echo o return?
+
+Usa `echo` quando vuoi mostrare qualcosa subito. Usa `return` quando vuoi consegnare un valore al resto del programma.
+
+```php
+<?php
+function creaSaluto($nome) {
+    return "Ciao $nome";
+}
+
+$messaggio = creaSaluto("Luca");
+echo $messaggio;
+```
+
+Questa funzione e piu flessibile: puoi stampare il messaggio, salvarlo, mandarlo in una email o combinarlo con altro testo.
+
+## Parametri con nomi chiari
+
+I parametri sono variabili locali della funzione. Scegli nomi che spiegano il loro ruolo.
+
+```php
+<?php
+function calcolaTotale($prezzo, $quantita) {
+    return $prezzo * $quantita;
+}
+```
+
+`$prezzo` e `$quantita` sono piu chiari di `$a` e `$b`, tranne negli esempi matematici molto piccoli.
+
+## Errore comune: dimenticare di usare il valore di ritorno
+
+```php
+<?php
+function somma($a, $b) {
+    return $a + $b;
+}
+
+somma(2, 3);
+```
+
+La funzione calcola `5`, ma il valore viene perso. Se ti serve, salvalo o stampalo:
+
+```php
+<?php
+$totale = somma(2, 3);
+echo $totale;
+```

@@ -1,0 +1,110 @@
+---
+title: Break e continue
+description: Come interrompere o saltare un passaggio dentro un ciclo.
+---
+
+## Due comandi per controllare un ciclo
+
+Dentro un ciclo puoi avere bisogno di fermarti prima o saltare un giro. PHP offre due parole utili:
+
+- `break` interrompe il ciclo
+- `continue` salta al giro successivo
+
+## Uscire con break
+
+Immagina di cercare un nome in una lista. Quando lo trovi, non serve continuare.
+
+```php
+<?php
+$nomi = ["Luca", "Sara", "Marta"];
+
+foreach ($nomi as $nome) {
+    if ($nome === "Sara") {
+        echo "Trovata Sara";
+        break;
+    }
+}
+```
+
+Appena PHP incontra `break`, esce dal ciclo.
+
+## Saltare un giro con continue
+
+`continue` non chiude il ciclo. Salta solo il resto del blocco corrente.
+
+```php
+<?php
+$numeri = [1, 2, 3, 4, 5];
+
+foreach ($numeri as $numero) {
+    if ($numero % 2 === 0) {
+        continue;
+    }
+
+    echo $numero . "\n";
+}
+```
+
+Output:
+
+```text
+1
+3
+5
+```
+
+I numeri pari vengono saltati.
+
+## Quando usarli
+
+`break` e utile quando hai gia ottenuto quello che cercavi. `continue` e utile quando un elemento non ti interessa, ma vuoi controllare gli altri.
+
+> **Attenzione:** se usi troppi `break` e `continue`, il ciclo puo diventare difficile da leggere. Usali quando rendono il codice piu chiaro.
+
+## break in un ciclo for
+
+`break` non funziona solo con `foreach`. Puoi usarlo anche con `for` e `while`.
+
+```php
+<?php
+for ($numero = 1; $numero <= 10; $numero++) {
+    if ($numero === 4) {
+        break;
+    }
+
+    echo $numero . "\n";
+}
+```
+
+Output:
+
+```text
+1
+2
+3
+```
+
+Quando `$numero` diventa `4`, il ciclo si ferma.
+
+## continue per filtrare dati
+
+`continue` e utile quando vuoi ignorare alcuni elementi prima di fare il lavoro principale.
+
+```php
+<?php
+$nomi = ["Luca", "", "Sara"];
+
+foreach ($nomi as $nome) {
+    if ($nome === "") {
+        continue;
+    }
+
+    echo "Ciao $nome\n";
+}
+```
+
+La stringa vuota viene saltata. Il resto del ciclo lavora solo sui nomi validi.
+
+## Domanda guida
+
+Prima di usare uno dei due comandi chiediti: voglio fermare tutta la ripetizione o saltare solo questo elemento? La risposta ti dice se scegliere `break` o `continue`.

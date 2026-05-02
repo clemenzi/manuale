@@ -1,0 +1,118 @@
+---
+title: Variabili e costanti
+description: Come salvare valori in PHP con variabili e costanti.
+---
+
+## Variabili
+
+Una variabile e una specie di scatola con un'etichetta. Dentro puoi mettere un valore e riprenderlo piu tardi.
+
+In PHP le variabili iniziano con `$`.
+
+```php
+<?php
+$nome = "Luca";
+$eta = 25;
+
+echo $nome;
+```
+
+`$nome` contiene il testo `"Luca"`. `$eta` contiene il numero `25`.
+
+## Cambiare valore
+
+Una variabile puo cambiare durante il programma.
+
+```php
+<?php
+$totale = 10;
+$totale = $totale + 5;
+
+echo $totale;
+```
+
+Output:
+
+```text
+15
+```
+
+PHP prende il vecchio valore di `$totale`, aggiunge `5` e salva il nuovo valore nella stessa variabile.
+
+## Nomi validi
+
+Un nome di variabile puo contenere lettere, numeri e `_`, ma non puo iniziare con un numero.
+
+```php
+<?php
+$nomeUtente = "Sara";
+$prezzo_finale = 19.90;
+```
+
+Scegli nomi chiari. `$prezzo` e meglio di `$p`.
+
+## Costanti
+
+Una costante salva un valore che non dovrebbe cambiare.
+
+```php
+<?php
+const IVA = 22;
+
+echo IVA;
+```
+
+Le costanti non usano `$`. Per convenzione spesso hanno nomi in maiuscolo.
+
+Puoi anche usare `define`:
+
+```php
+<?php
+define("NOME_SITO", "Manuale PHP");
+
+echo NOME_SITO;
+```
+
+Usa una variabile quando il valore puo cambiare. Usa una costante quando il valore deve restare fisso.
+
+## Variabili nei calcoli
+
+Le variabili diventano utili quando il valore viene riusato piu volte.
+
+```php
+<?php
+$prezzo = 40;
+$sconto = 8;
+$totale = $prezzo - $sconto;
+
+echo "Totale: $totale euro";
+```
+
+Se domani il prezzo cambia, modifichi solo `$prezzo`. Il calcolo continua a funzionare.
+
+## Errore comune: dimenticare il dollaro
+
+In PHP `$nome` e `nome` non sono la stessa cosa.
+
+```php
+<?php
+$nome = "Luca";
+echo nome;
+```
+
+Questo codice e sbagliato perche `nome` senza `$` non indica la variabile. Quando vuoi leggere o modificare una variabile, usa sempre il dollaro.
+
+## Scegliere tra const e define
+
+Per iniziare, usa `const` quando dichiari costanti semplici nei tuoi file.
+
+```php
+<?php
+const COSTO_SPEDIZIONE = 4.90;
+```
+
+`define` esiste ancora e lo incontrerai in molti progetti, ma `const` e piu leggibile nei casi base.
+
+## Prova tu
+
+Crea tre variabili: `$nome`, `$prezzo` e `$quantita`. Calcola il totale e stampa una frase come `Luca deve pagare 30 euro`.

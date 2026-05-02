@@ -1,0 +1,88 @@
+---
+title: Installazione e ambiente
+description: Come installare PHP, scegliere un editor e verificare che l'ambiente funzioni.
+---
+
+## Cosa ti serve
+
+Per scrivere PHP ti servono tre cose:
+
+1. PHP installato sul computer
+2. un editor di testo per scrivere codice
+3. un terminale per eseguire i comandi
+
+L'editor puo essere Visual Studio Code, PhpStorm o un altro programma simile. Il terminale e la finestra dove scrivi comandi come `php --version`.
+
+## Installare PHP
+
+Su macOS puoi usare Homebrew:
+
+```bash
+brew install php
+```
+
+Su Windows puoi installare PHP da `php.net` oppure usare un pacchetto locale come XAMPP. Su Linux di solito puoi usare il gestore pacchetti della distribuzione.
+
+Non importa il metodo scelto: alla fine il comando `php` deve funzionare nel terminale.
+
+## Verificare l'installazione
+
+Apri il terminale e scrivi:
+
+```bash
+php --version
+```
+
+Dovresti vedere una risposta simile:
+
+```text
+PHP 8.3.0
+```
+
+Il numero puo essere diverso. L'importante e che il terminale riconosca PHP e mostri una versione.
+
+## Scegliere una cartella di lavoro
+
+Crea una cartella per gli esercizi, per esempio `corso-php`. Dentro questa cartella metterai i file `.php`.
+
+```bash
+mkdir corso-php
+cd corso-php
+```
+
+`mkdir` crea la cartella. `cd` entra nella cartella.
+
+## Editor consigliato
+
+Un buon editor ti aiuta con colori, indentazione e segnalazione degli errori. Visual Studio Code va benissimo per iniziare.
+
+> **Suggerimento:** salva sempre i file PHP con estensione `.php`, per esempio `index.php`. Senza questa estensione, PHP non sa che deve eseguire il file come codice.
+
+## Se il comando non funziona
+
+Se il terminale risponde con un messaggio simile a `command not found` o `php non e riconosciuto`, PHP non e ancora raggiungibile dal terminale.
+
+Questo non significa che hai sbagliato tutto. Di solito vuol dire una di queste cose:
+
+- PHP non e stato installato
+- il terminale va chiuso e riaperto
+- il percorso di PHP non e stato aggiunto al `PATH`
+
+Il `PATH` e una lista di cartelle in cui il terminale cerca i programmi. Quando scrivi `php`, il terminale guarda in quelle cartelle e prova a trovare l'eseguibile di PHP.
+
+## Piccola verifica finale
+
+Crea un file chiamato `prova.php` con questo contenuto:
+
+```php
+<?php
+echo "PHP funziona";
+```
+
+Poi eseguilo dalla stessa cartella:
+
+```bash
+php prova.php
+```
+
+Se vedi `PHP funziona`, l'ambiente e pronto. Nel prossimo passo potrai concentrarti sul codice, non sull'installazione.

@@ -1,0 +1,116 @@
+---
+title: Date e tempo
+description: Come rappresentare date, orari e intervalli nei programmi PHP.
+---
+
+## Perche le date richiedono attenzione
+
+Una data sembra semplice, ma puo includere giorno, mese, anno, ora, minuti, secondi e fuso orario. PHP offre `DateTime` per gestirle in modo piu ordinato.
+
+## Creare una data
+
+```php
+<?php
+$oggi = new DateTime();
+
+echo $oggi->format('d/m/Y');
+```
+
+`new DateTime()` crea un oggetto con data e ora attuali. `format` decide come mostrarlo.
+
+## Creare una data specifica
+
+```php
+<?php
+$scadenza = new DateTime('2026-06-15');
+
+echo $scadenza->format('d/m/Y');
+```
+
+Output:
+
+```text
+15/06/2026
+```
+
+## Fusi orari
+
+Il fuso orario dice a quale zona del mondo si riferisce l'orario.
+
+```php
+<?php
+$roma = new DateTime('now', new DateTimeZone('Europe/Rome'));
+
+echo $roma->format('H:i');
+```
+
+Usare il fuso giusto evita risultati strani, soprattutto nei siti usati da persone in paesi diversi.
+
+## Timestamp
+
+Un timestamp e un numero che rappresenta un momento nel tempo.
+
+```php
+<?php
+echo time();
+```
+
+E utile per confronti tecnici, ma per codice leggibile spesso `DateTime` e piu chiaro.
+
+## Confrontare date
+
+```php
+<?php
+$oggi = new DateTime('2026-05-02');
+$scadenza = new DateTime('2026-05-10');
+
+if ($oggi < $scadenza) {
+    echo "Sei ancora in tempo";
+}
+```
+
+PHP confronta i due momenti e decide quale viene prima.
+
+## Aggiungere o togliere tempo
+
+Con `modify` puoi spostare una data avanti o indietro.
+
+```php
+<?php
+$scadenza = new DateTime('2026-05-02');
+$scadenza->modify('+7 days');
+
+echo $scadenza->format('d/m/Y');
+```
+
+Output:
+
+```text
+09/05/2026
+```
+
+Questo e utile per scadenze, promemoria e periodi di prova.
+
+## Differenza tra due date
+
+```php
+<?php
+$inizio = new DateTime('2026-05-02');
+$fine = new DateTime('2026-05-10');
+
+$differenza = $inizio->diff($fine);
+
+echo $differenza->days;
+```
+
+Output:
+
+```text
+8
+```
+
+`diff` restituisce un intervallo. La proprieta `days` contiene il numero totale di giorni tra le due date.
+
+## Errore comune: formato ambiguo
+
+Date come `05/06/2026` possono essere lette come 5 giugno o 6 maggio, a seconda del contesto. Quando crei date nel codice, preferisci formati chiari come `2026-06-05`.

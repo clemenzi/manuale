@@ -1,0 +1,147 @@
+---
+title: Operatori
+description: Come usare operatori aritmetici, di confronto, logici e di assegnazione.
+---
+
+## Cosa sono gli operatori
+
+Gli operatori sono simboli che fanno qualcosa con i valori: sommano, confrontano, assegnano o combinano condizioni.
+
+## Operatori aritmetici
+
+Servono per fare calcoli.
+
+```php
+<?php
+$prezzo = 20;
+$sconto = 5;
+
+echo $prezzo - $sconto;
+```
+
+Operatori comuni:
+
+- `+` somma
+- `-` sottrazione
+- `*` moltiplicazione
+- `/` divisione
+- `%` resto della divisione
+
+```php
+<?php
+echo 10 % 3;
+```
+
+Output:
+
+```text
+1
+```
+
+## Assegnazione
+
+`=` mette un valore in una variabile.
+
+```php
+<?php
+$totale = 15;
+```
+
+Puoi aggiornare un valore in modo breve:
+
+```php
+<?php
+$totale = 10;
+$totale += 5;
+
+echo $totale;
+```
+
+## Confronto
+
+Gli operatori di confronto producono `true` o `false`.
+
+```php
+<?php
+$eta = 18;
+var_dump($eta >= 18);
+```
+
+Operatori comuni:
+
+- `==` uguale come valore
+- `===` uguale come valore e tipo
+- `!=` diverso
+- `>` maggiore
+- `<` minore
+- `>=` maggiore o uguale
+- `<=` minore o uguale
+
+> **Suggerimento:** preferisci `===` quando vuoi un confronto preciso.
+
+## Operatori logici
+
+Servono a unire condizioni.
+
+```php
+<?php
+$eta = 20;
+$haBiglietto = true;
+
+if ($eta >= 18 && $haBiglietto) {
+    echo "Puoi entrare";
+}
+```
+
+`&&` significa "e". `||` significa "oppure". `!` nega una condizione.
+
+Le parentesi aiutano a rendere chiaro l'ordine dei controlli.
+
+## Precedenza: chi viene calcolato prima
+
+PHP segue un ordine nei calcoli. Moltiplicazione e divisione vengono prima di somma e sottrazione.
+
+```php
+<?php
+echo 2 + 3 * 4;
+```
+
+Output:
+
+```text
+14
+```
+
+Prima viene calcolato `3 * 4`, poi viene aggiunto `2`.
+
+Se vuoi un ordine diverso, usa le parentesi:
+
+```php
+<?php
+echo (2 + 3) * 4;
+```
+
+Output:
+
+```text
+20
+```
+
+## Errore comune: usare = al posto di ===
+
+`=` assegna un valore. `===` confronta due valori.
+
+```php
+<?php
+$eta = 18;
+
+if ($eta === 18) {
+    echo "Hai 18 anni";
+}
+```
+
+Dentro una condizione quasi sempre vuoi confrontare, non assegnare.
+
+## Prova tu
+
+Crea `$prezzo`, `$quantita` e `$sconto`. Calcola il totale usando almeno un operatore aritmetico e poi controlla con `if` se il totale e maggiore di 50.

@@ -1,0 +1,100 @@
+---
+title: Composer
+description: Come installare librerie PHP e gestire dipendenze di progetto.
+---
+
+## Cosa e Composer
+
+Composer e il gestore di dipendenze piu usato in PHP. Una dipendenza e una libreria esterna che il tuo progetto usa per non riscrivere tutto da zero.
+
+Esempio: invece di scrivere da solo una libreria per inviare email, puoi installarne una gia pronta.
+
+## composer.json
+
+Il file `composer.json` descrive il progetto e le librerie richieste.
+
+Puoi crearne uno con:
+
+```bash
+composer init
+```
+
+Per iniziare puoi anche installare direttamente un pacchetto.
+
+```bash
+composer require monolog/monolog
+```
+
+Composer aggiorna `composer.json` e scarica il codice nella cartella `vendor`.
+
+## Installare dipendenze
+
+Se scarichi un progetto che ha gia `composer.json`, esegui:
+
+```bash
+composer install
+```
+
+Composer legge anche `composer.lock`, se presente, e installa le versioni previste.
+
+## Autoload
+
+Composer crea un file di autoload che carica classi e librerie.
+
+```php
+<?php
+require __DIR__ . '/vendor/autoload.php';
+```
+
+Dopo questa riga puoi usare le librerie installate.
+
+## Aggiornare con cautela
+
+Per aggiornare le librerie:
+
+```bash
+composer update
+```
+
+Questo comando puo cambiare versioni. Nei progetti reali va usato con attenzione e seguito da test.
+
+## Regola pratica
+
+- `composer require` aggiunge una libreria
+- `composer install` installa cio che il progetto richiede
+- `composer update` aggiorna le versioni consentite
+
+Composer diventa importante quando il progetto smette di essere un singolo file e inizia a usare librerie esterne.
+
+## composer.lock
+
+Quando installi dipendenze, Composer crea spesso anche `composer.lock`. Questo file registra le versioni esatte installate.
+
+Il suo scopo e semplice: se un'altra persona installa il progetto, riceve le stesse versioni delle librerie. Cosi si evitano differenze difficili da capire.
+
+## Cartella vendor
+
+La cartella `vendor` contiene il codice scaricato da Composer. Di solito non la modifichi a mano.
+
+In molti progetti `vendor` non viene salvata in Git. Si salva invece `composer.json` e `composer.lock`, poi ogni persona esegue:
+
+```bash
+composer install
+```
+
+## Usare una libreria installata
+
+Dopo l'autoload, puoi usare classi fornite dai pacchetti.
+
+```php
+<?php
+require __DIR__ . '/vendor/autoload.php';
+
+// Qui puoi usare le librerie installate con Composer
+```
+
+Ogni libreria ha la propria documentazione, ma il punto di ingresso nel progetto PHP resta quasi sempre `vendor/autoload.php`.
+
+## Regola pratica
+
+Non installare librerie per ogni piccola cosa. Prima capisci il problema. Poi scegli una libreria quando ti evita lavoro complesso o delicato.

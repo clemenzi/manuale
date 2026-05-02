@@ -172,6 +172,107 @@ export default defineConfig({
           ],
         },
         {
+          label: "PHP",
+          items: [
+            "php",
+            {
+              label: "Le basi",
+              collapsed: false,
+              items: [
+                "php/basics/installation",
+                "php/basics/first-program",
+                "php/basics/base-syntax",
+                "php/basics/comments",
+                "php/basics/variables-constants",
+                "php/basics/data-types",
+                "php/basics/operators",
+              ],
+            },
+            {
+              label: "Controllo del flusso",
+              collapsed: false,
+              items: [
+                "php/flow-control/conditions",
+                "php/flow-control/loops",
+                "php/flow-control/break-continue",
+              ],
+            },
+            {
+              label: "Funzioni",
+              collapsed: false,
+              items: [
+                "php/functions/functions",
+                "php/functions/parameters-return-values",
+                "php/functions/scope",
+              ],
+            },
+            {
+              label: "Strutture dati",
+              collapsed: false,
+              items: [
+                "php/data-structures/strings",
+                "php/data-structures/array",
+                "php/data-structures/associative-arrays",
+                "php/data-structures/dates-times",
+              ],
+            },
+            {
+              label: "PHP per applicazioni web",
+              collapsed: true,
+              items: [
+                {
+                  label: "Pagine, form e stato",
+                  collapsed: false,
+                  items: [
+                    "php/web/php-html",
+                    "php/web/form-get-post",
+                    "php/web/sessions-cookies",
+                    "php/web/file-upload",
+                  ],
+                },
+                {
+                  label: "Database con PDO",
+                  collapsed: true,
+                  items: [
+                    "php/database/pdo",
+                    "php/database/prepared-statements",
+                    "php/database/crud",
+                  ],
+                },
+              ],
+            },
+            {
+              label: "Organizzare progetti PHP",
+              collapsed: true,
+              items: [
+                {
+                  label: "Programmazione a oggetti",
+                  collapsed: true,
+                  items: [
+                    "php/oop/classes-objects",
+                    "php/oop/constructors-visibility",
+                    "php/oop/inheritance-interfaces-traits",
+                  ],
+                },
+                {
+                  label: "Strumenti",
+                  collapsed: true,
+                  items: [
+                    "php/tools/composer",
+                    "php/tools/autoload-namespaces",
+                    "php/tools/testing-best-practices",
+                  ],
+                },
+              ],
+            },
+            {
+              label: "Gestione degli errori",
+              collapsed: true,
+              items: ["php/errors/common-errors", "php/errors/debugging", "php/errors/exceptions"],
+            },
+          ],
+        },
+        {
           label: "SQL",
           items: [
             "sql",

@@ -1,0 +1,125 @@
+---
+title: Array
+description: Come raccogliere piu valori in una sola variabile.
+---
+
+## Cosa e un array
+
+Un array e una variabile che contiene piu valori. Pensalo come una fila di caselle numerate.
+
+```php
+<?php
+$frutti = ["mela", "pera", "banana"];
+```
+
+Ogni elemento ha una posizione, chiamata **indice**. In PHP il primo indice e `0`.
+
+## Leggere un elemento
+
+```php
+<?php
+$frutti = ["mela", "pera", "banana"];
+
+echo $frutti[0];
+```
+
+Output:
+
+```text
+mela
+```
+
+`$frutti[1]` contiene `"pera"`.
+
+## Aggiungere elementi
+
+Puoi aggiungere un valore in fondo all'array con `[]`.
+
+```php
+<?php
+$frutti = ["mela", "pera"];
+$frutti[] = "banana";
+
+print_r($frutti);
+```
+
+`print_r` mostra una struttura in modo leggibile, utile mentre studi.
+
+## Contare elementi
+
+```php
+<?php
+$frutti = ["mela", "pera", "banana"];
+
+echo count($frutti);
+```
+
+Output:
+
+```text
+3
+```
+
+## Scorrere un array
+
+Con `foreach` puoi lavorare su ogni elemento.
+
+```php
+<?php
+$frutti = ["mela", "pera", "banana"];
+
+foreach ($frutti as $frutto) {
+    echo $frutto . "\n";
+}
+```
+
+A ogni giro, `$frutto` contiene un valore diverso.
+
+## Modificare un elemento
+
+Puoi cambiare un valore usando il suo indice.
+
+```php
+<?php
+$frutti = ["mela", "pera", "banana"];
+$frutti[1] = "arancia";
+
+print_r($frutti);
+```
+
+Ora al posto di `pera` trovi `arancia`.
+
+## Errore comune: dimenticare che si parte da zero
+
+Se un array ha tre elementi, gli indici sono `0`, `1` e `2`.
+
+```php
+<?php
+$frutti = ["mela", "pera", "banana"];
+
+echo $frutti[3];
+```
+
+`$frutti[3]` non esiste. Il terzo elemento e `$frutti[2]`.
+
+## A cosa servono davvero gli array
+
+Gli array sono utili quando hai piu valori dello stesso tipo: nomi, prezzi, voti, messaggi, prodotti.
+
+```php
+<?php
+$prezzi = [10, 20, 15];
+$totale = 0;
+
+foreach ($prezzi as $prezzo) {
+    $totale += $prezzo;
+}
+
+echo $totale;
+```
+
+Qui l'array permette di calcolare il totale senza creare tre variabili separate.
+
+## Prova tu
+
+Crea un array con tre nomi. Poi usa `foreach` per stampare `Ciao` seguito da ogni nome.

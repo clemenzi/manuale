@@ -1,0 +1,117 @@
+---
+title: Classi e oggetti
+description: I concetti essenziali della programmazione a oggetti in PHP.
+---
+
+## Perche usare gli oggetti
+
+Quando un programma cresce, variabili e funzioni sparse possono diventare difficili da seguire. La programmazione a oggetti aiuta a tenere insieme dati e comportamenti collegati.
+
+## Classe e oggetto
+
+Una **classe** e un modello. Un **oggetto** e una copia concreta creata da quel modello.
+
+```php
+<?php
+class Prodotto {
+    public string $nome;
+    public float $prezzo;
+}
+
+$quaderno = new Prodotto();
+$quaderno->nome = "Quaderno";
+$quaderno->prezzo = 3.50;
+
+echo $quaderno->nome;
+```
+
+`new Prodotto()` crea un oggetto.
+
+## Proprieta
+
+Le proprieta sono variabili dentro una classe.
+
+```php
+public string $nome;
+public float $prezzo;
+```
+
+`public` significa che puoi leggere e modificare la proprieta dall'esterno.
+
+## Metodi
+
+I metodi sono funzioni dentro una classe.
+
+```php
+<?php
+class Prodotto {
+    public string $nome;
+    public float $prezzo;
+
+    public function descrizione(): string {
+        return $this->nome . " costa " . $this->prezzo . " euro";
+    }
+}
+
+$prodotto = new Prodotto();
+$prodotto->nome = "Penna";
+$prodotto->prezzo = 1.20;
+
+echo $prodotto->descrizione();
+```
+
+`$this` indica l'oggetto corrente.
+
+## Quando iniziare a usarli
+
+All'inizio puoi scrivere programmi semplici con variabili, array e funzioni. Gli oggetti diventano utili quando vuoi rappresentare concetti del progetto: utenti, prodotti, ordini, articoli.
+
+## Oggetti e array associativi
+
+Un array associativo puo descrivere un prodotto:
+
+```php
+<?php
+$prodotto = [
+    "nome" => "Penna",
+    "prezzo" => 1.20,
+];
+```
+
+Una classe rende esplicito che quei dati appartengono a un concetto preciso.
+
+```php
+<?php
+class Prodotto {
+    public string $nome;
+    public float $prezzo;
+}
+```
+
+La classe dice: un prodotto ha un nome e un prezzo. Questo aiuta quando il progetto cresce.
+
+## Creare piu oggetti
+
+```php
+<?php
+$penna = new Prodotto();
+$penna->nome = "Penna";
+$penna->prezzo = 1.20;
+
+$quaderno = new Prodotto();
+$quaderno->nome = "Quaderno";
+$quaderno->prezzo = 3.50;
+```
+
+`$penna` e `$quaderno` sono due oggetti diversi creati dallo stesso modello.
+
+## Errore comune: dimenticare new
+
+Per creare un oggetto devi usare `new`.
+
+```php
+<?php
+$prodotto = new Prodotto();
+```
+
+Senza `new`, non stai creando un'istanza della classe.

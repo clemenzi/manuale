@@ -1,0 +1,114 @@
+---
+title: Form, GET e POST
+description: Come ricevere dati inviati da un form HTML in PHP.
+---
+
+## Cosa fa un form
+
+Un form HTML permette a una persona di inserire dati e inviarli al server. PHP puo leggere quei dati e usarli.
+
+## Un form con GET
+
+```php
+<form action="cerca.php" method="get">
+    <input type="text" name="q">
+    <button type="submit">Cerca</button>
+</form>
+```
+
+`action` indica quale file riceve i dati. `method` indica come vengono inviati.
+
+In `cerca.php` puoi leggere il campo cosi:
+
+```php
+<?php
+$ricerca = $_GET["q"] ?? "";
+echo "Hai cercato: " . htmlspecialchars($ricerca, ENT_QUOTES, 'UTF-8');
+```
+
+`$_GET` contiene i dati inviati con metodo GET. `?? ""` evita errori se il campo non esiste.
+
+## Quando usare GET
+
+GET mette i dati nell'indirizzo della pagina. Va bene per ricerche e filtri.
+
+Esempio:
+
+```text
+cerca.php?q=php
+```
+
+Non usarlo per password o dati sensibili.
+
+## Un form con POST
+
+```php
+<form action="contatto.php" method="post">
+    <input type="text" name="nome">
+    <textarea name="messaggio"></textarea>
+    <button type="submit">Invia</button>
+</form>
+```
+
+In `contatto.php`:
+
+```php
+<?php
+$nome = $_POST["nome"] ?? "";
+$messaggio = $_POST["messaggio"] ?? "";
+
+echo "Grazie, " . htmlspecialchars($nome, ENT_QUOTES, 'UTF-8');
+```
+
+`$_POST` contiene i dati inviati con metodo POST.
+
+## Validare sempre
+
+Non fidarti mai dei dati ricevuti da un form. Controlla che ci siano, che abbiano il formato giusto e che non siano troppo lunghi.
+
+```php
+<?php
+if ($nome === "") {
+    echo "Il nome e obbligatorio";
+}
+```
+
+La validazione rende il programma piu sicuro e piu gentile con chi lo usa.
+
+## Mantenere il valore dopo l'invio
+
+Quando un form contiene errori, e gentile mostrare di nuovo i valori inseriti.
+
+```php
+<?php
+$nome = $_POST["nome"] ?? "";
+?>
+
+<form method="post">
+    <input type="text" name="nome" value="<?= htmlspecialchars($nome, ENT_QUOTES, 'UTF-8') ?>">
+    <button type="submit">Invia</button>
+</form>
+```
+
+Se il form viene inviato, `$nome` contiene il valore ricevuto. `htmlspecialchars` lo rende sicuro prima di rimetterlo nell'HTML.
+
+## Controllare il metodo della richiesta
+
+Una pagina puo essere aperta normalmente o ricevere un invio dal form. Puoi distinguere i due casi con `$_SERVER["REQUEST_METHOD"]`.
+
+```php
+<?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $nome = $_POST["nome"] ?? "";
+
+    if ($nome === "") {
+        echo "Il nome e obbligatorio";
+    }
+}
+```
+
+In questo modo validi i dati solo quando il form e stato inviato.
+
+## Regola pratica
+
+Usa GET quando il risultato puo stare nell'indirizzo, come una ricerca. Usa POST quando stai inviando dati che cambiano qualcosa o che non vuoi mostrare nell'URL.

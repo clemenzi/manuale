@@ -1,0 +1,97 @@
+---
+title: Il primo programma PHP
+description: Come creare ed eseguire un primo file PHP partendo da zero.
+---
+
+## Creare il file
+
+Apri la cartella degli esercizi e crea un file chiamato `ciao.php`.
+
+Scrivi questo codice:
+
+```php
+<?php
+echo "Ciao, PHP!";
+```
+
+La riga `<?php` dice: da qui inizia codice PHP. La parola `echo` mostra un testo.
+
+## Eseguire il file dal terminale
+
+Apri il terminale nella stessa cartella del file e scrivi:
+
+```bash
+php ciao.php
+```
+
+Output:
+
+```text
+Ciao, PHP!
+```
+
+PHP legge il file ed esegue le istruzioni dall'alto verso il basso.
+
+## Aggiungere una seconda istruzione
+
+Modifica il file cosi:
+
+```php
+<?php
+echo "Ciao, PHP!\n";
+echo "Questo e il mio primo programma.";
+```
+
+`\n` crea una nuova riga nel terminale.
+
+Output:
+
+```text
+Ciao, PHP!
+Questo e il mio primo programma.
+```
+
+## Usare il server locale integrato
+
+PHP puo anche avviare un piccolo server locale. Serve quando vuoi vedere una pagina nel browser.
+
+Crea `index.php`:
+
+```php
+<?php
+echo "<h1>Ciao dal browser</h1>";
+```
+
+Poi esegui:
+
+```bash
+php -S localhost:8000
+```
+
+Apri `http://localhost:8000` nel browser. Vedrai il titolo prodotto da PHP.
+
+> **Nota:** il server locale serve per studiare e provare. Per pubblicare un sito online servono impostazioni diverse.
+
+## Capire cosa hai appena fatto
+
+Hai usato PHP in due modi diversi.
+
+Nel primo caso hai eseguito un file dal terminale. Questo e utile per esercizi piccoli, prove veloci e script che non devono mostrare una pagina web.
+
+Nel secondo caso hai avviato un server locale. Il browser ha chiesto una pagina a `localhost:8000`, PHP ha eseguito `index.php` e ha mandato al browser il risultato.
+
+`localhost` significa "questo computer". Non e un sito pubblico: e un indirizzo speciale che usi per provare il progetto sulla tua macchina.
+
+## Errore comune: aprire il file direttamente
+
+Se apri `index.php` facendo doppio clic sul file, il browser potrebbe mostrarti il codice o non eseguirlo correttamente. Per eseguire PHP serve passare da PHP stesso, con il comando:
+
+```bash
+php -S localhost:8000
+```
+
+Poi apri l'indirizzo nel browser.
+
+## Prova tu
+
+Modifica il messaggio dentro `echo`, salva il file e ricarica la pagina. Se il testo cambia, hai completato il ciclo base: scrivi, salvi, esegui, osservi il risultato.

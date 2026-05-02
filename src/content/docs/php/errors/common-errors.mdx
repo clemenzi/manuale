@@ -1,0 +1,100 @@
+---
+title: Errori comuni
+description: Come riconoscere gli errori PHP piu frequenti e leggerne i messaggi.
+---
+
+## Leggere un errore
+
+Un messaggio di errore di solito dice tre cose:
+
+1. che tipo di errore e
+2. in quale file e successo
+3. a quale riga guardare
+
+La riga indicata non e sempre la causa esatta, ma e un ottimo punto da cui partire.
+
+## Parse error
+
+Un parse error significa che PHP non riesce a capire la sintassi.
+
+```php
+<?php
+echo "Ciao"
+```
+
+Qui manca il punto e virgola. PHP puo mostrare un errore vicino alla riga successiva, perche si accorge tardi del problema.
+
+## Warning
+
+Un warning segnala un problema, ma spesso il programma continua.
+
+```php
+<?php
+include "file-che-non-esiste.php";
+```
+
+PHP avvisa che non trova il file.
+
+## Notice o warning su variabili mancanti
+
+```php
+<?php
+echo $nome;
+```
+
+Se `$nome` non e stata definita, PHP segnala il problema. Prima di usare una variabile, assicurati che abbia un valore.
+
+```php
+<?php
+$nome = $_GET["nome"] ?? "ospite";
+```
+
+## TypeError
+
+Un `TypeError` puo comparire quando passi un tipo di dato sbagliato.
+
+```php
+<?php
+function somma(int $a, int $b): int {
+    return $a + $b;
+}
+
+somma("ciao", 3);
+```
+
+La funzione si aspettava numeri interi, ma riceve una stringa.
+
+## Metodo pratico
+
+Quando vedi un errore:
+
+1. leggi il tipo di errore
+2. apri il file indicato
+3. guarda la riga indicata e quella prima
+4. controlla parentesi, virgolette e punti e virgola
+5. riduci il codice finche il problema diventa visibile
+
+## Esempio di lettura del messaggio
+
+Un messaggio puo assomigliare a questo:
+
+```text
+Parse error: syntax error, unexpected token "echo" in index.php on line 5
+```
+
+Leggilo pezzo per pezzo:
+
+- `Parse error` indica un problema di sintassi
+- `unexpected token "echo"` dice che PHP ha trovato `echo` dove non se lo aspettava
+- `index.php` e il file
+- `line 5` e la riga da controllare
+
+Spesso l'errore vero e nella riga precedente: un punto e virgola mancante, una parentesi non chiusa o una virgoletta dimenticata.
+
+## Warning non significa "ignorami"
+
+Un warning puo lasciare continuare il programma, ma va comunque capito. Se PHP avvisa che un file manca o che una variabile non esiste, il risultato della pagina potrebbe essere sbagliato.
+
+## Prova tu
+
+Crea apposta un piccolo errore, per esempio togli un punto e virgola. Leggi il messaggio e prova a trovare file e riga. Poi correggi e riesegui il file.

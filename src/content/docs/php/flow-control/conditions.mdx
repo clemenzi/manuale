@@ -1,0 +1,136 @@
+---
+title: Condizioni
+description: Come far prendere decisioni a un programma PHP con if, else e switch.
+---
+
+## A cosa servono le condizioni
+
+Una condizione e un bivio. Se succede una cosa, il programma fa un'azione. Altrimenti ne fa un'altra.
+
+## if
+
+`if` esegue un blocco solo quando la condizione e vera.
+
+```php
+<?php
+$eta = 20;
+
+if ($eta >= 18) {
+    echo "Sei maggiorenne";
+}
+```
+
+La condizione sta tra parentesi tonde. Le istruzioni da eseguire stanno tra parentesi graffe.
+
+## else
+
+`else` copre il caso contrario.
+
+```php
+<?php
+$eta = 16;
+
+if ($eta >= 18) {
+    echo "Sei maggiorenne";
+} else {
+    echo "Sei minorenne";
+}
+```
+
+## elseif
+
+`elseif` permette di controllare piu casi.
+
+```php
+<?php
+$voto = 7;
+
+if ($voto >= 9) {
+    echo "Ottimo";
+} elseif ($voto >= 6) {
+    echo "Sufficiente";
+} else {
+    echo "Da ripassare";
+}
+```
+
+PHP controlla dall'alto verso il basso e si ferma al primo blocco valido.
+
+## switch
+
+`switch` e comodo quando confronti lo stesso valore con piu possibilita.
+
+```php
+<?php
+$giorno = "sabato";
+
+switch ($giorno) {
+    case "sabato":
+    case "domenica":
+        echo "Weekend";
+        break;
+    default:
+        echo "Giorno lavorativo";
+}
+```
+
+`break` evita che PHP continui nei casi successivi. `default` gestisce tutto quello che non e stato previsto prima.
+
+## Condizioni booleane
+
+Una condizione deve diventare `true` o `false`.
+
+```php
+<?php
+$utenteAttivo = true;
+
+if ($utenteAttivo) {
+    echo "Accesso consentito";
+}
+```
+
+Quando il nome e chiaro, il codice si legge quasi come una frase.
+
+## Combinare piu controlli
+
+Una decisione puo dipendere da piu condizioni.
+
+```php
+<?php
+$eta = 20;
+$haDocumento = true;
+
+if ($eta >= 18 && $haDocumento) {
+    echo "Ingresso consentito";
+} else {
+    echo "Ingresso non consentito";
+}
+```
+
+`&&` richiede che entrambe le condizioni siano vere. Se una delle due e falsa, PHP passa a `else`.
+
+## Rendere leggibile una condizione
+
+Quando una condizione diventa lunga, puoi salvarne una parte in una variabile con un nome chiaro.
+
+```php
+<?php
+$totale = 75;
+$clienteRegistrato = true;
+
+$haDirittoSconto = $totale > 50 && $clienteRegistrato;
+
+if ($haDirittoSconto) {
+    echo "Sconto applicato";
+}
+```
+
+Il programma fa la stessa cosa, ma e piu facile da leggere.
+
+## Errore comune: troppi livelli annidati
+
+Se metti un `if` dentro un `if` dentro un altro `if`, il codice diventa faticoso. Spesso puoi usare `elseif`, variabili booleane o funzioni piccole per chiarire la logica.
+
+## Prova tu
+
+Scrivi un controllo per un ordine: se il totale e almeno 30 euro e il prodotto e disponibile, mostra `Ordine confermato`. Altrimenti mostra `Ordine non disponibile`.

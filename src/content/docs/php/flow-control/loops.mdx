@@ -1,0 +1,129 @@
+---
+title: Cicli
+description: Come ripetere istruzioni con while, do while, for e foreach.
+---
+
+## Cosa sono i cicli
+
+Un ciclo ripete una o piu istruzioni. E utile quando non vuoi scrivere la stessa riga molte volte.
+
+## while
+
+`while` ripete finche una condizione resta vera.
+
+```php
+<?php
+$numero = 1;
+
+while ($numero <= 3) {
+    echo $numero . "\n";
+    $numero++;
+}
+```
+
+Output:
+
+```text
+1
+2
+3
+```
+
+Senza `$numero++`, la condizione resterebbe sempre vera e il ciclo non finirebbe.
+
+## do while
+
+`do while` esegue il blocco almeno una volta, poi controlla la condizione.
+
+```php
+<?php
+$tentativi = 0;
+
+do {
+    echo "Provo...\n";
+    $tentativi++;
+} while ($tentativi < 1);
+```
+
+## for
+
+`for` e comodo quando sai quante ripetizioni vuoi fare.
+
+```php
+<?php
+for ($i = 1; $i <= 5; $i++) {
+    echo "Riga $i\n";
+}
+```
+
+Dentro le parentesi ci sono: valore iniziale, condizione, aggiornamento.
+
+## foreach
+
+`foreach` serve per scorrere array.
+
+```php
+<?php
+$nomi = ["Luca", "Sara", "Marta"];
+
+foreach ($nomi as $nome) {
+    echo "Ciao $nome\n";
+}
+```
+
+A ogni giro, `$nome` contiene un elemento diverso dell'array.
+
+## Scegliere il ciclo giusto
+
+Usa `foreach` per gli array. Usa `for` quando conosci il numero di ripetizioni. Usa `while` quando vuoi ripetere finche una condizione cambia.
+
+## Evitare cicli infiniti
+
+Un ciclo infinito continua per sempre. Di solito succede quando la condizione non cambia mai.
+
+```php
+<?php
+$numero = 1;
+
+while ($numero <= 3) {
+    echo $numero;
+}
+```
+
+Qui `$numero` resta sempre `1`, quindi la condizione resta vera. Per correggerlo devi aggiornare il valore dentro il ciclo.
+
+```php
+<?php
+$numero = 1;
+
+while ($numero <= 3) {
+    echo $numero . "\n";
+    $numero++;
+}
+```
+
+## Costruire un totale con foreach
+
+Un uso molto comune dei cicli e sommare valori.
+
+```php
+<?php
+$prezzi = [10, 15, 5];
+$totale = 0;
+
+foreach ($prezzi as $prezzo) {
+    $totale += $prezzo;
+}
+
+echo $totale;
+```
+
+Output:
+
+```text
+30
+```
+
+## Prova tu
+
+Crea un array di voti e usa `foreach` per sommarli. Poi dividi il totale per `count($voti)` e stampa la media.

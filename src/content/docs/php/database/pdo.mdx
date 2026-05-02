@@ -1,0 +1,98 @@
+---
+title: Collegarsi a un database con PDO
+description: Come connettere PHP a un database usando PDO.
+---
+
+## Cosa e PDO
+
+PDO e uno strumento di PHP per parlare con database diversi usando un'interfaccia comune.
+
+Puoi pensarlo come un adattatore: il tuo codice PHP usa PDO, e PDO si occupa di comunicare con il database.
+
+## Dati di connessione
+
+Per collegarti servono:
+
+- host, cioe dove si trova il database
+- nome del database
+- utente
+- password
+- charset, cioe il modo in cui vengono gestiti i caratteri
+
+## Primo collegamento
+
+```php
+<?php
+$dsn = "mysql:host=localhost;dbname=negozio;charset=utf8mb4";
+$utente = "root";
+$password = "";
+
+$pdo = new PDO($dsn, $utente, $password);
+```
+
+`$dsn` descrive il tipo di database e dove trovarlo. In questo esempio usiamo MySQL.
+
+## Gestire gli errori
+
+Aggiungi opzioni per ricevere errori chiari.
+
+```php
+<?php
+$pdo = new PDO($dsn, $utente, $password, [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+]);
+```
+
+`ERRMODE_EXCEPTION` fa lanciare eccezioni quando qualcosa va storto. `FETCH_ASSOC` restituisce righe come array associativi.
+
+## Proteggere le credenziali
+
+Non mettere password reali in file pubblici o condivisi. Nei progetti veri si usano variabili d'ambiente o file di configurazione non caricati online.
+
+## Verificare il collegamento
+
+```php
+<?php
+echo "Connessione riuscita";
+```
+
+Se il codice arriva a questa riga senza errori, PHP e riuscito a collegarsi.
+
+## Gestire un errore di connessione
+
+Una connessione puo fallire: password sbagliata, database spento, nome del database errato. Per questo conviene usare `try` e `catch`.
+
+```php
+<?php
+try {
+    $pdo = new PDO($dsn, $utente, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ]);
+
+    echo "Connessione riuscita";
+} catch (PDOException $errore) {
+    echo "Impossibile collegarsi al database";
+}
+```
+
+Durante lo studio puoi leggere il messaggio tecnico dell'errore. In un sito pubblico, invece, mostra un messaggio generico e registra il dettaglio nei log.
+
+## Primo controllo con una query semplice
+
+Dopo la connessione puoi provare una query piccola.
+
+```php
+<?php
+$stmt = $pdo->query("SELECT 1");
+$risultato = $stmt->fetchColumn();
+
+echo $risultato;
+```
+
+Se vedi `1`, PHP ha parlato con il database e ha ricevuto una risposta.
+
+## Errore comune: confondere PDO con SQL
+
+PDO non sostituisce SQL. PDO e il mezzo con cui PHP invia istruzioni SQL al database e riceve risultati.
