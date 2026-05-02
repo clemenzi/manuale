@@ -1,4 +1,5 @@
 // @ts-check
+import { mkdir, readdir, writeFile } from "node:fs/promises";
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 
@@ -7,6 +8,82 @@ import cloudflare from "@astrojs/cloudflare";
 import tailwindcss from "@tailwindcss/vite";
 
 const site = "https://www.manuale.dev";
+
+/** @returns {import("astro").AstroIntegration} */
+function docsLanguageSitemaps() {
+  return {
+    name: "docs-language-sitemaps",
+    hooks: {
+      "astro:build:done": async ({ pages, dir, logger }) => {
+        const docsDirectory = new URL("./src/content/docs/", import.meta.url);
+        const docsEntries = await readdir(docsDirectory, { withFileTypes: true });
+        const docsLanguages = new Set(
+          docsEntries.filter((entry) => entry.isDirectory()).map((entry) => entry.name),
+        );
+
+        const pagesByLanguage = new Map();
+
+        for (const { pathname } of pages) {
+          const language = pathname.split("/").filter(Boolean).at(0);
+
+          if (!language || !docsLanguages.has(language)) {
+            continue;
+          }
+
+          if (!pagesByLanguage.has(language)) {
+            pagesByLanguage.set(language, []);
+          }
+
+          pagesByLanguage.get(language).push(pathname);
+        }
+
+        const sitemapEntries = [];
+
+        for (const [language, pathnames] of [...pagesByLanguage.entries()].sort()) {
+          const filename = `sitemap-${language}.xml`;
+          const urls = [...new Set(pathnames)]
+            .sort()
+            .map((pathname) => new URL(pathname, site).href);
+          const xml = [
+            '<?xml version="1.0" encoding="UTF-8"?>',
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+            ...urls.map((url) => `  <url><loc>${escapeXml(url)}</loc></url>`),
+            "</urlset>",
+            "",
+          ].join("\n");
+
+          await mkdir(dir, { recursive: true });
+          await writeFile(new URL(filename, dir), xml);
+          sitemapEntries.push(new URL(filename, site).href);
+        }
+
+        if (sitemapEntries.length > 0) {
+          const sitemapIndex = [
+            '<?xml version="1.0" encoding="UTF-8"?>',
+            '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+            ...sitemapEntries.map((url) => `  <sitemap><loc>${escapeXml(url)}</loc></sitemap>`),
+            "</sitemapindex>",
+            "",
+          ].join("\n");
+
+          await writeFile(new URL("sitemap-index.xml", dir), sitemapIndex);
+        }
+
+        logger.info(`Generated ${sitemapEntries.length} docs language sitemaps.`);
+      },
+    },
+  };
+}
+
+/** @param {string} value */
+function escapeXml(value) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
 
 export default defineConfig({
   site,
@@ -102,9 +179,9 @@ export default defineConfig({
               label: "Le basi",
               collapsed: false,
               items: [
-                "sql/basics/cos-e-sql",
-                "sql/basics/database-relazionali",
-                "sql/basics/tipi-di-dati",
+                "sql/basics/what-is-sql",
+                "sql/basics/relational-databases",
+                "sql/basics/data-types",
                 "sql/basics/create-database",
                 "sql/basics/create-table",
                 "sql/basics/alter-table",
@@ -119,54 +196,54 @@ export default defineConfig({
                   label: "Lettura dei dati",
                   collapsed: true,
                   items: [
-                    "sql/queries/lettura/select",
-                    "sql/queries/lettura/alias",
-                    "sql/queries/lettura/where",
-                    "sql/queries/lettura/operatori-di-confronto",
-                    "sql/queries/lettura/operatori-logici",
-                    "sql/queries/lettura/null",
-                    "sql/queries/lettura/order-by",
-                    "sql/queries/lettura/limit-e-offset",
+                    "sql/queries/reading-data/select",
+                    "sql/queries/reading-data/alias",
+                    "sql/queries/reading-data/where",
+                    "sql/queries/reading-data/comparison-operators",
+                    "sql/queries/reading-data/logical-operators",
+                    "sql/queries/reading-data/null",
+                    "sql/queries/reading-data/order-by",
+                    "sql/queries/reading-data/limit-offset",
                   ],
                 },
                 {
                   label: "Manipolazione dei dati",
                   collapsed: true,
                   items: [
-                    "sql/queries/manipolazione/insert",
-                    "sql/queries/manipolazione/update",
-                    "sql/queries/manipolazione/delete",
+                    "sql/queries/data-manipulation/insert",
+                    "sql/queries/data-manipulation/update",
+                    "sql/queries/data-manipulation/delete",
                   ],
                 },
                 {
                   label: "Aggregazione e funzioni",
                   collapsed: true,
                   items: [
-                    "sql/queries/aggregazione/funzioni-aggregate",
-                    "sql/queries/aggregazione/group-by",
-                    "sql/queries/aggregazione/having",
-                    "sql/queries/aggregazione/funzioni-stringhe",
-                    "sql/queries/aggregazione/funzioni-date-tempo",
-                    "sql/queries/aggregazione/cast-e-convert",
+                    "sql/queries/aggregation/aggregate-functions",
+                    "sql/queries/aggregation/group-by",
+                    "sql/queries/aggregation/having",
+                    "sql/queries/aggregation/string-functions",
+                    "sql/queries/aggregation/date-time-functions",
+                    "sql/queries/aggregation/cast-e-convert",
                   ],
                 },
                 {
                   label: "Join e sottoquery",
                   collapsed: true,
                   items: [
-                    "sql/queries/join-sottoquery/join",
-                    "sql/queries/join-sottoquery/join-avanzati",
-                    "sql/queries/join-sottoquery/subquery",
-                    "sql/queries/join-sottoquery/cte",
+                    "sql/queries/joins-subqueries/join",
+                    "sql/queries/joins-subqueries/advanced-joins",
+                    "sql/queries/joins-subqueries/subquery",
+                    "sql/queries/joins-subqueries/cte",
                   ],
                 },
                 {
                   label: "Query avanzate",
                   collapsed: true,
                   items: [
-                    "sql/queries/avanzate/set-operations",
-                    "sql/queries/avanzate/window-functions",
-                    "sql/queries/avanzate/query-ricorsive",
+                    "sql/queries/advanced/set-operations",
+                    "sql/queries/advanced/window-functions",
+                    "sql/queries/advanced/recursive-queries",
                   ],
                 },
               ],
@@ -180,8 +257,8 @@ export default defineConfig({
                   collapsed: true,
                   items: [
                     "sql/design/schema/schema-design",
-                    "sql/design/schema/vincoli",
-                    "sql/design/schema/relazioni-tra-tabelle",
+                    "sql/design/schema/constraints",
+                    "sql/design/schema/table-relationships",
                     "sql/design/schema/sequence-e-auto-increment",
                   ],
                 },
@@ -189,25 +266,25 @@ export default defineConfig({
                   label: "Normalizzazione",
                   collapsed: true,
                   items: [
-                    "sql/design/normalizzazione/normalizzazione-1nf",
-                    "sql/design/normalizzazione/normalizzazione-2nf",
-                    "sql/design/normalizzazione/normalizzazione-3nf",
-                    "sql/design/normalizzazione/denormalizzazione",
+                    "sql/design/normalization/1nf-normalization",
+                    "sql/design/normalization/2nf-normalization",
+                    "sql/design/normalization/3nf-normalization",
+                    "sql/design/normalization/denormalization",
                   ],
                 },
                 {
                   label: "Indici",
                   collapsed: true,
                   items: [
-                    "sql/design/indici/create-index",
-                    "sql/design/indici/indici-avanzati",
-                    "sql/design/indici/drop-index",
+                    "sql/design/indexes/create-index",
+                    "sql/design/indexes/advanced-indexes",
+                    "sql/design/indexes/drop-index",
                   ],
                 },
                 {
                   label: "Viste",
                   collapsed: true,
-                  items: ["sql/design/viste/create-view", "sql/design/viste/materialized-view"],
+                  items: ["sql/design/views/create-view", "sql/design/views/materialized-view"],
                 },
               ],
             },
@@ -215,10 +292,10 @@ export default defineConfig({
               label: "Transazioni e concorrenza",
               collapsed: true,
               items: [
-                "sql/transactions/transazioni",
+                "sql/transactions/transactions",
                 "sql/transactions/acid",
-                "sql/transactions/livelli-di-isolamento",
-                "sql/transactions/locking-e-concorrenza",
+                "sql/transactions/isolation-levels",
+                "sql/transactions/locking-concurrency",
                 "sql/transactions/deadlock",
               ],
             },
@@ -227,34 +304,34 @@ export default defineConfig({
               collapsed: true,
               items: [
                 "sql/programming/stored-procedure",
-                "sql/programming/stored-procedure-avanzate",
-                "sql/programming/funzioni-definite-dall-utente",
+                "sql/programming/advanced-stored-procedures",
+                "sql/programming/user-defined-functions",
                 "sql/programming/trigger",
-                "sql/programming/cursori",
+                "sql/programming/cursors",
               ],
             },
             {
               label: "Operazioni e performance",
               collapsed: true,
               items: [
-                "sql/operations/gestione-utenti-e-permessi",
-                "sql/operations/sicurezza-del-database",
+                "sql/operations/user-permission-management",
+                "sql/operations/database-security",
                 "sql/operations/backup-e-restore",
-                "sql/operations/import-export-dati",
+                "sql/operations/data-import-export",
                 "sql/operations/etl",
-                "sql/operations/json-e-dati-semi-strutturati",
+                "sql/operations/json-semi-structured-data",
                 "sql/operations/testing-query-sql",
-                "sql/operations/versioning-e-migrazioni-database",
+                "sql/operations/database-versioning-migrations",
                 "sql/operations/explain-e-query-plan",
-                "sql/operations/analisi-delle-performance",
+                "sql/operations/performance-analysis",
                 "sql/operations/logging-e-monitoring",
-                "sql/operations/gestione-di-grandi-dataset",
-                "sql/operations/partizionamento-delle-tabelle",
+                "sql/operations/large-dataset-management",
+                "sql/operations/table-partitioning",
                 "sql/operations/sharding",
                 "sql/operations/best-practice-sql",
-                "sql/operations/anti-pattern-comuni",
-                "sql/operations/differenze-tra-dialetti-sql",
-                "sql/operations/introduzione-a-orm",
+                "sql/operations/common-anti-patterns",
+                "sql/operations/sql-dialect-differences",
+                "sql/operations/orm-introduction",
                 "sql/operations/sql-vs-nosql",
               ],
             },
@@ -313,6 +390,7 @@ export default defineConfig({
         },
       ],
     }),
+    docsLanguageSitemaps(),
   ],
 
   adapter: cloudflare(),
