@@ -2,6 +2,7 @@ import { defineRouteMiddleware } from "@astrojs/starlight/route-data";
 
 const sections = [
   { slug: "python", label: "Python", link: "/python/" },
+  { slug: "php", label: "PHP", link: "/php/" },
   { slug: "sql", label: "SQL", link: "/sql/" },
   { slug: "cpp", label: "C++", link: "/cpp/" },
 ];

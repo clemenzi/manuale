@@ -91,7 +91,7 @@ export default defineConfig({
     starlight({
       title: "Manuale",
       description:
-        "Una guida pratica alla programmazione in Python, SQL e C++ per chi parte da zero.",
+        "Una guida pratica alla programmazione in Python, PHP, SQL e C++ per chi parte da zero.",
       favicon: "/favicon.ico",
       locales: {
         root: {
