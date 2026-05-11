@@ -1,5 +1,4 @@
 // @ts-check
-import { mkdir, readdir, writeFile } from "node:fs/promises";
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 
@@ -9,81 +8,81 @@ import tailwindcss from "@tailwindcss/vite";
 
 const site = "https://www.manuale.dev";
 
-/** @returns {import("astro").AstroIntegration} */
-function docsLanguageSitemaps() {
-  return {
-    name: "docs-language-sitemaps",
-    hooks: {
-      "astro:build:done": async ({ pages, dir, logger }) => {
-        const docsDirectory = new URL("./src/content/docs/", import.meta.url);
-        const docsEntries = await readdir(docsDirectory, { withFileTypes: true });
-        const docsLanguages = new Set(
-          docsEntries.filter((entry) => entry.isDirectory()).map((entry) => entry.name),
-        );
+// /** @returns {import("astro").AstroIntegration} */
+// function docsLanguageSitemaps() {
+//   return {
+//     name: "docs-language-sitemaps",
+//     hooks: {
+//       "astro:build:done": async ({ pages, dir, logger }) => {
+//         const docsDirectory = new URL("./src/content/docs/", import.meta.url);
+//         const docsEntries = await readdir(docsDirectory, { withFileTypes: true });
+//         const docsLanguages = new Set(
+//           docsEntries.filter((entry) => entry.isDirectory()).map((entry) => entry.name),
+//         );
 
-        const pagesByLanguage = new Map();
+//         const pagesByLanguage = new Map();
 
-        for (const { pathname } of pages) {
-          const language = pathname.split("/").filter(Boolean).at(0);
+//         for (const { pathname } of pages) {
+//           const language = pathname.split("/").filter(Boolean).at(0);
 
-          if (!language || !docsLanguages.has(language)) {
-            continue;
-          }
+//           if (!language || !docsLanguages.has(language)) {
+//             continue;
+//           }
 
-          if (!pagesByLanguage.has(language)) {
-            pagesByLanguage.set(language, []);
-          }
+//           if (!pagesByLanguage.has(language)) {
+//             pagesByLanguage.set(language, []);
+//           }
 
-          pagesByLanguage.get(language).push(pathname);
-        }
+//           pagesByLanguage.get(language).push(pathname);
+//         }
 
-        const sitemapEntries = [];
+//         const sitemapEntries = [];
 
-        for (const [language, pathnames] of [...pagesByLanguage.entries()].sort()) {
-          const filename = `sitemap-${language}.xml`;
-          const urls = [...new Set(pathnames)]
-            .sort()
-            .map((pathname) => new URL(pathname, site).href);
-          const xml = [
-            '<?xml version="1.0" encoding="UTF-8"?>',
-            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-            ...urls.map((url) => `  <url><loc>${escapeXml(url)}</loc></url>`),
-            "</urlset>",
-            "",
-          ].join("\n");
+//         for (const [language, pathnames] of [...pagesByLanguage.entries()].sort()) {
+//           const filename = `sitemap-${language}.xml`;
+//           const urls = [...new Set(pathnames)]
+//             .sort()
+//             .map((pathname) => new URL(pathname, site).href);
+//           const xml = [
+//             '<?xml version="1.0" encoding="UTF-8"?>',
+//             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+//             ...urls.map((url) => `  <url><loc>${escapeXml(url)}</loc></url>`),
+//             "</urlset>",
+//             "",
+//           ].join("\n");
 
-          await mkdir(dir, { recursive: true });
-          await writeFile(new URL(filename, dir), xml);
-          sitemapEntries.push(new URL(filename, site).href);
-        }
+//           await mkdir(dir, { recursive: true });
+//           await writeFile(new URL(filename, dir), xml);
+//           sitemapEntries.push(new URL(filename, site).href);
+//         }
 
-        if (sitemapEntries.length > 0) {
-          const sitemapIndex = [
-            '<?xml version="1.0" encoding="UTF-8"?>',
-            '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-            ...sitemapEntries.map((url) => `  <sitemap><loc>${escapeXml(url)}</loc></sitemap>`),
-            "</sitemapindex>",
-            "",
-          ].join("\n");
+//         if (sitemapEntries.length > 0) {
+//           const sitemapIndex = [
+//             '<?xml version="1.0" encoding="UTF-8"?>',
+//             '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+//             ...sitemapEntries.map((url) => `  <sitemap><loc>${escapeXml(url)}</loc></sitemap>`),
+//             "</sitemapindex>",
+//             "",
+//           ].join("\n");
 
-          await writeFile(new URL("sitemap-index.xml", dir), sitemapIndex);
-        }
+//           await writeFile(new URL("sitemap-index.xml", dir), sitemapIndex);
+//         }
 
-        logger.info(`Generated ${sitemapEntries.length} docs language sitemaps.`);
-      },
-    },
-  };
-}
+//         logger.info(`Generated ${sitemapEntries.length} docs language sitemaps.`);
+//       },
+//     },
+//   };
+// }
 
-/** @param {string} value */
-function escapeXml(value) {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&apos;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
-}
+// /** @param {string} value */
+// function escapeXml(value) {
+//   return value
+//     .replaceAll("&", "&amp;")
+//     .replaceAll('"', "&quot;")
+//     .replaceAll("'", "&apos;")
+//     .replaceAll("<", "&lt;")
+//     .replaceAll(">", "&gt;");
+// }
 
 export default defineConfig({
   site,
@@ -491,7 +490,6 @@ export default defineConfig({
         },
       ],
     }),
-    docsLanguageSitemaps(),
   ],
 
   adapter: cloudflare(),
