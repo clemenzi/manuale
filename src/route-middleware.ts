@@ -5,6 +5,7 @@ const sections = [
   { slug: "php", label: "PHP", link: "/php/" },
   { slug: "sql", label: "SQL", link: "/sql/" },
   { slug: "cpp", label: "C++", link: "/cpp/" },
+  { slug: "java", label: "Java", link: "/java/" },
 ];
 
 export const onRequest = defineRouteMiddleware((context) => {
