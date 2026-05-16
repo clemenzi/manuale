@@ -3,19 +3,52 @@ title: Lambda
 description: Come scrivere funzioni brevi da passare ad altri metodi.
 ---
 
-## Cosa sono le lambda
+## A cosa servono le lambda
 
-Una lambda e un modo breve per scrivere un piccolo blocco di comportamento da passare a un metodo.
+Una **lambda** e un modo breve per scrivere una piccola azione.
 
-La forma generale e:
+La usi quando un metodo ti chiede:
+
+"Che cosa devo fare con questo valore?"
+
+Per esempio, una lista puo chiederti cosa fare con ogni nome. Tu puoi rispondere con una lambda:
+
+```java
+nome -> System.out.println(nome)
+```
+
+Si legge cosi:
+
+"prendi un `nome` e stampalo".
+
+La freccia `->` separa due parti:
+
+- a sinistra c'e il valore che arriva
+- a destra c'e l'azione da eseguire
+
+## La forma piu semplice
+
+La forma piu comune e questa:
 
 ```java
 parametro -> azione
 ```
 
-All'inizio sembra strana. Vediamola su un caso concreto.
+Il `parametro` e il valore che Java passa alla lambda.
 
-## forEach con lambda
+L'`azione` e il codice che vuoi eseguire con quel valore.
+
+Esempio:
+
+```java
+nome -> System.out.println(nome)
+```
+
+Qui `nome` non e una variabile creata prima da noi. E il nome che diamo al valore ricevuto dalla lambda.
+
+## Usare una lambda con forEach
+
+Vediamo un esempio completo con una lista di nomi.
 
 ```java
 import java.util.ArrayList;
@@ -40,15 +73,23 @@ Sara
 Mina
 ```
 
-`nome -> System.out.println(nome)` significa:
+`forEach` significa "per ciascun elemento".
 
-"per ogni nome, stampa quel nome".
+Quindi questa riga:
 
-## Confronto con for-each
+```java
+nomi.forEach(nome -> System.out.println(nome));
+```
 
-Questi due esempi fanno la stessa cosa.
+vuol dire:
 
-Con for-each:
+"per ogni nome nella lista `nomi`, stampa quel nome".
+
+Java prende un elemento alla volta dalla lista. Ogni elemento viene chiamato `nome` dentro la lambda.
+
+## Confronto con il for-each
+
+La stessa cosa si puo scrivere anche con un ciclo `for-each`.
 
 ```java
 for (String nome : nomi) {
@@ -56,17 +97,21 @@ for (String nome : nomi) {
 }
 ```
 
-Con lambda:
+Con una lambda diventa:
 
 ```java
 nomi.forEach(nome -> System.out.println(nome));
 ```
 
-Il for-each e spesso piu chiaro per iniziare. Le lambda diventano utili quando lavori con metodi che si aspettano un comportamento.
+I due esempi fanno la stessa cosa.
 
-## Piu righe nella lambda
+All'inizio il ciclo `for-each` e spesso piu facile da leggere. La lambda diventa utile quando usi metodi che vogliono ricevere una piccola azione, come `forEach`, `sort`, `filter` o `map`.
 
-Se l'azione richiede piu righe, usa le parentesi graffe.
+## Lambda con piu righe
+
+Se l'azione e molto breve, puoi scriverla dopo la freccia.
+
+Se invece servono piu righe, usa le parentesi graffe.
 
 ```java
 nomi.forEach(nome -> {
@@ -83,11 +128,42 @@ SARA
 MINA
 ```
 
+Qui succedono due cose per ogni nome:
+
+1. Java crea una versione in maiuscolo.
+2. Poi stampa il risultato.
+
+> **Attenzione:** se usi le parentesi graffe, il codice dentro la lambda deve essere scritto come un normale blocco Java.
+
+## Lambda che restituisce un valore
+
+Una lambda puo anche produrre un risultato.
+
+Per esempio:
+
+```java
+numero -> numero * 2
+```
+
+Si legge:
+
+"prendi `numero` e restituisci `numero * 2`".
+
+In una lambda breve non devi scrivere `return`.
+
+```java
+Operazione doppio = numero -> numero * 2;
+```
+
+Questa lambda prende un numero e produce il suo doppio.
+
 ## Interfacce funzionali
 
-Una lambda funziona quando Java si aspetta un'interfaccia con un solo metodo astratto.
+Una lambda non vive da sola. Java deve sapere che tipo di azione rappresenta.
 
-Questa si chiama **interfaccia funzionale**.
+Per questo una lambda si usa quando Java si aspetta un'interfaccia con **un solo metodo astratto**.
+
+Questa interfaccia si chiama **interfaccia funzionale**.
 
 Esempio:
 
@@ -97,7 +173,11 @@ public interface Operazione {
 }
 ```
 
-Possiamo usare una lambda:
+Questa interfaccia dice:
+
+"un'operazione prende un `int` e restituisce un `int`".
+
+Ora possiamo creare un'operazione con una lambda.
 
 ```java
 Operazione doppio = numero -> numero * 2;
@@ -111,19 +191,35 @@ Output:
 10
 ```
 
-La lambda fornisce il corpo del metodo `esegui`.
+La lambda:
 
-## Quando usarle
+```java
+numero -> numero * 2
+```
 
-Le lambda sono utili quando:
+diventa il corpo del metodo `esegui`.
 
-- il comportamento e breve
-- il codice resta leggibile
-- stai usando collezioni, ordinamenti o stream
+Quando chiami:
 
-Evita lambda troppo lunghe. Se diventano difficili da leggere, crea un metodo con un nome chiaro.
+```java
+doppio.esegui(5)
+```
 
-## Esempio con sort
+Java mette `5` al posto di `numero` e calcola `5 * 2`.
+
+## Lambda con due parametri
+
+Una lambda puo ricevere anche piu valori.
+
+In quel caso metti i parametri tra parentesi.
+
+```java
+(a, b) -> a.compareTo(b)
+```
+
+Qui la lambda riceve due valori: `a` e `b`.
+
+Vediamola dentro `sort`, che ordina una lista.
 
 ```java
 import java.util.ArrayList;
@@ -148,4 +244,33 @@ Output:
 [Luca, Mina, Sara]
 ```
 
-Qui la lambda dice a Java come confrontare due stringhe.
+`sort` deve sapere come confrontare due elementi.
+
+La lambda:
+
+```java
+(a, b) -> a.compareTo(b)
+```
+
+dice a Java:
+
+"confronta `a` con `b` usando l'ordine naturale delle stringhe".
+
+## Quando usarle
+
+Le lambda sono utili quando:
+
+- l'azione e breve
+- il codice resta facile da leggere
+- stai passando un comportamento a un metodo
+- usi collezioni, ordinamenti o stream
+
+Evita lambda troppo lunghe. Se dentro la lambda ci sono molte righe, spesso e meglio creare un metodo con un nome chiaro.
+
+## Da ricordare
+
+- Una lambda descrive una piccola azione.
+- La freccia `->` significa "usa questo valore per fare questa cosa".
+- A sinistra della freccia ci sono i parametri.
+- A destra della freccia c'e il codice da eseguire.
+- Le lambda sono utili quando un metodo chiede un comportamento da applicare.
