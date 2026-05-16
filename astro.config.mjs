@@ -279,26 +279,25 @@ export default defineConfig({
               label: "Le basi",
               collapsed: false,
               items: [
-                {
-                  label: "Primi passi",
-                  collapsed: false,
-                  items: [
-                    "java/basics/installation",
-                    "java/basics/first-program",
-                    "java/basics/program-structure",
-                    "java/basics/comments",
-                  ],
-                },
-                {
-                  label: "Valori e calcoli",
-                  collapsed: false,
-                  items: [
-                    "java/basics/variables",
-                    "java/basics/data-types",
-                    "java/basics/operators",
-                    "java/basics/type-conversion",
-                  ],
-                },
+                "java/basics/installation",
+                "java/basics/first-program",
+                "java/basics/program-structure",
+                "java/basics/comments",
+                "java/basics/variables",
+                "java/basics/data-types",
+                "java/input-output/strings",
+                "java/basics/operators",
+                "java/basics/type-conversion",
+              ],
+            },
+            {
+              label: "Controllo del flusso",
+              collapsed: false,
+              items: [
+                "java/flow-control/conditions",
+                "java/flow-control/for-loop",
+                "java/flow-control/while-loop",
+                "java/flow-control/break-continue",
               ],
             },
             {
@@ -307,44 +306,19 @@ export default defineConfig({
               items: [
                 "java/input-output/output",
                 "java/input-output/input",
-                "java/input-output/strings",
                 "java/input-output/file-handling",
               ],
             },
-            {
-              label: "Controllo del flusso",
-              collapsed: false,
-              items: [
-                "java/flow-control/conditions",
-                {
-                  label: "Cicli",
-                  collapsed: false,
-                  items: [
-                    "java/flow-control/for-loop",
-                    "java/flow-control/while-loop",
-                    "java/flow-control/break-continue",
-                  ],
-                },
-              ],
-            },
+
             {
               label: "Strutture dati",
               collapsed: false,
               items: [
-                {
-                  label: "Sequenze",
-                  collapsed: false,
-                  items: [
-                    "java/data-structures/arrays",
-                    "java/data-structures/for-each",
-                    "java/data-structures/arraylist",
-                  ],
-                },
-                {
-                  label: "Collezioni per ricerca e unicita",
-                  collapsed: true,
-                  items: ["java/data-structures/hashmap", "java/data-structures/sets"],
-                },
+                "java/data-structures/arrays",
+                "java/data-structures/for-each",
+                "java/data-structures/arraylist",
+                "java/data-structures/hashmap",
+                "java/data-structures/sets",
               ],
             },
             {
