@@ -90,7 +90,7 @@ export default defineConfig({
     starlight({
       title: "Manuale",
       description:
-        "Una guida pratica alla programmazione in Python, PHP, SQL e C++ per chi parte da zero.",
+        "Una guida pratica alla programmazione in Python, PHP, Java, SQL e C++ per chi parte da zero.",
       favicon: "/favicon.ico",
       locales: {
         root: {
@@ -268,6 +268,57 @@ export default defineConfig({
               label: "Gestione degli errori",
               collapsed: true,
               items: ["php/errors/common-errors", "php/errors/debugging", "php/errors/exceptions"],
+            },
+          ],
+        },
+        {
+          label: "Java",
+          items: [
+            "java",
+            {
+              label: "Le basi",
+              collapsed: false,
+              autogenerate: { directory: "java/basics" },
+            },
+            {
+              label: "Input e output",
+              collapsed: false,
+              autogenerate: { directory: "java/input-output" },
+            },
+            {
+              label: "Controllo del flusso",
+              collapsed: false,
+              autogenerate: { directory: "java/flow-control" },
+            },
+            {
+              label: "Strutture dati",
+              collapsed: false,
+              autogenerate: { directory: "java/data-structures" },
+            },
+            {
+              label: "Metodi",
+              collapsed: true,
+              autogenerate: { directory: "java/functions" },
+            },
+            {
+              label: "Programmazione a oggetti",
+              collapsed: true,
+              autogenerate: { directory: "java/oop" },
+            },
+            {
+              label: "Gestione degli errori",
+              collapsed: true,
+              autogenerate: { directory: "java/errors" },
+            },
+            {
+              label: "Strumenti e buone pratiche",
+              collapsed: true,
+              autogenerate: { directory: "java/tools" },
+            },
+            {
+              label: "Tecniche avanzate",
+              collapsed: true,
+              autogenerate: { directory: "java/advanced" },
             },
           ],
         },
