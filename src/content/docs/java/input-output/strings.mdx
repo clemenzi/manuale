@@ -3,4 +3,166 @@ title: Stringhe
 description: Come lavorare con testi, concatenazione e metodi comuni di String.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva sulle stringhe in Java per principianti assoluti. Coprire creazione di String, concatenazione, length, equals, substring e differenza tra confronto di valori e riferimenti. Usare esempi piccoli e progressivi. -->
+## Cosa e una stringa
+
+Una stringa e un testo. In Java il tipo per i testi e `String`.
+
+```java
+String nome = "Luca";
+String messaggio = "Benvenuto";
+```
+
+Le stringhe usano le virgolette doppie.
+
+```java
+String parola = "ciao";
+```
+
+Gli apici singoli, invece, servono per un solo carattere:
+
+```java
+char iniziale = 'L';
+```
+
+## Concatenare stringhe
+
+Per unire stringhe, usa `+`.
+
+```java
+String nome = "Luca";
+String saluto = "Ciao, " + nome + "!";
+
+System.out.println(saluto);
+```
+
+Output:
+
+```text
+Ciao, Luca!
+```
+
+Puoi unire anche numeri:
+
+```java
+int eta = 20;
+System.out.println("Eta: " + eta);
+```
+
+Java converte il numero in testo per costruire il messaggio.
+
+## Contare i caratteri con length
+
+Le stringhe hanno metodi, cioe azioni che puoi chiamare sul valore.
+
+`length()` conta i caratteri:
+
+```java
+String nome = "Sara";
+System.out.println(nome.length());
+```
+
+Output:
+
+```text
+4
+```
+
+La chiamata si legge cosi: "sulla stringa `nome`, esegui il metodo `length`".
+
+## Confrontare stringhe con equals
+
+Per confrontare il contenuto di due stringhe, usa `equals`.
+
+```java
+String password = "segreto";
+
+System.out.println(password.equals("segreto"));
+System.out.println(password.equals("ciao"));
+```
+
+Output:
+
+```text
+true
+false
+```
+
+> **Attenzione:** con le stringhe evita `==` per confrontare il testo. Usa `equals`.
+
+`==` controlla se due riferimenti puntano allo stesso oggetto. `equals` controlla se il contenuto e uguale.
+
+Per iniziare, ricordati questa regola pratica:
+
+```java
+testo.equals("valore")
+```
+
+## Prendere una parte con substring
+
+`substring` prende una parte del testo.
+
+```java
+String parola = "programmare";
+String parte = parola.substring(0, 7);
+
+System.out.println(parte);
+```
+
+Output:
+
+```text
+program
+```
+
+Gli indici partono da `0`. Il primo numero e incluso, il secondo e escluso.
+
+In `"programmare"`:
+
+- indice `0`: `p`
+- indice `1`: `r`
+- indice `2`: `o`
+
+`substring(0, 7)` prende i caratteri dagli indici 0 a 6.
+
+## Cambiare maiuscole e minuscole
+
+Altri metodi utili:
+
+```java
+String nome = "Luca";
+
+System.out.println(nome.toUpperCase());
+System.out.println(nome.toLowerCase());
+```
+
+Output:
+
+```text
+LUCA
+luca
+```
+
+Questi metodi non modificano la stringa originale. Creano un nuovo testo.
+
+## Esempio completo
+
+```java
+import java.util.Scanner;
+
+public class NomeUtente {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Nome: ");
+        String nome = scanner.nextLine();
+
+        System.out.println("Ciao, " + nome + "!");
+        System.out.println("Il tuo nome ha " + nome.length() + " caratteri.");
+        System.out.println("In maiuscolo: " + nome.toUpperCase());
+
+        scanner.close();
+    }
+}
+```
+
+Le stringhe saranno ovunque nei programmi Java: messaggi, input, nomi, percorsi di file e dati letti dall'esterno.

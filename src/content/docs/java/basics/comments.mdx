@@ -3,4 +3,116 @@ title: Commenti
 description: Come scrivere note nel codice Java senza modificarne il comportamento.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva sui commenti in Java per principianti assoluti. Coprire commenti su una riga, commenti su piu righe, commenti Javadoc e quando usarli con misura. Usare esempi piccoli e progressivi. -->
+## A cosa servono i commenti
+
+Un commento e una nota scritta nel codice. Java la ignora quando esegue il programma.
+
+I commenti servono a spiegare un passaggio, lasciare un promemoria o rendere piu chiara un'intenzione.
+
+```java
+// Salviamo il nome dell'utente
+String nome = "Luca";
+```
+
+La riga che inizia con `//` non viene eseguita.
+
+## Commenti su una riga
+
+Il commento piu semplice inizia con `//` e continua fino alla fine della riga.
+
+```java
+public class Esempio {
+    public static void main(String[] args) {
+        // Questo messaggio viene mostrato nel terminale
+        System.out.println("Ciao!");
+    }
+}
+```
+
+Puoi usarlo anche alla fine di una riga:
+
+```java
+int eta = 20; // eta dell'utente
+```
+
+Usalo con misura. Se il nome della variabile e gia chiaro, il commento puo essere inutile.
+
+## Commenti su piu righe
+
+Un commento su piu righe inizia con `/*` e finisce con `*/`.
+
+```java
+/*
+Questo programma calcola il totale
+di un piccolo ordine.
+*/
+public class Totale {
+    public static void main(String[] args) {
+        double prezzo = 10.0;
+        double spedizione = 3.5;
+        System.out.println(prezzo + spedizione);
+    }
+}
+```
+
+E utile quando la nota e piu lunga di una frase.
+
+## Commenti Javadoc
+
+Java ha anche un tipo speciale di commento: il commento Javadoc.
+
+Inizia con `/**` e finisce con `*/`.
+
+```java
+/**
+ * Calcola il totale aggiungendo prezzo e spedizione.
+ */
+public static double calcolaTotale(double prezzo, double spedizione) {
+    return prezzo + spedizione;
+}
+```
+
+Questi commenti possono essere usati da strumenti automatici per generare documentazione.
+
+All'inizio non devi usarli sempre. Ti basta sapere che esistono e che di solito descrivono classi e metodi.
+
+## Commenti buoni e commenti inutili
+
+Un commento e utile quando spiega il perche di una scelta.
+
+```java
+// Applichiamo lo sconto solo se il totale supera 50 euro
+if (totale > 50) {
+    totale = totale - 5;
+}
+```
+
+Questo commento aiuta.
+
+Questo invece aggiunge poco:
+
+```java
+// Aumenta eta di 1
+eta = eta + 1;
+```
+
+Il codice e gia abbastanza chiaro.
+
+## Disattivare codice per provare
+
+Durante gli esercizi puoi commentare una riga per non eseguirla temporaneamente:
+
+```java
+System.out.println("Prima riga");
+// System.out.println("Seconda riga");
+System.out.println("Terza riga");
+```
+
+Output:
+
+```text
+Prima riga
+Terza riga
+```
+
+> **Suggerimento:** va bene farlo mentre studi. Prima di tenere un programma ordinato, pero, rimuovi il codice commentato che non serve piu.

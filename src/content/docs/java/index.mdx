@@ -4,4 +4,113 @@ description: Cos'e Java, dove viene usato e come iniziare a scrivere programmi s
 icon: BookOpen
 ---
 
-<!-- TODO(writer): Scrivere un'introduzione a Java per principianti assoluti. Spiegare cos'e Java, il ruolo della JVM, dove viene usato e che tipo di programmi si costruiranno nella guida. Usare esempi piccoli e progressivi senza entrare subito nei dettagli avanzati. -->
+## Cos'e Java
+
+Java e un linguaggio di programmazione usato per creare programmi che possono funzionare su computer diversi: Windows, macOS, Linux, server, telefoni Android e molti altri ambienti.
+
+Lo trovi in applicazioni aziendali, servizi web, app Android, strumenti per banche, universita, negozi online e grandi sistemi che devono restare stabili nel tempo.
+
+Un programma Java puo essere semplice come questo:
+
+```java
+public class Saluto {
+    public static void main(String[] args) {
+        System.out.println("Ciao, Java!");
+    }
+}
+```
+
+Output:
+
+```text
+Ciao, Java!
+```
+
+All'inizio alcune parole sembrano lunghe: `public`, `class`, `static`, `main`. Non devi capirle tutte subito. In questa guida le incontreremo un pezzo alla volta.
+
+## Perche Java e diverso da molti linguaggi
+
+Java non viene eseguito direttamente come un file di testo. Prima viene **compilato**, cioe trasformato in un formato intermedio.
+
+Poi entra in gioco la **JVM**, la Java Virtual Machine. La JVM e il programma che legge quel formato intermedio ed esegue il tuo codice sul computer.
+
+Il percorso e questo:
+
+1. scrivi un file `.java`
+2. lo compili con `javac`
+3. Java produce un file `.class`
+4. esegui quel file con `java`
+
+Questa idea rende Java molto portabile: lo stesso programma puo funzionare su sistemi diversi, se hanno una JVM compatibile.
+
+## Dove si usa Java
+
+Java e usato soprattutto quando servono programmi affidabili, ordinati e facili da mantenere nel tempo.
+
+Alcuni esempi:
+
+- applicazioni web e servizi lato server
+- app Android
+- programmi gestionali
+- sistemi bancari e assicurativi
+- strumenti per aziende e universita
+- applicazioni con database
+
+Java non e sempre il linguaggio piu breve da scrivere. In cambio ti spinge a organizzare bene il codice. Questa caratteristica diventa utile quando i programmi crescono.
+
+## Cosa imparerai in questa guida
+
+Partiremo dall'ambiente di lavoro: installare Java, scrivere un primo programma, compilarlo ed eseguirlo.
+
+Poi vedremo le basi:
+
+- variabili e tipi di dato
+- operatori
+- input e output
+- condizioni e cicli
+- array e collezioni
+- metodi
+
+Quando questi pezzi saranno familiari, passeremo alla programmazione a oggetti: classi, oggetti, costruttori, incapsulamento, ereditarieta e interfacce.
+
+Alla fine incontrerai anche errori, test, strumenti di build e alcuni concetti moderni come generics, lambda, stream, record ed enum.
+
+## Come studiare questa guida
+
+Java si capisce meglio scrivendo programmi piccoli. Non cercare di memorizzare tutto al primo passaggio.
+
+Per ogni pagina prova a fare cosi:
+
+1. leggi l'idea principale
+2. copia l'esempio in un file
+3. eseguilo
+4. cambia un valore
+5. osserva cosa succede
+
+Se un errore compare nel terminale, non e un fallimento. In Java gli errori fanno parte del percorso: spesso indicano una riga precisa e ti aiutano a capire cosa correggere.
+
+## Un primo assaggio
+
+Questo programma salva un nome in una variabile e lo usa in un messaggio:
+
+```java
+public class Presentazione {
+    public static void main(String[] args) {
+        String nome = "Luca";
+        System.out.println("Ciao, " + nome + "!");
+    }
+}
+```
+
+Output:
+
+```text
+Ciao, Luca!
+```
+
+Qui succedono due cose semplici:
+
+- `String nome = "Luca";` salva un testo nella variabile `nome`
+- `System.out.println(...)` stampa un messaggio nel terminale
+
+Nelle prossime pagine renderemo chiaro ogni pezzo, senza correre.

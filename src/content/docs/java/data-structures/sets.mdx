@@ -3,4 +3,146 @@ title: Set
 description: Come conservare elementi unici senza duplicati.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva sui Set in Java per principianti assoluti. Coprire idea di unicita, HashSet, add, contains, remove e differenza rispetto a liste e array. Usare esempi piccoli e progressivi. -->
+## Cosa e un Set
+
+Un `Set` e una collezione che contiene elementi unici.
+
+Se provi ad aggiungere due volte lo stesso valore, il duplicato non viene inserito.
+
+Per iniziare useremo `HashSet`.
+
+```java
+import java.util.HashSet;
+```
+
+## Creare un HashSet
+
+```java
+import java.util.HashSet;
+
+public class NomiUnici {
+    public static void main(String[] args) {
+        HashSet<String> nomi = new HashSet<>();
+
+        nomi.add("Luca");
+        nomi.add("Sara");
+        nomi.add("Luca");
+
+        System.out.println(nomi);
+    }
+}
+```
+
+Output possibile:
+
+```text
+[Luca, Sara]
+```
+
+`"Luca"` compare una sola volta.
+
+## Aggiungere elementi
+
+Usa `add`.
+
+```java
+HashSet<String> parole = new HashSet<>();
+
+parole.add("java");
+parole.add("codice");
+parole.add("java");
+```
+
+Il secondo `"java"` viene ignorato perche esiste gia.
+
+## Controllare se un elemento esiste
+
+Usa `contains`.
+
+```java
+HashSet<String> invitati = new HashSet<>();
+invitati.add("Luca");
+invitati.add("Sara");
+
+if (invitati.contains("Sara")) {
+    System.out.println("Sara e nella lista.");
+}
+```
+
+Output:
+
+```text
+Sara e nella lista.
+```
+
+## Rimuovere elementi
+
+Usa `remove`.
+
+```java
+HashSet<String> invitati = new HashSet<>();
+invitati.add("Luca");
+invitati.add("Sara");
+
+invitati.remove("Luca");
+
+System.out.println(invitati);
+```
+
+Output:
+
+```text
+[Sara]
+```
+
+## Attraversare un Set
+
+Puoi usare il ciclo for-each:
+
+```java
+HashSet<String> linguaggi = new HashSet<>();
+linguaggi.add("Java");
+linguaggi.add("Python");
+linguaggi.add("PHP");
+
+for (String linguaggio : linguaggi) {
+    System.out.println(linguaggio);
+}
+```
+
+L'ordine non e garantito. Un `HashSet` pensa all'unicita, non alla posizione.
+
+## Set, ArrayList o array?
+
+Usa un array quando hai una dimensione fissa.
+
+Usa `ArrayList` quando vuoi una lista ordinata che puo crescere.
+
+Usa `HashSet` quando ti interessa evitare duplicati e controllare rapidamente se un elemento esiste.
+
+## Esempio: parole uniche
+
+```java
+import java.util.HashSet;
+
+public class ParoleUniche {
+    public static void main(String[] args) {
+        String[] parole = {"java", "codice", "java", "metodo", "codice"};
+        HashSet<String> uniche = new HashSet<>();
+
+        for (int i = 0; i < parole.length; i++) {
+            uniche.add(parole[i]);
+        }
+
+        System.out.println(uniche);
+    }
+}
+```
+
+Output possibile:
+
+```text
+[java, metodo, codice]
+```
+
+Il risultato contiene ogni parola una sola volta.

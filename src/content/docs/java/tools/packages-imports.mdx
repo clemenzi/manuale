@@ -3,4 +3,150 @@ title: Package e import
 description: Come organizzare classi in package e usare codice da altre librerie.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva su package e import in Java per principianti assoluti. Coprire dichiarazione package, import, organizzazione delle cartelle, libreria standard e errori comuni di percorso. Usare esempi piccoli e progressivi. -->
+## Perche organizzare il codice
+
+Quando un progetto contiene poche classi, puoi tenerle nella stessa cartella.
+
+Quando cresce, serve ordine. I **package** aiutano a raggruppare classi collegate.
+
+Un package e come una cartella logica per il codice.
+
+## Dichiarare un package
+
+In cima a un file Java puoi scrivere:
+
+```java
+package negozio;
+```
+
+Poi definisci la classe:
+
+```java
+package negozio;
+
+public class Prodotto {
+    private String nome;
+
+    public Prodotto(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+}
+```
+
+Di solito la cartella rispecchia il package:
+
+```text
+negozio/Prodotto.java
+```
+
+## Usare import
+
+Se una classe si trova in un package diverso, puoi importarla.
+
+```java
+import java.util.ArrayList;
+```
+
+Questo import ti permette di scrivere:
+
+```java
+ArrayList<String> nomi = new ArrayList<>();
+```
+
+Senza import dovresti scrivere il nome completo:
+
+```java
+java.util.ArrayList<String> nomi = new java.util.ArrayList<>();
+```
+
+Troppo lungo per l'uso quotidiano.
+
+## Import dalla libreria standard
+
+Molte classi utili fanno parte della libreria standard Java.
+
+Esempi:
+
+```java
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.io.File;
+```
+
+`java.util` contiene molte strutture e strumenti generali.
+
+`java.io` contiene classi per input e output, inclusi i file.
+
+## Importare una propria classe
+
+Immagina questa struttura:
+
+```text
+src/
+  negozio/
+    Prodotto.java
+  app/
+    Main.java
+```
+
+`Prodotto.java`:
+
+```java
+package negozio;
+
+public class Prodotto {
+}
+```
+
+`Main.java`:
+
+```java
+package app;
+
+import negozio.Prodotto;
+
+public class Main {
+    public static void main(String[] args) {
+        Prodotto prodotto = new Prodotto();
+    }
+}
+```
+
+## Errori comuni
+
+Il package dichiarato deve essere coerente con la cartella.
+
+Se un file dice:
+
+```java
+package negozio;
+```
+
+ma lo tieni in una cartella non coerente, strumenti e compilatore possono confondersi.
+
+Un altro errore comune e dimenticare `public` su una classe che vuoi usare da un altro package.
+
+```java
+public class Prodotto {
+}
+```
+
+## Regola pratica
+
+All'inizio usa package semplici e nomi chiari.
+
+Quando un progetto cresce, raggruppa per argomento:
+
+```text
+app
+model
+service
+repository
+```
+
+Non creare package solo per complicare. Devono aiutare a trovare il codice.

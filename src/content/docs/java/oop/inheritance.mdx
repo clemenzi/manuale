@@ -3,4 +3,136 @@ title: Ereditarieta
 description: Come creare classi specializzate partendo da classi piu generali.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva sull'ereditarieta in Java per principianti assoluti. Coprire extends, classe base, classe derivata, riuso del codice e limiti da tenere presenti. Usare esempi piccoli e progressivi. -->
+## Cosa significa ereditarieta
+
+L'ereditarieta permette di creare una classe partendo da un'altra.
+
+La classe piu generale contiene dati e metodi comuni. La classe piu specifica li riusa e aggiunge cio che le serve.
+
+Esempio:
+
+- `Persona` e generale
+- `Studente` e una persona con una matricola
+
+## extends
+
+In Java si usa `extends`.
+
+```java
+public class Persona {
+    String nome;
+
+    void saluta() {
+        System.out.println("Ciao, sono " + nome);
+    }
+}
+```
+
+```java
+public class Studente extends Persona {
+    String matricola;
+}
+```
+
+`Studente` eredita il campo `nome` e il metodo `saluta`.
+
+## Usare la classe derivata
+
+```java
+public class Esempio {
+    public static void main(String[] args) {
+        Studente studente = new Studente();
+
+        studente.nome = "Luca";
+        studente.matricola = "A123";
+
+        studente.saluta();
+        System.out.println(studente.matricola);
+    }
+}
+```
+
+Output:
+
+```text
+Ciao, sono Luca
+A123
+```
+
+## Classe base e classe derivata
+
+La classe da cui parti viene spesso chiamata:
+
+- classe base
+- superclasse
+- classe padre
+
+La classe che eredita viene chiamata:
+
+- classe derivata
+- sottoclasse
+- classe figlia
+
+Sono parole diverse per descrivere la stessa relazione.
+
+## Sovrascrivere un metodo
+
+Una sottoclasse puo ridefinire un metodo ereditato.
+
+```java
+public class Studente extends Persona {
+    String matricola;
+
+    @Override
+    void saluta() {
+        System.out.println("Ciao, sono lo studente " + nome);
+    }
+}
+```
+
+`@Override` dice a Java e a chi legge: "sto sovrascrivendo un metodo della classe base".
+
+## Costruttori e super
+
+Se la classe base ha un costruttore con parametri, la sottoclasse deve chiamarlo con `super`.
+
+```java
+public class Persona {
+    private String nome;
+
+    public Persona(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+}
+```
+
+```java
+public class Studente extends Persona {
+    private String matricola;
+
+    public Studente(String nome, String matricola) {
+        super(nome);
+        this.matricola = matricola;
+    }
+}
+```
+
+`super(nome)` chiama il costruttore di `Persona`.
+
+## Quando usarla con attenzione
+
+L'ereditarieta e utile quando una classe e davvero un tipo piu specifico di un'altra.
+
+`Studente` e una `Persona`: ha senso.
+
+Ma non usarla solo per "prendere codice". A volte e meglio mettere un oggetto dentro un altro invece di ereditarlo.
+
+Regola pratica:
+
+se puoi dire "X e un tipo di Y", l'ereditarieta potrebbe avere senso.
+
+Se devi dire "X usa Y" o "X contiene Y", probabilmente serve un'altra struttura.

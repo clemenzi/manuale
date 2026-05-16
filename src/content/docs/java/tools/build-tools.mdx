@@ -3,4 +3,129 @@ title: Maven e Gradle
 description: A cosa servono gli strumenti di build nei progetti Java.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva su Maven e Gradle per principianti assoluti. Coprire dipendenze, compilazione, esecuzione dei test, struttura di progetto e quando questi strumenti diventano utili. Usare esempi piccoli e progressivi senza sovraccaricare. -->
+## Perche servono strumenti di build
+
+Nei primi esercizi compili con:
+
+```bash
+javac NomeFile.java
+```
+
+Funziona bene per programmi piccoli.
+
+Nei progetti reali ci sono molte classi, librerie esterne, test e file di configurazione. Gestire tutto a mano diventa scomodo.
+
+Qui entrano in gioco Maven e Gradle.
+
+## Cosa fanno Maven e Gradle
+
+Uno strumento di build puo:
+
+- compilare il progetto
+- scaricare librerie esterne
+- eseguire test
+- creare un file pronto da distribuire
+- mantenere una struttura ordinata
+
+Le librerie esterne si chiamano spesso **dipendenze**: pezzi di codice scritti da altri che il tuo progetto usa.
+
+## Maven
+
+Maven usa un file chiamato `pom.xml`.
+
+Una struttura tipica e:
+
+```text
+progetto/
+  pom.xml
+  src/
+    main/
+      java/
+    test/
+      java/
+```
+
+Il codice principale va in:
+
+```text
+src/main/java
+```
+
+I test vanno in:
+
+```text
+src/test/java
+```
+
+Comandi comuni:
+
+```bash
+mvn compile
+mvn test
+mvn package
+```
+
+## Gradle
+
+Gradle usa spesso un file `build.gradle` oppure `build.gradle.kts`.
+
+Anche Gradle usa una struttura simile:
+
+```text
+progetto/
+  build.gradle
+  src/
+    main/
+      java/
+    test/
+      java/
+```
+
+Comandi comuni:
+
+```bash
+gradle build
+gradle test
+```
+
+In molti progetti troverai uno script incluso:
+
+```bash
+./gradlew build
+```
+
+Su Windows:
+
+```bash
+gradlew.bat build
+```
+
+Questo permette di usare Gradle senza installarlo manualmente.
+
+## Dipendenze
+
+Se vuoi usare una libreria esterna, la dichiari nel file di build.
+
+Non devi scaricare manualmente file `.jar` e copiarli in giro.
+
+Lo strumento di build legge la configurazione, scarica cio che serve e lo collega al progetto.
+
+## Quando ti servono davvero
+
+All'inizio puoi continuare con `javac` e `java`.
+
+Maven o Gradle diventano utili quando:
+
+- il progetto ha molte classi
+- vuoi usare librerie esterne
+- vuoi scrivere test automatici
+- lavori con altre persone
+- usi framework come Spring
+
+## Regola pratica
+
+Per imparare la sintassi Java, parti semplice.
+
+Quando il programma inizia ad avere piu cartelle, librerie e test, passa a Maven o Gradle.
+
+Non sono "Java avanzato" nel senso del linguaggio, ma sono parte della vita quotidiana di molti progetti Java.

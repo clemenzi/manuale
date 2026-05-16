@@ -3,4 +3,112 @@ title: Generics
 description: Come usare tipi parametrizzati per collezioni e classi riutilizzabili.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva sui generics in Java per principianti che hanno gia visto metodi, classi e collezioni. Coprire ArrayList<String>, parametri di tipo, vantaggi di sicurezza e un esempio semplice di classe generica. Usare esempi piccoli e progressivi. -->
+## Il problema che risolvono
+
+Hai gia visto codice come questo:
+
+```java
+ArrayList<String> nomi = new ArrayList<>();
+```
+
+La parte `String` tra parentesi angolari dice che la lista contiene stringhe.
+
+Questa idea si chiama **generics**.
+
+## Tipi piu sicuri
+
+Senza generics, una lista potrebbe contenere di tutto: testi, numeri, oggetti diversi.
+
+Con i generics, Java controlla il tipo.
+
+```java
+ArrayList<String> nomi = new ArrayList<>();
+
+nomi.add("Luca");
+nomi.add("Sara");
+// nomi.add(10); // errore
+```
+
+`10` e un `int`, non una `String`. Java lo segnala subito.
+
+## Generics nelle collezioni
+
+Esempi comuni:
+
+```java
+ArrayList<String> nomi = new ArrayList<>();
+ArrayList<Integer> numeri = new ArrayList<>();
+HashMap<String, Double> prezzi = new HashMap<>();
+HashSet<String> parole = new HashSet<>();
+```
+
+`Integer` e la versione oggetto di `int`. Nelle collezioni Java si usano tipi oggetto, non primitivi.
+
+Altri esempi:
+
+- `Double` per `double`
+- `Boolean` per `boolean`
+- `Character` per `char`
+
+## Creare una classe generica
+
+Puoi creare anche le tue classi generiche.
+
+```java
+public class Scatola<T> {
+    private T valore;
+
+    public Scatola(T valore) {
+        this.valore = valore;
+    }
+
+    public T getValore() {
+        return valore;
+    }
+}
+```
+
+`T` e un parametro di tipo. Significa: il tipo verra scelto quando userai la classe.
+
+## Usare la classe generica
+
+```java
+public class Esempio {
+    public static void main(String[] args) {
+        Scatola<String> scatolaNome = new Scatola<>("Luca");
+        Scatola<Integer> scatolaNumero = new Scatola<>(42);
+
+        System.out.println(scatolaNome.getValore());
+        System.out.println(scatolaNumero.getValore());
+    }
+}
+```
+
+Output:
+
+```text
+Luca
+42
+```
+
+La stessa classe `Scatola` funziona con tipi diversi, ma resta controllata.
+
+## Perche non usare Object
+
+Potresti pensare di usare `Object`, il tipo piu generale.
+
+```java
+public class Scatola {
+    private Object valore;
+}
+```
+
+Il problema e che poi perdi informazioni sul tipo e devi fare cast manuali.
+
+I generics evitano molti cast e molti errori.
+
+## Regola pratica
+
+Usa i generics quando una classe o una collezione deve lavorare con tipi diversi, ma vuoi mantenere controlli chiari.
+
+Nella maggior parte dei programmi iniziali li incontrerai soprattutto con collezioni come `ArrayList`, `HashMap` e `HashSet`.

@@ -3,4 +3,178 @@ title: Variabili
 description: Come salvare valori in Java, dichiarare variabili e modificarle nel tempo.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva sulle variabili in Java per principianti assoluti. Coprire dichiarazione con tipo, assegnazione, lettura del valore, riassegnazione e nomi validi. Usare esempi piccoli e progressivi. -->
+## Cos'e una variabile
+
+Un programma deve ricordare informazioni mentre lavora: un nome, un prezzo, un punteggio, un totale.
+
+Una **variabile** e una specie di scatola con un'etichetta. L'etichetta e il nome della variabile. Il contenuto e il valore salvato.
+
+```java
+String nome = "Luca";
+int eta = 20;
+```
+
+Qui creiamo due variabili:
+
+- `nome` contiene il testo `"Luca"`
+- `eta` contiene il numero `20`
+
+## Dichiarare una variabile
+
+In Java devi indicare il tipo della variabile prima del nome.
+
+```java
+int eta;
+```
+
+Questa riga dice: "crea una variabile chiamata `eta` che conterra numeri interi".
+
+Puoi anche darle subito un valore:
+
+```java
+int eta = 20;
+```
+
+Questa operazione si chiama **inizializzazione**.
+
+## Leggere il valore
+
+Per usare il valore, scrivi il nome della variabile.
+
+```java
+public class Variabili {
+    public static void main(String[] args) {
+        String nome = "Luca";
+        int eta = 20;
+
+        System.out.println(nome);
+        System.out.println(eta);
+    }
+}
+```
+
+Output:
+
+```text
+Luca
+20
+```
+
+Quando Java vede `nome`, prende il valore salvato dentro quella variabile.
+
+## Modificare una variabile
+
+Puoi cambiare il valore di una variabile con `=`.
+
+```java
+int eta = 20;
+System.out.println(eta);
+
+eta = 21;
+System.out.println(eta);
+```
+
+Output:
+
+```text
+20
+21
+```
+
+La seconda assegnazione sostituisce il valore precedente.
+
+Puoi anche usare il valore attuale per calcolarne uno nuovo:
+
+```java
+int punti = 10;
+punti = punti + 5;
+
+System.out.println(punti);
+```
+
+Output:
+
+```text
+15
+```
+
+## Il tipo conta
+
+Java controlla che il valore sia compatibile con il tipo.
+
+```java
+int eta = 20;
+eta = "venti"; // errore
+```
+
+`int` contiene numeri interi. Non puo contenere testo.
+
+Questo controllo puo sembrare rigido, ma aiuta a trovare molti errori prima di eseguire il programma.
+
+## Nomi validi
+
+I nomi delle variabili devono seguire alcune regole:
+
+- possono contenere lettere, numeri e underscore `_`
+- non possono iniziare con un numero
+- non possono contenere spazi
+- non possono essere parole riservate come `class`, `int`, `if`
+- maiuscole e minuscole contano
+
+Esempi validi:
+
+```java
+String nome;
+int etaUtente;
+double prezzoTotale;
+```
+
+Esempi non validi:
+
+```java
+int 2eta;        // inizia con un numero
+String nome utente; // contiene uno spazio
+int class;       // parola riservata
+```
+
+## Convenzione: camelCase
+
+In Java i nomi delle variabili usano spesso il **camelCase**.
+
+```java
+int etaMinima = 18;
+double prezzoTotale = 24.90;
+String nomeUtente = "Sara";
+```
+
+La prima parola inizia minuscola. Le parole successive iniziano con la maiuscola.
+
+## Esempio completo
+
+```java
+public class Profilo {
+    public static void main(String[] args) {
+        String nome = "Sara";
+        int eta = 17;
+        boolean studente = true;
+
+        System.out.println("Nome: " + nome);
+        System.out.println("Eta: " + eta);
+        System.out.println("Studente: " + studente);
+
+        eta = eta + 1;
+        System.out.println("Eta aggiornata: " + eta);
+    }
+}
+```
+
+Output:
+
+```text
+Nome: Sara
+Eta: 17
+Studente: true
+Eta aggiornata: 18
+```
+
+Qui `eta` cambia, mentre `nome` e `studente` restano uguali.

@@ -3,4 +3,156 @@ title: Classi e oggetti
 description: Come rappresentare entita del programma con classi, campi e oggetti.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva su classi e oggetti in Java per principianti assoluti. Coprire differenza tra classe e oggetto, campi, creazione con new e accesso ai dati. Usare esempi piccoli e progressivi. -->
+## L'idea della programmazione a oggetti
+
+Java e un linguaggio molto legato alla programmazione a oggetti.
+
+Un **oggetto** rappresenta qualcosa con dati e comportamenti: una persona, un prodotto, un conto, un libro.
+
+Una **classe** e il modello da cui crei gli oggetti.
+
+Pensala cosi:
+
+- la classe e il modulo vuoto
+- l'oggetto e un modulo compilato con dati reali
+
+## Creare una classe
+
+```java
+public class Persona {
+    String nome;
+    int eta;
+}
+```
+
+Questa classe descrive una persona con due campi:
+
+- `nome`
+- `eta`
+
+I campi sono variabili che appartengono a un oggetto.
+
+## Creare un oggetto con new
+
+```java
+public class Esempio {
+    public static void main(String[] args) {
+        Persona persona = new Persona();
+
+        persona.nome = "Luca";
+        persona.eta = 20;
+
+        System.out.println(persona.nome);
+        System.out.println(persona.eta);
+    }
+}
+```
+
+Output:
+
+```text
+Luca
+20
+```
+
+`new Persona()` crea un nuovo oggetto partendo dalla classe `Persona`.
+
+## Classe e oggetto non sono la stessa cosa
+
+La classe e il progetto.
+
+L'oggetto e una cosa concreta creata da quel progetto.
+
+```java
+Persona persona1 = new Persona();
+Persona persona2 = new Persona();
+
+persona1.nome = "Luca";
+persona2.nome = "Sara";
+```
+
+`persona1` e `persona2` sono due oggetti diversi. Hanno la stessa struttura, ma possono contenere dati diversi.
+
+## Aggiungere un metodo
+
+Una classe puo contenere anche metodi.
+
+```java
+public class Persona {
+    String nome;
+    int eta;
+
+    void saluta() {
+        System.out.println("Ciao, sono " + nome);
+    }
+}
+```
+
+Ora puoi chiamare il metodo sull'oggetto:
+
+```java
+Persona persona = new Persona();
+persona.nome = "Luca";
+
+persona.saluta();
+```
+
+Output:
+
+```text
+Ciao, sono Luca
+```
+
+Il metodo usa il campo `nome` dell'oggetto su cui viene chiamato.
+
+## Un esempio con prodotti
+
+```java
+public class Prodotto {
+    String nome;
+    double prezzo;
+
+    void mostra() {
+        System.out.println(nome + ": " + prezzo + " euro");
+    }
+}
+```
+
+Uso:
+
+```java
+public class Negozio {
+    public static void main(String[] args) {
+        Prodotto prodotto = new Prodotto();
+        prodotto.nome = "Quaderno";
+        prodotto.prezzo = 2.50;
+
+        prodotto.mostra();
+    }
+}
+```
+
+Output:
+
+```text
+Quaderno: 2.5 euro
+```
+
+## Perche usare classi
+
+Le classi aiutano a tenere insieme dati collegati.
+
+Senza classe potresti avere variabili separate:
+
+```java
+String nomeProdotto = "Quaderno";
+double prezzoProdotto = 2.50;
+```
+
+Con una classe, il concetto diventa piu chiaro:
+
+```java
+Prodotto prodotto = new Prodotto();
+```
+
+Man mano che i programmi crescono, questa organizzazione diventa fondamentale.

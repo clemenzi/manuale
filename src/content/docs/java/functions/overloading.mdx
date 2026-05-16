@@ -3,4 +3,150 @@ title: Overloading
 description: Come definire piu metodi con lo stesso nome ma parametri diversi.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva sull'overloading in Java per principianti assoluti. Coprire firme dei metodi, parametri diversi, scelta del metodo chiamato e casi in cui migliora la leggibilita. Usare esempi piccoli e progressivi. -->
+## Lo stesso nome, parametri diversi
+
+In Java puoi avere piu metodi con lo stesso nome, se hanno parametri diversi.
+
+Questa tecnica si chiama **overloading**.
+
+```java
+public static void saluta() {
+    System.out.println("Ciao!");
+}
+
+public static void saluta(String nome) {
+    System.out.println("Ciao, " + nome + "!");
+}
+```
+
+Java sceglie quale metodo chiamare guardando gli argomenti.
+
+## Un primo esempio completo
+
+```java
+public class Saluti {
+    public static void saluta() {
+        System.out.println("Ciao!");
+    }
+
+    public static void saluta(String nome) {
+        System.out.println("Ciao, " + nome + "!");
+    }
+
+    public static void main(String[] args) {
+        saluta();
+        saluta("Luca");
+    }
+}
+```
+
+Output:
+
+```text
+Ciao!
+Ciao, Luca!
+```
+
+La prima chiamata non passa argomenti. La seconda passa una `String`.
+
+## La firma del metodo
+
+La **firma** di un metodo e composta da:
+
+- nome del metodo
+- tipi dei parametri
+- ordine dei parametri
+
+Questi metodi hanno firme diverse:
+
+```java
+public static void stampa(String testo) {
+    System.out.println(testo);
+}
+
+public static void stampa(int numero) {
+    System.out.println(numero);
+}
+```
+
+Uno riceve una `String`, l'altro un `int`.
+
+## Il valore di ritorno non basta
+
+Non puoi distinguere due metodi solo dal tipo di ritorno.
+
+Questo codice e sbagliato:
+
+```java
+public static int calcola() {
+    return 1;
+}
+
+public static double calcola() {
+    return 1.0;
+}
+```
+
+Per Java le chiamate sarebbero ambigue:
+
+```java
+calcola();
+```
+
+Quale dei due dovrebbe scegliere?
+
+## Parametri in ordine diverso
+
+L'ordine conta.
+
+```java
+public static void mostra(String nome, int eta) {
+    System.out.println(nome + ", " + eta);
+}
+
+public static void mostra(int eta, String nome) {
+    System.out.println(nome + ", " + eta);
+}
+```
+
+Questi due metodi sono diversi per Java.
+
+Pero non sempre e una buona idea: chi legge potrebbe confondersi. Usa l'overloading solo quando rende il codice piu chiaro.
+
+## Esempio: calcolare il totale
+
+```java
+public class Totali {
+    public static double totale(double prezzo, int quantita) {
+        return prezzo * quantita;
+    }
+
+    public static double totale(double prezzo, int quantita, double spedizione) {
+        return prezzo * quantita + spedizione;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(totale(2.50, 4));
+        System.out.println(totale(2.50, 4, 3.90));
+    }
+}
+```
+
+Output:
+
+```text
+10.0
+13.9
+```
+
+Il nome `totale` resta lo stesso perche l'idea e la stessa. Cambiano solo i dati disponibili.
+
+## Quando usarlo
+
+L'overloading e utile quando:
+
+- i metodi fanno la stessa azione generale
+- cambiano solo i parametri disponibili
+- il nome comune aiuta a leggere meglio
+
+Evitalo se i metodi fanno cose davvero diverse. In quel caso scegli nomi diversi.

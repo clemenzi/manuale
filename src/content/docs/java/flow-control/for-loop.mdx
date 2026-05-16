@@ -3,4 +3,166 @@ title: Ciclo for
 description: Come ripetere istruzioni quando sai quante volte eseguirle.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva sul ciclo for in Java per principianti assoluti. Coprire inizializzazione, condizione, aggiornamento, contatori e uso con array semplici. Usare esempi piccoli e progressivi. -->
+## Ripetere un'azione
+
+Un ciclo serve a ripetere lo stesso blocco di codice.
+
+Il ciclo `for` e utile quando sai quante volte vuoi ripetere.
+
+```java
+for (int i = 1; i <= 5; i++) {
+    System.out.println(i);
+}
+```
+
+Output:
+
+```text
+1
+2
+3
+4
+5
+```
+
+## Le tre parti del for
+
+Il ciclo ha questa forma:
+
+```java
+for (inizializzazione; condizione; aggiornamento) {
+    // codice da ripetere
+}
+```
+
+Nell'esempio:
+
+```java
+for (int i = 1; i <= 5; i++) {
+```
+
+succedono tre cose:
+
+- `int i = 1` crea il contatore
+- `i <= 5` dice fin quando continuare
+- `i++` aumenta `i` di 1 dopo ogni giro
+
+## Contare da zero
+
+In programmazione si conta spesso da zero, soprattutto con array e liste.
+
+```java
+for (int i = 0; i < 3; i++) {
+    System.out.println("Giro " + i);
+}
+```
+
+Output:
+
+```text
+Giro 0
+Giro 1
+Giro 2
+```
+
+La condizione `i < 3` produce tre giri: 0, 1, 2.
+
+## Usare il for per sommare
+
+```java
+int totale = 0;
+
+for (int i = 1; i <= 5; i++) {
+    totale = totale + i;
+}
+
+System.out.println(totale);
+```
+
+Output:
+
+```text
+15
+```
+
+Il programma somma:
+
+```text
+1 + 2 + 3 + 4 + 5
+```
+
+## Attraversare un array
+
+Un uso molto comune del `for` e leggere gli elementi di un array.
+
+```java
+String[] nomi = {"Luca", "Sara", "Mina"};
+
+for (int i = 0; i < nomi.length; i++) {
+    System.out.println(nomi[i]);
+}
+```
+
+Output:
+
+```text
+Luca
+Sara
+Mina
+```
+
+`nomi.length` contiene il numero di elementi dell'array.
+
+Gli indici partono da `0`, quindi l'ultimo indice e `length - 1`.
+
+## Errore comune: andare oltre l'ultimo elemento
+
+Questo codice e sbagliato:
+
+```java
+String[] nomi = {"Luca", "Sara", "Mina"};
+
+for (int i = 0; i <= nomi.length; i++) {
+    System.out.println(nomi[i]);
+}
+```
+
+La condizione `i <= nomi.length` permette a `i` di arrivare a `3`, ma gli indici validi sono `0`, `1`, `2`.
+
+La forma corretta e:
+
+```java
+for (int i = 0; i < nomi.length; i++) {
+    System.out.println(nomi[i]);
+}
+```
+
+## Ciclo all'indietro
+
+Puoi anche contare al contrario:
+
+```java
+for (int i = 5; i >= 1; i--) {
+    System.out.println(i);
+}
+```
+
+Output:
+
+```text
+5
+4
+3
+2
+1
+```
+
+## Quando usare for
+
+Usa `for` quando:
+
+- conosci il numero di ripetizioni
+- hai un contatore
+- vuoi attraversare un array con gli indici
+
+Se invece vuoi ripetere finche una condizione resta vera, spesso e piu naturale usare `while`.

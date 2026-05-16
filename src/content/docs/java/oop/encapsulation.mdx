@@ -3,4 +3,152 @@ title: Incapsulamento
 description: Come proteggere i dati di un oggetto con private, getter e setter.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva sull'incapsulamento in Java per principianti assoluti. Coprire private, public, getter, setter e perche non esporre sempre i campi direttamente. Usare esempi piccoli e progressivi. -->
+## Perche non lasciare tutto pubblico
+
+Finora abbiamo modificato i campi direttamente:
+
+```java
+persona.eta = -5;
+```
+
+Java lo permette se il campo e accessibile, ma questo valore non ha senso.
+
+L'**incapsulamento** serve a proteggere i dati di un oggetto e controllare come vengono letti o modificati.
+
+## private
+
+Con `private`, un campo puo essere usato solo dentro la classe.
+
+```java
+public class Persona {
+    private String nome;
+    private int eta;
+}
+```
+
+Da fuori non puoi piu fare:
+
+```java
+persona.eta = 20; // errore se eta e private
+```
+
+Serve un modo controllato per leggere e modificare il valore.
+
+## Getter
+
+Un getter restituisce il valore di un campo.
+
+```java
+public String getNome() {
+    return nome;
+}
+```
+
+Esempio:
+
+```java
+public class Persona {
+    private String nome;
+
+    public String getNome() {
+        return nome;
+    }
+}
+```
+
+`getNome` permette di leggere `nome` senza rendere il campo pubblico.
+
+## Setter
+
+Un setter modifica il valore di un campo.
+
+```java
+public void setNome(String nome) {
+    this.nome = nome;
+}
+```
+
+Il vantaggio e che puoi controllare il valore prima di salvarlo.
+
+```java
+public void setEta(int eta) {
+    if (eta >= 0) {
+        this.eta = eta;
+    }
+}
+```
+
+Se qualcuno prova a impostare `-5`, il valore non viene accettato.
+
+## Classe completa
+
+```java
+public class Persona {
+    private String nome;
+    private int eta;
+
+    public Persona(String nome, int eta) {
+        this.nome = nome;
+        setEta(eta);
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public int getEta() {
+        return eta;
+    }
+
+    public void setEta(int eta) {
+        if (eta >= 0) {
+            this.eta = eta;
+        }
+    }
+}
+```
+
+Uso:
+
+```java
+public class Esempio {
+    public static void main(String[] args) {
+        Persona persona = new Persona("Luca", 20);
+
+        System.out.println(persona.getNome());
+        System.out.println(persona.getEta());
+
+        persona.setEta(21);
+        System.out.println(persona.getEta());
+    }
+}
+```
+
+Output:
+
+```text
+Luca
+20
+21
+```
+
+## public e private
+
+`public` significa accessibile dall'esterno.
+
+`private` significa accessibile solo dentro la classe.
+
+Una regola molto comune in Java e:
+
+- campi `private`
+- metodi pubblici solo quando servono
+
+## Perche e utile
+
+L'incapsulamento aiuta a:
+
+- evitare valori non validi
+- cambiare l'interno della classe senza rompere tutto il programma
+- rendere chiaro quali azioni sono permesse
+
+All'inizio sembra piu lungo. Nei programmi reali rende il codice piu sicuro e ordinato.

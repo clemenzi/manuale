@@ -3,4 +3,173 @@ title: Conversione dei tipi
 description: Come convertire valori tra tipi diversi ed evitare errori comuni.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva sulla conversione dei tipi in Java per principianti assoluti. Coprire cast esplicito, conversioni automatiche, parsing da stringa e perdita di informazioni. Usare esempi piccoli e progressivi. -->
+## Perche convertire un tipo
+
+A volte hai un valore in un tipo, ma ti serve in un altro.
+
+Per esempio:
+
+- leggi un numero come testo e vuoi usarlo per un calcolo
+- hai un `int` e vuoi salvarlo in un `double`
+- hai un `double` e vuoi prendere solo la parte intera
+
+Questa operazione si chiama **conversione di tipo**.
+
+## Conversioni automatiche
+
+Java permette alcune conversioni senza istruzioni speciali.
+
+Per esempio, un `int` puo diventare un `double`:
+
+```java
+int eta = 20;
+double etaDecimale = eta;
+
+System.out.println(etaDecimale);
+```
+
+Output:
+
+```text
+20.0
+```
+
+Questa conversione e sicura: un numero intero puo essere rappresentato come numero decimale senza perdere informazione.
+
+## Cast esplicito
+
+La conversione opposta non e automatica.
+
+```java
+double prezzo = 12.90;
+int prezzoIntero = prezzo; // errore
+```
+
+Java non vuole perdere la parte decimale senza che tu lo dica chiaramente.
+
+Per farlo usi un **cast**:
+
+```java
+double prezzo = 12.90;
+int prezzoIntero = (int) prezzo;
+
+System.out.println(prezzoIntero);
+```
+
+Output:
+
+```text
+12
+```
+
+Il cast a `int` taglia la parte decimale. Non arrotonda.
+
+## Perdita di informazioni
+
+Questo dettaglio e importante:
+
+```java
+double media = 7.8;
+int voto = (int) media;
+
+System.out.println(voto);
+```
+
+Output:
+
+```text
+7
+```
+
+La parte `.8` sparisce.
+
+Se vuoi arrotondare, usa un metodo apposito:
+
+```java
+double media = 7.8;
+long arrotondato = Math.round(media);
+
+System.out.println(arrotondato);
+```
+
+Output:
+
+```text
+8
+```
+
+## Convertire testo in numero
+
+Quando leggi input dall'utente o da un file, spesso i dati arrivano come testo.
+
+Per trasformare una `String` in un `int`, usa `Integer.parseInt`:
+
+```java
+String testo = "25";
+int numero = Integer.parseInt(testo);
+
+System.out.println(numero + 5);
+```
+
+Output:
+
+```text
+30
+```
+
+Per un `double`, usa `Double.parseDouble`:
+
+```java
+String testo = "12.50";
+double prezzo = Double.parseDouble(testo);
+
+System.out.println(prezzo * 2);
+```
+
+Output:
+
+```text
+25.0
+```
+
+## Errore comune: testo non valido
+
+Se il testo non contiene un numero valido, Java segnala un errore.
+
+```java
+String testo = "ciao";
+int numero = Integer.parseInt(testo); // errore a runtime
+```
+
+`"ciao"` non puo diventare un numero intero.
+
+Piu avanti vedremo come gestire questi casi con le eccezioni.
+
+## Convertire numero in testo
+
+Per unire un numero a una stringa, spesso basta `+`:
+
+```java
+int eta = 20;
+String messaggio = "Eta: " + eta;
+
+System.out.println(messaggio);
+```
+
+Output:
+
+```text
+Eta: 20
+```
+
+Java converte il numero in testo per poter costruire la frase.
+
+## Regola pratica
+
+Chiediti sempre:
+
+- sto passando da un tipo piu piccolo a uno piu ampio?
+- rischio di perdere dati?
+- il testo contiene davvero un numero?
+
+Se la conversione puo perdere informazione, Java ti chiede di essere esplicito. E una protezione, non un fastidio.

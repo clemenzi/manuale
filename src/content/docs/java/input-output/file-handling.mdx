@@ -3,4 +3,128 @@ title: File
 description: Come leggere e scrivere file di testo in modo semplice.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva sui file in Java per principianti assoluti. Coprire lettura di file di testo, scrittura semplice, percorsi, gestione minima degli errori e chiusura delle risorse. Usare esempi piccoli e progressivi. -->
+## Perche usare i file
+
+Finora i dati vivevano solo mentre il programma era aperto. Quando il programma finiva, le variabili sparivano.
+
+Un file permette di salvare informazioni su disco: una lista, un messaggio, un risultato, una configurazione.
+
+In questa pagina usiamo file di testo semplici.
+
+## Scrivere un file
+
+Per scrivere testo in un file, puoi usare `FileWriter`.
+
+```java
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class ScriviFile {
+    public static void main(String[] args) {
+        try {
+            FileWriter writer = new FileWriter("messaggio.txt");
+            writer.write("Ciao dal file!");
+            writer.close();
+
+            System.out.println("File scritto.");
+        } catch (IOException e) {
+            System.out.println("Errore durante la scrittura.");
+        }
+    }
+}
+```
+
+Dopo l'esecuzione, nella stessa cartella del programma troverai `messaggio.txt`.
+
+## Perche c'e try catch
+
+Scrivere su un file puo fallire: la cartella potrebbe non esistere, il file potrebbe essere bloccato, oppure potresti non avere i permessi.
+
+Java ti chiede di gestire questa possibilita.
+
+Per ora leggi `try catch` cosi:
+
+- prova a fare questa operazione
+- se qualcosa va storto, esegui il blocco `catch`
+
+Vedremo le eccezioni con piu calma nella sezione sugli errori.
+
+## Leggere un file
+
+Per leggere un file riga per riga, puoi usare `Scanner`.
+
+Prima crea un file `messaggio.txt` con questo contenuto:
+
+```text
+Ciao dal file!
+```
+
+Poi scrivi:
+
+```java
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class LeggiFile {
+    public static void main(String[] args) {
+        try {
+            File file = new File("messaggio.txt");
+            Scanner reader = new Scanner(file);
+
+            while (reader.hasNextLine()) {
+                String riga = reader.nextLine();
+                System.out.println(riga);
+            }
+
+            reader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File non trovato.");
+        }
+    }
+}
+```
+
+Output:
+
+```text
+Ciao dal file!
+```
+
+## Percorsi relativi
+
+Nel codice abbiamo scritto:
+
+```java
+new File("messaggio.txt")
+```
+
+Questo e un **percorso relativo**. Java cerca il file nella cartella da cui esegui il programma.
+
+Se il programma dice "File non trovato", controlla:
+
+- il nome del file
+- l'estensione `.txt`
+- la cartella in cui stai eseguendo `java`
+
+## Aggiungere testo a un file
+
+Di solito `FileWriter` sovrascrive il file. Se vuoi aggiungere testo alla fine, usa il secondo parametro `true`:
+
+```java
+FileWriter writer = new FileWriter("diario.txt", true);
+writer.write("Nuova riga\n");
+writer.close();
+```
+
+`\n` indica un a capo.
+
+## Regola pratica
+
+Quando lavori con i file, ricordati tre cose:
+
+1. le operazioni possono fallire, quindi servono `try catch`
+2. le risorse aperte vanno chiuse
+3. il percorso del file dipende dalla cartella in cui esegui il programma
+
+I file sono il primo passo per far comunicare Java con dati esterni al codice.

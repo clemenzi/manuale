@@ -3,4 +3,146 @@ title: Struttura di un programma
 description: Come sono organizzati classi, metodi e istruzioni in un file Java.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva sulla struttura di un programma Java per principianti assoluti. Coprire classe, metodo main, blocchi con parentesi graffe, istruzioni e punto e virgola. Usare esempi piccoli e progressivi. -->
+## Guardare un programma a strati
+
+Un programma Java sembra lungo anche quando fa poco. Questo succede perche Java vuole una struttura esplicita.
+
+Partiamo da un esempio:
+
+```java
+public class Programma {
+    public static void main(String[] args) {
+        System.out.println("Inizio");
+        System.out.println("Fine");
+    }
+}
+```
+
+Puoi leggerlo a strati:
+
+- la classe contiene il programma
+- il metodo `main` contiene le istruzioni da eseguire
+- le istruzioni sono le singole azioni
+
+## La classe
+
+```java
+public class Programma {
+    ...
+}
+```
+
+Una **classe** e un blocco che raccoglie codice. Nei primi esempi useremo una classe come contenitore principale.
+
+Il nome della classe pubblica deve corrispondere al nome del file.
+
+Se scrivi:
+
+```java
+public class Programma {
+}
+```
+
+il file deve chiamarsi:
+
+```text
+Programma.java
+```
+
+## Il metodo main
+
+```java
+public static void main(String[] args) {
+    ...
+}
+```
+
+Il metodo `main` e il punto di partenza del programma. Quando scrivi `java Programma`, Java cerca questo metodo e inizia da li.
+
+Per ora non serve capire ogni parola della riga. Tienila come formula di avvio:
+
+```java
+public static void main(String[] args)
+```
+
+La capirai meglio quando parleremo di metodi, classi e oggetti.
+
+## Le istruzioni
+
+Dentro `main` scriviamo le istruzioni:
+
+```java
+System.out.println("Inizio");
+System.out.println("Fine");
+```
+
+Una **istruzione** e un comando che Java deve eseguire.
+
+In Java molte istruzioni finiscono con il punto e virgola `;`.
+
+```java
+int eta = 20;
+System.out.println(eta);
+```
+
+Il punto e virgola dice a Java: "questa istruzione e finita".
+
+## Le parentesi graffe
+
+Le parentesi graffe delimitano un blocco:
+
+```java
+{
+    // codice dentro il blocco
+}
+```
+
+Nel nostro programma ci sono due blocchi:
+
+```java
+public class Programma {
+    public static void main(String[] args) {
+        System.out.println("Ciao");
+    }
+}
+```
+
+Il blocco di `main` sta dentro il blocco della classe.
+
+L'indentazione, cioe gli spazi all'inizio delle righe, non cambia il significato per Java. Serve pero a noi per leggere meglio.
+
+## Un programma con piu istruzioni
+
+```java
+public class Scontrino {
+    public static void main(String[] args) {
+        double prezzo = 12.50;
+        double spedizione = 4.90;
+        double totale = prezzo + spedizione;
+
+        System.out.println("Prezzo: " + prezzo);
+        System.out.println("Spedizione: " + spedizione);
+        System.out.println("Totale: " + totale);
+    }
+}
+```
+
+Output:
+
+```text
+Prezzo: 12.5
+Spedizione: 4.9
+Totale: 17.4
+```
+
+Il programma viene eseguito dall'alto verso il basso, una riga alla volta.
+
+## Regola pratica
+
+Quando scrivi un file Java di base, controlla tre cose:
+
+1. il nome del file corrisponde al nome della classe
+2. il metodo `main` e scritto correttamente
+3. ogni istruzione che lo richiede finisce con `;`
+
+Molti errori iniziali nascono da uno di questi tre dettagli.

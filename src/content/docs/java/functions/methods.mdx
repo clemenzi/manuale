@@ -3,4 +3,142 @@ title: Metodi
 description: Come dividere un programma Java in blocchi riutilizzabili.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva sui metodi in Java per principianti assoluti. Coprire definizione di metodo statico, chiamata, nome, corpo e motivi per dividere il codice. Usare esempi piccoli e progressivi. -->
+## Cosa e un metodo
+
+Un metodo e un blocco di codice con un nome.
+
+Lo scrivi una volta e puoi richiamarlo quando serve.
+
+Pensa a un metodo come a una piccola ricetta: invece di riscrivere ogni passaggio, dai un nome all'azione.
+
+## Un primo metodo
+
+```java
+public class Saluti {
+    public static void saluta() {
+        System.out.println("Ciao!");
+    }
+
+    public static void main(String[] args) {
+        saluta();
+        saluta();
+    }
+}
+```
+
+Output:
+
+```text
+Ciao!
+Ciao!
+```
+
+Il metodo `saluta` viene definito una volta e chiamato due volte.
+
+## Definire e chiamare
+
+Questa parte definisce il metodo:
+
+```java
+public static void saluta() {
+    System.out.println("Ciao!");
+}
+```
+
+Questa parte lo chiama:
+
+```java
+saluta();
+```
+
+Definire un metodo non lo esegue automaticamente. Viene eseguito quando lo chiami.
+
+## Perche usare metodi
+
+I metodi aiutano a:
+
+- evitare ripetizioni
+- dare un nome a un'azione
+- dividere un programma in pezzi piu piccoli
+- rendere il codice piu facile da leggere
+
+Senza metodo:
+
+```java
+System.out.println("----------");
+System.out.println("Prodotti");
+System.out.println("----------");
+System.out.println("Totale");
+System.out.println("----------");
+```
+
+Con metodo:
+
+```java
+public static void separatore() {
+    System.out.println("----------");
+}
+```
+
+Poi:
+
+```java
+separatore();
+System.out.println("Prodotti");
+separatore();
+System.out.println("Totale");
+separatore();
+```
+
+## Metodi statici nei primi programmi
+
+Nei primi esempi useremo spesso:
+
+```java
+public static void nomeMetodo()
+```
+
+`static` permette di chiamare il metodo direttamente da `main`, senza creare oggetti.
+
+Piu avanti, nella programmazione a oggetti, vedremo metodi legati agli oggetti.
+
+## Nomi chiari
+
+Il nome del metodo dovrebbe dire cosa fa.
+
+```java
+public static void stampaTitolo() {
+    System.out.println("Lista della spesa");
+}
+```
+
+`stampaTitolo` e piu chiaro di `faiCosa`.
+
+In Java i metodi usano di solito il camelCase:
+
+```java
+calcolaTotale()
+mostraMessaggio()
+leggiPrezzo()
+```
+
+## Esempio completo
+
+```java
+public class Scontrino {
+    public static void stampaSeparatore() {
+        System.out.println("----------");
+    }
+
+    public static void main(String[] args) {
+        stampaSeparatore();
+        System.out.println("Pane");
+        System.out.println("Latte");
+        stampaSeparatore();
+        System.out.println("Totale: 3.20 euro");
+        stampaSeparatore();
+    }
+}
+```
+
+Un metodo non deve fare tutto. Di solito e meglio che abbia un compito preciso e piccolo.

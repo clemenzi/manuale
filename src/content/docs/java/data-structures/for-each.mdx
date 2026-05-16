@@ -3,4 +3,176 @@ title: Ciclo for-each
 description: Come attraversare array e collezioni senza gestire manualmente gli indici.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva sul ciclo for-each in Java per principianti assoluti. Coprire sintassi, uso con array, uso con ArrayList, vantaggi e limiti quando bisogna modificare elementi. Usare esempi piccoli e progressivi. -->
+## Un modo piu semplice per attraversare dati
+
+Quando vuoi leggere tutti gli elementi di un array o di una collezione, spesso non ti serve l'indice.
+
+In questi casi puoi usare il ciclo for-each.
+
+```java
+String[] nomi = {"Luca", "Sara", "Mina"};
+
+for (String nome : nomi) {
+    System.out.println(nome);
+}
+```
+
+Output:
+
+```text
+Luca
+Sara
+Mina
+```
+
+## Leggere la sintassi
+
+```java
+for (String nome : nomi) {
+    ...
+}
+```
+
+Si legge cosi:
+
+"per ogni `String` chiamata `nome` dentro `nomi`, esegui questo blocco".
+
+`nome` e una variabile temporanea. A ogni giro contiene un elemento diverso.
+
+## for-each con array
+
+```java
+int[] voti = {7, 8, 6, 9};
+
+for (int voto : voti) {
+    System.out.println(voto);
+}
+```
+
+Output:
+
+```text
+7
+8
+6
+9
+```
+
+Il codice e piu breve rispetto a un `for` con indice.
+
+## for-each con ArrayList
+
+```java
+import java.util.ArrayList;
+
+public class Lista {
+    public static void main(String[] args) {
+        ArrayList<String> prodotti = new ArrayList<>();
+        prodotti.add("Pane");
+        prodotti.add("Latte");
+        prodotti.add("Mele");
+
+        for (String prodotto : prodotti) {
+            System.out.println(prodotto);
+        }
+    }
+}
+```
+
+Output:
+
+```text
+Pane
+Latte
+Mele
+```
+
+## Quando e comodo
+
+Il for-each e comodo quando vuoi:
+
+- stampare tutti gli elementi
+- sommare tutti i numeri
+- cercare un valore
+- controllare ogni elemento senza usare la posizione
+
+Esempio:
+
+```java
+int[] prezzi = {10, 20, 15};
+int totale = 0;
+
+for (int prezzo : prezzi) {
+    totale = totale + prezzo;
+}
+
+System.out.println(totale);
+```
+
+Output:
+
+```text
+45
+```
+
+## Limite: non hai l'indice
+
+Con for-each non hai direttamente la posizione dell'elemento.
+
+Se devi stampare anche l'indice, usa un `for` normale:
+
+```java
+String[] nomi = {"Luca", "Sara", "Mina"};
+
+for (int i = 0; i < nomi.length; i++) {
+    System.out.println(i + ": " + nomi[i]);
+}
+```
+
+Output:
+
+```text
+0: Luca
+1: Sara
+2: Mina
+```
+
+## Limite: modificare elementi
+
+Con un array di numeri, questa modifica non cambia l'array originale:
+
+```java
+int[] numeri = {1, 2, 3};
+
+for (int numero : numeri) {
+    numero = numero * 2;
+}
+
+for (int numero : numeri) {
+    System.out.println(numero);
+}
+```
+
+Output:
+
+```text
+1
+2
+3
+```
+
+`numero` e una copia temporanea del valore.
+
+Se vuoi modificare l'array, usa l'indice:
+
+```java
+for (int i = 0; i < numeri.length; i++) {
+    numeri[i] = numeri[i] * 2;
+}
+```
+
+## Regola pratica
+
+Usa for-each quando devi leggere tutti gli elementi.
+
+Usa `for` con indice quando devi conoscere o modificare la posizione.

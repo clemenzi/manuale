@@ -3,4 +3,169 @@ title: HashMap
 description: Come associare chiavi e valori per rappresentare dati cercabili.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva su HashMap in Java per principianti assoluti. Coprire chiavi, valori, put, get, containsKey, remove e un esempio di dizionario semplice. Usare esempi piccoli e progressivi. -->
+## Cosa e una HashMap
+
+Una `HashMap` collega una **chiave** a un **valore**.
+
+Pensala come un piccolo dizionario:
+
+- chiave: parola
+- valore: significato
+
+Oppure come una rubrica:
+
+- chiave: nome
+- valore: numero di telefono
+
+Prima devi importarla:
+
+```java
+import java.util.HashMap;
+```
+
+## Creare una HashMap
+
+```java
+import java.util.HashMap;
+
+public class Rubrica {
+    public static void main(String[] args) {
+        HashMap<String, String> telefoni = new HashMap<>();
+
+        telefoni.put("Luca", "3331234567");
+        telefoni.put("Sara", "3337654321");
+
+        System.out.println(telefoni);
+    }
+}
+```
+
+`HashMap<String, String>` significa: chiavi di tipo `String`, valori di tipo `String`.
+
+## Aggiungere con put
+
+Usa `put` per aggiungere una coppia chiave-valore.
+
+```java
+HashMap<String, Integer> eta = new HashMap<>();
+
+eta.put("Luca", 20);
+eta.put("Sara", 25);
+```
+
+Se usi una chiave gia presente, il valore viene sostituito.
+
+```java
+eta.put("Luca", 21);
+```
+
+Ora `"Luca"` vale `21`.
+
+## Leggere con get
+
+Usa `get` per recuperare il valore associato a una chiave.
+
+```java
+HashMap<String, Integer> eta = new HashMap<>();
+eta.put("Luca", 20);
+
+System.out.println(eta.get("Luca"));
+```
+
+Output:
+
+```text
+20
+```
+
+Se la chiave non esiste, `get` restituisce `null`.
+
+## Controllare se una chiave esiste
+
+Prima di leggere, puoi usare `containsKey`.
+
+```java
+HashMap<String, Integer> eta = new HashMap<>();
+eta.put("Luca", 20);
+
+if (eta.containsKey("Mina")) {
+    System.out.println(eta.get("Mina"));
+} else {
+    System.out.println("Mina non e presente.");
+}
+```
+
+Output:
+
+```text
+Mina non e presente.
+```
+
+## Rimuovere una chiave
+
+Usa `remove`.
+
+```java
+HashMap<String, Integer> eta = new HashMap<>();
+eta.put("Luca", 20);
+eta.put("Sara", 25);
+
+eta.remove("Luca");
+
+System.out.println(eta);
+```
+
+Output:
+
+```text
+{Sara=25}
+```
+
+## Attraversare le chiavi
+
+Puoi leggere tutte le chiavi con `keySet()`.
+
+```java
+HashMap<String, Integer> eta = new HashMap<>();
+eta.put("Luca", 20);
+eta.put("Sara", 25);
+
+for (String nome : eta.keySet()) {
+    System.out.println(nome + ": " + eta.get(nome));
+}
+```
+
+Output possibile:
+
+```text
+Luca: 20
+Sara: 25
+```
+
+L'ordine non e garantito. Una `HashMap` serve a cercare per chiave, non a mantenere un ordine preciso.
+
+## Esempio: prezzi dei prodotti
+
+```java
+import java.util.HashMap;
+
+public class Prezzi {
+    public static void main(String[] args) {
+        HashMap<String, Double> prezzi = new HashMap<>();
+
+        prezzi.put("pane", 1.50);
+        prezzi.put("latte", 1.20);
+        prezzi.put("pasta", 0.90);
+
+        String prodotto = "latte";
+
+        if (prezzi.containsKey(prodotto)) {
+            System.out.println("Prezzo: " + prezzi.get(prodotto));
+        } else {
+            System.out.println("Prodotto non trovato.");
+        }
+    }
+}
+```
+
+`HashMap` e utile quando vuoi cercare rapidamente un valore partendo da una chiave.

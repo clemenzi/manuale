@@ -3,4 +3,193 @@ title: Condizioni
 description: Come prendere decisioni nel codice con if, else e switch.
 ---
 
-<!-- TODO(writer): Scrivere una lezione introduttiva sulle condizioni in Java per principianti assoluti. Coprire if, else if, else, espressioni booleane e switch per casi semplici. Usare esempi piccoli e progressivi. -->
+## A cosa servono le condizioni
+
+Una condizione permette al programma di scegliere cosa fare.
+
+E come un bivio:
+
+- se succede una cosa, fai questo
+- altrimenti, fai qualcos'altro
+
+In Java le condizioni usano valori `boolean`: `true` o `false`.
+
+## if
+
+`if` esegue un blocco solo se la condizione e vera.
+
+```java
+int eta = 20;
+
+if (eta >= 18) {
+    System.out.println("Puoi entrare.");
+}
+```
+
+Output:
+
+```text
+Puoi entrare.
+```
+
+La condizione e:
+
+```java
+eta >= 18
+```
+
+Se vale `true`, Java esegue il blocco tra parentesi graffe.
+
+## else
+
+`else` indica cosa fare quando la condizione e falsa.
+
+```java
+int eta = 16;
+
+if (eta >= 18) {
+    System.out.println("Puoi entrare.");
+} else {
+    System.out.println("Non puoi entrare.");
+}
+```
+
+Output:
+
+```text
+Non puoi entrare.
+```
+
+## else if
+
+Quando hai piu casi, usa `else if`.
+
+```java
+int voto = 7;
+
+if (voto >= 9) {
+    System.out.println("Ottimo");
+} else if (voto >= 6) {
+    System.out.println("Sufficiente");
+} else {
+    System.out.println("Da riprovare");
+}
+```
+
+Output:
+
+```text
+Sufficiente
+```
+
+Java controlla dall'alto verso il basso. Appena trova una condizione vera, esegue quel blocco e salta gli altri.
+
+## Condizioni con operatori logici
+
+Puoi combinare piu condizioni.
+
+```java
+int eta = 20;
+boolean haBiglietto = true;
+
+if (eta >= 18 && haBiglietto) {
+    System.out.println("Ingresso consentito.");
+}
+```
+
+`&&` significa "e": entrambe le condizioni devono essere vere.
+
+Con `||`, invece, basta una condizione vera:
+
+```java
+boolean haPassword = false;
+boolean haCodiceTemporaneo = true;
+
+if (haPassword || haCodiceTemporaneo) {
+    System.out.println("Accesso possibile.");
+}
+```
+
+## switch
+
+`switch` e comodo quando confronti una stessa variabile con piu valori precisi.
+
+```java
+int giorno = 2;
+
+switch (giorno) {
+    case 1:
+        System.out.println("Lunedi");
+        break;
+    case 2:
+        System.out.println("Martedi");
+        break;
+    case 3:
+        System.out.println("Mercoledi");
+        break;
+    default:
+        System.out.println("Giorno non valido");
+}
+```
+
+Output:
+
+```text
+Martedi
+```
+
+`break` ferma lo `switch` dopo il caso trovato.
+
+`default` viene eseguito se nessun caso corrisponde.
+
+## Quando usare if e quando switch
+
+Usa `if` quando hai condizioni diverse:
+
+```java
+if (eta >= 18 && haBiglietto) {
+    ...
+}
+```
+
+Usa `switch` quando controlli molti valori dello stesso dato:
+
+```java
+switch (scelta) {
+    case 1:
+        ...
+}
+```
+
+## Esempio completo
+
+```java
+import java.util.Scanner;
+
+public class Menu {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("1. Saluta");
+        System.out.println("2. Mostra aiuto");
+        System.out.print("Scelta: ");
+
+        int scelta = scanner.nextInt();
+
+        switch (scelta) {
+            case 1:
+                System.out.println("Ciao!");
+                break;
+            case 2:
+                System.out.println("Scegli un numero dal menu.");
+                break;
+            default:
+                System.out.println("Scelta non valida.");
+        }
+
+        scanner.close();
+    }
+}
+```
+
+Le condizioni sono uno dei primi strumenti che trasformano un programma da sequenza fissa a programma capace di reagire.
