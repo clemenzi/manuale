@@ -278,47 +278,133 @@ export default defineConfig({
             {
               label: "Le basi",
               collapsed: false,
-              autogenerate: { directory: "java/basics" },
+              items: [
+                {
+                  label: "Primi passi",
+                  collapsed: false,
+                  items: [
+                    "java/basics/installation",
+                    "java/basics/first-program",
+                    "java/basics/program-structure",
+                    "java/basics/comments",
+                  ],
+                },
+                {
+                  label: "Valori e calcoli",
+                  collapsed: false,
+                  items: [
+                    "java/basics/variables",
+                    "java/basics/data-types",
+                    "java/basics/operators",
+                    "java/basics/type-conversion",
+                  ],
+                },
+              ],
             },
             {
               label: "Input e output",
               collapsed: false,
-              autogenerate: { directory: "java/input-output" },
+              items: [
+                "java/input-output/output",
+                "java/input-output/input",
+                "java/input-output/strings",
+                "java/input-output/file-handling",
+              ],
             },
             {
               label: "Controllo del flusso",
               collapsed: false,
-              autogenerate: { directory: "java/flow-control" },
+              items: [
+                "java/flow-control/conditions",
+                {
+                  label: "Cicli",
+                  collapsed: false,
+                  items: [
+                    "java/flow-control/for-loop",
+                    "java/flow-control/while-loop",
+                    "java/flow-control/break-continue",
+                  ],
+                },
+              ],
             },
             {
               label: "Strutture dati",
               collapsed: false,
-              autogenerate: { directory: "java/data-structures" },
+              items: [
+                {
+                  label: "Sequenze",
+                  collapsed: false,
+                  items: [
+                    "java/data-structures/arrays",
+                    "java/data-structures/for-each",
+                    "java/data-structures/arraylist",
+                  ],
+                },
+                {
+                  label: "Collezioni per ricerca e unicita",
+                  collapsed: true,
+                  items: ["java/data-structures/hashmap", "java/data-structures/sets"],
+                },
+              ],
             },
             {
               label: "Metodi",
               collapsed: true,
-              autogenerate: { directory: "java/functions" },
+              items: [
+                "java/functions/methods",
+                "java/functions/parameters-return-values",
+                "java/functions/scope",
+                "java/functions/overloading",
+              ],
             },
             {
               label: "Programmazione a oggetti",
               collapsed: true,
-              autogenerate: { directory: "java/oop" },
+              items: [
+                {
+                  label: "Oggetti e dati",
+                  collapsed: false,
+                  items: [
+                    "java/oop/classes-objects",
+                    "java/oop/constructors",
+                    "java/oop/encapsulation",
+                  ],
+                },
+                {
+                  label: "Relazioni tra classi",
+                  collapsed: true,
+                  items: ["java/oop/inheritance", "java/oop/interfaces"],
+                },
+              ],
             },
             {
               label: "Gestione degli errori",
               collapsed: true,
-              autogenerate: { directory: "java/errors" },
+              items: [
+                "java/errors/common-errors",
+                "java/errors/exceptions",
+                "java/errors/debugging",
+              ],
             },
             {
               label: "Strumenti e buone pratiche",
               collapsed: true,
-              autogenerate: { directory: "java/tools" },
+              items: [
+                "java/tools/packages-imports",
+                "java/tools/build-tools",
+                "java/tools/testing",
+                "java/tools/best-practices",
+              ],
             },
             {
               label: "Tecniche avanzate",
               collapsed: true,
-              autogenerate: { directory: "java/advanced" },
+              items: [
+                "java/advanced/generics",
+                "java/advanced/lambdas",
+                "java/advanced/streams",
+                "java/advanced/records-enums",
+              ],
             },
           ],
         },
