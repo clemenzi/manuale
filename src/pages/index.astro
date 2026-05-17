@@ -1,0 +1,101 @@
+---
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { CardGrid, LinkCard } from "@astrojs/starlight/components";
+import Search from "@astrojs/starlight/components/Search.astro";
+
+const tracks = [
+  {
+    href: "/python/",
+    title: "Python",
+    description: "Impara a programmare partendo dalle basi: variabili, condizioni, funzioni e automazioni.",
+  },
+  {
+    href: "/php/",
+    title: "PHP",
+    description: "Studia PHP per il web: sintassi, form, sessioni, database e pagine dinamiche.",
+  },
+  {
+    href: "/java/",
+    title: "Java",
+    description: "Costruisci basi solide con Java: programmi, oggetti, collezioni, errori e strumenti.",
+  },
+  {
+    href: "/sql/",
+    title: "SQL",
+    description: "Impara SQL con query, tabelle, join e database spiegati in modo progressivo.",
+  },
+  {
+    href: "/cpp/",
+    title: "C++",
+    description: "Entra nel C++ con sintassi, compilazione, memoria, oggetti e prestazioni.",
+  },
+];
+---
+
+<StarlightPage
+  frontmatter={{
+    title: "Impara a programmare, una guida chiara alla volta",
+    description:
+      "Manuale.dev offre guide di programmazione in italiano per imparare Python, PHP, Java, SQL e C++ partendo da zero.",
+    tableOfContents: false,
+    hero: {
+      title: "Impara a programmare, una guida chiara alla volta.",
+      tagline:
+        "Manuale.dev raccoglie percorsi in italiano su Python, PHP, Java, SQL e C++: spiegazioni semplici, esempi pratici e lezioni pensate per partire da zero senza perdersi.",
+      actions: [
+        {
+          text: "Inizia dal percorso giusto",
+          link: "#guide",
+          variant: "primary",
+          icon: "right-arrow",
+        },
+      ],
+    },
+  }}
+  hasSidebar={false}
+>
+  <div class="not-content pb-16">
+    <section id="guide" class="scroll-mt-24">
+      <div class="mb-6">
+        <p class="m-0 text-sm font-bold uppercase tracking-widest text-(--sl-color-accent-high)">
+          Guide di programmazione
+        </p>
+        <h2 class="mt-3 text-3xl font-semibold leading-tight md:text-4xl">
+          Scegli cosa vuoi imparare
+        </h2>
+      </div>
+
+      <CardGrid>
+        {tracks.map((track) => (
+          <LinkCard href={track.href} title={track.title} description={track.description} />
+        ))}
+      </CardGrid>
+    </section>
+
+    <section class="mt-16">
+      <div class="mb-4">
+        <p class="m-0 text-sm font-bold uppercase tracking-widest text-(--sl-color-accent-high)">
+          Hai un dubbio?
+        </p>
+        <h2 class="mt-3 text-3xl font-semibold leading-tight md:text-4xl">
+          Cerca subito un argomento
+        </h2>
+        <p class="mt-3 max-w-2xl text-base leading-7 text-gray-2">
+          Se ti serve chiarire un concetto al volo, cerca tra le guide e vai
+          direttamente alla pagina più utile.
+        </p>
+      </div>
+
+      <Search />
+    </section>
+
+    <footer class="mt-16 text-sm text-gray-3">
+      <p class="m-0">
+        Manuale.dev (C) 2026 · Guide di programmazione in italiano ·
+        <a href="/legal/privacy/" class="text-(--sl-color-accent-high)">Privacy</a>
+        ·
+        <a href="/legal/terms/" class="text-(--sl-color-accent-high)">Termini</a>
+      </p>
+    </footer>
+  </div>
+</StarlightPage>

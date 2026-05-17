@@ -1,52 +1,15 @@
 import { defineRouteMiddleware } from "@astrojs/starlight/route-data";
 
-const sections = [
-  { slug: "python", label: "Python", link: "/python/" },
-  { slug: "php", label: "PHP", link: "/php/" },
-  { slug: "sql", label: "SQL", link: "/sql/" },
-  { slug: "cpp", label: "C++", link: "/cpp/" },
-  { slug: "java", label: "Java", link: "/java/" },
-];
-
 export const onRequest = defineRouteMiddleware((context) => {
   const { pathname } = context.url;
   const section = pathname.split("/")[1]?.toLowerCase() ?? "";
   const route = context.locals.starlightRoute;
 
-  const matched = sections.find((s) => s.slug === section);
-  if (matched) {
-    route.siteTitle = matched.label;
-  } else {
-    route.siteTitle = "";
-  }
-
-  const defaultSidebar = [
-    {
-      type: "link" as const,
-      label: "Introduzione",
-      href: "/",
-      isCurrent: pathname === "/",
-      badge: undefined,
-      attrs: {},
-    },
-    ...sections.map((s) => ({
-      type: "link" as const,
-      label: s.label,
-      href: s.link,
-      isCurrent: pathname.startsWith(s.link),
-      badge: undefined,
-      attrs: {},
-    })),
-  ];
-
-  if (!section) {
-    route.sidebar = defaultSidebar;
-    return;
-  }
+  route.siteTitle = "";
 
   const entry = route.sidebar.find((item) => item.label.toLowerCase() === section);
+
   if (!entry) {
-    route.sidebar = defaultSidebar;
     return;
   }
 

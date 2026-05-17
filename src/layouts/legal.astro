@@ -1,0 +1,20 @@
+---
+import StarlightPage, { type StarlightPageProps } from "@astrojs/starlight/components/StarlightPage.astro";
+
+interface Props {
+  frontmatter: StarlightPageProps['frontmatter'] & { layout?: string };
+}
+
+const { frontmatter } = Astro.props;
+const { layout, ...starlightFrontmatter } = frontmatter;
+---
+
+<StarlightPage
+  frontmatter={{
+    ...starlightFrontmatter,
+    tableOfContents: false,
+  }}
+  hasSidebar={false}
+>
+  <slot />
+</StarlightPage>
