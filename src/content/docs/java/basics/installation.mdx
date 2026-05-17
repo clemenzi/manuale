@@ -1,0 +1,112 @@
+---
+title: Installazione
+description: Come installare Java, configurare il JDK e preparare l'ambiente di lavoro.
+---
+
+## Cosa devi installare
+
+Per programmare in Java ti serve il **JDK**, cioe il Java Development Kit.
+
+Il JDK contiene gli strumenti per:
+
+- compilare codice Java
+- eseguire programmi Java
+- usare le librerie standard del linguaggio
+
+Potresti sentire anche la parola **JRE**, Java Runtime Environment. Il JRE serve solo a eseguire programmi Java gia pronti. Per scrivere codice, invece, ti serve il JDK.
+
+> **Nota:** se stai imparando Java, scegli sempre il JDK. E il pacchetto completo.
+
+## Installare il JDK
+
+Puoi usare un JDK moderno, per esempio una versione LTS, cioe con supporto a lungo termine.
+
+Le distribuzioni piu comuni sono:
+
+- Eclipse Temurin
+- Oracle JDK
+- Microsoft Build of OpenJDK
+- Amazon Corretto
+
+Per iniziare, una qualunque di queste va bene. L'importante e installare un JDK, non solo un JRE.
+
+## Controllare l'installazione
+
+Dopo l'installazione, apri il terminale.
+
+Su Windows puoi usare Prompt dei comandi o PowerShell. Su macOS e Linux puoi usare Terminale.
+
+Scrivi:
+
+```bash
+java --version
+```
+
+Se Java e installato, vedrai un numero di versione.
+
+Poi controlla anche il compilatore:
+
+```bash
+javac --version
+```
+
+`java` esegue i programmi. `javac` li compila.
+
+Se `java` funziona ma `javac` no, probabilmente hai installato un runtime e non un JDK, oppure il percorso degli strumenti non e configurato correttamente.
+
+## Scegliere un editor
+
+Puoi scrivere Java con molti editor. Per iniziare, Visual Studio Code va bene perche e leggero e gratuito.
+
+Installa:
+
+1. Visual Studio Code
+2. l'estensione "Extension Pack for Java"
+
+Puoi usare anche IntelliJ IDEA Community Edition. E molto usato per Java e offre molti aiuti automatici, ma all'inizio puo sembrare piu ricco del necessario.
+
+## Creare una cartella di lavoro
+
+Crea una cartella per gli esercizi, per esempio:
+
+```text
+java-esercizi
+```
+
+Dentro questa cartella metterai i file `.java`.
+
+Un file Java contiene codice sorgente, cioe il testo che scrivi tu. Quando lo compili, Java crea un file `.class`, che contiene il codice pronto per la JVM.
+
+## Primo controllo completo
+
+Crea un file chiamato `Saluto.java` con questo contenuto:
+
+```java
+public class Saluto {
+    public static void main(String[] args) {
+        System.out.println("Java funziona!");
+    }
+}
+```
+
+Nel terminale, entra nella cartella dove hai salvato il file e compila:
+
+```bash
+javac Saluto.java
+```
+
+Poi esegui:
+
+```bash
+java Saluto
+```
+
+Output:
+
+```text
+Java funziona!
+```
+
+> **Attenzione:** quando esegui il programma scrivi `java Saluto`, senza `.java` e senza `.class`.
+
+Se vedi il messaggio, l'ambiente e pronto.

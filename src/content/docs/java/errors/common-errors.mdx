@@ -1,0 +1,158 @@
+---
+title: Errori comuni
+description: Gli errori Java piu frequenti quando si inizia e come leggerli.
+---
+
+## Gli errori fanno parte del lavoro
+
+Quando impari Java, vedrai molti messaggi di errore. Non significano che stai sbagliando percorso.
+
+Un errore e un'informazione: Java ti sta dicendo che qualcosa non torna.
+
+La cosa importante e imparare a leggere il messaggio con calma.
+
+## Errori di compilazione
+
+Un errore di compilazione succede quando `javac` non riesce a trasformare il file `.java` in `.class`.
+
+Esempio:
+
+```java
+public class Errore {
+    public static void main(String[] args) {
+        System.out.println("Ciao")
+    }
+}
+```
+
+Manca il punto e virgola.
+
+Java potrebbe mostrare un messaggio simile:
+
+```text
+error: ';' expected
+```
+
+Correzione:
+
+```java
+System.out.println("Ciao");
+```
+
+## Nome della classe e nome del file
+
+Se scrivi:
+
+```java
+public class Saluto {
+}
+```
+
+il file deve chiamarsi:
+
+```text
+Saluto.java
+```
+
+Se il file ha un altro nome, Java segnala errore.
+
+## Variabile non trovata
+
+```java
+public class Esempio {
+    public static void main(String[] args) {
+        int eta = 20;
+        System.out.println(anni);
+    }
+}
+```
+
+`anni` non esiste.
+
+Java segnala che non trova quel simbolo.
+
+Correzione:
+
+```java
+System.out.println(eta);
+```
+
+Controlla spesso nomi scritti in modo diverso: `eta`, `Eta` e `età` non sono la stessa cosa.
+
+## Tipi incompatibili
+
+```java
+int eta = "venti";
+```
+
+`int` richiede un numero intero. `"venti"` e una stringa.
+
+Correzione:
+
+```java
+int eta = 20;
+```
+
+Oppure:
+
+```java
+String eta = "venti";
+```
+
+Dipende da cosa ti serve davvero.
+
+## Errori a runtime
+
+Un errore a runtime succede mentre il programma e gia in esecuzione.
+
+Esempio:
+
+```java
+int[] numeri = {10, 20, 30};
+System.out.println(numeri[3]);
+```
+
+Il codice compila, ma durante l'esecuzione Java segnala:
+
+```text
+ArrayIndexOutOfBoundsException
+```
+
+L'array ha indici `0`, `1`, `2`. L'indice `3` non esiste.
+
+## Leggere lo stack trace
+
+Quando un programma fallisce, Java mostra spesso uno **stack trace**.
+
+Sembra lungo, ma all'inizio cerca soprattutto:
+
+- il nome dell'errore
+- il file
+- il numero di riga
+
+Esempio:
+
+```text
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException
+    at Esempio.main(Esempio.java:4)
+```
+
+La parte utile e:
+
+```text
+Esempio.java:4
+```
+
+Vai alla riga 4 e controlla cosa succede li.
+
+## Metodo di controllo
+
+Quando trovi un errore:
+
+1. leggi la prima riga del messaggio
+2. cerca il numero di riga
+3. controlla nomi, parentesi e punto e virgola
+4. verifica i tipi delle variabili
+5. se serve, stampa valori intermedi
+
+Gli errori diventano meno spaventosi quando li tratti come indizi.

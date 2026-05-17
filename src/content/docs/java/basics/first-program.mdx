@@ -1,0 +1,128 @@
+---
+title: Primo programma
+description: Come scrivere, compilare ed eseguire un primo programma Java.
+---
+
+## Il programma piu piccolo
+
+Il primo programma serve a controllare che tutto funzioni e a vedere il percorso completo: scrivere, compilare, eseguire.
+
+Crea un file chiamato `Ciao.java`:
+
+```java
+public class Ciao {
+    public static void main(String[] args) {
+        System.out.println("Ciao!");
+    }
+}
+```
+
+Il nome del file deve essere `Ciao.java` perche la classe si chiama `Ciao`.
+
+> **Attenzione:** in Java maiuscole e minuscole contano. `Ciao` e `ciao` sono nomi diversi.
+
+## Compilare il programma
+
+Nel terminale, entra nella cartella dove si trova `Ciao.java` e scrivi:
+
+```bash
+javac Ciao.java
+```
+
+Se non vedi messaggi, e una buona notizia: significa che la compilazione e riuscita.
+
+Java crea un nuovo file:
+
+```text
+Ciao.class
+```
+
+Questo file non lo devi modificare a mano. E il risultato della compilazione.
+
+## Eseguire il programma
+
+Ora puoi eseguire il programma:
+
+```bash
+java Ciao
+```
+
+Output:
+
+```text
+Ciao!
+```
+
+Quando usi `java Ciao`, stai dicendo alla JVM: "esegui la classe `Ciao`".
+
+## Capire le righe principali
+
+Vediamo il codice con calma.
+
+```java
+public class Ciao {
+```
+
+Questa riga dichiara una **classe** chiamata `Ciao`. Per ora puoi pensare alla classe come al contenitore principale del programma.
+
+```java
+public static void main(String[] args) {
+```
+
+Questa e la riga del metodo `main`. Java parte da qui quando esegui il programma.
+
+```java
+System.out.println("Ciao!");
+```
+
+Questa riga stampa un testo nel terminale.
+
+Le parentesi graffe `{` e `}` indicano dove inizia e finisce un blocco di codice.
+
+## Modificare il messaggio
+
+Prova a cambiare il testo:
+
+```java
+public class Ciao {
+    public static void main(String[] args) {
+        System.out.println("Sto imparando Java.");
+    }
+}
+```
+
+Ricompila:
+
+```bash
+javac Ciao.java
+```
+
+Poi esegui:
+
+```bash
+java Ciao
+```
+
+Output:
+
+```text
+Sto imparando Java.
+```
+
+Ogni volta che modifichi il file `.java`, devi ricompilare prima di eseguire la nuova versione.
+
+## Errori comuni
+
+Se dimentichi il punto e virgola:
+
+```java
+System.out.println("Ciao!")
+```
+
+Java segnala un errore di compilazione. La versione corretta e:
+
+```java
+System.out.println("Ciao!");
+```
+
+Se il nome del file non corrisponde alla classe pubblica, Java segnala un altro errore. Con `public class Ciao`, il file deve chiamarsi `Ciao.java`.

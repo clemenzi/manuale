@@ -1,0 +1,192 @@
+---
+title: Tipi di dato
+description: I principali tipi di dato in Java e quando usare numeri, testi e valori booleani.
+---
+
+## Perche esistono i tipi
+
+Ogni variabile contiene un tipo di informazione. Un prezzo non e uguale a un nome. Una risposta vero/falso non e uguale a una frase.
+
+In Java devi dichiarare il **tipo di dato** della variabile:
+
+```java
+int eta = 20;
+String nome = "Luca";
+boolean attivo = true;
+```
+
+Il tipo dice a Java che cosa puo contenere quella variabile e quali operazioni hanno senso.
+
+## Numeri interi: int
+
+`int` contiene numeri interi, senza virgola.
+
+```java
+int eta = 20;
+int quantita = 3;
+int temperatura = -2;
+```
+
+Usalo per contatori, eta, quantita e punteggi.
+
+```java
+int mele = 4;
+int pere = 2;
+int totale = mele + pere;
+
+System.out.println(totale);
+```
+
+Output:
+
+```text
+6
+```
+
+## Numeri decimali: double
+
+`double` contiene numeri con la parte decimale.
+
+```java
+double prezzo = 12.50;
+double altezza = 1.75;
+```
+
+In Java i decimali usano il punto, non la virgola.
+
+```java
+double prezzo = 10.0;
+double spedizione = 4.90;
+double totale = prezzo + spedizione;
+
+System.out.println(totale);
+```
+
+Output:
+
+```text
+14.9
+```
+
+## Vero o falso: boolean
+
+`boolean` contiene solo due valori:
+
+```java
+true
+false
+```
+
+E utile per rappresentare condizioni.
+
+```java
+boolean maggiorenne = true;
+boolean haSconto = false;
+
+System.out.println(maggiorenne);
+System.out.println(haSconto);
+```
+
+Output:
+
+```text
+true
+false
+```
+
+## Un singolo carattere: char
+
+`char` contiene un solo carattere e usa gli apici singoli.
+
+```java
+char iniziale = 'L';
+char voto = 'A';
+```
+
+Non confonderlo con `String`, che usa le virgolette doppie e contiene testo anche lungo.
+
+```java
+char lettera = 'A';
+String parola = "A";
+```
+
+Sembrano simili, ma sono tipi diversi.
+
+## Testo: String
+
+`String` contiene testo.
+
+```java
+String nome = "Luca";
+String messaggio = "Benvenuto";
+```
+
+Puoi unire testi con `+`:
+
+```java
+String nome = "Luca";
+System.out.println("Ciao, " + nome);
+```
+
+Output:
+
+```text
+Ciao, Luca
+```
+
+## Tipi primitivi e oggetti
+
+Java ha tipi **primitivi**, come:
+
+- `int`
+- `double`
+- `boolean`
+- `char`
+
+Sono tipi semplici, pensati per valori base.
+
+`String`, invece, e un **oggetto**. Per ora ti basta sapere che `String` offre anche metodi utili:
+
+```java
+String nome = "Luca";
+System.out.println(nome.length());
+```
+
+Output:
+
+```text
+4
+```
+
+`length()` conta i caratteri del testo.
+
+## Esempio completo
+
+```java
+public class Tipi {
+    public static void main(String[] args) {
+        String prodotto = "Quaderno";
+        int quantita = 3;
+        double prezzo = 2.50;
+        boolean disponibile = true;
+
+        double totale = quantita * prezzo;
+
+        System.out.println("Prodotto: " + prodotto);
+        System.out.println("Quantita: " + quantita);
+        System.out.println("Totale: " + totale);
+        System.out.println("Disponibile: " + disponibile);
+    }
+}
+```
+
+Output:
+
+```text
+Prodotto: Quaderno
+Quantita: 3
+Totale: 7.5
+Disponibile: true
+```
+
+Scegliere il tipo giusto rende il programma piu chiaro e aiuta Java a controllare gli errori.

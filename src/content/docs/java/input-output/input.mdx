@@ -1,0 +1,174 @@
+---
+title: Input da tastiera
+description: Come leggere dati inseriti dall'utente con Scanner.
+---
+
+## Leggere quello che scrive l'utente
+
+L'input e cio che entra nel programma. Nei primi esempi leggeremo dati dalla tastiera.
+
+Per farlo useremo `Scanner`, una classe della libreria standard di Java.
+
+Prima di usarla, devi importarla:
+
+```java
+import java.util.Scanner;
+```
+
+## Un primo esempio
+
+```java
+import java.util.Scanner;
+
+public class Saluto {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Come ti chiami? ");
+        String nome = scanner.nextLine();
+
+        System.out.println("Ciao, " + nome + "!");
+    }
+}
+```
+
+Esempio di esecuzione:
+
+```text
+Come ti chiami? Luca
+Ciao, Luca!
+```
+
+`System.in` rappresenta l'input che arriva dal terminale.
+
+`nextLine()` legge una riga intera di testo.
+
+## Leggere un numero intero
+
+Per leggere un `int`, usa `nextInt()`:
+
+```java
+import java.util.Scanner;
+
+public class Eta {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Quanti anni hai? ");
+        int eta = scanner.nextInt();
+
+        System.out.println("Tra un anno avrai " + (eta + 1) + " anni.");
+    }
+}
+```
+
+Esempio:
+
+```text
+Quanti anni hai? 20
+Tra un anno avrai 21 anni.
+```
+
+## Leggere un numero decimale
+
+Per un numero con decimali, usa `nextDouble()`:
+
+```java
+import java.util.Scanner;
+
+public class Prezzo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Prezzo: ");
+        double prezzo = scanner.nextDouble();
+
+        System.out.println("Doppio prezzo: " + (prezzo * 2));
+    }
+}
+```
+
+> **Nota:** in molti ambienti Java si aspetta il punto per i decimali, per esempio `12.50`, non `12,50`.
+
+## Il piccolo problema dopo nextInt
+
+Un errore comune nasce quando usi `nextInt()` e subito dopo `nextLine()`.
+
+```java
+import java.util.Scanner;
+
+public class Profilo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Eta: ");
+        int eta = scanner.nextInt();
+
+        System.out.print("Nome: ");
+        String nome = scanner.nextLine();
+
+        System.out.println(nome + ", " + eta);
+    }
+}
+```
+
+Il programma potrebbe saltare la richiesta del nome. Succede perche `nextInt()` legge il numero, ma lascia nel buffer il carattere di a capo.
+
+Una soluzione semplice e consumare quella riga prima di leggere il nome:
+
+```java
+System.out.print("Eta: ");
+int eta = scanner.nextInt();
+scanner.nextLine(); // consuma l'a capo rimasto
+
+System.out.print("Nome: ");
+String nome = scanner.nextLine();
+```
+
+## Chiudere lo Scanner
+
+Negli esempi piccoli spesso vedrai:
+
+```java
+scanner.close();
+```
+
+Chiudere lo scanner libera la risorsa usata per leggere.
+
+In programmi brevi da terminale puoi metterlo alla fine:
+
+```java
+Scanner scanner = new Scanner(System.in);
+
+// letture...
+
+scanner.close();
+```
+
+## Esempio completo
+
+```java
+import java.util.Scanner;
+
+public class Ordine {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Prodotto: ");
+        String prodotto = scanner.nextLine();
+
+        System.out.print("Quantita: ");
+        int quantita = scanner.nextInt();
+
+        System.out.print("Prezzo: ");
+        double prezzo = scanner.nextDouble();
+
+        double totale = quantita * prezzo;
+        System.out.println("Totale per " + prodotto + ": " + totale + " euro");
+
+        scanner.close();
+    }
+}
+```
+
+L'input rende il programma meno fisso: invece di usare sempre gli stessi valori, puoi farli scegliere all'utente.

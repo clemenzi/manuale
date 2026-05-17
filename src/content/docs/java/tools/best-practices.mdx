@@ -1,0 +1,160 @@
+---
+title: Buone pratiche
+description: Regole semplici per scrivere codice Java piu leggibile e mantenibile.
+---
+
+## Scrivere per farsi capire
+
+Il codice viene letto molte piu volte di quante venga scritto.
+
+Anche quando lavori da solo, il "lettore futuro" sarai tu fra qualche settimana.
+
+Le buone pratiche servono a rendere il codice piu chiaro, non a renderlo piu elegante per forza.
+
+## Usa nomi chiari
+
+Meglio:
+
+```java
+double prezzoTotale = prezzo + spedizione;
+```
+
+che:
+
+```java
+double x = a + b;
+```
+
+Nomi come `x`, `a`, `b` vanno bene solo in esempi molto piccoli o calcoli evidenti.
+
+Per variabili e metodi usa il camelCase:
+
+```java
+nomeUtente
+calcolaTotale()
+mostraMessaggio()
+```
+
+Per classi usa la maiuscola iniziale:
+
+```java
+Persona
+Prodotto
+Calcolatrice
+```
+
+## Metodi piccoli
+
+Un metodo dovrebbe fare una cosa principale.
+
+Se un metodo:
+
+- legge input
+- calcola
+- stampa
+- salva su file
+
+tutto insieme, diventa difficile da capire e da testare.
+
+Prova a dividerlo:
+
+```java
+public static double calcolaTotale(double prezzo, int quantita) {
+    return prezzo * quantita;
+}
+
+public static void mostraTotale(double totale) {
+    System.out.println("Totale: " + totale);
+}
+```
+
+## Evita duplicazioni
+
+Se ripeti lo stesso blocco piu volte, valuta un metodo.
+
+Prima:
+
+```java
+System.out.println("----------");
+System.out.println("Prodotti");
+System.out.println("----------");
+System.out.println("Totale");
+System.out.println("----------");
+```
+
+Dopo:
+
+```java
+public static void separatore() {
+    System.out.println("----------");
+}
+```
+
+La duplicazione non e solo una questione di righe. Se devi cambiare qualcosa, rischi di dimenticare una copia.
+
+## Formatta il codice
+
+Usa indentazione coerente.
+
+```java
+if (eta >= 18) {
+    System.out.println("Maggiorenne");
+} else {
+    System.out.println("Minorenne");
+}
+```
+
+Evita codice tutto attaccato:
+
+```java
+if(eta>=18){System.out.println("Maggiorenne");}
+```
+
+Il computer lo capisce, ma le persone fanno piu fatica.
+
+## Non ottimizzare troppo presto
+
+All'inizio scrivi codice chiaro.
+
+Non cercare la versione piu corta o piu furba se rende il programma difficile da leggere.
+
+Prima chiediti:
+
+- funziona?
+- e chiaro?
+- e facile da modificare?
+
+Solo dopo ha senso pensare alle prestazioni, se c'e un problema reale.
+
+## Commenti utili
+
+Un commento deve spiegare cio che il codice non rende evidente.
+
+Utile:
+
+```java
+// Applichiamo lo sconto solo agli ordini sopra 50 euro
+if (totale > 50) {
+    totale = totale - 5;
+}
+```
+
+Poco utile:
+
+```java
+// Aggiunge 5 a totale
+totale = totale + 5;
+```
+
+## Regola pratica
+
+Quando finisci un programma, rileggilo come se fosse di un'altra persona.
+
+Se una riga ti costringe a fermarti troppo, forse puoi:
+
+- rinominare una variabile
+- estrarre un metodo
+- aggiungere una nota breve
+- dividere un'espressione in due passaggi
+
+Il codice buono non e quello che sembra difficile. E quello che puoi capire, correggere e far crescere.

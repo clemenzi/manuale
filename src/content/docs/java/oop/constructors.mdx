@@ -1,0 +1,156 @@
+---
+title: Costruttori
+description: Come inizializzare un oggetto quando viene creato.
+---
+
+## Il problema da risolvere
+
+Nella pagina precedente creavamo un oggetto e poi riempivamo i campi:
+
+```java
+Persona persona = new Persona();
+persona.nome = "Luca";
+persona.eta = 20;
+```
+
+Funziona, ma e facile dimenticare un campo.
+
+Un **costruttore** serve a inizializzare l'oggetto nel momento in cui viene creato.
+
+## Creare un costruttore
+
+```java
+public class Persona {
+    String nome;
+    int eta;
+
+    public Persona(String nome, int eta) {
+        this.nome = nome;
+        this.eta = eta;
+    }
+}
+```
+
+Il costruttore ha lo stesso nome della classe.
+
+Non ha tipo di ritorno: non scrivi ne `void` ne `int` ne altro.
+
+## Usare il costruttore
+
+```java
+public class Esempio {
+    public static void main(String[] args) {
+        Persona persona = new Persona("Luca", 20);
+
+        System.out.println(persona.nome);
+        System.out.println(persona.eta);
+    }
+}
+```
+
+Output:
+
+```text
+Luca
+20
+```
+
+I valori `"Luca"` e `20` vengono passati al costruttore.
+
+## A cosa serve this
+
+Nel costruttore abbiamo scritto:
+
+```java
+this.nome = nome;
+```
+
+Qui ci sono due `nome`:
+
+- `this.nome` e il campo dell'oggetto
+- `nome` e il parametro del costruttore
+
+`this` significa "questo oggetto".
+
+La riga si legge cosi: "metti nel campo `nome` di questo oggetto il valore ricevuto nel parametro `nome`".
+
+## Costruttore predefinito
+
+Se non scrivi nessun costruttore, Java ne crea uno vuoto per te.
+
+```java
+public class Persona {
+    String nome;
+    int eta;
+}
+```
+
+Puoi fare:
+
+```java
+Persona persona = new Persona();
+```
+
+Ma appena scrivi un costruttore con parametri, Java non crea piu automaticamente quello vuoto.
+
+## Piu costruttori
+
+Puoi avere piu costruttori con parametri diversi.
+
+```java
+public class Persona {
+    String nome;
+    int eta;
+
+    public Persona() {
+        nome = "Sconosciuto";
+        eta = 0;
+    }
+
+    public Persona(String nome, int eta) {
+        this.nome = nome;
+        this.eta = eta;
+    }
+}
+```
+
+Uso:
+
+```java
+Persona a = new Persona();
+Persona b = new Persona("Sara", 25);
+```
+
+Questo e un caso di overloading applicato ai costruttori.
+
+## Esempio completo
+
+```java
+public class Prodotto {
+    String nome;
+    double prezzo;
+
+    public Prodotto(String nome, double prezzo) {
+        this.nome = nome;
+        this.prezzo = prezzo;
+    }
+
+    void mostra() {
+        System.out.println(nome + ": " + prezzo + " euro");
+    }
+}
+```
+
+```java
+public class Negozio {
+    public static void main(String[] args) {
+        Prodotto quaderno = new Prodotto("Quaderno", 2.50);
+        Prodotto penna = new Prodotto("Penna", 1.20);
+
+        quaderno.mostra();
+        penna.mostra();
+    }
+}
+```
+
+I costruttori rendono piu difficile creare oggetti incompleti.

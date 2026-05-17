@@ -1,0 +1,194 @@
+---
+title: Operatori
+description: Come combinare valori con operatori aritmetici, di confronto e logici.
+---
+
+## Cosa sono gli operatori
+
+Gli operatori sono simboli che fanno qualcosa con i valori.
+
+Hai gia visto `=`:
+
+```java
+int eta = 20;
+```
+
+Qui `=` assegna il valore `20` alla variabile `eta`.
+
+Java ha operatori per calcolare, confrontare e combinare condizioni.
+
+## Operatori aritmetici
+
+Gli operatori aritmetici lavorano con i numeri.
+
+```java
+int a = 10;
+int b = 3;
+
+System.out.println(a + b);
+System.out.println(a - b);
+System.out.println(a * b);
+System.out.println(a / b);
+System.out.println(a % b);
+```
+
+Output:
+
+```text
+13
+7
+30
+3
+1
+```
+
+Il simbolo `%` si chiama **modulo** e restituisce il resto della divisione.
+
+`10 % 3` vale `1`, perche 10 diviso 3 fa 3 con resto 1.
+
+## Divisione tra interi
+
+Con due `int`, Java fa una divisione intera.
+
+```java
+int risultato = 10 / 3;
+System.out.println(risultato);
+```
+
+Output:
+
+```text
+3
+```
+
+La parte decimale viene tagliata.
+
+Se vuoi un risultato decimale, usa almeno un `double`:
+
+```java
+double risultato = 10.0 / 3;
+System.out.println(risultato);
+```
+
+## Assegnazione
+
+`=` assegna un valore.
+
+```java
+int punti = 10;
+punti = punti + 5;
+```
+
+Java offre anche forme piu brevi:
+
+```java
+punti += 5; // come punti = punti + 5
+punti -= 2; // come punti = punti - 2
+```
+
+Per aumentare o diminuire di 1:
+
+```java
+punti++;
+punti--;
+```
+
+All'inizio usa pure la forma lunga. E piu esplicita.
+
+## Operatori di confronto
+
+Gli operatori di confronto producono un valore `boolean`: `true` oppure `false`.
+
+```java
+int eta = 20;
+
+System.out.println(eta > 18);
+System.out.println(eta == 18);
+System.out.println(eta != 18);
+```
+
+Output:
+
+```text
+true
+false
+true
+```
+
+I principali sono:
+
+- `>` maggiore di
+- `<` minore di
+- `>=` maggiore o uguale
+- `<=` minore o uguale
+- `==` uguale
+- `!=` diverso
+
+> **Attenzione:** `=` assegna. `==` confronta.
+
+## Operatori logici
+
+Gli operatori logici combinano condizioni.
+
+```java
+int eta = 20;
+boolean haBiglietto = true;
+
+boolean puoEntrare = eta >= 18 && haBiglietto;
+System.out.println(puoEntrare);
+```
+
+Output:
+
+```text
+true
+```
+
+I principali operatori logici sono:
+
+- `&&` significa "e": entrambe le condizioni devono essere vere
+- `||` significa "oppure": basta una condizione vera
+- `!` significa "non": inverte il valore
+
+```java
+boolean piove = false;
+System.out.println(!piove);
+```
+
+Output:
+
+```text
+true
+```
+
+## Precedenza
+
+Java esegue alcune operazioni prima di altre.
+
+```java
+int risultato = 2 + 3 * 4;
+System.out.println(risultato);
+```
+
+Output:
+
+```text
+14
+```
+
+La moltiplicazione avviene prima dell'addizione.
+
+Se vuoi rendere l'ordine chiaro, usa le parentesi:
+
+```java
+int risultato = (2 + 3) * 4;
+System.out.println(risultato);
+```
+
+Output:
+
+```text
+20
+```
+
+Le parentesi non servono solo al computer. Servono anche a chi legge il codice.

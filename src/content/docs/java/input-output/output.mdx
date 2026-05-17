@@ -1,0 +1,177 @@
+---
+title: Output
+description: Come stampare testo e valori con System.out.
+---
+
+## Mostrare informazioni nel terminale
+
+L'output e cio che il programma mostra all'esterno. Nei primi esercizi useremo il terminale.
+
+In Java si stampa con `System.out`.
+
+```java
+System.out.println("Ciao!");
+```
+
+Output:
+
+```text
+Ciao!
+```
+
+## println
+
+`println` stampa un valore e poi va a capo.
+
+```java
+public class Output {
+    public static void main(String[] args) {
+        System.out.println("Prima riga");
+        System.out.println("Seconda riga");
+    }
+}
+```
+
+Output:
+
+```text
+Prima riga
+Seconda riga
+```
+
+Ogni chiamata a `println` produce una riga nuova.
+
+## print
+
+`print` stampa senza andare a capo.
+
+```java
+System.out.print("Ciao ");
+System.out.print("Luca");
+System.out.print("!");
+```
+
+Output:
+
+```text
+Ciao Luca!
+```
+
+La differenza e piccola ma importante:
+
+- `println` stampa e va a capo
+- `print` stampa e resta sulla stessa riga
+
+## Stampare variabili
+
+Puoi stampare il valore di una variabile:
+
+```java
+String nome = "Sara";
+int eta = 21;
+
+System.out.println(nome);
+System.out.println(eta);
+```
+
+Output:
+
+```text
+Sara
+21
+```
+
+## Concatenare testo e valori
+
+Per costruire un messaggio, usa `+`.
+
+```java
+String nome = "Sara";
+int eta = 21;
+
+System.out.println("Nome: " + nome);
+System.out.println("Eta: " + eta);
+```
+
+Output:
+
+```text
+Nome: Sara
+Eta: 21
+```
+
+Quando uno dei pezzi e una stringa, Java trasforma anche gli altri valori in testo.
+
+## Attenzione ai calcoli dentro le stringhe
+
+Guarda questo esempio:
+
+```java
+System.out.println("Totale: " + 10 + 5);
+```
+
+Output:
+
+```text
+Totale: 105
+```
+
+Java parte da sinistra. Appena trova una stringa, unisce tutto come testo.
+
+Se vuoi fare prima il calcolo, usa le parentesi:
+
+```java
+System.out.println("Totale: " + (10 + 5));
+```
+
+Output:
+
+```text
+Totale: 15
+```
+
+## Formattare valori semplici
+
+Per stampare un numero decimale con due cifre, puoi usare `printf`.
+
+```java
+double prezzo = 12.5;
+System.out.printf("Prezzo: %.2f euro%n", prezzo);
+```
+
+Output:
+
+```text
+Prezzo: 12.50 euro
+```
+
+Qui `%.2f` significa: "stampa un numero decimale con due cifre dopo il punto".
+
+`%n` manda a capo.
+
+## Esempio completo
+
+```java
+public class Scontrino {
+    public static void main(String[] args) {
+        String prodotto = "Quaderno";
+        int quantita = 3;
+        double prezzo = 2.50;
+        double totale = quantita * prezzo;
+
+        System.out.println("Prodotto: " + prodotto);
+        System.out.println("Quantita: " + quantita);
+        System.out.printf("Totale: %.2f euro%n", totale);
+    }
+}
+```
+
+Output:
+
+```text
+Prodotto: Quaderno
+Quantita: 3
+Totale: 7.50 euro
+```
+
+L'output e il modo piu semplice per controllare cosa sta facendo un programma.

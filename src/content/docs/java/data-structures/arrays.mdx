@@ -1,0 +1,153 @@
+---
+title: Array
+description: Come raccogliere piu valori dello stesso tipo in una struttura ordinata.
+---
+
+## Cosa e un array
+
+Un array raccoglie piu valori dello stesso tipo in una sequenza ordinata.
+
+Pensalo come una fila di caselle numerate.
+
+```java
+int[] voti = {7, 8, 6, 9};
+```
+
+Qui `voti` contiene quattro numeri.
+
+## Gli indici partono da zero
+
+Per leggere un elemento, usi il suo indice.
+
+```java
+int[] voti = {7, 8, 6, 9};
+
+System.out.println(voti[0]);
+System.out.println(voti[1]);
+```
+
+Output:
+
+```text
+7
+8
+```
+
+Il primo elemento ha indice `0`, non `1`.
+
+## Modificare un elemento
+
+Puoi cambiare il valore di una casella:
+
+```java
+int[] voti = {7, 8, 6, 9};
+
+voti[2] = 10;
+
+System.out.println(voti[2]);
+```
+
+Output:
+
+```text
+10
+```
+
+Prima `voti[2]` valeva `6`. Dopo l'assegnazione vale `10`.
+
+## Creare un array vuoto
+
+Puoi creare un array indicando la sua dimensione:
+
+```java
+String[] nomi = new String[3];
+
+nomi[0] = "Luca";
+nomi[1] = "Sara";
+nomi[2] = "Mina";
+```
+
+La dimensione di un array non cambia dopo la creazione.
+
+Se crei un array di 3 elementi, avra sempre 3 caselle.
+
+## length
+
+`length` contiene il numero di elementi.
+
+```java
+String[] nomi = {"Luca", "Sara", "Mina"};
+
+System.out.println(nomi.length);
+```
+
+Output:
+
+```text
+3
+```
+
+Negli array `length` non ha parentesi. Non scrivere `length()`.
+
+## Attraversare un array con for
+
+```java
+String[] nomi = {"Luca", "Sara", "Mina"};
+
+for (int i = 0; i < nomi.length; i++) {
+    System.out.println(nomi[i]);
+}
+```
+
+Output:
+
+```text
+Luca
+Sara
+Mina
+```
+
+Questa forma e utile quando ti serve l'indice.
+
+## Errore comune: indice fuori limite
+
+```java
+int[] numeri = {10, 20, 30};
+System.out.println(numeri[3]); // errore
+```
+
+Gli indici validi sono:
+
+- `0`
+- `1`
+- `2`
+
+`3` e fuori dall'array.
+
+Java segnala un errore chiamato `ArrayIndexOutOfBoundsException`.
+
+## Esempio: media dei voti
+
+```java
+public class Media {
+    public static void main(String[] args) {
+        int[] voti = {7, 8, 6, 9};
+        int somma = 0;
+
+        for (int i = 0; i < voti.length; i++) {
+            somma = somma + voti[i];
+        }
+
+        double media = (double) somma / voti.length;
+        System.out.println("Media: " + media);
+    }
+}
+```
+
+Output:
+
+```text
+Media: 7.5
+```
+
+L'array e utile quando hai molti valori simili e vuoi trattarli insieme.

@@ -1,0 +1,190 @@
+---
+title: ArrayList
+description: Come usare liste dinamiche quando il numero di elementi puo cambiare.
+---
+
+## Perche usare ArrayList
+
+Un array ha una dimensione fissa. Se lo crei con 3 elementi, resta di 3 elementi.
+
+`ArrayList` e una lista dinamica: puoi aggiungere e rimuovere elementi mentre il programma gira.
+
+Prima devi importarla:
+
+```java
+import java.util.ArrayList;
+```
+
+## Creare una ArrayList
+
+```java
+import java.util.ArrayList;
+
+public class ListaNomi {
+    public static void main(String[] args) {
+        ArrayList<String> nomi = new ArrayList<>();
+
+        nomi.add("Luca");
+        nomi.add("Sara");
+        nomi.add("Mina");
+
+        System.out.println(nomi);
+    }
+}
+```
+
+Output:
+
+```text
+[Luca, Sara, Mina]
+```
+
+`ArrayList<String>` significa: "lista di stringhe".
+
+## Aggiungere elementi
+
+Usa `add`:
+
+```java
+ArrayList<String> prodotti = new ArrayList<>();
+
+prodotti.add("Pane");
+prodotti.add("Latte");
+prodotti.add("Mele");
+```
+
+Ogni `add` aggiunge un elemento in fondo alla lista.
+
+## Leggere elementi
+
+Usa `get` con l'indice.
+
+```java
+ArrayList<String> nomi = new ArrayList<>();
+nomi.add("Luca");
+nomi.add("Sara");
+
+System.out.println(nomi.get(0));
+```
+
+Output:
+
+```text
+Luca
+```
+
+Anche qui gli indici partono da zero.
+
+## Modificare elementi
+
+Usa `set`.
+
+```java
+ArrayList<String> nomi = new ArrayList<>();
+nomi.add("Luca");
+nomi.add("Sara");
+
+nomi.set(1, "Giulia");
+
+System.out.println(nomi);
+```
+
+Output:
+
+```text
+[Luca, Giulia]
+```
+
+## Rimuovere elementi
+
+Usa `remove`.
+
+```java
+ArrayList<String> prodotti = new ArrayList<>();
+prodotti.add("Pane");
+prodotti.add("Latte");
+prodotti.add("Mele");
+
+prodotti.remove("Latte");
+
+System.out.println(prodotti);
+```
+
+Output:
+
+```text
+[Pane, Mele]
+```
+
+Puoi rimuovere anche per indice:
+
+```java
+prodotti.remove(0);
+```
+
+## size
+
+`size()` restituisce il numero di elementi.
+
+```java
+ArrayList<String> nomi = new ArrayList<>();
+nomi.add("Luca");
+nomi.add("Sara");
+
+System.out.println(nomi.size());
+```
+
+Output:
+
+```text
+2
+```
+
+Negli array usi `length`. Nelle `ArrayList` usi `size()`.
+
+## Array o ArrayList?
+
+Usa un array quando:
+
+- la dimensione e fissa
+- vuoi una struttura semplice
+- stai facendo esercizi sugli indici
+
+Usa `ArrayList` quando:
+
+- il numero di elementi puo cambiare
+- devi aggiungere o rimuovere valori
+- vuoi una lista piu comoda da gestire
+
+## Esempio completo
+
+```java
+import java.util.ArrayList;
+
+public class Spesa {
+    public static void main(String[] args) {
+        ArrayList<String> lista = new ArrayList<>();
+
+        lista.add("Pane");
+        lista.add("Latte");
+        lista.add("Mele");
+
+        lista.remove("Latte");
+        lista.add("Pasta");
+
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println("- " + lista.get(i));
+        }
+    }
+}
+```
+
+Output:
+
+```text
+- Pane
+- Mele
+- Pasta
+```
+
+`ArrayList` e una delle strutture piu usate in Java quando lavori con gruppi di dati.

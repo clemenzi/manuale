@@ -1,0 +1,129 @@
+---
+title: Interfacce
+description: Come definire comportamenti comuni che classi diverse possono implementare.
+---
+
+## Cosa e un'interfaccia
+
+Un'interfaccia descrive un comportamento che una classe promette di avere.
+
+Non dice necessariamente come farlo. Dice quali metodi devono esistere.
+
+Pensala come un contratto:
+
+"se una classe implementa questa interfaccia, allora deve offrire questi metodi".
+
+## Creare un'interfaccia
+
+```java
+public interface Stampabile {
+    void stampa();
+}
+```
+
+Questa interfaccia richiede un metodo `stampa`.
+
+Una classe che la implementa deve scrivere quel metodo.
+
+## implements
+
+```java
+public class Documento implements Stampabile {
+    private String titolo;
+
+    public Documento(String titolo) {
+        this.titolo = titolo;
+    }
+
+    @Override
+    public void stampa() {
+        System.out.println("Documento: " + titolo);
+    }
+}
+```
+
+`implements Stampabile` significa: `Documento` rispetta il contratto `Stampabile`.
+
+## Classi diverse, stesso comportamento
+
+```java
+public class Foto implements Stampabile {
+    private String nomeFile;
+
+    public Foto(String nomeFile) {
+        this.nomeFile = nomeFile;
+    }
+
+    @Override
+    public void stampa() {
+        System.out.println("Foto: " + nomeFile);
+    }
+}
+```
+
+`Documento` e `Foto` sono classi diverse, ma entrambe sanno stampare.
+
+## Usare il tipo interfaccia
+
+Puoi usare l'interfaccia come tipo.
+
+```java
+public class Esempio {
+    public static void main(String[] args) {
+        Stampabile a = new Documento("Contratto");
+        Stampabile b = new Foto("vacanza.jpg");
+
+        a.stampa();
+        b.stampa();
+    }
+}
+```
+
+Output:
+
+```text
+Documento: Contratto
+Foto: vacanza.jpg
+```
+
+Il programma non ha bisogno di sapere tutti i dettagli interni. Gli basta sapere che entrambi sono `Stampabile`.
+
+## Perche sono utili
+
+Le interfacce aiutano a scrivere codice flessibile.
+
+Puoi dire: "mi serve qualcosa che sappia fare questa azione", senza fissarti su una classe specifica.
+
+Esempio:
+
+```java
+public static void stampaOggetto(Stampabile oggetto) {
+    oggetto.stampa();
+}
+```
+
+Questo metodo funziona con qualunque classe che implementa `Stampabile`.
+
+## Interfacce ed ereditarieta
+
+Una classe Java puo estendere una sola classe:
+
+```java
+public class Studente extends Persona {
+}
+```
+
+Ma puo implementare piu interfacce:
+
+```java
+public class Documento implements Stampabile, Salvabile {
+}
+```
+
+Questo rende le interfacce molto utili per descrivere comportamenti comuni.
+
+## Regola pratica
+
+Usa un'interfaccia quando classi diverse devono condividere lo stesso comportamento, anche se non appartengono alla stessa famiglia.
+
+`Documento` e `Foto` non sono la stessa cosa. Pero entrambe possono essere stampabili.

@@ -1,0 +1,157 @@
+---
+title: Ciclo while
+description: Come ripetere istruzioni finche una condizione resta vera.
+---
+
+## Ripetere finche una condizione e vera
+
+Il ciclo `while` ripete un blocco finche una condizione resta vera.
+
+```java
+int numero = 1;
+
+while (numero <= 3) {
+    System.out.println(numero);
+    numero++;
+}
+```
+
+Output:
+
+```text
+1
+2
+3
+```
+
+Java controlla la condizione prima di ogni giro.
+
+## Le parti di un while
+
+Un ciclo `while` ha questa forma:
+
+```java
+while (condizione) {
+    // codice da ripetere
+}
+```
+
+Nel nostro esempio:
+
+```java
+while (numero <= 3)
+```
+
+il ciclo continua finche `numero` e minore o uguale a 3.
+
+Dentro il ciclo aggiorniamo la variabile:
+
+```java
+numero++;
+```
+
+Senza questo aggiornamento, `numero` resterebbe sempre uguale.
+
+## Il rischio del ciclo infinito
+
+Questo codice non finisce mai:
+
+```java
+int numero = 1;
+
+while (numero <= 3) {
+    System.out.println(numero);
+}
+```
+
+`numero` resta sempre `1`, quindi la condizione e sempre vera.
+
+Un ciclo che non finisce si chiama **ciclo infinito**.
+
+> **Attenzione:** quando scrivi un `while`, chiediti sempre: "dentro il ciclo, cosa cambia la condizione?"
+
+## Usare while con input utente
+
+`while` e molto utile quando non sai prima quante volte l'utente fara qualcosa.
+
+```java
+import java.util.Scanner;
+
+public class Password {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String password = "";
+
+        while (!password.equals("java")) {
+            System.out.print("Password: ");
+            password = scanner.nextLine();
+        }
+
+        System.out.println("Accesso consentito.");
+        scanner.close();
+    }
+}
+```
+
+Il ciclo continua finche la password non e `"java"`.
+
+`!password.equals("java")` significa: "la password non e uguale a java".
+
+## Contare tentativi
+
+Possiamo aggiungere un contatore:
+
+```java
+import java.util.Scanner;
+
+public class Tentativi {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String password = "";
+        int tentativi = 0;
+
+        while (!password.equals("java")) {
+            System.out.print("Password: ");
+            password = scanner.nextLine();
+            tentativi++;
+        }
+
+        System.out.println("Tentativi usati: " + tentativi);
+        scanner.close();
+    }
+}
+```
+
+Ogni giro aumenta `tentativi` di 1.
+
+## while o for?
+
+Usa `for` quando sai gia quante volte ripetere:
+
+```java
+for (int i = 0; i < 5; i++) {
+    ...
+}
+```
+
+Usa `while` quando vuoi ripetere finche succede qualcosa:
+
+```java
+while (!password.equals("java")) {
+    ...
+}
+```
+
+## Un ciclo che potrebbe non partire
+
+Poiche `while` controlla la condizione all'inizio, il blocco potrebbe non essere eseguito nemmeno una volta.
+
+```java
+int numero = 10;
+
+while (numero < 5) {
+    System.out.println(numero);
+}
+```
+
+Qui non viene stampato nulla, perche la condizione e falsa gia all'inizio.

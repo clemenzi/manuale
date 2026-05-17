@@ -1,0 +1,118 @@
+---
+title: Debugging
+description: Come trovare problemi nel codice usando stampe, debugger e ragionamento.
+---
+
+## Cosa significa fare debugging
+
+Fare debugging significa cercare e correggere un problema nel codice.
+
+Non e solo "togliere errori". E capire cosa il programma sta facendo davvero, passo dopo passo.
+
+## Leggere prima il messaggio
+
+Quando Java mostra un errore, non partire subito a cambiare codice a caso.
+
+Prima cerca:
+
+- tipo di errore
+- file
+- numero di riga
+- valore o nome citato nel messaggio
+
+Esempio:
+
+```text
+Exception in thread "main" java.lang.NumberFormatException
+    at Esempio.main(Esempio.java:8)
+```
+
+Vai alla riga 8 e chiediti: sto convertendo testo in numero? Il testo contiene davvero un numero?
+
+## Usare stampe temporanee
+
+Un modo semplice per capire cosa succede e stampare valori.
+
+```java
+int prezzo = 10;
+int quantita = 3;
+int totale = prezzo * quantita;
+
+System.out.println("prezzo = " + prezzo);
+System.out.println("quantita = " + quantita);
+System.out.println("totale = " + totale);
+```
+
+Queste stampe sono temporanee. Servono durante il controllo.
+
+Quando hai trovato il problema, rimuovile o trasformale in output utile.
+
+## Isolare il problema
+
+Se un programma e lungo, prova a restringere il punto del problema.
+
+Chiediti:
+
+1. il valore entra corretto?
+2. cambia nel punto giusto?
+3. viene passato al metodo corretto?
+4. l'errore compare prima o dopo questa riga?
+
+Puoi commentare temporaneamente alcune parti o creare un esempio piu piccolo.
+
+## Usare il debugger
+
+Molti editor, come Visual Studio Code o IntelliJ IDEA, hanno un debugger.
+
+Il debugger permette di:
+
+- fermare il programma su una riga
+- eseguire una riga alla volta
+- guardare il valore delle variabili
+- capire quale ramo di un `if` viene eseguito
+
+Il punto in cui fermi il programma si chiama **breakpoint**.
+
+## Un esempio pratico
+
+Immagina questo codice:
+
+```java
+int[] voti = {7, 8, 6};
+int somma = 0;
+
+for (int i = 0; i <= voti.length; i++) {
+    somma = somma + voti[i];
+}
+
+System.out.println(somma);
+```
+
+Il programma fallisce. Il problema e nella condizione:
+
+```java
+i <= voti.length
+```
+
+L'ultimo indice valido e `voti.length - 1`.
+
+Correzione:
+
+```java
+for (int i = 0; i < voti.length; i++) {
+    somma = somma + voti[i];
+}
+```
+
+## Metodo semplice
+
+Quando non capisci un errore:
+
+1. riproducilo
+2. leggi il messaggio
+3. trova la riga
+4. stampa o osserva le variabili vicine
+5. fai una modifica piccola
+6. ricontrolla
+
+Il debugging richiede pazienza. Una modifica piccola alla volta ti evita di creare nuovi problemi mentre cerchi quello iniziale.

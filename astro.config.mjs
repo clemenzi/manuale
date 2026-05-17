@@ -90,7 +90,7 @@ export default defineConfig({
     starlight({
       title: "Manuale",
       description:
-        "Una guida pratica alla programmazione in Python, PHP, SQL e C++ per chi parte da zero.",
+        "Una guida pratica alla programmazione in Python, PHP, Java, SQL e C++ per chi parte da zero.",
       favicon: "/favicon.ico",
       locales: {
         root: {
@@ -268,6 +268,117 @@ export default defineConfig({
               label: "Gestione degli errori",
               collapsed: true,
               items: ["php/errors/common-errors", "php/errors/debugging", "php/errors/exceptions"],
+            },
+          ],
+        },
+        {
+          label: "Java",
+          items: [
+            "java",
+            {
+              label: "Le basi",
+              collapsed: false,
+              items: [
+                "java/basics/installation",
+                "java/basics/first-program",
+                "java/basics/program-structure",
+                "java/basics/comments",
+                "java/basics/variables",
+                "java/basics/data-types",
+                "java/basics/strings",
+                "java/basics/operators",
+                "java/basics/type-conversion",
+              ],
+            },
+            {
+              label: "Controllo del flusso",
+              collapsed: false,
+              items: [
+                "java/flow-control/conditions",
+                "java/flow-control/for-loop",
+                "java/flow-control/while-loop",
+                "java/flow-control/for-each",
+                "java/flow-control/break-continue",
+              ],
+            },
+            {
+              label: "Input e output",
+              collapsed: false,
+              items: [
+                "java/input-output/output",
+                "java/input-output/input",
+                "java/input-output/file-handling",
+              ],
+            },
+
+            {
+              label: "Strutture dati",
+              collapsed: false,
+              items: [
+                "java/data-structures/arrays",
+                "java/data-structures/arraylist",
+                "java/data-structures/hashmap",
+                "java/data-structures/sets",
+              ],
+            },
+            {
+              label: "Metodi",
+              collapsed: true,
+              items: [
+                "java/functions/methods",
+                "java/functions/parameters-return-values",
+                "java/functions/scope",
+                "java/functions/overloading",
+              ],
+            },
+            {
+              label: "Programmazione a oggetti",
+              collapsed: true,
+              items: [
+                {
+                  label: "Oggetti e dati",
+                  collapsed: false,
+                  items: [
+                    "java/oop/classes-objects",
+                    "java/oop/constructors",
+                    "java/oop/encapsulation",
+                  ],
+                },
+                {
+                  label: "Relazioni tra classi",
+                  collapsed: true,
+                  items: ["java/oop/inheritance", "java/oop/interfaces"],
+                },
+              ],
+            },
+            {
+              label: "Gestione degli errori",
+              collapsed: true,
+              items: [
+                "java/errors/common-errors",
+                "java/errors/exceptions",
+                "java/errors/debugging",
+              ],
+            },
+            {
+              label: "Strumenti e buone pratiche",
+              collapsed: true,
+              items: [
+                "java/tools/packages-imports",
+                "java/tools/build-tools",
+                "java/tools/testing",
+                "java/tools/best-practices",
+              ],
+            },
+            {
+              label: "Tecniche avanzate",
+              collapsed: true,
+              items: [
+                "java/advanced/generics",
+                "java/advanced/lambdas",
+                "java/advanced/streams",
+                "java/advanced/records-enums",
+              ],
             },
           ],
         },

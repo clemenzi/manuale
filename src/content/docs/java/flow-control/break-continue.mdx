@@ -1,0 +1,161 @@
+---
+title: break e continue
+description: Come interrompere o saltare un passaggio dentro un ciclo.
+---
+
+## Controllare meglio un ciclo
+
+A volte un ciclo non deve arrivare alla sua fine naturale.
+
+Java offre due parole utili:
+
+- `break` interrompe il ciclo
+- `continue` salta al giro successivo
+
+Usale con misura: rendono alcuni casi piu semplici, ma se abusate possono rendere il flusso difficile da seguire.
+
+## break
+
+`break` esce subito dal ciclo.
+
+```java
+for (int i = 1; i <= 10; i++) {
+    if (i == 4) {
+        break;
+    }
+
+    System.out.println(i);
+}
+```
+
+Output:
+
+```text
+1
+2
+3
+```
+
+Quando `i` vale `4`, Java esegue `break` e il ciclo finisce.
+
+## Cercare un valore
+
+`break` e utile quando hai trovato quello che cercavi.
+
+```java
+int[] numeri = {4, 8, 15, 16, 23, 42};
+int cercato = 16;
+boolean trovato = false;
+
+for (int i = 0; i < numeri.length; i++) {
+    if (numeri[i] == cercato) {
+        trovato = true;
+        break;
+    }
+}
+
+System.out.println(trovato);
+```
+
+Output:
+
+```text
+true
+```
+
+Dopo aver trovato `16`, non serve controllare gli altri numeri.
+
+## continue
+
+`continue` salta il resto del blocco e passa al prossimo giro.
+
+```java
+for (int i = 1; i <= 5; i++) {
+    if (i == 3) {
+        continue;
+    }
+
+    System.out.println(i);
+}
+```
+
+Output:
+
+```text
+1
+2
+4
+5
+```
+
+Quando `i` vale `3`, Java salta la stampa e continua con `4`.
+
+## Saltare valori non utili
+
+Esempio: stampiamo solo i numeri positivi.
+
+```java
+int[] numeri = {5, -2, 8, -1, 0, 3};
+
+for (int i = 0; i < numeri.length; i++) {
+    if (numeri[i] <= 0) {
+        continue;
+    }
+
+    System.out.println(numeri[i]);
+}
+```
+
+Output:
+
+```text
+5
+8
+3
+```
+
+I numeri minori o uguali a zero vengono saltati.
+
+## break in un while
+
+Puoi usare `break` anche con `while`.
+
+```java
+import java.util.Scanner;
+
+public class Menu {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.print("Scrivi esci per terminare: ");
+            String comando = scanner.nextLine();
+
+            if (comando.equals("esci")) {
+                break;
+            }
+
+            System.out.println("Hai scritto: " + comando);
+        }
+
+        scanner.close();
+    }
+}
+```
+
+`while (true)` crea un ciclo infinito intenzionale. `break` decide quando fermarlo.
+
+## Regola pratica
+
+Usa `break` quando:
+
+- hai trovato un risultato
+- l'utente vuole uscire
+- continuare sarebbe inutile
+
+Usa `continue` quando:
+
+- vuoi saltare solo un caso
+- il resto del ciclo non serve per quel giro
+
+Se il codice diventa difficile da leggere, prova prima a riscrivere la condizione del ciclo.
