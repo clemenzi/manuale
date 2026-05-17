@@ -2,7 +2,7 @@ pre-commit:
   parallel: true
   commands:
     format-web:
-      glob: "*.{js,ts,jsx,tsx,astro,css}"
+      glob: "*.{js,ts,jsx,tsx,css}"
       run: pnpm run fmt:check {staged_files}
     lint-web:
       glob: "*.{js,ts,jsx,tsx,astro,css}"
