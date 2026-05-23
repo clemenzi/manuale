@@ -105,8 +105,24 @@ export default defineConfig({
       },
       routeMiddleware: "./src/route-middleware.ts",
       components: {},
+      head: [
+        {
+          tag: "script",
+          attrs: {
+            src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991026958454341",
+            async: true,
+            crossorigin: "anonymous",
+          },
+        },
+      ],
       disable404Route: true,
-      social: [{ icon: "github", label: "GitHub", href: "https://github.com/clemenzi/manuale" }],
+      social: [
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/clemenzi/manuale",
+        },
+      ],
       customCss: ["./src/styles/global.css"],
       sidebar: [
         {
@@ -267,7 +283,11 @@ export default defineConfig({
             {
               label: "Gestione degli errori",
               collapsed: true,
-              items: ["php/errors/common-errors", "php/errors/debugging", "php/errors/exceptions"],
+              items: [
+                "php/errors/common-errors",
+                "php/errors/debugging",
+                "php/errors/exceptions",
+              ],
             },
           ],
         },
@@ -495,7 +515,10 @@ export default defineConfig({
                 {
                   label: "Viste",
                   collapsed: true,
-                  items: ["sql/design/views/create-view", "sql/design/views/materialized-view"],
+                  items: [
+                    "sql/design/views/create-view",
+                    "sql/design/views/materialized-view",
+                  ],
                 },
               ],
             },
