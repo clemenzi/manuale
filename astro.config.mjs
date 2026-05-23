@@ -283,11 +283,7 @@ export default defineConfig({
             {
               label: "Gestione degli errori",
               collapsed: true,
-              items: [
-                "php/errors/common-errors",
-                "php/errors/debugging",
-                "php/errors/exceptions",
-              ],
+              items: ["php/errors/common-errors", "php/errors/debugging", "php/errors/exceptions"],
             },
           ],
         },
@@ -515,10 +511,7 @@ export default defineConfig({
                 {
                   label: "Viste",
                   collapsed: true,
-                  items: [
-                    "sql/design/views/create-view",
-                    "sql/design/views/materialized-view",
-                  ],
+                  items: ["sql/design/views/create-view", "sql/design/views/materialized-view"],
                 },
               ],
             },
