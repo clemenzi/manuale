@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SqliteRouteImport } from './routes/sqlite'
+import { Route as HtmlRouteImport } from './routes/html'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SqliteRoute = SqliteRouteImport.update({
   id: '/sqlite',
   path: '/sqlite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HtmlRoute = HtmlRouteImport.update({
+  id: '/html',
+  path: '/html',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/html': typeof HtmlRoute
   '/sqlite': typeof SqliteRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/html': typeof HtmlRoute
   '/sqlite': typeof SqliteRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/html': typeof HtmlRoute
   '/sqlite': typeof SqliteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sqlite'
+  fullPaths: '/' | '/html' | '/sqlite'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sqlite'
-  id: '__root__' | '/' | '/sqlite'
+  to: '/' | '/html' | '/sqlite'
+  id: '__root__' | '/' | '/html' | '/sqlite'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HtmlRoute: typeof HtmlRoute
   SqliteRoute: typeof SqliteRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/sqlite'
       fullPath: '/sqlite'
       preLoaderRoute: typeof SqliteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/html': {
+      id: '/html'
+      path: '/html'
+      fullPath: '/html'
+      preLoaderRoute: typeof HtmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HtmlRoute: HtmlRoute,
   SqliteRoute: SqliteRoute,
 }
 export const routeTree = rootRouteImport
