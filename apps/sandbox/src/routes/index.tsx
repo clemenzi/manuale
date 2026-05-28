@@ -43,13 +43,6 @@ const sandboxes: SandboxCard[] = [
 ];
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      {
-        title: "Manuale.dev Sandboxes",
-      },
-    ],
-  }),
   component: Home,
 });
 
