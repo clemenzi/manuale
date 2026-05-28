@@ -84,8 +84,8 @@ importers:
         specifier: ^4.11.2
         version: 4.11.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       shadcn:
-        specifier: ^4.8.1
-        version: 4.8.1(@types/node@22.19.19)(typescript@6.0.2)
+        specifier: ^4.8.2
+        version: 4.8.2(@types/node@22.19.19)(typescript@6.0.2)
       sql.js:
         specifier: ^1.14.1
         version: 1.14.1
@@ -4500,8 +4500,8 @@ packages:
   setprototypeof@1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
 
-  shadcn@4.8.1:
-    resolution: {integrity: sha512-B2J63uYwqfLJPNzZk2AAlonXG1aJhwv8xmXlUag8OZdV61CQB6570nkXLjU1u9XN1qXm0LpJhSFQ0ZhlOruA4Q==}
+  shadcn@4.8.2:
+    resolution: {integrity: sha512-pt3KneOg6LGYKNAdoTVf/lpVcf7t2MlV+Ll2Xc3lIIYN3ph4ajrjU+CcG6OVSgO5ubbLZj+9j5oMA9Lqg7o8KA==}
     hasBin: true
 
   sharp@0.34.5:
@@ -10112,7 +10112,7 @@ snapshots:
 
   setprototypeof@1.2.0: {}
 
-  shadcn@4.8.1(@types/node@22.19.19)(typescript@6.0.2):
+  shadcn@4.8.2(@types/node@22.19.19)(typescript@6.0.2):
     dependencies:
       '@babel/core': 7.29.7
       '@babel/parser': 7.29.7
