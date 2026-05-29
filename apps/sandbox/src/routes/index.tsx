@@ -81,12 +81,12 @@ function Home() {
               Impara facendo, senza configurare nulla.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
-              Apri un ambiente, scrivi codice vero e osserva subito cosa succede. I sandbox di
-              Manuale.dev trasformano esercizi, query e pagine web in pratica immediata.
+              Apri un ambiente, scrivi codice vero e osserva subito cosa succede. Manuale.dev Lab
+              trasforma esercizi, query e pagine web in pratica immediata.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a href="#environments" className={cn(buttonVariants({ size: "lg" }), "gap-2 px-4")}>
-                Scegli un sandbox
+                Scegli un laboratorio
                 <ArrowDown className="size-4" aria-hidden />
               </a>
             </div>

@@ -7,7 +7,7 @@ import { useState } from "react";
 const DEFAULT_CONTENT = `<!DOCTYPE html>
 <html>
 <head>
-  <title>Manuale.dev HTML Sandbox</title>
+  <title>Manuale.dev HTML Lab</title>
   <style>
     body {
       font-family: "Inter", sans-serif;
@@ -27,7 +27,7 @@ const DEFAULT_CONTENT = `<!DOCTYPE html>
 </head>
 <body>
   <h1>
-    Ciao! Sperimenta con HTML, CSS e JS direttamente in questo sandbox!
+    Ciao! Sperimenta con HTML, CSS e JS direttamente in Manuale.dev Lab!
   </h1>
   <p>
     L'unico limite è la tua creatività! Usa l'editor a sinistra per scrivere il tuo codice HTML, CSS e JS.
