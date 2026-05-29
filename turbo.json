@@ -1,0 +1,21 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".astro/**", "dist/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "types:check": {
+      "dependsOn": ["^types:check"],
+      "outputs": []
+    },
+    "generate-types": {
+      "cache": false,
+      "outputs": ["worker-configuration.d.ts"]
+    }
+  }
+}
