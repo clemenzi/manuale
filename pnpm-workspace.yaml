@@ -2,9 +2,13 @@ packages:
   - "apps/*"
   - "packages/*"
 
+overrides:
+  vite: 7.3.2
+
 allowBuilds:
   esbuild: true
   lefthook: true
   msw: true
+  puppeteer: true
   sharp: true
   workerd: true

@@ -7,6 +7,7 @@
     "start": "pnpm run dev",
     "build": "turbo build",
     "preview": "pnpm preview",
+    "pdf:generate": "pnpm --filter @manuale/pdf-generator generate",
     "types:check": "turbo types:check",
     "lint": "oxlint .",
     "fmt": "oxfmt",
@@ -21,7 +22,7 @@
     "turbo": "^2.6.1"
   },
   "overrides": {
-    "vite": "^7"
+    "vite": "7.3.2"
   },
   "packageManager": "pnpm@11.4.0"
 }

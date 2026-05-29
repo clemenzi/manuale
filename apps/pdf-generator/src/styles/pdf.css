@@ -1,0 +1,182 @@
+@page {
+  size: A4;
+}
+
+:root {
+  background: #ffffff;
+  color: #1a1817;
+  font-family:
+    "Atkinson Hyperlegible",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 12.8pt;
+  line-height: 1.58;
+}
+
+body.manuale-pdf {
+  margin: 0;
+  color: #1a1817;
+  font-variant-ligatures: common-ligatures;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: #1a1817;
+  line-height: 1.2;
+  letter-spacing: 0;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+h1 {
+  margin: 0 0 22pt;
+  padding-bottom: 13pt;
+  border-bottom: 2pt solid #005463;
+  font-size: 27pt;
+  font-weight: 800;
+}
+
+h2 {
+  margin: 28pt 0 10pt;
+  padding-top: 4pt;
+  color: #003944;
+  font-size: 20pt;
+  font-weight: 780;
+}
+
+h3 {
+  margin: 22pt 0 8pt;
+  color: #005463;
+  font-size: 15.5pt;
+  font-weight: 740;
+}
+
+h4 {
+  margin: 16pt 0 7pt;
+  font-size: 13.5pt;
+  font-weight: 720;
+}
+
+p {
+  margin: 0 0 10pt;
+}
+
+h2 + p > em:first-child {
+  display: block;
+  margin: -2pt 0 13pt;
+  color: #5c5756;
+  font-size: 12pt;
+  line-height: 1.48;
+}
+
+a {
+  color: #005463;
+  text-decoration: none;
+}
+
+strong {
+  color: #1a1817;
+  font-weight: 760;
+}
+
+em {
+  color: #3c3736;
+}
+
+ul,
+ol {
+  margin: 0 0 11pt 20pt;
+  padding: 0;
+}
+
+li {
+  margin: 4pt 0;
+  padding-left: 2pt;
+}
+
+li > p {
+  margin-bottom: 4pt;
+}
+
+blockquote {
+  margin: 14pt 0;
+  padding: 10pt 13pt;
+  border-left: 3pt solid #005463;
+  background: #f7f6f6;
+  color: #2a2625;
+  break-inside: avoid;
+}
+
+hr {
+  margin: 24pt 0;
+  border: 0;
+  border-top: 1pt solid #d8d5d4;
+}
+
+table {
+  width: 100%;
+  margin: 15pt 0;
+  border-collapse: collapse;
+  break-inside: avoid;
+  font-size: 10.5pt;
+  line-height: 1.45;
+}
+
+th,
+td {
+  padding: 7pt 8pt;
+  border: 0.8pt solid #c4c1c0;
+  vertical-align: top;
+}
+
+th {
+  background: #efedec;
+  color: #1a1817;
+  font-weight: 760;
+}
+
+pre,
+code {
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+code {
+  padding: 1pt 3pt;
+  border-radius: 3pt;
+  background: #efedec;
+  color: #1a1817;
+  font-size: 0.88em;
+}
+
+pre {
+  margin: 14pt 0;
+  padding: 11pt 12pt;
+  border: 0.8pt solid #c4c1c0;
+  border-radius: 6pt;
+  background: #f7f6f6;
+  overflow: hidden;
+  white-space: pre-wrap;
+  break-inside: avoid;
+}
+
+pre code {
+  padding: 0;
+  background: transparent;
+  font-size: 9.8pt;
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+}
+
+.page-break {
+  page-break-after: always;
+}
