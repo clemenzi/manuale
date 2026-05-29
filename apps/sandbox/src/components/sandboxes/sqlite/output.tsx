@@ -1,0 +1,97 @@
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "#/components/ui/table";
+import { formatSQLiteRowCount } from "#/lib/sqlite/format";
+import { CheckCircle2, CircleX, Database } from "lucide-react";
+import type { QueryExecResult } from "sql.js";
+import { SQLiteValue } from "./value";
+
+type SQLiteOutputValue = QueryExecResult[] | Error;
+
+type SQLiteOutputProps = {
+  output?: SQLiteOutputValue;
+};
+
+export function SQLiteOutput({ output }: SQLiteOutputProps) {
+  if (!output) {
+    return (
+      <section className="flex h-full items-center justify-center text-muted-foreground">
+        <div className="flex items-center gap-2 text-sm">
+          <Database className="size-4" />
+          <span>Nessun output</span>
+        </div>
+      </section>
+    );
+  }
+
+  if (output instanceof Error) {
+    return (
+      <section
+        role="alert"
+        className="flex items-start gap-2 rounded-md border border-destructive/20 bg-destructive/5 p-3 text-sm text-destructive"
+      >
+        <CircleX className="mt-0.5 size-4 shrink-0" />
+        <p className="min-w-0 break-words">{output.message}</p>
+      </section>
+    );
+  }
+
+  if (output.length === 0) {
+    return (
+      <section className="flex items-center gap-2 rounded-md border bg-muted/30 p-3 text-sm">
+        <CheckCircle2 className="size-4 text-primary" />
+        <span>Query eseguita.</span>
+      </section>
+    );
+  }
+
+  return (
+    <section className="space-y-3">
+      {output.map((result, index) => (
+        <QueryResult key={index} result={result} index={index} />
+      ))}
+    </section>
+  );
+}
+
+function QueryResult({ result, index }: { result: QueryExecResult; index: number }) {
+  return (
+    <section className="overflow-hidden rounded-md border bg-card">
+      <header className="flex items-center justify-between gap-3 border-b bg-muted/30 px-3 py-2 text-sm">
+        <h2 className="font-medium">Risultato {index + 1}</h2>
+        <span className="text-xs text-muted-foreground">
+          {formatSQLiteRowCount(result.values.length)}
+        </span>
+      </header>
+
+      <Table>
+        <TableHeader>
+          <TableRow>
+            {result.columns.map((column, columnIndex) => (
+              <TableHead key={`${column}-${columnIndex}`}>{column}</TableHead>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {result.values.map((row, rowIndex) => (
+            <TableRow key={rowIndex}>
+              {result.columns.map((column, columnIndex) => (
+                <TableCell
+                  key={`${rowIndex}-${column}-${columnIndex}`}
+                  className="max-w-80 overflow-hidden text-ellipsis"
+                >
+                  <SQLiteValue value={row[columnIndex]} />
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </section>
+  );
+}
