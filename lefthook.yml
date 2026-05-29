@@ -1,12 +1,9 @@
 pre-commit:
   parallel: true
   commands:
-    format-web:
-      glob: "*.{js,ts,jsx,tsx,css,mjs}"
+    format:
+      glob: "*.{js,ts,jsx,tsx,css,mjs,md,mdx}"
       run: pnpm run fmt:check {staged_files}
     lint-web:
       glob: "*.{js,ts,jsx,tsx,astro,css,mjs}"
       run: pnpm run lint {staged_files}
-    format-docs:
-      glob: "*.{yml,yaml,md,mdx}"
-      run: pnpm run fmt:check {staged_files}
