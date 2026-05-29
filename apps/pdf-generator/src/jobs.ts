@@ -16,9 +16,9 @@ export function createJobs(docs: DocNode[], options: CliOptions): RenderJob[] {
           title: category.title,
           subtitle: null,
           docs: category.docs,
-          fileStem: category.slug,
-          outputDirectory: join(options.outputDirectory, category.slug),
-          scratchDirectory: join(options.scratchDirectory, category.slug),
+          route: [category.slug],
+          outputDirectory: options.outputDirectory,
+          scratchDirectory: options.scratchDirectory,
         }),
       );
     }
@@ -27,16 +27,15 @@ export function createJobs(docs: DocNode[], options: CliOptions): RenderJob[] {
   if (options.scope === "all" || options.scope === "section") {
     for (const category of categories) {
       for (const section of category.sections) {
-        const fileStem = `${section.slug}_${category.slug}`;
         jobs.push(
           createJob({
             kind: "section",
             title: section.title,
             subtitle: null,
             docs: section.docs,
-            fileStem,
-            outputDirectory: join(options.outputDirectory, category.slug, section.slug),
-            scratchDirectory: join(options.scratchDirectory, category.slug, section.slug),
+            route: [category.slug, section.slug],
+            outputDirectory: options.outputDirectory,
+            scratchDirectory: options.scratchDirectory,
           }),
         );
       }
@@ -45,23 +44,15 @@ export function createJobs(docs: DocNode[], options: CliOptions): RenderJob[] {
 
   if (options.scope === "all" || options.scope === "topic") {
     for (const topic of groupByTopic(filterDocs(docs, options))) {
-      const fileStem = [topic.category, topic.section, slugify(topic.slug)]
-        .filter(Boolean)
-        .join("_");
-
       jobs.push(
         createJob({
           kind: "topic",
           title: topic.title,
           subtitle: null,
           docs: topic.docs,
-          fileStem,
-          outputDirectory: join(options.outputDirectory, topic.category, topic.section ?? "index"),
-          scratchDirectory: join(
-            options.scratchDirectory,
-            topic.category,
-            topic.section ?? "index",
-          ),
+          route: [topic.category, topic.section, topic.slug].filter((part) => part !== null),
+          outputDirectory: options.outputDirectory,
+          scratchDirectory: options.scratchDirectory,
         }),
       );
     }
@@ -93,13 +84,14 @@ function createJob(input: {
   title: string;
   subtitle: string | null;
   docs: DocNode[];
-  fileStem: string;
+  route: string[];
   outputDirectory: string;
   scratchDirectory: string;
 }): RenderJob {
   const markdown = composeMarkdown(input.title, input.subtitle, input.docs);
-  const fileName = `${slugify(input.fileStem)}.pdf`;
-  const markdownName = `${slugify(input.fileStem)}.md`;
+  const fileStem = input.route.map((part) => slugify(part)).join("-");
+  const fileName = `${fileStem}.pdf`;
+  const markdownName = `${fileStem}.md`;
 
   return {
     kind: input.kind,

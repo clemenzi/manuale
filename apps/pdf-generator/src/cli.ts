@@ -172,7 +172,7 @@ function printHelp(): void {
   console.log(`Manuale PDF Generator
 
 Usage:
-  pnpm --filter @manuale/pdf-generator dev -- [options]
+  pnpm --filter @manuale/pdf-generator generate -- [options]
 
 Options:
   --scope all|category|section|topic  Level to generate (default: all)

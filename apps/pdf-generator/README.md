@@ -4,9 +4,24 @@ CLI for creating PDFs from Manuale Markdown/MDX documents.
 
 The generator follows three levels:
 
-- category: merges every document in a category into `[category].pdf`
-- section: merges every document in a section into `[section]_[category].pdf`
-- topic: exports each document to `[category]_[section]_[topic].pdf`
+- category: merges every document in a category
+- section: merges every document in a section
+- topic: exports each document
+
+Every PDF is written directly into the output directory. File names match the
+document route:
+
+```text
+{route}.pdf
+```
+
+Route segments are joined with `-`, for example:
+
+```text
+python.pdf
+python-basics.pdf
+python-basics-comments.pdf
+```
 
 ## Usage
 

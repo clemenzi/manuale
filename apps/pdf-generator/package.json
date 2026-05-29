@@ -8,7 +8,6 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "start": "node dist/cli.js",
-    "dev": "tsx src/cli.ts",
     "generate": "pnpm run build && node dist/cli.js",
     "types:check": "tsc -p tsconfig.json --noEmit"
   },

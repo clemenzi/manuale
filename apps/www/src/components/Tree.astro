@@ -1,0 +1,42 @@
+---
+export type TreeNode = {
+  children: TreeNode[];
+  href?: string;
+  label: string;
+};
+
+type Props = {
+  nodes: TreeNode[];
+};
+
+const { nodes } = Astro.props;
+---
+
+<ul class="list-none">
+  {
+    nodes.map((node) => (
+      <li class="list-none">
+        {node.children.length > 0 ? (
+          <details>
+            <summary>
+              {node.href ? (
+                <a href={node.href} download>
+                  {node.label}
+                </a>
+              ) : (
+                node.label
+              )}
+            </summary>
+            <Astro.self nodes={node.children} />
+          </details>
+        ) : node.href ? (
+          <a href={node.href} download>
+            {node.label}
+          </a>
+        ) : (
+          <span>{node.label}</span>
+        )}
+      </li>
+    ))
+  }
+</ul>

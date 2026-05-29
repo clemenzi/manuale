@@ -1,0 +1,104 @@
+---
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import Tree, { type TreeNode } from "../components/Tree.astro";
+
+type TreeDraft = {
+  children: TreeDraft[];
+  href?: string;
+  label: string;
+  route: string;
+};
+
+const pdfs = Object.keys(import.meta.glob("../../public/pdf/**/*.pdf"))
+  .map((path) => {
+    const href = path.replace("../../public", "");
+    const route = (href.split("/").at(-1) ?? "").replace(/\.pdf$/, "");
+
+    return { href, route };
+  })
+  .filter((pdf) => !pdf.route.endsWith("-index"));
+
+const pdfRoutes = new Set(pdfs.map((pdf) => pdf.route));
+const pdfTree = pdfs.reduce<TreeDraft[]>((tree, pdf) => {
+  const routeParts = splitRoute(pdf.route);
+  let currentLevel = tree;
+  let currentIndex = 0;
+
+  while (currentIndex < routeParts.length) {
+    const nextRoute = getNextRoute(routeParts, currentIndex);
+    const previousRoute = routeParts.slice(0, currentIndex).join("-");
+    const label = formatLabel(
+      nextRoute.replace(previousRoute ? `${previousRoute}-` : "", ""),
+    );
+    let node = currentLevel.find((item) => item.route === nextRoute);
+
+    if (!node) {
+      node = { label, route: nextRoute, children: [] };
+      currentLevel.push(node);
+    }
+
+    if (nextRoute === pdf.route) {
+      node.href = pdf.href;
+    }
+
+    currentIndex = splitRoute(nextRoute).length;
+    currentLevel = node.children;
+  }
+
+  return tree;
+}, []);
+
+const pdfNodes = sortNodes(toNodes(pdfTree));
+
+function formatLabel(value: string): string {
+  return value === "cpp" ? "C++" : value.replaceAll("-", " ");
+}
+
+function getNextRoute(routeParts: string[], currentIndex: number): string {
+  for (let index = currentIndex + 1; index < routeParts.length; index++) {
+    const route = routeParts.slice(0, index).join("-");
+
+    if (pdfRoutes.has(route)) {
+      return route;
+    }
+  }
+
+  return routeParts.join("-");
+}
+
+function splitRoute(route: string): string[] {
+  return route.split("-").filter(Boolean);
+}
+
+function toNodes(nodes: TreeDraft[]): TreeNode[] {
+  return nodes.map((node) => ({
+    href: node.href,
+    label: node.label,
+    children: sortNodes(toNodes(node.children)),
+  }));
+}
+
+function sortNodes(nodes: TreeNode[]): TreeNode[] {
+  return nodes.sort((a, b) => a.label.localeCompare(b.label, "it"));
+}
+---
+
+<StarlightPage
+  frontmatter={{
+    title: "Esporta una o più guide in PDF",
+    description:
+      "Scarica tutte le guide in formato PDF per ogni argomento trattato da manuale.dev.",
+    tableOfContents: false,
+  }}
+  hasSidebar={false}
+>
+  <p>
+    Lista completa delle guide esportate in formato PDF. Sono scaricabili
+    gratuitamente, senza necessità di registrazione.
+    <span class="italic"
+      >Se allegate uno di questi contenuti in un post o un articolo, perfavore
+      inserisci i crediti</span
+    >
+  </p>
+  <Tree nodes={pdfNodes} />
+</StarlightPage>
