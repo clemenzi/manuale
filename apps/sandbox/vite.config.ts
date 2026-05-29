@@ -8,6 +8,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
+  assetsInclude: [/\.dat$/, /\.wasm$/, /\.so$/, /\.la$/],
   plugins: [
     devtools(),
     tailwindcss(),

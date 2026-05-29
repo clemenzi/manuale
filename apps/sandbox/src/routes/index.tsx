@@ -7,7 +7,7 @@ type SandboxCard = {
   title: string;
   category: string;
   icon: ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
-  to: "/" | "/sqlite";
+  to: "/" | "/sqlite" | "/html";
   isAvailable: boolean;
 };
 
@@ -37,8 +37,8 @@ const sandboxes: SandboxCard[] = [
     title: "HTML (CSS & JS)",
     category: "Web",
     icon: SiHtml5,
-    to: "/",
-    isAvailable: false,
+    to: "/html",
+    isAvailable: true,
   },
 ];
 
