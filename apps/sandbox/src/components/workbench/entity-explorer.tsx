@@ -1,5 +1,6 @@
 import { cn } from "#/lib/utils";
-import { Database } from "lucide-react";
+import { DatabaseIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useEffect, type ReactNode } from "react";
 
 export type EntityExplorerItem = {
@@ -23,7 +24,7 @@ export type EntityExplorerProps<TItem extends EntityExplorerItem> = {
 
 export function EntityExplorer<TItem extends EntityExplorerItem>({
   emptyLabel = "Nessun elemento",
-  icon = <Database className="size-4 text-primary" />,
+  icon = <HugeiconsIcon icon={DatabaseIcon} className="size-4 text-primary" />,
   items,
   navLabel = "Elementi",
   renderDetails,

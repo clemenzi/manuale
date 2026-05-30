@@ -42,11 +42,11 @@ type PHPProviderProps = {
   loaderOptions?: PHPWebLoaderOptions;
 };
 
-function toError(caughtError: unknown) {
+export function toPHPError(caughtError: unknown) {
   return caughtError instanceof Error ? caughtError : new Error("Impossibile inizializzare PHP.");
 }
 
-function normalizePHPCode(code: string) {
+export function normalizePHPCode(code: string) {
   return code.includes("<?") ? code : `<?php\n${code}`;
 }
 
@@ -84,38 +84,15 @@ export function PHPProvider({
   const [status, setStatus] = useState<PHPStatus>("loading");
   const [version, setVersion] = useState(0);
 
-  const initializePHP = useCallback(async () => {
-    setStatus("loading");
-    setError(null);
-
-    try {
-      const nextPHP = await createPHPEnvironment(phpVersion, loaderOptions);
-
-      closePHPEnvironment(phpRef.current);
-      phpRef.current = nextPHP;
-      setPHP(nextPHP);
-      setVersion((currentVersion) => currentVersion + 1);
-      setStatus("ready");
-    } catch (caughtError) {
-      closePHPEnvironment(phpRef.current);
-      phpRef.current = null;
-      setPHP(null);
-      setError(toError(caughtError));
-      setStatus("error");
-    }
-  }, [loaderOptions, phpVersion]);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    async function initializeMountedPHP() {
+  const initializePHP = useCallback(
+    async (isCurrent: () => boolean = () => true) => {
       setStatus("loading");
       setError(null);
 
       try {
         const nextPHP = await createPHPEnvironment(phpVersion, loaderOptions);
 
-        if (!isMounted) {
+        if (!isCurrent()) {
           closePHPEnvironment(nextPHP);
           return;
         }
@@ -126,26 +103,31 @@ export function PHPProvider({
         setVersion((currentVersion) => currentVersion + 1);
         setStatus("ready");
       } catch (caughtError) {
-        if (!isMounted) {
+        if (!isCurrent()) {
           return;
         }
 
         closePHPEnvironment(phpRef.current);
         phpRef.current = null;
         setPHP(null);
-        setError(toError(caughtError));
+        setError(toPHPError(caughtError));
         setStatus("error");
       }
-    }
+    },
+    [loaderOptions, phpVersion],
+  );
 
-    void initializeMountedPHP();
+  useEffect(() => {
+    let isMounted = true;
+
+    void initializePHP(() => isMounted);
 
     return () => {
       isMounted = false;
       closePHPEnvironment(phpRef.current);
       phpRef.current = null;
     };
-  }, [loaderOptions, phpVersion]);
+  }, [initializePHP]);
 
   const execute = useCallback(async (code: string) => {
     const currentPHP = phpRef.current;

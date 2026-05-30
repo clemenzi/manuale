@@ -1,6 +1,7 @@
 import { Button } from "#/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "#/components/ui/tabs";
-import { Plus, Play } from "lucide-react";
+import { PlayIcon, PlusSignIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useCallback, useMemo, useState, type ReactNode } from "react";
 import { CodeEditor, type CodeEditorProps } from "./code-editor";
 
@@ -33,7 +34,7 @@ export function BufferedCodeEditor({
   addBufferLabel = "Nuovo buffer",
   buffers: controlledBuffers,
   executeLabel = "Esegui",
-  executeIcon = <Play />,
+  executeIcon = <HugeiconsIcon icon={PlayIcon} />,
   newBuffer = createDefaultBuffer,
   onBuffersChange,
   onExecute,
@@ -107,7 +108,7 @@ export function BufferedCodeEditor({
 
         <div className="flex shrink-0 items-center gap-1">
           <Button aria-label={addBufferLabel} variant="ghost" size="sm" onClick={addBuffer}>
-            <Plus />
+            <HugeiconsIcon icon={PlusSignIcon} />
           </Button>
 
           {onExecute ? (

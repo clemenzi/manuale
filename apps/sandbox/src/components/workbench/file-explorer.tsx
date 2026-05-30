@@ -1,5 +1,6 @@
 import { FileTree, type FileTreeProps } from "#/components/workbench/file-tree";
-import { FolderTree } from "lucide-react";
+import { FolderDetailsIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import type { ReactNode } from "react";
 
 export type FileExplorerProps = FileTreeProps & {
@@ -10,7 +11,7 @@ export type FileExplorerProps = FileTreeProps & {
 
 export function FileExplorer({
   actions,
-  icon = <FolderTree className="size-4 shrink-0 text-primary" />,
+  icon = <HugeiconsIcon icon={FolderDetailsIcon} className="size-4 shrink-0 text-primary" />,
   title = "Explorer",
   ...treeProps
 }: FileExplorerProps) {

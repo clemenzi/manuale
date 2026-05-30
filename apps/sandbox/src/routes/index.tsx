@@ -8,9 +8,10 @@ import {
 } from "#/components/ui/card";
 import { buttonVariants } from "#/components/ui/button";
 import { cn } from "#/lib/utils";
+import { ArrowDown01Icon, ArrowRight01Icon, Clock03Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { SiHtml5, SiPhp, SiPostgresql, SiPython, SiSqlite } from "@icons-pack/react-simple-icons";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, ArrowRight, Clock3 } from "lucide-react";
 import type { ComponentType } from "react";
 
 type SandboxCard = {
@@ -87,7 +88,7 @@ function Home() {
             <div className="mt-7 flex flex-wrap gap-3">
               <a href="#environments" className={cn(buttonVariants({ size: "lg" }), "gap-2 px-4")}>
                 Scegli un sandbox
-                <ArrowDown className="size-4" aria-hidden />
+                <HugeiconsIcon icon={ArrowDown01Icon} className="size-4" aria-hidden />
               </a>
             </div>
           </div>
@@ -153,12 +154,12 @@ function SandboxCardContent({ sandbox }: { sandbox: SandboxCard }) {
             )}
           >
             Inizia
-            <ArrowRight className="size-4" aria-hidden />
+            <HugeiconsIcon icon={ArrowRight01Icon} className="size-4" aria-hidden />
           </span>
         ) : (
           <span className="inline-flex h-8 w-full items-center justify-between border border-border bg-secondary px-2.5 text-sm font-medium text-muted-foreground">
             In preparazione
-            <Clock3 className="size-4" aria-hidden />
+            <HugeiconsIcon icon={Clock03Icon} className="size-4" aria-hidden />
           </span>
         )}
       </CardFooter>

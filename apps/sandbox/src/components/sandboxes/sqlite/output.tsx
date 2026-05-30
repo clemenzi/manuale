@@ -1,6 +1,7 @@
 import { DataTable } from "#/components/workbench/data-table";
 import { formatSQLiteRowCount } from "#/lib/sqlite/format";
-import { CheckCircle2, CircleX, Database } from "lucide-react";
+import { CancelCircleIcon, CheckmarkCircle02Icon, DatabaseIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import type { QueryExecResult, SqlValue } from "sql.js";
 import { SQLiteValue } from "./value";
 
@@ -15,7 +16,7 @@ export function SQLiteOutput({ output }: SQLiteOutputProps) {
     return (
       <section className="flex h-full items-center justify-center text-muted-foreground">
         <div className="flex items-center gap-2 text-sm">
-          <Database className="size-4" />
+          <HugeiconsIcon icon={DatabaseIcon} className="size-4" />
           <span>Nessun output</span>
         </div>
       </section>
@@ -28,7 +29,7 @@ export function SQLiteOutput({ output }: SQLiteOutputProps) {
         role="alert"
         className="flex items-start gap-2 rounded-md border border-destructive/20 bg-destructive/5 p-3 text-sm text-destructive"
       >
-        <CircleX className="mt-0.5 size-4 shrink-0" />
+        <HugeiconsIcon icon={CancelCircleIcon} className="mt-0.5 size-4 shrink-0" />
         <p className="min-w-0 break-words">{output.message}</p>
       </section>
     );
@@ -37,7 +38,7 @@ export function SQLiteOutput({ output }: SQLiteOutputProps) {
   if (output.length === 0) {
     return (
       <section className="flex items-center gap-2 rounded-md border bg-muted/30 p-3 text-sm">
-        <CheckCircle2 className="size-4 text-primary" />
+        <HugeiconsIcon icon={CheckmarkCircle02Icon} className="size-4 text-primary" />
         <span>Query eseguita.</span>
       </section>
     );

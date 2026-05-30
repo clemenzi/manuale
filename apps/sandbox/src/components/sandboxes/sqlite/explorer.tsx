@@ -8,7 +8,8 @@ import {
   readTables,
   type SQLiteColumnInfo,
 } from "#/lib/sqlite/inspection";
-import { Database, Table2 } from "lucide-react";
+import { DatabaseIcon, Table02Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useMemo, useState } from "react";
 import type { SqlValue } from "sql.js";
 import { SQLiteValue } from "./value";
@@ -45,7 +46,7 @@ export function SQLiteExplorer() {
   return (
     <EntityExplorer
       emptyLabel="Nessuna tabella"
-      icon={<Database className="size-4 text-primary" />}
+      icon={<HugeiconsIcon icon={DatabaseIcon} className="size-4 text-primary" />}
       items={tables}
       navLabel="Tabelle SQLite"
       renderDetails={(table) => (
@@ -56,7 +57,9 @@ export function SQLiteExplorer() {
           table={table}
         />
       )}
-      renderItemIcon={() => <Table2 className="size-4 shrink-0 text-muted-foreground" />}
+      renderItemIcon={() => (
+        <HugeiconsIcon icon={Table02Icon} className="size-4 shrink-0 text-muted-foreground" />
+      )}
       selectedId={tableName}
       selectPrompt="Seleziona una tabella"
       title="Explorer"

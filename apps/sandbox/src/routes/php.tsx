@@ -1,7 +1,7 @@
 import { CodeEditor } from "#/components/workbench/code-editor";
 import { PHPProvider, usePHP } from "#/contexts/php";
 import { createFileRoute } from "@tanstack/react-router";
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
 import Explorer from "#/components/sandboxes/php/explorer";
 import type { FileTreeSelection } from "#/components/workbench/file-tree";
 import { useCallback, useEffect, useState } from "react";

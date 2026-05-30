@@ -1,6 +1,13 @@
 import { Button } from "#/components/ui/button";
 import { cn } from "#/lib/utils";
-import { ChevronDown, ChevronRight, File, Folder, FolderOpen } from "lucide-react";
+import {
+  ArrowDown01Icon,
+  ArrowRight01Icon,
+  File01Icon,
+  Folder01Icon,
+  FolderOpenIcon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useCallback, useMemo, useState, type ReactNode } from "react";
 
 export type FileTreeEntry = {
@@ -116,7 +123,11 @@ export function FileTree({
               <FileEntry
                 key={entry.path}
                 depth={depth}
-                icon={getFileIcon?.(entry) ?? <File className="size-4 shrink-0" />}
+                icon={
+                  getFileIcon?.(entry) ?? (
+                    <HugeiconsIcon icon={File01Icon} className="size-4 shrink-0" />
+                  )
+                }
                 isSelected={selectedPath === entry.path}
                 name={entry.name}
                 path={entry.path}
@@ -182,8 +193,8 @@ function DirectoryEntry({
   name: string;
   onToggle: () => void;
 }) {
-  const Chevron = isOpen ? ChevronDown : ChevronRight;
-  const FolderIcon = isOpen ? FolderOpen : Folder;
+  const ChevronIcon = isOpen ? ArrowDown01Icon : ArrowRight01Icon;
+  const FolderIcon = isOpen ? FolderOpenIcon : Folder01Icon;
 
   return (
     <Button
@@ -196,8 +207,8 @@ function DirectoryEntry({
       variant="ghost"
       onClick={onToggle}
     >
-      <Chevron className="size-3.5 shrink-0 text-muted-foreground" />
-      <FolderIcon className="size-4 shrink-0 text-amber-500" />
+      <HugeiconsIcon icon={ChevronIcon} className="size-3.5 shrink-0 text-muted-foreground" />
+      <HugeiconsIcon icon={FolderIcon} className="size-4 shrink-0 text-amber-500" />
       <span className="min-w-0 flex-1 truncate text-left">{name}</span>
     </Button>
   );

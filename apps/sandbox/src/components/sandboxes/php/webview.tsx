@@ -12,10 +12,9 @@ import {
 import { usePHP } from "#/contexts/php";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
 import { Table, TableBody, TableCell, TableRow } from "#/components/ui/table";
-import { ArrowRight } from "@hugeicons/core-free-icons";
+import { ArrowRight01Icon, Loading03Icon, ServerStack01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { PHPRequestHandler, PHPResponse, type HTTPMethod } from "@php-wasm/universal";
-import { Loader2, Server } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
 const PHP_DEFAULT_URL = "/index.php";
@@ -114,9 +113,9 @@ export function Webview() {
               aria-label="Invia request"
             >
               {isLoading ? (
-                <Loader2 className="size-4 animate-spin" />
+                <HugeiconsIcon icon={Loading03Icon} className="size-4 animate-spin" />
               ) : (
-                <HugeiconsIcon icon={ArrowRight} />
+                <HugeiconsIcon icon={ArrowRight01Icon} />
               )}
             </Button>
           </form>
@@ -166,7 +165,7 @@ export function Webview() {
                 </>
               ) : (
                 <div className="m-2 flex h-[calc(100%-1rem)] flex-col items-center justify-center gap-2 rounded-md border border-dashed bg-muted/20 text-muted-foreground">
-                  <Server className="size-7" />
+                  <HugeiconsIcon icon={ServerStack01Icon} className="size-7" />
                   <p className="text-sm">Nessuna risposta</p>
                 </div>
               )}

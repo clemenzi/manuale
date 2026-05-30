@@ -1,4 +1,4 @@
-import { FilePlus } from "lucide-react";
+import { Button } from "#/components/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -7,10 +7,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "#/components/ui/button";
+} from "#/components/ui/dialog";
 import { Input } from "#/components/ui/input";
 import { usePHP } from "#/contexts/php";
+import { FileAddIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useCallback, useState } from "react";
 
 const PHP_WORKDIR = "/www";
@@ -63,7 +64,7 @@ export function NewFileDialog({ onClose }: { onClose?: () => void }) {
       <DialogTrigger
         render={<Button aria-label="Crea un nuovo file" size="icon-sm" variant="ghost" />}
       >
-        <FilePlus />
+        <HugeiconsIcon icon={FileAddIcon} />
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
