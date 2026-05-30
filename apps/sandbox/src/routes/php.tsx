@@ -1,15 +1,15 @@
+import { CodeEditor } from "#/components/workbench/code-editor";
 import { PHPProvider, usePHP } from "#/contexts/php";
 import { createFileRoute } from "@tanstack/react-router";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import Explorer from "#/components/sandboxes/php/explorer";
-import type { TreeFileSelection } from "#/components/sandboxes/php/tree";
-import CodeMirror from "@uiw/react-codemirror";
+import type { FileTreeSelection } from "#/components/workbench/file-tree";
 import { useCallback, useEffect, useState } from "react";
 import { php as phpLang } from "@codemirror/lang-php";
 import { Webview } from "#/components/sandboxes/php/webview";
 
 const PHP_EDITOR_EXTENSIONS = [phpLang()];
-const PHP_ENTRYPOINT: TreeFileSelection = {
+const PHP_ENTRYPOINT: FileTreeSelection = {
   name: "index.php",
   path: "/www/index.php",
 };
@@ -28,7 +28,7 @@ function RouteComponent() {
 
 function PHPWorkbench() {
   const { php } = usePHP();
-  const [selectedFile, setSelectedFile] = useState<TreeFileSelection | null>(null);
+  const [selectedFile, setSelectedFile] = useState<FileTreeSelection | null>(null);
   const [editorValue, setEditorValue] = useState("");
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function PHPWorkbench() {
   }, [php, selectedFile]);
 
   const handleFileSelect = useCallback(
-    (file: TreeFileSelection) => {
+    (file: FileTreeSelection) => {
       setSelectedFile(file);
       setEditorValue(php?.readFileAsText(file.path) ?? "");
     },
@@ -75,10 +75,8 @@ function PHPWorkbench() {
                 <header className="flex min-h-10 items-center border-b px-2 text-sm">
                   {selectedFile.path}
                 </header>
-                <CodeMirror
-                  className="h-full min-h-0 overflow-hidden [&_.cm-editor]:h-full [&_.cm-scroller]:overflow-auto"
+                <CodeEditor
                   editable={selectedFile !== null}
-                  height="100%"
                   value={editorValue}
                   onChange={handleEditorChange}
                   extensions={PHP_EDITOR_EXTENSIONS}

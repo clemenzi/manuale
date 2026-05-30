@@ -1,14 +1,7 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "#/components/ui/table";
+import { DataTable } from "#/components/workbench/data-table";
 import { formatSQLiteRowCount } from "#/lib/sqlite/format";
 import { CheckCircle2, CircleX, Database } from "lucide-react";
-import type { QueryExecResult } from "sql.js";
+import type { QueryExecResult, SqlValue } from "sql.js";
 import { SQLiteValue } from "./value";
 
 type SQLiteOutputValue = QueryExecResult[] | Error;
@@ -69,29 +62,13 @@ function QueryResult({ result, index }: { result: QueryExecResult; index: number
         </span>
       </header>
 
-      <Table>
-        <TableHeader>
-          <TableRow>
-            {result.columns.map((column, columnIndex) => (
-              <TableHead key={`${column}-${columnIndex}`}>{column}</TableHead>
-            ))}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {result.values.map((row, rowIndex) => (
-            <TableRow key={rowIndex}>
-              {result.columns.map((column, columnIndex) => (
-                <TableCell
-                  key={`${rowIndex}-${column}-${columnIndex}`}
-                  className="max-w-80 overflow-hidden text-ellipsis"
-                >
-                  <SQLiteValue value={row[columnIndex]} />
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <DataTable<SqlValue>
+        bordered={false}
+        columns={result.columns}
+        emptyLabel="Nessun dato"
+        renderValue={(value) => <SQLiteValue value={value} />}
+        rows={result.values}
+      />
     </section>
   );
 }

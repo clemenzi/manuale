@@ -1,18 +1,46 @@
-import { FolderTree } from "lucide-react";
+import { FileExplorer, type FileExplorerProps } from "#/components/workbench/file-explorer";
+import {
+  joinTreePath,
+  type FileTreeEntry,
+  type FileTreeSelection,
+} from "#/components/workbench/file-tree";
+import { usePHP } from "#/contexts/php";
+import { SiPhp } from "@icons-pack/react-simple-icons";
 import { useCallback, useState } from "react";
 import { NewFileDialog } from "./dialogs";
-import { Tree, type TreeFileSelection } from "./tree";
 
 type ExplorerProps = {
-  onFileSelect?: (file: TreeFileSelection) => void;
+  onFileSelect?: (file: FileTreeSelection) => void;
 };
 
 export default function Explorer({ onFileSelect }: ExplorerProps) {
+  const { php, version } = usePHP();
   const [refreshKey, setRefreshKey] = useState(0);
   const [selectedPath, setSelectedPath] = useState<string | null>(null);
 
+  const readEntries = useCallback<NonNullable<FileExplorerProps["readEntries"]>>(
+    (path) => {
+      void version;
+
+      if (!php) {
+        return [];
+      }
+
+      return php.listFiles(path).map<FileTreeEntry>((name) => {
+        const entryPath = joinTreePath(path, name);
+
+        return {
+          name,
+          path: entryPath,
+          isDirectory: php.isDir(entryPath),
+        };
+      });
+    },
+    [php, version],
+  );
+
   const handleFileSelect = useCallback(
-    (file: TreeFileSelection) => {
+    (file: FileTreeSelection) => {
       setSelectedPath(file.path);
       onFileSelect?.(file);
     },
@@ -24,24 +52,21 @@ export default function Explorer({ onFileSelect }: ExplorerProps) {
   }, []);
 
   return (
-    <aside className="flex h-full min-w-0 flex-col bg-background">
-      <header className="flex min-h-10 shrink-0 items-center justify-between border-b px-2">
-        <div className="flex min-w-0 items-center gap-2">
-          <FolderTree className="size-4 shrink-0 text-primary" />
-          <h2 className="truncate text-sm font-medium">Explorer</h2>
-        </div>
-        <div className="shrink-0">
-          <NewFileDialog onClose={handleDialogClose} />
-        </div>
-      </header>
-      <div className="min-h-0 flex-1">
-        <Tree
-          path="/www/"
-          refreshKey={refreshKey}
-          selectedPath={selectedPath}
-          onFileSelect={handleFileSelect}
-        />
-      </div>
-    </aside>
+    <FileExplorer
+      actions={<NewFileDialog onClose={handleDialogClose} />}
+      emptyLabel="Nessun file nella cartella"
+      getFileIcon={(file) =>
+        file.name.endsWith(".php") ? (
+          <SiPhp className="size-4 shrink-0 text-primary/80" />
+        ) : undefined
+      }
+      path="/www/"
+      readEntries={readEntries}
+      refreshKey={refreshKey}
+      selectedPath={selectedPath}
+      title="Explorer"
+      treeLabel="File PHP"
+      onFileSelect={handleFileSelect}
+    />
   );
 }
