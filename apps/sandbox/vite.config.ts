@@ -7,8 +7,19 @@ import viteReact from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
 const config = defineConfig({
-  resolve: { tsconfigPaths: true },
+  resolve: {
+    alias: {
+      "../intl/shared/icu.dat": new URL(
+        "./node_modules/@php-wasm/web/shared/icu.dat",
+        import.meta.url,
+      ).pathname,
+    },
+    tsconfigPaths: true,
+  },
   assetsInclude: [/\.dat$/, /\.wasm$/, /\.so$/, /\.la$/],
+  optimizeDeps: {
+    exclude: ["@php-wasm/web"],
+  },
   plugins: [
     devtools(),
     tailwindcss(),

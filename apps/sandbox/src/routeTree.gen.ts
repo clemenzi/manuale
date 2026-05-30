@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SqliteRouteImport } from './routes/sqlite'
+import { Route as PhpRouteImport } from './routes/php'
 import { Route as HtmlRouteImport } from './routes/html'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SqliteRoute = SqliteRouteImport.update({
   id: '/sqlite',
   path: '/sqlite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PhpRoute = PhpRouteImport.update({
+  id: '/php',
+  path: '/php',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HtmlRoute = HtmlRouteImport.update({
@@ -32,30 +38,34 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/html': typeof HtmlRoute
+  '/php': typeof PhpRoute
   '/sqlite': typeof SqliteRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/html': typeof HtmlRoute
+  '/php': typeof PhpRoute
   '/sqlite': typeof SqliteRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/html': typeof HtmlRoute
+  '/php': typeof PhpRoute
   '/sqlite': typeof SqliteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/html' | '/sqlite'
+  fullPaths: '/' | '/html' | '/php' | '/sqlite'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/html' | '/sqlite'
-  id: '__root__' | '/' | '/html' | '/sqlite'
+  to: '/' | '/html' | '/php' | '/sqlite'
+  id: '__root__' | '/' | '/html' | '/php' | '/sqlite'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   HtmlRoute: typeof HtmlRoute
+  PhpRoute: typeof PhpRoute
   SqliteRoute: typeof SqliteRoute
 }
 
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/sqlite'
       fullPath: '/sqlite'
       preLoaderRoute: typeof SqliteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/php': {
+      id: '/php'
+      path: '/php'
+      fullPath: '/php'
+      preLoaderRoute: typeof PhpRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/html': {
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   HtmlRoute: HtmlRoute,
+  PhpRoute: PhpRoute,
   SqliteRoute: SqliteRoute,
 }
 export const routeTree = rootRouteImport

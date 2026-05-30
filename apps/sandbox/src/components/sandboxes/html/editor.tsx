@@ -1,6 +1,8 @@
 import CodeMirror from "@uiw/react-codemirror";
 import { html } from "@codemirror/lang-html";
 
+const HTML_EDITOR_EXTENSIONS = [html()];
+
 interface Props {
   value?: string;
   onChange?: (value: string) => void;
@@ -14,7 +16,7 @@ export default function Editor({ value, onChange }: Props) {
         value={value}
         height="100%"
         onChange={onChange}
-        extensions={[html()]}
+        extensions={HTML_EDITOR_EXTENSIONS}
       />
     </div>
   );

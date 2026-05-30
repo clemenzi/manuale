@@ -4,7 +4,7 @@ import { SQLiteOutput } from "#/components/sandboxes/sqlite/output";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
 import { SQLiteProvider, useSQLite } from "#/contexts/sqlite";
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import type { QueryExecResult } from "sql.js";
 
 export const Route = createFileRoute("/sqlite")({
@@ -23,13 +23,16 @@ function SQLiteWorkbench() {
   const { error, execute, status } = useSQLite();
   const [output, setOutput] = useState<QueryExecResult[] | Error>();
 
-  function handleExecute(code: string) {
-    try {
-      setOutput(execute(code));
-    } catch (caughtError) {
-      setOutput(caughtError as Error);
-    }
-  }
+  const handleExecute = useCallback(
+    (code: string) => {
+      try {
+        setOutput(execute(code));
+      } catch (caughtError) {
+        setOutput(caughtError as Error);
+      }
+    },
+    [execute],
+  );
 
   if (status !== "ready" || error) {
     return (

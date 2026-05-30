@@ -3,7 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "#/components/ui/tabs";
 import { sql } from "@codemirror/lang-sql";
 import CodeMirror from "@uiw/react-codemirror";
 import { Plus, Play } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 const SQL_EDITOR_EXTENSIONS = [sql()];
 
@@ -15,20 +15,33 @@ export function SQLiteEditor({ onExecute }: SQLiteEditorProps) {
   const [activeBufferId, setActiveBufferId] = useState("0");
   const [buffers, setBuffers] = useState<string[]>([""]);
 
-  function addBuffer() {
-    const nextBufferId = String(buffers.length);
-    setBuffers((prev) => [...prev, ""]);
-    setActiveBufferId(nextBufferId);
-  }
+  const addBuffer = useCallback(() => {
+    setBuffers((prev) => {
+      setActiveBufferId(String(prev.length));
+      return [...prev, ""];
+    });
+  }, []);
 
-  function handleExecute() {
+  const handleExecute = useCallback(() => {
     onExecute(buffers[Number(activeBufferId)] ?? "");
-  }
+  }, [activeBufferId, buffers, onExecute]);
+
+  const handleActiveBufferChange = useCallback((value: string) => {
+    setActiveBufferId(value);
+  }, []);
+
+  const updateBuffer = useCallback((index: number, value: string) => {
+    setBuffers((prev) => {
+      const newBuffers = [...prev];
+      newBuffers[index] = value;
+      return newBuffers;
+    });
+  }, []);
 
   return (
     <Tabs
       value={activeBufferId}
-      onValueChange={(value) => setActiveBufferId(String(value))}
+      onValueChange={handleActiveBufferChange}
       className="h-full min-h-0 gap-0 overflow-hidden"
     >
       <header className="flex min-h-10 shrink-0 items-center justify-between gap-2 border-b px-2">
@@ -62,13 +75,7 @@ export function SQLiteEditor({ onExecute }: SQLiteEditorProps) {
             extensions={SQL_EDITOR_EXTENSIONS}
             height="100%"
             value={buffer}
-            onChange={(value) => {
-              setBuffers((prev) => {
-                const newBuffers = [...prev];
-                newBuffers[i] = value;
-                return newBuffers;
-              });
-            }}
+            onChange={(value) => updateBuffer(i, value)}
           />
         </TabsContent>
       ))}

@@ -18,7 +18,7 @@ type SandboxCard = {
   category: string;
   description: string;
   icon: ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
-  to: "/" | "/sqlite" | "/html";
+  to: "/" | "/sqlite" | "/html" | "/php";
   isAvailable: boolean;
 };
 
@@ -62,8 +62,8 @@ const sandboxes: SandboxCard[] = [
     category: "Language",
     description: "Allena logica server, template e form con esempi brevi, leggibili e guidati.",
     icon: SiPhp,
-    to: "/",
-    isAvailable: false,
+    to: "/php",
+    isAvailable: true,
   },
 ];
 
