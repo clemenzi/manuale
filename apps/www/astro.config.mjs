@@ -118,6 +118,11 @@ export default defineConfig({
       disable404Route: true,
       social: [
         {
+          icon: "download",
+          label: "Download",
+          href: "/download/",
+        },
+        {
           icon: "github",
           label: "GitHub",
           href: "https://github.com/clemenzi/manuale",
