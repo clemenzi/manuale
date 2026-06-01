@@ -1,18 +1,11 @@
-import { CodeEditor } from "#/components/workbench/code-editor";
 import { PHPProvider, usePHP } from "#/contexts/php";
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef } from "react";
+import { EditorProvider, useEditor } from "#/contexts/editor";
+import EditorExplorer from "#/components/editor/explorer";
+import { EditorCode } from "#/components/editor/code";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
-import Explorer from "#/components/sandboxes/php/explorer";
-import type { FileTreeSelection } from "#/components/workbench/file-tree";
-import { useCallback, useEffect, useState } from "react";
-import { php as phpLang } from "@codemirror/lang-php";
-import { Webview } from "#/components/sandboxes/php/webview";
-
-const PHP_EDITOR_EXTENSIONS = [phpLang()];
-const PHP_ENTRYPOINT: FileTreeSelection = {
-  name: "index.php",
-  path: "/www/index.php",
-};
+import Preview from "#/components/sandboxes/php/preview";
 
 export const Route = createFileRoute("/php")({
   component: RouteComponent,
@@ -21,77 +14,66 @@ export const Route = createFileRoute("/php")({
 function RouteComponent() {
   return (
     <PHPProvider>
-      <PHPWorkbench />
+      <EditorProvider>
+        <PHPWorkbench />
+      </EditorProvider>
     </PHPProvider>
   );
 }
 
 function PHPWorkbench() {
   const { php } = usePHP();
-  const [selectedFile, setSelectedFile] = useState<FileTreeSelection | null>(null);
-  const [editorValue, setEditorValue] = useState("");
+  const { fs, buffers } = useEditor();
+  const { files, writeFile } = fs;
+  const { add: addBuffer } = buffers;
+  const hasSyncedInitialPHPFiles = useRef(false);
 
   useEffect(() => {
-    if (!php || selectedFile) {
+    if (!php || hasSyncedInitialPHPFiles.current) {
       return;
     }
 
-    setSelectedFile(PHP_ENTRYPOINT);
-    setEditorValue(php.readFileAsText(PHP_ENTRYPOINT.path));
-  }, [php, selectedFile]);
+    hasSyncedInitialPHPFiles.current = true;
 
-  const handleFileSelect = useCallback(
-    (file: FileTreeSelection) => {
-      setSelectedFile(file);
-      setEditorValue(php?.readFileAsText(file.path) ?? "");
-    },
-    [php],
-  );
+    php.listFiles("/www").forEach((name) => {
+      const entryPath = `/www/${name}`;
+      writeFile(entryPath, php.readFileAsText(entryPath));
+    });
 
-  const handleEditorChange = useCallback(
-    (value: string) => {
-      setEditorValue(value);
+    addBuffer("/www/index.php");
+  }, [addBuffer, php, writeFile]);
 
-      if (!php || !selectedFile) {
-        return;
-      }
+  useEffect(() => {
+    if (!php || !hasSyncedInitialPHPFiles.current) {
+      return;
+    }
 
-      php.writeFile(selectedFile.path, value);
-    },
-    [php, selectedFile],
-  );
+    for (const [path, content] of files) {
+      php.writeFile(path, content);
+    }
+  }, [files, php]);
 
   return (
-    <main className="h-[calc(100vh-70px)]">
+    <>
       <ResizablePanelGroup orientation="horizontal">
-        <ResizablePanel defaultSize={"12%"}>
-          <Explorer onFileSelect={handleFileSelect} />
+        <ResizablePanel defaultSize={"15%"}>
+          <EditorExplorer />
         </ResizablePanel>
-        <ResizableHandle />
-        <ResizablePanel>
-          <div className="flex h-full min-h-0 flex-col">
-            {selectedFile ? (
-              <>
-                <header className="flex min-h-10 items-center border-b px-2 text-sm">
-                  {selectedFile.path}
-                </header>
-                <CodeEditor
-                  editable={selectedFile !== null}
-                  value={editorValue}
-                  onChange={handleEditorChange}
-                  extensions={PHP_EDITOR_EXTENSIONS}
-                />
-              </>
-            ) : (
-              <p className="text-sm text-gray-500">No file selected</p>
-            )}
-          </div>
+        <ResizableHandle withHandle />
+        <ResizablePanel defaultSize={"45%"}>
+          <EditorCode />
         </ResizablePanel>
-        <ResizableHandle />
+        <ResizableHandle withHandle />
         <ResizablePanel defaultSize={"50%"}>
-          <Webview />
+          <ResizablePanelGroup orientation="vertical">
+            <ResizablePanel defaultSize={"80%"}>
+              <Preview />
+            </ResizablePanel>
+            <ResizableHandle withHandle />
+            <ResizablePanel defaultSize={"20%"}>request analyzer</ResizablePanel>
+          </ResizablePanelGroup>
         </ResizablePanel>
       </ResizablePanelGroup>
-    </main>
+    </>
   );
 }
