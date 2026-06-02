@@ -6,15 +6,16 @@ import { Button } from "../ui/button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { X } from "@hugeicons/core-free-icons";
 import { useCallback } from "react";
+import FileIcon from "./icon";
 
 export function EditorCode() {
-  const { fs, buffers } = useEditor();
+  const { files, buffers } = useEditor();
 
   const handleChange = useCallback(
     (path: string, value?: string) => {
-      fs.writeFile(path, value ?? "");
+      files.update(path, value ?? "");
     },
-    [fs.writeFile],
+    [files.update],
   );
 
   return (
@@ -30,6 +31,7 @@ export function EditorCode() {
         >
           {buffers.list.map((buffer) => (
             <TabsTrigger key={buffer} value={buffer} className="flex-none">
+              <FileIcon name={buffer} />
               <span className="truncate">{buffer}</span>
               {buffers.active === buffer && (
                 <Button
@@ -54,8 +56,8 @@ export function EditorCode() {
               <Editor
                 height="100%"
                 language={getLanguageFromPath(buffer)}
-                value={fs.readFile(buffer) ?? ""}
-                onChange={(value: string) => handleChange(buffer, value)}
+                value={files.get(buffer)}
+                onChange={(value) => handleChange(buffer, value)}
                 options={{
                   automaticLayout: true,
                 }}

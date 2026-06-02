@@ -1,8 +1,9 @@
-import { useFS, type FS } from "#/hooks/fs";
+import { useFiles, type VirtualFiles } from "#/hooks/files";
+import { normalize } from "pathe";
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
 
 type EditorContextProps = {
-  fs: FS;
+  files: VirtualFiles;
   buffers: {
     active: string;
     list: string[];
@@ -15,37 +16,56 @@ type EditorContextProps = {
 export const EditorContext = createContext<EditorContextProps | null>(null);
 
 export function EditorProvider({ children }: { children: ReactNode }) {
-  const fs = useFS();
+  const files = useFiles();
   const [activeBuffer, setActiveBuffer] = useState<string>("");
   const [bufferList, setBufferList] = useState<string[]>([]);
 
-  const addBuffer = useCallback((path: string) => {
-    setBufferList((list) => (list.includes(path) ? list : [...list, path]));
-    setActiveBuffer((active) => active || path);
-  }, []);
+  const normalizeBufferPath = useCallback((path: string) => normalize(path), []);
 
-  const removeBuffer = useCallback((path: string) => {
-    setBufferList((list) => {
-      const removedIndex = list.indexOf(path);
+  const addBuffer = useCallback(
+    (path: string) => {
+      const normalizedPath = normalizeBufferPath(path);
 
-      if (removedIndex === -1) {
-        return list;
-      }
+      setBufferList((list) => (list.includes(normalizedPath) ? list : [...list, normalizedPath]));
+      setActiveBuffer((active) => active || normalizedPath);
+    },
+    [normalizeBufferPath],
+  );
 
-      const nextList = list.filter((p) => p !== path);
+  const removeBuffer = useCallback(
+    (path: string) => {
+      const normalizedPath = normalizeBufferPath(path);
 
-      setActiveBuffer((active) =>
-        active === path ? (nextList[removedIndex] ?? nextList[removedIndex - 1] ?? "") : active,
-      );
+      setBufferList((list) => {
+        const removedIndex = list.indexOf(normalizedPath);
 
-      return nextList;
-    });
-  }, []);
+        if (removedIndex === -1) {
+          return list;
+        }
 
-  const setCurrentActiveBuffer = useCallback((path: string) => {
-    setActiveBuffer(path);
-    setBufferList((list) => (list.includes(path) ? list : [...list, path]));
-  }, []);
+        const nextList = list.filter((p) => p !== normalizedPath);
+
+        setActiveBuffer((active) =>
+          active === normalizedPath
+            ? (nextList[removedIndex] ?? nextList[removedIndex - 1] ?? "")
+            : active,
+        );
+
+        return nextList;
+      });
+    },
+    [normalizeBufferPath],
+  );
+
+  const setCurrentActiveBuffer = useCallback(
+    (path: string) => {
+      const normalizedPath = normalizeBufferPath(path);
+
+      setActiveBuffer(normalizedPath);
+      setBufferList((list) => (list.includes(normalizedPath) ? list : [...list, normalizedPath]));
+    },
+    [normalizeBufferPath],
+  );
 
   const buffers = useMemo(
     () => ({
@@ -60,10 +80,10 @@ export function EditorProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo(
     () => ({
-      fs,
+      files,
       buffers,
     }),
-    [buffers, fs],
+    [buffers, files],
   );
 
   return <EditorContext.Provider value={value}>{children}</EditorContext.Provider>;

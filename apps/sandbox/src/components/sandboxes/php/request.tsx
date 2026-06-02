@@ -5,7 +5,6 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,

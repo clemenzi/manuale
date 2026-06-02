@@ -1,13 +1,13 @@
 import { PHPProvider, usePHP } from "#/contexts/php";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { EditorProvider, useEditor } from "#/contexts/editor";
 import EditorExplorer from "#/components/editor/explorer";
 import { EditorCode } from "#/components/editor/code";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
 import Preview from "#/components/sandboxes/php/preview";
 import Request from "#/components/sandboxes/php/request";
-import type { PHPResponse } from "@php-wasm/universal";
+import type { PHP, PHPResponse } from "@php-wasm/universal";
 
 export const Route = createFileRoute("/php")({
   component: RouteComponent,
@@ -25,36 +25,24 @@ function RouteComponent() {
 
 function PHPWorkbench() {
   const { php } = usePHP();
-  const { fs, buffers } = useEditor();
-  const { files, writeFile } = fs;
-  const { add: addBuffer } = buffers;
+  const { files, buffers } = useEditor();
   const [response, setResponse] = useState<PHPResponse>();
-  const hasSyncedInitialPHPFiles = useRef(false);
 
   useEffect(() => {
-    if (!php || hasSyncedInitialPHPFiles.current) {
-      return;
-    }
-
-    hasSyncedInitialPHPFiles.current = true;
-
-    php.listFiles("/www").forEach((name) => {
-      const entryPath = `/www/${name}`;
-      writeFile(entryPath, php.readFileAsText(entryPath));
+    const unsubscribe = files.subscribe((files) => {
+      for (const [name, content] of Object.entries(files)) {
+        php?.writeFile(name, content || "");
+      }
     });
 
-    addBuffer("/www/index.php");
-  }, [addBuffer, php, writeFile]);
+    return unsubscribe;
+  }, [files]);
 
   useEffect(() => {
-    if (!php || !hasSyncedInitialPHPFiles.current) {
-      return;
-    }
-
-    for (const [path, content] of files) {
-      php.writeFile(path, content);
-    }
-  }, [files, php]);
+    php?.listFiles("/www/").map((file) => {
+      files.create(file, php.readFileAsText(file));
+    });
+  }, [php]);
 
   return (
     <>
