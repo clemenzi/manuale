@@ -1,9 +1,9 @@
-import { EditorCode } from "#/components/editor/code";
+import { WorkbenchEditor } from "#/components/workbench/editor";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
-import { EditorProvider, useEditor } from "#/contexts/editor";
+import { WorkbenchProvider, useWorkbench } from "#/contexts/workbench";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
-import Preview from "#/components/editor/runtimes/html/preview";
+import Preview from "#/components/workbench/runtimes/html/preview";
 
 const DEFAULT_CONTENT = `<!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@ const DEFAULT_CONTENT = `<!DOCTYPE html>
     Ciao! Sperimenta con HTML, CSS e JS direttamente in questo sandbox!
   </h1>
   <p>
-    L'unico limite è la tua creatività! Usa l'editor a sinistra per scrivere il tuo codice HTML, CSS e JS.
+    L'unico limite è la tua creatività! Usa il workbench a sinistra per scrivere il tuo codice HTML, CSS e JS.
   </p>
 </body>
 </html>`;
@@ -39,15 +39,15 @@ const DEFAULT_CONTENT = `<!DOCTYPE html>
 export const Route = createFileRoute("/html")({
   component() {
     return (
-      <EditorProvider>
+      <WorkbenchProvider>
         <RouteComponent />
-      </EditorProvider>
+      </WorkbenchProvider>
     );
   },
 });
 
 function RouteComponent() {
-  const { files, buffers } = useEditor();
+  const { files, buffers } = useWorkbench();
 
   useEffect(() => {
     if (files.get("index.html") === undefined) {
@@ -61,7 +61,7 @@ function RouteComponent() {
       <ResizablePanelGroup orientation="horizontal" className="h-full min-h-0">
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={"50%"} className="min-h-0">
-          <EditorCode />
+          <WorkbenchEditor bufferline={false} />
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={"50%"} className="min-h-0">

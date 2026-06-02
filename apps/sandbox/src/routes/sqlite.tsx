@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { EditorCode } from "#/components/editor/code";
+import { WorkbenchEditor } from "#/components/workbench/editor";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
-import { EditorProvider, useEditor } from "#/contexts/editor";
+import { WorkbenchProvider, useWorkbench } from "#/contexts/workbench";
 import { SQLiteProvider, useSQLite } from "#/contexts/sqlite";
 import { useEffect } from "react";
-import { EditorOutput } from "#/components/editor/output";
-import { SQLiteExplorer } from "#/components/editor/runtimes/sqlite/explorer";
+import { WorkbenchOutput } from "#/components/workbench/output";
+import { SQLiteExplorer } from "#/components/workbench/runtimes/sqlite/explorer";
 import type { QueryExecResult, SqlValue } from "sql.js";
 
 export const Route = createFileRoute("/sqlite")({
@@ -15,15 +15,15 @@ export const Route = createFileRoute("/sqlite")({
 function RouteComponent() {
   return (
     <SQLiteProvider>
-      <EditorProvider>
+      <WorkbenchProvider>
         <SQLiteWorkbench />
-      </EditorProvider>
+      </WorkbenchProvider>
     </SQLiteProvider>
   );
 }
 
 function SQLiteWorkbench() {
-  const { files, buffers, output } = useEditor();
+  const { files, buffers, output } = useWorkbench();
   const { execute } = useSQLite();
 
   useEffect(() => {
@@ -38,7 +38,7 @@ function SQLiteWorkbench() {
     try {
       const out = execute(files.get("query.sql") || "");
       output.setErrors([]);
-      output.setResults(toEditorResults(out));
+      output.setResults(toWorkbenchResults(out));
     } catch (e) {
       const message =
         e instanceof Error ? e.message : "Errore sconosciuto durante l'esecuzione della query.";
@@ -54,11 +54,11 @@ function SQLiteWorkbench() {
         <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"50%"}>
           <ResizablePanelGroup orientation="vertical">
             <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"50%"}>
-              <EditorCode />
+              <WorkbenchEditor bufferline={false} />
             </ResizablePanel>
             <ResizableHandle withHandle />
             <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"50%"}>
-              <EditorOutput onRun={handleRun} />
+              <WorkbenchOutput onRun={handleRun} />
             </ResizablePanel>
           </ResizablePanelGroup>
         </ResizablePanel>
@@ -71,7 +71,7 @@ function SQLiteWorkbench() {
   );
 }
 
-function toEditorResults(results: QueryExecResult[]) {
+function toWorkbenchResults(results: QueryExecResult[]) {
   if (results.length === 0) {
     return [{ type: "string" as const, data: "Query eseguita." }];
   }

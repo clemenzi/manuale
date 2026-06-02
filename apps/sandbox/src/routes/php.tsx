@@ -1,12 +1,12 @@
 import { PHPProvider, usePHP } from "#/contexts/php";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { EditorProvider, useEditor } from "#/contexts/editor";
-import EditorExplorer from "#/components/editor/explorer";
-import { EditorCode } from "#/components/editor/code";
+import { WorkbenchProvider, useWorkbench } from "#/contexts/workbench";
+import WorkbenchExplorer from "#/components/workbench/explorer";
+import { WorkbenchEditor } from "#/components/workbench/editor";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
-import Preview from "#/components/editor/runtimes/php/preview";
-import Request from "#/components/editor/runtimes/php/request";
+import Preview from "#/components/workbench/runtimes/php/preview";
+import Request from "#/components/workbench/runtimes/php/request";
 import type { PHPResponse } from "@php-wasm/universal";
 
 export const Route = createFileRoute("/php")({
@@ -16,16 +16,16 @@ export const Route = createFileRoute("/php")({
 function RouteComponent() {
   return (
     <PHPProvider>
-      <EditorProvider>
+      <WorkbenchProvider>
         <PHPWorkbench />
-      </EditorProvider>
+      </WorkbenchProvider>
     </PHPProvider>
   );
 }
 
 function PHPWorkbench() {
   const { php } = usePHP();
-  const { files } = useEditor();
+  const { files } = useWorkbench();
   const [response, setResponse] = useState<PHPResponse>();
 
   useEffect(() => {
@@ -48,11 +48,11 @@ function PHPWorkbench() {
     <>
       <ResizablePanelGroup orientation="horizontal">
         <ResizablePanel defaultSize={"15%"}>
-          <EditorExplorer />
+          <WorkbenchExplorer />
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={"45%"}>
-          <EditorCode />
+          <WorkbenchEditor />
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={"50%"}>
