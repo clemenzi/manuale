@@ -2,6 +2,18 @@ import { useFiles, type VirtualFiles } from "#/hooks/files";
 import { normalize } from "pathe";
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
 
+type TableResult = {
+  type: "table";
+  data: Record<string, any>[];
+};
+
+type StringOutput = {
+  type: "string";
+  data: string;
+};
+
+type EditorOutputResult = TableResult | StringOutput;
+
 type EditorContextProps = {
   files: VirtualFiles;
   buffers: {
@@ -11,6 +23,12 @@ type EditorContextProps = {
     remove: (path: string) => void;
     setActive: (path: string) => void;
   };
+  output: {
+    errors: string[];
+    results: EditorOutputResult[];
+    setErrors: (errors: string[]) => void;
+    setResults: (errors: EditorOutputResult[]) => void;
+  };
 };
 
 export const EditorContext = createContext<EditorContextProps | null>(null);
@@ -19,6 +37,8 @@ export function EditorProvider({ children }: { children: ReactNode }) {
   const files = useFiles();
   const [activeBuffer, setActiveBuffer] = useState<string>("");
   const [bufferList, setBufferList] = useState<string[]>([]);
+  const [outputErrors, setOutputErrors] = useState<string[]>([]);
+  const [outputResults, setOutputResults] = useState<EditorContextProps["output"]["results"]>([]);
 
   const normalizeBufferPath = useCallback((path: string) => normalize(path), []);
 
@@ -78,12 +98,23 @@ export function EditorProvider({ children }: { children: ReactNode }) {
     [activeBuffer, addBuffer, bufferList, removeBuffer, setCurrentActiveBuffer],
   );
 
+  const output = useMemo(
+    () => ({
+      errors: outputErrors,
+      setErrors: setOutputErrors,
+      results: outputResults,
+      setResults: setOutputResults,
+    }),
+    [outputErrors, setOutputErrors, outputResults, setOutputResults],
+  );
+
   const value = useMemo(
     () => ({
       files,
       buffers,
+      output,
     }),
-    [buffers, files],
+    [buffers, files, output],
   );
 
   return <EditorContext.Provider value={value}>{children}</EditorContext.Provider>;

@@ -20,6 +20,8 @@ export function getLanguageFromPath(path: string): string {
     return "css";
   } else if (fileContent === "php") {
     return "php";
+  } else if (fileContent === "sql") {
+    return "sql";
   }
 
   return "plaintext";

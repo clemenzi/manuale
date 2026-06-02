@@ -1,11 +1,12 @@
-import { SQLiteEditor } from "#/components/sandboxes/sqlite/editor";
-import { SQLiteExplorer } from "#/components/sandboxes/sqlite/explorer";
-import { SQLiteOutput } from "#/components/sandboxes/sqlite/output";
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
-import { SQLiteProvider, useSQLite } from "#/contexts/sqlite";
 import { createFileRoute } from "@tanstack/react-router";
-import { useCallback, useState } from "react";
-import type { QueryExecResult } from "sql.js";
+import { EditorCode } from "#/components/editor/code";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
+import { EditorProvider, useEditor } from "#/contexts/editor";
+import { SQLiteProvider, useSQLite } from "#/contexts/sqlite";
+import { useEffect } from "react";
+import { EditorOutput } from "#/components/editor/output";
+import { SQLiteExplorer } from "#/components/sandboxes/sqlite/explorer";
+import type { QueryExecResult, SqlValue } from "sql.js";
 
 export const Route = createFileRoute("/sqlite")({
   component: RouteComponent,
@@ -14,53 +15,84 @@ export const Route = createFileRoute("/sqlite")({
 function RouteComponent() {
   return (
     <SQLiteProvider>
-      <SQLiteWorkbench />
+      <EditorProvider>
+        <SQLiteWorkbench />
+      </EditorProvider>
     </SQLiteProvider>
   );
 }
 
 function SQLiteWorkbench() {
-  const { error, execute, status } = useSQLite();
-  const [output, setOutput] = useState<QueryExecResult[] | Error>();
+  const { files, buffers, output } = useEditor();
+  const { execute } = useSQLite();
 
-  const handleExecute = useCallback(
-    (code: string) => {
-      try {
-        setOutput(execute(code));
-      } catch (caughtError) {
-        setOutput(caughtError as Error);
-      }
-    },
-    [execute],
-  );
+  useEffect(() => {
+    // idk why i can't use !files.get("query.sql"), it starts rendering infinitely
+    if (files.get("query.sql") === undefined) {
+      files.create("query.sql", "");
+      buffers.add("query.sql");
+    }
+  }, [files]);
 
-  if (status !== "ready" || error) {
-    return (
-      <main className="grid h-[calc(100vh-70px)] place-items-center text-sm text-muted-foreground">
-        {error?.message ?? "Caricamento SQLite..."}
-      </main>
-    );
-  }
+  const handleRun = () => {
+    try {
+      const out = execute(files.get("query.sql") || "");
+      output.setErrors([]);
+      output.setResults(toEditorResults(out));
+    } catch (e) {
+      const message =
+        e instanceof Error ? e.message : "Errore sconosciuto durante l'esecuzione della query.";
+
+      output.setResults([]);
+      output.setErrors([message]);
+    }
+  };
 
   return (
-    <main className="h-[calc(100vh-70px)]">
+    <div className="h-[calc(100vh-70px)]">
       <ResizablePanelGroup orientation="horizontal">
-        <ResizablePanel defaultSize={68} minSize={40}>
+        <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"50%"}>
           <ResizablePanelGroup orientation="vertical">
-            <ResizablePanel defaultSize={66} minSize={35}>
-              <SQLiteEditor onExecute={handleExecute} />
+            <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"50%"}>
+              <EditorCode />
             </ResizablePanel>
             <ResizableHandle />
-            <ResizablePanel className="min-h-0 overflow-auto p-4" defaultSize={34} minSize={18}>
-              <SQLiteOutput output={output} />
+            <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"50%"}>
+              <EditorOutput onRun={handleRun} />
             </ResizablePanel>
           </ResizablePanelGroup>
         </ResizablePanel>
         <ResizableHandle />
-        <ResizablePanel defaultSize={32} minSize={24}>
+        <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"50%"}>
           <SQLiteExplorer />
         </ResizablePanel>
       </ResizablePanelGroup>
-    </main>
+    </div>
   );
+}
+
+function toEditorResults(results: QueryExecResult[]) {
+  if (results.length === 0) {
+    return [{ type: "string" as const, data: "Query eseguita." }];
+  }
+
+  return results.map((result) => {
+    const rows = result.values.map((row) =>
+      Object.fromEntries(
+        result.columns.map((column, index) => [column, row[index] satisfies SqlValue]),
+      ),
+    );
+
+    if (rows.length === 0) {
+      return {
+        type: "string" as const,
+        data: `Nessuna riga restituita${result.columns.length > 0 ? ` (${result.columns.join(", ")})` : ""}.`,
+      };
+    }
+
+    return {
+      type: "table" as const,
+      data: rows,
+    };
+  });
 }

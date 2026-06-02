@@ -7,7 +7,7 @@ import { EditorCode } from "#/components/editor/code";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
 import Preview from "#/components/sandboxes/php/preview";
 import Request from "#/components/sandboxes/php/request";
-import type { PHP, PHPResponse } from "@php-wasm/universal";
+import type { PHPResponse } from "@php-wasm/universal";
 
 export const Route = createFileRoute("/php")({
   component: RouteComponent,
@@ -25,7 +25,7 @@ function RouteComponent() {
 
 function PHPWorkbench() {
   const { php } = usePHP();
-  const { files, buffers } = useEditor();
+  const { files } = useEditor();
   const [response, setResponse] = useState<PHPResponse>();
 
   useEffect(() => {
