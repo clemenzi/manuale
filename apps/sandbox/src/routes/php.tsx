@@ -1,11 +1,13 @@
 import { PHPProvider, usePHP } from "#/contexts/php";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { EditorProvider, useEditor } from "#/contexts/editor";
 import EditorExplorer from "#/components/editor/explorer";
 import { EditorCode } from "#/components/editor/code";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
 import Preview from "#/components/sandboxes/php/preview";
+import Request from "#/components/sandboxes/php/request";
+import type { PHPResponse } from "@php-wasm/universal";
 
 export const Route = createFileRoute("/php")({
   component: RouteComponent,
@@ -26,6 +28,7 @@ function PHPWorkbench() {
   const { fs, buffers } = useEditor();
   const { files, writeFile } = fs;
   const { add: addBuffer } = buffers;
+  const [response, setResponse] = useState<PHPResponse>();
   const hasSyncedInitialPHPFiles = useRef(false);
 
   useEffect(() => {
@@ -67,10 +70,12 @@ function PHPWorkbench() {
         <ResizablePanel defaultSize={"50%"}>
           <ResizablePanelGroup orientation="vertical">
             <ResizablePanel defaultSize={"80%"}>
-              <Preview />
+              <Preview onResponse={setResponse} />
             </ResizablePanel>
             <ResizableHandle withHandle />
-            <ResizablePanel defaultSize={"20%"}>request analyzer</ResizablePanel>
+            <ResizablePanel defaultSize={"20%"}>
+              {response && <Request response={response} />}
+            </ResizablePanel>
           </ResizablePanelGroup>
         </ResizablePanel>
       </ResizablePanelGroup>

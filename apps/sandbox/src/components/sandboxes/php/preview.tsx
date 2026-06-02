@@ -14,11 +14,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "#/components/ui/select";
-import { PHPRequestHandler, type HTTPMethod } from "@php-wasm/universal";
+import { PHPRequestHandler, PHPResponse, type HTTPMethod } from "@php-wasm/universal";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Navigation03Icon } from "@hugeicons/core-free-icons";
 
-export default function Preview() {
+export default function Preview({ onResponse }: { onResponse?: (response: PHPResponse) => void }) {
   const { php } = usePHP();
   const [method, setMethod] = useState<HTTPMethod>("GET");
   const [url, setUrl] = useState("/index.php");
@@ -39,6 +39,7 @@ export default function Preview() {
 
     handler.request({ url, method, body }).then((response) => {
       setBody(response.text);
+      onResponse?.(response);
     });
   }, [php, url, method, body]);
 
