@@ -1,5 +1,12 @@
 import { useEditor } from "#/contexts/editor";
-import { DataTable } from "#/components/workbench/data-table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "#/components/ui/table";
 import { Button } from "../ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "#/components/ui/tabs";
 import { Play } from "@hugeicons/core-free-icons";
@@ -66,7 +73,7 @@ export function EditorOutput({ onRun }: { onRun?: () => void }) {
                           key={index}
                           className="min-w-0 overflow-x-auto rounded-md [scrollbar-gutter:stable]"
                         >
-                          <DataTable columns={columns} emptyLabel="Nessun dato" rows={rows} />
+                          <OutputTable columns={columns} rows={rows} />
                         </div>
                       );
                     })}
@@ -78,5 +85,38 @@ export function EditorOutput({ onRun }: { onRun?: () => void }) {
         </TabsContent>
       </Tabs>
     </div>
+  );
+}
+
+function OutputTable({ columns, rows }: { columns: string[]; rows: Array<Array<unknown>> }) {
+  if (columns.length === 0 || rows.length === 0) {
+    return (
+      <div className="rounded-md border bg-muted/10 px-4 py-6 text-center text-sm text-muted-foreground">
+        Nessun dato
+      </div>
+    );
+  }
+
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          {columns.map((column) => (
+            <TableHead key={column}>{column}</TableHead>
+          ))}
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {rows.map((row, rowIndex) => (
+          <TableRow key={rowIndex}>
+            {row.map((value, valueIndex) => (
+              <TableCell key={`${columns[valueIndex]}-${rowIndex}`}>
+                <span className="font-mono text-xs">{String(value ?? "NULL")}</span>
+              </TableCell>
+            ))}
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
   );
 }

@@ -5,8 +5,8 @@ import { EditorProvider, useEditor } from "#/contexts/editor";
 import EditorExplorer from "#/components/editor/explorer";
 import { EditorCode } from "#/components/editor/code";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
-import Preview from "#/components/sandboxes/php/preview";
-import Request from "#/components/sandboxes/php/request";
+import Preview from "#/components/editor/runtimes/php/preview";
+import Request from "#/components/editor/runtimes/php/request";
 import type { PHPResponse } from "@php-wasm/universal";
 
 export const Route = createFileRoute("/php")({

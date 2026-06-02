@@ -1,8 +1,9 @@
-import Editor from "#/components/sandboxes/html/editor";
-import Output from "#/components/sandboxes/html/output";
+import { EditorCode } from "#/components/editor/code";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
+import { EditorProvider, useEditor } from "#/contexts/editor";
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect } from "react";
+import Preview from "#/components/editor/runtimes/html/preview";
 
 const DEFAULT_CONTENT = `<!DOCTYPE html>
 <html>
@@ -36,21 +37,35 @@ const DEFAULT_CONTENT = `<!DOCTYPE html>
 </html>`;
 
 export const Route = createFileRoute("/html")({
-  component: RouteComponent,
+  component() {
+    return (
+      <EditorProvider>
+        <RouteComponent />
+      </EditorProvider>
+    );
+  },
 });
 
 function RouteComponent() {
-  const [value, setValue] = useState(DEFAULT_CONTENT);
+  const { files, buffers } = useEditor();
+
+  useEffect(() => {
+    if (files.get("index.html") === undefined) {
+      files.create("index.html", DEFAULT_CONTENT);
+      buffers.add("index.html");
+    }
+  }, [files]);
 
   return (
-    <main className="h-[calc(100vh-70px)]">
-      <ResizablePanelGroup orientation="horizontal">
-        <ResizablePanel className="min-h-0 overflow-auto" defaultSize={34} minSize={18}>
-          <Editor value={value} onChange={setValue} />
+    <main className="h-[calc(100vh-70px)] min-h-0">
+      <ResizablePanelGroup orientation="horizontal" className="h-full min-h-0">
+        <ResizableHandle withHandle />
+        <ResizablePanel defaultSize={"50%"} className="min-h-0">
+          <EditorCode />
         </ResizablePanel>
-        <ResizableHandle />
-        <ResizablePanel className="min-h-0 overflow-auto" defaultSize={34} minSize={18}>
-          <Output value={value} />
+        <ResizableHandle withHandle />
+        <ResizablePanel defaultSize={"50%"} className="min-h-0">
+          <Preview />
         </ResizablePanel>
       </ResizablePanelGroup>
     </main>

@@ -5,7 +5,7 @@ import { EditorProvider, useEditor } from "#/contexts/editor";
 import { SQLiteProvider, useSQLite } from "#/contexts/sqlite";
 import { useEffect } from "react";
 import { EditorOutput } from "#/components/editor/output";
-import { SQLiteExplorer } from "#/components/sandboxes/sqlite/explorer";
+import { SQLiteExplorer } from "#/components/editor/runtimes/sqlite/explorer";
 import type { QueryExecResult, SqlValue } from "sql.js";
 
 export const Route = createFileRoute("/sqlite")({
@@ -56,13 +56,13 @@ function SQLiteWorkbench() {
             <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"50%"}>
               <EditorCode />
             </ResizablePanel>
-            <ResizableHandle />
+            <ResizableHandle withHandle />
             <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"50%"}>
               <EditorOutput onRun={handleRun} />
             </ResizablePanel>
           </ResizablePanelGroup>
         </ResizablePanel>
-        <ResizableHandle />
+        <ResizableHandle withHandle />
         <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"50%"}>
           <SQLiteExplorer />
         </ResizablePanel>
