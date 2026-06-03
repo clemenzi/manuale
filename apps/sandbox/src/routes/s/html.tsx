@@ -37,7 +37,14 @@ const DEFAULT_CONTENT = `<!DOCTYPE html>
 </html>`;
 
 export const Route = createFileRoute("/s/html")({
-  component() {
+  head: () => ({
+    meta: [
+      { title: "Sandbox HTML Gratuita - Manuale.dev" },
+      { name: "description", content: "Sandbox online gratuita per HTML, CSS e JS" },
+      { name: "keywords", content: "HTML, CSS, JS, sandbox, online, gratuita, manuale.dev" },
+    ],
+  }),
+  component: () => {
     return (
       <WorkbenchProvider>
         <RouteComponent />

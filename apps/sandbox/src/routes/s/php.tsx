@@ -11,6 +11,13 @@ import Request from "#/components/workbench/runtimes/php/request";
 import type { PHPResponse } from "@php-wasm/universal";
 
 export const Route = createFileRoute("/s/php")({
+  head: () => ({
+    meta: [
+      { title: "Sandbox PHP Gratuita - Manuale.dev" },
+      { name: "description", content: "Sandbox online gratuita per PHP" },
+      { name: "keywords", content: "PHP, sandbox, online, gratuita, manuale.dev" },
+    ],
+  }),
   component: RouteComponent,
 });
 
