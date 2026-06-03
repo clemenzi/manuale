@@ -29,6 +29,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "pathe": "^2.0.3",
+    "pyodide": "^0.29.4",
     "react": "^19.2.0",
     "react-arborist": "^3.8.0",
     "react-dom": "^19.2.0",

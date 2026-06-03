@@ -18,7 +18,7 @@ const config = defineConfig({
   },
   assetsInclude: [/\.dat$/, /\.wasm$/, /\.so$/, /\.la$/],
   optimizeDeps: {
-    exclude: ["@php-wasm/web"],
+    exclude: ["@php-wasm/web", "pyodide"],
   },
   plugins: [
     devtools(),

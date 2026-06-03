@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SqliteRouteImport } from './routes/sqlite'
+import { Route as PythonRouteImport } from './routes/python'
 import { Route as PhpRouteImport } from './routes/php'
 import { Route as HtmlRouteImport } from './routes/html'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const SqliteRoute = SqliteRouteImport.update({
   id: '/sqlite',
   path: '/sqlite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PythonRoute = PythonRouteImport.update({
+  id: '/python',
+  path: '/python',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PhpRoute = PhpRouteImport.update({
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/html': typeof HtmlRoute
   '/php': typeof PhpRoute
+  '/python': typeof PythonRoute
   '/sqlite': typeof SqliteRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/html': typeof HtmlRoute
   '/php': typeof PhpRoute
+  '/python': typeof PythonRoute
   '/sqlite': typeof SqliteRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/html': typeof HtmlRoute
   '/php': typeof PhpRoute
+  '/python': typeof PythonRoute
   '/sqlite': typeof SqliteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/html' | '/php' | '/sqlite'
+  fullPaths: '/' | '/html' | '/php' | '/python' | '/sqlite'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/html' | '/php' | '/sqlite'
-  id: '__root__' | '/' | '/html' | '/php' | '/sqlite'
+  to: '/' | '/html' | '/php' | '/python' | '/sqlite'
+  id: '__root__' | '/' | '/html' | '/php' | '/python' | '/sqlite'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   HtmlRoute: typeof HtmlRoute
   PhpRoute: typeof PhpRoute
+  PythonRoute: typeof PythonRoute
   SqliteRoute: typeof SqliteRoute
 }
 
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/sqlite'
       fullPath: '/sqlite'
       preLoaderRoute: typeof SqliteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/python': {
+      id: '/python'
+      path: '/python'
+      fullPath: '/python'
+      preLoaderRoute: typeof PythonRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/php': {
@@ -106,6 +123,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   HtmlRoute: HtmlRoute,
   PhpRoute: PhpRoute,
+  PythonRoute: PythonRoute,
   SqliteRoute: SqliteRoute,
 }
 export const routeTree = rootRouteImport

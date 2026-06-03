@@ -71,6 +71,9 @@ importers:
       pathe:
         specifier: ^2.0.3
         version: 2.0.3
+      pyodide:
+        specifier: ^0.29.4
+        version: 0.29.4
       react:
         specifier: ^19.2.0
         version: 19.2.6
@@ -4568,6 +4571,10 @@ packages:
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
+
+  pyodide@0.29.4:
+    resolution: {integrity: sha512-tCseTsqU3kSxZIjkue5zXxTMNEwrKZwOIIEQRBA/VzHxFN1hoCxe4w41phfCdHd9it9RcCNQb5K/Re0InqMgvA==}
+    engines: {node: '>=18.0.0'}
 
   qs@6.15.2:
     resolution: {integrity: sha512-Rzq0KEyX/w/tEybncDgdkZrJgVUsUMk3xjh3t5bv3S1HTAtg+uOYt72+ZfwiQwKdysThkTBdL/rTi6HDmX9Ddw==}
@@ -10448,6 +10455,14 @@ snapshots:
       ipaddr.js: 1.9.1
 
   punycode@2.3.1: {}
+
+  pyodide@0.29.4:
+    dependencies:
+      '@types/emscripten': 1.41.5
+      ws: 8.21.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   qs@6.15.2:
     dependencies:
