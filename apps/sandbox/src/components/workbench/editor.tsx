@@ -1,6 +1,7 @@
 import { useWorkbench } from "#/contexts/workbench";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "#/components/ui/tabs";
 import { getLanguageFromPath } from "#/lib/utils";
+import { ensureWorkbenchIntellisense } from "#/lib/monaco-intellisense";
 import Editor from "@monaco-editor/react";
 import { Button } from "../ui/button";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -58,12 +59,17 @@ export function WorkbenchEditor({ bufferline }: { bufferline?: boolean }) {
             <TabsContent key={buffer} value={buffer} className="min-h-0 overflow-hidden">
               <Editor
                 height="100%"
+                beforeMount={ensureWorkbenchIntellisense}
                 language={getLanguageFromPath(buffer)}
+                path={buffer}
                 value={files.get(buffer)}
                 onChange={(value) => handleChange(buffer, value)}
                 theme={theme === "dark" ? "vs-dark" : "light"}
                 options={{
                   automaticLayout: true,
+                  quickSuggestions: true,
+                  suggestOnTriggerCharacters: true,
+                  tabCompletion: "on",
                 }}
               />
             </TabsContent>
