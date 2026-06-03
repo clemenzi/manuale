@@ -1,4 +1,5 @@
 import { PHPProvider, usePHP } from "#/contexts/php";
+import { PageLoader } from "#/components/page-loader";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { WorkbenchProvider, useWorkbench } from "#/contexts/workbench";
@@ -9,7 +10,7 @@ import Preview from "#/components/workbench/runtimes/php/preview";
 import Request from "#/components/workbench/runtimes/php/request";
 import type { PHPResponse } from "@php-wasm/universal";
 
-export const Route = createFileRoute("/php")({
+export const Route = createFileRoute("/s/php")({
   component: RouteComponent,
 });
 
@@ -24,7 +25,7 @@ function RouteComponent() {
 }
 
 function PHPWorkbench() {
-  const { php } = usePHP();
+  const { php, status } = usePHP();
   const { files } = useWorkbench();
   const [response, setResponse] = useState<PHPResponse>();
 
@@ -44,8 +45,12 @@ function PHPWorkbench() {
     });
   }, [php]);
 
+  if (status === "loading") {
+    return <PageLoader />;
+  }
+
   return (
-    <>
+    <main className="h-[calc(100vh-70px)] min-h-0 bg-background">
       <ResizablePanelGroup orientation="horizontal">
         <ResizablePanel defaultSize={"15%"}>
           <WorkbenchExplorer />
@@ -67,6 +72,6 @@ function PHPWorkbench() {
           </ResizablePanelGroup>
         </ResizablePanel>
       </ResizablePanelGroup>
-    </>
+    </main>
   );
 }

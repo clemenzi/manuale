@@ -1,5 +1,6 @@
 import { WorkbenchEditor } from "#/components/workbench/editor";
 import { WorkbenchOutput } from "#/components/workbench/output";
+import { PageLoader } from "#/components/page-loader";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
 import {
   PythonProvider,
@@ -20,7 +21,7 @@ for numero in range(1, 4):
     print(f"{numero}. Ciao da Python su WebAssembly, {nome}!")
 `;
 
-export const Route = createFileRoute("/python")({
+export const Route = createFileRoute("/s/python")({
   component: RouteComponent,
 });
 
@@ -87,6 +88,10 @@ function PythonWorkbench() {
       },
     ]);
   };
+
+  if (status === "loading") {
+    return <PageLoader />;
+  }
 
   return (
     <main className="h-[calc(100vh-70px)] min-h-0 bg-background">

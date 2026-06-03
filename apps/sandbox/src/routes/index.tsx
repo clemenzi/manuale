@@ -1,72 +1,15 @@
+import { Button } from "#/components/ui/button";
+import { Card, CardAction, CardDescription, CardHeader, CardTitle } from "#/components/ui/card";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "#/components/ui/card";
-import { buttonVariants } from "#/components/ui/button";
-import { cn } from "#/lib/utils";
-import { ArrowDown01Icon, ArrowRight01Icon, Clock03Icon } from "@hugeicons/core-free-icons";
+  ArrowRight02Icon,
+  ArrowUpRight03Icon,
+  CodeIcon,
+  ComputerTerminal01Icon,
+  EngineIcon,
+} from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { SiHtml5, SiPhp, SiPostgresql, SiPython, SiSqlite } from "@icons-pack/react-simple-icons";
+import { SiHtml5, SiNewegg, SiPhp, SiPython, SiSqlite } from "@icons-pack/react-simple-icons";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import type { ComponentType } from "react";
-
-type SandboxCard = {
-  title: string;
-  category: string;
-  description: string;
-  icon: ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
-  to: "/" | "/sqlite" | "/html" | "/php";
-  isAvailable: boolean;
-};
-
-const sandboxes: SandboxCard[] = [
-  {
-    title: "SQLite",
-    category: "Database",
-    description:
-      "Interroga dati reali, leggi le tabelle e vedi subito cosa restituisce ogni query.",
-    icon: SiSqlite,
-    to: "/sqlite",
-    isAvailable: true,
-  },
-  {
-    title: "Postgres",
-    category: "Database",
-    description: "Prepara schemi, relazioni e join come in un database usato nei progetti veri.",
-    icon: SiPostgresql,
-    to: "/",
-    isAvailable: false,
-  },
-  {
-    title: "Python",
-    category: "Language",
-    description:
-      "Scrivi piccoli script, prova idee al volo e capisci il risultato passo dopo passo.",
-    icon: SiPython,
-    to: "/",
-    isAvailable: false,
-  },
-  {
-    title: "HTML (CSS & JS)",
-    category: "Web",
-    description: "Componi markup, stile e interazioni in una pagina che cambia mentre lavori.",
-    icon: SiHtml5,
-    to: "/html",
-    isAvailable: true,
-  },
-  {
-    title: "PHP",
-    category: "Language",
-    description: "Allena logica server, template e form con esempi brevi, leggibili e guidati.",
-    icon: SiPhp,
-    to: "/php",
-    isAvailable: true,
-  },
-];
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -76,93 +19,132 @@ function Home() {
   return (
     <main className="min-h-dvh bg-background text-foreground">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-5 py-8 sm:px-8 lg:py-14">
-        <section className="border-y border-border py-10">
-          <div className="max-w-3xl">
-            <h1 className="font-heading text-5xl leading-[0.95] tracking-normal text-foreground sm:text-6xl lg:text-7xl">
-              Impara facendo, senza configurare nulla.
-            </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
-              Apri un ambiente, scrivi codice vero e osserva subito cosa succede. I sandbox di
-              Manuale.dev trasformano esercizi, query e pagine web in pratica immediata.
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <a href="#environments" className={cn(buttonVariants({ size: "lg" }), "gap-2 px-4")}>
-                Scegli un sandbox
-                <HugeiconsIcon icon={ArrowDown01Icon} className="size-4" aria-hidden />
-              </a>
+        <section>
+          <h1 className="text-8xl font-bold font-logo">
+            Prova subito,
+            <br />
+            senza installare nulla.
+          </h1>
+          <p className="text-xl">
+            Catapultati direttamente in un ambiente di sviluppo pronto da usare per provare
+            linguaggi e tool di programmazione.
+          </p>
+          <div className="flex gap-4 pt-4">
+            <Button size="lg">Inizia subito</Button>
+            <Button size="lg" variant="secondary">
+              Scopri di più
+            </Button>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-5xl font-logo">Tutto locale*, nessuna configurazione necessaria.</h2>
+          <p className="text-xl">
+            Manuale Sandbox ti permette di provare linguaggi e tool di programmazione senza
+            installare nulla. La maggior parte dei linguaggi e tool supportati funzionano
+            direttamente nel <span className="font-bold">browser</span>.
+          </p>
+          <div className="flex items-center justify-between w-full py-12">
+            <div className="border p-4 rounded flex flex-col items-center justify-center">
+              <HugeiconsIcon icon={CodeIcon} size="60%" />
+              <span className="text-lg font-semibold">Il tuo codice</span>
+            </div>
+            <HugeiconsIcon icon={ArrowRight02Icon} size="10%" />
+            <div className="border p-4 rounded flex flex-col items-center justify-center">
+              <HugeiconsIcon icon={EngineIcon} size="60%" />
+              <span className="text-lg font-semibold">Runtime del linguaggio</span>
+            </div>
+            <HugeiconsIcon icon={ArrowRight02Icon} size="10%" />
+            <div className="border p-4 rounded flex flex-col items-center justify-center">
+              <HugeiconsIcon icon={ComputerTerminal01Icon} size="60%" />
+              <span className="text-lg font-semibold">Risultato del codice</span>
             </div>
           </div>
+          <span className="text-foreground/60 text-xs">
+            *Alcuni linguaggi e tool possono usare server esterni per eseguire il codice.
+          </span>
         </section>
 
-        <section id="environments" className="grid scroll-mt-8 gap-4 sm:grid-cols-2">
-          {sandboxes.map((sandbox) => (
-            <SandboxCard key={sandbox.title} sandbox={sandbox} />
-          ))}
+        <section>
+          <h2 className="text-5xl font-logo">SCEGLI IL LINGUAGGIO CON CUI PROVARE</h2>
+          <p className="text-xl">
+            Scegli tra la nostra rosa di linguaggi e tool di programmazione.
+          </p>
+          <div className="py-12 grid grid-cols-3 gap-3">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <SiPython />
+                  <span>Python</span>
+                </CardTitle>
+                <CardDescription>Prova codice Python.</CardDescription>
+                <CardAction>
+                  <Link to="/s/python">
+                    <Button>
+                      Apri l'editor
+                      <HugeiconsIcon icon={ArrowUpRight03Icon} />
+                    </Button>
+                  </Link>
+                </CardAction>
+              </CardHeader>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <SiSqlite />
+                  <span>SQLite</span>
+                </CardTitle>
+                <CardDescription>Usa un db SQLite.</CardDescription>
+                <CardAction>
+                  <Link to="/s/sqlite">
+                    <Button>
+                      Apri l'editor
+                      <HugeiconsIcon icon={ArrowUpRight03Icon} />
+                    </Button>
+                  </Link>
+                </CardAction>
+              </CardHeader>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <SiPhp />
+                  <span>PHP</span>
+                </CardTitle>
+                <CardDescription>Prova codice PHP.</CardDescription>
+                <CardAction>
+                  <Link to="/s/php">
+                    <Button>
+                      Apri l'editor
+                      <HugeiconsIcon icon={ArrowUpRight03Icon} />
+                    </Button>
+                  </Link>
+                </CardAction>
+              </CardHeader>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <SiHtml5 />
+                  <span>HTML (CSS, JS)</span>
+                </CardTitle>
+                <CardDescription>Crea la tua pagina web</CardDescription>
+                <CardAction>
+                  <Link to="/s/html">
+                    <Button>
+                      Apri l'editor
+                      <HugeiconsIcon icon={ArrowUpRight03Icon} />
+                    </Button>
+                  </Link>
+                </CardAction>
+              </CardHeader>
+            </Card>
+          </div>
         </section>
+        <footer>
+          <p>&copy; {new Date().getFullYear()} Manuale.dev. Tutti i diritti riservati.</p>
+        </footer>
       </div>
     </main>
-  );
-}
-
-function SandboxCard({ sandbox }: { sandbox: SandboxCard }) {
-  const card = <SandboxCardContent sandbox={sandbox} />;
-
-  if (!sandbox.isAvailable) {
-    return <div className="opacity-70">{card}</div>;
-  }
-
-  return <Link to={sandbox.to}>{card}</Link>;
-}
-
-function SandboxCardContent({ sandbox }: { sandbox: SandboxCard }) {
-  const Icon = sandbox.icon;
-
-  return (
-    <Card
-      className={cn(
-        "h-full border-border bg-card py-5 shadow-xs transition-all duration-200",
-        sandbox.isAvailable
-          ? "hover:-translate-y-1 hover:border-primary/35 hover:shadow-md"
-          : "bg-muted/40 opacity-75",
-      )}
-    >
-      <CardHeader className="gap-4 px-5">
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex size-12 items-center justify-center bg-primary/10 text-primary ring-1 ring-primary/15">
-            <Icon className="size-6" aria-hidden />
-          </div>
-          <span className="border border-border bg-secondary px-2 py-1 text-xs font-medium text-secondary-foreground">
-            {sandbox.category}
-          </span>
-        </div>
-        <div>
-          <CardTitle className="text-xl font-semibold text-card-foreground">
-            {sandbox.title}
-          </CardTitle>
-          <CardDescription className="mt-2 leading-6">{sandbox.description}</CardDescription>
-        </div>
-      </CardHeader>
-      <CardContent className="px-5">
-        <div className="h-px bg-border" />
-      </CardContent>
-      <CardFooter className="px-5">
-        {sandbox.isAvailable ? (
-          <span
-            className={cn(
-              buttonVariants({ variant: "outline", size: "sm" }),
-              "w-full justify-between bg-background",
-            )}
-          >
-            Inizia
-            <HugeiconsIcon icon={ArrowRight01Icon} className="size-4" aria-hidden />
-          </span>
-        ) : (
-          <span className="inline-flex h-8 w-full items-center justify-between border border-border bg-secondary px-2.5 text-sm font-medium text-muted-foreground">
-            In preparazione
-            <HugeiconsIcon icon={Clock03Icon} className="size-4" aria-hidden />
-          </span>
-        )}
-      </CardFooter>
-    </Card>
   );
 }

@@ -9,106 +9,78 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SqliteRouteImport } from './routes/sqlite'
-import { Route as PythonRouteImport } from './routes/python'
-import { Route as PhpRouteImport } from './routes/php'
-import { Route as HtmlRouteImport } from './routes/html'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SSqliteRouteImport } from './routes/s/sqlite'
+import { Route as SPythonRouteImport } from './routes/s/python'
+import { Route as SPhpRouteImport } from './routes/s/php'
+import { Route as SHtmlRouteImport } from './routes/s/html'
 
-const SqliteRoute = SqliteRouteImport.update({
-  id: '/sqlite',
-  path: '/sqlite',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PythonRoute = PythonRouteImport.update({
-  id: '/python',
-  path: '/python',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PhpRoute = PhpRouteImport.update({
-  id: '/php',
-  path: '/php',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HtmlRoute = HtmlRouteImport.update({
-  id: '/html',
-  path: '/html',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SSqliteRoute = SSqliteRouteImport.update({
+  id: '/s/sqlite',
+  path: '/s/sqlite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SPythonRoute = SPythonRouteImport.update({
+  id: '/s/python',
+  path: '/s/python',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SPhpRoute = SPhpRouteImport.update({
+  id: '/s/php',
+  path: '/s/php',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SHtmlRoute = SHtmlRouteImport.update({
+  id: '/s/html',
+  path: '/s/html',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/html': typeof HtmlRoute
-  '/php': typeof PhpRoute
-  '/python': typeof PythonRoute
-  '/sqlite': typeof SqliteRoute
+  '/s/html': typeof SHtmlRoute
+  '/s/php': typeof SPhpRoute
+  '/s/python': typeof SPythonRoute
+  '/s/sqlite': typeof SSqliteRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/html': typeof HtmlRoute
-  '/php': typeof PhpRoute
-  '/python': typeof PythonRoute
-  '/sqlite': typeof SqliteRoute
+  '/s/html': typeof SHtmlRoute
+  '/s/php': typeof SPhpRoute
+  '/s/python': typeof SPythonRoute
+  '/s/sqlite': typeof SSqliteRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/html': typeof HtmlRoute
-  '/php': typeof PhpRoute
-  '/python': typeof PythonRoute
-  '/sqlite': typeof SqliteRoute
+  '/s/html': typeof SHtmlRoute
+  '/s/php': typeof SPhpRoute
+  '/s/python': typeof SPythonRoute
+  '/s/sqlite': typeof SSqliteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/html' | '/php' | '/python' | '/sqlite'
+  fullPaths: '/' | '/s/html' | '/s/php' | '/s/python' | '/s/sqlite'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/html' | '/php' | '/python' | '/sqlite'
-  id: '__root__' | '/' | '/html' | '/php' | '/python' | '/sqlite'
+  to: '/' | '/s/html' | '/s/php' | '/s/python' | '/s/sqlite'
+  id: '__root__' | '/' | '/s/html' | '/s/php' | '/s/python' | '/s/sqlite'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  HtmlRoute: typeof HtmlRoute
-  PhpRoute: typeof PhpRoute
-  PythonRoute: typeof PythonRoute
-  SqliteRoute: typeof SqliteRoute
+  SHtmlRoute: typeof SHtmlRoute
+  SPhpRoute: typeof SPhpRoute
+  SPythonRoute: typeof SPythonRoute
+  SSqliteRoute: typeof SSqliteRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sqlite': {
-      id: '/sqlite'
-      path: '/sqlite'
-      fullPath: '/sqlite'
-      preLoaderRoute: typeof SqliteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/python': {
-      id: '/python'
-      path: '/python'
-      fullPath: '/python'
-      preLoaderRoute: typeof PythonRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/php': {
-      id: '/php'
-      path: '/php'
-      fullPath: '/php'
-      preLoaderRoute: typeof PhpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/html': {
-      id: '/html'
-      path: '/html'
-      fullPath: '/html'
-      preLoaderRoute: typeof HtmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -116,15 +88,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/s/sqlite': {
+      id: '/s/sqlite'
+      path: '/s/sqlite'
+      fullPath: '/s/sqlite'
+      preLoaderRoute: typeof SSqliteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/s/python': {
+      id: '/s/python'
+      path: '/s/python'
+      fullPath: '/s/python'
+      preLoaderRoute: typeof SPythonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/s/php': {
+      id: '/s/php'
+      path: '/s/php'
+      fullPath: '/s/php'
+      preLoaderRoute: typeof SPhpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/s/html': {
+      id: '/s/html'
+      path: '/s/html'
+      fullPath: '/s/html'
+      preLoaderRoute: typeof SHtmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  HtmlRoute: HtmlRoute,
-  PhpRoute: PhpRoute,
-  PythonRoute: PythonRoute,
-  SqliteRoute: SqliteRoute,
+  SHtmlRoute: SHtmlRoute,
+  SPhpRoute: SPhpRoute,
+  SPythonRoute: SPythonRoute,
+  SSqliteRoute: SSqliteRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -7,9 +7,11 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { X } from "@hugeicons/core-free-icons";
 import { useCallback } from "react";
 import FileIcon from "./icon";
+import { useTheme } from "#/contexts/theme";
 
 export function WorkbenchEditor({ bufferline }: { bufferline?: boolean }) {
   const { files, buffers } = useWorkbench();
+  const { theme } = useTheme();
 
   const handleChange = useCallback(
     (path: string, value?: string) => {
@@ -59,6 +61,7 @@ export function WorkbenchEditor({ bufferline }: { bufferline?: boolean }) {
                 language={getLanguageFromPath(buffer)}
                 value={files.get(buffer)}
                 onChange={(value) => handleChange(buffer, value)}
+                theme={theme === "dark" ? "vs-dark" : "light"}
                 options={{
                   automaticLayout: true,
                 }}

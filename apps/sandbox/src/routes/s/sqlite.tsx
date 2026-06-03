@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PageLoader } from "#/components/page-loader";
 import { WorkbenchEditor } from "#/components/workbench/editor";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
 import { WorkbenchProvider, useWorkbench } from "#/contexts/workbench";
@@ -8,7 +9,7 @@ import { WorkbenchOutput } from "#/components/workbench/output";
 import { SQLiteExplorer } from "#/components/workbench/runtimes/sqlite/explorer";
 import type { QueryExecResult, SqlValue } from "sql.js";
 
-export const Route = createFileRoute("/sqlite")({
+export const Route = createFileRoute("/s/sqlite")({
   component: RouteComponent,
 });
 
@@ -24,7 +25,7 @@ function RouteComponent() {
 
 function SQLiteWorkbench() {
   const { files, buffers, output } = useWorkbench();
-  const { execute } = useSQLite();
+  const { execute, status } = useSQLite();
 
   useEffect(() => {
     // idk why i can't use !files.get("query.sql"), it starts rendering infinitely
@@ -47,6 +48,10 @@ function SQLiteWorkbench() {
       output.setErrors([message]);
     }
   };
+
+  if (status === "loading") {
+    return <PageLoader />;
+  }
 
   return (
     <div className="h-[calc(100vh-70px)]">

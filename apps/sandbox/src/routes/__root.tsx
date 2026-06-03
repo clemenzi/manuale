@@ -4,6 +4,7 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 
 import "../styles.css";
 import Navbar from "#/components/navbar";
+import { ThemeProvider } from "#/contexts/theme";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -30,20 +31,22 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <>
-      <HeadContent />
-      <Navbar />
-      <Outlet />
-      <TanStackDevtools
-        config={{
-          position: "bottom-right",
-        }}
-        plugins={[
-          {
-            name: "TanStack Router",
-            render: <TanStackRouterDevtoolsPanel />,
-          },
-        ]}
-      />
+      <ThemeProvider defaultTheme="system">
+        <HeadContent />
+        <Navbar />
+        <Outlet />
+        <TanStackDevtools
+          config={{
+            position: "bottom-right",
+          }}
+          plugins={[
+            {
+              name: "TanStack Router",
+              render: <TanStackRouterDevtoolsPanel />,
+            },
+          ]}
+        />
+      </ThemeProvider>
     </>
   );
 }

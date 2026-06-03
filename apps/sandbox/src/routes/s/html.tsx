@@ -36,7 +36,7 @@ const DEFAULT_CONTENT = `<!DOCTYPE html>
 </body>
 </html>`;
 
-export const Route = createFileRoute("/html")({
+export const Route = createFileRoute("/s/html")({
   component() {
     return (
       <WorkbenchProvider>

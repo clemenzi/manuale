@@ -1,14 +1,29 @@
-import logoDark from "#/assets/logo-dark.svg";
-import logoLight from "#/assets/logo-light.svg";
 import { Link } from "@tanstack/react-router";
+import { Button } from "./ui/button";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Moon02Icon, SunIcon } from "@hugeicons/core-free-icons";
+import { useTheme } from "#/contexts/theme";
 
 export default function Navbar() {
+  const { theme, setTheme } = useTheme();
+
   return (
-    <nav className="p-4 flex items-center justify-between bg-secondary">
+    <nav className="p-4 flex items-center justify-between bg-muted">
       <Link to="/">
-        <img src={logoLight} alt="Logo" className="dark:hidden w-24" />
-        <img src={logoDark} alt="Logo" className="hidden dark:block w-24" />
+        <span className="font-logo text-4xl">
+          MAN<span className="text-primary">(SANDBOX)</span>
+        </span>
       </Link>
+
+      <div className="flex items-center space-x-2">
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        >
+          <HugeiconsIcon icon={theme === "dark" ? SunIcon : Moon02Icon} />
+        </Button>
+      </div>
     </nav>
   );
 }
