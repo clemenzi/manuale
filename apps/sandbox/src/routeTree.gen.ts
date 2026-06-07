@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SSqliteRouteImport } from './routes/s/sqlite'
 import { Route as SPythonRouteImport } from './routes/s/python'
+import { Route as SPostgresRouteImport } from './routes/s/postgres'
 import { Route as SPhpRouteImport } from './routes/s/php'
 import { Route as SHtmlRouteImport } from './routes/s/html'
 
@@ -30,6 +31,11 @@ const SPythonRoute = SPythonRouteImport.update({
   path: '/s/python',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SPostgresRoute = SPostgresRouteImport.update({
+  id: '/s/postgres',
+  path: '/s/postgres',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SPhpRoute = SPhpRouteImport.update({
   id: '/s/php',
   path: '/s/php',
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/s/html': typeof SHtmlRoute
   '/s/php': typeof SPhpRoute
+  '/s/postgres': typeof SPostgresRoute
   '/s/python': typeof SPythonRoute
   '/s/sqlite': typeof SSqliteRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/s/html': typeof SHtmlRoute
   '/s/php': typeof SPhpRoute
+  '/s/postgres': typeof SPostgresRoute
   '/s/python': typeof SPythonRoute
   '/s/sqlite': typeof SSqliteRoute
 }
@@ -60,21 +68,36 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/s/html': typeof SHtmlRoute
   '/s/php': typeof SPhpRoute
+  '/s/postgres': typeof SPostgresRoute
   '/s/python': typeof SPythonRoute
   '/s/sqlite': typeof SSqliteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/s/html' | '/s/php' | '/s/python' | '/s/sqlite'
+  fullPaths:
+    | '/'
+    | '/s/html'
+    | '/s/php'
+    | '/s/postgres'
+    | '/s/python'
+    | '/s/sqlite'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/s/html' | '/s/php' | '/s/python' | '/s/sqlite'
-  id: '__root__' | '/' | '/s/html' | '/s/php' | '/s/python' | '/s/sqlite'
+  to: '/' | '/s/html' | '/s/php' | '/s/postgres' | '/s/python' | '/s/sqlite'
+  id:
+    | '__root__'
+    | '/'
+    | '/s/html'
+    | '/s/php'
+    | '/s/postgres'
+    | '/s/python'
+    | '/s/sqlite'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SHtmlRoute: typeof SHtmlRoute
   SPhpRoute: typeof SPhpRoute
+  SPostgresRoute: typeof SPostgresRoute
   SPythonRoute: typeof SPythonRoute
   SSqliteRoute: typeof SSqliteRoute
 }
@@ -102,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SPythonRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/s/postgres': {
+      id: '/s/postgres'
+      path: '/s/postgres'
+      fullPath: '/s/postgres'
+      preLoaderRoute: typeof SPostgresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/s/php': {
       id: '/s/php'
       path: '/s/php'
@@ -123,6 +153,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SHtmlRoute: SHtmlRoute,
   SPhpRoute: SPhpRoute,
+  SPostgresRoute: SPostgresRoute,
   SPythonRoute: SPythonRoute,
   SSqliteRoute: SSqliteRoute,
 }

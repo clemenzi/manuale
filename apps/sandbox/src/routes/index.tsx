@@ -8,7 +8,7 @@ import {
   EngineIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { SiHtml5, SiNewegg, SiPhp, SiPython, SiSqlite } from "@icons-pack/react-simple-icons";
+import { SiHtml5, SiPhp, SiPostgresql, SiPython, SiSqlite } from "@icons-pack/react-simple-icons";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
@@ -97,6 +97,23 @@ function Home() {
                 <CardDescription>Usa un db SQLite.</CardDescription>
                 <CardAction>
                   <Link to="/s/sqlite">
+                    <Button>
+                      Apri l'editor
+                      <HugeiconsIcon icon={ArrowUpRight03Icon} />
+                    </Button>
+                  </Link>
+                </CardAction>
+              </CardHeader>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <SiPostgresql />
+                  <span>PostgreSQL</span>
+                </CardTitle>
+                <CardDescription>Usa un db PostgreSQL.</CardDescription>
+                <CardAction>
+                  <Link to="/s/postgres">
                     <Button>
                       Apri l'editor
                       <HugeiconsIcon icon={ArrowUpRight03Icon} />

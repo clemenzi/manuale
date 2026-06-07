@@ -77,7 +77,7 @@ export default function WorkbenchExplorer({
 
   return (
     <div className="bg-accent w-full h-[calc(100vh-70px)]">
-      <div className="flex justify-between items-center border-b p-2">
+      <div className="flex justify-between items-center border-b px-2">
         <span className="font-bold">Explorer</span>
 
         <div className="flex items-center">

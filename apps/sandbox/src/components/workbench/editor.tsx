@@ -30,7 +30,7 @@ export function WorkbenchEditor({ bufferline }: { bufferline?: boolean }) {
       >
         <TabsList
           variant="line"
-          className="min-h-10 shrink-0 justify-start overflow-x-auto overflow-y-hidden rounded-none border-b px-2 [scrollbar-gutter:stable] data-[bufferline=false]:hidden"
+          className="shrink-0 justify-start overflow-x-auto overflow-y-hidden rounded-none border-b px-2 [scrollbar-gutter:stable] data-[bufferline=false]:hidden"
           data-bufferline={bufferline}
         >
           {buffers.list.map((buffer) => (
