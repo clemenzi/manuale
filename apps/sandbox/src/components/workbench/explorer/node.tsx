@@ -39,12 +39,14 @@ export function FileTreeNode({
     node.activate();
   };
 
-  const handleOpenRename = () => {
+  const handleOpenRename = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     setMenuOpen(false);
     window.setTimeout(() => onRenameOpen(node.data.path), 0);
   };
 
-  const handleOpenDelete = () => {
+  const handleOpenDelete = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     setMenuOpen(false);
     window.setTimeout(() => onDeleteOpen(node.data.path), 0);
   };
@@ -72,6 +74,7 @@ export function FileTreeNode({
         </Button>
         <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
           <DropdownMenuTrigger
+            onClick={(e) => e.stopPropagation()}
             className={cn(
               buttonVariants({ variant: "ghost", size: "sm" }),
               "shrink-0 opacity-0 transition-opacity pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto",

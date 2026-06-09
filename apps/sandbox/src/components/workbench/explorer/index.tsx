@@ -41,6 +41,7 @@ export default function WorkbenchExplorer({
 
     return Math.min(Math.max(nodeCount * ROW_HEIGHT, MIN_TREE_HEIGHT), MAX_TREE_HEIGHT);
   }, [treeData]);
+
   const handleActivate = useCallback(
     (node: { data: WorkbenchFileTreeNode }) => {
       if (node.data.isDirectory) {
