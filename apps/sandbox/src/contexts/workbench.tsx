@@ -1,6 +1,14 @@
 import { useFiles, type VirtualFiles } from "#/hooks/files";
 import { normalize } from "pathe";
-import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useReducer,
+  useState,
+  type ReactNode,
+} from "react";
 
 type TableResult = {
   type: "table";
@@ -33,71 +41,111 @@ type WorkbenchContextProps = {
 
 export const WorkbenchContext = createContext<WorkbenchContextProps | null>(null);
 
+type BufferState = {
+  active: string;
+  list: string[];
+};
+
+type BufferAction =
+  | { type: "add"; path: string }
+  | { type: "remove"; path: string }
+  | { type: "set-active"; path: string };
+
+const INITIAL_BUFFER_STATE: BufferState = {
+  active: "",
+  list: [],
+};
+
+function normalizeBufferPath(path: string) {
+  return normalize(path);
+}
+
+function ensureBufferListIncludes(list: string[], path: string) {
+  return list.includes(path) ? list : [...list, path];
+}
+
+function getNextActiveBuffer(
+  activePath: string,
+  removedPath: string,
+  remainingBuffers: string[],
+  removedIndex: number,
+) {
+  if (activePath !== removedPath) {
+    return activePath;
+  }
+
+  return remainingBuffers[removedIndex] ?? remainingBuffers[removedIndex - 1] ?? "";
+}
+
+function bufferReducer(state: BufferState, action: BufferAction): BufferState {
+  switch (action.type) {
+    case "add": {
+      const path = normalizeBufferPath(action.path);
+      const nextList = ensureBufferListIncludes(state.list, path);
+
+      return {
+        active: state.active || path,
+        list: nextList,
+      };
+    }
+    case "remove": {
+      const path = normalizeBufferPath(action.path);
+      const removedIndex = state.list.indexOf(path);
+
+      if (removedIndex === -1) {
+        return state;
+      }
+
+      const nextList = state.list.filter((bufferPath) => bufferPath !== path);
+
+      return {
+        active: getNextActiveBuffer(state.active, path, nextList, removedIndex),
+        list: nextList,
+      };
+    }
+    case "set-active": {
+      const path = normalizeBufferPath(action.path);
+
+      return {
+        active: path,
+        list: ensureBufferListIncludes(state.list, path),
+      };
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
 export function WorkbenchProvider({ children }: { children: ReactNode }) {
   const files = useFiles();
-  const [activeBuffer, setActiveBuffer] = useState<string>("");
-  const [bufferList, setBufferList] = useState<string[]>([]);
+  const [bufferState, dispatchBuffer] = useReducer(bufferReducer, INITIAL_BUFFER_STATE);
   const [outputErrors, setOutputErrors] = useState<string[]>([]);
   const [outputResults, setOutputResults] = useState<WorkbenchContextProps["output"]["results"]>(
     [],
   );
 
-  const normalizeBufferPath = useCallback((path: string) => normalize(path), []);
+  const addBuffer = useCallback((path: string) => {
+    dispatchBuffer({ type: "add", path });
+  }, []);
 
-  const addBuffer = useCallback(
-    (path: string) => {
-      const normalizedPath = normalizeBufferPath(path);
+  const removeBuffer = useCallback((path: string) => {
+    dispatchBuffer({ type: "remove", path });
+  }, []);
 
-      setBufferList((list) => (list.includes(normalizedPath) ? list : [...list, normalizedPath]));
-      setActiveBuffer((active) => active || normalizedPath);
-    },
-    [normalizeBufferPath],
-  );
-
-  const removeBuffer = useCallback(
-    (path: string) => {
-      const normalizedPath = normalizeBufferPath(path);
-
-      setBufferList((list) => {
-        const removedIndex = list.indexOf(normalizedPath);
-
-        if (removedIndex === -1) {
-          return list;
-        }
-
-        const nextList = list.filter((p) => p !== normalizedPath);
-
-        setActiveBuffer((active) =>
-          active === normalizedPath
-            ? (nextList[removedIndex] ?? nextList[removedIndex - 1] ?? "")
-            : active,
-        );
-
-        return nextList;
-      });
-    },
-    [normalizeBufferPath],
-  );
-
-  const setCurrentActiveBuffer = useCallback(
-    (path: string) => {
-      const normalizedPath = normalizeBufferPath(path);
-
-      setActiveBuffer(normalizedPath);
-      setBufferList((list) => (list.includes(normalizedPath) ? list : [...list, normalizedPath]));
-    },
-    [normalizeBufferPath],
-  );
+  const setCurrentActiveBuffer = useCallback((path: string) => {
+    dispatchBuffer({ type: "set-active", path });
+  }, []);
 
   const buffers = useMemo(
     () => ({
-      active: activeBuffer,
-      list: bufferList,
+      active: bufferState.active,
+      list: bufferState.list,
       add: addBuffer,
       remove: removeBuffer,
       setActive: setCurrentActiveBuffer,
     }),
-    [activeBuffer, addBuffer, bufferList, removeBuffer, setCurrentActiveBuffer],
+    [addBuffer, bufferState.active, bufferState.list, removeBuffer, setCurrentActiveBuffer],
   );
 
   const output = useMemo(

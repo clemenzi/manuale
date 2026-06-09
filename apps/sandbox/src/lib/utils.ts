@@ -1,28 +1,22 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+const languageByExtension: Record<string, string> = {
+  css: "css",
+  html: "html",
+  js: "javascript",
+  php: "php",
+  py: "python",
+  sql: "sql",
+  ts: "typescript",
+};
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 export function getLanguageFromPath(path: string): string {
-  const fileContent = path.split(".").pop()?.toLowerCase();
+  const extension = path.split(".").pop()?.toLowerCase();
 
-  if (fileContent === "py") {
-    return "python";
-  } else if (fileContent === "js") {
-    return "javascript";
-  } else if (fileContent === "ts") {
-    return "typescript";
-  } else if (fileContent === "html") {
-    return "html";
-  } else if (fileContent === "css") {
-    return "css";
-  } else if (fileContent === "php") {
-    return "php";
-  } else if (fileContent === "sql") {
-    return "sql";
-  }
-
-  return "plaintext";
+  return (extension && languageByExtension[extension]) || "plaintext";
 }

@@ -1,4 +1,4 @@
-import { useState, type MouseEvent } from "react";
+import { useState, type SyntheticEvent } from "react";
 import type { NodeRendererProps } from "react-arborist";
 import type { WorkbenchFileTreeNode } from ".";
 import { Button, buttonVariants } from "#/components/ui/button";
@@ -28,7 +28,7 @@ export function FileTreeNode({
 }: FileTreeNodeProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: SyntheticEvent) => {
     event.stopPropagation();
 
     if (node.isInternal) {
@@ -39,14 +39,14 @@ export function FileTreeNode({
     node.activate();
   };
 
-  const handleOpenRename = (e: MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+  const handleOpenRename = (event: SyntheticEvent) => {
+    event.stopPropagation();
     setMenuOpen(false);
     window.setTimeout(() => onRenameOpen(node.data.path), 0);
   };
 
-  const handleOpenDelete = (e: MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+  const handleOpenDelete = (event: SyntheticEvent) => {
+    event.stopPropagation();
     setMenuOpen(false);
     window.setTimeout(() => onDeleteOpen(node.data.path), 0);
   };

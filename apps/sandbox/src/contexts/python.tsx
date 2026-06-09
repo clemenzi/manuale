@@ -317,8 +317,54 @@ type PythonEntrypointOptions = {
   path?: string;
 };
 
-function includeAllPythonFiles() {
-  return true;
+const includeAllPythonFiles = () => true;
+
+function syncPythonFiles(
+  pyodide: PyodideInterface,
+  files: Readonly<Record<string, string | undefined>>,
+  basePath: string,
+  include: (path: string, content: string | undefined) => boolean,
+) {
+  for (const [path, content] of Object.entries(files)) {
+    if (!include(path, content)) {
+      continue;
+    }
+
+    writePythonFile(pyodide, toPythonPath(path, basePath), content ?? "");
+  }
+}
+
+function syncPythonFileChanges(
+  pyodide: PyodideInterface,
+  previousFiles: Readonly<Record<string, string | undefined>>,
+  nextFiles: Readonly<Record<string, string | undefined>>,
+  basePath: string,
+  include: (path: string, content: string | undefined) => boolean,
+) {
+  for (const [path, content] of Object.entries(nextFiles)) {
+    const wasIncluded = include(path, previousFiles[path]);
+    const isIncluded = include(path, content);
+
+    if (!isIncluded) {
+      if (wasIncluded) {
+        removePythonPath(pyodide, toPythonPath(path, basePath));
+      }
+
+      continue;
+    }
+
+    if (previousFiles[path] !== content) {
+      writePythonFile(pyodide, toPythonPath(path, basePath), content ?? "");
+    }
+  }
+
+  for (const [path, content] of Object.entries(previousFiles)) {
+    if (Object.hasOwn(nextFiles, path) || !include(path, content)) {
+      continue;
+    }
+
+    removePythonPath(pyodide, toPythonPath(path, basePath));
+  }
 }
 
 export function usePythonFileSync(
@@ -332,11 +378,7 @@ export function usePythonFileSync(
       return;
     }
 
-    for (const [path, content] of Object.entries(virtualFiles.files)) {
-      if (include(path, content)) {
-        writePythonFile(pyodide, toPythonPath(path, basePath), content ?? "");
-      }
-    }
+    syncPythonFiles(pyodide, virtualFiles.files, basePath, include);
   }, [basePath, include, pyodide, status, virtualFiles.files]);
 
   useEffect(() => {
@@ -345,30 +387,7 @@ export function usePythonFileSync(
     }
 
     return virtualFiles.onChange((previousFiles, nextFiles) => {
-      for (const [path, content] of Object.entries(nextFiles)) {
-        const wasIncluded = include(path, previousFiles[path]);
-        const isIncluded = include(path, content);
-
-        if (!isIncluded) {
-          if (wasIncluded) {
-            removePythonPath(pyodide, toPythonPath(path, basePath));
-          }
-
-          continue;
-        }
-
-        if (previousFiles[path] !== content) {
-          writePythonFile(pyodide, toPythonPath(path, basePath), content ?? "");
-        }
-      }
-
-      for (const path of Object.keys(previousFiles)) {
-        if (Object.hasOwn(nextFiles, path) || !include(path, previousFiles[path])) {
-          continue;
-        }
-
-        removePythonPath(pyodide, toPythonPath(path, basePath));
-      }
+      syncPythonFileChanges(pyodide, previousFiles, nextFiles, basePath, include);
     });
   }, [basePath, include, pyodide, status, virtualFiles]);
 }

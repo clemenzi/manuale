@@ -63,7 +63,7 @@ export function WorkbenchEditor({ bufferline }: { bufferline?: boolean }) {
                 language={getLanguageFromPath(buffer)}
                 path={buffer}
                 value={files.get(buffer)}
-                onChange={(value) => handleChange(buffer, value)}
+                onChange={(value: string | undefined) => handleChange(buffer, value)}
                 theme={theme === "dark" ? "vs-dark" : "light"}
                 options={{
                   automaticLayout: true,

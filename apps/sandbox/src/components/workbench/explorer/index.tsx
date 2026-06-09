@@ -3,6 +3,7 @@ import { useCallback, useMemo, useState } from "react";
 import { Tree } from "react-arborist";
 import { CreateFileDialog, DeleteFileDialog, RenameFileDialog } from "./dialogs";
 import { FileTreeNode } from "./node";
+import type { NodeRendererProps } from "react-arborist";
 
 export type WorkbenchFileTreeNode = {
   children?: WorkbenchFileTreeNode[];
@@ -101,7 +102,7 @@ export default function WorkbenchExplorer({
             width="100%"
             onActivate={handleActivate}
           >
-            {(props) => (
+            {(props: NodeRendererProps<WorkbenchFileTreeNode>) => (
               <FileTreeNode
                 {...props}
                 onDeleteOpen={setDeletingPath}

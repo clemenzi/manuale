@@ -5,6 +5,10 @@ interface Files {
   [key: string]: string | undefined;
 }
 
+function normalizeVirtualFilePath(path: string) {
+  return normalize(path);
+}
+
 export type FilesChangeListener = (
   previousFiles: Readonly<Record<string, string | undefined>>,
   files: Readonly<Record<string, string | undefined>>,
@@ -29,13 +33,13 @@ export function useFiles(): VirtualFiles {
   const previousFilesRef = useRef<Readonly<Record<string, string | undefined>>>(files);
 
   const create = useCallback((name: string, content: string) => {
-    const normalizedName = normalize(name);
+    const normalizedName = normalizeVirtualFilePath(name);
 
     setFiles((prev) => ({ ...prev, [normalizedName]: content }));
   }, []);
 
   const update = useCallback((name: string, content: string) => {
-    const normalizedName = normalize(name);
+    const normalizedName = normalizeVirtualFilePath(name);
 
     setFiles((prev) =>
       prev[normalizedName] === content ? prev : { ...prev, [normalizedName]: content },
@@ -43,7 +47,7 @@ export function useFiles(): VirtualFiles {
   }, []);
 
   const remove = useCallback((name: string) => {
-    const normalizedName = normalize(name);
+    const normalizedName = normalizeVirtualFilePath(name);
 
     setFiles((prev) => {
       if (!(normalizedName in prev)) {
@@ -71,19 +75,7 @@ export function useFiles(): VirtualFiles {
 
   const get = useCallback(
     (name: string) => {
-      const normalizedName = normalize(name);
-
-      if (Object.hasOwn(files, normalizedName)) {
-        return files[normalizedName];
-      }
-
-      for (const [fileName, content] of Object.entries(files)) {
-        if (normalize(fileName) === normalizedName) {
-          return content;
-        }
-      }
-
-      return undefined;
+      return files[normalizeVirtualFilePath(name)];
     },
     [files],
   );
