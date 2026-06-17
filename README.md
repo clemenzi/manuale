@@ -2,7 +2,7 @@
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="apps/www/src/assets/logo-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="apps/www/src/assets/logo-light.svg">
-    <img alt="MANUALE LAB" src="apps/www/src/assets/logo-light.svg" width="320">
+    <img alt="Manuale" src="apps/www/src/assets/logo-light.svg" width="320">
   </picture>
 </p>
 
@@ -18,9 +18,9 @@
 
 ---
 
-# MANUALE LAB
+# Manuale
 
-MANUALE LAB è un sito di documentazione didattica costruito con Astro e Starlight, organizzato come monorepo Turborepo. L'applicazione web vive in `apps/www` e raccoglie percorsi progressivi su **Python**, **SQL** e **C++**, con spiegazioni brevi, esempi leggibili e una struttura pensata per studenti e principianti assoluti.
+Manuale è un sito di documentazione didattica costruito con Astro e Starlight, organizzato come monorepo Turborepo. L'applicazione web vive in `apps/www` e raccoglie percorsi progressivi su **Python**, **SQL** e **C++**, con spiegazioni brevi, esempi leggibili e una struttura pensata per studenti e principianti assoluti.
 
 Il progetto contiene oltre 160 pagine MDX organizzate per argomento, dalla sintassi di base fino a temi più avanzati come strutture dati, query SQL, transazioni, puntatori, programmazione a oggetti e strumenti di debugging.
 
