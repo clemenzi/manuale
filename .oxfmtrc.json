@@ -1,0 +1,11 @@
+{
+  "ignorePatterns": [
+    "node_modules/",
+    ".pnpm-store/",
+    ".turbo/",
+    ".wrangler/",
+    ".astro/",
+    "dist/",
+    "apps/lab/src/routeTree.gen.ts"
+  ]
+}
