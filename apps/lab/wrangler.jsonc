@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "manuale-lab",
+  "compatibility_date": "2026-06-17",
+  "observability": {
+    "enabled": true,
+  },
+  "assets": {
+    "directory": "dist",
+  },
+  "compatibility_flags": ["nodejs_compat"],
+}
