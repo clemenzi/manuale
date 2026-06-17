@@ -30,10 +30,14 @@ function Home() {
             linguaggi e tool di programmazione.
           </p>
           <div className="flex gap-4 pt-4">
-            <Button size="lg">Inizia subito</Button>
-            <Button size="lg" variant="secondary">
-              Scopri di più
-            </Button>
+            <Link to="/s/python">
+              <Button size="lg">Inizia subito con Python</Button>
+            </Link>
+            <a href="#langs">
+              <Button size="lg" variant="secondary">
+                Esplora gli altri linguaggi
+              </Button>
+            </a>
           </div>
         </section>
 
@@ -66,7 +70,9 @@ function Home() {
         </section>
 
         <section>
-          <h2 className="text-5xl font-logo">SCEGLI IL LINGUAGGIO CON CUI PROVARE</h2>
+          <h2 className="text-5xl font-logo" id="langs">
+            SCEGLI IL LINGUAGGIO CON CUI PROVARE
+          </h2>
           <p className="text-xl">
             Scegli tra la nostra rosa di linguaggi e tool di programmazione.
           </p>

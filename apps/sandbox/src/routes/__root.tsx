@@ -5,6 +5,7 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 import "../styles.css";
 import Navbar from "#/components/navbar";
 import { ThemeProvider } from "#/contexts/theme";
+import Mobile from "#/components/mobile";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -33,8 +34,13 @@ function RootComponent() {
     <>
       <ThemeProvider defaultTheme="system">
         <HeadContent />
-        <Navbar />
-        <Outlet />
+        <div className="md:hidden">
+          <Mobile />
+        </div>
+        <div className="hidden md:block">
+          <Navbar />
+          <Outlet />
+        </div>
         <TanStackDevtools
           config={{
             position: "bottom-right",
