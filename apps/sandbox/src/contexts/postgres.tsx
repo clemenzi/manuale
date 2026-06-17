@@ -1,0 +1,131 @@
+import { PGlite, type Results } from "@electric-sql/pglite";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
+
+type PostgresStatus = "loading" | "ready" | "error";
+
+type PostgresContextValue = {
+  db: PGlite | null;
+  error: Error | null;
+  status: PostgresStatus;
+  version: number;
+  execute: (sql: string) => Promise<Results[]>;
+  resetDatabase: () => Promise<void>;
+};
+
+const PostgresContext = createContext<PostgresContextValue | null>(null);
+
+function toError(caughtError: unknown) {
+  return caughtError instanceof Error
+    ? caughtError
+    : new Error("Impossibile inizializzare PostgreSQL.");
+}
+
+export function PostgresProvider({ children }: { children: ReactNode }) {
+  const dbRef = useRef<PGlite | null>(null);
+  const operationRef = useRef(0);
+  const [db, setDb] = useState<PGlite | null>(null);
+  const [error, setError] = useState<Error | null>(null);
+  const [status, setStatus] = useState<PostgresStatus>("loading");
+  const [version, setVersion] = useState(0);
+
+  const closeDatabase = useCallback(async () => {
+    const currentDb = dbRef.current;
+    dbRef.current = null;
+
+    if (currentDb) {
+      await currentDb.close();
+    }
+  }, []);
+
+  const markDatabaseReady = useCallback((nextDb: PGlite) => {
+    setDb(nextDb);
+    setVersion((currentVersion) => currentVersion + 1);
+    setStatus("ready");
+  }, []);
+
+  const createDatabase = useCallback(async () => {
+    const operation = ++operationRef.current;
+
+    setStatus("loading");
+    setError(null);
+
+    try {
+      const nextDb = await PGlite.create();
+
+      if (operation !== operationRef.current) {
+        await nextDb.close();
+        return;
+      }
+
+      dbRef.current = nextDb;
+      markDatabaseReady(nextDb);
+    } catch (caughtError) {
+      if (operation !== operationRef.current) {
+        return;
+      }
+
+      setError(toError(caughtError));
+      setStatus("error");
+    }
+  }, [markDatabaseReady]);
+
+  useEffect(() => {
+    void createDatabase();
+
+    return () => {
+      operationRef.current += 1;
+      void closeDatabase();
+    };
+  }, [closeDatabase, createDatabase]);
+
+  const execute = useCallback(async (sql: string) => {
+    const currentDb = dbRef.current;
+
+    if (!currentDb) {
+      throw new Error("PostgreSQL non e ancora pronto.");
+    }
+
+    const results = await currentDb.exec(sql);
+    setVersion((currentVersion) => currentVersion + 1);
+    return results;
+  }, []);
+
+  const resetDatabase = useCallback(async () => {
+    setDb(null);
+    await closeDatabase();
+    await createDatabase();
+  }, [closeDatabase, createDatabase]);
+
+  const value = useMemo<PostgresContextValue>(
+    () => ({
+      db,
+      error,
+      status,
+      version,
+      execute,
+      resetDatabase,
+    }),
+    [db, error, status, version, execute, resetDatabase],
+  );
+
+  return <PostgresContext.Provider value={value}>{children}</PostgresContext.Provider>;
+}
+
+export function usePostgres() {
+  const context = useContext(PostgresContext);
+
+  if (!context) {
+    throw new Error("usePostgres deve essere usato dentro PostgresProvider.");
+  }
+
+  return context;
+}
