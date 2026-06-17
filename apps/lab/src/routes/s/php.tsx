@@ -33,7 +33,7 @@ function RouteComponent() {
 
 function PHPWorkbench() {
   const { php, status } = usePHP();
-  const { files } = useWorkbench();
+  const { files, buffers } = useWorkbench();
   const [response, setResponse] = useState<PHPResponse>();
 
   useEffect(() => {
@@ -42,6 +42,8 @@ function PHPWorkbench() {
         php?.writeFile(name, content || "");
       }
     });
+
+    buffers.add("index.php");
 
     return unsubscribe;
   }, [files]);
