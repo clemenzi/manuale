@@ -12,7 +12,7 @@ export default function Navbar() {
     <nav className="p-4 flex items-center justify-between bg-muted">
       <Link to="/">
         <span className="font-logo text-4xl flex items-center space-x-2">
-          MAN<span className="text-primary">(SANDBOX)</span>
+          MANUALE <span className="text-primary">(LAB)</span>
           <Badge variant={"outline"}>ALPHA</Badge>
         </span>
       </Link>

@@ -13,7 +13,7 @@ import type { PHPResponse } from "@php-wasm/universal";
 export const Route = createFileRoute("/s/php")({
   head: () => ({
     meta: [
-      { title: "Sandbox PHP Gratuita - Manuale.dev" },
+      { title: "Sandbox PHP Gratuita - MANUALE LAB" },
       { name: "description", content: "Sandbox online gratuita per PHP" },
       { name: "keywords", content: "PHP, sandbox, online, gratuita, manuale.dev" },
     ],

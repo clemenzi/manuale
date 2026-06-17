@@ -8,7 +8,7 @@ import Preview from "#/components/workbench/runtimes/html/preview";
 const DEFAULT_CONTENT = `<!DOCTYPE html>
 <html>
 <head>
-  <title>Manuale.dev HTML Sandbox</title>
+  <title>MANUALE LAB HTML Sandbox</title>
   <style>
     body {
       font-family: "Inter", sans-serif;
@@ -39,7 +39,7 @@ const DEFAULT_CONTENT = `<!DOCTYPE html>
 export const Route = createFileRoute("/s/html")({
   head: () => ({
     meta: [
-      { title: "Sandbox HTML Gratuita - Manuale.dev" },
+      { title: "Sandbox HTML Gratuita - MANUALE LAB" },
       { name: "description", content: "Sandbox online gratuita per HTML, CSS e JS" },
       { name: "keywords", content: "HTML, CSS, JS, sandbox, online, gratuita, manuale.dev" },
     ],

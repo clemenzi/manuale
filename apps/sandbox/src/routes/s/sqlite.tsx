@@ -12,7 +12,7 @@ import type { QueryExecResult, SqlValue } from "sql.js";
 export const Route = createFileRoute("/s/sqlite")({
   head: () => ({
     meta: [
-      { title: "Database SQLite Online Gratuito - Manuale.dev" },
+      { title: "Database SQLite Online Gratuito - MANUALE LAB" },
       { name: "description", content: "Sandbox online gratuito per SQLite" },
       { name: "keywords", content: "SQLite, database, online, gratuito, manuale.dev" },
     ],

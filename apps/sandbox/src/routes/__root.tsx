@@ -11,7 +11,7 @@ export const Route = createRootRoute({
   head: () => ({
     meta: [
       {
-        title: "Manuale.dev Sandboxes",
+        title: "MANUALE LAB",
       },
       {
         name: "description",

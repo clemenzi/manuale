@@ -16,7 +16,7 @@ const QUERY_FILE = "query.sql";
 export const Route = createFileRoute("/s/postgres")({
   head: () => ({
     meta: [
-      { title: "Database PostgreSQL Online Gratuito - Manuale.dev" },
+      { title: "Database PostgreSQL Online Gratuito - MANUALE LAB" },
       { name: "description", content: "Sandbox online gratuito per PostgreSQL con PGlite" },
       {
         name: "keywords",

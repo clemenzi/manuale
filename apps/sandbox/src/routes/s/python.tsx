@@ -15,7 +15,7 @@ import { useEffect } from "react";
 
 const PYTHON_FILE = "main.py";
 
-const DEFAULT_CONTENT = `nome = "Manuale.dev"
+const DEFAULT_CONTENT = `nome = "MANUALE LAB"
 
 for numero in range(1, 4):
     print(f"{numero}. Ciao da Python su WebAssembly, {nome}!")
@@ -24,7 +24,7 @@ for numero in range(1, 4):
 export const Route = createFileRoute("/s/python")({
   head: () => ({
     meta: [
-      { title: "Sandbox Python Gratuita - Manuale.dev" },
+      { title: "Sandbox Python Gratuita - MANUALE LAB" },
       { name: "description", content: "Sandbox online gratuita per Python" },
       { name: "keywords", content: "Python, sandbox, online, gratuita, manuale.dev" },
     ],
