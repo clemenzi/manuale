@@ -1,0 +1,985 @@
+---
+title: Esercizi SQL
+description: 50 esercizi pratici e progressivi su SQL.
+tableOfContents: false
+---
+
+### Esercizio 1
+
+Dalla tabella `clienti`, mostrare tutte le colonne di tutte le righe.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+In questo primo esercizio basta leggere l'intera tabella con `SELECT *`.
+
+```sql
+SELECT *
+FROM clienti;
+```
+
+La query non filtra nulla e chiede al database di restituire tutti i dati presenti in `clienti`.
+
+</details>
+
+### Esercizio 2
+
+Dalla tabella `clienti (id, nome, email)`, mostrare solo `nome` ed `email`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Qui non usiamo `*`, ma indichiamo solo le colonne che ci servono.
+
+```sql
+SELECT nome, email
+FROM clienti;
+```
+
+Il risultato contiene solo i dati utili alla richiesta e resta piu facile da leggere.
+
+</details>
+
+### Esercizio 3
+
+Dalla tabella `prodotti (id, nome, prezzo)`, mostrare `nome` con l'alias `prodotto` e `prezzo` con l'alias `costo`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Gli alias aiutano a rendere il risultato piu chiaro senza cambiare i dati.
+
+```sql
+SELECT nome AS prodotto, prezzo AS costo
+FROM prodotti;
+```
+
+`AS` assegna un nome temporaneo alle colonne nel risultato finale.
+
+</details>
+
+### Esercizio 4
+
+Dalla tabella `clienti (id, nome, citta)`, mostrare i clienti che hanno `Roma` nella colonna `citta`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo `WHERE` per tenere solo le righe che rispettano la condizione.
+
+```sql
+SELECT id, nome, citta
+FROM clienti
+WHERE citta = 'Roma';
+```
+
+La query controlla la colonna `citta` riga per riga e tiene solo i clienti di Roma.
+
+</details>
+
+### Esercizio 5
+
+Dalla tabella `ordini (id, totale)`, mostrare gli ordini con `totale` maggiore di `100`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+In questo caso il filtro riguarda un numero, quindi non usiamo apici.
+
+```sql
+SELECT id, totale
+FROM ordini
+WHERE totale > 100;
+```
+
+Restano nel risultato solo le righe in cui `totale` supera 100.
+
+</details>
+
+### Esercizio 6
+
+Dalla tabella `prodotti (nome, prezzo)`, mostrare i prodotti con `prezzo` minore o uguale a `20`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+L'operatore `<=` serve quando vuoi includere anche il valore di confine.
+
+```sql
+SELECT nome, prezzo
+FROM prodotti
+WHERE prezzo <= 20;
+```
+
+La query mostra i prodotti economici, compresi quelli che costano esattamente 20.
+
+</details>
+
+### Esercizio 7
+
+Dalla tabella `clienti (nome, citta, attivo)`, mostrare i clienti di `Roma` che risultano attivi.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `AND` chiediamo che entrambe le condizioni siano vere.
+
+```sql
+SELECT nome, citta, attivo
+FROM clienti
+WHERE citta = 'Roma' AND attivo = TRUE;
+```
+
+La riga entra nel risultato solo se il cliente e sia di Roma sia attivo.
+
+</details>
+
+### Esercizio 8
+
+Dalla tabella `clienti (nome, citta)`, mostrare i clienti che vivono a `Roma` oppure a `Milano`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `OR` basta che almeno una delle due condizioni sia vera.
+
+```sql
+SELECT nome, citta
+FROM clienti
+WHERE citta = 'Roma' OR citta = 'Milano';
+```
+
+La query raccoglie i clienti di entrambe le citta in un unico risultato.
+
+</details>
+
+### Esercizio 9
+
+Dalla tabella `clienti (nome, attivo)`, mostrare i clienti che non sono attivi.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+`NOT` ribalta la condizione che segue.
+
+```sql
+SELECT nome, attivo
+FROM clienti
+WHERE NOT attivo;
+```
+
+Il risultato contiene solo le righe in cui `attivo` non risulta vero.
+
+</details>
+
+### Esercizio 10
+
+Dalla tabella `clienti (id, nome)`, mostrare i nomi in ordine alfabetico crescente.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Per ordinare i risultati usiamo `ORDER BY` con `ASC`.
+
+```sql
+SELECT id, nome
+FROM clienti
+ORDER BY nome ASC;
+```
+
+`ASC` ordina dal valore piu piccolo al piu grande, quindi nel caso dei testi in ordine alfabetico.
+
+</details>
+
+### Esercizio 11
+
+Dalla tabella `prodotti (nome, prezzo)`, mostrare i prodotti dal prezzo piu alto al piu basso.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Per avere prima i valori piu grandi usiamo `DESC`.
+
+```sql
+SELECT nome, prezzo
+FROM prodotti
+ORDER BY prezzo DESC;
+```
+
+La query e utile quando vuoi vedere subito gli elementi piu costosi.
+
+</details>
+
+### Esercizio 12
+
+Dalla tabella `ordini (id, data_ordine)`, mostrare solo le prime `5` righe del risultato.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+`LIMIT` restringe il numero di righe restituite.
+
+```sql
+SELECT id, data_ordine
+FROM ordini
+LIMIT 5;
+```
+
+Il database interrompe il risultato dopo cinque righe.
+
+</details>
+
+### Esercizio 13
+
+Dalla tabella `ordini (id, data_ordine)`, saltare le prime `5` righe e mostrare le successive `5`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Qui combiniamo `LIMIT` e `OFFSET`.
+
+```sql
+SELECT id, data_ordine
+FROM ordini
+LIMIT 5 OFFSET 5;
+```
+
+`OFFSET 5` salta le prime cinque righe del risultato, poi `LIMIT 5` ne prende altre cinque.
+
+</details>
+
+### Esercizio 14
+
+Dalla tabella `clienti (nome, email)`, mostrare i clienti che non hanno email salvata.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `NULL` non si usa `=`, ma `IS NULL`.
+
+```sql
+SELECT nome, email
+FROM clienti
+WHERE email IS NULL;
+```
+
+La query cerca proprio l'assenza del dato, non un testo vuoto.
+
+</details>
+
+### Esercizio 15
+
+Dalla tabella `clienti (nome, email)`, mostrare i clienti che hanno un'email presente.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il contrario di `IS NULL` e `IS NOT NULL`.
+
+```sql
+SELECT nome, email
+FROM clienti
+WHERE email IS NOT NULL;
+```
+
+Restano solo le righe in cui la colonna `email` contiene un valore.
+
+</details>
+
+### Esercizio 16
+
+Nella tabella `clienti (id, nome, email)`, inserire un nuovo cliente con nome `Luca` ed email `luca@email.it`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `INSERT INTO` aggiungiamo una nuova riga indicando chiaramente le colonne.
+
+```sql
+INSERT INTO clienti (nome, email)
+VALUES ('Luca', 'luca@email.it');
+```
+
+Il primo valore va nella colonna `nome`, il secondo nella colonna `email`.
+
+</details>
+
+### Esercizio 17
+
+Nella tabella `prodotti (nome, prezzo)`, inserire due righe: `Mouse` a `19.90` e `Tastiera` a `49.90`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Un solo `INSERT` puo aggiungere piu righe.
+
+```sql
+INSERT INTO prodotti (nome, prezzo)
+VALUES
+    ('Mouse', 19.90),
+    ('Tastiera', 49.90);
+```
+
+Ogni gruppo di valori tra parentesi crea una riga nuova nella tabella.
+
+</details>
+
+### Esercizio 18
+
+Nella tabella `clienti`, aggiornare la citta del cliente con `id = 3` impostandola a `Bologna`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+`UPDATE` modifica una riga esistente, mentre `WHERE` sceglie quale.
+
+```sql
+UPDATE clienti
+SET citta = 'Bologna'
+WHERE id = 3;
+```
+
+Senza `WHERE`, la query modificherebbe la citta di tutte le righe.
+
+</details>
+
+### Esercizio 19
+
+Nella tabella `prodotti`, aumentare del `10%` il `prezzo` del prodotto con `id = 5`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il nuovo valore puo dipendere da quello gia presente nella colonna.
+
+```sql
+UPDATE prodotti
+SET prezzo = prezzo * 1.10
+WHERE id = 5;
+```
+
+La formula prende il prezzo attuale e lo moltiplica per `1.10`.
+
+</details>
+
+### Esercizio 20
+
+Nella tabella `clienti`, eliminare la riga con `id = 8`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Per cancellare una sola riga usiamo `DELETE` con un filtro preciso.
+
+```sql
+DELETE FROM clienti
+WHERE id = 8;
+```
+
+Il filtro evita di cancellare piu righe del necessario.
+
+</details>
+
+### Esercizio 21
+
+Dalla tabella `ordini`, contare quante righe ci sono.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+`COUNT(*)` restituisce il numero totale di righe.
+
+```sql
+SELECT COUNT(*) AS numero_ordini
+FROM ordini;
+```
+
+L'alias rende piu leggibile il nome della colonna nel risultato.
+
+</details>
+
+### Esercizio 22
+
+Dalla tabella `ordini (totale)`, calcolare la somma di tutti i totali.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Per sommare molti valori numerici usiamo `SUM()`.
+
+```sql
+SELECT SUM(totale) AS incasso_totale
+FROM ordini;
+```
+
+La query restituisce un solo valore riassuntivo con l'incasso complessivo.
+
+</details>
+
+### Esercizio 23
+
+Dalla tabella `prodotti (prezzo)`, calcolare il prezzo medio.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+`AVG()` e la funzione che calcola la media aritmetica.
+
+```sql
+SELECT AVG(prezzo) AS prezzo_medio
+FROM prodotti;
+```
+
+Il risultato e un solo numero che rappresenta il prezzo medio dei prodotti.
+
+</details>
+
+### Esercizio 24
+
+Dalla tabella `prodotti (prezzo)`, trovare il prezzo piu basso e il prezzo piu alto.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+`MIN()` trova il valore piu piccolo, mentre `MAX()` trova il piu grande.
+
+```sql
+SELECT MIN(prezzo) AS prezzo_minimo, MAX(prezzo) AS prezzo_massimo
+FROM prodotti;
+```
+
+In una sola query otteniamo entrambi gli estremi del catalogo.
+
+</details>
+
+### Esercizio 25
+
+Dalla tabella `clienti (citta)`, contare quanti clienti ci sono per ogni citta.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `GROUP BY` creiamo un gruppo per ogni citta, poi `COUNT(*)` conta le righe del gruppo.
+
+```sql
+SELECT citta, COUNT(*) AS numero_clienti
+FROM clienti
+GROUP BY citta;
+```
+
+La query restituisce una riga per ogni citta presente nella tabella.
+
+</details>
+
+### Esercizio 26
+
+Dalla tabella `ordini (cliente_id, totale)`, calcolare il totale speso da ogni cliente.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Qui raggruppiamo per cliente e sommiamo il totale degli ordini del gruppo.
+
+```sql
+SELECT cliente_id, SUM(totale) AS totale_speso
+FROM ordini
+GROUP BY cliente_id;
+```
+
+Ogni riga del risultato rappresenta un cliente con la somma dei suoi ordini.
+
+</details>
+
+### Esercizio 27
+
+Dalla tabella `ordini (cliente_id, totale)`, mostrare solo i clienti che hanno almeno `2` ordini.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Prima creiamo i gruppi con `GROUP BY`, poi filtriamo i gruppi con `HAVING`.
+
+```sql
+SELECT cliente_id, COUNT(*) AS numero_ordini
+FROM ordini
+GROUP BY cliente_id
+HAVING COUNT(*) >= 2;
+```
+
+`HAVING` lavora sul risultato aggregato, non sulle singole righe iniziali.
+
+</details>
+
+### Esercizio 28
+
+Dalla tabella `prodotti (categoria, prezzo)`, mostrare le categorie con prezzo medio superiore a `50`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Anche qui il filtro riguarda una media di gruppo, quindi serve `HAVING`.
+
+```sql
+SELECT categoria, AVG(prezzo) AS prezzo_medio
+FROM prodotti
+GROUP BY categoria
+HAVING AVG(prezzo) > 50;
+```
+
+Il database calcola la media per categoria e poi tiene solo i gruppi sopra 50.
+
+</details>
+
+### Esercizio 29
+
+Dalle tabelle `clienti (id, nome)` e `ordini (id, cliente_id, totale)`, mostrare `nome` del cliente e `totale` dell'ordine usando una `INNER JOIN`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+`INNER JOIN` collega solo le righe che trovano una corrispondenza in entrambe le tabelle.
+
+```sql
+SELECT clienti.nome, ordini.totale
+FROM clienti
+INNER JOIN ordini ON clienti.id = ordini.cliente_id;
+```
+
+La condizione dopo `ON` spiega come abbinare clienti e ordini.
+
+</details>
+
+### Esercizio 30
+
+Dalle tabelle `clienti (id, nome)` e `ordini (cliente_id, totale)`, mostrare tutti i clienti anche se non hanno ordini.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Per tenere tutte le righe della tabella di sinistra usiamo `LEFT JOIN`.
+
+```sql
+SELECT clienti.nome, ordini.totale
+FROM clienti
+LEFT JOIN ordini ON clienti.id = ordini.cliente_id;
+```
+
+Se un cliente non ha ordini, nelle colonne di `ordini` comparira `NULL`.
+
+</details>
+
+### Esercizio 31
+
+Dalle tabelle `clienti (id, nome, citta)` e `ordini (cliente_id, totale)`, mostrare nome e totale degli ordini dei clienti di `Roma`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Combiniamo una `JOIN` con un filtro `WHERE`.
+
+```sql
+SELECT clienti.nome, ordini.totale
+FROM clienti
+INNER JOIN ordini ON clienti.id = ordini.cliente_id
+WHERE clienti.citta = 'Roma';
+```
+
+Prima colleghiamo le tabelle, poi teniamo solo le righe dei clienti di Roma.
+
+</details>
+
+### Esercizio 32
+
+Dalle tabelle `clienti (id, nome)` e `ordini (cliente_id, totale)`, mostrare i nomi dei clienti con alias di tabella `c` e i totali con alias di tabella `o`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Gli alias corti rendono la query piu compatta nelle join.
+
+```sql
+SELECT c.nome, o.totale
+FROM clienti AS c
+INNER JOIN ordini AS o ON c.id = o.cliente_id;
+```
+
+`c` e `o` sono solo soprannomi temporanei usati dentro questa query.
+
+</details>
+
+### Esercizio 33
+
+Dalla tabella `ordini (id, totale)`, mostrare i `3` ordini con totale piu alto.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Prima ordiniamo in modo decrescente, poi limitiamo il risultato.
+
+```sql
+SELECT id, totale
+FROM ordini
+ORDER BY totale DESC
+LIMIT 3;
+```
+
+Senza `ORDER BY`, le tre righe mostrate non sarebbero necessariamente quelle con totale piu alto.
+
+</details>
+
+### Esercizio 34
+
+Dalla tabella `prodotti (nome, prezzo)`, mostrare i prodotti con prezzo compreso tra `10` e `50`, ordinati dal prezzo piu basso al piu alto.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo due condizioni numeriche e poi ordiniamo il risultato.
+
+```sql
+SELECT nome, prezzo
+FROM prodotti
+WHERE prezzo >= 10 AND prezzo <= 50
+ORDER BY prezzo ASC;
+```
+
+La query tiene solo i prodotti nel range richiesto e li dispone in ordine crescente.
+
+</details>
+
+### Esercizio 35
+
+Dalla tabella `clienti (nome, citta, attivo)`, contare quanti clienti attivi ci sono per ogni citta.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Prima filtriamo i clienti attivi, poi raggruppiamo per citta.
+
+```sql
+SELECT citta, COUNT(*) AS clienti_attivi
+FROM clienti
+WHERE attivo = TRUE
+GROUP BY citta;
+```
+
+`WHERE` agisce prima del raggruppamento e lascia solo le righe utili al conteggio.
+
+</details>
+
+### Esercizio 36
+
+Dalla tabella `ordini (cliente_id, totale)`, mostrare i clienti con una spesa totale superiore a `200`, ordinando dal totale piu alto al piu basso.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Serve una somma per cliente, un filtro sul gruppo e un ordinamento finale.
+
+```sql
+SELECT cliente_id, SUM(totale) AS totale_speso
+FROM ordini
+GROUP BY cliente_id
+HAVING SUM(totale) > 200
+ORDER BY totale_speso DESC;
+```
+
+La query produce prima i totali per cliente, poi tiene solo quelli sopra 200 e li ordina.
+
+</details>
+
+### Esercizio 37
+
+Dalla tabella `prodotti (nome, prezzo)`, mostrare i prodotti con prezzo superiore alla media dei prezzi.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La media viene calcolata in una subquery e confrontata nella query esterna.
+
+```sql
+SELECT nome, prezzo
+FROM prodotti
+WHERE prezzo > (
+    SELECT AVG(prezzo)
+    FROM prodotti
+);
+```
+
+La query interna produce un solo valore, che la query esterna usa come soglia.
+
+</details>
+
+### Esercizio 38
+
+Dalla tabella `clienti (id, nome)` e dalla tabella `ordini (cliente_id)`, mostrare i clienti che hanno fatto almeno un ordine.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Possiamo usare una subquery con `IN` per confrontare l'id del cliente con la lista dei `cliente_id`.
+
+```sql
+SELECT nome
+FROM clienti
+WHERE id IN (
+    SELECT cliente_id
+    FROM ordini
+);
+```
+
+La subquery costruisce la lista degli id presenti negli ordini, poi la query esterna trova i nomi corrispondenti.
+
+</details>
+
+### Esercizio 39
+
+Dalla tabella `clienti (id, nome)` e dalla tabella `ordini (cliente_id, totale)`, mostrare i clienti che hanno almeno un ordine con totale maggiore di `100`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La subquery restringe prima gli ordini, poi la query esterna recupera i clienti giusti.
+
+```sql
+SELECT nome
+FROM clienti
+WHERE id IN (
+    SELECT cliente_id
+    FROM ordini
+    WHERE totale > 100
+);
+```
+
+La soluzione segue un ragionamento in due passaggi molto naturale.
+
+</details>
+
+### Esercizio 40
+
+Creare una CTE con nome `ordini_grandi` che contenga gli ordini con `totale > 100`, poi mostrare `id`, `cliente_id` e `totale`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `WITH` diamo un nome chiaro al risultato intermedio.
+
+```sql
+WITH ordini_grandi AS (
+    SELECT id, cliente_id, totale
+    FROM ordini
+    WHERE totale > 100
+)
+SELECT id, cliente_id, totale
+FROM ordini_grandi;
+```
+
+La CTE rende il passaggio intermedio esplicito e piu leggibile di una query annidata.
+
+</details>
+
+### Esercizio 41
+
+Creare una CTE `ordini_grandi` con gli ordini sopra `100`, poi mostrare il nome del cliente e il totale dell'ordine.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La CTE prepara i dati; la query principale li collega ai clienti.
+
+```sql
+WITH ordini_grandi AS (
+    SELECT id, cliente_id, totale
+    FROM ordini
+    WHERE totale > 100
+)
+SELECT clienti.nome, ordini_grandi.totale
+FROM ordini_grandi
+INNER JOIN clienti ON clienti.id = ordini_grandi.cliente_id;
+```
+
+Separare i due passaggi aiuta a leggere la query come una piccola sequenza logica.
+
+</details>
+
+### Esercizio 42
+
+Dalla tabella `ordini (id, data_ordine, totale)`, mostrare gli ordini dal piu recente al piu vecchio.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Per avere prima le date piu nuove ordiniamo in modo decrescente.
+
+```sql
+SELECT id, data_ordine, totale
+FROM ordini
+ORDER BY data_ordine DESC;
+```
+
+Questo ordinamento e molto comune quando si consultano cronologie o liste di attivita.
+
+</details>
+
+### Esercizio 43
+
+Dalla tabella `ordini (id, data_ordine, totale)`, mostrare i `10` ordini piu recenti.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Uniamo ordinamento per data e limitazione delle righe.
+
+```sql
+SELECT id, data_ordine, totale
+FROM ordini
+ORDER BY data_ordine DESC
+LIMIT 10;
+```
+
+Prima decidiamo quali righe vengono per prime, poi ne prendiamo solo dieci.
+
+</details>
+
+### Esercizio 44
+
+Dalla tabella `clienti (id, nome)` e dalla tabella `ordini (cliente_id)`, mostrare i clienti che non hanno ordini.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `LEFT JOIN` teniamo tutti i clienti e poi cerchiamo quelli senza corrispondenza.
+
+```sql
+SELECT clienti.nome
+FROM clienti
+LEFT JOIN ordini ON clienti.id = ordini.cliente_id
+WHERE ordini.cliente_id IS NULL;
+```
+
+Se la join non trova ordini, le colonne della tabella `ordini` diventano `NULL`.
+
+</details>
+
+### Esercizio 45
+
+Dalla tabella `clienti (id, nome, email)`, contare quante email risultano presenti.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+`COUNT(email)` conta solo le righe in cui `email` non e `NULL`.
+
+```sql
+SELECT COUNT(email) AS email_presenti
+FROM clienti;
+```
+
+Questo esercizio mostra la differenza tra contare le righe e contare i valori effettivamente presenti in una colonna.
+
+</details>
+
+### Esercizio 46
+
+Dalla tabella `clienti (citta, attivo)`, mostrare le citta con almeno `3` clienti attivi.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Filtriamo prima i clienti attivi e poi usiamo `HAVING` sul conteggio per citta.
+
+```sql
+SELECT citta, COUNT(*) AS numero_clienti_attivi
+FROM clienti
+WHERE attivo = TRUE
+GROUP BY citta
+HAVING COUNT(*) >= 3;
+```
+
+La query combina il filtro sulle righe con il filtro finale sui gruppi.
+
+</details>
+
+### Esercizio 47
+
+Dalla tabella `prodotti (categoria, prezzo)`, mostrare per ogni categoria il numero di prodotti e il prezzo medio.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Possiamo calcolare piu valori aggregati nello stesso raggruppamento.
+
+```sql
+SELECT categoria, COUNT(*) AS numero_prodotti, AVG(prezzo) AS prezzo_medio
+FROM prodotti
+GROUP BY categoria;
+```
+
+Ogni riga del risultato riassume una categoria con due informazioni diverse.
+
+</details>
+
+### Esercizio 48
+
+Dalle tabelle `clienti (id, nome)` e `ordini (cliente_id, totale)`, mostrare il totale speso da ogni cliente con il relativo nome.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Qui una `JOIN` porta il nome del cliente, mentre `SUM()` calcola la spesa complessiva.
+
+```sql
+SELECT clienti.id, clienti.nome, SUM(ordini.totale) AS totale_speso
+FROM clienti
+INNER JOIN ordini ON clienti.id = ordini.cliente_id
+GROUP BY clienti.id, clienti.nome;
+```
+
+La query unisce i dati delle due tabelle e poi riassume gli ordini per cliente.
+
+</details>
+
+### Esercizio 49
+
+Dalle tabelle `clienti (id, nome, attivo)` e `ordini (cliente_id, totale)`, mostrare il totale speso solo dai clienti attivi.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Filtriamo i clienti attivi e poi raggruppiamo i loro ordini.
+
+```sql
+SELECT clienti.id, clienti.nome, SUM(ordini.totale) AS totale_speso
+FROM clienti
+INNER JOIN ordini ON clienti.id = ordini.cliente_id
+WHERE clienti.attivo = TRUE
+GROUP BY clienti.id, clienti.nome;
+```
+
+Il filtro `WHERE` entra in gioco prima della somma finale.
+
+</details>
+
+### Esercizio 50
+
+Creare una CTE `totali_clienti` che calcoli la spesa totale per ogni cliente, poi mostrare solo i clienti con totale superiore a `200`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La CTE separa il calcolo dei totali dal filtro finale, rendendo la query piu leggibile.
+
+```sql
+WITH totali_clienti AS (
+    SELECT cliente_id, SUM(totale) AS totale_speso
+    FROM ordini
+    GROUP BY cliente_id
+)
+SELECT cliente_id, totale_speso
+FROM totali_clienti
+WHERE totale_speso > 200;
+```
+
+Prima costruiamo il riepilogo per cliente, poi lavoriamo su quel risultato come se fosse una tabella temporanea.
+
+</details>

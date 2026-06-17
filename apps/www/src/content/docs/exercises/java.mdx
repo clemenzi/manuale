@@ -1,0 +1,1547 @@
+---
+title: Esercizi Java
+description: 50 esercizi pratici e progressivi su Java.
+tableOfContents: false
+---
+
+### Esercizio 1
+
+Inviare in output il testo `Ciao, Java!`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Basta usare `System.out.println()` per stampare il testo richiesto.
+
+```java
+public class Saluto {
+    public static void main(String[] args) {
+        System.out.println("Ciao, Java!");
+    }
+}
+```
+
+Il programma esegue una sola istruzione e mostra esattamente il messaggio richiesto.
+
+</details>
+
+### Esercizio 2
+
+Conservare un nome e un'eta in due variabili e inviarli in output.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Prima salviamo i valori in due variabili, poi li stampiamo.
+
+```java
+public class Profilo {
+    public static void main(String[] args) {
+        String nome = "Luca";
+        int eta = 17;
+
+        System.out.println(nome);
+        System.out.println(eta);
+    }
+}
+```
+
+Le variabili permettono di riutilizzare i dati senza riscriverli ogni volta.
+
+</details>
+
+### Esercizio 3
+
+Calcolare la somma di due numeri interi salvati in variabili.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo l'operatore `+` e salviamo il risultato in una terza variabile.
+
+```java
+public class Somma {
+    public static void main(String[] args) {
+        int a = 12;
+        int b = 8;
+        int somma = a + b;
+
+        System.out.println(somma);
+    }
+}
+```
+
+La variabile `somma` contiene il totale da stampare alla fine.
+
+</details>
+
+### Esercizio 4
+
+Calcolare l'area di un rettangolo dati base e altezza.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+L'area si ottiene moltiplicando base per altezza.
+
+```java
+public class Rettangolo {
+    public static void main(String[] args) {
+        int base = 5;
+        int altezza = 3;
+        int area = base * altezza;
+
+        System.out.println(area);
+    }
+}
+```
+
+Il programma esegue un solo calcolo e stampa il valore finale.
+
+</details>
+
+### Esercizio 5
+
+Aumentare di 1 il valore di una variabile intera e mostrarlo prima e dopo.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Stampiamo il valore iniziale, poi aggiorniamo la variabile e stampiamo il nuovo risultato.
+
+```java
+public class Incremento {
+    public static void main(String[] args) {
+        int punti = 10;
+
+        System.out.println(punti);
+
+        punti = punti + 1;
+
+        System.out.println(punti);
+    }
+}
+```
+
+La seconda stampa mostra il nuovo valore ottenuto dopo l'aggiornamento.
+
+</details>
+
+### Esercizio 6
+
+Costruire un saluto unendo una stringa fissa e un nome salvato in variabile.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Per unire testi usiamo l'operatore `+`.
+
+```java
+public class SalutoNome {
+    public static void main(String[] args) {
+        String nome = "Sara";
+        String messaggio = "Ciao, " + nome + "!";
+
+        System.out.println(messaggio);
+    }
+}
+```
+
+La concatenazione crea una nuova stringa con tutte le parti unite.
+
+</details>
+
+### Esercizio 7
+
+Determinare quanti caratteri contiene una stringa.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il metodo `length()` restituisce la lunghezza del testo.
+
+```java
+public class LunghezzaStringa {
+    public static void main(String[] args) {
+        String parola = "Manuale";
+
+        System.out.println(parola.length());
+    }
+}
+```
+
+Il risultato e il numero totale di caratteri presenti nella stringa.
+
+</details>
+
+### Esercizio 8
+
+Estrarre i primi 4 caratteri di una stringa.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `substring(0, 4)` prendiamo i caratteri dall'indice 0 fino a prima dell'indice 4.
+
+```java
+public class Sottostringa {
+    public static void main(String[] args) {
+        String parola = "programmare";
+        String parte = parola.substring(0, 4);
+
+        System.out.println(parte);
+    }
+}
+```
+
+In questo caso il programma stampa `prog`.
+
+</details>
+
+### Esercizio 9
+
+Leggere un nome da input e stampare un saluto.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo `Scanner` per leggere il testo digitato e poi costruiamo il messaggio.
+
+```java
+import java.util.Scanner;
+
+public class SalutoInput {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Nome: ");
+        String nome = scanner.nextLine();
+
+        System.out.println("Ciao, " + nome + "!");
+
+        scanner.close();
+    }
+}
+```
+
+Il valore inserito dall'utente viene salvato in `nome` e riutilizzato nella stampa finale.
+
+</details>
+
+### Esercizio 10
+
+Leggere due numeri interi e stamparne la somma.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Leggiamo due `int` con `nextInt()` e li sommiamo.
+
+```java
+import java.util.Scanner;
+
+public class SommaInput {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Primo numero: ");
+        int a = scanner.nextInt();
+
+        System.out.print("Secondo numero: ");
+        int b = scanner.nextInt();
+
+        System.out.println(a + b);
+
+        scanner.close();
+    }
+}
+```
+
+Il programma lavora direttamente sui due valori letti dal terminale.
+
+</details>
+
+### Esercizio 11
+
+Leggere un prezzo e una quantita e calcolare il totale.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Per il prezzo usiamo `double`, mentre la quantita puo essere intera.
+
+```java
+import java.util.Scanner;
+
+public class TotaleOrdine {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Prezzo: ");
+        double prezzo = scanner.nextDouble();
+
+        System.out.print("Quantita: ");
+        int quantita = scanner.nextInt();
+
+        double totale = prezzo * quantita;
+        System.out.println(totale);
+
+        scanner.close();
+    }
+}
+```
+
+Il totale finale si ottiene moltiplicando il costo di una singola unita per il numero di pezzi.
+
+</details>
+
+### Esercizio 12
+
+Calcolare la media di tre numeri letti da input.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Sommiamo i tre valori e dividiamo il totale per `3`.
+
+```java
+import java.util.Scanner;
+
+public class MediaTreNumeri {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Primo numero: ");
+        double a = scanner.nextDouble();
+
+        System.out.print("Secondo numero: ");
+        double b = scanner.nextDouble();
+
+        System.out.print("Terzo numero: ");
+        double c = scanner.nextDouble();
+
+        double media = (a + b + c) / 3;
+        System.out.println(media);
+
+        scanner.close();
+    }
+}
+```
+
+La formula della media aritmetica richiede un solo calcolo finale.
+
+</details>
+
+### Esercizio 13
+
+Verificare se un numero intero e pari o dispari.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo l'operatore `%` per controllare il resto della divisione per `2`.
+
+```java
+import java.util.Scanner;
+
+public class PariDispari {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Numero: ");
+        int numero = scanner.nextInt();
+
+        if (numero % 2 == 0) {
+            System.out.println("Pari");
+        } else {
+            System.out.println("Dispari");
+        }
+
+        scanner.close();
+    }
+}
+```
+
+Se il resto e zero, il numero e pari; altrimenti e dispari.
+
+</details>
+
+### Esercizio 14
+
+Determinare se un numero e positivo, negativo oppure zero.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `if`, `else if` ed `else` gestiamo i tre casi possibili.
+
+```java
+import java.util.Scanner;
+
+public class SegnoNumero {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Numero: ");
+        int numero = scanner.nextInt();
+
+        if (numero > 0) {
+            System.out.println("Positivo");
+        } else if (numero < 0) {
+            System.out.println("Negativo");
+        } else {
+            System.out.println("Zero");
+        }
+
+        scanner.close();
+    }
+}
+```
+
+Le condizioni vengono controllate dall'alto verso il basso fino al primo caso vero.
+
+</details>
+
+### Esercizio 15
+
+Determinare il maggiore tra due numeri.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Confrontiamo i due valori e stampiamo quello piu grande.
+
+```java
+import java.util.Scanner;
+
+public class MaggioreDiDue {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Primo numero: ");
+        int a = scanner.nextInt();
+
+        System.out.print("Secondo numero: ");
+        int b = scanner.nextInt();
+
+        if (a > b) {
+            System.out.println(a);
+        } else {
+            System.out.println(b);
+        }
+
+        scanner.close();
+    }
+}
+```
+
+Il programma decide quale valore mostrare usando una sola condizione.
+
+</details>
+
+### Esercizio 16
+
+Determinare il giudizio di un voto numerico usando tre fasce: ottimo, sufficiente, insufficiente.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `else if` possiamo distinguere piu intervalli.
+
+```java
+import java.util.Scanner;
+
+public class GiudizioVoto {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Voto: ");
+        int voto = scanner.nextInt();
+
+        if (voto >= 9) {
+            System.out.println("Ottimo");
+        } else if (voto >= 6) {
+            System.out.println("Sufficiente");
+        } else {
+            System.out.println("Insufficiente");
+        }
+
+        scanner.close();
+    }
+}
+```
+
+Java controlla i casi in ordine e si ferma al primo che risulta vero.
+
+</details>
+
+### Esercizio 17
+
+Verificare se una persona puo entrare solo se ha almeno 18 anni e ha il biglietto.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Combiniamo due condizioni con l'operatore logico `&&`.
+
+```java
+public class Ingresso {
+    public static void main(String[] args) {
+        int eta = 20;
+        boolean haBiglietto = true;
+
+        if (eta >= 18 && haBiglietto) {
+            System.out.println("Ingresso consentito");
+        } else {
+            System.out.println("Ingresso negato");
+        }
+    }
+}
+```
+
+L'ingresso viene consentito solo quando entrambe le condizioni risultano vere.
+
+</details>
+
+### Esercizio 18
+
+Mostrare il nome di un giorno partendo da un numero da 1 a 3.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+`switch` e comodo quando confrontiamo una stessa variabile con valori precisi.
+
+```java
+import java.util.Scanner;
+
+public class GiornoSettimana {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Numero giorno: ");
+        int giorno = scanner.nextInt();
+
+        switch (giorno) {
+            case 1:
+                System.out.println("Lunedi");
+                break;
+            case 2:
+                System.out.println("Martedi");
+                break;
+            case 3:
+                System.out.println("Mercoledi");
+                break;
+            default:
+                System.out.println("Valore non valido");
+        }
+
+        scanner.close();
+    }
+}
+```
+
+`break` interrompe lo `switch` dopo il caso trovato.
+
+</details>
+
+### Esercizio 19
+
+Gestire una scelta di menu con `switch`: 1 per salutare, 2 per mostrare aiuto.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Stampiamo il menu, leggiamo la scelta e reagiamo con `switch`.
+
+```java
+import java.util.Scanner;
+
+public class MenuSemplice {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("1. Saluta");
+        System.out.println("2. Aiuto");
+        System.out.print("Scelta: ");
+        int scelta = scanner.nextInt();
+
+        switch (scelta) {
+            case 1:
+                System.out.println("Ciao!");
+                break;
+            case 2:
+                System.out.println("Scegli 1 oppure 2.");
+                break;
+            default:
+                System.out.println("Scelta non valida");
+        }
+
+        scanner.close();
+    }
+}
+```
+
+Ogni valore della variabile `scelta` porta a un comportamento diverso.
+
+</details>
+
+### Esercizio 20
+
+Stampare i numeri da 1 a 5 con un ciclo `while`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo una variabile contatore che aumenta a ogni giro.
+
+```java
+public class WhileUnoCinque {
+    public static void main(String[] args) {
+        int numero = 1;
+
+        while (numero <= 5) {
+            System.out.println(numero);
+            numero++;
+        }
+    }
+}
+```
+
+Il ciclo continua finche la condizione resta vera.
+
+</details>
+
+### Esercizio 21
+
+Stampare i numeri da 5 a 1 con un ciclo `while`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Questa volta partiamo da 5 e diminuiamo il contatore.
+
+```java
+public class WhileCinqueUno {
+    public static void main(String[] args) {
+        int numero = 5;
+
+        while (numero >= 1) {
+            System.out.println(numero);
+            numero--;
+        }
+    }
+}
+```
+
+Il programma si ferma quando `numero` scende sotto 1.
+
+</details>
+
+### Esercizio 22
+
+Calcolare la somma dei numeri da 1 a `n` usando `while`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Accumuliamo ogni valore in una variabile `somma` mentre il contatore avanza.
+
+```java
+import java.util.Scanner;
+
+public class SommaDaUnoAN {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("n: ");
+        int n = scanner.nextInt();
+
+        int i = 1;
+        int somma = 0;
+
+        while (i <= n) {
+            somma = somma + i;
+            i++;
+        }
+
+        System.out.println(somma);
+
+        scanner.close();
+    }
+}
+```
+
+Il ciclo aggiunge un numero per volta fino a raggiungere `n`.
+
+</details>
+
+### Esercizio 23
+
+Continuare a chiedere una password finche non viene inserita la parola `java`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `while` ripetiamo la lettura finche la stringa non coincide con il valore atteso.
+
+```java
+import java.util.Scanner;
+
+public class PasswordCorretta {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String password = "";
+
+        while (!password.equals("java")) {
+            System.out.print("Password: ");
+            password = scanner.nextLine();
+        }
+
+        System.out.println("Accesso consentito");
+
+        scanner.close();
+    }
+}
+```
+
+La condizione usa `equals()` per confrontare il contenuto della stringa.
+
+</details>
+
+### Esercizio 24
+
+Stampare i numeri da 1 a 10 con un ciclo `for`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il `for` e utile quando sappiamo gia quante ripetizioni servono.
+
+```java
+public class ForUnoDieci {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(i);
+        }
+    }
+}
+```
+
+Il contatore `i` parte da 1, cresce di 1 e il ciclo si ferma quando supera 10.
+
+</details>
+
+### Esercizio 25
+
+Mostrare la tabellina di un numero da 1 a 10.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Leggiamo il numero e usiamo un `for` per moltiplicarlo per tutti i valori da 1 a 10.
+
+```java
+import java.util.Scanner;
+
+public class Tabellina {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Numero: ");
+        int numero = scanner.nextInt();
+
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(numero * i);
+        }
+
+        scanner.close();
+    }
+}
+```
+
+Ogni giro del ciclo produce una riga della tabellina.
+
+</details>
+
+### Esercizio 26
+
+Calcolare la somma dei numeri pari da 2 a 20 con un ciclo `for`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Facciamo avanzare il contatore di 2 in 2 e accumuliamo i valori letti.
+
+```java
+public class SommaPari {
+    public static void main(String[] args) {
+        int somma = 0;
+
+        for (int i = 2; i <= 20; i += 2) {
+            somma = somma + i;
+        }
+
+        System.out.println(somma);
+    }
+}
+```
+
+In questo modo il ciclo visita solo i numeri pari e salta quelli dispari.
+
+</details>
+
+### Esercizio 27
+
+Stampare i numeri da 10 a 1 con un ciclo `for`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Anche il `for` puo contare all'indietro usando `i--`.
+
+```java
+public class ContoAllaRovescia {
+    public static void main(String[] args) {
+        for (int i = 10; i >= 1; i--) {
+            System.out.println(i);
+        }
+    }
+}
+```
+
+Il contatore diminuisce a ogni giro fino a raggiungere il valore finale.
+
+</details>
+
+### Esercizio 28
+
+Inviare in output tutti gli elementi di un array di stringhe.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo un `for` con indice per attraversare tutto l'array.
+
+```java
+public class StampaArray {
+    public static void main(String[] args) {
+        String[] nomi = {"Luca", "Sara", "Mina"};
+
+        for (int i = 0; i < nomi.length; i++) {
+            System.out.println(nomi[i]);
+        }
+    }
+}
+```
+
+La condizione `i < nomi.length` evita di uscire dai limiti dell'array.
+
+</details>
+
+### Esercizio 29
+
+Calcolare la somma degli elementi di un array di interi.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Partiamo da zero e aggiungiamo un elemento alla volta.
+
+```java
+public class SommaArray {
+    public static void main(String[] args) {
+        int[] numeri = {4, 7, 2, 9};
+        int somma = 0;
+
+        for (int i = 0; i < numeri.length; i++) {
+            somma = somma + numeri[i];
+        }
+
+        System.out.println(somma);
+    }
+}
+```
+
+Alla fine `somma` contiene il totale di tutti i valori presenti nell'array.
+
+</details>
+
+### Esercizio 30
+
+Determinare il valore massimo contenuto in un array di interi.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo il primo elemento come valore iniziale e poi lo confrontiamo con gli altri.
+
+```java
+public class MassimoArray {
+    public static void main(String[] args) {
+        int[] numeri = {12, 5, 28, 9, 17};
+        int massimo = numeri[0];
+
+        for (int i = 1; i < numeri.length; i++) {
+            if (numeri[i] > massimo) {
+                massimo = numeri[i];
+            }
+        }
+
+        System.out.println(massimo);
+    }
+}
+```
+
+Ogni volta che troviamo un numero piu grande, aggiorniamo `massimo`.
+
+</details>
+
+### Esercizio 31
+
+Contare quanti valori positivi sono presenti in un array di interi.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Serve un contatore che aumenta solo quando un elemento e maggiore di zero.
+
+```java
+public class ContaPositivi {
+    public static void main(String[] args) {
+        int[] numeri = {-3, 4, 0, 7, -1, 2};
+        int conteggio = 0;
+
+        for (int i = 0; i < numeri.length; i++) {
+            if (numeri[i] > 0) {
+                conteggio++;
+            }
+        }
+
+        System.out.println(conteggio);
+    }
+}
+```
+
+Il programma considera positivi solo i valori strettamente maggiori di zero.
+
+</details>
+
+### Esercizio 32
+
+Calcolare la media dei valori contenuti in un array di interi.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Sommiamo tutti i valori e poi dividiamo per la lunghezza dell'array.
+
+```java
+public class MediaArray {
+    public static void main(String[] args) {
+        int[] numeri = {6, 8, 7, 9};
+        int somma = 0;
+
+        for (int i = 0; i < numeri.length; i++) {
+            somma = somma + numeri[i];
+        }
+
+        double media = (double) somma / numeri.length;
+        System.out.println(media);
+    }
+}
+```
+
+Il cast a `double` evita una divisione intera e permette di ottenere anche la parte decimale.
+
+</details>
+
+### Esercizio 33
+
+Verificare se un numero e presente in un array.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Scorriamo l'array e usiamo una variabile booleana per ricordare se troviamo il valore cercato.
+
+```java
+import java.util.Scanner;
+
+public class CercaNumero {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] numeri = {3, 8, 12, 5, 9};
+        boolean trovato = false;
+
+        System.out.print("Numero da cercare: ");
+        int valore = scanner.nextInt();
+
+        for (int i = 0; i < numeri.length; i++) {
+            if (numeri[i] == valore) {
+                trovato = true;
+            }
+        }
+
+        System.out.println(trovato);
+
+        scanner.close();
+    }
+}
+```
+
+Se almeno un elemento coincide con il valore richiesto, `trovato` diventa `true`.
+
+</details>
+
+### Esercizio 34
+
+Creare un metodo che stampi una linea di separazione e richiamarlo tre volte.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Definiamo un metodo piccolo e lo riutilizziamo dove serve.
+
+```java
+public class Separatore {
+    public static void stampaSeparatore() {
+        System.out.println("----------");
+    }
+
+    public static void main(String[] args) {
+        stampaSeparatore();
+        System.out.println("Titolo");
+        stampaSeparatore();
+        System.out.println("Fine");
+        stampaSeparatore();
+    }
+}
+```
+
+Il metodo evita di riscrivere la stessa istruzione piu volte.
+
+</details>
+
+### Esercizio 35
+
+Creare un metodo che riceva un nome e stampi un saluto personalizzato.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il parametro rende il metodo piu flessibile rispetto a una stampa fissa.
+
+```java
+public class SalutoMetodo {
+    public static void saluta(String nome) {
+        System.out.println("Ciao, " + nome + "!");
+    }
+
+    public static void main(String[] args) {
+        saluta("Luca");
+        saluta("Sara");
+    }
+}
+```
+
+Lo stesso metodo puo essere richiamato con argomenti diversi.
+
+</details>
+
+### Esercizio 36
+
+Creare un metodo che restituisca il quadrato di un numero intero.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Qui il metodo non stampa subito il risultato, ma lo restituisce con `return`.
+
+```java
+public class QuadratoMetodo {
+    public static int quadrato(int numero) {
+        return numero * numero;
+    }
+
+    public static void main(String[] args) {
+        int risultato = quadrato(6);
+        System.out.println(risultato);
+    }
+}
+```
+
+Il valore prodotto dal metodo viene salvato in una variabile e poi stampato.
+
+</details>
+
+### Esercizio 37
+
+Creare un metodo che restituisca il maggiore tra due interi.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il metodo confronta i due argomenti e restituisce il valore piu grande.
+
+```java
+public class MaggioreMetodo {
+    public static int maggiore(int a, int b) {
+        if (a > b) {
+            return a;
+        } else {
+            return b;
+        }
+    }
+
+    public static void main(String[] args) {
+        int risultato = maggiore(14, 9);
+        System.out.println(risultato);
+    }
+}
+```
+
+In questo modo la logica del confronto resta chiusa dentro un metodo dedicato.
+
+</details>
+
+### Esercizio 38
+
+Creare un metodo che calcoli la media di tre numeri e restituisca il risultato.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Riceviamo tre valori, applichiamo la formula della media e restituiamo il risultato.
+
+```java
+public class MediaMetodo {
+    public static double media(double a, double b, double c) {
+        return (a + b + c) / 3;
+    }
+
+    public static void main(String[] args) {
+        double risultato = media(8, 7, 9);
+        System.out.println(risultato);
+    }
+}
+```
+
+Il metodo puo essere riutilizzato ogni volta che serve la media di tre numeri.
+
+</details>
+
+### Esercizio 39
+
+Creare un metodo che dica se un numero e pari restituendo un valore booleano.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il metodo controlla il resto della divisione per 2 e restituisce `true` oppure `false`.
+
+```java
+public class PariMetodo {
+    public static boolean isPari(int numero) {
+        return numero % 2 == 0;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isPari(8));
+        System.out.println(isPari(5));
+    }
+}
+```
+
+Un metodo booleano e utile quando vuoi riusare una verifica in piu punti del programma.
+
+</details>
+
+### Esercizio 40
+
+Creare un metodo che sommi tutti i valori di un array e restituisca il totale.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Passiamo l'array al metodo e lasciamo che sia lui a scorrerlo.
+
+```java
+public class SommaArrayMetodo {
+    public static int sommaArray(int[] numeri) {
+        int somma = 0;
+
+        for (int i = 0; i < numeri.length; i++) {
+            somma = somma + numeri[i];
+        }
+
+        return somma;
+    }
+
+    public static void main(String[] args) {
+        int[] valori = {2, 4, 6, 8};
+        System.out.println(sommaArray(valori));
+    }
+}
+```
+
+Il metodo riceve i dati dall'esterno e restituisce un solo risultato finale.
+
+</details>
+
+### Esercizio 41
+
+Creare una classe `Persona` con i campi `nome` ed `eta`, poi stampare i valori di un oggetto.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Definiamo una classe semplice e poi creiamo un oggetto con `new`.
+
+```java
+class Persona {
+    String nome;
+    int eta;
+}
+
+public class TestPersona {
+    public static void main(String[] args) {
+        Persona persona = new Persona();
+        persona.nome = "Luca";
+        persona.eta = 20;
+
+        System.out.println(persona.nome);
+        System.out.println(persona.eta);
+    }
+}
+```
+
+L'oggetto `persona` contiene i dati reali descritti dalla classe `Persona`.
+
+</details>
+
+### Esercizio 42
+
+Creare una classe `Prodotto` con i campi `nome` e `prezzo`, poi mostrare i dati di un oggetto.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La classe raggruppa due dati collegati e rende il concetto piu chiaro.
+
+```java
+class Prodotto {
+    String nome;
+    double prezzo;
+}
+
+public class TestProdotto {
+    public static void main(String[] args) {
+        Prodotto prodotto = new Prodotto();
+        prodotto.nome = "Quaderno";
+        prodotto.prezzo = 2.50;
+
+        System.out.println(prodotto.nome);
+        System.out.println(prodotto.prezzo);
+    }
+}
+```
+
+Invece di usare variabili separate, qui i dati stanno insieme dentro lo stesso oggetto.
+
+</details>
+
+### Esercizio 43
+
+Aggiungere a una classe `Persona` un metodo che stampi un saluto con il nome dell'oggetto.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il metodo puo usare direttamente i campi dell'oggetto su cui viene chiamato.
+
+```java
+class Persona {
+    String nome;
+
+    void saluta() {
+        System.out.println("Ciao, sono " + nome);
+    }
+}
+
+public class TestSalutoPersona {
+    public static void main(String[] args) {
+        Persona persona = new Persona();
+        persona.nome = "Sara";
+
+        persona.saluta();
+    }
+}
+```
+
+Il metodo legge il valore del campo `nome` dell'oggetto corrente.
+
+</details>
+
+### Esercizio 44
+
+Creare una classe `Rettangolo` con i campi `base` e `altezza` e un metodo che stampi l'area.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Mettiamo insieme dati e comportamento nella stessa classe.
+
+```java
+class Rettangolo {
+    int base;
+    int altezza;
+
+    void mostraArea() {
+        System.out.println(base * altezza);
+    }
+}
+
+public class TestRettangolo {
+    public static void main(String[] args) {
+        Rettangolo rettangolo = new Rettangolo();
+        rettangolo.base = 6;
+        rettangolo.altezza = 4;
+
+        rettangolo.mostraArea();
+    }
+}
+```
+
+Il metodo usa i campi dell'oggetto per calcolare il risultato senza ricevere parametri.
+
+</details>
+
+### Esercizio 45
+
+Creare una classe `Studente` con il campo `voto` e un metodo che dica se il voto e sufficiente.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il metodo controlla il valore del campo e stampa un messaggio in base al risultato.
+
+```java
+class Studente {
+    int voto;
+
+    void mostraEsito() {
+        if (voto >= 6) {
+            System.out.println("Sufficiente");
+        } else {
+            System.out.println("Insufficiente");
+        }
+    }
+}
+
+public class TestStudente {
+    public static void main(String[] args) {
+        Studente studente = new Studente();
+        studente.voto = 7;
+
+        studente.mostraEsito();
+    }
+}
+```
+
+Questo esercizio unisce una classe semplice con una condizione.
+
+</details>
+
+### Esercizio 46
+
+Leggere 5 numeri da input, salvarli in un array e stamparli tutti.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo un primo ciclo per riempire l'array e un secondo ciclo per mostrarne gli elementi.
+
+```java
+import java.util.Scanner;
+
+public class LeggiEStampaArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] numeri = new int[5];
+
+        for (int i = 0; i < numeri.length; i++) {
+            System.out.print("Numero: ");
+            numeri[i] = scanner.nextInt();
+        }
+
+        for (int i = 0; i < numeri.length; i++) {
+            System.out.println(numeri[i]);
+        }
+
+        scanner.close();
+    }
+}
+```
+
+La dimensione fissa dell'array permette di sapere in anticipo quante letture fare.
+
+</details>
+
+### Esercizio 47
+
+Leggere 5 numeri da input e determinare il massimo.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Prima riempiamo l'array, poi lo scorriamo per trovare il valore piu grande.
+
+```java
+import java.util.Scanner;
+
+public class MassimoInputArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] numeri = new int[5];
+
+        for (int i = 0; i < numeri.length; i++) {
+            System.out.print("Numero: ");
+            numeri[i] = scanner.nextInt();
+        }
+
+        int massimo = numeri[0];
+
+        for (int i = 1; i < numeri.length; i++) {
+            if (numeri[i] > massimo) {
+                massimo = numeri[i];
+            }
+        }
+
+        System.out.println(massimo);
+
+        scanner.close();
+    }
+}
+```
+
+Il primo elemento viene usato come riferimento iniziale per i confronti successivi.
+
+</details>
+
+### Esercizio 48
+
+Leggere 5 numeri da input e calcolarne la media.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Raccogliamo i valori nell'array, calcoliamo la somma e poi dividiamo per il numero di elementi.
+
+```java
+import java.util.Scanner;
+
+public class MediaInputArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] numeri = new int[5];
+        int somma = 0;
+
+        for (int i = 0; i < numeri.length; i++) {
+            System.out.print("Numero: ");
+            numeri[i] = scanner.nextInt();
+            somma = somma + numeri[i];
+        }
+
+        double media = (double) somma / numeri.length;
+        System.out.println(media);
+
+        scanner.close();
+    }
+}
+```
+
+La media viene calcolata solo dopo aver letto tutti i valori richiesti.
+
+</details>
+
+### Esercizio 49
+
+Chiedere un testo e continuare a ripetere la richiesta finche non viene inserito `fine`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Questo esercizio allena l'uso di `while` con stringhe e `equals()`.
+
+```java
+import java.util.Scanner;
+
+public class RipetiFincheFine {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String testo = "";
+
+        while (!testo.equals("fine")) {
+            System.out.print("Testo: ");
+            testo = scanner.nextLine();
+        }
+
+        System.out.println("Programma terminato");
+
+        scanner.close();
+    }
+}
+```
+
+Il ciclo prosegue finche il valore letto non coincide con la parola di uscita.
+
+</details>
+
+### Esercizio 50
+
+Creare un piccolo menu ripetuto con `while` e `switch` che termini quando l'utente sceglie `0`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Uniamo un ciclo ripetuto e uno `switch` per gestire piu scelte finche non arriva il comando di uscita.
+
+```java
+import java.util.Scanner;
+
+public class MenuRipetuto {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int scelta = -1;
+
+        while (scelta != 0) {
+            System.out.println("1. Saluta");
+            System.out.println("2. Mostra numero fisso");
+            System.out.println("0. Esci");
+            System.out.print("Scelta: ");
+            scelta = scanner.nextInt();
+
+            switch (scelta) {
+                case 1:
+                    System.out.println("Ciao!");
+                    break;
+                case 2:
+                    System.out.println(42);
+                    break;
+                case 0:
+                    System.out.println("Uscita");
+                    break;
+                default:
+                    System.out.println("Scelta non valida");
+            }
+        }
+
+        scanner.close();
+    }
+}
+```
+
+Il programma continua a mostrare il menu finche l'utente non inserisce `0`.
+
+</details>
