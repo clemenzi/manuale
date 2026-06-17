@@ -24,7 +24,7 @@ for numero in range(1, 4):
 export const Route = createFileRoute("/s/python")({
   head: () => ({
     meta: [
-      { title: "Sandbox Python Gratuita - MANUALE LAB" },
+      { title: "Sandbox Python Gratuita - Manuale Lab" },
       { name: "description", content: "Sandbox online gratuita per Python" },
       { name: "keywords", content: "Python, sandbox, online, gratuita, manuale.dev" },
     ],

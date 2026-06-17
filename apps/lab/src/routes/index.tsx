@@ -52,7 +52,7 @@ function Home() {
         <section>
           <h2 className="text-5xl font-logo">Tutto locale*, nessuna configurazione necessaria.</h2>
           <p className="text-xl">
-            MANUALE LAB ti permette di provare linguaggi e tool di programmazione senza installare
+            Manuale Lab ti permette di provare linguaggi e tool di programmazione senza installare
             nulla. La maggior parte dei linguaggi e tool supportati funzionano direttamente nel{" "}
             <span className="font-bold">browser</span>.
           </p>
@@ -173,7 +173,7 @@ function Home() {
           </div>
         </section>
         <footer>
-          <p>&copy; {new Date().getFullYear()} MANUALE LAB. Tutti i diritti riservati.</p>
+          <p>&copy; {new Date().getFullYear()} Manuale Lab. Tutti i diritti riservati.</p>
         </footer>
       </div>
     </main>

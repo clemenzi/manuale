@@ -88,7 +88,7 @@ export default defineConfig({
   site,
   integrations: [
     starlight({
-      title: "MANUALE LAB",
+      title: "MANUALE",
       description:
         "Una guida pratica alla programmazione in Python, PHP, Java, SQL e C++ per chi parte da zero.",
       favicon: "/favicon.ico",
@@ -101,7 +101,7 @@ export default defineConfig({
       logo: {
         dark: "./src/assets/logo-dark.svg",
         light: "./src/assets/logo-light.svg",
-        alt: "MANUALE LAB Logo",
+        alt: "Manuale Logo",
       },
       routeMiddleware: "./src/route-middleware.ts",
       components: {},
