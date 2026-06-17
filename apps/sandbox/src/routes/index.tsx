@@ -13,6 +13,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
   component: Home,
+  head: () => ({
+    meta: [
+      {
+        title:
+          "Manuale Lab - Prova subito vari linguaggi e tool di programmazione senza installare nulla",
+      },
+    ],
+  }),
 });
 
 function Home() {
