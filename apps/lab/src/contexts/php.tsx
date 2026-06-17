@@ -8,8 +8,8 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { LatestSupportedPHPVersion, PHP, type AllPHPVersion } from "@php-wasm/universal";
-import { loadWebRuntime, type PHPWebLoaderOptions } from "@php-wasm/web";
+import { PHP, type EmscriptenOptions } from "@php-wasm/universal";
+import { LAB_PHP_VERSION, loadLabPHPRuntime } from "#/lib/php/runtime";
 
 const PHP_WORKDIR = "/www";
 const PHP_ENTRYPOINT = `${PHP_WORKDIR}/index.php`;
@@ -26,7 +26,7 @@ export type PHPExecutionResult = {
 
 type PHPContextValue = {
   php: PHP | null;
-  phpVersion: AllPHPVersion;
+  phpVersion: typeof LAB_PHP_VERSION;
   error: Error | null;
   status: PHPStatus;
   version: number;
@@ -38,8 +38,7 @@ const PHPContext = createContext<PHPContextValue | null>(null);
 
 type PHPProviderProps = {
   children: ReactNode;
-  phpVersion?: AllPHPVersion;
-  loaderOptions?: PHPWebLoaderOptions;
+  loaderOptions?: EmscriptenOptions;
 };
 
 export function toPHPError(caughtError: unknown) {
@@ -62,22 +61,15 @@ function closePHPEnvironment(php: PHP | null) {
   }
 }
 
-async function createPHPEnvironment(
-  phpVersion: AllPHPVersion,
-  loaderOptions?: PHPWebLoaderOptions,
-) {
-  const php = new PHP(await loadWebRuntime(phpVersion, loaderOptions));
+async function createPHPEnvironment(loaderOptions?: EmscriptenOptions) {
+  const php = new PHP(await loadLabPHPRuntime(loaderOptions));
   php.mkdir(PHP_WORKDIR);
   php.chdir(PHP_WORKDIR);
   php.writeFile(`${PHP_WORKDIR}/index.php`, '<?php\necho "Hello, World!";\n\n?>');
   return php;
 }
 
-export function PHPProvider({
-  children,
-  phpVersion = LatestSupportedPHPVersion,
-  loaderOptions,
-}: PHPProviderProps) {
+export function PHPProvider({ children, loaderOptions }: PHPProviderProps) {
   const phpRef = useRef<PHP | null>(null);
   const [php, setPHP] = useState<PHP | null>(null);
   const [error, setError] = useState<Error | null>(null);
@@ -90,7 +82,7 @@ export function PHPProvider({
       setError(null);
 
       try {
-        const nextPHP = await createPHPEnvironment(phpVersion, loaderOptions);
+        const nextPHP = await createPHPEnvironment(loaderOptions);
 
         if (!isCurrent()) {
           closePHPEnvironment(nextPHP);
@@ -114,7 +106,7 @@ export function PHPProvider({
         setStatus("error");
       }
     },
-    [loaderOptions, phpVersion],
+    [loaderOptions],
   );
 
   useEffect(() => {
@@ -172,14 +164,14 @@ export function PHPProvider({
   const value = useMemo<PHPContextValue>(
     () => ({
       php,
-      phpVersion,
+      phpVersion: LAB_PHP_VERSION,
       error,
       status,
       version,
       execute,
       resetEnvironment,
     }),
-    [php, phpVersion, error, status, version, execute, resetEnvironment],
+    [php, error, status, version, execute, resetEnvironment],
   );
 
   return <PHPContext.Provider value={value}>{children}</PHPContext.Provider>;

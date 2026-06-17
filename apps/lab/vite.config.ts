@@ -8,17 +8,12 @@ import tailwindcss from "@tailwindcss/vite";
 
 const config = defineConfig({
   resolve: {
-    alias: {
-      "../intl/shared/icu.dat": new URL(
-        "./node_modules/@php-wasm/web/shared/icu.dat",
-        import.meta.url,
-      ).pathname,
-    },
+    alias: {},
     tsconfigPaths: true,
   },
-  assetsInclude: [/\.dat$/, /\.wasm$/, /\.so$/, /\.la$/],
+  assetsInclude: [/\.wasm$/],
   optimizeDeps: {
-    exclude: ["@php-wasm/web", "pyodide"],
+    exclude: ["pyodide"],
   },
   plugins: [
     devtools(),

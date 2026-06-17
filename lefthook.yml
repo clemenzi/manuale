@@ -3,7 +3,9 @@ pre-commit:
   commands:
     format:
       glob: "*.{js,ts,jsx,tsx,css,mjs,md,mdx}"
+      exclude: "apps/lab/src/routeTree.gen.ts"
       run: pnpm run fmt:check {staged_files}
     lint-web:
       glob: "*.{js,ts,jsx,tsx,astro,css,mjs}"
+      exclude: "apps/lab/src/routeTree.gen.ts"
       run: pnpm run lint {staged_files}

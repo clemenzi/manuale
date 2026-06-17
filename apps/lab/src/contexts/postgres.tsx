@@ -1,4 +1,5 @@
-import { PGlite, type Results } from "@electric-sql/pglite";
+import type { PGlite, Results } from "@electric-sql/pglite";
+import { getPGliteAssetOptions, getPGliteConstructor } from "#/lib/postgres/assets";
 import {
   createContext,
   useCallback,
@@ -59,7 +60,8 @@ export function PostgresProvider({ children }: { children: ReactNode }) {
     setError(null);
 
     try {
-      const nextDb = await PGlite.create();
+      const PGliteConstructor = await getPGliteConstructor();
+      const nextDb = await PGliteConstructor.create(await getPGliteAssetOptions());
 
       if (operation !== operationRef.current) {
         await nextDb.close();

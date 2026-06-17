@@ -14,6 +14,7 @@ import type { VirtualFiles } from "#/hooks/files";
 
 export const PYTHON_WORKDIR = "/home/pyodide";
 export const PYTHON_ENTRYPOINT = `${PYTHON_WORKDIR}/main.py`;
+const PYODIDE_INDEX_URL = "https://cdn.jsdelivr.net/pyodide/v0.29.4/full/";
 
 type PythonStatus = "loading" | "ready" | "error";
 
@@ -124,7 +125,10 @@ del __manuale_name
 }
 
 async function createPythonEnvironment(loadOptions?: PyodideConfig) {
-  const pyodide = await loadPyodide(loadOptions);
+  const pyodide = await loadPyodide({
+    indexURL: PYODIDE_INDEX_URL,
+    ...loadOptions,
+  });
   await resetPythonEnvironment(pyodide);
   return pyodide;
 }
