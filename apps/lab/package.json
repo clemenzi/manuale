@@ -1,5 +1,5 @@
 {
-  "name": "sandbox",
+  "name": "lab",
   "private": true,
   "type": "module",
   "imports": {
