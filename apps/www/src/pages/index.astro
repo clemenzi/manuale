@@ -1,51 +1,62 @@
 ---
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
-import { CardGrid, LinkCard } from "@astrojs/starlight/components";
+import { CardGrid, LinkCard, LinkButton } from "@astrojs/starlight/components";
 
 const tracks = [
   {
     href: "/python/",
     title: "Python",
-    description: "Impara a programmare partendo dalle basi: variabili, condizioni, funzioni e automazioni.",
+    description:
+      "Un ottimo primo linguaggio: basi della programmazione, automazioni e tanti esempi facili da seguire.",
   },
   {
     href: "/php/",
     title: "PHP",
-    description: "Studia PHP per il web: sintassi, form, sessioni, database e pagine dinamiche.",
+    description:
+      "Per creare siti dinamici: sintassi, form, sessioni, database e logica lato server spiegati bene.",
   },
   {
     href: "/java/",
     title: "Java",
-    description: "Costruisci basi solide con Java: programmi, oggetti, collezioni, errori e strumenti.",
+    description:
+      "Per costruire basi solide: programmi, oggetti, collezioni, gestione degli errori e strumenti utili.",
   },
   {
     href: "/sql/",
     title: "SQL",
-    description: "Impara SQL con query, tabelle, join e database spiegati in modo progressivo.",
+    description:
+      "Per capire davvero i database: query, tabelle, join e operazioni reali spiegate passo dopo passo.",
   },
   {
     href: "/cpp/",
     title: "C++",
-    description: "Entra nel C++ con sintassi, compilazione, memoria, oggetti e prestazioni.",
+    description:
+      "Per andare piu a fondo: sintassi, compilazione, memoria, oggetti e prestazioni senza salti difficili.",
   },
 ];
 ---
 
 <StarlightPage
   frontmatter={{
-    title: "Impara a programmare, una guida chiara alla volta",
+    title: "Impara a programmare con guide semplici e pratiche",
     description:
-      "Manuale offre guide di programmazione in italiano per imparare Python, PHP, Java, SQL e C++ partendo da zero.",
+      "Manuale raccoglie guide di programmazione in italiano per studiare Python, PHP, Java, SQL e C++ con spiegazioni chiare, esempi concreti ed esercizi progressivi.",
     tableOfContents: false,
     hero: {
-      title: "Impara a programmare, una guida chiara alla volta.",
+      title: "Impara a programmare senza perderti per strada.",
       tagline:
-        "Percorsi in italiano su Python, PHP, Java, SQL e C++: spiegazioni semplici, esempi pratici e lezioni pensate per partire da zero senza perdersi.",
+        "Manuale ti accompagna dalle basi ai concetti piu utili con lezioni in italiano, esempi concreti ed esercizi pensati per chi parte da zero e vuole capire davvero.",
       actions: [
         {
-          text: "Inizia dal percorso giusto",
+          text: "Trova la tua guida",
           link: "#guide",
           variant: "primary",
+          icon: "right-arrow",
+        },
+        {
+          text: "Allenati con un esercizio",
+          link: "/exercises/python",
+          variant: "secondary",
           icon: "right-arrow",
         },
       ],
@@ -56,19 +67,83 @@ const tracks = [
   <div class="not-content pb-16">
     <section id="guide" class="scroll-mt-24">
       <div class="mb-6">
-        <p class="m-0 text-sm font-bold uppercase tracking-widest text-(--sl-color-accent-high)">
+        <p
+          class="m-0 text-sm font-bold uppercase tracking-widest text-(--sl-color-accent-high)"
+        >
           Guide di programmazione
         </p>
         <h2 class="mt-3 text-3xl font-semibold leading-tight md:text-4xl">
-          Scegli cosa vuoi imparare
+          Scegli da dove iniziare
         </h2>
+        <p class="mt-3 max-w-2xl text-base leading-7 text-gray-2">
+          Ogni percorso e scritto per aiutarti a fare un passo alla volta:
+          meno gergo, piu esempi chiari e una progressione che ti lascia il
+          tempo di capire.
+        </p>
       </div>
 
       <CardGrid>
-        {tracks.map((track) => (
-          <LinkCard href={track.href} title={track.title} description={track.description} />
-        ))}
+        {
+          tracks.map((track) => (
+            <LinkCard
+              href={track.href}
+              title={track.title}
+              description={track.description}
+            />
+          ))
+        }
       </CardGrid>
+    </section>
+
+    <section id="exercises" class="scroll-mt-24 pt-12">
+      <div class="mb-6">
+        <p
+          class="m-0 text-sm font-bold uppercase tracking-widest text-(--sl-color-accent-high)"
+        >
+          Esercizi di programmazione
+        </p>
+        <h2 class="mt-3 text-3xl font-semibold leading-tight md:text-4xl">
+          Metti subito in pratica quello che impari
+        </h2>
+        <p class="mt-3 max-w-2xl text-base leading-7 text-gray-2">
+          Quando hai letto una lezione, prova a risolvere un esercizio. Trovi
+          attivita con difficolta crescente per allenarti senza andare a caso.
+        </p>
+      </div>
+
+      <CardGrid>
+        {
+          tracks.map((track) => (
+            <LinkCard
+              href={`/exercises${track.href}`}
+              title={track.title}
+              description={`Esercizi di ${track.title} con difficolta crescente, pensati per trasformare la teoria in pratica.`}
+            />
+          ))
+        }
+      </CardGrid>
+    </section>
+
+    <section id="lab" class="scroll-mt-24 pt-12">
+      <div class="mb-6">
+        <p
+          class="m-0 text-sm font-bold uppercase tracking-widest text-(--sl-color-accent-high)"
+        >
+          LABORATORIO INTERATTIVO
+        </p>
+        <h2 class="mt-3 text-3xl font-semibold leading-tight md:text-4xl">
+          Scrivi ed esegui codice direttamente nel browser
+        </h2>
+        <p class="mt-3 max-w-2xl text-base leading-7 text-gray-2">
+          Con Manuale Lab puoi provare esempi, fare test veloci e vedere subito
+          il risultato del tuo codice, senza dover preparare tutto prima sul
+          computer.
+        </p>
+      </div>
+
+      <LinkButton href="https://lab.manuale.dev" icon="right-arrow"
+        >Apri Manuale Lab</LinkButton
+      >
     </section>
 
     <!-- <section class="mt-16">
@@ -91,11 +166,16 @@ const tracks = [
     <footer class="mt-16 text-sm text-gray-3">
       <p class="m-0">
         Manuale (C) 2026 · Guide di programmazione in italiano ·
-        <a href="/legal/privacy/" class="text-(--sl-color-accent-high)">Privacy</a>
+        <a href="/legal/privacy/" class="text-(--sl-color-accent-high)"
+          >Privacy</a
+        >
         ·
-        <a href="/legal/terms/" class="text-(--sl-color-accent-high)">Termini</a>
+        <a href="/legal/terms/" class="text-(--sl-color-accent-high)">Termini</a
+        >
         ·
-        <a href="/legal/contact/" class="text-(--sl-color-accent-high)">Contatti</a>
+        <a href="/legal/contact/" class="text-(--sl-color-accent-high)"
+          >Contatti</a
+        >
       </p>
     </footer>
   </div>

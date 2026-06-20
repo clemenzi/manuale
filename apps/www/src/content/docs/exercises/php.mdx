@@ -1,0 +1,1249 @@
+---
+title: Esercizi PHP
+description: 50 esercizi pratici e progressivi su PHP.
+tableOfContents: false
+---
+
+### Esercizio 1
+
+Inviare in output il testo `Ciao, PHP!`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Serve una sola istruzione `echo` per stampare il testo richiesto.
+
+```php
+<?php
+echo "Ciao, PHP!";
+```
+
+Il programma esegue una sola istruzione e mostra esattamente la frase richiesta.
+
+</details>
+
+### Esercizio 2
+
+Conservare un nome e un'eta in due variabili e inviarli in output.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Prima salviamo i valori in due variabili, poi li stampiamo con `echo`.
+
+```php
+<?php
+$nome = "Luca";
+$eta = 17;
+
+echo $nome . "\n";
+echo $eta;
+```
+
+Le variabili permettono di riutilizzare i dati senza riscriverli ogni volta.
+
+</details>
+
+### Esercizio 3
+
+Calcolare la somma di due numeri interi salvati in variabili.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo l'operatore `+` e salviamo il risultato in una terza variabile.
+
+```php
+<?php
+$a = 12;
+$b = 8;
+$somma = $a + $b;
+
+echo $somma;
+```
+
+La variabile `$somma` contiene il totale da stampare alla fine.
+
+</details>
+
+### Esercizio 4
+
+Calcolare l'area di un rettangolo dati base e altezza.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+L'area si ottiene moltiplicando base per altezza.
+
+```php
+<?php
+$base = 5;
+$altezza = 3;
+$area = $base * $altezza;
+
+echo $area;
+```
+
+Il programma esegue un solo calcolo e stampa il valore finale.
+
+</details>
+
+### Esercizio 5
+
+Calcolare il totale di un prezzo applicando una costante IVA del 22%.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo una costante per l'IVA e calcoliamo il prezzo finale a partire dal valore iniziale.
+
+```php
+<?php
+const IVA = 0.22;
+
+$prezzo = 40;
+$totale = $prezzo + ($prezzo * IVA);
+
+echo $totale;
+```
+
+La costante rende chiaro che il valore dell'IVA non deve cambiare durante il programma.
+
+</details>
+
+### Esercizio 6
+
+Leggere un nome da input e stampare un saluto.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo `readline()` per leggere il testo e `echo` per costruire il messaggio.
+
+```php
+<?php
+$nome = readline("Nome: ");
+
+echo "Ciao, $nome!";
+```
+
+Il valore digitato dall'utente viene salvato nella variabile `$nome`.
+
+</details>
+
+### Esercizio 7
+
+Leggere due numeri interi e stamparne la somma.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+`readline()` restituisce testo, quindi convertiamo i valori con `(int)`.
+
+```php
+<?php
+$a = (int) readline("Primo numero: ");
+$b = (int) readline("Secondo numero: ");
+
+echo $a + $b;
+```
+
+Senza la conversione, PHP leggerebbe i dati come stringhe.
+
+</details>
+
+### Esercizio 8
+
+Leggere un prezzo e una quantita e calcolare il totale.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Per il prezzo usiamo un numero decimale, mentre la quantita puo essere intera.
+
+```php
+<?php
+$prezzo = (float) readline("Prezzo: ");
+$quantita = (int) readline("Quantita: ");
+$totale = $prezzo * $quantita;
+
+echo $totale;
+```
+
+Il programma moltiplica il costo di una singola unita per il numero di pezzi.
+
+</details>
+
+### Esercizio 9
+
+Convertire una temperatura da gradi Celsius a gradi Fahrenheit.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Applichiamo la formula `fahrenheit = celsius * 9 / 5 + 32`.
+
+```php
+<?php
+$celsius = (float) readline("Gradi Celsius: ");
+$fahrenheit = $celsius * 9 / 5 + 32;
+
+echo $fahrenheit;
+```
+
+Il risultato finale viene stampato come numero decimale.
+
+</details>
+
+### Esercizio 10
+
+Calcolare la media di tre numeri.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Sommiamo i tre valori e dividiamo il totale per `3`.
+
+```php
+<?php
+$a = (float) readline("Primo numero: ");
+$b = (float) readline("Secondo numero: ");
+$c = (float) readline("Terzo numero: ");
+
+$media = ($a + $b + $c) / 3;
+echo $media;
+```
+
+La formula della media aritmetica richiede un solo passaggio finale.
+
+</details>
+
+### Esercizio 11
+
+Verificare se un numero intero e pari o dispari.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo l'operatore `%` per controllare il resto della divisione per `2`.
+
+```php
+<?php
+$numero = (int) readline("Numero: ");
+
+if ($numero % 2 === 0) {
+    echo "Pari";
+} else {
+    echo "Dispari";
+}
+```
+
+Se il resto e zero, il numero e pari; altrimenti e dispari.
+
+</details>
+
+### Esercizio 12
+
+Determinare se un numero e positivo, negativo oppure zero.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `if`, `elseif` ed `else` gestiamo i tre casi possibili.
+
+```php
+<?php
+$numero = (int) readline("Numero: ");
+
+if ($numero > 0) {
+    echo "Positivo";
+} elseif ($numero < 0) {
+    echo "Negativo";
+} else {
+    echo "Zero";
+}
+```
+
+Le condizioni vengono controllate dall'alto verso il basso.
+
+</details>
+
+### Esercizio 13
+
+Determinare il maggiore tra due numeri.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Confrontiamo i due valori e stampiamo quello piu grande.
+
+```php
+<?php
+$a = (int) readline("Primo numero: ");
+$b = (int) readline("Secondo numero: ");
+
+if ($a > $b) {
+    echo $a;
+} else {
+    echo $b;
+}
+```
+
+Se i due numeri sono uguali, il programma stampa comunque il secondo valore, che ha lo stesso contenuto.
+
+</details>
+
+### Esercizio 14
+
+Verificare se una persona e maggiorenne.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Basta controllare se l'eta e almeno `18`.
+
+```php
+<?php
+$eta = (int) readline("Eta: ");
+
+if ($eta >= 18) {
+    echo "Maggiorenne";
+} else {
+    echo "Minorenne";
+}
+```
+
+La soglia dei 18 anni divide i due casi richiesti.
+
+</details>
+
+### Esercizio 15
+
+Classificare un voto numerico come ottimo, buono, sufficiente o insufficiente.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Le condizioni vanno ordinate dalla soglia piu alta a quella piu bassa.
+
+```php
+<?php
+$voto = (int) readline("Voto: ");
+
+if ($voto >= 9) {
+    echo "Ottimo";
+} elseif ($voto >= 7) {
+    echo "Buono";
+} elseif ($voto >= 6) {
+    echo "Sufficiente";
+} else {
+    echo "Insufficiente";
+}
+```
+
+Il programma si ferma alla prima condizione vera.
+
+</details>
+
+### Esercizio 16
+
+Verificare se un anno e bisestile.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Un anno e bisestile se e divisibile per `400`, oppure se e divisibile per `4` ma non per `100`.
+
+```php
+<?php
+$anno = (int) readline("Anno: ");
+
+if ($anno % 400 === 0 || ($anno % 4 === 0 && $anno % 100 !== 0)) {
+    echo "Bisestile";
+} else {
+    echo "Non bisestile";
+}
+```
+
+La condizione combina `&&` e `||` per rappresentare la regola completa.
+
+</details>
+
+### Esercizio 17
+
+Applicare uno sconto del 10% se una spesa supera 100.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Calcoliamo il totale e applichiamo la riduzione solo nel caso richiesto.
+
+```php
+<?php
+$totale = (float) readline("Totale spesa: ");
+
+if ($totale > 100) {
+    $totale = $totale * 0.9;
+}
+
+echo $totale;
+```
+
+La variabile `$totale` viene aggiornata solo se supera la soglia indicata.
+
+</details>
+
+### Esercizio 18
+
+Verificare se due numeri hanno lo stesso segno.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Due numeri hanno lo stesso segno se sono entrambi non negativi oppure entrambi negativi.
+
+```php
+<?php
+$a = (int) readline("Primo numero: ");
+$b = (int) readline("Secondo numero: ");
+
+if (($a >= 0 && $b >= 0) || ($a < 0 && $b < 0)) {
+    echo "Stesso segno";
+} else {
+    echo "Segno diverso";
+}
+```
+
+La condizione separa chiaramente i due casi utili.
+
+</details>
+
+### Esercizio 19
+
+Scrivere un controllo per un ordine: se il totale e almeno 30 euro e il prodotto e disponibile, mostrare `Ordine confermato`. Altrimenti mostrare `Ordine non disponibile`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Qui servono due condizioni combinate con `&&`.
+
+```php
+<?php
+$totale = (float) readline("Totale: ");
+$disponibile = readline("Disponibile (si/no): ");
+
+if ($totale >= 30 && $disponibile === "si") {
+    echo "Ordine confermato";
+} else {
+    echo "Ordine non disponibile";
+}
+```
+
+L'ordine viene confermato solo quando entrambe le condizioni sono vere.
+
+</details>
+
+### Esercizio 20
+
+Stabilire con `switch` se un giorno della settimana appartiene al weekend oppure no.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+`switch` e comodo quando confrontiamo lo stesso valore con piu possibilita.
+
+```php
+<?php
+$giorno = readline("Giorno: ");
+
+switch ($giorno) {
+    case "sabato":
+    case "domenica":
+        echo "Weekend";
+        break;
+    default:
+        echo "Giorno lavorativo";
+}
+```
+
+`break` evita che PHP continui nei casi successivi.
+
+</details>
+
+### Esercizio 21
+
+Stampare i numeri da 1 a 10 usando `while`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Serve una variabile contatore da aggiornare a ogni iterazione.
+
+```php
+<?php
+$numero = 1;
+
+while ($numero <= 10) {
+    echo $numero . "\n";
+    $numero++;
+}
+```
+
+Il ciclo continua finche la condizione `$numero <= 10` resta vera.
+
+</details>
+
+### Esercizio 22
+
+Calcolare la somma dei numeri da 1 a `n` usando `while`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Accumuliamo i valori in una variabile `$totale`.
+
+```php
+<?php
+$n = (int) readline("n: ");
+$totale = 0;
+$numero = 1;
+
+while ($numero <= $n) {
+    $totale += $numero;
+    $numero++;
+}
+
+echo $totale;
+```
+
+Ogni passaggio aggiunge il numero corrente alla somma complessiva.
+
+</details>
+
+### Esercizio 23
+
+Stampare un conto alla rovescia da `n` fino a `0`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+In questo caso il contatore viene diminuito a ogni giro.
+
+```php
+<?php
+$n = (int) readline("Numero iniziale: ");
+
+while ($n >= 0) {
+    echo $n . "\n";
+    $n--;
+}
+```
+
+Il ciclo termina quando il valore scende sotto zero.
+
+</details>
+
+### Esercizio 24
+
+Stampare la tabellina del `7` usando `for`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `for` ripetiamo lo stesso calcolo per tutti i valori da `1` a `10`.
+
+```php
+<?php
+for ($i = 1; $i <= 10; $i++) {
+    echo "7 x $i = " . (7 * $i) . "\n";
+}
+```
+
+Il contatore `$i` rappresenta il moltiplicatore in ogni riga della tabellina.
+
+</details>
+
+### Esercizio 25
+
+Stampare tutti i numeri pari da `0` a `20` usando `for`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Facciamo avanzare il contatore di `2` in `2`.
+
+```php
+<?php
+for ($i = 0; $i <= 20; $i += 2) {
+    echo $i . " ";
+}
+```
+
+In questo modo il ciclo visita solo i valori pari.
+
+</details>
+
+### Esercizio 26
+
+Calcolare il fattoriale di un numero usando `for`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Partiamo da `1` e moltiplichiamo tutti i numeri fino a `n`.
+
+```php
+<?php
+$n = (int) readline("n: ");
+$fattoriale = 1;
+
+for ($i = 1; $i <= $n; $i++) {
+    $fattoriale *= $i;
+}
+
+echo $fattoriale;
+```
+
+La variabile `$fattoriale` conserva il prodotto progressivo.
+
+</details>
+
+### Esercizio 27
+
+Calcolare la somma degli elementi di un array.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Scorriamo l'array con `foreach` e accumuliamo tutti i valori.
+
+```php
+<?php
+$numeri = [4, 7, 2, 9, 5];
+$somma = 0;
+
+foreach ($numeri as $numero) {
+    $somma += $numero;
+}
+
+echo $somma;
+```
+
+La variabile `$somma` viene aggiornata una volta per ogni elemento dell'array.
+
+</details>
+
+### Esercizio 28
+
+Determinare il valore massimo contenuto in un array.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Partiamo dal primo elemento come massimo provvisorio e poi lo confrontiamo con gli altri.
+
+```php
+<?php
+$numeri = [12, 5, 18, 3, 9];
+$massimo = $numeri[0];
+
+foreach ($numeri as $numero) {
+    if ($numero > $massimo) {
+        $massimo = $numero;
+    }
+}
+
+echo $massimo;
+```
+
+Ogni volta che troviamo un valore piu grande aggiorniamo `$massimo`.
+
+</details>
+
+### Esercizio 29
+
+Calcolare la media dei voti contenuti in un array.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Sommiamo tutti i voti e poi dividiamo per `count($voti)`.
+
+```php
+<?php
+$voti = [7, 8, 6, 9, 7];
+$totale = 0;
+
+foreach ($voti as $voto) {
+    $totale += $voto;
+}
+
+$media = $totale / count($voti);
+echo $media;
+```
+
+`count()` ci dice quanti elementi sono presenti nell'array.
+
+</details>
+
+### Esercizio 30
+
+Cercare un valore in un array e stampare la sua posizione oppure `-1`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La ricerca lineare controlla gli elementi uno per uno finche non trova quello richiesto.
+
+```php
+<?php
+$numeri = [15, 3, 8, 42, 7];
+$cercato = (int) readline("Numero da cercare: ");
+$posizione = -1;
+
+foreach ($numeri as $indice => $numero) {
+    if ($numero === $cercato) {
+        $posizione = $indice;
+        break;
+    }
+}
+
+echo $posizione;
+```
+
+Se il numero non viene trovato, `$posizione` resta uguale a `-1`.
+
+</details>
+
+### Esercizio 31
+
+Rappresentare un prodotto con un array associativo e mostrare nome e prezzo solo se il prodotto e disponibile.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Un array associativo rende piu leggibili i dati perche ogni valore ha una chiave chiara.
+
+```php
+<?php
+$prodotto = [
+    "nome" => "Quaderno",
+    "prezzo" => 3.50,
+    "disponibile" => true,
+];
+
+if ($prodotto["disponibile"]) {
+    echo $prodotto["nome"] . " costa " . $prodotto["prezzo"] . " euro";
+}
+```
+
+Le chiavi `"nome"`, `"prezzo"` e `"disponibile"` spiegano subito che cosa rappresenta ogni valore.
+
+</details>
+
+### Esercizio 32
+
+Leggere il nome di un utente da un array associativo e mostrare una email predefinita quando la chiave non esiste.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+L'operatore `??` permette di usare un valore di fallback quando una chiave manca.
+
+```php
+<?php
+$utente = [
+    "nome" => "Sara",
+    "eta" => 31,
+];
+
+$email = $utente["email"] ?? "email non disponibile";
+
+echo $utente["nome"] . "\n";
+echo $email;
+```
+
+In questo modo evitiamo errori e otteniamo comunque un risultato leggibile.
+
+</details>
+
+### Esercizio 33
+
+Contare quante vocali sono presenti in una stringa.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Scorriamo tutti i caratteri della stringa e controlliamo se appartengono all'insieme delle vocali.
+
+```php
+<?php
+$testo = readline("Testo: ");
+$vocali = "aeiouAEIOU";
+$conteggio = 0;
+
+for ($i = 0; $i < strlen($testo); $i++) {
+    if (str_contains($vocali, $testo[$i])) {
+        $conteggio++;
+    }
+}
+
+echo $conteggio;
+```
+
+Il ciclo visita un carattere alla volta e aggiorna il conteggio solo quando trova una vocale.
+
+</details>
+
+### Esercizio 34
+
+Leggere nome e cognome e stampare le iniziali in maiuscolo.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Ci basta prendere il primo carattere di ciascuna stringa e trasformarlo in maiuscolo.
+
+```php
+<?php
+$nome = readline("Nome: ");
+$cognome = readline("Cognome: ");
+
+$iniziali = strtoupper(substr($nome, 0, 1) . substr($cognome, 0, 1));
+
+echo $iniziali;
+```
+
+`substr()` prende una parte della stringa, mentre `strtoupper()` la converte in maiuscolo.
+
+</details>
+
+### Esercizio 35
+
+Verificare se un testo assomiglia a una email controllando la presenza di `@`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Non e una validazione completa, ma basta per allenare il controllo di una sottostringa.
+
+```php
+<?php
+$email = readline("Email: ");
+
+if (str_contains($email, "@")) {
+    echo "Sembra una email";
+} else {
+    echo "Email non valida";
+}
+```
+
+`str_contains()` restituisce `true` quando il testo cercato e presente.
+
+</details>
+
+### Esercizio 36
+
+Pulire un testo rimuovendo gli spazi iniziali e finali e poi convertirlo in maiuscolo.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Prima usiamo `trim()`, poi passiamo il risultato a `strtoupper()`.
+
+```php
+<?php
+$testo = "  manuale php  ";
+$pulito = trim($testo);
+$maiuscolo = strtoupper($pulito);
+
+echo $maiuscolo;
+```
+
+Le due funzioni lavorano in sequenza: la prima sistema gli spazi, la seconda cambia il formato del testo.
+
+</details>
+
+### Esercizio 37
+
+Sostituire la parola `PHP` con `web` dentro una stringa.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo `str_replace()` per creare una nuova stringa con il testo modificato.
+
+```php
+<?php
+$testo = "Manuale PHP";
+$nuovoTesto = str_replace("PHP", "web", $testo);
+
+echo $nuovoTesto;
+```
+
+La stringa originale non viene modificata in automatico: il risultato va salvato in una variabile.
+
+</details>
+
+### Esercizio 38
+
+Mostrare in HTML un nome inserito da un utente usando `htmlspecialchars`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Quando un testo arriva dall'esterno, prima di stamparlo in HTML conviene renderlo sicuro.
+
+```php
+<?php
+$nome = "<b>Luca</b>";
+?>
+
+<p><?= htmlspecialchars($nome, ENT_QUOTES, "UTF-8") ?></p>
+```
+
+In questo modo il browser mostra il testo invece di interpretarlo come markup HTML.
+
+</details>
+
+### Esercizio 39
+
+Scrivere una funzione che riceve un nome e stampa un saluto.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Mettiamo la logica del saluto dentro una funzione separata, cosi possiamo riusarla.
+
+```php
+<?php
+function saluta($nome) {
+    echo "Ciao, $nome!\n";
+}
+
+saluta("Alice");
+saluta("Marco");
+```
+
+Ogni chiamata passa un valore diverso allo stesso blocco di codice.
+
+</details>
+
+### Esercizio 40
+
+Scrivere una funzione che restituisce la somma di due numeri interi.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Questa volta la funzione non stampa direttamente: restituisce un valore con `return`.
+
+```php
+<?php
+function somma($a, $b) {
+    return $a + $b;
+}
+
+echo somma(4, 9) . "\n";
+echo somma(10, 20);
+```
+
+Il valore restituito puo essere usato ovunque serva nel programma.
+
+</details>
+
+### Esercizio 41
+
+Scrivere una funzione che calcola il totale a partire da prezzo e quantita e restituisce il risultato.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Qui usiamo parametri con tipo e un valore di ritorno dichiarato.
+
+```php
+<?php
+function calcolaTotale(float $prezzo, int $quantita): float {
+    return $prezzo * $quantita;
+}
+
+echo calcolaTotale(3.50, 4);
+```
+
+Le dichiarazioni di tipo rendono piu chiaro che cosa riceve e che cosa restituisce la funzione.
+
+</details>
+
+### Esercizio 42
+
+Scrivere una funzione che saluta un utente usando `ospite` come valore predefinito.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Un parametro di default permette di chiamare la funzione anche senza passare un nome.
+
+```php
+<?php
+function salutaUtente($nome = "ospite") {
+    return "Ciao $nome";
+}
+
+echo salutaUtente() . "\n";
+echo salutaUtente("Sara");
+```
+
+Se l'argomento manca, PHP usa automaticamente il valore predefinito.
+
+</details>
+
+### Esercizio 43
+
+Scrivere una funzione che riceve un prezzo e uno sconto e restituisce il totale scontato, senza usare variabili globali.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Portiamo i dati dentro la funzione con i parametri e fuori con `return`.
+
+```php
+<?php
+function applicaSconto(float $prezzo, float $sconto): float {
+    return $prezzo - $sconto;
+}
+
+$totale = applicaSconto(30, 5);
+echo $totale;
+```
+
+La funzione lavora solo con i valori che riceve e non dipende da variabili nascoste nel resto del file.
+
+</details>
+
+### Esercizio 44
+
+Creare una pagina PHP che mostri un titolo e una lista di prodotti dentro HTML.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Prima prepariamo i dati in PHP, poi li mostriamo con il markup HTML.
+
+```php
+<?php
+$titolo = "Catalogo";
+$prodotti = ["Penna", "Quaderno", "Zaino"];
+?>
+
+<h1><?= htmlspecialchars($titolo, ENT_QUOTES, "UTF-8") ?></h1>
+
+<ul>
+    <?php foreach ($prodotti as $prodotto): ?>
+        <li><?= htmlspecialchars($prodotto, ENT_QUOTES, "UTF-8") ?></li>
+    <?php endforeach; ?>
+</ul>
+```
+
+La sintassi con `foreach` e `endforeach` rende il template piu leggibile quando lavoriamo in HTML.
+
+</details>
+
+### Esercizio 45
+
+Mostrare un messaggio diverso in HTML a seconda che l'utente sia loggato oppure no.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo una condizione PHP dentro il template per scegliere quale blocco HTML stampare.
+
+```php
+<?php
+$utenteLoggato = false;
+?>
+
+<?php if ($utenteLoggato): ?>
+    <p>Benvenuto nella tua area personale.</p>
+<?php else: ?>
+    <p>Accedi per continuare.</p>
+<?php endif; ?>
+```
+
+Questa forma separa bene la logica dal markup e resta leggibile anche in pagine semplici.
+
+</details>
+
+### Esercizio 46
+
+Creare un piccolo form con GET che riceve una ricerca e mostra il valore inviato.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il form invia il contenuto del campo nell'URL, poi PHP legge il dato da `$_GET`.
+
+```php
+<?php
+$ricerca = $_GET["q"] ?? "";
+?>
+
+<form method="get">
+    <input
+        type="text"
+        name="q"
+        value="<?= htmlspecialchars($ricerca, ENT_QUOTES, "UTF-8") ?>"
+    >
+    <button type="submit">Cerca</button>
+</form>
+
+<?php if ($ricerca !== ""): ?>
+    <p>Hai cercato: <?= htmlspecialchars($ricerca, ENT_QUOTES, "UTF-8") ?></p>
+<?php endif; ?>
+```
+
+`?? ""` evita errori quando la pagina viene aperta senza parametri.
+
+</details>
+
+### Esercizio 47
+
+Creare un form con POST che richiede il nome, controlla che non sia vuoto e rimostra il valore inserito.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Controlliamo il metodo della richiesta, validiamo il dato e usiamo `htmlspecialchars()` per rimetterlo in pagina in modo sicuro.
+
+```php
+<?php
+$nome = $_POST["nome"] ?? "";
+$errore = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if ($nome === "") {
+        $errore = "Il nome e obbligatorio";
+    }
+}
+?>
+
+<?php if ($errore !== ""): ?>
+    <p><?= htmlspecialchars($errore, ENT_QUOTES, "UTF-8") ?></p>
+<?php endif; ?>
+
+<form method="post">
+    <input
+        type="text"
+        name="nome"
+        value="<?= htmlspecialchars($nome, ENT_QUOTES, "UTF-8") ?>"
+    >
+    <button type="submit">Invia</button>
+</form>
+```
+
+Quando il form contiene errori, il valore gia scritto non va perso.
+
+</details>
+
+### Esercizio 48
+
+Usare una sessione per contare quante volte una pagina e stata aperta.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Prima avviamo la sessione, poi leggiamo il contatore da `$_SESSION` e lo aggiorniamo.
+
+```php
+<?php
+session_start();
+
+$visite = $_SESSION["visite"] ?? 0;
+$visite++;
+$_SESSION["visite"] = $visite;
+
+echo "Visite: $visite";
+```
+
+Il valore resta disponibile tra una richiesta e la successiva per lo stesso utente.
+
+</details>
+
+### Esercizio 49
+
+Eseguire una query preparata con PDO per cercare un utente tramite email.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Prepariamo la query con un placeholder e passiamo il valore a `execute()` invece di incollarlo nella stringa SQL.
+
+```php
+<?php
+$dsn = "mysql:host=localhost;dbname=negozio;charset=utf8mb4";
+$utente = "root";
+$password = "";
+$email = "luca@example.com";
+
+try {
+    $pdo = new PDO($dsn, $utente, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ]);
+
+    $stmt = $pdo->prepare("SELECT * FROM utenti WHERE email = :email");
+    $stmt->execute(["email" => $email]);
+
+    $utenteTrovato = $stmt->fetch();
+
+    if ($utenteTrovato) {
+        echo "Utente trovato";
+    } else {
+        echo "Nessun utente trovato";
+    }
+} catch (PDOException $errore) {
+    echo "Impossibile collegarsi al database";
+}
+```
+
+Le query preparate riducono il rischio di SQL injection e rendono piu sicuro l'uso di dati esterni.
+
+</details>
+
+### Esercizio 50
+
+Creare una classe `Conto` con saldo privato, costruttore, metodo per depositare e metodo per leggere il saldo.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Qui uniamo costruttore, visibilita `private` e metodi pubblici per controllare i dati dell'oggetto.
+
+```php
+<?php
+class Conto {
+    private float $saldo;
+
+    public function __construct(float $saldoIniziale) {
+        $this->saldo = $saldoIniziale;
+    }
+
+    public function deposita(float $importo): void {
+        if ($importo > 0) {
+            $this->saldo += $importo;
+        }
+    }
+
+    public function leggiSaldo(): float {
+        return $this->saldo;
+    }
+}
+
+$conto = new Conto(100);
+$conto->deposita(25);
+
+echo $conto->leggiSaldo();
+```
+
+Il saldo non puo essere modificato direttamente dall'esterno, ma solo attraverso i metodi scelti dalla classe.
+
+</details>

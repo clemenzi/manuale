@@ -1,0 +1,1716 @@
+---
+title: Esercizi C++
+description: 50 esercizi pratici e progressivi su C++.
+tableOfContents: false
+---
+
+### Esercizio 1
+
+Inviare in output il testo `Ciao, C++!`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Basta usare `cout` per stampare il testo richiesto.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Ciao, C++!" << endl;
+    return 0;
+}
+```
+
+Il programma esegue una sola istruzione e mostra il messaggio sullo schermo.
+
+</details>
+
+### Esercizio 2
+
+Conservare un nome e un'età in due variabili e inviarli in output.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Prima salviamo i dati in due variabili, poi li stampiamo con `cout`.
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string nome = "Luca";
+    int eta = 17;
+
+    cout << nome << endl;
+    cout << eta << endl;
+
+    return 0;
+}
+```
+
+Le variabili permettono di riutilizzare i valori senza riscriverli ogni volta.
+
+</details>
+
+### Esercizio 3
+
+Calcolare la somma di due numeri interi salvati in variabili.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo l'operatore `+` e salviamo il risultato in una terza variabile.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a = 12;
+    int b = 8;
+    int somma = a + b;
+
+    cout << somma << endl;
+
+    return 0;
+}
+```
+
+La variabile `somma` contiene il totale da stampare alla fine.
+
+</details>
+
+### Esercizio 4
+
+Calcolare l'area di un rettangolo dati base e altezza.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+L'area si ottiene moltiplicando base per altezza.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int base = 5;
+    int altezza = 3;
+    int area = base * altezza;
+
+    cout << area << endl;
+
+    return 0;
+}
+```
+
+Il programma esegue un solo calcolo e stampa il valore finale.
+
+</details>
+
+### Esercizio 5
+
+Scambiare il valore di due variabili e inviarle in output.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Per non perdere uno dei due valori usiamo una variabile temporanea.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 10;
+    int y = 20;
+
+    int temp = x;
+    x = y;
+    y = temp;
+
+    cout << x << endl;
+    cout << y << endl;
+
+    return 0;
+}
+```
+
+Dopo lo scambio, `x` contiene il vecchio valore di `y` e `y` contiene il vecchio valore di `x`.
+
+</details>
+
+### Esercizio 6
+
+Leggere un nome da input e stampare un saluto.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo `cin` per leggere una parola e `cout` per costruire il messaggio.
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string nome;
+
+    cout << "Nome: ";
+    cin >> nome;
+
+    cout << "Ciao, " << nome << "!" << endl;
+
+    return 0;
+}
+```
+
+Il valore digitato dall'utente viene salvato nella variabile `nome`.
+
+</details>
+
+### Esercizio 7
+
+Leggere due numeri interi e stamparne la somma.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Leggiamo due valori con `cin` e poi li sommiamo.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a;
+    int b;
+
+    cout << "Primo numero: ";
+    cin >> a;
+    cout << "Secondo numero: ";
+    cin >> b;
+
+    cout << a + b << endl;
+
+    return 0;
+}
+```
+
+L'operatore `+` lavora direttamente sui due interi letti da input.
+
+</details>
+
+### Esercizio 8
+
+Leggere un prezzo e una quantità e calcolare il totale.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Per il prezzo usiamo `double`, mentre la quantità può essere intera.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    double prezzo;
+    int quantita;
+
+    cout << "Prezzo: ";
+    cin >> prezzo;
+    cout << "Quantita: ";
+    cin >> quantita;
+
+    double totale = prezzo * quantita;
+    cout << totale << endl;
+
+    return 0;
+}
+```
+
+Il programma moltiplica il costo di una singola unità per il numero di pezzi.
+
+</details>
+
+### Esercizio 9
+
+Convertire una temperatura da gradi Celsius a gradi Fahrenheit.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Applichiamo la formula `fahrenheit = celsius * 9 / 5 + 32`.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    double celsius;
+
+    cout << "Gradi Celsius: ";
+    cin >> celsius;
+
+    double fahrenheit = celsius * 9 / 5 + 32;
+    cout << fahrenheit << endl;
+
+    return 0;
+}
+```
+
+Il risultato finale viene stampato come numero decimale.
+
+</details>
+
+### Esercizio 10
+
+Calcolare la media di tre numeri.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Sommiamo i tre valori e dividiamo il totale per 3.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    double a;
+    double b;
+    double c;
+
+    cout << "Primo numero: ";
+    cin >> a;
+    cout << "Secondo numero: ";
+    cin >> b;
+    cout << "Terzo numero: ";
+    cin >> c;
+
+    double media = (a + b + c) / 3;
+    cout << media << endl;
+
+    return 0;
+}
+```
+
+La formula della media aritmetica richiede un solo passaggio finale.
+
+</details>
+
+### Esercizio 11
+
+Verificare se un numero intero è pari o dispari.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo l'operatore `%` per controllare il resto della divisione per 2.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numero;
+
+    cout << "Inserisci un numero: ";
+    cin >> numero;
+
+    if (numero % 2 == 0) {
+        cout << "Pari" << endl;
+    } else {
+        cout << "Dispari" << endl;
+    }
+
+    return 0;
+}
+```
+
+Se il resto è zero, il numero è pari; altrimenti è dispari.
+
+</details>
+
+### Esercizio 12
+
+Determinare se un numero è positivo, negativo oppure zero.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `if`, `else if` ed `else` gestiamo i tre casi possibili.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numero;
+
+    cout << "Inserisci un numero: ";
+    cin >> numero;
+
+    if (numero > 0) {
+        cout << "Positivo" << endl;
+    } else if (numero < 0) {
+        cout << "Negativo" << endl;
+    } else {
+        cout << "Zero" << endl;
+    }
+
+    return 0;
+}
+```
+
+Le condizioni vengono controllate dall'alto verso il basso.
+
+</details>
+
+### Esercizio 13
+
+Determinare il maggiore tra due numeri.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Confrontiamo i due valori e stampiamo quello più grande.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a;
+    int b;
+
+    cout << "Primo numero: ";
+    cin >> a;
+    cout << "Secondo numero: ";
+    cin >> b;
+
+    if (a > b) {
+        cout << a << endl;
+    } else {
+        cout << b << endl;
+    }
+
+    return 0;
+}
+```
+
+Se i due numeri sono uguali, il programma stampa comunque il secondo valore, che ha lo stesso contenuto.
+
+</details>
+
+### Esercizio 14
+
+Determinare il maggiore tra tre numeri.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Partiamo dal primo valore come massimo provvisorio e poi lo aggiorniamo quando serve.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a;
+    int b;
+    int c;
+
+    cout << "Primo numero: ";
+    cin >> a;
+    cout << "Secondo numero: ";
+    cin >> b;
+    cout << "Terzo numero: ";
+    cin >> c;
+
+    int massimo = a;
+
+    if (b > massimo) {
+        massimo = b;
+    }
+
+    if (c > massimo) {
+        massimo = c;
+    }
+
+    cout << massimo << endl;
+
+    return 0;
+}
+```
+
+La variabile `massimo` conserva il valore più grande trovato fino a quel momento.
+
+</details>
+
+### Esercizio 15
+
+Verificare se una persona è maggiorenne.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Basta controllare se l'età è almeno 18.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int eta;
+
+    cout << "Eta: ";
+    cin >> eta;
+
+    if (eta >= 18) {
+        cout << "Maggiorenne" << endl;
+    } else {
+        cout << "Minorenne" << endl;
+    }
+
+    return 0;
+}
+```
+
+La soglia dei 18 anni divide i due casi richiesti.
+
+</details>
+
+### Esercizio 16
+
+Classificare un voto numerico come ottimo, buono, sufficiente o insufficiente.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Le condizioni vanno ordinate dalla soglia più alta a quella più bassa.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int voto;
+
+    cout << "Voto: ";
+    cin >> voto;
+
+    if (voto >= 9) {
+        cout << "Ottimo" << endl;
+    } else if (voto >= 7) {
+        cout << "Buono" << endl;
+    } else if (voto >= 6) {
+        cout << "Sufficiente" << endl;
+    } else {
+        cout << "Insufficiente" << endl;
+    }
+
+    return 0;
+}
+```
+
+Il programma si ferma alla prima condizione vera.
+
+</details>
+
+### Esercizio 17
+
+Verificare se un anno è bisestile.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Un anno è bisestile se è divisibile per 400, oppure se è divisibile per 4 ma non per 100.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int anno;
+
+    cout << "Anno: ";
+    cin >> anno;
+
+    if (anno % 400 == 0 || (anno % 4 == 0 && anno % 100 != 0)) {
+        cout << "Bisestile" << endl;
+    } else {
+        cout << "Non bisestile" << endl;
+    }
+
+    return 0;
+}
+```
+
+La condizione combina `&&` e `||` per rappresentare la regola completa.
+
+</details>
+
+### Esercizio 18
+
+Verificare se due numeri hanno lo stesso segno.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Due numeri hanno lo stesso segno se sono entrambi non negativi oppure entrambi negativi.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a;
+    int b;
+
+    cout << "Primo numero: ";
+    cin >> a;
+    cout << "Secondo numero: ";
+    cin >> b;
+
+    if ((a >= 0 && b >= 0) || (a < 0 && b < 0)) {
+        cout << "Stesso segno" << endl;
+    } else {
+        cout << "Segno diverso" << endl;
+    }
+
+    return 0;
+}
+```
+
+La condizione separa chiaramente i due casi utili.
+
+</details>
+
+### Esercizio 19
+
+Applicare uno sconto del 10% se una spesa supera 100.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Calcoliamo il totale e applichiamo la riduzione solo nel caso richiesto.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    double totale;
+
+    cout << "Totale spesa: ";
+    cin >> totale;
+
+    if (totale > 100) {
+        totale = totale * 0.9;
+    }
+
+    cout << totale << endl;
+
+    return 0;
+}
+```
+
+La variabile `totale` viene aggiornata solo se supera la soglia indicata.
+
+</details>
+
+### Esercizio 20
+
+Stampare i numeri da 1 a 10 usando `while`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Serve una variabile contatore da aggiornare a ogni iterazione.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numero = 1;
+
+    while (numero <= 10) {
+        cout << numero << endl;
+        numero++;
+    }
+
+    return 0;
+}
+```
+
+Il ciclo continua finché la condizione `numero <= 10` resta vera.
+
+</details>
+
+### Esercizio 21
+
+Calcolare la somma dei numeri da 1 a `n` usando `while`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Accumuliamo i valori in una variabile `totale`.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    int totale = 0;
+    int numero = 1;
+
+    cout << "n: ";
+    cin >> n;
+
+    while (numero <= n) {
+        totale += numero;
+        numero++;
+    }
+
+    cout << totale << endl;
+
+    return 0;
+}
+```
+
+Ogni passaggio aggiunge il numero corrente alla somma complessiva.
+
+</details>
+
+### Esercizio 22
+
+Stampare un conto alla rovescia da `n` fino a 0.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+In questo caso il contatore viene diminuito a ogni giro.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+
+    cout << "Numero iniziale: ";
+    cin >> n;
+
+    while (n >= 0) {
+        cout << n << endl;
+        n--;
+    }
+
+    return 0;
+}
+```
+
+Il ciclo termina quando il valore scende sotto zero.
+
+</details>
+
+### Esercizio 23
+
+Stampare la tabellina del 7 usando `for`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `for` ripetiamo lo stesso calcolo per tutti i valori da 1 a 10.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    for (int i = 1; i <= 10; i++) {
+        cout << "7 x " << i << " = " << 7 * i << endl;
+    }
+
+    return 0;
+}
+```
+
+Il contatore `i` rappresenta il moltiplicatore in ogni riga della tabellina.
+
+</details>
+
+### Esercizio 24
+
+Stampare tutti i numeri pari da 0 a 20 usando `for`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Facciamo avanzare il contatore di 2 in 2.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    for (int i = 0; i <= 20; i += 2) {
+        cout << i << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+```
+
+In questo modo il ciclo visita solo i valori pari.
+
+</details>
+
+### Esercizio 25
+
+Calcolare il fattoriale di un numero usando `for`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Partiamo da 1 e moltiplichiamo tutti i numeri fino a `n`.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    int fattoriale = 1;
+
+    cout << "n: ";
+    cin >> n;
+
+    for (int i = 1; i <= n; i++) {
+        fattoriale *= i;
+    }
+
+    cout << fattoriale << endl;
+
+    return 0;
+}
+```
+
+La variabile `fattoriale` conserva il prodotto progressivo.
+
+</details>
+
+### Esercizio 26
+
+Stampare i quadrati dei numeri da 1 a `n`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Per ogni numero del ciclo calcoliamo `i * i`.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+
+    cout << "n: ";
+    cin >> n;
+
+    for (int i = 1; i <= n; i++) {
+        cout << i * i << endl;
+    }
+
+    return 0;
+}
+```
+
+Ogni iterazione usa il valore corrente del contatore per produrre un nuovo risultato.
+
+</details>
+
+### Esercizio 27
+
+Contare quante vocali sono presenti in una stringa.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Scorriamo tutti i caratteri e controlliamo se sono presenti nella stringa delle vocali.
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string testo;
+    string vocali = "aeiouAEIOU";
+    int conteggio = 0;
+
+    cout << "Testo: ";
+    getline(cin, testo);
+
+    for (char c : testo) {
+        if (vocali.find(c) != string::npos) {
+            conteggio++;
+        }
+    }
+
+    cout << conteggio << endl;
+
+    return 0;
+}
+```
+
+`find()` ci permette di verificare se un carattere appartiene all'insieme delle vocali.
+
+</details>
+
+### Esercizio 28
+
+Verificare se una parola è contenuta in una frase.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo `find()` per cercare una sottostringa dentro un'altra stringa.
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string frase;
+    string parola;
+
+    cout << "Frase: ";
+    getline(cin, frase);
+    cout << "Parola da cercare: ";
+    cin >> parola;
+
+    if (frase.find(parola) != string::npos) {
+        cout << "Presente" << endl;
+    } else {
+        cout << "Assente" << endl;
+    }
+
+    return 0;
+}
+```
+
+Se `find()` non trova nulla, restituisce `string::npos`.
+
+</details>
+
+### Esercizio 29
+
+Leggere nome e cognome e stampare le iniziali.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Ci basta leggere due stringhe e accedere al primo carattere di ciascuna.
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string nome;
+    string cognome;
+
+    cout << "Nome: ";
+    cin >> nome;
+    cout << "Cognome: ";
+    cin >> cognome;
+
+    cout << nome[0] << cognome[0] << endl;
+
+    return 0;
+}
+```
+
+Gli indici delle stringhe partono da 0, quindi `nome[0]` è il primo carattere.
+
+</details>
+
+### Esercizio 30
+
+Invertire una parola e inviarla in output.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Scorriamo la stringa dall'ultimo carattere al primo.
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string parola;
+
+    cout << "Parola: ";
+    cin >> parola;
+
+    for (int i = parola.length() - 1; i >= 0; i--) {
+        cout << parola[i];
+    }
+    cout << endl;
+
+    return 0;
+}
+```
+
+Il ciclo usa gli indici in ordine inverso per ricostruire la parola capovolta.
+
+</details>
+
+### Esercizio 31
+
+Calcolare la somma degli elementi di un array.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Scorriamo l'array con un ciclo e accumuliamo tutti i valori.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numeri[] = {4, 7, 2, 9, 5};
+    int dimensione = sizeof(numeri) / sizeof(numeri[0]);
+    int somma = 0;
+
+    for (int i = 0; i < dimensione; i++) {
+        somma += numeri[i];
+    }
+
+    cout << somma << endl;
+
+    return 0;
+}
+```
+
+La variabile `somma` viene aggiornata una volta per ogni elemento dell'array.
+
+</details>
+
+### Esercizio 32
+
+Determinare il valore massimo contenuto in un array.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Partiamo dal primo elemento come massimo provvisorio e poi lo confrontiamo con gli altri.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numeri[] = {12, 5, 18, 3, 9};
+    int dimensione = sizeof(numeri) / sizeof(numeri[0]);
+    int massimo = numeri[0];
+
+    for (int i = 1; i < dimensione; i++) {
+        if (numeri[i] > massimo) {
+            massimo = numeri[i];
+        }
+    }
+
+    cout << massimo << endl;
+
+    return 0;
+}
+```
+
+Ogni volta che troviamo un valore più grande aggiorniamo `massimo`.
+
+</details>
+
+### Esercizio 33
+
+Contare quanti elementi positivi e quanti negativi ci sono in un array.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo due contatori separati e analizziamo ogni elemento una sola volta.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numeri[] = {4, -2, 0, 7, -5, 3};
+    int dimensione = sizeof(numeri) / sizeof(numeri[0]);
+    int positivi = 0;
+    int negativi = 0;
+
+    for (int i = 0; i < dimensione; i++) {
+        if (numeri[i] > 0) {
+            positivi++;
+        } else if (numeri[i] < 0) {
+            negativi++;
+        }
+    }
+
+    cout << "Positivi: " << positivi << endl;
+    cout << "Negativi: " << negativi << endl;
+
+    return 0;
+}
+```
+
+Lo zero non viene contato in nessuno dei due gruppi.
+
+</details>
+
+### Esercizio 34
+
+Cercare un numero in un array e stampare la sua posizione oppure `-1`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La ricerca lineare controlla gli elementi uno per uno finché non trova quello richiesto.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numeri[] = {15, 3, 8, 42, 7};
+    int dimensione = sizeof(numeri) / sizeof(numeri[0]);
+    int cercato;
+    int posizione = -1;
+
+    cout << "Numero da cercare: ";
+    cin >> cercato;
+
+    for (int i = 0; i < dimensione; i++) {
+        if (numeri[i] == cercato) {
+            posizione = i;
+            break;
+        }
+    }
+
+    cout << posizione << endl;
+
+    return 0;
+}
+```
+
+Se il numero non viene trovato, `posizione` resta uguale a `-1`.
+
+</details>
+
+### Esercizio 35
+
+Invertire gli elementi di un array.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Scambiamo il primo elemento con l'ultimo, il secondo con il penultimo e così via.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numeri[] = {1, 2, 3, 4, 5};
+    int dimensione = sizeof(numeri) / sizeof(numeri[0]);
+
+    for (int i = 0; i < dimensione / 2; i++) {
+        int temp = numeri[i];
+        numeri[i] = numeri[dimensione - 1 - i];
+        numeri[dimensione - 1 - i] = temp;
+    }
+
+    for (int i = 0; i < dimensione; i++) {
+        cout << numeri[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+```
+
+Ogni scambio sistema contemporaneamente due posizioni dell'array.
+
+</details>
+
+### Esercizio 36
+
+Leggere 5 numeri in un `vector` e calcolarne la somma.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo `push_back()` per aggiungere i valori al vector e poi li sommiamo.
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> numeri;
+    int valore;
+    int somma = 0;
+
+    for (int i = 0; i < 5; i++) {
+        cout << "Numero " << (i + 1) << ": ";
+        cin >> valore;
+        numeri.push_back(valore);
+    }
+
+    for (int n : numeri) {
+        somma += n;
+    }
+
+    cout << somma << endl;
+
+    return 0;
+}
+```
+
+Il vector cresce automaticamente mentre leggiamo i dati.
+
+</details>
+
+### Esercizio 37
+
+Determinare il minimo e il massimo contenuti in un `vector`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Partiamo dal primo elemento e aggiorniamo due variabili durante il ciclo.
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> numeri = {14, 6, 21, 3, 18};
+    int minimo = numeri[0];
+    int massimo = numeri[0];
+
+    for (int n : numeri) {
+        if (n < minimo) {
+            minimo = n;
+        }
+        if (n > massimo) {
+            massimo = n;
+        }
+    }
+
+    cout << "Minimo: " << minimo << endl;
+    cout << "Massimo: " << massimo << endl;
+
+    return 0;
+}
+```
+
+Un solo passaggio sul vector basta per trovare entrambi i valori.
+
+</details>
+
+### Esercizio 38
+
+Ordinare un `vector` di numeri in ordine crescente.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La funzione `sort()` riordina gli elementi direttamente dentro il vector.
+
+```cpp
+#include <algorithm>
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> numeri = {9, 2, 7, 1, 5};
+
+    sort(numeri.begin(), numeri.end());
+
+    for (int n : numeri) {
+        cout << n << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+```
+
+Dopo la chiamata a `sort()`, il vector è già modificato.
+
+</details>
+
+### Esercizio 39
+
+Rimuovere l'ultimo elemento di un `vector` se non è vuoto e stampare i valori rimasti.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Prima controlliamo `empty()`, poi usiamo `pop_back()`.
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> numeri = {10, 20, 30, 40};
+
+    if (!numeri.empty()) {
+        numeri.pop_back();
+    }
+
+    for (int n : numeri) {
+        cout << n << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+```
+
+Il controllo evita di chiamare `pop_back()` su un vector vuoto.
+
+</details>
+
+### Esercizio 40
+
+Scrivere una funzione che riceve un nome e stampa un saluto.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Mettiamo la logica del saluto dentro una funzione separata, così possiamo riusarla.
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+void saluta(string nome) {
+    cout << "Ciao, " << nome << "!" << endl;
+}
+
+int main() {
+    saluta("Alice");
+    saluta("Marco");
+
+    return 0;
+}
+```
+
+Ogni chiamata passa un valore diverso allo stesso blocco di codice.
+
+</details>
+
+### Esercizio 41
+
+Scrivere una funzione che restituisce la somma di due numeri interi.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Questa volta la funzione non stampa direttamente: restituisce un valore con `return`.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int somma(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    cout << somma(4, 9) << endl;
+    cout << somma(10, 20) << endl;
+
+    return 0;
+}
+```
+
+Il valore restituito può essere usato ovunque serva nel programma.
+
+</details>
+
+### Esercizio 42
+
+Scrivere una funzione che verifica se un numero è pari.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La funzione restituisce un valore `bool`, quindi il risultato sarà `true` oppure `false`.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+bool isPari(int numero) {
+    return numero % 2 == 0;
+}
+
+int main() {
+    cout << boolalpha;
+    cout << isPari(8) << endl;
+    cout << isPari(11) << endl;
+
+    return 0;
+}
+```
+
+`boolalpha` serve solo per mostrare `true` e `false` invece di `1` e `0`.
+
+</details>
+
+### Esercizio 43
+
+Scambiare due variabili usando una funzione con riferimenti.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+I riferimenti permettono alla funzione di lavorare direttamente sulle variabili originali.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+void scambia(int& a, int& b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+int main() {
+    int x = 10;
+    int y = 20;
+
+    scambia(x, y);
+
+    cout << x << endl;
+    cout << y << endl;
+
+    return 0;
+}
+```
+
+Senza i riferimenti, la funzione modificherebbe solo delle copie.
+
+</details>
+
+### Esercizio 44
+
+Raddoppiare tutti gli elementi di un array usando un ciclo `for` con riferimento.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `int&` nel range-based `for` possiamo modificare gli elementi reali dell'array.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numeri[] = {1, 2, 3, 4, 5};
+
+    for (int& n : numeri) {
+        n *= 2;
+    }
+
+    for (int n : numeri) {
+        cout << n << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+```
+
+Se togliessimo `&`, il ciclo modificherebbe solo una copia temporanea di ogni elemento.
+
+</details>
+
+### Esercizio 45
+
+Raddoppiare un numero usando una funzione che riceve un puntatore.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La funzione riceve l'indirizzo della variabile e usa `*` per modificarne il valore.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+void raddoppia(int* ptr) {
+    *ptr = *ptr * 2;
+}
+
+int main() {
+    int numero = 6;
+
+    raddoppia(&numero);
+
+    cout << numero << endl;
+
+    return 0;
+}
+```
+
+Nel `main` passiamo `&numero`, cioè l'indirizzo della variabile da aggiornare.
+
+</details>
+
+### Esercizio 46
+
+Definire una `struct` per rappresentare uno studente e stamparne i dati.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Una `struct` ci permette di tenere insieme informazioni correlate nello stesso oggetto.
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Studente {
+    string nome;
+    int eta;
+    double media;
+};
+
+int main() {
+    Studente s = {"Alice", 16, 8.4};
+
+    cout << s.nome << endl;
+    cout << s.eta << endl;
+    cout << s.media << endl;
+
+    return 0;
+}
+```
+
+I campi della struttura si leggono con il punto, come `s.nome`.
+
+</details>
+
+### Esercizio 47
+
+Creare una classe `Rettangolo` con metodi per area e perimetro.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La classe raccoglie i dati del rettangolo e le operazioni che sanno usare quei dati.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Rettangolo {
+public:
+    double base;
+    double altezza;
+
+    double area() const {
+        return base * altezza;
+    }
+
+    double perimetro() const {
+        return 2 * (base + altezza);
+    }
+};
+
+int main() {
+    Rettangolo r;
+    r.base = 5;
+    r.altezza = 3;
+
+    cout << r.area() << endl;
+    cout << r.perimetro() << endl;
+
+    return 0;
+}
+```
+
+I metodi usano direttamente i campi dell'oggetto su cui vengono chiamati.
+
+</details>
+
+### Esercizio 48
+
+Creare una classe `ContoBancario` con metodi per depositare, prelevare e leggere il saldo.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Qui usiamo campi privati e metodi pubblici per controllare meglio i dati dell'oggetto.
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+class ContoBancario {
+private:
+    string intestatario;
+    double saldo;
+
+public:
+    void apri(string nome, double saldoIniziale) {
+        intestatario = nome;
+        saldo = saldoIniziale;
+    }
+
+    void deposita(double importo) {
+        if (importo > 0) {
+            saldo += importo;
+        }
+    }
+
+    bool preleva(double importo) {
+        if (importo > 0 && importo <= saldo) {
+            saldo -= importo;
+            return true;
+        }
+        return false;
+    }
+
+    double getSaldo() const {
+        return saldo;
+    }
+};
+
+int main() {
+    ContoBancario conto;
+    conto.apri("Alice", 1000);
+    conto.deposita(250);
+    conto.preleva(300);
+
+    cout << conto.getSaldo() << endl;
+
+    return 0;
+}
+```
+
+I metodi permettono di aggiornare il saldo senza esporre direttamente il dato privato.
+
+</details>
+
+### Esercizio 49
+
+Scrivere una funzione di ricerca lineare che restituisce la posizione di un numero in un array.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La funzione scorre l'array dall'inizio alla fine e si ferma appena trova il valore cercato.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int ricercaLineare(int arr[], int dimensione, int target) {
+    for (int i = 0; i < dimensione; i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int numeri[] = {15, 3, 8, 42, 7, 19};
+    int dimensione = sizeof(numeri) / sizeof(numeri[0]);
+
+    cout << ricercaLineare(numeri, dimensione, 42) << endl;
+    cout << ricercaLineare(numeri, dimensione, 99) << endl;
+
+    return 0;
+}
+```
+
+Se il numero non esiste nell'array, la funzione restituisce `-1`.
+
+</details>
+
+### Esercizio 50
+
+Ordinare un array con il bubble sort e inviare in output il risultato finale.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il bubble sort confronta elementi vicini e li scambia se sono nell'ordine sbagliato.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+void bubbleSort(int arr[], int dimensione) {
+    for (int i = 0; i < dimensione - 1; i++) {
+        for (int j = 0; j < dimensione - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int numeri[] = {64, 34, 25, 12, 22, 11};
+    int dimensione = sizeof(numeri) / sizeof(numeri[0]);
+
+    bubbleSort(numeri, dimensione);
+
+    for (int i = 0; i < dimensione; i++) {
+        cout << numeri[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+```
+
+Dopo ogni passata, uno dei valori più grandi si sposta verso la fine dell'array.
+
+</details>

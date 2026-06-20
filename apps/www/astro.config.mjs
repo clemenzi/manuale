@@ -615,6 +615,11 @@ export default defineConfig({
             },
           ],
         },
+        {
+          label: "exercises",
+          collapsed: false,
+          items: [{ autogenerate: { directory: "exercises/" } }],
+        },
       ],
     }),
   ],

@@ -1,0 +1,2386 @@
+---
+title: Esercizi Python
+description: 100 esercizi pratici e progressivi su Python.
+tableOfContents: false
+---
+
+### Esercizio 1
+
+Inviare in output il testo `Ciao, Python!`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Serve una sola chiamata a `print()` per mostrare il testo sullo schermo.
+
+```python
+print("Ciao, Python!")
+```
+
+Il programma esegue una sola istruzione e stampa esattamente la frase richiesta.
+
+</details>
+
+### Esercizio 2
+
+Conservare un nome e un'età in due variabili e inviarli in output.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Prima salviamo i valori in due variabili, poi li stampiamo.
+
+```python
+nome = "Luca"
+eta = 17
+
+print(nome)
+print(eta)
+```
+
+Le variabili permettono di riutilizzare i dati senza riscriverli ogni volta.
+
+</details>
+
+### Esercizio 3
+
+Calcolare la somma di due numeri interi salvati in variabili.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Salviamo i due numeri e usiamo l'operatore `+` per ottenere il totale.
+
+```python
+a = 12
+b = 8
+somma = a + b
+
+print(somma)
+```
+
+Il risultato della somma viene memorizzato in una terza variabile e poi stampato.
+
+</details>
+
+### Esercizio 4
+
+Calcolare l'area di un rettangolo dati base e altezza.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+L'area del rettangolo si ottiene moltiplicando base per altezza.
+
+```python
+base = 5
+altezza = 3
+area = base * altezza
+
+print(area)
+```
+
+La variabile `area` contiene il valore finale del calcolo.
+
+</details>
+
+### Esercizio 5
+
+Scambiare il valore di due variabili e inviarle in output.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+In Python possiamo scambiare due valori in una sola riga.
+
+```python
+x = 10
+y = 20
+
+x, y = y, x
+
+print(x)
+print(y)
+```
+
+Dopo lo scambio, `x` contiene il vecchio valore di `y` e viceversa.
+
+</details>
+
+### Esercizio 6
+
+Leggere un nome da input e stampare un saluto.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo `input()` per leggere il testo e `print()` per costruire il messaggio.
+
+```python
+nome = input("Inserisci il tuo nome: ")
+print("Ciao,", nome)
+```
+
+Il valore digitato dall'utente viene salvato nella variabile `nome`.
+
+</details>
+
+### Esercizio 7
+
+Leggere due numeri interi e stamparne la somma.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+`input()` restituisce testo, quindi convertiamo i valori con `int()`.
+
+```python
+a = int(input("Primo numero: "))
+b = int(input("Secondo numero: "))
+
+print(a + b)
+```
+
+Senza la conversione, Python tratterebbe i dati come stringhe.
+
+</details>
+
+### Esercizio 8
+
+Leggere un prezzo e una quantità e calcolare il totale.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Per il prezzo usiamo `float()`, mentre la quantità può essere intera.
+
+```python
+prezzo = float(input("Prezzo: "))
+quantita = int(input("Quantita: "))
+totale = prezzo * quantita
+
+print(totale)
+```
+
+Il programma moltiplica il costo di una singola unità per il numero di pezzi.
+
+</details>
+
+### Esercizio 9
+
+Convertire una temperatura da gradi Celsius a gradi Fahrenheit.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La formula è `fahrenheit = celsius * 9 / 5 + 32`.
+
+```python
+celsius = float(input("Gradi Celsius: "))
+fahrenheit = celsius * 9 / 5 + 32
+
+print(fahrenheit)
+```
+
+Il risultato finale viene stampato come numero decimale.
+
+</details>
+
+### Esercizio 10
+
+Calcolare la media di tre numeri.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Sommiamo i tre valori e dividiamo per 3.
+
+```python
+a = float(input("Primo numero: "))
+b = float(input("Secondo numero: "))
+c = float(input("Terzo numero: "))
+
+media = (a + b + c) / 3
+print(media)
+```
+
+La formula della media aritmetica è diretta e usa un solo passaggio.
+
+</details>
+
+### Esercizio 11
+
+Verificare se un numero intero è pari o dispari.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo l'operatore `%` per controllare il resto della divisione per 2.
+
+```python
+numero = int(input("Inserisci un numero: "))
+
+if numero % 2 == 0:
+    print("Pari")
+else:
+    print("Dispari")
+```
+
+Se il resto è zero, il numero è pari; altrimenti è dispari.
+
+</details>
+
+### Esercizio 12
+
+Determinare se un numero è positivo, negativo oppure zero.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con `if`, `elif` ed `else` gestiamo i tre casi possibili.
+
+```python
+numero = int(input("Inserisci un numero: "))
+
+if numero > 0:
+    print("Positivo")
+elif numero < 0:
+    print("Negativo")
+else:
+    print("Zero")
+```
+
+Le condizioni vengono controllate dall'alto verso il basso.
+
+</details>
+
+### Esercizio 13
+
+Determinare il maggiore tra due numeri.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Confrontiamo i due valori e stampiamo quello più grande.
+
+```python
+a = int(input("Primo numero: "))
+b = int(input("Secondo numero: "))
+
+if a > b:
+    print(a)
+else:
+    print(b)
+```
+
+Se i due numeri sono uguali, il programma stampa comunque il secondo valore, che ha lo stesso contenuto.
+
+</details>
+
+### Esercizio 14
+
+Determinare il maggiore tra tre numeri.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Partiamo dal primo numero come massimo provvisorio e poi aggiorniamo il valore.
+
+```python
+a = int(input("Primo numero: "))
+b = int(input("Secondo numero: "))
+c = int(input("Terzo numero: "))
+
+massimo = a
+
+if b > massimo:
+    massimo = b
+
+if c > massimo:
+    massimo = c
+
+print(massimo)
+```
+
+La variabile `massimo` conserva il valore più grande trovato fino a quel momento.
+
+</details>
+
+### Esercizio 15
+
+Verificare se una persona è maggiorenne.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Basta controllare se l'età è almeno 18.
+
+```python
+eta = int(input("Eta: "))
+
+if eta >= 18:
+    print("Maggiorenne")
+else:
+    print("Minorenne")
+```
+
+La soglia dei 18 anni divide i due casi richiesti.
+
+</details>
+
+### Esercizio 16
+
+Classificare un voto numerico come ottimo, buono, sufficiente o insufficiente.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Le condizioni vanno ordinate dalla soglia più alta a quella più bassa.
+
+```python
+voto = int(input("Voto: "))
+
+if voto >= 9:
+    print("Ottimo")
+elif voto >= 7:
+    print("Buono")
+elif voto >= 6:
+    print("Sufficiente")
+else:
+    print("Insufficiente")
+```
+
+Python si ferma alla prima condizione vera.
+
+</details>
+
+### Esercizio 17
+
+Verificare se un anno è bisestile.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Un anno è bisestile se è divisibile per 400, oppure se è divisibile per 4 ma non per 100.
+
+```python
+anno = int(input("Anno: "))
+
+if anno % 400 == 0 or (anno % 4 == 0 and anno % 100 != 0):
+    print("Bisestile")
+else:
+    print("Non bisestile")
+```
+
+La condizione combina `and` e `or` per rispettare la regola completa.
+
+</details>
+
+### Esercizio 18
+
+Verificare se due numeri hanno lo stesso segno.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Due numeri hanno lo stesso segno se sono entrambi positivi oppure entrambi negativi.
+
+```python
+a = int(input("Primo numero: "))
+b = int(input("Secondo numero: "))
+
+if (a >= 0 and b >= 0) or (a < 0 and b < 0):
+    print("Stesso segno")
+else:
+    print("Segno diverso")
+```
+
+La condizione separa chiaramente i due casi utili.
+
+</details>
+
+### Esercizio 19
+
+Applicare uno sconto del 10% se una spesa supera 100.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Calcoliamo il totale e, solo se necessario, applichiamo la riduzione.
+
+```python
+totale = float(input("Totale spesa: "))
+
+if totale > 100:
+    totale = totale * 0.9
+
+print(totale)
+```
+
+La variabile `totale` viene aggiornata solo nel caso richiesto.
+
+</details>
+
+### Esercizio 20
+
+Verificare se una parola è presente in una lista di parole.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+L'operatore `in` serve proprio a controllare la presenza di un elemento.
+
+```python
+parole = ["casa", "scuola", "mare", "montagna"]
+scelta = input("Parola da cercare: ")
+
+if scelta in parole:
+    print("Presente")
+else:
+    print("Assente")
+```
+
+Il programma confronta la parola letta con tutti gli elementi della lista.
+
+</details>
+
+### Esercizio 21
+
+Stampare i numeri da 1 a 10 usando `while`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Serve una variabile contatore da aggiornare a ogni iterazione.
+
+```python
+numero = 1
+
+while numero <= 10:
+    print(numero)
+    numero += 1
+```
+
+Il ciclo continua finché la condizione `numero <= 10` resta vera.
+
+</details>
+
+### Esercizio 22
+
+Calcolare la somma dei numeri da 1 a `n` usando `while`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Accumuliamo i valori in una variabile `totale`.
+
+```python
+n = int(input("n: "))
+totale = 0
+numero = 1
+
+while numero <= n:
+    totale += numero
+    numero += 1
+
+print(totale)
+```
+
+Ogni passaggio aggiunge il numero corrente alla somma complessiva.
+
+</details>
+
+### Esercizio 23
+
+Stampare un conto alla rovescia da `n` fino a 0.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+In questo caso il contatore viene diminuito a ogni giro.
+
+```python
+n = int(input("Numero iniziale: "))
+
+while n >= 0:
+    print(n)
+    n -= 1
+```
+
+Il ciclo termina quando il valore scende sotto zero.
+
+</details>
+
+### Esercizio 24
+
+Stampare la tabellina del 7.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo `for` con `range(1, 11)` per produrre i moltiplicatori da 1 a 10.
+
+```python
+for i in range(1, 11):
+    print(7 * i)
+```
+
+Ogni riga mostra un multiplo diverso di 7.
+
+</details>
+
+### Esercizio 25
+
+Stampare tutti i numeri pari da 0 a 20.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Possiamo usare `range()` con passo 2.
+
+```python
+for numero in range(0, 21, 2):
+    print(numero)
+```
+
+Il terzo argomento di `range()` indica quanto avanzare a ogni iterazione.
+
+</details>
+
+### Esercizio 26
+
+Calcolare il fattoriale di un numero intero positivo.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il fattoriale si ottiene moltiplicando tutti i numeri da 1 a `n`.
+
+```python
+n = int(input("n: "))
+fattoriale = 1
+
+for i in range(1, n + 1):
+    fattoriale *= i
+
+print(fattoriale)
+```
+
+La variabile `fattoriale` parte da 1 e cresce a ogni moltiplicazione.
+
+</details>
+
+### Esercizio 27
+
+Contare quante cifre ha un numero intero positivo.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Convertiamo il numero in stringa e usiamo `len()`.
+
+```python
+numero = input("Numero: ")
+print(len(numero))
+```
+
+Ogni carattere della stringa corrisponde a una cifra del numero inserito.
+
+</details>
+
+### Esercizio 28
+
+Calcolare la somma delle cifre di un numero intero positivo.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Scorriamo il numero come stringa e convertiamo ogni cifra in intero.
+
+```python
+numero = input("Numero: ")
+totale = 0
+
+for cifra in numero:
+    totale += int(cifra)
+
+print(totale)
+```
+
+Ogni carattere viene trasformato in numero e aggiunto al totale finale.
+
+</details>
+
+### Esercizio 29
+
+Contare quante vocali ci sono in una parola.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Controlliamo ogni lettera e aumentiamo il contatore solo se è una vocale.
+
+```python
+parola = input("Parola: ").lower()
+conteggio = 0
+
+for lettera in parola:
+    if lettera in "aeiou":
+        conteggio += 1
+
+print(conteggio)
+```
+
+La conversione in minuscolo evita di gestire separatamente maiuscole e minuscole.
+
+</details>
+
+### Esercizio 30
+
+Leggere base e altezza e stampare un rettangolo pieno di asterischi. Alla fine, stampare anche il numero totale di asterischi usati.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo un ciclo per stampare ogni riga del rettangolo e poi calcoliamo quante celle contiene in totale.
+
+```python
+base = int(input("Base: "))
+altezza = int(input("Altezza: "))
+
+for _ in range(altezza):
+    print("*" * base)
+
+totale = base * altezza
+print("Totale asterischi:", totale)
+```
+
+Il ciclo controlla il numero di righe, mentre `"*" * base` costruisce ogni riga del rettangolo.
+
+</details>
+
+### Esercizio 31
+
+Determinare la lunghezza di una stringa.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La funzione `len()` restituisce il numero di caratteri presenti.
+
+```python
+testo = input("Testo: ")
+print(len(testo))
+```
+
+Anche gli spazi vengono contati come caratteri.
+
+</details>
+
+### Esercizio 32
+
+Contare quante volte compare una lettera in una parola.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo il metodo `count()` della stringa.
+
+```python
+parola = input("Parola: ").lower()
+lettera = input("Lettera: ").lower()
+
+print(parola.count(lettera))
+```
+
+Il metodo restituisce quante occorrenze della sottostringa sono presenti.
+
+</details>
+
+### Esercizio 33
+
+Invertire una stringa.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Lo slicing con passo `-1` produce la stringa al contrario.
+
+```python
+testo = input("Testo: ")
+print(testo[::-1])
+```
+
+È un modo molto compatto per leggere i caratteri dalla fine all'inizio.
+
+</details>
+
+### Esercizio 34
+
+Verificare se una parola è palindroma.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Una parola è palindroma se è uguale alla sua versione invertita.
+
+```python
+parola = input("Parola: ").lower()
+
+if parola == parola[::-1]:
+    print("Palindroma")
+else:
+    print("Non palindroma")
+```
+
+Il confronto finale decide subito tra i due casi.
+
+</details>
+
+### Esercizio 35
+
+Contare quante parole contiene una frase.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+`split()` divide la frase in una lista di parole separate dagli spazi.
+
+```python
+frase = input("Frase: ")
+parole = frase.split()
+
+print(len(parole))
+```
+
+Dopo la divisione, basta contare gli elementi della lista ottenuta.
+
+</details>
+
+### Esercizio 36
+
+Sostituire tutti gli spazi di una frase con trattini.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il metodo `replace()` cambia tutte le occorrenze richieste.
+
+```python
+frase = input("Frase: ")
+nuova_frase = frase.replace(" ", "-")
+
+print(nuova_frase)
+```
+
+Il testo originale non viene modificato: `replace()` restituisce una nuova stringa.
+
+</details>
+
+### Esercizio 37
+
+Stampare le iniziali di nome e cognome.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Leggiamo due parole e prendiamo il primo carattere di ciascuna.
+
+```python
+nome = input("Nome: ")
+cognome = input("Cognome: ")
+
+iniziali = nome[0] + cognome[0]
+print(iniziali.upper())
+```
+
+`upper()` rende le iniziali più leggibili.
+
+</details>
+
+### Esercizio 38
+
+Estrarre il nome utente da un indirizzo email.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La parte prima di `@` si ottiene dividendo la stringa in due pezzi.
+
+```python
+email = input("Email: ")
+nome_utente = email.split("@")[0]
+
+print(nome_utente)
+```
+
+L'indice `0` seleziona la prima parte del risultato di `split()`.
+
+</details>
+
+### Esercizio 39
+
+Determinare la parola più lunga in una frase.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Dividiamo la frase e aggiorniamo una variabile ogni volta che troviamo una parola più lunga.
+
+```python
+frase = input("Frase: ")
+parole = frase.split()
+piu_lunga = ""
+
+for parola in parole:
+    if len(parola) > len(piu_lunga):
+        piu_lunga = parola
+
+print(piu_lunga)
+```
+
+Alla fine del ciclo, `piu_lunga` contiene la parola richiesta.
+
+</details>
+
+### Esercizio 40
+
+Contare quante consonanti contiene una parola.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Una consonante è una lettera alfabetica che non appartiene all'insieme delle vocali.
+
+```python
+parola = input("Parola: ").lower()
+conteggio = 0
+
+for lettera in parola:
+    if lettera.isalpha() and lettera not in "aeiou":
+        conteggio += 1
+
+print(conteggio)
+```
+
+Il controllo con `isalpha()` evita di contare simboli o numeri.
+
+</details>
+
+### Esercizio 41
+
+Stampare il primo e l'ultimo elemento di una lista.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Gli indici `0` e `-1` permettono di accedere all'inizio e alla fine della lista.
+
+```python
+numeri = [4, 8, 15, 16, 23, 42]
+
+print(numeri[0])
+print(numeri[-1])
+```
+
+L'indice negativo conta gli elementi a partire dalla fine.
+
+</details>
+
+### Esercizio 42
+
+Calcolare la somma degli elementi di una lista di numeri.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Sommiamo gli elementi uno alla volta in una variabile accumulatrice.
+
+```python
+numeri = [3, 5, 7, 9]
+totale = 0
+
+for numero in numeri:
+    totale += numero
+
+print(totale)
+```
+
+Il ciclo visita tutti gli elementi della lista e aggiorna il totale.
+
+</details>
+
+### Esercizio 43
+
+Trovare il valore massimo in una lista di numeri senza usare `max()`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Partiamo dal primo elemento e lo sostituiamo quando troviamo un valore più grande.
+
+```python
+numeri = [12, 7, 19, 4, 25, 10]
+massimo = numeri[0]
+
+for numero in numeri:
+    if numero > massimo:
+        massimo = numero
+
+print(massimo)
+```
+
+La variabile `massimo` conserva sempre il valore migliore trovato fin lì.
+
+</details>
+
+### Esercizio 44
+
+Contare quante volte compare un valore in una lista.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Possiamo usare direttamente `count()` sulla lista.
+
+```python
+numeri = [2, 4, 2, 6, 2, 8]
+valore = 2
+
+print(numeri.count(valore))
+```
+
+Il metodo restituisce il numero di occorrenze dell'elemento cercato.
+
+</details>
+
+### Esercizio 45
+
+Sostituire un elemento di una lista in una posizione data.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Le liste sono modificabili, quindi basta assegnare un nuovo valore all'indice richiesto.
+
+```python
+colori = ["rosso", "verde", "blu"]
+colori[1] = "giallo"
+
+print(colori)
+```
+
+Dopo l'assegnazione, la lista contiene il nuovo elemento nella posizione scelta.
+
+</details>
+
+### Esercizio 46
+
+Aggiungere un elemento a una lista solo se non è già presente.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Controlliamo la presenza con `in` prima di chiamare `append()`.
+
+```python
+frutta = ["mela", "banana", "pera"]
+nuovo = input("Frutto: ")
+
+if nuovo not in frutta:
+    frutta.append(nuovo)
+
+print(frutta)
+```
+
+In questo modo evitiamo di inserire duplicati indesiderati.
+
+</details>
+
+### Esercizio 47
+
+Unire due liste in una sola.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+`extend()` aggiunge in fondo tutti gli elementi della seconda lista.
+
+```python
+lista1 = [1, 2, 3]
+lista2 = [4, 5, 6]
+
+lista1.extend(lista2)
+print(lista1)
+```
+
+Alla fine `lista1` contiene tutti i valori delle due sequenze.
+
+</details>
+
+### Esercizio 48
+
+Stampare una lista al contrario.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Lo slicing permette di ottenere facilmente la versione invertita.
+
+```python
+lettere = ["a", "b", "c", "d"]
+print(lettere[::-1])
+```
+
+La lista originale resta invariata e viene prodotta una nuova sequenza.
+
+</details>
+
+### Esercizio 49
+
+Eliminare i duplicati da una lista mantenendo il primo ordine di comparsa e costruire anche una seconda lista con i valori che comparivano più di una volta.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Scorriamo la lista originale una volta sola. I valori mai visti finiscono nella lista principale, mentre i ripetuti finiscono in una lista separata senza essere duplicati più volte.
+
+```python
+numeri = [3, 1, 3, 2, 1, 4, 2]
+senza_duplicati = []
+duplicati = []
+
+for numero in numeri:
+    if numero not in senza_duplicati:
+        senza_duplicati.append(numero)
+    elif numero not in duplicati:
+        duplicati.append(numero)
+
+print(senza_duplicati)
+print(duplicati)
+```
+
+La prima lista conserva l'ordine originale dei valori distinti, mentre la seconda segnala quali valori erano ripetuti.
+
+</details>
+
+### Esercizio 50
+
+Calcolare la media degli elementi di una lista.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Sommiamo i valori e dividiamo per la lunghezza della lista.
+
+```python
+numeri = [6, 8, 7, 9]
+media = sum(numeri) / len(numeri)
+
+print(media)
+```
+
+La funzione `len()` serve a sapere quanti elementi partecipano alla media.
+
+</details>
+
+### Esercizio 51
+
+Estrarre i primi tre e gli ultimi tre elementi di una lista.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Usiamo due operazioni di slicing diverse sulla stessa lista.
+
+```python
+numeri = [1, 2, 3, 4, 5, 6, 7, 8]
+
+print(numeri[:3])
+print(numeri[-3:])
+```
+
+Il primo taglio prende dall'inizio, il secondo parte dalla fine.
+
+</details>
+
+### Esercizio 52
+
+Ordinare una lista in ordine crescente e poi in ordine decrescente.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Possiamo creare nuove liste ordinate senza modificare l'originale.
+
+```python
+numeri = [5, 2, 9, 1, 7]
+
+crescente = sorted(numeri)
+decrescente = sorted(numeri, reverse=True)
+
+print(crescente)
+print(decrescente)
+```
+
+`sorted()` restituisce una nuova lista già ordinata.
+
+</details>
+
+### Esercizio 53
+
+Copiare una lista senza condividere lo stesso riferimento.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Per ottenere una copia vera usiamo il metodo `copy()`.
+
+```python
+originale = [10, 20, 30]
+copia = originale.copy()
+
+copia.append(40)
+
+print(originale)
+print(copia)
+```
+
+La modifica della copia non cambia la lista originale.
+
+</details>
+
+### Esercizio 54
+
+Calcolare la somma di tutti gli elementi di una matrice 2x3.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Una matrice può essere rappresentata come lista di liste.
+
+```python
+matrice = [
+    [1, 2, 3],
+    [4, 5, 6]
+]
+
+totale = 0
+
+for riga in matrice:
+    for valore in riga:
+        totale += valore
+
+print(totale)
+```
+
+Il doppio ciclo permette di visitare tutte le celle della matrice.
+
+</details>
+
+### Esercizio 55
+
+Calcolare somma e prodotto dei valori contenuti in una tupla.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Una tupla si attraversa come una lista, anche se non si può modificare.
+
+```python
+valori = (2, 3, 4)
+somma = 0
+prodotto = 1
+
+for valore in valori:
+    somma += valore
+    prodotto *= valore
+
+print(somma)
+print(prodotto)
+```
+
+Usiamo due variabili diverse perché le due operazioni crescono in modo differente.
+
+</details>
+
+### Esercizio 56
+
+Scambiare le due coordinate di una tupla.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Con l'unpacking possiamo separare i due valori e ricostruire la tupla invertita.
+
+```python
+punto = (5, 8)
+x, y = punto
+scambiato = (y, x)
+
+print(scambiato)
+```
+
+Il nuovo risultato conserva gli stessi dati ma in ordine opposto.
+
+</details>
+
+### Esercizio 57
+
+Contare quanti valori distinti ci sono in una lista usando `set`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Un insieme elimina automaticamente i duplicati.
+
+```python
+numeri = [1, 2, 2, 3, 4, 4, 4, 5]
+distinti = set(numeri)
+
+print(len(distinti))
+```
+
+Dopo la conversione, ogni valore compare una sola volta.
+
+</details>
+
+### Esercizio 58
+
+Trovare l'intersezione di due insiemi.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+L'operatore `&` restituisce gli elementi presenti in entrambi gli insiemi.
+
+```python
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+print(a & b)
+```
+
+Il risultato contiene solo i valori comuni.
+
+</details>
+
+### Esercizio 59
+
+Trovare la differenza tra due insiemi.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+L'operatore `-` conserva gli elementi del primo insieme non presenti nel secondo.
+
+```python
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+print(a - b)
+```
+
+In questo caso il risultato mostra solo i valori esclusivi di `a`.
+
+</details>
+
+### Esercizio 60
+
+Verificare se un insieme è sottoinsieme di un altro.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il metodo `issubset()` controlla se tutti gli elementi del primo insieme compaiono anche nel secondo.
+
+```python
+piccolo = {2, 4}
+grande = {1, 2, 3, 4, 5}
+
+print(piccolo.issubset(grande))
+```
+
+Il risultato è un valore booleano: `True` oppure `False`.
+
+</details>
+
+### Esercizio 61
+
+Dato un dizionario di nomi e voti, stampare il voto associato a un nome.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Accediamo al valore usando la chiave corrispondente.
+
+```python
+voti = {
+    "anna": 8,
+    "luca": 7,
+    "marta": 9
+}
+
+nome = input("Nome: ").lower()
+print(voti[nome])
+```
+
+La chiave scelta determina quale valore del dizionario viene letto.
+
+</details>
+
+### Esercizio 62
+
+Aggiornare il voto di uno studente in un dizionario.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Basta assegnare un nuovo valore alla chiave desiderata.
+
+```python
+voti = {
+    "anna": 8,
+    "luca": 7,
+    "marta": 9
+}
+
+voti["luca"] = 10
+print(voti)
+```
+
+Se la chiave esiste già, il vecchio valore viene sostituito.
+
+</details>
+
+### Esercizio 63
+
+Calcolare la media dei valori contenuti in un dizionario di voti.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Ci interessano solo i valori numerici del dizionario.
+
+```python
+voti = {
+    "anna": 8,
+    "luca": 7,
+    "marta": 9
+}
+
+media = sum(voti.values()) / len(voti)
+print(media)
+```
+
+`values()` restituisce una vista di tutti i voti presenti.
+
+</details>
+
+### Esercizio 64
+
+Contare la frequenza delle lettere in una frase usando un dizionario, ignorando gli spazi, e stampare anche la lettera più frequente.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Aggiorniamo il dizionario solo per i caratteri utili. Poi scorriamo le coppie `lettera-conteggio` per trovare il massimo.
+
+```python
+frase = input("Frase: ").lower()
+frequenze = {}
+
+for lettera in frase:
+    if lettera == " ":
+        continue
+    if lettera not in frequenze:
+        frequenze[lettera] = 0
+    frequenze[lettera] += 1
+
+print(frequenze)
+
+lettera_massima = ""
+frequenza_massima = 0
+
+for lettera, frequenza in frequenze.items():
+    if frequenza > frequenza_massima:
+        lettera_massima = lettera
+        frequenza_massima = frequenza
+
+print(lettera_massima, frequenza_massima)
+```
+
+Ogni chiave del dizionario rappresenta una lettera diversa, mentre le ultime variabili tengono traccia del valore più alto trovato.
+
+</details>
+
+### Esercizio 65
+
+Creare un dizionario che associ ogni parola della lista alla sua lunghezza.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Per ogni parola salviamo il risultato di `len()` come valore.
+
+```python
+parole = ["sole", "mare", "montagna"]
+lunghezze = {}
+
+for parola in parole:
+    lunghezze[parola] = len(parola)
+
+print(lunghezze)
+```
+
+Il dizionario finale collega ogni testo alla sua misura in caratteri.
+
+</details>
+
+### Esercizio 66
+
+Invertire un dizionario con valori unici, scambiando chiavi e valori.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Creiamo un nuovo dizionario mettendo il valore come chiave e la chiave come valore.
+
+```python
+numeri = {
+    "uno": 1,
+    "due": 2,
+    "tre": 3
+}
+
+invertito = {}
+
+for chiave, valore in numeri.items():
+    invertito[valore] = chiave
+
+print(invertito)
+```
+
+Questa soluzione funziona bene quando i valori iniziali non si ripetono.
+
+</details>
+
+### Esercizio 67
+
+Determinare la chiave associata al valore massimo in un dizionario.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Confrontiamo tutti i valori e memorizziamo la chiave migliore trovata.
+
+```python
+punteggi = {
+    "anna": 15,
+    "luca": 21,
+    "marta": 18
+}
+
+chiave_massima = None
+valore_massimo = None
+
+for chiave, valore in punteggi.items():
+    if valore_massimo is None or valore > valore_massimo:
+        chiave_massima = chiave
+        valore_massimo = valore
+
+print(chiave_massima)
+```
+
+Alla fine del ciclo, `chiave_massima` indica chi possiede il punteggio più alto.
+
+</details>
+
+### Esercizio 68
+
+Calcolare la somma di tutti i valori di un dizionario.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Scorriamo solo i valori numerici e li accumuliamo.
+
+```python
+dati = {
+    "gennaio": 120,
+    "febbraio": 95,
+    "marzo": 110
+}
+
+totale = 0
+
+for valore in dati.values():
+    totale += valore
+
+print(totale)
+```
+
+Il metodo `values()` rende più chiaro che le chiavi qui non servono.
+
+</details>
+
+### Esercizio 69
+
+Verificare se una chiave è presente in un dizionario.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Anche per i dizionari possiamo usare l'operatore `in`.
+
+```python
+contatti = {
+    "anna": "111111",
+    "luca": "222222",
+    "marta": "333333"
+}
+
+nome = input("Nome: ").lower()
+
+if nome in contatti:
+    print("Presente")
+else:
+    print("Assente")
+```
+
+Il controllo riguarda le chiavi del dizionario, non i valori.
+
+</details>
+
+### Esercizio 70
+
+Convertire una lista di coppie in un dizionario.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Ogni coppia contiene una chiave e il relativo valore.
+
+```python
+coppie = [("rosso", "#ff0000"), ("verde", "#00ff00"), ("blu", "#0000ff")]
+dizionario = {}
+
+for chiave, valore in coppie:
+    dizionario[chiave] = valore
+
+print(dizionario)
+```
+
+Il risultato finale ha la forma tipica di un dizionario Python.
+
+</details>
+
+### Esercizio 71
+
+Creare una funzione che stampi un saluto personalizzato.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La funzione riceve il nome come parametro e costruisce il messaggio.
+
+```python
+def saluta(nome):
+    print(f"Ciao, {nome}!")
+
+
+saluta("Giulia")
+saluta("Paolo")
+```
+
+La stessa funzione può essere richiamata più volte con valori diversi.
+
+</details>
+
+### Esercizio 72
+
+Creare una funzione che restituisca il quadrato di un numero.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Qui serve `return`, perché vogliamo usare il risultato fuori dalla funzione.
+
+```python
+def quadrato(numero):
+    return numero * numero
+
+
+print(quadrato(5))
+print(quadrato(9))
+```
+
+Il valore restituito può essere stampato o riutilizzato in altre espressioni.
+
+</details>
+
+### Esercizio 73
+
+Creare una funzione che restituisca il maggiore tra due numeri.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La logica è la stessa vista nelle condizioni, ma racchiusa dentro una funzione.
+
+```python
+def maggiore(a, b):
+    if a > b:
+        return a
+    return b
+
+
+print(maggiore(10, 7))
+print(maggiore(4, 12))
+```
+
+La funzione isola il confronto e lo rende riutilizzabile.
+
+</details>
+
+### Esercizio 74
+
+Creare una funzione che calcoli la media di una lista di numeri e una seconda funzione che restituisca quanti valori sono almeno sufficienti rispetto a una soglia data.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Dividiamo il problema in due parti: una funzione calcola la media, l'altra conta quanti elementi superano o raggiungono la soglia.
+
+```python
+def media(numeri):
+    if len(numeri) == 0:
+        return 0
+    return sum(numeri) / len(numeri)
+
+
+def conta_sufficienti(numeri, soglia=6):
+    totale = 0
+    for numero in numeri:
+        if numero >= soglia:
+            totale += 1
+    return totale
+
+
+voti = [6, 8, 5, 7, 9]
+
+print(media(voti))
+print(conta_sufficienti(voti))
+```
+
+La prima funzione produce un valore decimale, mentre la seconda restituisce un conteggio intero.
+
+</details>
+
+### Esercizio 75
+
+Creare una funzione che conti quante vocali ci sono in una stringa.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Portiamo il testo in minuscolo e contiamo solo le lettere presenti nell'insieme delle vocali.
+
+```python
+def conta_vocali(testo):
+    totale = 0
+    for lettera in testo.lower():
+        if lettera in "aeiou":
+            totale += 1
+    return totale
+
+
+print(conta_vocali("Programmazione"))
+```
+
+La funzione restituisce un numero intero con il conteggio finale.
+
+</details>
+
+### Esercizio 76
+
+Creare una funzione con un parametro predefinito per il saluto.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il parametro di default viene usato solo se non viene passato un valore diverso.
+
+```python
+def saluta(nome, saluto="Ciao"):
+    print(f"{saluto}, {nome}!")
+
+
+saluta("Anna")
+saluta("Luca", "Buongiorno")
+```
+
+Così la funzione resta flessibile senza obbligare sempre a scrivere tutto.
+
+</details>
+
+### Esercizio 77
+
+Creare una funzione che restituisca il minimo e il massimo di una lista.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La funzione restituisce due valori, che poi possiamo assegnare a due variabili.
+
+```python
+def min_max(numeri):
+    return min(numeri), max(numeri)
+
+
+piccolo, grande = min_max([4, 9, 1, 7, 3])
+print(piccolo)
+print(grande)
+```
+
+Python confeziona i due risultati in una tupla e poi li riassegna con l'unpacking.
+
+</details>
+
+### Esercizio 78
+
+Scrivere una funzione ricorsiva che calcoli il fattoriale di `n`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Una funzione ricorsiva richiama se stessa finché raggiunge un caso base.
+
+```python
+def fattoriale(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * fattoriale(n - 1)
+
+
+print(fattoriale(5))
+```
+
+Il caso base evita chiamate infinite e permette di risalire con i risultati.
+
+</details>
+
+### Esercizio 79
+
+Scrivere una funzione ricorsiva che calcoli la somma dei numeri da 1 a `n`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Anche qui serve un caso base semplice da cui partire.
+
+```python
+def somma_fino_a(n):
+    if n == 1:
+        return 1
+    return n + somma_fino_a(n - 1)
+
+
+print(somma_fino_a(6))
+```
+
+Ogni chiamata somma il numero corrente al risultato della chiamata successiva.
+
+</details>
+
+### Esercizio 80
+
+Usare una `lambda` per raddoppiare un numero.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Una `lambda` è una funzione breve scritta in una sola espressione.
+
+```python
+raddoppia = lambda x: x * 2
+
+print(raddoppia(7))
+print(raddoppia(15))
+```
+
+Qui la funzione anonima viene salvata in una variabile e poi richiamata come una funzione normale.
+
+</details>
+
+### Esercizio 81
+
+Scrivere in un file una piccola lista della spesa, mettendo ogni elemento su una riga numerata.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Prepariamo una lista di elementi e usiamo un ciclo con indice per scrivere righe più strutturate.
+
+```python
+spesa = ["pane", "latte", "mele", "pasta"]
+
+with open("spesa.txt", "w") as file:
+    for indice, elemento in enumerate(spesa, start=1):
+        file.write(f"{indice}. {elemento}\n")
+```
+
+Ogni iterazione produce una riga completa, già numerata e pronta da leggere.
+
+</details>
+
+### Esercizio 82
+
+Leggere un file di testo e contare quante righe contiene.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Scorriamo il file riga per riga e aumentiamo un contatore.
+
+```python
+conteggio = 0
+
+with open("appunti.txt", "r") as file:
+    for _ in file:
+        conteggio += 1
+
+print(conteggio)
+```
+
+Il trattino basso `_` indica che il contenuto della riga qui non ci serve.
+
+</details>
+
+### Esercizio 83
+
+Aggiungere una nuova riga alla fine di un file esistente.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La modalità `"a"` aggiunge contenuto senza cancellare quello che c'era già.
+
+```python
+with open("appunti.txt", "a") as file:
+    file.write("quarta riga\n")
+```
+
+Il nuovo testo viene inserito in fondo al file.
+
+</details>
+
+### Esercizio 84
+
+Copiare il contenuto di un file dentro un altro file.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Prima leggiamo tutto il testo del file sorgente, poi lo scriviamo nel file destinazione.
+
+```python
+with open("appunti.txt", "r") as sorgente:
+    contenuto = sorgente.read()
+
+with open("copia_appunti.txt", "w") as destinazione:
+    destinazione.write(contenuto)
+```
+
+Questa soluzione è semplice e funziona bene per file di piccole dimensioni.
+
+</details>
+
+### Esercizio 85
+
+Leggere un file se esiste, altrimenti stampare un messaggio di errore semplice.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+`try/except` ci permette di gestire il caso in cui il file non sia disponibile.
+
+```python
+try:
+    with open("dati.txt", "r") as file:
+        print(file.read())
+except FileNotFoundError:
+    print("Il file non esiste.")
+```
+
+Se Python solleva `FileNotFoundError`, il programma non si interrompe e mostra il messaggio scelto.
+
+</details>
+
+### Esercizio 86
+
+Gestire una divisione per zero usando `try/except`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Mettiamo la divisione nel blocco `try` e intercettiamo `ZeroDivisionError`.
+
+```python
+a = int(input("Primo numero: "))
+b = int(input("Secondo numero: "))
+
+try:
+    print(a / b)
+except ZeroDivisionError:
+    print("Non puoi dividere per zero.")
+```
+
+L'errore viene gestito in modo controllato senza bloccare il programma.
+
+</details>
+
+### Esercizio 87
+
+Gestire l'inserimento di un intero non valido usando `try/except`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+L'errore da intercettare in questo caso è `ValueError`.
+
+```python
+testo = input("Inserisci un numero intero: ")
+
+try:
+    numero = int(testo)
+    print(numero)
+except ValueError:
+    print("Valore non valido.")
+```
+
+Se il testo non può essere convertito in intero, Python entra nel blocco `except`.
+
+</details>
+
+### Esercizio 88
+
+Calcolare la radice quadrata di un numero usando il modulo `math`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Prima importiamo il modulo, poi richiamiamo la funzione adatta.
+
+```python
+import math
+
+numero = float(input("Numero: "))
+radice = math.sqrt(numero)
+
+print(radice)
+```
+
+Il prefisso `math.` serve per indicare che la funzione appartiene a quel modulo.
+
+</details>
+
+### Esercizio 89
+
+Salvare in un file JSON una lista di studenti, dove ogni studente è rappresentato da un dizionario con nome e voto.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il modulo `json` può salvare non solo un dizionario singolo, ma anche strutture più ricche come una lista di dizionari.
+
+```python
+import json
+
+studenti = [
+    {"nome": "Anna", "voto": 8},
+    {"nome": "Luca", "voto": 7},
+    {"nome": "Marta", "voto": 9}
+]
+
+with open("studenti.json", "w") as file:
+    json.dump(studenti, file)
+```
+
+Il file creato conterrà tutti gli studenti in formato JSON, pronti per essere riletti più avanti.
+
+</details>
+
+### Esercizio 90
+
+Caricare un file JSON e stampare i valori letti.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+`json.load()` ricostruisce il dizionario Python a partire dal file.
+
+```python
+import json
+
+with open("profilo.json", "r") as file:
+    dati = json.load(file)
+
+print(dati["nome"])
+print(dati["eta"])
+print(dati["citta"])
+```
+
+Dopo il caricamento, i dati si usano come un normale dizionario.
+
+</details>
+
+### Esercizio 91
+
+Creare una classe `Persona` con attributi `nome` ed `eta`, un metodo `saluta()`, un metodo `compleanno()` e una rappresentazione leggibile con `__str__()`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il costruttore inizializza i dati, un metodo stampa un messaggio, un altro aggiorna l'età e `__str__()` rende l'oggetto più leggibile.
+
+```python
+class Persona:
+    def __init__(self, nome, eta):
+        self.nome = nome
+        self.eta = eta
+
+    def saluta(self):
+        print(f"Ciao, mi chiamo {self.nome} e ho {self.eta} anni.")
+
+    def compleanno(self):
+        self.eta += 1
+
+    def __str__(self):
+        return f"Persona(nome={self.nome}, eta={self.eta})"
+
+
+persona = Persona("Elena", 18)
+persona.saluta()
+persona.compleanno()
+print(persona)
+```
+
+`self` rappresenta l'istanza su cui il metodo sta lavorando, quindi ogni oggetto può avere dati e stato propri.
+
+</details>
+
+### Esercizio 92
+
+Creare una classe `Contatore` con i metodi `incrementa()` e `reset()`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+L'oggetto deve conservare un valore interno che cambia nel tempo.
+
+```python
+class Contatore:
+    def __init__(self):
+        self.valore = 0
+
+    def incrementa(self):
+        self.valore += 1
+
+    def reset(self):
+        self.valore = 0
+
+
+contatore = Contatore()
+contatore.incrementa()
+contatore.incrementa()
+print(contatore.valore)
+contatore.reset()
+print(contatore.valore)
+```
+
+I metodi modificano direttamente l'attributo dell'istanza.
+
+</details>
+
+### Esercizio 93
+
+Creare una classe `Rettangolo` con i metodi `area()` e `perimetro()`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+La classe incapsula i dati del rettangolo e i calcoli collegati.
+
+```python
+class Rettangolo:
+    def __init__(self, base, altezza):
+        self.base = base
+        self.altezza = altezza
+
+    def area(self):
+        return self.base * self.altezza
+
+    def perimetro(self):
+        return 2 * (self.base + self.altezza)
+
+
+r = Rettangolo(5, 3)
+print(r.area())
+print(r.perimetro())
+```
+
+Usare metodi rende il codice più leggibile e riutilizzabile.
+
+</details>
+
+### Esercizio 94
+
+Creare una classe `Studente` con attributo di classe `scuola` e metodo `__str__()`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+L'attributo di classe è condiviso da tutte le istanze, mentre `__str__()` decide come stamparle.
+
+```python
+class Studente:
+    scuola = "Liceo Scientifico"
+
+    def __init__(self, nome, voto):
+        self.nome = nome
+        self.voto = voto
+
+    def __str__(self):
+        return f"{self.nome} - voto: {self.voto} - scuola: {self.scuola}"
+
+
+studente = Studente("Marco", 8)
+print(studente)
+```
+
+Quando usiamo `print(studente)`, Python richiama automaticamente `__str__()`.
+
+</details>
+
+### Esercizio 95
+
+Creare una classe `Animale` e una sottoclasse `Cane` che ridefinisca il metodo `verso()`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+L'ereditarietà permette di partire da una classe base e specializzare il comportamento.
+
+```python
+class Animale:
+    def verso(self):
+        print("Verso generico")
+
+
+class Cane(Animale):
+    def verso(self):
+        print("Bau")
+
+
+animale = Animale()
+cane = Cane()
+
+animale.verso()
+cane.verso()
+```
+
+La sottoclasse `Cane` sostituisce il metodo della classe padre con una versione più specifica.
+
+</details>
+
+### Esercizio 96
+
+Creare una lista di oggetti `Libro` e stampare il titolo di ciascuno.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Una lista può contenere anche oggetti creati da una classe.
+
+```python
+class Libro:
+    def __init__(self, titolo, autore):
+        self.titolo = titolo
+        self.autore = autore
+
+
+libri = [
+    Libro("1984", "George Orwell"),
+    Libro("Il piccolo principe", "Antoine de Saint-Exupery"),
+    Libro("Dracula", "Bram Stoker")
+]
+
+for libro in libri:
+    print(libro.titolo)
+```
+
+Il ciclo attraversa la lista e legge l'attributo `titolo` di ogni oggetto.
+
+</details>
+
+### Esercizio 97
+
+Creare una classe `ContoBancario` con i metodi `deposita()` e `preleva()`.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Il prelievo deve avvenire solo se il saldo è sufficiente.
+
+```python
+class ContoBancario:
+    def __init__(self, saldo_iniziale):
+        self.saldo = saldo_iniziale
+
+    def deposita(self, importo):
+        self.saldo += importo
+
+    def preleva(self, importo):
+        if importo <= self.saldo:
+            self.saldo -= importo
+        else:
+            print("Saldo insufficiente")
+
+
+conto = ContoBancario(100)
+conto.deposita(50)
+conto.preleva(30)
+conto.preleva(200)
+print(conto.saldo)
+```
+
+La logica della gestione del saldo resta tutta dentro la classe.
+
+</details>
+
+### Esercizio 98
+
+Leggere voti da un file, calcolare la media con una funzione, determinare il voto massimo e contare quanti voti sono sufficienti.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Qui uniamo file, liste e funzioni in un programma più completo, con tre elaborazioni diverse sugli stessi dati.
+
+```python
+def leggi_voti(nome_file):
+    voti = []
+    with open(nome_file, "r") as file:
+        for riga in file:
+            voti.append(float(riga.strip()))
+    return voti
+
+
+def media(numeri):
+    if len(numeri) == 0:
+        return 0
+    return sum(numeri) / len(numeri)
+
+
+def conta_sufficienti(numeri, soglia=6):
+    totale = 0
+    for numero in numeri:
+        if numero >= soglia:
+            totale += 1
+    return totale
+
+
+with open("voti.txt", "w") as file:
+    file.write("8\n")
+    file.write("7.5\n")
+    file.write("5.5\n")
+    file.write("9\n")
+
+voti = leggi_voti("voti.txt")
+print(media(voti))
+print(max(voti))
+print(conta_sufficienti(voti))
+```
+
+Una funzione legge i dati, le altre li elaborano e il programma principale coordina tutto in pochi passaggi chiari.
+
+</details>
+
+### Esercizio 99
+
+Contare la frequenza di ogni parola in una frase.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+Questo esercizio riprende il conteggio con i dizionari, ma applicato alle parole invece che alle lettere.
+
+```python
+frase = input("Frase: ").lower()
+parole = frase.split()
+frequenze = {}
+
+for parola in parole:
+    if parola not in frequenze:
+        frequenze[parola] = 0
+    frequenze[parola] += 1
+
+print(frequenze)
+```
+
+Alla fine ogni parola diversa compare come chiave con il relativo numero di occorrenze.
+
+</details>
+
+### Esercizio 100
+
+Gestire una piccola rubrica con dizionario e funzioni per aggiungere, cercare, aggiornare, rimuovere e mostrare contatti in ordine alfabetico.
+
+<details>
+<summary>Soluzione spiegata</summary>
+
+L'idea è dividere il problema in funzioni piccole, ciascuna con un compito preciso, così la rubrica resta facile da estendere e leggere.
+
+```python
+def aggiungi_contatto(rubrica, nome, numero):
+    rubrica[nome] = numero
+
+
+def cerca_contatto(rubrica, nome):
+    if nome in rubrica:
+        return rubrica[nome]
+    return "Contatto non trovato"
+
+
+def aggiorna_contatto(rubrica, nome, nuovo_numero):
+    if nome in rubrica:
+        rubrica[nome] = nuovo_numero
+
+
+def rimuovi_contatto(rubrica, nome):
+    if nome in rubrica:
+        del rubrica[nome]
+
+
+def mostra_contatti(rubrica):
+    for nome in sorted(rubrica):
+        numero = rubrica[nome]
+        print(nome, numero)
+
+
+rubrica = {}
+
+aggiungi_contatto(rubrica, "Anna", "111111")
+aggiungi_contatto(rubrica, "Luca", "222222")
+aggiungi_contatto(rubrica, "Marta", "333333")
+aggiorna_contatto(rubrica, "Luca", "999999")
+rimuovi_contatto(rubrica, "Anna")
+
+print(cerca_contatto(rubrica, "Luca"))
+mostra_contatti(rubrica)
+```
+
+Questo programma finale mette insieme dizionari, funzioni, condizioni e cicli in una struttura più vicina a una piccola applicazione reale.
+
+</details>

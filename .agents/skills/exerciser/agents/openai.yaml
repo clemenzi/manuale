@@ -1,0 +1,4 @@
+interface:
+  display_name: "Exerciser"
+  short_description: "Crea esercizi per le guide di Manuale"
+  default_prompt: "Use $exerciser to add beginner-friendly exercises with hidden solutions to a Manuale guide page."
