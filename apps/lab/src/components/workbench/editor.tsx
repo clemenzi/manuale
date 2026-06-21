@@ -6,20 +6,12 @@ import Editor from "@monaco-editor/react";
 import { Button } from "../ui/button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { X } from "@hugeicons/core-free-icons";
-import { useCallback } from "react";
 import FileIcon from "./icon";
 import { useTheme } from "#/contexts/theme";
 
 export function WorkbenchEditor({ bufferline }: { bufferline?: boolean }) {
   const { files, buffers } = useWorkbench();
   const { theme } = useTheme();
-
-  const handleChange = useCallback(
-    (path: string, value?: string) => {
-      files.update(path, value ?? "");
-    },
-    [files.update],
-  );
 
   return (
     <div className="h-full min-h-0 overflow-hidden">
@@ -63,7 +55,7 @@ export function WorkbenchEditor({ bufferline }: { bufferline?: boolean }) {
                 language={getLanguageFromPath(buffer)}
                 path={buffer}
                 value={files.get(buffer)}
-                onChange={(value: string | undefined) => handleChange(buffer, value)}
+                onChange={(value: string | undefined) => files.update(buffer, value ?? "")}
                 theme={theme === "dark" ? "vs-dark" : "light"}
                 options={{
                   automaticLayout: true,

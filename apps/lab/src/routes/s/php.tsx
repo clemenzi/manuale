@@ -1,7 +1,7 @@
 import { PHPProvider, usePHP } from "#/contexts/php";
 import { PageLoader } from "#/components/page-loader";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { WorkbenchProvider, useWorkbench } from "#/contexts/workbench";
 import WorkbenchExplorer from "#/components/workbench/explorer";
 import { WorkbenchEditor } from "#/components/workbench/editor";
@@ -35,24 +35,33 @@ function PHPWorkbench() {
   const { php, status } = usePHP();
   const { files, buffers } = useWorkbench();
   const [response, setResponse] = useState<PHPResponse>();
+  const hydratedPHPRef = useRef<typeof php>(null);
+  const { create, subscribe } = files;
+  const { add } = buffers;
 
   useEffect(() => {
-    const unsubscribe = files.subscribe((files) => {
-      for (const [name, content] of Object.entries(files)) {
+    const unsubscribe = subscribe((nextFiles) => {
+      for (const [name, content] of Object.entries(nextFiles)) {
         php?.writeFile(name, content || "");
       }
     });
 
-    buffers.add("index.php");
+    add("index.php");
 
     return unsubscribe;
-  }, [files]);
+  }, [add, php, subscribe]);
 
   useEffect(() => {
-    php?.listFiles("/www/").map((file) => {
-      files.create(file, php.readFileAsText(file));
+    if (!php || hydratedPHPRef.current === php) {
+      return;
+    }
+
+    hydratedPHPRef.current = php;
+
+    php.listFiles("/www/").forEach((file) => {
+      create(file, php.readFileAsText(file));
     });
-  }, [php]);
+  }, [create, php]);
 
   if (status === "loading") {
     return <PageLoader />;

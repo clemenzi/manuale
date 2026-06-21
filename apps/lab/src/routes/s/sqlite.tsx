@@ -33,14 +33,16 @@ function RouteComponent() {
 function SQLiteWorkbench() {
   const { files, buffers, output } = useWorkbench();
   const { execute, status } = useSQLite();
+  const { create, get } = files;
+  const { add } = buffers;
 
   useEffect(() => {
     // idk why i can't use !files.get("query.sql"), it starts rendering infinitely
-    if (files.get("query.sql") === undefined) {
-      files.create("query.sql", "");
-      buffers.add("query.sql");
+    if (get("query.sql") === undefined) {
+      create("query.sql", "");
+      add("query.sql");
     }
-  }, [files]);
+  }, [add, create, get]);
 
   const handleRun = () => {
     try {

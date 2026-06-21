@@ -41,7 +41,7 @@ export default function Preview({ onResponse }: { onResponse?: (response: PHPRes
       setBody(response.text);
       onResponse?.(response);
     });
-  }, [php, url, method, body]);
+  }, [body, method, onResponse, php, url]);
 
   return (
     <div className="flex h-full min-h-0 flex-col gap-1.5 overflow-hidden p-1.5">

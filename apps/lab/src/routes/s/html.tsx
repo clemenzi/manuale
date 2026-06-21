@@ -55,13 +55,15 @@ export const Route = createFileRoute("/s/html")({
 
 function RouteComponent() {
   const { files, buffers } = useWorkbench();
+  const { create, get } = files;
+  const { add } = buffers;
 
   useEffect(() => {
-    if (files.get("index.html") === undefined) {
-      files.create("index.html", DEFAULT_CONTENT);
-      buffers.add("index.html");
+    if (get("index.html") === undefined) {
+      create("index.html", DEFAULT_CONTENT);
+      add("index.html");
     }
-  }, [files]);
+  }, [add, create, get]);
 
   return (
     <main className="h-[calc(100vh-70px)] min-h-0">
