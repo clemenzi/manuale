@@ -66,7 +66,7 @@ function RouteComponent() {
   }, [add, create, get]);
 
   return (
-    <main className="h-[calc(100vh-70px)] min-h-0">
+    <main className="h-full min-h-0 bg-background">
       <ResizablePanelGroup orientation="horizontal" className="h-full min-h-0">
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={"50%"} className="min-h-0">

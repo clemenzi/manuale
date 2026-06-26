@@ -37,9 +37,11 @@ function RootComponent() {
         <div className="md:hidden">
           <Mobile />
         </div>
-        <div className="hidden md:block">
+        <div className="hidden h-dvh grid-rows-[auto_minmax(0,1fr)] bg-background md:grid">
           <Navbar />
-          <Outlet />
+          <div className="h-full min-h-0">
+            <Outlet />
+          </div>
         </div>
         <TanStackDevtools
           config={{

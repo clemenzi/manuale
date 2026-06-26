@@ -74,14 +74,14 @@ export function DatabaseExplorerLayout({
   onSelectTable,
 }: DatabaseExplorerLayoutProps) {
   return (
-    <div className="bg-accent h-[calc(100vh-70px)] overflow-hidden">
-      <div className="border-b px-4 py-3">
+    <div className="flex h-full min-h-0 flex-col overflow-hidden bg-accent">
+      <div className="shrink-0 border-b px-4 py-3">
         <h2 className="font-bold">{title}</h2>
         <p className="text-sm text-muted-foreground">{description}</p>
       </div>
 
-      <div className="grid h-[calc(100%-61px)] grid-cols-[220px_minmax(0,1fr)]">
-        <aside className="border-r p-2">
+      <div className="grid min-h-0 flex-1 grid-cols-[220px_minmax(0,1fr)]">
+        <aside className="min-h-0 border-r p-2">
           <div className="flex h-full flex-col gap-1 overflow-y-auto">
             {loading && tables.length === 0 ? (
               <ExplorerEmptyState label="Caricamento..." />

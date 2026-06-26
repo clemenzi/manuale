@@ -65,7 +65,7 @@ function PostgresWorkbench() {
 
   if (status === "error") {
     return (
-      <main className="grid h-[calc(100vh-70px)] place-items-center bg-background px-6">
+      <main className="grid h-full min-h-0 place-items-center bg-background px-6">
         <Alert variant="destructive" className="max-w-lg">
           <AlertTitle>Impossibile avviare PostgreSQL</AlertTitle>
           <AlertDescription className="space-y-4">
@@ -80,8 +80,8 @@ function PostgresWorkbench() {
   }
 
   return (
-    <div className="h-[calc(100vh-70px)]">
-      <ResizablePanelGroup orientation="horizontal">
+    <main className="h-full min-h-0 bg-background">
+      <ResizablePanelGroup orientation="horizontal" className="h-full min-h-0">
         <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"50%"}>
           <ResizablePanelGroup orientation="vertical">
             <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"50%"}>
@@ -98,7 +98,7 @@ function PostgresWorkbench() {
           <PostgresExplorer />
         </ResizablePanel>
       </ResizablePanelGroup>
-    </div>
+    </main>
   );
 }
 

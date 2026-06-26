@@ -1,6 +1,6 @@
 export default function Mobile() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex min-h-dvh flex-col items-center justify-center px-6">
       <h1 className="text-2xl text-center">
         Manuale Lab non è attualmente disponibile per dispositivi mobili
       </h1>

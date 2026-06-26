@@ -63,8 +63,8 @@ function SQLiteWorkbench() {
   }
 
   return (
-    <div className="h-[calc(100vh-70px)]">
-      <ResizablePanelGroup orientation="horizontal">
+    <main className="h-full min-h-0 bg-background">
+      <ResizablePanelGroup orientation="horizontal" className="h-full min-h-0">
         <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"50%"}>
           <ResizablePanelGroup orientation="vertical">
             <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"50%"}>
@@ -81,7 +81,7 @@ function SQLiteWorkbench() {
           <SQLiteExplorer />
         </ResizablePanel>
       </ResizablePanelGroup>
-    </div>
+    </main>
   );
 }
 

@@ -68,23 +68,23 @@ function PHPWorkbench() {
   }
 
   return (
-    <main className="h-[calc(100vh-70px)] min-h-0 bg-background">
-      <ResizablePanelGroup orientation="horizontal">
-        <ResizablePanel defaultSize={"15%"}>
+    <main className="h-full min-h-0 bg-background">
+      <ResizablePanelGroup orientation="horizontal" className="h-full min-h-0">
+        <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"15%"}>
           <WorkbenchExplorer />
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={"45%"}>
+        <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"45%"}>
           <WorkbenchEditor />
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={"50%"}>
-          <ResizablePanelGroup orientation="vertical">
-            <ResizablePanel defaultSize={"80%"}>
+        <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"50%"}>
+          <ResizablePanelGroup orientation="vertical" className="h-full min-h-0">
+            <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"80%"}>
               <Preview onResponse={setResponse} />
             </ResizablePanel>
             <ResizableHandle withHandle />
-            <ResizablePanel defaultSize={"20%"}>
+            <ResizablePanel className="min-h-0 overflow-hidden" defaultSize={"20%"}>
               {response && <Request response={response} />}
             </ResizablePanel>
           </ResizablePanelGroup>

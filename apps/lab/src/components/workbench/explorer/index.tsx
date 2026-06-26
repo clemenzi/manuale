@@ -1,5 +1,5 @@
 import { useWorkbench } from "#/contexts/workbench";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Tree } from "react-arborist";
 import { CreateFileDialog, DeleteFileDialog, RenameFileDialog } from "./dialogs";
 import { FileTreeNode } from "./node";
@@ -25,8 +25,7 @@ type WorkbenchExplorerProps = {
 };
 
 const ROW_HEIGHT = 28;
-const MIN_TREE_HEIGHT = ROW_HEIGHT;
-const MAX_TREE_HEIGHT = 480;
+const MIN_TREE_HEIGHT = ROW_HEIGHT * 4;
 
 export default function WorkbenchExplorer({
   onFileSelect,
@@ -36,12 +35,9 @@ export default function WorkbenchExplorer({
   const [deletingPath, setDeletingPath] = useState<string>();
   const [renamingPath, setRenamingPath] = useState<string>();
   const [selectedPath, setSelectedPath] = useState<string>();
+  const treeContainerRef = useRef<HTMLDivElement>(null);
   const treeData = useMemo(() => buildFileTree(files.files, rootPath), [files.files, rootPath]);
-  const treeHeight = useMemo(() => {
-    const nodeCount = countTreeNodes(treeData);
-
-    return Math.min(Math.max(nodeCount * ROW_HEIGHT, MIN_TREE_HEIGHT), MAX_TREE_HEIGHT);
-  }, [treeData]);
+  const [treeHeight, setTreeHeight] = useState(MIN_TREE_HEIGHT);
 
   const handleActivate = useCallback(
     (node: { data: WorkbenchFileTreeNode }) => {
@@ -77,16 +73,35 @@ export default function WorkbenchExplorer({
     }
   }, []);
 
+  useEffect(() => {
+    const container = treeContainerRef.current;
+
+    if (!container) {
+      return;
+    }
+
+    const resizeObserver = new ResizeObserver(([entry]) => {
+      const nextHeight = Math.floor(entry.contentRect.height);
+      setTreeHeight(nextHeight > 0 ? nextHeight : MIN_TREE_HEIGHT);
+    });
+
+    resizeObserver.observe(container);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
+
   return (
-    <div className="bg-accent w-full h-[calc(100vh-70px)]">
-      <div className="flex justify-between items-center border-b px-2">
+    <div className="flex h-full min-h-0 w-full flex-col bg-accent">
+      <div className="flex shrink-0 items-center justify-between border-b px-2">
         <span className="font-bold">Explorer</span>
 
         <div className="flex items-center">
           <CreateFileDialog />
         </div>
       </div>
-      <div className="p-0.5">
+      <div ref={treeContainerRef} className="min-h-0 flex-1 p-0.5">
         {treeData.length > 0 ? (
           <Tree<WorkbenchFileTreeNode>
             data={treeData}
@@ -228,13 +243,6 @@ function sortEntries(first: WorkbenchFileTreeNode, second: WorkbenchFileTreeNode
   }
 
   return first.name.localeCompare(second.name, "it", { sensitivity: "base" });
-}
-
-function countTreeNodes(nodes: WorkbenchFileTreeNode[]): number {
-  return nodes.reduce(
-    (count, node) => count + 1 + (node.children ? countTreeNodes(node.children) : 0),
-    0,
-  );
 }
 
 function normalizeFilePath(path: string) {

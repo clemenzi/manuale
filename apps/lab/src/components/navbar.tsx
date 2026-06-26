@@ -9,7 +9,7 @@ export default function Navbar() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <nav className="p-4 flex items-center justify-between bg-muted">
+    <nav className="flex items-center justify-between border-b bg-muted p-4">
       <Link to="/">
         <span className="font-logo text-4xl flex items-center space-x-2">
           MANUALE <span className="text-primary">(LAB)</span>
