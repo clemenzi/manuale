@@ -9,6 +9,13 @@ import { X } from "@hugeicons/core-free-icons";
 import FileIcon from "./icon";
 import { useTheme } from "#/contexts/theme";
 
+function getEditorTheme(theme: string): string {
+  if (theme === "system") {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "vs-dark" : "light";
+  }
+  return theme === "dark" ? "vs-dark" : "light";
+}
+
 export function WorkbenchEditor({ bufferline }: { bufferline?: boolean }) {
   const { files, buffers } = useWorkbench();
   const { theme } = useTheme();
@@ -56,7 +63,7 @@ export function WorkbenchEditor({ bufferline }: { bufferline?: boolean }) {
                 path={buffer}
                 value={files.get(buffer)}
                 onChange={(value: string | undefined) => files.update(buffer, value ?? "")}
-                theme={theme === "dark" ? "vs-dark" : "light"}
+                theme={getEditorTheme(theme)}
                 options={{
                   automaticLayout: true,
                   quickSuggestions: true,
