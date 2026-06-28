@@ -5,6 +5,8 @@ interface Files {
   [key: string]: string | undefined;
 }
 
+type InitialFiles = Readonly<Record<string, string | undefined>>;
+
 function normalizeVirtualFilePath(path: string) {
   return normalize(path);
 }
@@ -14,21 +16,27 @@ export type FilesChangeListener = (
   files: Readonly<Record<string, string | undefined>>,
 ) => void;
 
-export type FilesListener = (files: Readonly<Record<string, string | undefined>>) => void;
-
 export interface VirtualFiles {
   files: Readonly<Record<string, string | undefined>>;
   create: (name: string, content: string) => void;
   clear: () => void;
   onChange: (listener: FilesChangeListener) => () => void;
   remove: (name: string) => void;
-  subscribe: (listener: FilesListener) => () => void;
   update: (name: string, content: string) => void;
   get: (name: string) => string | undefined;
 }
 
-export function useFiles(): VirtualFiles {
-  const [files, setFiles] = useState<Files>({});
+function createInitialFiles(initialFiles: InitialFiles): Files {
+  return Object.fromEntries(
+    Object.entries(initialFiles).map(([path, content]) => [
+      normalizeVirtualFilePath(path),
+      content,
+    ]),
+  );
+}
+
+export function useFiles(initialFiles: InitialFiles = {}): VirtualFiles {
+  const [files, setFiles] = useState<Files>(() => createInitialFiles(initialFiles));
   const changeListenersRef = useRef(new Set<FilesChangeListener>());
   const previousFilesRef = useRef<Readonly<Record<string, string | undefined>>>(files);
 
@@ -80,15 +88,6 @@ export function useFiles(): VirtualFiles {
     [files],
   );
 
-  const subscribe = useCallback(
-    (listener: FilesListener) => {
-      return onChange((_, nextFiles) => {
-        listener(nextFiles);
-      });
-    },
-    [onChange],
-  );
-
   useEffect(() => {
     const previousFiles = previousFilesRef.current;
 
@@ -101,7 +100,7 @@ export function useFiles(): VirtualFiles {
   }, [files]);
 
   return useMemo(
-    () => ({ files, create, update, remove, clear, onChange, subscribe, get }),
-    [clear, create, files, onChange, remove, subscribe, update, get],
+    () => ({ files, create, update, remove, clear, onChange, get }),
+    [clear, create, files, get, onChange, remove, update],
   );
 }

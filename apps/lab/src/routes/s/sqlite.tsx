@@ -4,10 +4,10 @@ import { WorkbenchEditor } from "#/components/workbench/editor";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
 import { WorkbenchProvider, useWorkbench } from "#/contexts/workbench";
 import { SQLiteProvider, useSQLite } from "#/contexts/sqlite";
-import { useEffect } from "react";
 import { WorkbenchOutput } from "#/components/workbench/output";
 import { SQLiteExplorer } from "#/components/workbench/runtimes/sqlite/explorer";
 import type { QueryExecResult, SqlValue } from "sql.js";
+import { RuntimeError } from "#/components/runtime-error";
 
 export const Route = createFileRoute("/s/sqlite")({
   head: () => ({
@@ -23,7 +23,11 @@ export const Route = createFileRoute("/s/sqlite")({
 function RouteComponent() {
   return (
     <SQLiteProvider>
-      <WorkbenchProvider>
+      <WorkbenchProvider
+        initialActiveBuffer="query.sql"
+        initialBuffers={["query.sql"]}
+        initialFiles={{ "query.sql": "" }}
+      >
         <SQLiteWorkbench />
       </WorkbenchProvider>
     </SQLiteProvider>
@@ -31,22 +35,12 @@ function RouteComponent() {
 }
 
 function SQLiteWorkbench() {
-  const { files, buffers, output } = useWorkbench();
-  const { execute, status } = useSQLite();
-  const { create, get } = files;
-  const { add } = buffers;
-
-  useEffect(() => {
-    // idk why i can't use !files.get("query.sql"), it starts rendering infinitely
-    if (get("query.sql") === undefined) {
-      create("query.sql", "");
-      add("query.sql");
-    }
-  }, [add, create, get]);
+  const { files, output } = useWorkbench();
+  const { error, execute, resetDatabase, status } = useSQLite();
 
   const handleRun = () => {
     try {
-      const out = execute(files.get("query.sql") || "");
+      const out = execute(files.get("query.sql") ?? "");
       output.setErrors([]);
       output.setResults(toWorkbenchResults(out));
     } catch (e) {
@@ -60,6 +54,17 @@ function SQLiteWorkbench() {
 
   if (status === "loading") {
     return <PageLoader />;
+  }
+
+  if (status === "error") {
+    return (
+      <RuntimeError
+        error={error}
+        fallbackMessage="SQLite non si è inizializzato correttamente."
+        title="Impossibile avviare SQLite"
+        onRetry={resetDatabase}
+      />
+    );
   }
 
   return (

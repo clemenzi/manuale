@@ -1,8 +1,7 @@
 import { WorkbenchEditor } from "#/components/workbench/editor";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
-import { WorkbenchProvider, useWorkbench } from "#/contexts/workbench";
+import { WorkbenchProvider } from "#/contexts/workbench";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
 import Preview from "#/components/workbench/runtimes/html/preview";
 
 const DEFAULT_CONTENT = `<!DOCTYPE html>
@@ -46,7 +45,11 @@ export const Route = createFileRoute("/s/html")({
   }),
   component: () => {
     return (
-      <WorkbenchProvider>
+      <WorkbenchProvider
+        initialActiveBuffer="index.html"
+        initialBuffers={["index.html"]}
+        initialFiles={{ "index.html": DEFAULT_CONTENT }}
+      >
         <RouteComponent />
       </WorkbenchProvider>
     );
@@ -54,17 +57,6 @@ export const Route = createFileRoute("/s/html")({
 });
 
 function RouteComponent() {
-  const { files, buffers } = useWorkbench();
-  const { create, get } = files;
-  const { add } = buffers;
-
-  useEffect(() => {
-    if (get("index.html") === undefined) {
-      create("index.html", DEFAULT_CONTENT);
-      add("index.html");
-    }
-  }, [add, create, get]);
-
   return (
     <main className="h-full min-h-0 bg-background">
       <ResizablePanelGroup orientation="horizontal" className="h-full min-h-0">

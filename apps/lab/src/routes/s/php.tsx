@@ -1,14 +1,15 @@
 import { PHPProvider, usePHP } from "#/contexts/php";
 import { PageLoader } from "#/components/page-loader";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { WorkbenchProvider, useWorkbench } from "#/contexts/workbench";
 import WorkbenchExplorer from "#/components/workbench/explorer";
 import { WorkbenchEditor } from "#/components/workbench/editor";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
 import Preview from "#/components/workbench/runtimes/php/preview";
 import Request from "#/components/workbench/runtimes/php/request";
-import type { PHPResponse } from "@php-wasm/universal";
+import type { PHP, PHPResponse } from "@php-wasm/universal";
+import { RuntimeError } from "#/components/runtime-error";
 
 export const Route = createFileRoute("/s/php")({
   head: () => ({
@@ -24,7 +25,7 @@ export const Route = createFileRoute("/s/php")({
 function RouteComponent() {
   return (
     <PHPProvider>
-      <WorkbenchProvider>
+      <WorkbenchProvider initialActiveBuffer="index.php" initialBuffers={["index.php"]}>
         <PHPWorkbench />
       </WorkbenchProvider>
     </PHPProvider>
@@ -32,39 +33,38 @@ function RouteComponent() {
 }
 
 function PHPWorkbench() {
-  const { php, status } = usePHP();
-  const { files, buffers } = useWorkbench();
+  const { error, php, resetEnvironment, status } = usePHP();
+  const { files } = useWorkbench();
   const [response, setResponse] = useState<PHPResponse>();
-  const hydratedPHPRef = useRef<typeof php>(null);
-  const { create, subscribe } = files;
-  const { add } = buffers;
+  const { create, onChange } = files;
 
   useEffect(() => {
-    const unsubscribe = subscribe((nextFiles) => {
-      for (const [name, content] of Object.entries(nextFiles)) {
-        php?.writeFile(name, content || "");
-      }
-    });
-
-    add("index.php");
-
-    return unsubscribe;
-  }, [add, php, subscribe]);
-
-  useEffect(() => {
-    if (!php || hydratedPHPRef.current === php) {
+    if (!php) {
       return;
     }
-
-    hydratedPHPRef.current = php;
 
     php.listFiles("/www/").forEach((file) => {
       create(file, php.readFileAsText(file));
     });
-  }, [create, php]);
+
+    return onChange((previousFiles, nextFiles) => {
+      syncPHPFiles(php, previousFiles, nextFiles);
+    });
+  }, [create, onChange, php]);
 
   if (status === "loading") {
     return <PageLoader />;
+  }
+
+  if (status === "error") {
+    return (
+      <RuntimeError
+        error={error}
+        fallbackMessage="PHP non si è inizializzato correttamente."
+        title="Impossibile avviare PHP"
+        onRetry={resetEnvironment}
+      />
+    );
   }
 
   return (
@@ -92,4 +92,22 @@ function PHPWorkbench() {
       </ResizablePanelGroup>
     </main>
   );
+}
+
+function syncPHPFiles(
+  php: PHP,
+  previousFiles: Readonly<Record<string, string | undefined>>,
+  nextFiles: Readonly<Record<string, string | undefined>>,
+) {
+  for (const [path, content] of Object.entries(nextFiles)) {
+    if (previousFiles[path] !== content) {
+      php.writeFile(path, content ?? "");
+    }
+  }
+
+  for (const path of Object.keys(previousFiles)) {
+    if (!Object.hasOwn(nextFiles, path) && php.fileExists(path)) {
+      php.unlink(path);
+    }
+  }
 }

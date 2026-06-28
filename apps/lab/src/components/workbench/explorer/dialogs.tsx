@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from "#/components/ui/dialog";
 import { Input } from "../../ui/input";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { useWorkbench } from "#/contexts/workbench";
 
 export function DeleteFileDialog({
@@ -26,11 +26,11 @@ export function DeleteFileDialog({
 }) {
   const { buffers, files } = useWorkbench();
 
-  const handleDelete = useCallback(() => {
+  const handleDelete = () => {
     files.remove(path);
     buffers.remove(path);
     onOpenChange(false);
-  }, [buffers, files, onOpenChange, path]);
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -69,22 +69,16 @@ export function RenameFileDialog({
   const { files, buffers } = useWorkbench();
   const [newPath, setNewPath] = useState(path);
 
-  useEffect(() => {
-    if (open) {
-      setNewPath(path);
-    }
-  }, [open, path]);
-
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = () => {
     if (newPath !== path) {
       const content = files.get(path);
       files.remove(path);
       buffers.remove(path);
-      files.create(newPath, content || "");
+      files.create(newPath, content ?? "");
       buffers.add(newPath);
     }
     onOpenChange(false);
-  }, [newPath, onOpenChange, path, buffers, files]);
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -110,12 +104,12 @@ export function CreateFileDialog() {
   const { files, buffers } = useWorkbench();
   const [path, setPath] = useState("");
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = () => {
     files.create(path, "");
     buffers.add(path);
     buffers.setActive(path);
     setPath("");
-  }, [buffers, files, path]);
+  };
 
   return (
     <Dialog>

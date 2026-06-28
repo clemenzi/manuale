@@ -1,5 +1,3 @@
-import { Alert, AlertDescription, AlertTitle } from "#/components/ui/alert";
-import { Button } from "#/components/ui/button";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable";
 import { PageLoader } from "#/components/page-loader";
 import { WorkbenchEditor } from "#/components/workbench/editor";
@@ -9,7 +7,7 @@ import { PostgresProvider, usePostgres } from "#/contexts/postgres";
 import { WorkbenchProvider, useWorkbench } from "#/contexts/workbench";
 import type { Results } from "@electric-sql/pglite";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { RuntimeError } from "#/components/runtime-error";
 
 const QUERY_FILE = "query.sql";
 
@@ -30,7 +28,11 @@ export const Route = createFileRoute("/s/postgres")({
 function RouteComponent() {
   return (
     <PostgresProvider>
-      <WorkbenchProvider>
+      <WorkbenchProvider
+        initialActiveBuffer={QUERY_FILE}
+        initialBuffers={[QUERY_FILE]}
+        initialFiles={{ [QUERY_FILE]: "" }}
+      >
         <PostgresWorkbench />
       </WorkbenchProvider>
     </PostgresProvider>
@@ -38,19 +40,12 @@ function RouteComponent() {
 }
 
 function PostgresWorkbench() {
-  const { files, buffers, output } = useWorkbench();
+  const { files, output } = useWorkbench();
   const { error, execute, resetDatabase, status } = usePostgres();
-
-  useEffect(() => {
-    if (files.get(QUERY_FILE) === undefined) {
-      files.create(QUERY_FILE, "");
-      buffers.add(QUERY_FILE);
-    }
-  }, [buffers, files]);
 
   const handleRun = async () => {
     try {
-      const results = await execute(files.get(QUERY_FILE) || "");
+      const results = await execute(files.get(QUERY_FILE) ?? "");
       output.setErrors([]);
       output.setResults(toWorkbenchResults(results));
     } catch (caughtError) {
@@ -65,17 +60,12 @@ function PostgresWorkbench() {
 
   if (status === "error") {
     return (
-      <main className="grid h-full min-h-0 place-items-center bg-background px-6">
-        <Alert variant="destructive" className="max-w-lg">
-          <AlertTitle>Impossibile avviare PostgreSQL</AlertTitle>
-          <AlertDescription className="space-y-4">
-            <p>{error?.message ?? "PGlite non si e inizializzato correttamente."}</p>
-            <Button variant="outline" onClick={() => void resetDatabase()}>
-              Riprova
-            </Button>
-          </AlertDescription>
-        </Alert>
-      </main>
+      <RuntimeError
+        error={error}
+        fallbackMessage="PGlite non si è inizializzato correttamente."
+        title="Impossibile avviare PostgreSQL"
+        onRetry={resetDatabase}
+      />
     );
   }
 

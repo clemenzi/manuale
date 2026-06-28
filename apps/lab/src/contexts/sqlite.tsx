@@ -13,6 +13,11 @@ import sqliteWasmUrl from "sql.js/dist/sql-wasm.wasm?url";
 
 type SQLiteStatus = "loading" | "ready" | "error";
 
+type SQLiteState =
+  | { SQL: null; db: null; error: null; status: "loading" }
+  | { SQL: SqlJsStatic; db: Database; error: null; status: "ready" }
+  | { SQL: null; db: null; error: Error; status: "error" };
+
 type SQLiteContextValue = {
   SQL: SqlJsStatic | null;
   db: Database | null;
@@ -43,52 +48,50 @@ function toError(caughtError: unknown) {
 
 export function SQLiteProvider({ children }: SQLiteProviderProps) {
   const dbRef = useRef<Database | null>(null);
-  const [SQL, setSQL] = useState<SqlJsStatic | null>(null);
-  const [db, setDb] = useState<Database | null>(null);
-  const [error, setError] = useState<Error | null>(null);
-  const [status, setStatus] = useState<SQLiteStatus>("loading");
+  const [{ SQL, db, error, status }, setState] = useState<SQLiteState>({
+    SQL: null,
+    db: null,
+    error: null,
+    status: "loading",
+  });
   const [version, setVersion] = useState(0);
+
+  const initializeSQLite = useCallback(async (isCurrent: () => boolean = () => true) => {
+    try {
+      setState({ SQL: null, db: null, error: null, status: "loading" });
+
+      const SQLModule = await initSqlJs({
+        locateFile: () => sqliteWasmUrl,
+      });
+
+      if (!isCurrent()) {
+        return;
+      }
+
+      const nextDb = createDatabase(SQLModule);
+      dbRef.current = nextDb;
+      setVersion((currentVersion) => currentVersion + 1);
+      setState({ SQL: SQLModule, db: nextDb, error: null, status: "ready" });
+    } catch (caughtError) {
+      if (!isCurrent()) {
+        return;
+      }
+
+      setState({ SQL: null, db: null, error: toError(caughtError), status: "error" });
+    }
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
 
-    async function initializeSQLite() {
-      try {
-        setStatus("loading");
-        setError(null);
-
-        const SQLModule = await initSqlJs({
-          locateFile: () => sqliteWasmUrl,
-        });
-
-        if (!isMounted) {
-          return;
-        }
-
-        const nextDb = createDatabase(SQLModule);
-        dbRef.current = nextDb;
-        setSQL(SQLModule);
-        setDb(nextDb);
-        setVersion((currentVersion) => currentVersion + 1);
-        setStatus("ready");
-      } catch (caughtError) {
-        if (!isMounted) {
-          return;
-        }
-
-        setError(toError(caughtError));
-        setStatus("error");
-      }
-    }
-
-    void initializeSQLite();
+    void initializeSQLite(() => isMounted);
 
     return () => {
       isMounted = false;
       dbRef.current?.close();
       dbRef.current = null;
     };
-  }, []);
+  }, [initializeSQLite]);
 
   const execute = useCallback((sql: string) => {
     const currentDb = dbRef.current;
@@ -104,6 +107,7 @@ export function SQLiteProvider({ children }: SQLiteProviderProps) {
 
   const resetDatabase = useCallback(() => {
     if (!SQL) {
+      void initializeSQLite();
       return;
     }
 
@@ -111,11 +115,9 @@ export function SQLiteProvider({ children }: SQLiteProviderProps) {
 
     const nextDb = createDatabase(SQL);
     dbRef.current = nextDb;
-    setDb(nextDb);
-    setError(null);
-    setStatus("ready");
+    setState({ SQL, db: nextDb, error: null, status: "ready" });
     setVersion((currentVersion) => currentVersion + 1);
-  }, [SQL]);
+  }, [SQL, initializeSQLite]);
 
   const value = useMemo<SQLiteContextValue>(
     () => ({

@@ -6,7 +6,7 @@ import { useTheme } from "#/contexts/theme";
 import { Badge } from "./ui/badge";
 
 export default function Navbar() {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
   return (
     <nav className="flex items-center justify-between border-b bg-muted p-4">
@@ -19,11 +19,12 @@ export default function Navbar() {
 
       <div className="flex items-center space-x-2">
         <Button
+          aria-label={resolvedTheme === "dark" ? "Usa tema chiaro" : "Usa tema scuro"}
           variant="outline"
           size="icon"
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
         >
-          <HugeiconsIcon icon={theme === "dark" ? SunIcon : Moon02Icon} />
+          <HugeiconsIcon icon={resolvedTheme === "dark" ? SunIcon : Moon02Icon} />
         </Button>
       </div>
     </nav>

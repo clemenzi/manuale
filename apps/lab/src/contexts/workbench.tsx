@@ -12,7 +12,7 @@ import {
 
 type TableResult = {
   type: "table";
-  data: Record<string, any>[];
+  data: Record<string, unknown>[];
 };
 
 type StringOutput = {
@@ -35,11 +35,18 @@ type WorkbenchContextProps = {
     errors: string[];
     results: WorkbenchOutputResult[];
     setErrors: (errors: string[]) => void;
-    setResults: (errors: WorkbenchOutputResult[]) => void;
+    setResults: (results: WorkbenchOutputResult[]) => void;
   };
 };
 
 export const WorkbenchContext = createContext<WorkbenchContextProps | null>(null);
+
+type WorkbenchProviderProps = {
+  children: ReactNode;
+  initialActiveBuffer?: string;
+  initialBuffers?: string[];
+  initialFiles?: Readonly<Record<string, string | undefined>>;
+};
 
 type BufferState = {
   active: string;
@@ -51,10 +58,7 @@ type BufferAction =
   | { type: "remove"; path: string }
   | { type: "set-active"; path: string };
 
-const INITIAL_BUFFER_STATE: BufferState = {
-  active: "",
-  list: [],
-};
+type InitialBufferState = Pick<WorkbenchProviderProps, "initialActiveBuffer" | "initialBuffers">;
 
 function normalizeBufferPath(path: string) {
   return normalize(path);
@@ -75,6 +79,19 @@ function getNextActiveBuffer(
   }
 
   return remainingBuffers[removedIndex] ?? remainingBuffers[removedIndex - 1] ?? "";
+}
+
+function createInitialBufferState({
+  initialActiveBuffer,
+  initialBuffers = [],
+}: InitialBufferState): BufferState {
+  const list = [...new Set(initialBuffers.map(normalizeBufferPath))];
+  const active = initialActiveBuffer ? normalizeBufferPath(initialActiveBuffer) : (list[0] ?? "");
+
+  return {
+    active,
+    list: active ? ensureBufferListIncludes(list, active) : list,
+  };
 }
 
 function bufferReducer(state: BufferState, action: BufferAction): BufferState {
@@ -117,9 +134,18 @@ function bufferReducer(state: BufferState, action: BufferAction): BufferState {
   }
 }
 
-export function WorkbenchProvider({ children }: { children: ReactNode }) {
-  const files = useFiles();
-  const [bufferState, dispatchBuffer] = useReducer(bufferReducer, INITIAL_BUFFER_STATE);
+export function WorkbenchProvider({
+  children,
+  initialActiveBuffer,
+  initialBuffers,
+  initialFiles,
+}: WorkbenchProviderProps) {
+  const files = useFiles(initialFiles);
+  const [bufferState, dispatchBuffer] = useReducer(
+    bufferReducer,
+    { initialActiveBuffer, initialBuffers },
+    createInitialBufferState,
+  );
   const [outputErrors, setOutputErrors] = useState<string[]>([]);
   const [outputResults, setOutputResults] = useState<WorkbenchContextProps["output"]["results"]>(
     [],

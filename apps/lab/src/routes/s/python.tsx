@@ -5,13 +5,12 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/componen
 import {
   PythonProvider,
   usePython,
-  usePythonEntrypoint,
   usePythonFileSync,
   type PythonExecutionResult,
 } from "#/contexts/python";
 import { WorkbenchProvider, useWorkbench } from "#/contexts/workbench";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { RuntimeError } from "#/components/runtime-error";
 
 const PYTHON_FILE = "main.py";
 
@@ -35,7 +34,11 @@ export const Route = createFileRoute("/s/python")({
 function RouteComponent() {
   return (
     <PythonProvider>
-      <WorkbenchProvider>
+      <WorkbenchProvider
+        initialActiveBuffer={PYTHON_FILE}
+        initialBuffers={[PYTHON_FILE]}
+        initialFiles={{ [PYTHON_FILE]: DEFAULT_CONTENT }}
+      >
         <PythonWorkbench />
       </WorkbenchProvider>
     </PythonProvider>
@@ -43,25 +46,10 @@ function RouteComponent() {
 }
 
 function PythonWorkbench() {
-  const { files, buffers, output } = useWorkbench();
-  const { execute, status, error } = usePython();
+  const { files, output } = useWorkbench();
+  const { error, execute, resetEnvironment, status } = usePython();
 
-  usePythonEntrypoint(files, {
-    content: DEFAULT_CONTENT,
-    path: PYTHON_FILE,
-  });
   usePythonFileSync(files);
-
-  useEffect(() => {
-    buffers.add(PYTHON_FILE);
-  }, [buffers]);
-
-  useEffect(() => {
-    if (status === "error" && error) {
-      output.setResults([]);
-      output.setErrors([error.message]);
-    }
-  }, [error, output, status]);
 
   const handleRun = async () => {
     let result: PythonExecutionResult;
@@ -98,6 +86,17 @@ function PythonWorkbench() {
 
   if (status === "loading") {
     return <PageLoader />;
+  }
+
+  if (status === "error") {
+    return (
+      <RuntimeError
+        error={error}
+        fallbackMessage="Python non si è inizializzato correttamente."
+        title="Impossibile avviare Python"
+        onRetry={resetEnvironment}
+      />
+    );
   }
 
   return (

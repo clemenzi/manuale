@@ -16,6 +16,11 @@ const PHP_ENTRYPOINT = `${PHP_WORKDIR}/index.php`;
 
 type PHPStatus = "loading" | "ready" | "error";
 
+type PHPState =
+  | { error: null; php: null; status: "loading" }
+  | { error: null; php: PHP; status: "ready" }
+  | { error: Error; php: null; status: "error" };
+
 export type PHPExecutionResult = {
   stdout: string;
   stderr: string;
@@ -71,15 +76,16 @@ async function createPHPEnvironment(loaderOptions?: EmscriptenOptions) {
 
 export function PHPProvider({ children, loaderOptions }: PHPProviderProps) {
   const phpRef = useRef<PHP | null>(null);
-  const [php, setPHP] = useState<PHP | null>(null);
-  const [error, setError] = useState<Error | null>(null);
-  const [status, setStatus] = useState<PHPStatus>("loading");
+  const [{ error, php, status }, setState] = useState<PHPState>({
+    error: null,
+    php: null,
+    status: "loading",
+  });
   const [version, setVersion] = useState(0);
 
   const initializePHP = useCallback(
     async (isCurrent: () => boolean = () => true) => {
-      setStatus("loading");
-      setError(null);
+      setState({ error: null, php: null, status: "loading" });
 
       try {
         const nextPHP = await createPHPEnvironment(loaderOptions);
@@ -91,9 +97,8 @@ export function PHPProvider({ children, loaderOptions }: PHPProviderProps) {
 
         closePHPEnvironment(phpRef.current);
         phpRef.current = nextPHP;
-        setPHP(nextPHP);
         setVersion((currentVersion) => currentVersion + 1);
-        setStatus("ready");
+        setState({ error: null, php: nextPHP, status: "ready" });
       } catch (caughtError) {
         if (!isCurrent()) {
           return;
@@ -101,9 +106,7 @@ export function PHPProvider({ children, loaderOptions }: PHPProviderProps) {
 
         closePHPEnvironment(phpRef.current);
         phpRef.current = null;
-        setPHP(null);
-        setError(toPHPError(caughtError));
-        setStatus("error");
+        setState({ error: toPHPError(caughtError), php: null, status: "error" });
       }
     },
     [loaderOptions],

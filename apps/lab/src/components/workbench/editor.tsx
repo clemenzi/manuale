@@ -9,16 +9,9 @@ import { X } from "@hugeicons/core-free-icons";
 import FileIcon from "./icon";
 import { useTheme } from "#/contexts/theme";
 
-function getEditorTheme(theme: string): string {
-  if (theme === "system") {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "vs-dark" : "light";
-  }
-  return theme === "dark" ? "vs-dark" : "light";
-}
-
 export function WorkbenchEditor({ bufferline }: { bufferline?: boolean }) {
   const { files, buffers } = useWorkbench();
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   return (
     <div className="h-full min-h-0 overflow-hidden">
@@ -27,31 +20,36 @@ export function WorkbenchEditor({ bufferline }: { bufferline?: boolean }) {
         onValueChange={buffers.setActive}
         className="h-full min-h-0 gap-0 overflow-hidden"
       >
-        <TabsList
-          variant="line"
-          className="shrink-0 justify-start overflow-x-auto overflow-y-hidden rounded-none border-b px-2 [scrollbar-gutter:stable] data-[bufferline=false]:hidden"
-          data-bufferline={bufferline}
-        >
-          {buffers.list.map((buffer) => (
-            <TabsTrigger key={buffer} value={buffer} className="flex-none">
-              <FileIcon name={buffer} />
-              <span className="truncate">{buffer}</span>
-              {buffers.active === buffer && (
-                <Button
-                  variant="ghost"
-                  size={"icon-xs"}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    buffers.remove(buffer);
-                  }}
-                >
-                  <HugeiconsIcon icon={X} />
-                </Button>
-              )}
-            </TabsTrigger>
-          ))}
-        </TabsList>
+        {bufferline !== false ? (
+          <TabsList
+            variant="line"
+            className="shrink-0 justify-start overflow-x-auto overflow-y-hidden rounded-none border-b px-2 [scrollbar-gutter:stable]"
+          >
+            {buffers.list.map((buffer) => (
+              <div key={buffer} className="relative flex-none">
+                <TabsTrigger value={buffer} className="flex-none pr-8">
+                  <FileIcon name={buffer} />
+                  <span className="truncate">{buffer}</span>
+                </TabsTrigger>
+                {buffers.active === buffer ? (
+                  <Button
+                    aria-label={`Chiudi ${buffer}`}
+                    className="absolute top-1/2 right-1 z-10 -translate-y-1/2"
+                    size="icon-xs"
+                    variant="ghost"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      buffers.remove(buffer);
+                    }}
+                  >
+                    <HugeiconsIcon icon={X} />
+                  </Button>
+                ) : null}
+              </div>
+            ))}
+          </TabsList>
+        ) : null}
 
         {buffers.active &&
           buffers.list.map((buffer) => (
@@ -63,7 +61,7 @@ export function WorkbenchEditor({ bufferline }: { bufferline?: boolean }) {
                 path={buffer}
                 value={files.get(buffer)}
                 onChange={(value: string | undefined) => files.update(buffer, value ?? "")}
-                theme={getEditorTheme(theme)}
+                theme={resolvedTheme === "dark" ? "vs-dark" : "light"}
                 options={{
                   automaticLayout: true,
                   quickSuggestions: true,

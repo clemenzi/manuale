@@ -3,6 +3,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useEffectEvent,
   useMemo,
   useRef,
   useState,
@@ -17,6 +18,11 @@ export const PYTHON_ENTRYPOINT = `${PYTHON_WORKDIR}/main.py`;
 const PYODIDE_INDEX_URL = "https://cdn.jsdelivr.net/pyodide/v0.29.4/full/";
 
 type PythonStatus = "loading" | "ready" | "error";
+
+type PythonState =
+  | { error: null; pyodide: null; status: "loading" }
+  | { error: null; pyodide: PyodideInterface; status: "ready" }
+  | { error: Error; pyodide: null; status: "error" };
 
 export type PythonExecutionOptions = {
   filename?: string;
@@ -163,15 +169,16 @@ function toJavaScriptResult(result: unknown) {
 export function PythonProvider({ children, loadOptions }: PythonProviderProps) {
   const pyodideRef = useRef<PyodideInterface | null>(null);
   const executionQueueRef = useRef<Promise<void>>(Promise.resolve());
-  const [pyodide, setPyodide] = useState<PyodideInterface | null>(null);
-  const [error, setError] = useState<Error | null>(null);
-  const [status, setStatus] = useState<PythonStatus>("loading");
+  const [{ error, pyodide, status }, setState] = useState<PythonState>({
+    error: null,
+    pyodide: null,
+    status: "loading",
+  });
   const [version, setVersion] = useState(0);
 
   const initializePython = useCallback(
     async (isCurrent: () => boolean = () => true) => {
-      setStatus("loading");
-      setError(null);
+      setState({ error: null, pyodide: null, status: "loading" });
 
       try {
         const nextPyodide = await createPythonEnvironment(loadOptions);
@@ -181,18 +188,15 @@ export function PythonProvider({ children, loadOptions }: PythonProviderProps) {
         }
 
         pyodideRef.current = nextPyodide;
-        setPyodide(nextPyodide);
         setVersion((currentVersion) => currentVersion + 1);
-        setStatus("ready");
+        setState({ error: null, pyodide: nextPyodide, status: "ready" });
       } catch (caughtError) {
         if (!isCurrent()) {
           return;
         }
 
         pyodideRef.current = null;
-        setPyodide(null);
-        setError(toPythonError(caughtError));
-        setStatus("error");
+        setState({ error: toPythonError(caughtError), pyodide: null, status: "error" });
       }
     },
     [loadOptions],
@@ -281,8 +285,7 @@ export function PythonProvider({ children, loadOptions }: PythonProviderProps) {
     }
 
     await resetPythonEnvironment(currentPyodide);
-    setError(null);
-    setStatus("ready");
+    setState({ error: null, pyodide: currentPyodide, status: "ready" });
     setVersion((currentVersion) => currentVersion + 1);
   }, [initializePython]);
 
@@ -314,11 +317,6 @@ export function usePython() {
 type PythonFileSyncOptions = {
   basePath?: string;
   include?: (path: string, content: string | undefined) => boolean;
-};
-
-type PythonEntrypointOptions = {
-  content?: string;
-  path?: string;
 };
 
 const includeAllPythonFiles = () => true;
@@ -376,35 +374,26 @@ export function usePythonFileSync(
   { basePath = PYTHON_WORKDIR, include = includeAllPythonFiles }: PythonFileSyncOptions = {},
 ) {
   const { pyodide, status } = usePython();
+  const { onChange } = virtualFiles;
+  const syncCurrentFiles = useEffectEvent(
+    (
+      currentPyodide: PyodideInterface,
+      currentBasePath: string,
+      currentInclude: (path: string, content: string | undefined) => boolean,
+    ) => {
+      syncPythonFiles(currentPyodide, virtualFiles.files, currentBasePath, currentInclude);
+    },
+  );
 
   useEffect(() => {
     if (!pyodide || status !== "ready") {
       return;
     }
 
-    syncPythonFiles(pyodide, virtualFiles.files, basePath, include);
-  }, [basePath, include, pyodide, status, virtualFiles.files]);
+    syncCurrentFiles(pyodide, basePath, include);
 
-  useEffect(() => {
-    if (!pyodide || status !== "ready") {
-      return;
-    }
-
-    return virtualFiles.onChange((previousFiles, nextFiles) => {
+    return onChange((previousFiles, nextFiles) => {
       syncPythonFileChanges(pyodide, previousFiles, nextFiles, basePath, include);
     });
-  }, [basePath, include, pyodide, status, virtualFiles]);
-}
-
-export function usePythonEntrypoint(
-  virtualFiles: VirtualFiles,
-  { content = 'print("Hello, World!")\n', path = "main.py" }: PythonEntrypointOptions = {},
-) {
-  useEffect(() => {
-    if (virtualFiles.get(path) !== undefined) {
-      return;
-    }
-
-    virtualFiles.create(path, content);
-  }, [content, path, virtualFiles]);
+  }, [basePath, include, onChange, pyodide, status]);
 }

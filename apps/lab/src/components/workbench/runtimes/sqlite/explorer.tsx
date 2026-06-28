@@ -7,7 +7,7 @@ import {
   type SQLiteColumnInfo,
   type SQLiteTableInfo,
 } from "#/lib/sqlite/inspection";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import type { SQLiteTablePreview } from "#/lib/sqlite/inspection";
 import {
   DatabaseExplorerLayout,
@@ -31,20 +31,13 @@ export function SQLiteExplorer() {
     void version;
     return db ? readTables(db) : [];
   }, [db, version]);
-
-  useEffect(() => {
-    setSelectedTableName((currentName) => getNextSelectedTableName(currentName, tables));
-  }, [tables]);
-
-  const selectedTable = useMemo(
-    () => tables.find((table) => table.name === selectedTableName) ?? null,
-    [selectedTableName, tables],
-  );
+  const activeTableName = getNextSelectedTableName(selectedTableName, tables);
+  const selectedTable = tables.find((table) => table.name === activeTableName) ?? null;
 
   const explorerData = useMemo<SQLiteExplorerData>(() => {
     void version;
 
-    if (!db || !selectedTableName) {
+    if (!db || !activeTableName) {
       return {
         columns: [],
         preview: null,
@@ -52,16 +45,16 @@ export function SQLiteExplorer() {
     }
 
     return {
-      columns: readSchema(db, selectedTableName),
-      preview: readPreview(db, selectedTableName),
+      columns: readSchema(db, activeTableName),
+      preview: readPreview(db, activeTableName),
     };
-  }, [db, selectedTableName, version]);
+  }, [activeTableName, db, version]);
 
   return (
     <DatabaseExplorerLayout
       description="Tabelle SQLite"
       rowCountLabel={formatSQLiteRowCount}
-      selectedTableName={selectedTableName}
+      selectedTableName={activeTableName}
       tables={tables}
       onSelectTable={setSelectedTableName}
     >

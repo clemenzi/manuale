@@ -1,5 +1,5 @@
 import { usePHP } from "#/contexts/php";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import {
   InputGroup,
   InputGroupAddon,
@@ -24,13 +24,13 @@ export default function Preview({ onResponse }: { onResponse?: (response: PHPRes
   const [url, setUrl] = useState("/index.php");
   const [body, setBody] = useState("");
 
-  const handleMethodChange = useCallback((value: HTTPMethod | null) => {
+  const handleMethodChange = (value: HTTPMethod | null) => {
     if (value) {
       setMethod(value);
     }
-  }, []);
+  };
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = () => {
     if (!php) return;
 
     const handler = new PHPRequestHandler({
@@ -41,7 +41,7 @@ export default function Preview({ onResponse }: { onResponse?: (response: PHPRes
       setBody(response.text);
       onResponse?.(response);
     });
-  }, [body, method, onResponse, php, url]);
+  };
 
   return (
     <div className="flex h-full min-h-0 flex-col gap-1.5 overflow-hidden p-1.5">

@@ -1,5 +1,5 @@
 import { useWorkbench } from "#/contexts/workbench";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Tree } from "react-arborist";
 import { CreateFileDialog, DeleteFileDialog, RenameFileDialog } from "./dialogs";
 import { FileTreeNode } from "./node";
@@ -39,39 +39,36 @@ export default function WorkbenchExplorer({
   const treeData = useMemo(() => buildFileTree(files.files, rootPath), [files.files, rootPath]);
   const [treeHeight, setTreeHeight] = useState(MIN_TREE_HEIGHT);
 
-  const handleActivate = useCallback(
-    (node: { data: WorkbenchFileTreeNode }) => {
-      if (node.data.isDirectory) {
-        return;
-      }
+  const handleActivate = (node: { data: WorkbenchFileTreeNode }) => {
+    if (node.data.isDirectory) {
+      return;
+    }
 
-      const content = files.files[node.data.path];
+    const content = files.files[node.data.path];
 
-      if (content === undefined) {
-        return;
-      }
+    if (content === undefined) {
+      return;
+    }
 
-      setSelectedPath(node.data.path);
-      onFileSelect?.({
-        content,
-        name: node.data.name,
-        path: node.data.path,
-      });
+    setSelectedPath(node.data.path);
+    onFileSelect?.({
+      content,
+      name: node.data.name,
+      path: node.data.path,
+    });
 
-      buffers.setActive(node.data.path);
-    },
-    [buffers, files.files, onFileSelect],
-  );
-  const handleRenameOpenChange = useCallback((open: boolean) => {
+    buffers.setActive(node.data.path);
+  };
+  const handleRenameOpenChange = (open: boolean) => {
     if (!open) {
       setRenamingPath(undefined);
     }
-  }, []);
-  const handleDeleteOpenChange = useCallback((open: boolean) => {
+  };
+  const handleDeleteOpenChange = (open: boolean) => {
     if (!open) {
       setDeletingPath(undefined);
     }
-  }, []);
+  };
 
   useEffect(() => {
     const container = treeContainerRef.current;
@@ -131,7 +128,12 @@ export default function WorkbenchExplorer({
         <DeleteFileDialog open onOpenChange={handleDeleteOpenChange} path={deletingPath} />
       ) : null}
       {renamingPath ? (
-        <RenameFileDialog open onOpenChange={handleRenameOpenChange} path={renamingPath} />
+        <RenameFileDialog
+          key={renamingPath}
+          open
+          onOpenChange={handleRenameOpenChange}
+          path={renamingPath}
+        />
       ) : null}
     </div>
   );

@@ -1,6 +1,12 @@
 import type { EditorProps } from "@monaco-editor/react";
 
 type MonacoInstance = Parameters<NonNullable<EditorProps["beforeMount"]>>[0];
+type CompletionProvider = Parameters<
+  MonacoInstance["languages"]["registerCompletionItemProvider"]
+>[1];
+type CompletionProviderParameters = Parameters<CompletionProvider["provideCompletionItems"]>;
+type CompletionModel = CompletionProviderParameters[0];
+type CompletionPosition = CompletionProviderParameters[1];
 type CompletionRange = {
   startLineNumber: number;
   endLineNumber: number;
@@ -417,7 +423,7 @@ function registerCompletionProvider(
 
   monaco.languages.registerCompletionItemProvider(language, {
     triggerCharacters,
-    provideCompletionItems(model: any, position: any) {
+    provideCompletionItems(model: CompletionModel, position: CompletionPosition) {
       const word = model.getWordUntilPosition(position);
       const range = {
         startLineNumber: position.lineNumber,

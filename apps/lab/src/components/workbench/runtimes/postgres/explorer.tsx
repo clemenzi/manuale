@@ -23,7 +23,8 @@ type PostgresExplorerData = {
   preview: PostgresTablePreview | null;
 };
 
-type LoadState = {
+type AsyncState<T> = {
+  data: T;
   error: string | null;
   loading: boolean;
 };
@@ -33,7 +34,14 @@ const EMPTY_EXPLORER_DATA: PostgresExplorerData = {
   preview: null,
 };
 
-const IDLE_LOAD_STATE: LoadState = {
+const EMPTY_TABLES_STATE: AsyncState<PostgresTableInfo[]> = {
+  data: [],
+  error: null,
+  loading: false,
+};
+
+const EMPTY_EXPLORER_STATE: AsyncState<PostgresExplorerData> = {
+  data: EMPTY_EXPLORER_DATA,
   error: null,
   loading: false,
 };
@@ -46,35 +54,36 @@ function toErrorMessage(caughtError: unknown) {
 
 export function PostgresExplorer() {
   const { db, version } = usePostgres();
-  const [tables, setTables] = useState<PostgresTableInfo[]>([]);
   const [selectedTableName, setSelectedTableName] = useState<string | null>(null);
-  const [explorerData, setExplorerData] = useState<PostgresExplorerData>(EMPTY_EXPLORER_DATA);
-  const [{ error, loading }, setLoadState] = useState<LoadState>(IDLE_LOAD_STATE);
+  const [tablesState, setTablesState] = useState(EMPTY_TABLES_STATE);
+  const [explorerState, setExplorerState] = useState(EMPTY_EXPLORER_STATE);
+  const tables = tablesState.data;
 
   useEffect(() => {
     let isCurrent = true;
 
     async function loadTables() {
       if (!db) {
-        setTables([]);
-        setSelectedTableName(null);
-        setLoadState(IDLE_LOAD_STATE);
+        setTablesState(EMPTY_TABLES_STATE);
         return;
       }
 
-      setLoadState({ loading: true, error: null });
+      setTablesState((currentState) => ({
+        ...currentState,
+        error: null,
+        loading: true,
+      }));
 
       try {
         const nextTables = await readPostgresTables(db);
 
         if (isCurrent) {
-          setTables(nextTables);
-          setSelectedTableName((currentName) => getNextSelectedTableName(currentName, nextTables));
-          setLoadState(IDLE_LOAD_STATE);
+          setTablesState({ data: nextTables, error: null, loading: false });
         }
       } catch (caughtError) {
         if (isCurrent) {
-          setLoadState({
+          setTablesState({
+            data: [],
             loading: false,
             error: toErrorMessage(caughtError),
           });
@@ -89,32 +98,40 @@ export function PostgresExplorer() {
     };
   }, [db, version]);
 
+  const activeTableName = getNextSelectedTableName(selectedTableName, tables);
+
   useEffect(() => {
     let isCurrent = true;
 
     async function loadExplorerData() {
-      if (!db || !selectedTableName) {
-        setExplorerData(EMPTY_EXPLORER_DATA);
-        setLoadState(IDLE_LOAD_STATE);
+      if (!db || !activeTableName) {
+        setExplorerState(EMPTY_EXPLORER_STATE);
         return;
       }
 
+      setExplorerState((currentState) => ({
+        ...currentState,
+        error: null,
+        loading: true,
+      }));
+
       try {
         const [columns, preview] = await Promise.all([
-          readPostgresSchema(db, selectedTableName),
-          readPostgresPreview(db, selectedTableName),
+          readPostgresSchema(db, activeTableName),
+          readPostgresPreview(db, activeTableName),
         ]);
 
         if (isCurrent) {
-          setExplorerData({ columns, preview });
-          setLoadState((currentState) =>
-            currentState.error === null ? currentState : IDLE_LOAD_STATE,
-          );
+          setExplorerState({
+            data: { columns, preview },
+            error: null,
+            loading: false,
+          });
         }
       } catch (caughtError) {
         if (isCurrent) {
-          setExplorerData(EMPTY_EXPLORER_DATA);
-          setLoadState({
+          setExplorerState({
+            data: EMPTY_EXPLORER_DATA,
             loading: false,
             error: toErrorMessage(caughtError),
           });
@@ -127,9 +144,11 @@ export function PostgresExplorer() {
     return () => {
       isCurrent = false;
     };
-  }, [db, selectedTableName, version]);
+  }, [activeTableName, db, version]);
 
-  const selectedTable = tables.find((table) => table.name === selectedTableName) ?? null;
+  const selectedTable = tables.find((table) => table.name === activeTableName) ?? null;
+  const error = tablesState.error ?? explorerState.error;
+  const loading = tablesState.loading || explorerState.loading;
 
   return (
     <DatabaseExplorerLayout
@@ -137,15 +156,15 @@ export function PostgresExplorer() {
       error={error}
       loading={loading}
       rowCountLabel={formatPostgresRowCount}
-      selectedTableName={selectedTableName}
+      selectedTableName={activeTableName}
       tables={tables}
       onSelectTable={setSelectedTableName}
     >
       {selectedTable ? (
         <div className="space-y-4">
           <DatabaseTableSummaryCard rowCountLabel={formatPostgresRowCount} table={selectedTable} />
-          <SchemaCard columns={explorerData.columns} />
-          <PreviewCard preview={explorerData.preview} />
+          <SchemaCard columns={explorerState.data.columns} />
+          <PreviewCard preview={explorerState.data.preview} />
         </div>
       ) : (
         <ExplorerEmptyState label="Seleziona una tabella" />

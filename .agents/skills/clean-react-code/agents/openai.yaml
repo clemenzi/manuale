@@ -1,0 +1,4 @@
+interface:
+  display_name: "Clean React Code"
+  short_description: "Scrivi e revisiona React chiaro e idiomatico"
+  default_prompt: "Usa $clean-react-code per scrivere o revisionare questo codice React, eliminando stato ed Effects non necessari."

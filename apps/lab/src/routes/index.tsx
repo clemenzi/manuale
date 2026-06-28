@@ -11,6 +11,8 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { SiHtml5, SiPhp, SiPostgresql, SiPython, SiSqlite } from "@icons-pack/react-simple-icons";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export const Route = createFileRoute("/")({
   component: Home,
   head: () => ({
@@ -173,7 +175,7 @@ function Home() {
           </div>
         </section>
         <footer>
-          <p>&copy; {new Date().getFullYear()} Manuale Lab. Tutti i diritti riservati.</p>
+          <p>&copy; {CURRENT_YEAR} Manuale Lab. Tutti i diritti riservati.</p>
         </footer>
       </div>
     </main>

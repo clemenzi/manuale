@@ -13,6 +13,11 @@ import {
 
 type PostgresStatus = "loading" | "ready" | "error";
 
+type PostgresState =
+  | { db: null; error: null; status: "loading" }
+  | { db: PGlite; error: null; status: "ready" }
+  | { db: null; error: Error; status: "error" };
+
 type PostgresContextValue = {
   db: PGlite | null;
   error: Error | null;
@@ -33,9 +38,11 @@ function toError(caughtError: unknown) {
 export function PostgresProvider({ children }: { children: ReactNode }) {
   const dbRef = useRef<PGlite | null>(null);
   const operationRef = useRef(0);
-  const [db, setDb] = useState<PGlite | null>(null);
-  const [error, setError] = useState<Error | null>(null);
-  const [status, setStatus] = useState<PostgresStatus>("loading");
+  const [{ db, error, status }, setState] = useState<PostgresState>({
+    db: null,
+    error: null,
+    status: "loading",
+  });
   const [version, setVersion] = useState(0);
 
   const closeDatabase = useCallback(async () => {
@@ -48,16 +55,14 @@ export function PostgresProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const markDatabaseReady = useCallback((nextDb: PGlite) => {
-    setDb(nextDb);
     setVersion((currentVersion) => currentVersion + 1);
-    setStatus("ready");
+    setState({ db: nextDb, error: null, status: "ready" });
   }, []);
 
   const createDatabase = useCallback(async () => {
     const operation = ++operationRef.current;
 
-    setStatus("loading");
-    setError(null);
+    setState({ db: null, error: null, status: "loading" });
 
     try {
       const PGliteConstructor = await getPGliteConstructor();
@@ -75,8 +80,7 @@ export function PostgresProvider({ children }: { children: ReactNode }) {
         return;
       }
 
-      setError(toError(caughtError));
-      setStatus("error");
+      setState({ db: null, error: toError(caughtError), status: "error" });
     }
   }, [markDatabaseReady]);
 
@@ -102,7 +106,7 @@ export function PostgresProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const resetDatabase = useCallback(async () => {
-    setDb(null);
+    setState({ db: null, error: null, status: "loading" });
     await closeDatabase();
     await createDatabase();
   }, [closeDatabase, createDatabase]);
