@@ -5,9 +5,9 @@ description: Come ripetere un'azione per ogni elemento di una lista o sequenza.
 
 ## Perché usare i cicli?
 
-Immagina di dover salutare 100 studenti uno per uno. Senza i cicli, dovresti scrivere `print("Ciao!")` cento volte. Con un ciclo, lo scrivi una volta sola e Python lo ripete quante volte vuoi.
+Per salutare 100 studenti uno per uno senza un ciclo dovresti scrivere `print("Ciao!")` cento volte. Un ciclo esegue la stessa istruzione per ogni elemento.
 
-Il ciclo `for` in particolare è perfetto quando sai già **cosa** vuoi scorrere: una lista di nomi, le lettere di una parola, i numeri da 1 a 10.
+Il ciclo `for` è adatto quando sai già **cosa** vuoi scorrere: una lista di nomi, le lettere di una parola o i numeri da 1 a 10.
 
 ## Come funziona
 
@@ -16,11 +16,11 @@ for elemento in sequenza:
     # codice da eseguire per ogni elemento
 ```
 
-Ad ogni giro del ciclo, la variabile `elemento` assume il valore successivo della sequenza. Quando la sequenza finisce, il ciclo si ferma.
+Ad ogni iterazione, `elemento` riceve il valore successivo della sequenza. Quando la sequenza termina, termina anche il ciclo.
 
 ## Scorrere una lista
 
-L'uso più comune: fare qualcosa per ogni elemento di una lista.
+L'uso più comune consiste nell'eseguire un'azione per ogni elemento di una lista.
 
 ```python
 frutta = ["mela", "banana", "ciliegia"]
@@ -41,7 +41,7 @@ La variabile `frutto` (che hai scelto tu) prende il valore `"mela"` al primo gir
 
 ## Scorrere una stringa
 
-Una stringa è una sequenza di caratteri, quindi puoi scorrerne le lettere una ad una:
+Una stringa è una sequenza di caratteri, quindi puoi visitare le lettere una alla volta:
 
 ```python
 for carattere in "Python":
@@ -61,20 +61,20 @@ n
 
 ## Ripetere un numero preciso di volte con `range()`
 
-Se vuoi eseguire qualcosa esattamente N volte, usa `range()`:
+Per eseguire un'istruzione esattamente N volte, usa `range()`:
 
 ```python
 for i in range(5):
     print("Ciao!")
 ```
 
-Questo stampa "Ciao!" 5 volte. La variabile `i` vale 0, poi 1, poi 2, poi 3, poi 4.
+Il codice stampa "Ciao!" 5 volte. La variabile `i` assume i valori 0, 1, 2, 3 e 4.
 
 Vedi la sezione su `range()` per tutti i dettagli su come usarla.
 
 ## Sapere anche la posizione con `enumerate()`
 
-A volte, mentre scorri una lista, vuoi sapere sia il valore sia la sua posizione (indice). Usa `enumerate()`:
+Se mentre scorri una lista ti servono sia il valore sia la posizione, usa `enumerate()`:
 
 ```python
 frutta = ["mela", "banana", "ciliegia"]
@@ -108,7 +108,7 @@ Output:
 
 ## Scorrere due liste insieme con `zip()`
 
-`zip()` abbina gli elementi di due liste, uno a uno:
+`zip()` abbina gli elementi di due liste nella stessa posizione:
 
 ```python
 nomi = ["Alice", "Bob", "Carlo"]
@@ -150,7 +150,7 @@ for i in range(10):
 
 ## Cicli dentro cicli (annidati)
 
-Puoi mettere un ciclo `for` dentro un altro. Per esempio, per costruire una tabellina:
+Puoi inserire un ciclo `for` dentro un altro, per esempio per costruire una tabellina:
 
 ```python
 for i in range(1, 4):

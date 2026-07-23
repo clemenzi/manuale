@@ -5,13 +5,13 @@ description: Come usare public e private per proteggere i dati nelle classi C++.
 
 ## Cos'è l'incapsulamento?
 
-Immagina un distributore automatico. Puoi premere i pulsanti (interfaccia pubblica), ma non puoi mettere le mani nel meccanismo interno (dati privati). Questo è l'**incapsulamento**: nascondere i dettagli interni e offrire solo un accesso controllato dall'esterno.
+L'**incapsulamento** separa l'interfaccia pubblica dai dettagli interni di una classe.
 
-In pratica: i dati di una classe vengono dichiarati **privati**, così nessuno può modificarli direttamente dall'esterno. Per accedervi, si usano metodi pubblici appositamente creati.
+In pratica, dichiari i dati **privati** e fornisci metodi pubblici per leggerli o modificarli secondo regole definite dalla classe.
 
 ## Il problema senza incapsulamento
 
-Quando i dati sono pubblici, chiunque può modificarli — anche con valori assurdi:
+Quando i dati sono pubblici, il codice esterno può assegnare qualsiasi valore:
 
 ```cpp
 class Eta {
@@ -142,7 +142,7 @@ int main() {
 
 ## Il vantaggio nascosto: libertà di cambiare l'interno
 
-L'incapsulamento ti permette di modificare come funziona internamente una classe **senza dover cambiare il codice che la usa**:
+L'incapsulamento permette di cambiare l'implementazione interna **senza modificare il codice che usa la classe**:
 
 ```cpp
 // Versione 1: memorizza la temperatura in Celsius

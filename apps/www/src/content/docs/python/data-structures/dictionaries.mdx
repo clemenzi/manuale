@@ -7,7 +7,7 @@ description: Come associare informazioni tramite chiavi e valori, come un vero v
 
 Un **dizionario** è una raccolta di informazioni organizzate in coppie **chiave → valore**.
 
-Funziona come un vero vocabolario: cerchi una parola (la **chiave**) e trovi la sua definizione (il **valore**). Oppure come una rubrica telefonica: cerchi il nome di una persona e trovi il suo numero.
+Puoi pensarlo come un vocabolario: cerchi una parola (la **chiave**) e ottieni la definizione (il **valore**). Una rubrica telefonica usa lo stesso principio.
 
 ```
 "nome"  →  "Alice"
@@ -17,7 +17,7 @@ Funziona come un vero vocabolario: cerchi una parola (la **chiave**) e trovi la 
 
 ## Creare un dizionario
 
-I dizionari si scrivono con le **parentesi graffe** `{}`, con coppie `"chiave": valore` separate da virgole:
+I dizionari usano le **parentesi graffe** `{}` e coppie `"chiave": valore` separate da virgole:
 
 ```python
 studente = {
@@ -31,7 +31,7 @@ vuoto = {}   # dizionario senza elementi
 
 ## Accedere a un valore
 
-Usi il nome della chiave tra parentesi quadre, come se fosse un indice:
+Indichi la chiave tra parentesi quadre:
 
 ```python
 studente = {"nome": "Alice", "eta": 16, "classe": "3A"}
@@ -40,7 +40,7 @@ print(studente["nome"])   # Alice
 print(studente["eta"])    # 16
 ```
 
-Se la chiave non esiste, ottieni un errore. Per evitarlo, usa `.get()`, che restituisce `None` (o un valore di default) invece di causare errore:
+Se la chiave non esiste, l'accesso con le parentesi quadre causa un errore. `.get()` restituisce invece `None` o un valore predefinito:
 
 ```python
 print(studente.get("cognome"))          # None — nessun errore
@@ -49,7 +49,7 @@ print(studente.get("cognome", "N/D"))   # N/D  — valore di default
 
 ## Aggiungere e modificare
 
-I dizionari sono modificabili. Assegni un valore a una chiave: se la chiave esiste, modifica il valore; se non esiste, crea una nuova coppia:
+I dizionari sono modificabili. Assegnando un valore a una chiave esistente lo sostituisci; usando una chiave nuova aggiungi una coppia:
 
 ```python
 studente = {"nome": "Alice", "eta": 16}
@@ -117,7 +117,7 @@ citta: Roma
 
 ## Dizionari dentro dizionari
 
-I valori possono essere qualsiasi cosa, anche altri dizionari. Utile per rappresentare strutture complesse:
+I valori possono essere di qualsiasi tipo, compresi altri dizionari. Puoi così rappresentare strutture annidate:
 
 ```python
 classe = {

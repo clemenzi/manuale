@@ -3,17 +3,17 @@ title: Moduli
 description: Come organizzare il codice in moduli e importarli in Python.
 ---
 
-## Perché è utile usare i moduli
+## A cosa servono i moduli
 
-Immagina di dover scrivere un programma grande. Mettere tutto il codice in un unico file lungo migliaia di righe sarebbe un disastro — impossibile da leggere o da modificare.
+In un programma grande, mettere tutto il codice in un unico file lo rende difficile da leggere e modificare.
 
-I **moduli** sono il modo in cui Python ti permette di suddividere il codice in file separati, organizzati per argomento. Ogni file `.py` è già un modulo. E Python viene fornito con centinaia di moduli già pronti da usare — la cosiddetta **libreria standard**.
+I **moduli** permettono di dividere il codice in file separati, organizzati per argomento. Ogni file `.py` è un modulo. Python include inoltre centinaia di moduli pronti nella **libreria standard**.
 
 ---
 
 ## Importare un modulo con `import`
 
-Per usare un modulo, devi "importarlo" all'inizio del tuo file:
+Per usare un modulo, importalo all'inizio del file:
 
 ```python
 import math   # Importa il modulo "math" (matematica)
@@ -24,13 +24,13 @@ print(math.floor(3.7))   # 3   — arrotondamento verso il basso
 print(math.ceil(3.2))    # 4   — arrotondamento verso l'alto
 ```
 
-Quando scrivi `math.sqrt`, stai dicendo: "usa la funzione `sqrt` che si trova nel modulo `math`".
+`math.sqrt` indica la funzione `sqrt` contenuta nel modulo `math`.
 
 ---
 
 ## Importare solo quello che ti serve con `from ... import`
 
-Se sai già quali funzioni ti servono, puoi importarle direttamente. Così non devi scrivere il nome del modulo ogni volta:
+Se conosci già le funzioni necessarie, puoi importarle direttamente e omettere il nome del modulo nelle chiamate:
 
 ```python
 from math import pi, sqrt, floor   # Importo solo queste tre cose
@@ -44,7 +44,7 @@ print(floor(4.9))  # 4
 
 ## `from math import *` — sconsigliato
 
-Si può importare tutto in una volta con `*`, ma è una cattiva abitudine:
+Puoi importare tutto con `*`, ma questa forma è sconsigliata:
 
 ```python
 from math import *   # Importa TUTTO dal modulo math
@@ -52,13 +52,13 @@ from math import *   # Importa TUTTO dal modulo math
 print(sin(0))   # Funziona, ma...
 ```
 
-Il problema: non si capisce più da dove vengono le funzioni. Se due moduli hanno una funzione con lo stesso nome, una sovrascrive l'altra senza avvertirti.
+Così non è più chiaro da quale modulo provengano le funzioni. Inoltre, nomi uguali provenienti da moduli diversi possono sovrascriversi.
 
 ---
 
 ## Rinominare con `as`
 
-Puoi dare un soprannome a un modulo o a una funzione con la parola `as`. Utile se il nome è lungo o se vuoi evitare conflitti:
+Con `as` puoi assegnare un alias a un modulo o a una funzione, per abbreviare un nome o evitare conflitti:
 
 ```python
 import math as m   # D'ora in poi scrivo "m" invece di "math"
@@ -79,7 +79,7 @@ import pandas as pd   # Convenzione universale per Pandas
 
 ## Creare il tuo modulo
 
-Un modulo è semplicemente un file `.py`. Crea un file chiamato `calcolatrice.py`:
+Un modulo è un file `.py`. Crea, per esempio, `calcolatrice.py`:
 
 ```python
 # calcolatrice.py — il mio modulo personale
@@ -110,9 +110,9 @@ print(calcolatrice.pi)             # 3.14159
 
 ## Il blocco `if __name__ == "__main__"`
 
-Quando Python importa un modulo, esegue tutto il codice al suo interno. Questo può causare problemi se hai del codice di test che non vuoi far girare durante l'importazione.
+Quando importa un modulo, Python esegue il codice contenuto nel file. Il codice di test potrebbe quindi partire anche durante un'importazione.
 
-La soluzione è racchiudere il codice di test in questo blocco speciale:
+Per evitarlo, racchiudi il codice di test in questo blocco:
 
 ```python
 # calcolatrice.py
@@ -126,7 +126,7 @@ if __name__ == "__main__":
     print(somma(3, 4))   # Test
 ```
 
-Regola semplice: `__name__ == "__main__"` è `True` solo per il file che hai avviato tu, non per quelli importati.
+`__name__ == "__main__"` è `True` solo nel file avviato direttamente, non nei moduli importati.
 
 ---
 

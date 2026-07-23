@@ -5,9 +5,9 @@ description: Come organizzare il codice PHP in blocchi riutilizzabili.
 
 ## Cosa e una funzione
 
-Una funzione e un blocco di codice con un nome. La scrivi una volta e puoi usarla piu volte.
+Una funzione è un blocco di codice con un nome. La scrivi una volta e puoi usarla più volte.
 
-E come una ricetta: invece di riscrivere tutti i passaggi, richiami la ricetta quando serve.
+È come una ricetta: invece di riscrivere tutti i passaggi, la richiami quando serve.
 
 ## Dichiarare una funzione
 
@@ -18,11 +18,11 @@ function saluta() {
 }
 ```
 
-Questo codice crea la funzione, ma non la esegue ancora.
+Questo codice definisce la funzione, ma non la esegue ancora.
 
 ## Chiamare una funzione
 
-Per eseguirla, scrivi il suo nome seguito da parentesi.
+Per eseguirla, scrivi il suo nome seguito dalle parentesi.
 
 ```php
 <?php
@@ -41,7 +41,7 @@ Ciao!
 
 ## Riutilizzare codice
 
-Una funzione evita ripetizioni.
+Una funzione evita di ripetere lo stesso codice.
 
 ```php
 <?php
@@ -56,11 +56,11 @@ echo "Totale\n";
 mostraSeparatore();
 ```
 
-Se un giorno vuoi cambiare il separatore, modifichi una sola funzione.
+Se vuoi cambiare il separatore, modifichi una sola funzione.
 
 ## Nomi chiari
 
-Il nome deve dire cosa fa la funzione.
+Il nome dovrebbe indicare che cosa fa la funzione.
 
 ```php
 <?php
@@ -69,7 +69,7 @@ function calcolaTotale() {
 }
 ```
 
-`calcolaTotale` e piu utile di `faiCosa`.
+`calcolaTotale` descrive meglio lo scopo di `faiCosa`.
 
 > **Suggerimento:** una funzione dovrebbe fare una cosa principale. Se fa troppe cose, diventa difficile da capire e da riusare.
 
@@ -86,7 +86,7 @@ function mostraPrezzo($prezzo) {
 mostraPrezzo(12);
 ```
 
-La funzione non conosce tutti i prodotti del programma. Si occupa solo di mostrare un prezzo. Questo la rende facile da capire.
+La funzione non deve conoscere tutti i prodotti del programma: mostra soltanto un prezzo. Per questo è facile da capire.
 
 ## Prima senza funzione, poi con funzione
 
@@ -110,7 +110,7 @@ saluta("Luca");
 saluta("Sara");
 ```
 
-Il vantaggio non e scrivere meno righe a tutti i costi. Il vantaggio e dare un nome a un'azione.
+Il vantaggio non è scrivere meno righe a tutti i costi, ma dare un nome a un'azione.
 
 ## Errore comune: chiamare la funzione con un nome diverso
 
@@ -123,4 +123,4 @@ function saluta() {
 saluto();
 ```
 
-`saluta` e `saluto` sono due nomi diversi. PHP cerchera una funzione che non esiste.
+`saluta` e `saluto` sono due nomi diversi. PHP cercherà una funzione che non esiste.

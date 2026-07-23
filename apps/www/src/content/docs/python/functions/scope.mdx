@@ -5,13 +5,13 @@ description: Dove le variabili esistono e dove sono accessibili nel codice.
 
 ## Cos'è lo scope?
 
-Immagina di avere una variabile `x` dentro una funzione. Quella `x` esiste solo dentro quella funzione. Fuori non la puoi usare, come se non esistesse.
+Una variabile `x` definita dentro una funzione esiste solo in quella funzione. Fuori da lì non è accessibile.
 
-Questo concetto si chiama **scope** (o "ambito"): la zona del programma in cui una variabile è accessibile.
+Questa zona del programma si chiama **scope** (o "ambito").
 
 ## Variabili locali — dentro la funzione
 
-Una variabile creata dentro una funzione è **locale**: vive solo per la durata di quella funzione e poi scompare.
+Una variabile creata dentro una funzione è **locale**: esiste durante l'esecuzione della funzione e non è accessibile fuori dal suo scope.
 
 ```python
 def mia_funzione():
@@ -22,11 +22,11 @@ mia_funzione()  # 10
 # print(x)      # NameError: 'x' non esiste qui fuori!
 ```
 
-Questo è un comportamento voluto, non un difetto. Significa che le funzioni sono **indipendenti**: le variabili dentro una funzione non possono interferire con quelle fuori.
+È un comportamento voluto: le funzioni restano **indipendenti** e le loro variabili non interferiscono con quelle esterne.
 
 ## Variabili globali — fuori dalle funzioni
 
-Una variabile definita fuori da qualsiasi funzione è **globale**: è visibile da tutta la parte principale del programma.
+Una variabile definita fuori da ogni funzione è **globale**: può essere letta dalla parte principale del programma e dalle funzioni, salvo variabili locali con lo stesso nome.
 
 ```python
 nome = "Alice"  # variabile globale
@@ -39,7 +39,7 @@ saluta()  # Ciao, Alice!
 
 ## Puoi leggere le variabili globali, ma non modificarle (di solito)
 
-Una funzione può **leggere** una variabile globale, ma se prova a modificarla, Python crea una nuova variabile locale con lo stesso nome invece di cambiare quella globale:
+Una funzione può **leggere** una variabile globale. Se assegna un nuovo valore allo stesso nome, però, Python lo considera locale:
 
 ```python
 contatore = 0
@@ -52,7 +52,7 @@ incrementa()
 print(f"Fuori dalla funzione: {contatore}")  # ancora 0, non è cambiato!
 ```
 
-Se vuoi davvero modificare una variabile globale dall'interno di una funzione, devi usare la parola chiave `global`:
+Per modificare la variabile globale dall'interno della funzione devi usare `global`:
 
 ```python
 contatore = 0
@@ -67,7 +67,7 @@ print(contatore)  # 2
 ```
 
 :::tip[Consiglio]
-Usare `global` è generalmente una cattiva abitudine. Rende il codice difficile da capire e da correggere. È meglio passare i valori come parametri e usare `return` per restituirli.
+Usare `global` rende spesso il codice più difficile da seguire e correggere. Di solito è preferibile passare i valori come parametri e restituirli con `return`.
 :::
 
 ## Variabili con lo stesso nome a livelli diversi

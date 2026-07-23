@@ -5,7 +5,7 @@ description: Come conservare e usare informazioni nel tuo programma Python.
 
 ## Cos'è una variabile?
 
-Immagina di avere una serie di scatole etichettate. In ogni scatola puoi mettere un oggetto, e sull'etichetta scrivi il nome per ritrovarla facilmente.
+Pensa a una serie di scatole con un'etichetta. Ogni etichetta ti permette di ritrovare il contenuto associato.
 
 Una **variabile** funziona esattamente così:
 
@@ -15,7 +15,7 @@ Una **variabile** funziona esattamente così:
 
 ## Creare una variabile
 
-In Python creare una variabile è semplicissimo: basta scegliere un nome e assegnarle un valore con il simbolo `=`.
+In Python crei una variabile scegliendo un nome e assegnandole un valore con il simbolo `=`.
 
 ```python
 nome = "Alice"    # una scatola chiamata "nome" con dentro il testo "Alice"
@@ -23,7 +23,7 @@ eta = 16          # una scatola chiamata "eta" con dentro il numero 16
 altezza = 1.65    # una scatola chiamata "altezza" con dentro il numero 1.65
 ```
 
-Non devi dire a Python che tipo di dato stai mettendo dentro: lo capisce da solo. Non appena scrivi questa riga, la variabile esiste ed è pronta all'uso.
+Non devi dichiarare il tipo di dato: Python lo ricava dal valore. Dopo l'assegnazione, la variabile è disponibile nel programma.
 
 ## Usare una variabile
 
@@ -37,7 +37,7 @@ print("Ciao, " + nome + "!")  # Ciao, Alice!
 
 ## Cambiare il valore
 
-Puoi cambiare il contenuto di una variabile in qualsiasi momento. È come svuotare la scatola e metterci qualcosa di nuovo:
+Puoi cambiare il valore di una variabile in qualsiasi momento:
 
 ```python
 x = 10
@@ -56,7 +56,7 @@ print(punteggio)             # 150
 
 ## Assegnare più variabili in una volta
 
-Python ti permette di creare più variabili in una sola riga:
+Puoi creare più variabili in una sola riga:
 
 ```python
 a, b, c = 1, 2, 3
@@ -74,7 +74,7 @@ print(x, y, z)  # 0 0 0
 
 ## Regole per scegliere i nomi
 
-Non puoi chiamare una variabile in qualsiasi modo. Le regole sono:
+I nomi delle variabili devono rispettare queste regole:
 
 - Il nome deve iniziare con una lettera (`a-z`, `A-Z`) oppure con il trattino basso `_`
 - Può contenere lettere, numeri e trattini bassi
@@ -97,7 +97,7 @@ valore2 = 3.14
 
 ## Lo stile: snake_case
 
-Per convenzione, i nomi delle variabili in Python si scrivono in **snake_case**: tutto minuscolo, con il trattino basso `_` tra le parole, come una serpe (snake) strisciante.
+Per convenzione, i nomi delle variabili in Python usano lo **snake_case**: tutto minuscolo, con il trattino basso `_` tra le parole.
 
 ```python
 # Stile consigliato ✓

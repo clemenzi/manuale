@@ -3,11 +3,11 @@ title: Proprietà ACID
 description: Atomicità, coerenza, isolamento e durabilità spiegati senza formalismi inutili.
 ---
 
-## ACID è un modo rapido per dire: questa transazione è affidabile
+## Le proprietà ACID
 
 **ACID** è una sigla usata per descrivere le proprietà attese da una buona transazione.
 
-Pensa a una consegna importante. Vuoi che parta tutta, arrivi nel posto giusto, non si mescoli con altre consegne e resti registrata dopo la conferma.
+Le proprietà ACID descrivono come una transazione deve comportarsi durante l'esecuzione e dopo il commit.
 
 - **Atomicità**: o tutto o niente
 - **Coerenza**: i dati restano validi
@@ -20,15 +20,15 @@ Pensa a una consegna importante. Vuoi che parta tutta, arrivi nel posto giusto, 
 
 **Coerenza** vuol dire che i dati devono rispettare le regole del database. Per esempio, un ordine non dovrebbe puntare a un cliente inesistente.
 
-**Isolamento** vuol dire che più operazioni contemporanee non devono pestarsi troppo i piedi.
+**Isolamento** vuol dire che le operazioni contemporanee non devono interferire in modo indesiderato.
 
 **Durabilità** vuol dire che, dopo la conferma, il risultato non deve sparire.
 
 ## Perché dovresti ricordartelo
 
-Non serve recitarlo come una poesia a memoria. Ti serve come bussola mentale.
+Non serve memorizzare la sigla come una formula: serve a ricordare le proprietà da verificare.
 
-Quando studi transazioni, concorrenza o affidabilità del database, **ACID ti ricorda che l'obiettivo non è solo eseguire query, ma eseguirle bene anche sotto stress.**
+Quando studi transazioni e concorrenza, **ACID riassume le proprietà che rendono prevedibile l'esecuzione.**
 
 :::note
 ACID non è un comando SQL. È un modo per descrivere il comportamento affidabile che ti aspetti dalle transazioni.

@@ -5,15 +5,15 @@ description: Come generare sequenze di numeri per i cicli in Python.
 
 ## Cos'è `range()`?
 
-`range()` è una funzione di Python che genera una **sequenza di numeri interi**. Si usa moltissimo nei cicli `for` quando vuoi ripetere qualcosa un numero preciso di volte, o quando vuoi lavorare con numeri in sequenza.
+`range()` genera una **sequenza di numeri interi**. Nei cicli `for` serve per ripetere un'azione un numero preciso di volte o per scorrere numeri in sequenza.
 
-Pensa a `range()` come a un contatore automatico: tu gli dici da dove partire, dove fermarsi e di quanto saltare ad ogni passo.
+Con `range()` indichi da dove partire, dove fermarti e di quanto avanzare a ogni passo.
 
 ## Le tre forme di `range()`
 
 ### Solo il numero finale: `range(fine)`
 
-Genera numeri da `0` fino a `fine - 1` (il numero finale non è incluso):
+Genera numeri da `0` fino a `fine - 1`; il limite finale non è incluso:
 
 ```python
 for i in range(5):
@@ -31,7 +31,7 @@ Output:
 ```
 
 :::note[Perché parte da 0?]
-In programmazione si conta quasi sempre da 0. È una convenzione che incontrerai spesso. `range(5)` genera 5 numeri, partendo da 0.
+In programmazione si conta spesso da 0. `range(5)` genera quindi 5 numeri, da 0 a 4.
 :::
 
 ### Inizio e fine: `range(inizio, fine)`
@@ -53,11 +53,11 @@ Output:
 6
 ```
 
-Il numero finale (`7`) non è incluso. È come dire "da 2 incluso a 7 escluso".
+Il numero finale (`7`) non è incluso: l'intervallo va da 2 incluso a 7 escluso.
 
 ### Con il passo: `range(inizio, fine, passo)`
 
-Il terzo parametro indica di quanto avanzare ad ogni passo:
+Il terzo parametro indica di quanto avanzare a ogni passo:
 
 ```python
 # Solo i numeri pari da 0 a 10
@@ -76,7 +76,7 @@ Output:
 10
 ```
 
-Il passo può anche essere negativo, per contare al contrario:
+Il passo può essere negativo, per contare all'indietro:
 
 ```python
 # Conto alla rovescia da 5 a 1
@@ -99,7 +99,7 @@ Via!
 
 ## Convertire range in una lista
 
-Se vuoi vedere tutti i numeri generati da un `range`, convertilo in lista con `list()`:
+Per materializzare i numeri generati da un `range`, convertilo in lista con `list()`:
 
 ```python
 print(list(range(5)))         # [0, 1, 2, 3, 4]
@@ -154,5 +154,5 @@ Posizione 2: ciliegia
 ```
 
 :::tip
-Nella maggior parte dei casi, è più semplice e leggibile usare `enumerate()` invece di `range(len(...))`. Vedi il capitolo sui cicli `for`.
+Quando devi scorrere una lista con la sua posizione, spesso `enumerate()` è più leggibile di `range(len(...))`. Vedi il capitolo sui cicli `for`.
 :::

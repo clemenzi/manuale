@@ -5,11 +5,11 @@ description: Come leggere e scrivere file con Python — per salvare e caricare 
 
 ## Perché lavorare con i file?
 
-Quando un programma si chiude, tutto quello che era in memoria scompare. Se vuoi che i dati sopravvivano tra una esecuzione e l'altra (come i punteggi di un gioco, o una lista di nomi), devi **salvarli su file**.
+Quando un programma si chiude, i dati presenti solo in memoria vengono persi. Per ritrovarli alla successiva esecuzione, devi **salvarli su file**.
 
 ## Aprire un file
 
-Per lavorare con un file, lo "apri" con la funzione `open()`. Devi specificare il nome del file e la **modalità** (cosa vuoi fare):
+Per lavorare con un file usa `open()`, indicando il nome e la **modalità** di apertura:
 
 | Modalità | Cosa fa                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -19,7 +19,7 @@ Per lavorare con un file, lo "apri" con la funzione `open()`. Devi specificare i
 
 ## Il modo corretto: il blocco `with`
 
-Usa sempre il costrutto `with` per aprire i file. Garantisce che il file venga chiuso correttamente anche se c'è un errore:
+Usa il costrutto `with` per aprire i file. Li chiude correttamente anche se nel blocco si verifica un errore:
 
 ```python
 with open("esempio.txt", "r") as file:
@@ -79,7 +79,7 @@ with open("output.txt", "a") as file:
 
 ## Gestire il caso in cui il file non esiste
 
-Se provi ad aprire un file che non esiste in modalità `"r"`, Python dà un errore. Usa `try/except` per gestirlo:
+Se apri in modalità `"r"` un file inesistente, Python solleva un errore. Puoi gestirlo con `try/except`:
 
 ```python
 try:

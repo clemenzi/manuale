@@ -5,9 +5,9 @@ description: Dove esistono le variabili e perche alcune non sono visibili ovunqu
 
 ## Cosa significa scope
 
-Lo **scope** e la zona del programma in cui una variabile esiste ed e visibile.
+Lo **scope** è la zona del programma in cui una variabile esiste ed è visibile.
 
-Una variabile non vive ovunque. Di solito vive solo dentro il blocco in cui e stata creata.
+Una variabile non è visibile ovunque: di solito esiste solo nel blocco in cui è stata creata.
 
 ## Variabili locali
 
@@ -46,13 +46,13 @@ public static void saluta(String nome) {
 }
 ```
 
-`nome` e visibile dentro `saluta`, ma non fuori.
+`nome` è visibile dentro `saluta`, ma non fuori.
 
 Se vuoi usare un valore in un metodo, passalo come parametro.
 
 ## Blocchi con parentesi graffe
 
-Anche un blocco `if` o `for` crea una zona.
+Anche un blocco `if` o `for` crea uno scope.
 
 ```java
 if (true) {
@@ -63,7 +63,7 @@ if (true) {
 // System.out.println(numero); // errore
 ```
 
-`numero` nasce dentro il blocco `if` e sparisce alla fine del blocco.
+`numero` nasce dentro il blocco `if` e non è più visibile alla sua fine.
 
 ## Variabili create nel for
 
@@ -77,7 +77,7 @@ for (int i = 0; i < 3; i++) {
 
 La variabile `i` esiste solo dentro il ciclo.
 
-Questo e utile: evita che contatori temporanei restino in giro nel resto del programma.
+Questo evita che i contatori temporanei restino visibili nel resto del programma.
 
 ## Due variabili con lo stesso nome
 
@@ -141,6 +141,6 @@ Ciao, Sara
 
 ## Regola pratica
 
-Quando Java dice che una variabile "cannot be resolved", spesso significa che stai provando a usarla fuori dal suo scope.
+Quando Java dice che una variabile "cannot be resolved", spesso stai provando a usarla fuori dal suo scope.
 
 Controlla dove e stata dichiarata e dentro quali parentesi graffe si trova.

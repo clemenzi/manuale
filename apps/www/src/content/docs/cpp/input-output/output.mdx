@@ -5,9 +5,9 @@ description: Come visualizzare testo e valori sullo schermo con cout in C++.
 
 ## Come si stampa a schermo in C++?
 
-Un programma che non mostra niente all'utente è inutile. `cout` è il modo principale per comunicare con chi usa il tuo programma: mostrare risultati, messaggi, errori, menu.
+`cout` invia testo e valori al terminale: puoi usarlo per risultati, messaggi, errori e menu.
 
-È una delle prime cose che impari in C++ e la userai in ogni programma che scrivi.
+È uno degli strumenti di base della libreria `<iostream>`.
 
 ## Cos'è `cout`?
 
@@ -20,7 +20,7 @@ using namespace std;
 
 ## L'operatore `<<`
 
-L'operatore `<<` manda qualcosa a `cout`. Pensa a esso come a una freccia: "manda questo testo allo schermo".
+L'operatore `<<` invia un valore a `cout`.
 
 ```cpp
 cout << "Ciao, Mondo!";
@@ -37,7 +37,7 @@ cout << "Questa è una frase.";
 
 ## Andare a capo
 
-Per andare a capo, hai due opzioni:
+Per andare a capo puoi usare `endl` oppure `\n`:
 
 ```cpp
 cout << "Prima riga" << endl;    // usando endl

@@ -3,11 +3,11 @@ title: CTE
 description: Usare WITH per creare risultati temporanei leggibili e riutilizzabili nella query.
 ---
 
-## Dare un nome a un passaggio intermedio
+## Dare un nome a un risultato intermedio
 
 CTE significa **Common Table Expression**. Il nome è tecnico, ma l’idea è semplice: crei un risultato temporaneo, gli dai un nome e lo usi subito dopo.
 
-È come prendere appunti mentre risolvi un problema. Invece di tenere tutto in testa, scrivi un passaggio, lo chiami in modo chiaro e poi continui.
+Puoi separare un passaggio della query, assegnargli un nome e usarlo nella parte successiva.
 
 ```sql
 WITH ordini_grandi AS (
@@ -32,7 +32,7 @@ Con una CTE, invece, puoi separare il ragionamento:
 1. prima preparo un gruppo di dati
 2. poi uso quel gruppo nella query principale
 
-Il vantaggio è soprattutto mentale. Leggi la query come una piccola storia.
+Separare i passaggi rende più chiaro il ragionamento.
 
 ## Un esempio con una join
 
@@ -81,7 +81,7 @@ Una subquery va benissimo quando il passaggio interno è piccolo.
 
 Una CTE diventa più comoda quando vuoi dare un nome al passaggio, riusarlo o rendere la query più leggibile.
 
-Non è una gara tra strumenti. Scegli quello che rende più chiaro il ragionamento.
+Scegli lo strumento che descrive più chiaramente il ragionamento.
 
 ## Riepilogo rapido
 

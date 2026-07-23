@@ -11,13 +11,13 @@ Inviare in output il testo `Ciao, Python!`.
 <details>
 <summary>Soluzione spiegata</summary>
 
-Serve una sola chiamata a `print()` per mostrare il testo sullo schermo.
+Una sola chiamata a `print()` mostra il testo richiesto.
 
 ```python
 print("Ciao, Python!")
 ```
 
-Il programma esegue una sola istruzione e stampa esattamente la frase richiesta.
+L'output coincide con la frase richiesta.
 
 </details>
 
@@ -38,7 +38,7 @@ print(nome)
 print(eta)
 ```
 
-Le variabili permettono di riutilizzare i dati senza riscriverli ogni volta.
+Così puoi riutilizzare i dati senza riscriverli.
 
 </details>
 
@@ -80,7 +80,7 @@ area = base * altezza
 print(area)
 ```
 
-La variabile `area` contiene il valore finale del calcolo.
+`area` contiene il valore calcolato.
 
 </details>
 
@@ -121,7 +121,7 @@ nome = input("Inserisci il tuo nome: ")
 print("Ciao,", nome)
 ```
 
-Il valore digitato dall'utente viene salvato nella variabile `nome`.
+Il testo digitato viene salvato nella variabile `nome`.
 
 </details>
 
@@ -204,7 +204,7 @@ media = (a + b + c) / 3
 print(media)
 ```
 
-La formula della media aritmetica è diretta e usa un solo passaggio.
+La divisione finale completa il calcolo della media.
 
 </details>
 
@@ -250,7 +250,7 @@ else:
     print("Zero")
 ```
 
-Le condizioni vengono controllate dall'alto verso il basso.
+Le condizioni vengono valutate dall'alto verso il basso.
 
 </details>
 
@@ -324,7 +324,7 @@ else:
     print("Minorenne")
 ```
 
-La soglia dei 18 anni divide i due casi richiesti.
+Il confronto con `18` distingue i due casi.
 
 </details>
 
@@ -350,7 +350,7 @@ else:
     print("Insufficiente")
 ```
 
-Python si ferma alla prima condizione vera.
+Python esegue il primo ramo la cui condizione è vera.
 
 </details>
 
@@ -395,7 +395,7 @@ else:
     print("Segno diverso")
 ```
 
-La condizione separa chiaramente i due casi utili.
+La condizione verifica entrambe le combinazioni possibili.
 
 </details>
 
@@ -406,7 +406,7 @@ Applicare uno sconto del 10% se una spesa supera 100.
 <details>
 <summary>Soluzione spiegata</summary>
 
-Calcoliamo il totale e, solo se necessario, applichiamo la riduzione.
+Calcoliamo il totale e applichiamo la riduzione solo sopra la soglia.
 
 ```python
 totale = float(input("Totale spesa: "))
@@ -440,7 +440,7 @@ else:
     print("Assente")
 ```
 
-Il programma confronta la parola letta con tutti gli elementi della lista.
+La parola viene cercata tra gli elementi della lista.
 
 </details>
 
@@ -461,7 +461,7 @@ while numero <= 10:
     numero += 1
 ```
 
-Il ciclo continua finché la condizione `numero <= 10` resta vera.
+Il ciclo continua finché `numero <= 10` è vera.
 
 </details>
 
@@ -507,7 +507,7 @@ while n >= 0:
     n -= 1
 ```
 
-Il ciclo termina quando il valore scende sotto zero.
+Il ciclo termina dopo aver stampato `0`, quando il valore diventa negativo.
 
 </details>
 
@@ -543,7 +543,7 @@ for numero in range(0, 21, 2):
     print(numero)
 ```
 
-Il terzo argomento di `range()` indica quanto avanzare a ogni iterazione.
+Il terzo argomento di `range()` indica il passo del ciclo.
 
 </details>
 
@@ -566,7 +566,7 @@ for i in range(1, n + 1):
 print(fattoriale)
 ```
 
-La variabile `fattoriale` parte da 1 e cresce a ogni moltiplicazione.
+`fattoriale` parte da 1 e viene aggiornato a ogni moltiplicazione.
 
 </details>
 
@@ -693,7 +693,7 @@ lettera = input("Lettera: ").lower()
 print(parola.count(lettera))
 ```
 
-Il metodo restituisce quante occorrenze della sottostringa sono presenti.
+Il metodo restituisce il numero di occorrenze trovate.
 
 </details>
 
@@ -711,7 +711,7 @@ testo = input("Testo: ")
 print(testo[::-1])
 ```
 
-È un modo molto compatto per leggere i caratteri dalla fine all'inizio.
+Lo slicing legge i caratteri dalla fine all'inizio.
 
 </details>
 
@@ -733,7 +733,7 @@ else:
     print("Non palindroma")
 ```
 
-Il confronto finale decide subito tra i due casi.
+Il confronto sceglie uno dei due messaggi.
 
 </details>
 
@@ -839,7 +839,7 @@ for parola in parole:
 print(piu_lunga)
 ```
 
-Alla fine del ciclo, `piu_lunga` contiene la parola richiesta.
+Alla fine del ciclo, `piu_lunga` contiene la parola più lunga.
 
 </details>
 
@@ -930,7 +930,7 @@ for numero in numeri:
 print(massimo)
 ```
 
-La variabile `massimo` conserva sempre il valore migliore trovato fin lì.
+La variabile `massimo` conserva il valore più grande trovato fino a quel punto.
 
 </details>
 
@@ -1032,7 +1032,7 @@ lettere = ["a", "b", "c", "d"]
 print(lettere[::-1])
 ```
 
-La lista originale resta invariata e viene prodotta una nuova sequenza.
+La lista originale resta invariata: lo slicing produce una nuova sequenza.
 
 </details>
 
@@ -1060,7 +1060,7 @@ print(senza_duplicati)
 print(duplicati)
 ```
 
-La prima lista conserva l'ordine originale dei valori distinti, mentre la seconda segnala quali valori erano ripetuti.
+La prima lista mantiene l'ordine dei valori distinti; la seconda contiene quelli comparsi più volte.
 
 </details>
 
@@ -1146,7 +1146,7 @@ print(originale)
 print(copia)
 ```
 
-La modifica della copia non cambia la lista originale.
+Modificare `copia` non modifica `originale`.
 
 </details>
 
@@ -1261,7 +1261,7 @@ b = {3, 4, 5, 6}
 print(a & b)
 ```
 
-Il risultato contiene solo i valori comuni.
+Il risultato contiene gli elementi presenti in entrambi gli insiemi.
 
 </details>
 

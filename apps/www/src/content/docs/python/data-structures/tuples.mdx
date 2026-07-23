@@ -5,13 +5,13 @@ description: Sequenze di elementi che non cambiano mai.
 
 ## Cosa sono le tuple?
 
-Una **tupla** è simile a una lista: contiene elementi in ordine. La differenza fondamentale è che le tuple sono **immutabili**: una volta create, non si possono modificare. Non puoi aggiungere, togliere o cambiare gli elementi.
+Una **tupla** è simile a una lista: contiene elementi in ordine. È però **immutabile**: dopo la creazione non puoi aggiungere, rimuovere o cambiare elementi.
 
-Pensa alle tuple come a dati "fissi": le coordinate GPS di un posto, i giorni della settimana, i colori del semaforo. Sono informazioni che non devono cambiare.
+Le tuple sono adatte a dati "fissi", come coordinate GPS, giorni della settimana o colori del semaforo.
 
 ## Creare una tupla
 
-Le tuple si scrivono con le **parentesi tonde** `()`:
+Le tuple si possono scrivere con le **parentesi tonde** `()`:
 
 ```python
 coordinate = (10, 20)
@@ -32,7 +32,7 @@ e_una_tupla = (42,)      # la virgola la rende una tupla
 
 ## Accedere agli elementi
 
-Funziona esattamente come per le liste, con gli indici:
+L'accesso agli elementi usa gli indici, come nelle liste:
 
 ```python
 colori = ("rosso", "verde", "blu")
@@ -50,11 +50,11 @@ colori = ("rosso", "verde", "blu")
 colori[0] = "giallo"  # TypeError: 'tuple' object does not support item assignment
 ```
 
-Questo è il comportamento voluto: garantisce che i dati rimangano intatti.
+L'immutabilità impedisce di cambiare quei dati per errore.
 
 ## Operazioni sulle tuple
 
-Anche se non si modificano, puoi comunque combinarle e controllarle:
+Anche se non puoi modificarle, puoi combinarle e controllarne il contenuto:
 
 ```python
 a = (1, 2, 3)
@@ -68,7 +68,7 @@ print(len(a))   # 3     — numero di elementi
 
 ## Spacchettare una tupla (unpacking)
 
-Puoi assegnare gli elementi di una tupla a più variabili in una sola riga. Si chiama **unpacking** (spacchettamento):
+Puoi assegnare gli elementi di una tupla a più variabili in una sola riga. Questa operazione si chiama **unpacking** (spacchettamento):
 
 ```python
 coordinate = (10, 20)
@@ -86,7 +86,7 @@ Funziona anche con le liste. L'importante è che il numero di variabili corrispo
 
 ## Convertire tra tuple e liste
 
-Se hai una tupla e hai bisogno di modificarla, convertila in lista, modificala e riconvertila:
+Per modificare una tupla, convertila in lista, applica le modifiche e trasformala di nuovo in tupla:
 
 ```python
 t = (1, 2, 3)
@@ -105,4 +105,4 @@ Usa una **tupla** quando:
 - Vuoi comunicare a chi legge il codice che quei dati sono "di sola lettura"
 - Hai bisogno di usarla come chiave di un dizionario (le liste non si possono usare come chiavi)
 
-Usa una **lista** per tutto il resto, quando i dati possono cambiare.
+Usa una **lista** quando i dati possono cambiare.

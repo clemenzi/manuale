@@ -3,11 +3,11 @@ title: SELECT
 description: Come leggere i dati da una tabella scegliendo colonne e risultati utili.
 ---
 
-## Leggere dati da una tabella
+## Leggere dati
 
 `SELECT` è il comando che usi quando vuoi **vedere dei dati**.
 
-Non aggiunge nulla, non cancella nulla e non modifica le informazioni salvate. Fa una cosa sola: chiede al database di mostrarti qualcosa.
+Non aggiunge, cancella o modifica dati: chiede al database di restituire un risultato.
 
 Immagina una tabella `clienti` fatta così:
 
@@ -25,7 +25,7 @@ FROM clienti;
 
 Il simbolo `*` significa “tutte le colonne”. Quindi questa query dice: “mostrami tutto dalla tabella `clienti`”.
 
-È comoda quando stai esplorando una tabella per la prima volta. È un po’ come aprire un cassetto per vedere cosa c’è dentro.
+È utile quando esplori una tabella per la prima volta.
 
 ## Chiedere solo quello che ti serve
 
@@ -45,7 +45,7 @@ Il risultato diventa più pulito:
 
 Hai ancora gli stessi clienti, ma stai guardando solo le colonne utili per la tua domanda.
 
-Questa è una buona abitudine: più la query è precisa, più è facile da leggere.
+Una query precisa è anche più facile da leggere.
 
 ## Come leggere una query `SELECT`
 
@@ -71,7 +71,7 @@ Quando sei agli inizi, tradurre la query in italiano aiuta molto. Se la frase it
 
 `SELECT *` va benissimo per curiosare in una tabella piccola o per fare prove veloci.
 
-Quando però scrivi una query che vuoi conservare, condividere o usare in un’applicazione, è meglio indicare le colonne per nome:
+Quando conservi una query, la condividi o la usi in un'applicazione, indica le colonne per nome:
 
 ```sql
 SELECT nome, email
@@ -89,7 +89,7 @@ SELECT nome, prezzo
 FROM prodotti;
 ```
 
-Il gesto è sempre lo stesso: scegli la tabella, poi scegli le colonne.
+La logica è sempre la stessa: scegli la tabella e le colonne da restituire.
 
 ## Riepilogo rapido
 

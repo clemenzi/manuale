@@ -10,7 +10,7 @@ Un **set** (insieme) è una raccolta di elementi con due regole fondamentali:
 1. **Nessun duplicato**: ogni elemento può comparire al massimo una volta
 2. **Nessun ordine garantito**: gli elementi non hanno una posizione fissa
 
-Pensa a un set come a un sacchetto di palline colorate: sai quali colori ci sono dentro, ma non puoi dire "dammi la terza pallina".
+Un set è simile a un sacchetto di palline colorate: sai quali colori contiene, ma non puoi chiedere l'elemento in una posizione precisa.
 
 ## Creare un set
 
@@ -31,7 +31,7 @@ anche_vuoto = {}   # dizionario vuoto, non un set! ✗
 
 :::
 
-I duplicati vengono rimossi automaticamente:
+I duplicati vengono eliminati automaticamente:
 
 ```python
 con_duplicati = {1, 2, 2, 3, 3, 3}
@@ -56,11 +56,11 @@ print("mela" in frutta)     # True
 print("uva" in frutta)      # False
 ```
 
-I set sono molto veloci per questo tipo di ricerca, anche più delle liste.
+La ricerca di un elemento in un set è in genere più veloce che in una lista.
 
 ## Operazioni sugli insiemi
 
-Qui i set diventano particolarmente utili: puoi fare operazioni tipiche della matematica degli insiemi.
+I set supportano anche le operazioni della matematica degli insiemi:
 
 ```python
 A = {1, 2, 3, 4}
@@ -85,9 +85,9 @@ print(A & B)   # {3, 4}
 print(A - B)   # {1, 2}
 ```
 
-## Il trucco più utile: eliminare i duplicati
+## Eliminare i duplicati
 
-Il modo più semplice per eliminare i duplicati da una lista è convertirla in set e poi riconvertirla in lista:
+Per eliminare i duplicati da una lista puoi convertirla in set e poi riconvertirla in lista:
 
 ```python
 lista = [1, 2, 2, 3, 3, 4, 1]

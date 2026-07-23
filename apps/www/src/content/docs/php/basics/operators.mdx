@@ -5,11 +5,11 @@ description: Come usare operatori aritmetici, di confronto, logici e di assegnaz
 
 ## Cosa sono gli operatori
 
-Gli operatori sono simboli che fanno qualcosa con i valori: sommano, confrontano, assegnano o combinano condizioni.
+Gli operatori sono simboli che lavorano sui valori: sommano, confrontano, assegnano o combinano condizioni.
 
 ## Operatori aritmetici
 
-Servono per fare calcoli.
+Servono a eseguire calcoli.
 
 ```php
 <?php
@@ -47,7 +47,7 @@ Output:
 $totale = 15;
 ```
 
-Puoi aggiornare un valore in modo breve:
+Puoi aggiornare un valore con una forma abbreviata:
 
 ```php
 <?php
@@ -59,7 +59,7 @@ echo $totale;
 
 ## Confronto
 
-Gli operatori di confronto producono `true` o `false`.
+Gli operatori di confronto restituiscono `true` o `false`.
 
 ```php
 <?php
@@ -81,7 +81,7 @@ Operatori comuni:
 
 ## Operatori logici
 
-Servono a unire condizioni.
+Servono a combinare condizioni.
 
 ```php
 <?php
@@ -95,11 +95,11 @@ if ($eta >= 18 && $haBiglietto) {
 
 `&&` significa "e". `||` significa "oppure". `!` nega una condizione.
 
-Le parentesi aiutano a rendere chiaro l'ordine dei controlli.
+Le parentesi rendono più chiaro l'ordine dei controlli.
 
 ## Precedenza: chi viene calcolato prima
 
-PHP segue un ordine nei calcoli. Moltiplicazione e divisione vengono prima di somma e sottrazione.
+PHP segue un ordine preciso nei calcoli: moltiplicazione e divisione vengono prima di somma e sottrazione.
 
 ```php
 <?php
@@ -112,7 +112,7 @@ Output:
 14
 ```
 
-Prima viene calcolato `3 * 4`, poi viene aggiunto `2`.
+Prima PHP calcola `3 * 4`, poi aggiunge `2`.
 
 Se vuoi un ordine diverso, usa le parentesi:
 
@@ -140,7 +140,7 @@ if ($eta === 18) {
 }
 ```
 
-Dentro una condizione quasi sempre vuoi confrontare, non assegnare.
+In una condizione, quasi sempre vuoi confrontare, non assegnare.
 
 ## Prova tu
 

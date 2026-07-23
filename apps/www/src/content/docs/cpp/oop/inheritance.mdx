@@ -5,11 +5,11 @@ description: Introduzione all'ereditarietà in C++, come creare classi derivate 
 
 ## Cos'è l'ereditarietà?
 
-Immagina di dover creare le classi `Cane`, `Gatto` e `Coniglio`. Tutte e tre hanno un nome, un'età, mangiano e dormono. Riscrivere le stesse cose tre volte è una perdita di tempo.
+Le classi `Cane`, `Gatto` e `Coniglio` possono condividere nome, età e operazioni come mangiare e dormire.
 
-L'**ereditarietà** risolve questo: scrivi una classe `Animale` con le caratteristiche comuni, e poi `Cane`, `Gatto` e `Coniglio` **ereditano** tutto da essa, aggiungendo solo quello che hanno in più.
+Con l'**ereditarietà** definisci questi elementi in `Animale`; `Cane`, `Gatto` e `Coniglio` li ereditano e aggiungono quelli specifici.
 
-Come in natura: un cane è un animale. Ha tutto quello che ha un animale, più le caratteristiche proprie del cane.
+Un `Cane` è quindi un `Animale` con caratteristiche aggiuntive.
 
 ## Come funziona l'ereditarietà
 
@@ -75,7 +75,7 @@ int main() {
 
 ## Il costruttore nelle classi derivate
 
-Quando crei un oggetto `Cane`, il C++ chiama prima il costruttore di `Animale` e poi quello di `Cane`. Per passare dati al costruttore della classe madre, usa `:` nella lista di inizializzazione:
+Quando crei un oggetto `Cane`, C++ chiama prima il costruttore di `Animale` e poi quello di `Cane`. La lista di inizializzazione passa i dati alla classe base:
 
 ```cpp
 class Animale {

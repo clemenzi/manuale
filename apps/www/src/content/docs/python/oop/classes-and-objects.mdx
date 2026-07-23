@@ -3,21 +3,21 @@ title: Classi e oggetti
 description: Introduzione alla programmazione orientata agli oggetti in Python.
 ---
 
-## Qual è la funzione di classi e oggetti
+## A cosa servono classi e oggetti
 
-Immagina di dover gestire le informazioni di 30 studenti in un programma. Senza un modo per organizzare i dati, ti ritroveresti con decine di variabili sparse ovunque: `nome1`, `eta1`, `voto1`, `nome2`, `eta2`, `voto2`...
+Per gestire 30 studenti con sole variabili separate avresti nomi come `nome1`, `eta1`, `voto1`, `nome2`, `eta2`, `voto2`... I dati diventerebbero difficili da organizzare.
 
-Le **classi** risolvono questo problema: ti permettono di raggruppare dati e funzioni correlate in un unico "pacchetto" chiamato **oggetto**.
+Le **classi** raggruppano dati e funzioni correlate. Gli oggetti sono le singole istanze create a partire da una classe.
 
 ---
 
 ## La differenza tra classe e oggetto
 
-Una **classe** è come il **progetto di un'automobile**: descrive come deve essere fatta, ma non è un'auto vera.
+Una **classe** è come il **progetto di un'automobile**: descrive la struttura dell'auto, ma non è un'auto concreta.
 
-Un **oggetto** è l'**automobile vera**, costruita seguendo quel progetto.
+Un **oggetto** è un'**automobile vera**, costruita seguendo quel progetto.
 
-Dal stesso progetto (classe) puoi costruire molte auto (oggetti) diverse — ognuna con il suo colore, la sua targa, il suo chilometraggio.
+Dallo stesso progetto puoi costruire molti oggetti, ciascuno con il proprio colore, la propria targa e il proprio chilometraggio.
 
 ---
 
@@ -32,7 +32,7 @@ class Persona:
 
 ## Il costruttore: `__init__`
 
-Il metodo `__init__` è il **costruttore** — viene eseguito automaticamente ogni volta che crei un nuovo oggetto. Serve a impostare i dati iniziali dell'oggetto.
+Il metodo `__init__` è il **costruttore**: viene eseguito quando crei un oggetto e imposta i suoi dati iniziali.
 
 ```python
 class Persona:
@@ -43,7 +43,7 @@ class Persona:
         self.eta = eta
 ```
 
-`self` è un riferimento all'oggetto stesso. È sempre il primo parametro di ogni metodo in una classe, anche se quando chiami il metodo non lo scrivi esplicitamente.
+`self` è un riferimento all'oggetto stesso. È il primo parametro di ogni metodo, anche se non lo scrivi quando chiami il metodo.
 
 ---
 
@@ -58,13 +58,13 @@ print(alice.nome)   # Alice
 print(bob.eta)      # 17
 ```
 
-`alice` e `bob` sono due **istanze** diverse della stessa classe `Persona`. Hanno gli stessi "campi", ma valori diversi — come due auto dello stesso modello ma con targhe diverse.
+`alice` e `bob` sono due **istanze** della classe `Persona`. Hanno gli stessi attributi, ma valori diversi.
 
 ---
 
 ## Aggiungere metodi
 
-I **metodi** sono funzioni definite dentro la classe. Descrivono le **azioni** che un oggetto può fare.
+I **metodi** sono funzioni definite dentro una classe. Descrivono le **azioni** dell'oggetto.
 
 ```python
 class Persona:
@@ -114,7 +114,7 @@ print(bob.nome)       # Bob               ← valore diverso per ciascuno
 
 ## Il metodo `__str__`: come stampare un oggetto
 
-Per default, se fai `print(alice)` Python stampa qualcosa di poco leggibile come `<__main__.Persona object at 0x...>`. Il metodo speciale `__str__` ti permette di decidere tu come appare l'oggetto quando viene stampato.
+Senza una definizione specifica, `print(alice)` mostra un testo come `<__main__.Persona object at 0x...>`. Il metodo speciale `__str__` definisce la rappresentazione da stampare.
 
 ```python
 class Persona:
@@ -161,4 +161,4 @@ r2 = Rettangolo(10, 4)
 print(r2.area())       # → 40
 ```
 
-Ogni rettangolo è un oggetto indipendente: cambiare `r` non influisce su `r2`.
+Ogni rettangolo è un oggetto indipendente: modificare `r` non influisce su `r2`.

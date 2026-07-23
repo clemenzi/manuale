@@ -32,7 +32,7 @@ if ($file === null) {
 print_r($file);
 ```
 
-`$_FILES` contiene informazioni come nome originale, tipo, dimensione, percorso temporaneo ed eventuale errore.
+`$_FILES` contiene informazioni come nome originale, tipo, dimensione, percorso temporaneo ed eventuali errori.
 
 ## Controllare gli errori
 
@@ -58,7 +58,7 @@ if ($_FILES["documento"]["size"] > $dimensioneMassima) {
 }
 ```
 
-Per il tipo, non fidarti solo del nome del file. Usa controlli server-side e accetta solo formati previsti.
+Per il tipo, non fidarti solo del nome del file. Usa controlli server-side e accetta soltanto i formati previsti.
 
 ## Salvare il file
 
@@ -70,7 +70,7 @@ $destinazione = $cartella . "/documento.pdf";
 move_uploaded_file($_FILES["documento"]["tmp_name"], $destinazione);
 ```
 
-`move_uploaded_file` sposta il file dalla cartella temporanea alla cartella scelta.
+`move_uploaded_file` sposta il file dalla cartella temporanea a quella scelta.
 
 > **Attenzione:** non salvare file caricati dagli utenti con nomi non controllati e non permettere l'esecuzione di file caricati. L'upload e una zona delicata della sicurezza web.
 
@@ -87,11 +87,11 @@ if (!is_dir($cartella)) {
 }
 ```
 
-`__DIR__` indica la cartella del file PHP corrente. In questo modo costruisci un percorso stabile.
+`__DIR__` indica la cartella del file PHP corrente. Così costruisci un percorso stabile.
 
 ## Evitare nomi pericolosi
 
-Il nome originale del file arriva dal computer dell'utente, quindi non va usato alla cieca.
+Il nome originale arriva dal computer dell'utente, quindi non va usato senza controlli.
 
 ```php
 <?php
@@ -99,11 +99,11 @@ $nomeSicuro = uniqid("file_", true) . ".pdf";
 $destinazione = $cartella . "/" . $nomeSicuro;
 ```
 
-`uniqid` crea un nome abbastanza unico per evitare sovrascritture accidentali. In un progetto reale controlleresti anche il tipo effettivo del file.
+`uniqid` crea un nome abbastanza unico da evitare sovrascritture accidentali. In un progetto reale controlleresti anche il tipo effettivo del file.
 
 ## Checklist minima
 
-Prima di salvare un file caricato, controlla sempre:
+Prima di salvare un file caricato, verifica sempre:
 
 - che non ci siano errori di upload
 - che la dimensione sia accettabile

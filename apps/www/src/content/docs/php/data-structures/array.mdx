@@ -5,14 +5,14 @@ description: Come raccogliere piu valori in una sola variabile.
 
 ## Cosa e un array
 
-Un array e una variabile che contiene piu valori. Pensalo come una fila di caselle numerate.
+Un array è una variabile che contiene più valori. Puoi immaginarlo come una fila di caselle numerate.
 
 ```php
 <?php
 $frutti = ["mela", "pera", "banana"];
 ```
 
-Ogni elemento ha una posizione, chiamata **indice**. In PHP il primo indice e `0`.
+Ogni elemento ha una posizione, chiamata **indice**. In PHP il primo indice è `0`.
 
 ## Leggere un elemento
 
@@ -33,7 +33,7 @@ mela
 
 ## Aggiungere elementi
 
-Puoi aggiungere un valore in fondo all'array con `[]`.
+Puoi aggiungere un valore in fondo all'array usando `[]`.
 
 ```php
 <?php
@@ -43,7 +43,7 @@ $frutti[] = "banana";
 print_r($frutti);
 ```
 
-`print_r` mostra una struttura in modo leggibile, utile mentre studi.
+`print_r` mostra la struttura in un formato leggibile, utile mentre studi.
 
 ## Contare elementi
 
@@ -62,7 +62,7 @@ Output:
 
 ## Scorrere un array
 
-Con `foreach` puoi lavorare su ogni elemento.
+Con `foreach` puoi lavorare su ciascun elemento.
 
 ```php
 <?php
@@ -73,7 +73,7 @@ foreach ($frutti as $frutto) {
 }
 ```
 
-A ogni giro, `$frutto` contiene un valore diverso.
+A ogni giro `$frutto` contiene un valore diverso.
 
 ## Modificare un elemento
 
@@ -87,11 +87,11 @@ $frutti[1] = "arancia";
 print_r($frutti);
 ```
 
-Ora al posto di `pera` trovi `arancia`.
+Ora l'elemento che conteneva `pera` contiene `arancia`.
 
 ## Errore comune: dimenticare che si parte da zero
 
-Se un array ha tre elementi, gli indici sono `0`, `1` e `2`.
+In un array di tre elementi, gli indici sono `0`, `1` e `2`.
 
 ```php
 <?php
@@ -100,11 +100,11 @@ $frutti = ["mela", "pera", "banana"];
 echo $frutti[3];
 ```
 
-`$frutti[3]` non esiste. Il terzo elemento e `$frutti[2]`.
+`$frutti[3]` non esiste: il terzo elemento è `$frutti[2]`.
 
 ## A cosa servono davvero gli array
 
-Gli array sono utili quando hai piu valori dello stesso tipo: nomi, prezzi, voti, messaggi, prodotti.
+Gli array sono utili quando hai più valori dello stesso tipo, come nomi, prezzi, voti, messaggi o prodotti.
 
 ```php
 <?php

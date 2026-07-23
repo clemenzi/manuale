@@ -5,9 +5,9 @@ description: Come dividere un programma C++ in più file usando header file e fi
 
 ## Organizzare il codice in più file
 
-Quando scrivi un programma piccolo, un unico file `.cpp` va benissimo. Ma immagina di dover scrivere un gestionale scolastico con centinaia di funzioni: tutto in un file solo sarebbe un disastro. Trovare una funzione richiederebbe minuti.
+Per un programma piccolo può bastare un file `.cpp`. In un progetto con molte funzioni, separare il codice rende più facile trovare e modificare ogni parte.
 
-Dividere il codice in più file risolve questo problema. Ogni file ha uno scopo preciso, come i capitoli di un libro.
+Dividere il codice in più file assegna a ogni file uno scopo preciso.
 
 Vantaggi:
 
@@ -25,7 +25,7 @@ In C++ il codice viene diviso in due tipi di file:
 | Header          | `.h` o `.hpp` | Le **dichiarazioni** (cosa esiste) |
 | Implementazione | `.cpp`        | Le **definizioni** (come funziona) |
 
-Il file header è come il **sommario di un libro**: ti dice cosa c'è, ma non ti mostra tutto il contenuto. Il file `.cpp` è il contenuto vero e proprio.
+L'header espone ciò che gli altri file possono usare; il `.cpp` contiene le definizioni.
 
 ## Esempio pratico
 

@@ -5,7 +5,7 @@ description: Come osservare cosa fa il codice PHP e trovare problemi passo dopo 
 
 ## Cosa significa debugging
 
-Fare debugging significa cercare e correggere un problema nel codice. Non e indovinare: e osservare con ordine.
+Fare debugging significa cercare e correggere un problema nel codice. Non significa indovinare, ma osservare con ordine.
 
 ## var_dump
 
@@ -23,11 +23,11 @@ Output possibile:
 string(2) "25"
 ```
 
-Questo ti dice che `$eta` sembra un numero, ma in realta e una stringa.
+Il risultato mostra che `$eta` sembra un numero, ma in realtà è una stringa.
 
 ## print_r
 
-`print_r` e comodo per array.
+`print_r` è comodo per gli array.
 
 ```php
 <?php
@@ -59,7 +59,7 @@ ini_set('display_errors', '1');
 
 ## Log degli errori
 
-PHP puo scrivere errori nei log del server. I log sono file dove vengono registrati problemi e informazioni utili.
+PHP può scrivere gli errori nei log del server. I log sono file in cui vengono registrati problemi e informazioni utili.
 
 Quando lavori su un hosting o un server, cerca la sezione dedicata agli error log.
 
@@ -73,11 +73,11 @@ Quando qualcosa non funziona:
 4. verifica una riga alla volta cosa succede
 5. togli le stampe di debug quando hai finito
 
-Il debugging migliora con la pratica. L'importante e fare un passo alla volta.
+Il debugging migliora con la pratica. L'importante è procedere un passo alla volta.
 
 ## Restringere il punto del problema
 
-Quando una pagina e lunga, non cercare tutto insieme. Metti piccole stampe in punti strategici.
+Quando una pagina è lunga, non cercare tutto insieme. Inserisci piccole stampe in punti scelti.
 
 ```php
 <?php
@@ -89,11 +89,11 @@ echo "Dopo il calcolo\n";
 var_dump($totale);
 ```
 
-Se vedi il primo messaggio ma non il secondo, il problema e tra i due punti.
+Se vedi il primo messaggio ma non il secondo, il problema è tra i due punti.
 
 ## Controllare i dati ricevuti
 
-Molti problemi nascono da dati diversi da quelli che immagini.
+Molti problemi nascono da dati diversi da quelli attesi.
 
 ```php
 <?php
@@ -110,4 +110,4 @@ Per problemi difficili, scrivi tre righe:
 2. cosa succede davvero
 3. quale valore controllo adesso
 
-Questo ti impedisce di cambiare codice a caso. Il debugging diventa una piccola indagine ordinata.
+Così eviti di cambiare codice a caso e trasformi il debugging in un'indagine ordinata.

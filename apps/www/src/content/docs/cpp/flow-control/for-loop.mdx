@@ -5,9 +5,9 @@ description: Come usare il ciclo for in C++ per iterazioni controllate.
 
 ## A cosa serve il ciclo `for`?
 
-Immagina di dover stampare i numeri da 1 a 100. Scriveresti 100 righe di codice? Certo che no.
+Per stampare i numeri da 1 a 100 non serve scrivere cento istruzioni separate.
 
-Il ciclo `for` ti permette di ripetere un blocco di codice un numero preciso di volte. Scrivi il codice una volta sola, e il programma lo esegue quante volte vuoi.
+Il ciclo `for` ripete un blocco di codice controllando inizializzazione, condizione e aggiornamento.
 
 ## La struttura del ciclo `for`
 
@@ -47,7 +47,7 @@ for (int i = 0; i < 5; i++) {
 2. **Condizione** (`i < 5`): viene controllata prima di ogni ripetizione. Se è falsa, il ciclo si ferma.
 3. **Aggiornamento** (`i++`): viene eseguito alla fine di ogni ripetizione. Di solito aumenta il contatore.
 
-Pensa al ciclo `for` come a un cronometro: parti da zero, vai avanti di uno in uno, ti fermi quando arrivi al limite.
+In questo esempio il contatore parte da zero, aumenta di uno e si ferma prima di arrivare a cinque.
 
 ## Contare in avanti
 
@@ -111,7 +111,7 @@ Output (tabellina pitagorica 3x3):
 
 ## Il for su una collezione (range-based for)
 
-In C++ moderno puoi usare una forma più semplice di `for` per scorrere gli elementi di una lista o di una stringa, senza gestire manualmente l'indice:
+In C++ moderno puoi usare una forma di `for` che visita gli elementi di una lista o di una stringa senza gestire manualmente l'indice:
 
 ```cpp
 // Scorre ogni carattere della stringa nome

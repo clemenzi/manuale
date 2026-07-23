@@ -5,7 +5,7 @@ description: Come scrivere PHP piu affidabile, leggibile e facile da mantenere.
 
 ## Scrivere codice leggibile
 
-Il primo passo per avere codice affidabile e renderlo leggibile.
+Per scrivere codice affidabile, comincia dalla leggibilità.
 
 Scegli nomi chiari:
 
@@ -14,7 +14,7 @@ Scegli nomi chiari:
 $prezzoFinale = 18.50;
 ```
 
-E meglio di:
+È più chiaro di:
 
 ```php
 <?php
@@ -23,7 +23,7 @@ $pf = 18.50;
 
 ## Funzioni piccole
 
-Una funzione piccola e piu facile da capire e provare.
+Una funzione piccola è più facile da capire e da testare.
 
 ```php
 <?php
@@ -40,7 +40,7 @@ Questa funzione fa una cosa: decide lo sconto.
 
 ## Validare gli input
 
-I dati che arrivano da form, URL o file esterni vanno controllati.
+I dati che arrivano da form, URL o file esterni vanno controllati prima dell'uso.
 
 ```php
 <?php
@@ -52,11 +52,11 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 ```
 
-La validazione evita errori e migliora la sicurezza.
+La validazione riduce gli errori e migliora la sicurezza.
 
 ## Un test automatico semplice
 
-Un test automatico verifica che una parte del codice funzioni come previsto.
+Un test automatico verifica che una parte del codice produca il risultato previsto.
 
 ```php
 <?php
@@ -72,7 +72,7 @@ if (somma(2, 3) !== 5) {
 echo "Test riuscito";
 ```
 
-Nei progetti veri si usano strumenti come PHPUnit, ma l'idea e la stessa: controllare il risultato atteso.
+Nei progetti reali si usano strumenti come PHPUnit, ma l'idea è la stessa: controllare il risultato atteso.
 
 ## Sicurezza essenziale
 
@@ -84,7 +84,7 @@ Abitudini importanti:
 - non salvare password in chiaro
 - non mostrare errori tecnici in produzione
 
-La sicurezza non e un capitolo separato da ricordare alla fine. E una serie di piccole scelte in ogni pagina.
+La sicurezza non è un capitolo da affrontare alla fine, ma una serie di scelte da applicare in ogni pagina.
 
 ## Rendere un test piu leggibile
 
@@ -106,11 +106,11 @@ if ($risultato !== 15.0) {
 echo "Test riuscito";
 ```
 
-Il test dice chiaramente cosa si aspettava.
+Il test indica chiaramente il risultato atteso.
 
 ## Buone pratiche quotidiane
 
-Non servono regole complicate per migliorare subito il codice. Parti da queste:
+Per migliorare il codice non servono regole complicate. Parti da queste:
 
 - una variabile deve avere un nome comprensibile
 - una funzione deve avere un compito principale
@@ -120,4 +120,4 @@ Non servono regole complicate per migliorare subito il codice. Parti da queste:
 
 ## Prima di considerare finita una pagina
 
-Prova almeno un caso normale, un caso vuoto e un caso sbagliato. Per esempio, se ricevi un'email, prova un'email valida, un campo vuoto e un testo che non e un'email.
+Prova almeno un caso normale, un caso vuoto e un caso sbagliato. Per esempio, se ricevi un'email, prova un'email valida, un campo vuoto e un testo che non è un'email.

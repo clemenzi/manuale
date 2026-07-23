@@ -5,13 +5,13 @@ description: Numeri, stringhe, booleani, null e altri valori fondamentali in PHP
 
 ## Cosa significa tipo di dato
 
-Un tipo di dato dice che genere di valore stai usando. Un numero, un testo e un vero/falso non si comportano nello stesso modo.
+Il tipo di dato indica che valore stai usando. Un numero, un testo e un valore vero/falso non si comportano allo stesso modo.
 
 PHP capisce il tipo dal valore che assegni.
 
 ## Numeri interi e decimali
 
-Gli interi sono numeri senza virgola.
+Gli interi sono numeri senza parte decimale.
 
 ```php
 <?php
@@ -27,7 +27,7 @@ $prezzo = 12.50;
 
 ## Stringhe
 
-Una stringa e testo. Si scrive tra virgolette.
+Una stringa è testo racchiuso tra virgolette.
 
 ```php
 <?php
@@ -35,7 +35,7 @@ $nome = "Luca";
 $messaggio = 'Ciao';
 ```
 
-Le virgolette doppie permettono di inserire variabili dentro il testo.
+Con le virgolette doppie puoi inserire variabili nel testo.
 
 ```php
 <?php
@@ -45,7 +45,7 @@ echo "Ciao $nome";
 
 ## Booleani
 
-Un booleano puo essere solo `true` o `false`.
+Un booleano può avere solo il valore `true` o `false`.
 
 ```php
 <?php
@@ -57,18 +57,18 @@ Li userai spesso nelle condizioni.
 
 ## Null
 
-`null` significa: qui non c'e nessun valore.
+`null` significa che non c'è alcun valore.
 
 ```php
 <?php
 $telefono = null;
 ```
 
-Non vuol dire zero e non vuol dire stringa vuota. Vuol dire proprio assenza di valore.
+Non significa zero né stringa vuota: indica l'assenza di un valore.
 
 ## Array
 
-Un array raccoglie piu valori in una sola variabile.
+Un array raccoglie più valori in una sola variabile.
 
 ```php
 <?php
@@ -77,7 +77,7 @@ $colori = ["rosso", "verde", "blu"];
 
 ## Controllare il tipo
 
-Per osservare un valore puoi usare `var_dump`.
+Per vedere valore e tipo puoi usare `var_dump`.
 
 ```php
 <?php
@@ -106,11 +106,11 @@ var_dump($numero);
 var_dump($testo);
 ```
 
-Il primo e un numero intero. Il secondo e testo, anche se contiene cifre. Questa differenza conta quando fai confronti, calcoli o validazioni.
+Il primo è un numero intero. Il secondo è testo, anche se contiene cifre. La differenza conta nei confronti, nei calcoli e nelle validazioni.
 
 ## Conversioni semplici
 
-A volte un valore arriva come stringa, per esempio da un form. Se vuoi trattarlo come numero, puoi convertirlo.
+Un valore può arrivare come stringa, per esempio da un form. Se vuoi usarlo come numero, puoi convertirlo.
 
 ```php
 <?php
@@ -120,7 +120,7 @@ $eta = (int) $etaDalForm;
 var_dump($eta);
 ```
 
-`(int)` chiede a PHP di trasformare il valore in un intero.
+`(int)` chiede a PHP di convertire il valore in un intero.
 
 ## Errore comune: confondere null e stringa vuota
 
@@ -130,8 +130,8 @@ $telefono = null;
 $indirizzo = "";
 ```
 
-`$telefono` non ha valore. `$indirizzo` ha un valore, ma e un testo vuoto. Nei controlli questa differenza puo essere importante.
+`$telefono` non ha valore. `$indirizzo` contiene invece un testo vuoto. Nei controlli questa differenza può essere importante.
 
 ## Riepilogo
 
-Prima di usare un valore chiediti che cosa rappresenta: numero, testo, vero/falso, assenza di valore o raccolta di dati. Capire il tipo rende il codice piu prevedibile.
+Prima di usare un valore, chiediti che cosa rappresenta: numero, testo, vero/falso, assenza di valore o raccolta di dati. Capire il tipo rende il codice più prevedibile.

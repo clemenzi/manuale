@@ -3,9 +3,9 @@ title: Iteratori in Python
 description: Come funzionano gli iteratori in Python.
 ---
 
-## Perché ti serve conoscere gli iteratori
+## Perché conoscere gli iteratori
 
-Ogni volta che scrivi `for elemento in lista`, Python sta usando un meccanismo nascosto chiamato **iteratore**. Capire come funziona ti permette di creare le tue sequenze personalizzate — anche sequenze che non finiscono mai, o che generano i dati "al volo" senza occupare memoria.
+Quando scrivi `for elemento in lista`, Python usa un meccanismo chiamato **iteratore**. Capirlo permette di creare sequenze personalizzate, anche capaci di generare dati solo quando servono.
 
 ---
 
@@ -14,7 +14,7 @@ Ogni volta che scrivi `for elemento in lista`, Python sta usando un meccanismo n
 - **Iterabile**: qualcosa su cui puoi fare un ciclo `for`. Liste, stringhe, tuple, dizionari sono iterabili.
 - **Iteratore**: un oggetto che "sa dove si trova" nella sequenza e sa come ottenere l'elemento successivo.
 
-Pensa a un libro:
+Un'analogia utile è un libro:
 
 - Il **libro** è l'iterabile (contiene tutti i capitoli)
 - Il **segnalibro** è l'iteratore (ricorda a quale pagina sei arrivato)
@@ -23,14 +23,14 @@ Pensa a un libro:
 
 ## Come funziona `for` dentro Python
 
-Quando scrivi:
+Quando scrivi questo ciclo:
 
 ```python
 for x in [1, 2, 3]:
     print(x)
 ```
 
-Python esegue in realtà questi passi:
+Python esegue questi passaggi:
 
 1. Chiama `iter([1, 2, 3])` per creare un iteratore dalla lista
 2. Chiama ripetutamente `next(iteratore)` per ottenere un elemento alla volta
@@ -52,7 +52,7 @@ print(next(iteratore))    # 3 ← prende il terzo elemento e avanza
 
 ## Creare un iteratore personalizzato
 
-Puoi creare una classe che si comporta come un iteratore implementando due metodi speciali:
+Puoi creare una classe iteratore implementando due metodi speciali:
 
 - `__iter__`: restituisce l'iteratore stesso
 - `__next__`: restituisce il valore successivo (o lancia `StopIteration` se è finita)
@@ -89,7 +89,7 @@ for numero in ContaDa(1, 5):
 
 ## Generatori: il modo più semplice
 
-Creare una classe iteratore completa funziona, ma è verboso. I **generatori** ti permettono di fare la stessa cosa con molto meno codice.
+Una classe iteratore completa funziona, ma richiede parecchio codice. I **generatori** permettono di ottenere lo stesso risultato in modo più breve.
 
 Un generatore è una funzione che usa `yield` invece di `return`. Ogni volta che viene chiamata, si "ferma" a `yield`, restituisce il valore, e riprende da lì alla chiamata successiva — come un libro che segna automaticamente la pagina.
 
@@ -129,7 +129,7 @@ for q in quadrati_gen:
 
 ## Perché usare i generatori? Il problema della memoria
 
-Immagina di dover lavorare con un milione di numeri:
+Supponi di dover lavorare con un milione di numeri:
 
 ```python
 # Senza generatore: tutti i numeri vengono creati in memoria subito

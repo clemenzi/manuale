@@ -5,13 +5,13 @@ description: Introduzione agli iteratori della STL in C++.
 
 ## Cos'è un iteratore?
 
-Gli algoritmi della STL (come `sort`, `find`, `count`) non lavorano direttamente con i contenitori. Lavorano con degli oggetti speciali chiamati **iteratori** che indicano "da dove a dove" operare.
+Gli algoritmi della STL, come `sort`, `find` e `count`, ricevono **iteratori** che delimitano la sequenza su cui lavorare.
 
-Capire gli iteratori ti permette di usare tutti gli algoritmi della STL e di scorrere i contenitori in modi più sofisticati.
+Capire gli iteratori permette di usare questi algoritmi e di percorrere i contenitori quando un range-based `for` non basta.
 
 ## Cosa sono gli iteratori
 
-Un iteratore è come un **segnalibro**: punta a un elemento del contenitore e può spostarsi all'elemento successivo (o precedente).
+Un iteratore rappresenta una posizione nel contenitore e può avanzare o arretrare.
 
 Pensa a un iteratore come a un dito che scorre su una lista: parte dall'inizio, si sposta verso destra elemento per elemento, e si ferma alla fine.
 
@@ -29,7 +29,7 @@ vector<int> v = {10, 20, 30, 40, 50};
 // end() punta a una posizione immaginaria dopo il 50
 ```
 
-`end()` non punta a un elemento reale: è solo un segnaposto che indica "siamo arrivati alla fine".
+`end()` non punta a un elemento reale: rappresenta la posizione oltre l'ultimo elemento.
 
 ## Usare un iteratore
 

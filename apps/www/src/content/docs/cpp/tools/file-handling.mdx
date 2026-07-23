@@ -5,9 +5,9 @@ description: Come leggere e scrivere file in C++ con fstream.
 
 ## Leggere e scrivere file in C++
 
-Quando il tuo programma termina, tutte le variabili spariscono. Se vuoi **conservare i dati** — i voti degli studenti, un punteggio di un gioco, una lista della spesa — devi salvarli su un file.
+Quando il programma termina, le variabili non conservano i dati. Per **conservare i dati** devi scriverli su un file.
 
-Con i file puoi anche leggere dati preparati in anticipo, senza dover inserire tutto a mano ogni volta.
+I file permettono anche di leggere dati preparati in anticipo.
 
 ## Le tre classi per i file
 
@@ -42,7 +42,7 @@ int main() {
 }
 ```
 
-Questo crea il file `saluto.txt` nella stessa cartella del programma. Se esiste già, viene **sovrascritto**.
+Il codice crea `saluto.txt` nella cartella di esecuzione. Se il file esiste già, viene **sovrascritto**.
 
 ## Aggiungere testo senza cancellare
 

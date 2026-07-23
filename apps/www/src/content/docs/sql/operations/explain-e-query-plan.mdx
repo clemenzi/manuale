@@ -3,11 +3,11 @@ title: EXPLAIN e query plan
 description: Capire come il database decide di eseguire una query e dove perde tempo.
 ---
 
-## Quando una query è lenta, non si indovina: si guarda il piano
+## Leggere il piano di esecuzione
 
 **`EXPLAIN` serve a vedere il piano di esecuzione di una query.** In altre parole, ti mostra come il database pensa di arrivare al risultato.
 
-È come chiedere a un navigatore: "che strada pensi di fare?" Prima di cambiare percorso, vuoi vedere il tragitto scelto.
+Il piano mostra il percorso scelto dal database prima dell'esecuzione.
 
 ```sql
 EXPLAIN
@@ -27,7 +27,7 @@ Guardare il query plan aiuta a capire se:
 - una join è costosa
 - la query può essere scritta meglio
 
-**Non ti dà una soluzione automatica, ma ti dà la mappa del problema.**
+**Non fornisce una soluzione automatica, ma indica dove cercare il problema.**
 
 ## Cosa guardare all'inizio
 
@@ -38,5 +38,5 @@ Quando sei alle prime armi, cerca soprattutto segnali semplici:
 - stima tantissime righe?
 
 :::tip
-Non serve capire ogni riga del piano subito. Inizia a usarlo come una lente per fare domande migliori.
+Non serve capire subito ogni riga del piano. Inizia dai segnali più semplici e confrontali con la query.
 :::

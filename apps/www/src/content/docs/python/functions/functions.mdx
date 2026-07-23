@@ -3,11 +3,11 @@ title: Funzioni in Python
 description: Come creare blocchi di codice riutilizzabili per non ripetere sempre le stesse cose.
 ---
 
-## Perché usare le funzioni?
+## A cosa servono le funzioni?
 
-Immagina di dover calcolare la media dei voti tre volte in un programma. Senza funzioni, dovresti scrivere la stessa formula tre volte. Se poi vuoi cambiare come si calcola la media, devi ricordarti di cambiarla in tutti e tre i posti.
+Se devi calcolare tre volte la media dei voti, senza una funzione dovresti ripetere la formula tre volte. Una modifica richiederebbe poi di intervenire in tutti i punti.
 
-Con le funzioni, scrivi il calcolo **una volta sola**, gli dai un nome, e lo riusi quante volte vuoi. Se cambia qualcosa, modifichi solo la funzione.
+Con una funzione scrivi il calcolo **una volta sola**, gli dai un nome e lo riusi. Per cambiarlo, modifichi un solo punto.
 
 ## Creare una funzione
 
@@ -18,11 +18,11 @@ def saluta():
     print("Ciao!")
 ```
 
-Questa funzione si chiama `saluta` e, quando viene eseguita, stampa "Ciao!". Ma attenzione: definire la funzione non la esegue ancora.
+La funzione si chiama `saluta` e, quando viene eseguita, stampa "Ciao!". La definizione, però, non esegue ancora il corpo della funzione.
 
 ## Chiamare una funzione
 
-Per eseguire la funzione, la "chiami" scrivendone il nome seguito dalle parentesi:
+Per eseguirla, la "chiami" scrivendo il nome seguito dalle parentesi:
 
 ```python
 saluta()  # esegue la funzione → stampa "Ciao!"
@@ -32,7 +32,7 @@ saluta()
 
 ## Passare informazioni: i parametri
 
-Le funzioni diventano molto più utili quando possono ricevere informazioni dall'esterno. Queste informazioni si chiamano **parametri**:
+Una funzione può ricevere informazioni dall'esterno attraverso i **parametri**:
 
 ```python
 def saluta(nome):
@@ -43,7 +43,7 @@ saluta("Bob")     # Ciao, Bob!
 saluta("Carlo")   # Ciao, Carlo!
 ```
 
-La stessa funzione si comporta in modo diverso in base a cosa le passi. Puoi avere più parametri:
+La stessa funzione può comportarsi in modo diverso in base agli argomenti ricevuti. Puoi anche definire più parametri:
 
 ```python
 def somma(a, b):
@@ -55,7 +55,7 @@ somma(10, 20)  # 30
 
 ## Restituire un risultato: `return`
 
-Finora le funzioni hanno solo stampato qualcosa. Ma spesso vuoi che la funzione **calcoli qualcosa e ti restituisca il risultato**, in modo da poterlo usare dopo.
+Finora le funzioni hanno stampato un messaggio. Spesso invece vuoi che una funzione **calcoli qualcosa e restituisca il risultato**, così da poterlo usare in seguito.
 
 Si usa la parola chiave `return`:
 
@@ -68,11 +68,11 @@ print(risultato)         # 8
 print(somma(10, 20) * 2) # 60 — puoi usarlo direttamente nelle espressioni
 ```
 
-Quando Python incontra `return`, esce dalla funzione e consegna il valore. Se una funzione non ha `return`, restituisce `None` automaticamente.
+Quando Python incontra `return`, esce dalla funzione e restituisce il valore indicato. Senza `return`, la funzione restituisce automaticamente `None`.
 
 ## Valori predefiniti per i parametri
 
-Puoi assegnare un valore di default a un parametro. Se non viene passato, usa quel valore:
+Puoi assegnare un valore predefinito a un parametro. Se durante la chiamata non passi un argomento, viene usato quel valore:
 
 ```python
 def saluta(nome, saluto="Ciao"):
@@ -86,7 +86,7 @@ I parametri con valore di default devono sempre venire **dopo** quelli senza.
 
 ## Passare argomenti per nome
 
-Puoi specificare il nome di ogni parametro quando chiami la funzione. L'ordine diventa irrilevante:
+Durante la chiamata puoi indicare il nome dei parametri. In questo caso l'ordine non è rilevante:
 
 ```python
 def descrivi_persona(nome, eta, citta):
@@ -101,7 +101,7 @@ descrivi_persona(eta=16, citta="Roma", nome="Alice")
 
 ## Restituire più valori
 
-Una funzione può restituire più di un valore contemporaneamente:
+Una funzione può restituire più valori contemporaneamente:
 
 ```python
 def min_max(numeri):
@@ -138,4 +138,4 @@ print(f"Media: {media:.1f} — {giudizio}")
 # Media: 8.0 — Buono
 ```
 
-Nota come il programma principale è facile da leggere: capisce cosa fa senza dover sapere come funziona ogni funzione internamente.
+Il programma principale mostra l'intento del codice senza dover leggere l'implementazione interna delle funzioni.

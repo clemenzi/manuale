@@ -5,9 +5,9 @@ description: Il ciclo do...while in C++, che esegue il blocco almeno una volta.
 
 ## `do-while`: quando eseguire almeno una volta
 
-A volte vuoi che il tuo programma faccia qualcosa almeno una volta, e poi decida se ripeterlo.
+Il `do...while` serve quando il blocco deve essere eseguito almeno una volta prima del controllo.
 
-Per esempio: mostra il menu all'utente, poi chiedi se vuole continuare. Il menu deve apparire sempre almeno una volta, anche prima di sapere cosa vuole l'utente.
+È utile, per esempio, per mostrare un menu e chiedere solo dopo se continuare.
 
 Il ciclo `do...while` fa esattamente questo: **esegue il blocco, poi controlla la condizione**.
 
@@ -68,7 +68,7 @@ do {
 cout << "Hai inserito: " << numero << endl;
 ```
 
-Con il `while` normale, dovresti leggere l'input anche prima del ciclo (duplicando il codice). Con `do...while` il codice è più pulito.
+Con un `while` normale dovresti leggere l'input prima del ciclo; qui la lettura compare una sola volta.
 
 ## Menu interattivo
 

@@ -5,9 +5,9 @@ description: Dove esistono le variabili e come evitare confusione tra funzioni e
 
 ## Cosa significa scope
 
-Lo **scope** e la zona in cui una variabile esiste ed e leggibile.
+Lo **scope** è la zona in cui una variabile esiste ed è leggibile.
 
-Una variabile creata dentro una funzione non e automaticamente disponibile fuori. Una variabile creata fuori non entra automaticamente dentro.
+Una variabile creata dentro una funzione non è automaticamente disponibile fuori, e una variabile creata fuori non entra automaticamente nella funzione.
 
 ## Variabili locali
 
@@ -39,7 +39,7 @@ Fuori dalla funzione, `$nome` non esiste.
 
 ## Parametri
 
-Il modo piu pulito per portare dati dentro una funzione e usare parametri.
+Il modo più chiaro per portare dati dentro una funzione è usare i parametri.
 
 ```php
 <?php
@@ -52,7 +52,7 @@ saluta("Sara");
 
 ## Valori di ritorno
 
-Il modo piu pulito per portare dati fuori da una funzione e usare `return`.
+Il modo più chiaro per portare dati fuori da una funzione è usare `return`.
 
 ```php
 <?php
@@ -78,11 +78,11 @@ function mostraIva() {
 }
 ```
 
-Il codice funziona, ma la funzione dipende da qualcosa che sta fuori. Con parametri e `return`, il collegamento e piu chiaro.
+Il codice funziona, ma la funzione dipende da un valore esterno. Con parametri e `return`, il collegamento è più chiaro.
 
 ## Perche lo scope aiuta
 
-Lo scope evita che una variabile venga modificata per sbaglio da una parte lontana del programma. Una funzione con parametri chiari e piu prevedibile.
+Lo scope riduce il rischio che una variabile venga modificata per errore da una parte lontana del programma. Una funzione con parametri chiari è più prevedibile.
 
 ```php
 <?php
@@ -94,7 +94,7 @@ $totale = applicaSconto(30, 5);
 echo $totale;
 ```
 
-La funzione lavora solo con i valori che riceve. Non deve cercare variabili nascoste nel resto del file.
+La funzione lavora solo con i valori che riceve e non deve cercare variabili nascoste nel resto del file.
 
 ## Stesso nome, scope diverso
 
@@ -117,4 +117,4 @@ Dentro la funzione `$nome` vale `Sara`. Fuori vale ancora `Luca`.
 
 ## Regola pratica
 
-Quando scrivi una funzione, prova a farle ricevere tutto cio che le serve tramite parametri. Se deve produrre un risultato, usa `return`. Tieni `global` come ultima scelta.
+Quando scrivi una funzione, prova a passarle tutto ciò che le serve tramite parametri. Se deve produrre un risultato, usa `return`. Considera `global` l'ultima scelta.

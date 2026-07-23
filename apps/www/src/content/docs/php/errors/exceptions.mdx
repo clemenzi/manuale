@@ -5,9 +5,9 @@ description: Come gestire situazioni impreviste con try, catch e throw.
 
 ## Cosa sono le eccezioni
 
-Un'eccezione segnala che qualcosa e andato storto e il flusso normale non puo continuare.
+Un'eccezione segnala che qualcosa è andato storto e il flusso normale non può continuare.
 
-Non tutti gli errori sono uguali. Un file mancante puo essere una situazione prevista da gestire. Una variabile scritta male e invece un bug da correggere.
+Non tutti gli errori sono uguali. Un file mancante può essere una situazione prevista da gestire; una variabile scritta male è invece un bug da correggere.
 
 ## try e catch
 
@@ -23,11 +23,11 @@ try {
 }
 ```
 
-Se la connessione fallisce, PHP passa al `catch`.
+Se la connessione fallisce, PHP esegue il blocco `catch`.
 
 ## throw
 
-Puoi lanciare tu un'eccezione quando trovi una situazione non valida.
+Puoi lanciare un'eccezione quando trovi una situazione non valida.
 
 ```php
 <?php
@@ -42,7 +42,7 @@ function dividi(float $a, float $b): float {
 
 ## finally
 
-`finally` viene eseguito comunque, sia se tutto va bene sia se c'e un'eccezione.
+`finally` viene eseguito comunque, sia quando tutto va bene sia quando c'è un'eccezione.
 
 ```php
 <?php
@@ -57,7 +57,7 @@ try {
 
 ## Errore previsto o bug?
 
-Usa le eccezioni per casi che il programma puo incontrare e gestire: connessione fallita, file mancante, dato non valido.
+Usa le eccezioni per casi che il programma può incontrare e gestire: connessione fallita, file mancante o dato non valido.
 
 Correggi invece i bug alla radice: nomi sbagliati, parentesi mancanti, logica errata. Un `catch` non deve nascondere codice rotto.
 
@@ -80,11 +80,11 @@ Output:
 File non trovato
 ```
 
-Durante lo studio questo e utile. In produzione, invece, evita di mostrare dettagli tecnici agli utenti.
+Durante lo studio è utile. In produzione evita invece di mostrare dettagli tecnici agli utenti.
 
 ## Eccezioni personalizzate
 
-Per programmi piccoli puoi usare le eccezioni gia pronte, come `RuntimeException` o `InvalidArgumentException`. Nei progetti piu grandi puoi creare eccezioni con nomi specifici.
+Per programmi piccoli puoi usare le eccezioni già pronte, come `RuntimeException` o `InvalidArgumentException`. Nei progetti più grandi puoi creare eccezioni con nomi specifici.
 
 ```php
 <?php

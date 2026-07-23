@@ -5,9 +5,9 @@ description: Funzioni piccole e veloci da scrivere in una sola riga.
 
 ## Cosa sono le funzioni lambda?
 
-Quando hai bisogno di una funzione semplice, che fa solo una cosa, e non vuoi sprecare righe di codice per definirla con `def`, puoi usare una **funzione lambda**.
+Per una funzione breve, con una sola espressione, puoi usare una **funzione lambda** invece di definirla con `def`.
 
-È come una funzione normale, ma compressa in una singola riga, senza nome e senza `return` esplicito.
+È una funzione senza nome, scritta in una riga e senza `return` esplicito.
 
 ## La forma base
 
@@ -38,11 +38,11 @@ print(somma(3, 5))  # 8
 
 ## Quando usare le lambda?
 
-Le lambda sono utili quando devi passare una "piccola funzione" come argomento a un'altra funzione. Il caso più comune è con `sorted()`, `map()` e `filter()`.
+Le lambda sono utili quando devi passare una "piccola funzione" come argomento a un'altra funzione, per esempio con `sorted()`, `map()` e `filter()`.
 
 ### Ordinare una lista di oggetti complessi
 
-Se hai una lista di tuple (coppie di valori) e vuoi ordinarla in base al secondo elemento, la lambda è perfetta:
+Se hai una lista di tuple e vuoi ordinarla in base al secondo elemento, puoi usare una lambda:
 
 ```python
 studenti = [
@@ -67,7 +67,7 @@ quadrati = list(map(lambda x: x ** 2, numeri))
 print(quadrati)  # [1, 4, 9, 16, 25]
 ```
 
-Equivale a: "per ogni numero nella lista, calcola il suo quadrato".
+Il codice equivale a: "per ogni numero nella lista, calcola il suo quadrato".
 
 ### Filtrare elementi con `filter()`
 
@@ -79,13 +79,13 @@ pari = list(filter(lambda x: x % 2 == 0, numeri))
 print(pari)  # [2, 4, 6, 8]
 ```
 
-Equivale a: "tieni solo i numeri che, divisi per 2, danno resto zero".
+Il filtro conserva i numeri che, divisi per 2, danno resto zero.
 
 ## Limiti delle lambda
 
-Le lambda sono semplici per design: possono contenere solo **una singola espressione**. Non puoi usare `if...elif...else` su più righe, cicli, o più istruzioni.
+Una lambda può contenere solo **una singola espressione**. Non è adatta a più istruzioni, cicli o blocchi `if...elif...else` distribuiti su più righe.
 
-Quando la logica diventa più complessa di una riga, usa sempre una funzione normale con `def`:
+Quando la logica supera una singola espressione, usa una funzione definita con `def`:
 
 ```python
 # Questo va bene con lambda:

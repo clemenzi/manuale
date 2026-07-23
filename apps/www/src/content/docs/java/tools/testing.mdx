@@ -3,11 +3,11 @@ title: Test
 description: Come verificare il comportamento del codice con test automatici semplici.
 ---
 
-## Perche scrivere test
+## Perché scrivere test
 
 Un test automatico controlla che una parte del programma funzioni come previsto.
 
-Invece di provare tutto a mano ogni volta, scrivi codice che verifica altro codice.
+Invece di provare tutto a mano ogni volta, scrivi codice che controlla altro codice.
 
 Questo e utile quando:
 
@@ -31,9 +31,9 @@ Vogliamo controllare che `somma(2, 3)` restituisca `5`.
 
 ## L'idea di test unitario
 
-Un **test unitario** controlla una piccola unita di codice, spesso un metodo.
+Un **test unitario** controlla una piccola unità di codice, spesso un metodo.
 
-Con JUnit, una libreria molto usata per i test Java, potresti scrivere:
+Con JUnit, una libreria usata per i test Java, potresti scrivere:
 
 ```java
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -80,7 +80,7 @@ isMaggiorenne(20)
 formattaNome("luca")
 ```
 
-Sono facili da controllare perche hanno input chiari e output chiari.
+Sono facili da controllare perché hanno input e output chiari.
 
 ## Evitare test troppo grandi
 
@@ -123,4 +123,4 @@ Prova a testare i metodi che:
 - trasformano dati
 - possono rompersi quando li modifichi
 
-I test non sostituiscono il ragionamento, ma ti danno una rete di sicurezza.
+I test non sostituiscono il ragionamento, ma aiutano a intercettare regressioni.

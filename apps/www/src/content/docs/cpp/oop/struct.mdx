@@ -5,9 +5,9 @@ description: Come raggruppare dati correlati in strutture in C++.
 
 ## Cos'è una struct?
 
-Immagina di dover tenere traccia di 30 studenti. Ogni studente ha un nome, un'età e un voto. Potresti usare tre array separati — ma è un disastro da gestire.
+Per registrare 30 studenti potresti usare tre array separati per nomi, età e voti, ma dovresti mantenerli sincronizzati.
 
-Una **struttura** (`struct`) ti permette di raggruppare tutte le informazioni di uno studente in un unico "pacchetto". Così hai un array di studenti, non tre array separati.
+Una **struttura** (`struct`) raggruppa queste informazioni in un unico tipo. Puoi così creare un array di studenti.
 
 ## Definire una struttura
 
@@ -45,7 +45,7 @@ cout << s1.media << endl;  // 8.5
 
 ## Inizializzazione rapida
 
-Puoi impostare tutti i valori in una sola riga:
+Puoi inizializzare tutti i campi in una sola riga:
 
 ```cpp
 Studente s1 = {"Alice", 16, 8.5};   // ordine: nome, eta, media
@@ -56,7 +56,7 @@ Studente s2 = {.nome = "Bob", .eta = 17, .media = 7.2};
 
 ## Strutture come parametri di funzioni
 
-Le strutture si passano alle funzioni esattamente come le variabili normali:
+Le strutture possono essere passate alle funzioni come le altre variabili:
 
 ```cpp
 struct Punto {

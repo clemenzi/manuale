@@ -5,11 +5,9 @@ description: La visibilità e la durata delle variabili in C++.
 
 ## Cos'è lo scope?
 
-Immagina un edificio con stanze. Quello che metti in una stanza non è visibile dalle altre stanze. Se esci dalla stanza, le cose che hai lasciato lì scompaiono.
+Una variabile è visibile solo nella parte di codice in cui è stata dichiarata. Quando quella parte termina, la variabile locale non è più disponibile.
 
-In C++, le variabili funzionano allo stesso modo: esistono solo nel "posto" in cui vengono dichiarate, e spariscono quando quel posto termina.
-
-Questo "posto" si chiama **scope** (visibilità).
+Questa area di visibilità si chiama **scope**.
 
 ## Le parentesi graffe creano lo scope
 
@@ -69,7 +67,7 @@ int main() {
 }
 ```
 
-Usa le variabili globali con cautela. Il fatto che qualsiasi funzione possa modificarle le rende difficili da controllare nei programmi grandi.
+Usa le variabili globali con cautela: qualsiasi funzione può modificarle, rendendo più difficile seguire il flusso dei dati.
 
 ## Le variabili dei cicli
 
@@ -82,7 +80,7 @@ for (int i = 0; i < 5; i++) {
 // cout << i;  // ERRORE — i non esiste più fuori dal ciclo
 ```
 
-Questo è un vantaggio: il contatore `i` non inquina il resto del codice.
+Il contatore `i` resta così confinato al ciclo.
 
 ## Shadowing: quando due variabili hanno lo stesso nome
 

@@ -3,9 +3,9 @@ title: CAST e CONVERT
 description: Cambiare il tipo di un valore quando serve adattarlo al contesto.
 ---
 
-## A volte il valore è giusto, ma la forma no
+## Convertire un valore
 
-**Capita di avere un valore corretto nel contenuto, ma nel tipo sbagliato per l'operazione che vuoi fare.** In questi casi puoi convertirlo.
+**Un valore può avere il tipo sbagliato per l'operazione che vuoi eseguire.** In questi casi puoi convertirlo.
 
 `CAST` e, in alcuni database, `CONVERT`, servono proprio a cambiare il tipo di un valore.
 
@@ -27,6 +27,6 @@ Le conversioni sono utili quando:
 
 ## `CAST` e `CONVERT` non sono gemelli perfetti
 
-**`CAST` è più standard e più portabile.** Se vuoi scrivere SQL che assomigli il più possibile a quello universale, di solito è la scelta migliore.
+**`CAST` è più standard e portabile.** Di solito è la scelta migliore quando vuoi usare SQL compatibile con più database.
 
-**`CONVERT` esiste in diversi dialetti, ma non sempre con la stessa sintassi.** Per questo conviene usarlo sapendo su quale database ti trovi.
+**`CONVERT` esiste in diversi dialetti, ma la sintassi può cambiare.** Usalo quindi tenendo conto del database scelto.

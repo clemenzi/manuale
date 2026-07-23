@@ -5,9 +5,9 @@ description: Come gestire gli errori di base in C++ senza eccezioni avanzate.
 
 ## Cosa succede quando il programma va in errore?
 
-Tutti i programmi possono ricevere input sbagliati, trovare file mancanti o fare operazioni impossibili (come dividere per zero). Un programma che "esplode" senza spiegazioni è inutilizzabile.
+Un programma può ricevere input errati, non trovare un file o tentare un'operazione impossibile, come una divisione per zero.
 
-La **gestione degli errori** è l'arte di intercettare queste situazioni e rispondere in modo sensato, senza far crashare il programma.
+La **gestione degli errori** consiste nel rilevare queste situazioni e scegliere come segnalarle o recuperare.
 
 ## I tre tipi di errori
 
@@ -50,7 +50,7 @@ int main() {
 
 ## Validare l'input dell'utente
 
-L'errore più comune è ricevere dati non validi dall'utente. Controlla sempre prima di usare:
+Controlla l'input prima di usarlo:
 
 ```cpp
 int leggiEtaValida() {
@@ -85,7 +85,7 @@ if (cin >> numero) {
 
 ## Le eccezioni: per errori gravi
 
-Le **eccezioni** sono il meccanismo del C++ per gestire errori che interrompono il flusso normale. Funzionano con tre parole chiave: `try`, `catch`, `throw`.
+Le **eccezioni** gestiscono errori che interrompono il flusso normale. Usano `try`, `catch` e `throw`.
 
 - `throw` lancia un errore
 - `try` racchiude il codice da monitorare

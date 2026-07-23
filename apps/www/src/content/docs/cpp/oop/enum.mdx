@@ -5,9 +5,9 @@ description: Come usare le enumerazioni in C++ per definire insiemi di costanti 
 
 ## Cos'è un enum?
 
-Supponi di dover rappresentare i giorni della settimana nel tuo programma. Potresti usare i numeri 0, 1, 2... ma chi si ricorda che 3 è giovedì?
+Per rappresentare i giorni della settimana potresti usare numeri, ma il loro significato non sarebbe immediato.
 
-Un'**enumerazione** (`enum`) ti permette di dare nomi significativi a un insieme fisso di valori. Invece di `3`, scrivi `GIOVEDI`. Il codice diventa leggibile come l'italiano.
+Un'**enumerazione** (`enum`) assegna nomi a un insieme fisso di valori. Al posto di `3`, puoi scrivere `GIOVEDI`.
 
 ## Definire un `enum`
 
@@ -80,7 +80,7 @@ cout << m << endl;  // 3
 
 ## Abbinare `enum` e `switch`
 
-`enum` e `switch` si abbinano perfettamente — il codice è chiaro e privo di ambiguità:
+`enum` e `switch` si combinano bene quando ogni valore richiede un'azione diversa:
 
 ```cpp
 enum Semaforo {
@@ -134,7 +134,7 @@ int main() {
 }
 ```
 
-Con `enum class` devi sempre scrivere `NomeEnum::VALORE` — è più lungo, ma non ci sono mai ambiguità. È la scelta preferita nel C++ moderno.
+Con `enum class` devi scrivere `NomeEnum::VALORE`; i valori restano così separati da quelli di altre enumerazioni. È la scelta preferita nel C++ moderno.
 
 ## Convertire tra `enum` e numeri
 

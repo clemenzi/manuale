@@ -5,13 +5,13 @@ description: Le regole fondamentali della sintassi del C++.
 
 ## Le regole di base del C++
 
-Ogni linguaggio ha le sue regole grammaticali. In italiano mettiamo il punto alla fine della frase. In C++ dobbiamo mettere il **punto e virgola** alla fine di ogni istruzione. Se non rispetti queste regole, il programma non funziona.
+Ogni linguaggio ha le proprie regole. In C++ il **punto e virgola** chiude la maggior parte delle istruzioni; se manca, il compilatore segnala un errore.
 
-Imparare la sintassi di base è come imparare l'alfabeto: prima lo conosci, poi puoi scrivere qualsiasi cosa.
+Queste regole sono la base per leggere e scrivere il resto del codice.
 
 ## La regola più importante: il punto e virgola
 
-Ogni istruzione in C++ deve terminare con un **punto e virgola** (`;`). Pensa a esso come al punto fermo di una frase.
+Ogni istruzione in C++ deve terminare con un **punto e virgola** (`;`). Segnala al compilatore che l'istruzione è terminata.
 
 ```cpp
 int x = 10;           // istruzione 1 — termina con ;
@@ -25,7 +25,7 @@ Dimenticare il punto e virgola è l'errore più comune per chi inizia. Il compil
 
 Le parentesi graffe `{` e `}` delimitano un **blocco di codice**, cioè un gruppo di istruzioni che stanno insieme.
 
-Pensa a un blocco come a un paragrafo in un testo: delimita un insieme di cose che vanno lette insieme.
+Un blocco raggruppa istruzioni che appartengono alla stessa funzione, condizione o ripetizione.
 
 ```cpp
 int main() {
@@ -49,7 +49,7 @@ cout << eta;    // stampa 16
 cout << Eta;    // stampa 20
 ```
 
-Regola pratica: scrivi tutto in minuscolo, tranne dove le convenzioni prevedono il contrario.
+Per evitare confusione, usa una convenzione coerente per maiuscole e minuscole.
 
 ## L'indentazione: non obbligatoria, ma fondamentale
 
@@ -71,7 +71,7 @@ int main() {
 }
 ```
 
-Usa 4 spazi (o un tab) per ogni livello di indentazione. Il tuo futuro io te ne sarà grato.
+Usa 4 spazi (o un tab) per ogni livello di indentazione. Una formattazione coerente rende il codice più facile da leggere.
 
 ## I nomi delle variabili (identificatori)
 

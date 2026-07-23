@@ -7,11 +7,11 @@ description: Come trovare problemi nel codice usando stampe, debugger e ragionam
 
 Fare debugging significa cercare e correggere un problema nel codice.
 
-Non e solo "togliere errori". E capire cosa il programma sta facendo davvero, passo dopo passo.
+Non significa solo "togliere errori": significa capire che cosa fa davvero il programma, passo dopo passo.
 
 ## Leggere prima il messaggio
 
-Quando Java mostra un errore, non partire subito a cambiare codice a caso.
+Quando Java mostra un errore, non cambiare subito codice a caso.
 
 Prima cerca:
 
@@ -31,7 +31,7 @@ Vai alla riga 8 e chiediti: sto convertendo testo in numero? Il testo contiene d
 
 ## Usare stampe temporanee
 
-Un modo semplice per capire cosa succede e stampare valori.
+Un modo semplice per capire cosa succede è stampare valori.
 
 ```java
 int prezzo = 10;
@@ -49,7 +49,7 @@ Quando hai trovato il problema, rimuovile o trasformale in output utile.
 
 ## Isolare il problema
 
-Se un programma e lungo, prova a restringere il punto del problema.
+Se un programma è lungo, prova a restringere il punto del problema.
 
 Chiediti:
 
@@ -88,13 +88,13 @@ for (int i = 0; i <= voti.length; i++) {
 System.out.println(somma);
 ```
 
-Il programma fallisce. Il problema e nella condizione:
+Il programma fallisce. Il problema è nella condizione:
 
 ```java
 i <= voti.length
 ```
 
-L'ultimo indice valido e `voti.length - 1`.
+L'ultimo indice valido è `voti.length - 1`.
 
 Correzione:
 

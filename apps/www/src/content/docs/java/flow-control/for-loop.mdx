@@ -7,7 +7,7 @@ description: Come ripetere istruzioni quando sai quante volte eseguirle.
 
 Un ciclo serve a ripetere lo stesso blocco di codice.
 
-Il ciclo `for` e utile quando sai quante volte vuoi ripetere.
+Il ciclo `for` è utile quando sai quante volte vuoi ripetere un'azione.
 
 ```java
 for (int i = 1; i <= 5; i++) {
@@ -93,7 +93,7 @@ Il programma somma:
 
 ## Attraversare un array
 
-Un uso molto comune del `for` e leggere gli elementi di un array.
+Un uso molto comune del `for` è leggere gli elementi di un array.
 
 ```java
 String[] nomi = {"Luca", "Sara", "Mina"};
@@ -117,7 +117,7 @@ Gli indici partono da `0`, quindi l'ultimo indice e `length - 1`.
 
 ## Errore comune: andare oltre l'ultimo elemento
 
-Questo codice e sbagliato:
+Questo codice è sbagliato:
 
 ```java
 String[] nomi = {"Luca", "Sara", "Mina"};
@@ -129,7 +129,7 @@ for (int i = 0; i <= nomi.length; i++) {
 
 La condizione `i <= nomi.length` permette a `i` di arrivare a `3`, ma gli indici validi sono `0`, `1`, `2`.
 
-La forma corretta e:
+La forma corretta è:
 
 ```java
 for (int i = 0; i < nomi.length; i++) {
@@ -139,7 +139,7 @@ for (int i = 0; i < nomi.length; i++) {
 
 ## Ciclo all'indietro
 
-Puoi anche contare al contrario:
+Puoi anche contare all'indietro:
 
 ```java
 for (int i = 5; i >= 1; i--) {
@@ -165,4 +165,4 @@ Usa `for` quando:
 - hai un contatore
 - vuoi attraversare un array con gli indici
 
-Se invece vuoi ripetere finche una condizione resta vera, spesso e piu naturale usare `while`.
+Se invece vuoi ripetere finché una condizione resta vera, spesso è più naturale usare `while`.

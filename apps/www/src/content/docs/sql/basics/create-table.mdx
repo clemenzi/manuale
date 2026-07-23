@@ -3,13 +3,13 @@ title: CREATE TABLE
 description: Come definire una tabella, le sue colonne e le prime regole di base.
 ---
 
-## Creare la struttura di una tabella
+## Definire una tabella
 
 `CREATE TABLE` serve a creare una nuova tabella.
 
-Non stai ancora inserendo dati. Stai preparando lo spazio che li conterrà: scegli il nome della tabella, le colonne e alcune regole di base.
+Non inserisci ancora dati. Definisci il nome della tabella, le colonne e alcune regole di base.
 
-È come preparare un modulo prima di farlo compilare. Decidi quali campi servono: nome, email, data di iscrizione.
+Puoi pensarlo come un modulo: stabilisci quali campi servono, per esempio nome, email e data di iscrizione.
 
 ## Un primo esempio
 
@@ -26,7 +26,7 @@ CREATE TABLE clienti (
 
 Dopo questa query, la tabella `clienti` esiste, ma è vuota. Per aggiungere righe userai `INSERT`.
 
-## Leggiamola con calma
+## Leggere la definizione
 
 Dentro le parentesi trovi le colonne:
 
@@ -39,13 +39,13 @@ La tabella, tradotta in italiano, dice:
 
 > “Ogni cliente ha un id, un nome, forse un’email e forse una data di iscrizione.”
 
-Quando una tabella si riesce a leggere così, sei sulla strada giusta.
+Se riesci a descrivere la tabella in questo modo, la definizione è comprensibile.
 
 ## La chiave primaria
 
 `PRIMARY KEY` indica la **chiave primaria**, cioè il valore che identifica una riga senza confonderla con altre.
 
-È come il numero di tessera di una palestra. Due persone possono chiamarsi entrambe Luca, ma non dovrebbero avere lo stesso numero di tessera.
+È come il numero di tessera di una palestra: due persone possono chiamarsi entrambe Luca, ma non dovrebbero avere lo stesso numero.
 
 Per questo spesso si usa una colonna `id`: non descrive la persona, la identifica.
 
@@ -78,13 +78,13 @@ prezzo DECIMAL(10, 2) NOT NULL
 
 Qui `DECIMAL(10, 2)` dice che `prezzo` è un numero decimale. `NOT NULL` dice che il prezzo deve esserci.
 
-Il database non conserva soltanto i dati. Ti aiuta anche a tenerli ordinati e coerenti.
+Il database conserva i dati e applica queste regole per mantenerli coerenti.
 
 ## Scegliere colonne chiare
 
 All’inizio può venire voglia di creare colonne generiche come `info` o `dati`.
 
-Meglio evitarlo. Una tabella diventa più utile quando ogni colonna ha un compito chiaro.
+È meglio evitarlo. Una tabella è più comprensibile quando ogni colonna ha un compito chiaro.
 
 ```sql
 CREATE TABLE prodotti (
@@ -106,7 +106,7 @@ Fai queste domande:
 - quali dati possono mancare?
 - i tipi scelti sono adatti ai valori reali?
 
-Non serve progettare tutto perfettamente al primo colpo. Però queste domande ti evitano molte tabelle confuse.
+Non serve progettare tutto perfettamente al primo colpo, ma queste domande evitano molte tabelle confuse.
 
 ## Riepilogo rapido
 

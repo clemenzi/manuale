@@ -3,7 +3,7 @@ title: Query ricorsive
 description: CTE che si richiamano da sole per esplorare strutture a livelli.
 ---
 
-## Qui una query costruisce il passo successivo da sola
+## Esplorare strutture gerarchiche
 
 **Le query ricorsive servono quando i dati hanno una struttura a livelli.** Per esempio:
 
@@ -30,10 +30,10 @@ Questo esempio non usa una gerarchia vera, ma mostra il meccanismo: la query par
 
 Si chiamano così perché **una parte della query usa il risultato generato dalla query stessa**. È un'idea potente, ma richiede ordine mentale.
 
-Per chi inizia, la chiave è questa: c'è un punto di partenza e c'è una regola che produce il passo seguente.
+Il meccanismo ha due elementi: un punto di partenza e una regola che produce il passo seguente.
 
-## Quando diventano preziose
+## Quando usarle
 
 Sono molto utili quando vuoi percorrere un albero o una gerarchia senza farlo manualmente riga per riga.
 
-All'inizio possono sembrare avanzate, ma con la giusta immagine mentale diventano molto più comprensibili.
+All'inizio sono più difficili da leggere, quindi conviene seguire separatamente il punto di partenza e la regola ricorsiva.

@@ -5,7 +5,7 @@ description: I valori vero/falso in Python — la base di ogni decisione nel cod
 
 ## Cos'è un booleano?
 
-Nella vita di tutti i giorni facciamo continuamente valutazioni del tipo "vero o falso":
+Molte domande ammettono due sole risposte, come "vero" e "falso":
 
 - La luce è accesa? Sì o No.
 - Sono maggiorenne? Vero o Falso.
@@ -13,7 +13,7 @@ Nella vita di tutti i giorni facciamo continuamente valutazioni del tipo "vero o
 
 In Python esistono esattamente questi due valori: **`True`** (vero) e **`False`** (falso). Il tipo di dato che li contiene si chiama **booleano** (`bool`).
 
-Attenzione: la prima lettera è **sempre maiuscola**. `true` e `false` (tutto minuscolo) causano un errore.
+La prima lettera è **sempre maiuscola**. `true` e `false` (tutto minuscolo) causano un errore.
 
 ```python
 luce_accesa = True
@@ -23,7 +23,7 @@ print(type(luce_accesa))   # <class 'bool'>
 
 ## I confronti producono booleani
 
-Ogni volta che confronti due valori, Python restituisce `True` o `False`:
+Ogni confronto tra due valori restituisce `True` oppure `False`:
 
 ```python
 print(5 > 3)    # True  — 5 è maggiore di 3? Sì
@@ -43,11 +43,11 @@ print(5 <= 4)   # False — 5 è minore o uguale a 4? No
 
 ## Combinare condizioni con `and`, `or`, `not`
 
-Spesso vuoi combinare più condizioni insieme. In Python si usano tre operatori logici.
+Per combinare più condizioni puoi usare tre operatori logici.
 
 ### `and` — "e"
 
-Restituisce `True` solo se **tutte** le condizioni sono vere. Come il semaforo verde: puoi passare solo se la strada è libera E il semaforo è verde.
+Restituisce `True` solo se **tutte** le condizioni sono vere. Nell'esempio dell'auto, puoi passare solo se la strada è libera e il semaforo è verde.
 
 ```python
 eta = 20
@@ -59,7 +59,7 @@ print(eta >= 18 and ha_patente)  # True
 
 ### `or` — "o"
 
-Restituisce `True` se **almeno una** condizione è vera. Come entrare in un cinema: puoi entrare se hai il biglietto O sei un membro del club.
+Restituisce `True` se **almeno una** condizione è vera. Per esempio, puoi entrare al cinema se hai il biglietto o sei membro del club.
 
 ```python
 ha_biglietto = False
@@ -82,7 +82,7 @@ print(not maggiorenne)  # False
 
 ## Valori "truthy" e "falsy"
 
-In Python, non solo `True` e `False` possono essere trattati come booleani. **Ogni valore** può essere interpretato come vero o falso.
+In Python anche valori diversi da `True` e `False` possono essere valutati come veri o falsi. **Ogni valore** ha un comportamento booleano.
 
 I valori che Python considera **falsi** (equivalenti a `False`):
 
@@ -92,7 +92,7 @@ I valori che Python considera **falsi** (equivalenti a `False`):
 - `[]` (lista vuota)
 - `None` (assenza di valore)
 
-Tutto il resto è considerato **vero**. Un numero diverso da zero, una stringa con del testo, una lista con elementi.
+Tutto il resto è considerato **vero**: per esempio un numero diverso da zero, una stringa non vuota o una lista con elementi.
 
 ```python
 print(bool(0))       # False — zero è falso
@@ -104,7 +104,7 @@ print(bool("ciao"))  # True  — qualsiasi testo non-vuoto è vero
 print(bool([1, 2]))  # True  — una lista con elementi è vera
 ```
 
-Questo torna molto utile nelle condizioni. Per esempio, puoi controllare se un nome è stato inserito così:
+Nelle condizioni puoi quindi verificare direttamente se un nome è stato inserito:
 
 ```python
 nome = ""

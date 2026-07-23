@@ -5,9 +5,9 @@ description: Le direttive del preprocessore in C++, come #include e #define.
 
 ## Cos'è il preprocessore?
 
-Quando scrivi un programma in C++, prima ancora che il compilatore legga il tuo codice, un altro programma — chiamato **preprocessore** — fa una "pulizia e preparazione" del testo.
+Prima della compilazione, il **preprocessore** esegue alcune direttive e prepara il testo sorgente.
 
-Immagina di consegnare un compito scritto a matita a un assistente: lui prima cancella i riferimenti, sostituisce alcune parole con quelle giuste, aggiunge i fogli mancanti... e solo dopo lo consegna al professore (il compilatore) per la correzione.
+Le direttive possono includere file, sostituire macro e scegliere parti del codice.
 
 Le istruzioni che dai al preprocessore si chiamano **direttive** e iniziano sempre con il simbolo `#`.
 
@@ -15,9 +15,9 @@ Le istruzioni che dai al preprocessore si chiamano **direttive** e iniziano semp
 
 ## `#include` — Aggiungere altri file
 
-`#include` dice al preprocessore: _"Copia il contenuto di questo file e mettilo qui."_
+`#include` chiede al preprocessore di inserire il contenuto di un altro file.
 
-È come dire: "Aggiungi questo capitolo del libro al mio testo."
+Il file incluso viene elaborato come parte del sorgente corrente.
 
 ### Librerie del sistema
 
@@ -47,7 +47,7 @@ Il compilatore cerca prima nella cartella del tuo progetto, poi nelle cartelle s
 
 ## `#define` — Creare una sostituzione automatica
 
-`#define` è come creare una scorciatoia: dici al preprocessore _"ogni volta che vedi questa parola, sostituiscila con quest'altra"_.
+`#define` associa un testo a un nome che il preprocessore sostituirà nel sorgente.
 
 ### Costanti con `#define`
 

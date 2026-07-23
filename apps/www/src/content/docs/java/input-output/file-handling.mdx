@@ -3,7 +3,7 @@ title: File
 description: Come leggere e scrivere file di testo in modo semplice.
 ---
 
-## Perche usare i file
+## Perché usare i file
 
 Finora i dati vivevano solo mentre il programma era aperto. Quando il programma finiva, le variabili sparivano.
 
@@ -36,18 +36,18 @@ public class ScriviFile {
 
 Dopo l'esecuzione, nella stessa cartella del programma troverai `messaggio.txt`.
 
-## Perche c'e try catch
+## Perché c'è try catch
 
-Scrivere su un file puo fallire: la cartella potrebbe non esistere, il file potrebbe essere bloccato, oppure potresti non avere i permessi.
+Scrivere su un file può fallire: la cartella potrebbe non esistere, il file potrebbe essere bloccato oppure potresti non avere i permessi.
 
-Java ti chiede di gestire questa possibilita.
+Java ti chiede di gestire questa possibilità.
 
 Per ora leggi `try catch` cosi:
 
 - prova a fare questa operazione
 - se qualcosa va storto, esegui il blocco `catch`
 
-Vedremo le eccezioni con piu calma nella sezione sugli errori.
+Vedremo le eccezioni con più calma nella sezione sugli errori.
 
 ## Leggere un file
 
@@ -99,7 +99,7 @@ Nel codice abbiamo scritto:
 new File("messaggio.txt")
 ```
 
-Questo e un **percorso relativo**. Java cerca il file nella cartella da cui esegui il programma.
+Questo è un **percorso relativo**. Java cerca il file nella cartella da cui esegui il programma.
 
 Se il programma dice "File non trovato", controlla:
 
@@ -109,7 +109,7 @@ Se il programma dice "File non trovato", controlla:
 
 ## Aggiungere testo a un file
 
-Di solito `FileWriter` sovrascrive il file. Se vuoi aggiungere testo alla fine, usa il secondo parametro `true`:
+Di solito `FileWriter` sovrascrive il file. Per aggiungere testo alla fine, usa il secondo parametro `true`:
 
 ```java
 FileWriter writer = new FileWriter("diario.txt", true);
@@ -127,4 +127,4 @@ Quando lavori con i file, ricordati tre cose:
 2. le risorse aperte vanno chiuse
 3. il percorso del file dipende dalla cartella in cui esegui il programma
 
-I file sono il primo passo per far comunicare Java con dati esterni al codice.
+I file permettono a Java di leggere e salvare dati esterni al codice.

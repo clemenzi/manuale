@@ -5,7 +5,7 @@ description: Come inizializzare oggetti e controllare l'accesso a proprieta e me
 
 ## Il costruttore
 
-Il costruttore e un metodo speciale chiamato automaticamente quando crei un oggetto.
+Il costruttore è un metodo speciale chiamato automaticamente quando crei un oggetto.
 
 ```php
 <?php
@@ -22,11 +22,11 @@ class Prodotto {
 $prodotto = new Prodotto("Quaderno", 3.50);
 ```
 
-`__construct` prepara l'oggetto con i dati iniziali.
+`__construct` inizializza l'oggetto con i dati iniziali.
 
 ## Visibilita
 
-La visibilita decide da dove puoi usare proprieta e metodi.
+La visibilità stabilisce da dove puoi usare proprietà e metodi.
 
 - `public`: accessibile anche dall'esterno
 - `private`: accessibile solo dentro la classe
@@ -51,17 +51,17 @@ class Conto {
 }
 ```
 
-`$saldo` e privato: dall'esterno non puoi modificarlo direttamente. Devi passare dai metodi.
+`$saldo` è privato: dall'esterno non puoi modificarlo direttamente, ma devi passare dai metodi.
 
 ## Incapsulamento
 
-L'incapsulamento significa proteggere i dati interni di un oggetto e offrire metodi chiari per usarli.
+L'incapsulamento protegge i dati interni di un oggetto e offre metodi chiari per usarli.
 
-Questo aiuta a evitare valori impossibili, come un deposito negativo.
+Così puoi evitare valori impossibili, come un deposito negativo.
 
 ## Getter e setter
 
-Un **getter** legge un valore. Un **setter** lo modifica controllando prima se va bene.
+Un **getter** legge un valore. Un **setter** lo modifica dopo aver controllato che sia valido.
 
 ```php
 public function leggiSaldo(): float {
@@ -73,7 +73,7 @@ Non servono sempre, ma sono utili quando vuoi controllare l'accesso ai dati.
 
 ## Promozione delle proprieta nel costruttore
 
-In PHP moderno puoi scrivere costruttori piu compatti.
+Nelle versioni moderne di PHP puoi scrivere costruttori più compatti.
 
 ```php
 <?php
@@ -86,11 +86,11 @@ class Prodotto {
 }
 ```
 
-Questa sintassi crea le proprieta e le valorizza nello stesso punto. E comoda, ma all'inizio va letta con calma: `public string $nome` dentro il costruttore diventa una proprieta pubblica della classe.
+Questa sintassi crea le proprietà e assegna loro un valore nello stesso punto. È comoda, ma all'inizio va letta con calma: `public string $nome` dentro il costruttore diventa una proprietà pubblica della classe.
 
 ## Setter con controllo
 
-Un setter serve quando vuoi permettere una modifica, ma solo se il valore e valido.
+Un setter serve quando vuoi permettere una modifica, ma solo se il valore è valido.
 
 ```php
 <?php
@@ -107,7 +107,7 @@ class Prodotto {
 }
 ```
 
-Qui impedisci prezzi uguali o minori di zero.
+Qui impedisci prezzi uguali o inferiori a zero.
 
 ## Regola pratica
 

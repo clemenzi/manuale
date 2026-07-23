@@ -5,7 +5,7 @@ description: Come creare, combinare e manipolare testo in PHP.
 
 ## Cosa e una stringa
 
-Una stringa e testo: un nome, un messaggio, una email, una frase.
+Una stringa è testo: un nome, un messaggio, una email o una frase.
 
 ```php
 <?php
@@ -13,11 +13,11 @@ $nome = "Luca";
 $saluto = 'Ciao';
 ```
 
-Puoi usare virgolette doppie o singole.
+Puoi usare virgolette doppie o singole, a seconda del risultato che ti serve.
 
 ## Virgolette doppie e singole
 
-Con le virgolette doppie, PHP legge le variabili dentro la stringa.
+Con le virgolette doppie PHP interpreta le variabili dentro la stringa.
 
 ```php
 <?php
@@ -31,7 +31,7 @@ Output:
 Ciao Luca
 ```
 
-Con le virgolette singole, il testo resta letterale.
+Con le virgolette singole il testo resta letterale.
 
 ```php
 <?php
@@ -47,7 +47,7 @@ Ciao $nome
 
 ## Concatenazione
 
-Per unire stringhe usa il punto `.`.
+Per unire stringhe usa l'operatore punto `.`.
 
 ```php
 <?php
@@ -59,7 +59,7 @@ echo $messaggio;
 
 ## Funzioni comuni
 
-PHP offre molte funzioni per lavorare con il testo.
+PHP offre diverse funzioni per lavorare con il testo.
 
 ```php
 <?php
@@ -68,7 +68,7 @@ $testo = "Manuale PHP";
 echo strlen($testo);
 ```
 
-`strlen` conta i caratteri in byte. Per testi con lettere accentate puo servire `mb_strlen`, se l'estensione `mbstring` e disponibile.
+`strlen` conta i caratteri in byte. Per testi con lettere accentate può servire `mb_strlen`, se l'estensione `mbstring` è disponibile.
 
 Altre funzioni utili:
 
@@ -79,18 +79,18 @@ Altre funzioni utili:
 
 ## Testo ricevuto dagli utenti
 
-Quando mostri testo inserito da un utente in una pagina HTML, usa `htmlspecialchars`.
+Quando mostri in una pagina HTML il testo inserito da un utente, usa `htmlspecialchars`.
 
 ```php
 <?php
 echo htmlspecialchars($nome, ENT_QUOTES, 'UTF-8');
 ```
 
-Questo evita che testo pericoloso venga interpretato come HTML.
+Così eviti che il testo pericoloso venga interpretato come HTML.
 
 ## Leggere una parte di testo
 
-Puoi prendere solo una parte di una stringa con `substr`.
+Puoi estrarre una parte di una stringa con `substr`.
 
 ```php
 <?php
@@ -106,7 +106,7 @@ Output:
 ORD
 ```
 
-Il secondo numero indica da dove partire. Il terzo indica quanti caratteri prendere.
+Il secondo numero indica da dove partire, il terzo quanti caratteri prendere.
 
 ## Controllare se un testo contiene una parola
 
@@ -119,7 +119,7 @@ if (str_contains($email, "@")) {
 }
 ```
 
-Questo non basta per validare davvero una email, ma mostra come controllare la presenza di una parte di testo.
+Questo non basta per validare una email, ma mostra come controllare se un testo contiene una determinata parte.
 
 ## Errore comune: dimenticare gli spazi nella concatenazione
 
@@ -135,7 +135,7 @@ Output:
 CiaoLuca
 ```
 
-Lo spazio va scritto esplicitamente:
+Lo spazio va inserito esplicitamente:
 
 ```php
 <?php

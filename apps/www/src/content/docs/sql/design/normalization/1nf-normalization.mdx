@@ -3,11 +3,11 @@ title: Normalizzazione 1NF
 description: La prima forma normale e il principio di un valore per cella.
 ---
 
-## La prima regola dell'ordine è: una casella, un solo valore
+## Una cella, un solo valore
 
 **La prima forma normale, detta 1NF, dice che ogni cella deve contenere un solo valore.** Niente elenchi nascosti dentro una stessa colonna.
 
-Pensa a una rubrica cartacea. Se nella casella "telefono" scrivi tre numeri separati da virgole, poi diventa difficile cercare, correggere o cancellare un solo numero.
+Se nella colonna "telefono" scrivi tre numeri separati da virgole, diventa difficile cercare, correggere o cancellare un solo numero.
 
 Non bene:
 
@@ -24,7 +24,7 @@ Hai due strade migliori:
 - creare una riga per ogni telefono in una tabella separata
 - oppure ripensare la struttura se il dato è stato modellato male
 
-**La 1NF è la base della pulizia.** Se la salti, il resto del database parte già storto.
+**La 1NF è una base importante della normalizzazione.** Senza di essa, cercare e aggiornare i dati diventa più complicato.
 
 Meglio:
 

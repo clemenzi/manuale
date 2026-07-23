@@ -11,14 +11,14 @@ Il codice PHP inizia con:
 <?php
 ```
 
-Questo tag avvisa PHP che le righe successive contengono istruzioni da eseguire.
+Il tag indica a PHP che le righe successive contengono istruzioni da eseguire.
 
 ```php
 <?php
 echo "Ciao";
 ```
 
-Nei file che contengono solo PHP, di solito non si mette il tag di chiusura `?>`. Evitarlo riduce piccoli errori causati da spazi o righe vuote alla fine del file.
+Nei file che contengono solo PHP, di solito non si mette il tag di chiusura `?>`. Evitarlo riduce gli errori causati da spazi o righe vuote alla fine del file.
 
 ## Il punto e virgola
 
@@ -30,11 +30,11 @@ $nome = "Marta";
 echo $nome;
 ```
 
-Il punto e virgola dice: questa istruzione e finita. Se lo dimentichi, PHP spesso mostra un errore di sintassi.
+Il punto e virgola segnala la fine dell'istruzione. Se lo dimentichi, PHP spesso mostra un errore di sintassi.
 
 ## Blocchi di codice
 
-Le parentesi graffe `{}` raccolgono piu istruzioni dentro un blocco.
+Le parentesi graffe `{}` racchiudono più istruzioni in un blocco.
 
 ```php
 <?php
@@ -45,11 +45,11 @@ if ($eta >= 18) {
 }
 ```
 
-Qui il messaggio viene mostrato solo se la condizione e vera.
+Qui il messaggio viene mostrato solo quando la condizione è vera.
 
 ## PHP dentro HTML
 
-PHP puo vivere dentro una pagina HTML:
+PHP può essere inserito in una pagina HTML:
 
 ```php
 <h1>Profilo</h1>
@@ -60,11 +60,11 @@ echo "<p>Ciao, $nome</p>";
 ?>
 ```
 
-HTML descrive la struttura della pagina. PHP prepara parti dinamiche.
+HTML descrive la struttura della pagina; PHP prepara le parti dinamiche.
 
 ## Spazi e leggibilita
 
-PHP non richiede spazi perfetti, ma il codice leggibile aiuta molto.
+PHP non richiede una spaziatura precisa, ma il codice leggibile è più facile da controllare.
 
 ```php
 <?php
@@ -75,7 +75,7 @@ $totale = $prezzo - $sconto;
 echo $totale;
 ```
 
-Una riga vuota tra gruppi di istruzioni rende piu chiaro cosa sta succedendo.
+Una riga vuota tra gruppi di istruzioni aiuta a capire il codice.
 
 ## Commenti, istruzioni e blocchi insieme
 
@@ -94,11 +94,11 @@ if ($eta >= 18) {
 }
 ```
 
-La prima parte prepara i dati. La seconda parte controlla una condizione. Il blocco tra `{` e `}` contiene le istruzioni da eseguire se la condizione e vera.
+La prima parte prepara i dati, la seconda controlla una condizione. Il blocco tra `{` e `}` contiene le istruzioni da eseguire quando la condizione è vera.
 
 ## Errore comune: confondere HTML e PHP
 
-HTML non usa il punto e virgola e non esegue calcoli. PHP invece esegue istruzioni.
+HTML non usa il punto e virgola e non esegue calcoli; PHP, invece, esegue istruzioni.
 
 ```php
 <p>Questo e HTML</p>
@@ -108,8 +108,8 @@ echo "Questo testo viene prodotto da PHP";
 ?>
 ```
 
-Quando una pagina contiene entrambi, chiediti sempre: questa riga descrive la pagina o deve essere eseguita come istruzione?
+Quando una pagina contiene entrambi, chiediti: questa riga descrive la pagina o deve essere eseguita come istruzione?
 
 ## Riepilogo
 
-Per scrivere PHP corretto all'inizio ricorda quattro cose: apri il codice con `<?php`, chiudi le istruzioni con `;`, usa le graffe per i blocchi e tieni il codice leggibile con spazi e nomi chiari.
+All'inizio, per scrivere PHP corretto, ricorda quattro cose: apri il codice con `<?php`, chiudi le istruzioni con `;`, usa le graffe per i blocchi e mantieni chiari spaziatura e nomi.

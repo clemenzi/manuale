@@ -3,13 +3,13 @@ title: Database relazionali
 description: Cosa sono tabelle, righe, colonne e relazioni tra i dati.
 ---
 
-## Immaginalo come un insieme di fogli collegati
+## Un insieme di tabelle collegate
 
-**Un database relazionale assomiglia a una raccolta di tabelle.** Se hai mai visto un foglio Excel, hai già un'immagine utile in testa.
+**Un database relazionale contiene una raccolta di tabelle.** Un foglio di calcolo offre un modello visivo simile.
 
-La differenza importante è questa: qui le tabelle possono collegarsi tra loro in modo ordinato.
+La differenza è che le tabelle possono collegarsi tra loro.
 
-## I tre pezzi da riconoscere subito
+## Tabelle, righe e colonne
 
 Dentro una tabella trovi sempre:
 
@@ -17,7 +17,7 @@ Dentro una tabella trovi sempre:
 - una **riga**: un elemento preciso, per esempio un cliente
 - una **colonna**: un tipo di informazione, per esempio `nome` o `email`
 
-Guarda questa mini tabella:
+Ecco una tabella piccola:
 
 | id  | nome  | citta  |
 | --- | ----- | ------ |
@@ -28,14 +28,14 @@ Qui ogni riga è una persona. Ogni colonna descrive un aspetto di quella persona
 
 ## Perché si usa la parola relazionale
 
-**Perché le tabelle possono fare riferimento una all'altra.** Per esempio puoi avere:
+**Perché le tabelle possono fare riferimento l'una all'altra.** Per esempio puoi avere:
 
 - una tabella `clienti`
 - una tabella `ordini`
 
-Ogni ordine può contenere un collegamento al cliente che lo ha effettuato. In questo modo i dati restano più ordinati e non devi riscrivere tutto ogni volta.
+Ogni ordine può contenere un collegamento al cliente che lo ha effettuato. Così non devi riscrivere i dati del cliente in ogni ordine.
 
-## Un'analogia che aiuta davvero
+## Un esempio con una biblioteca
 
 Pensa a una biblioteca.
 
@@ -54,8 +54,8 @@ Un database relazionale aiuta a:
 - combinare dati di tabelle diverse
 - applicare regole per ridurre gli errori
 
-## Un'anticipazione dei prossimi passi
+## I prossimi concetti
 
 Più avanti incontrerai termini come `PRIMARY KEY`, `FOREIGN KEY` e `JOIN`. Non serve padroneggiarli subito.
 
-Per ora ti basta questa immagine: **un database relazionale è un insieme di tabelle che collaborano tra loro in modo controllato.**
+Per ora basta ricordare questo: **un database relazionale è un insieme di tabelle collegate da riferimenti.**

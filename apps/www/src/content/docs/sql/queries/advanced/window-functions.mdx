@@ -3,11 +3,11 @@ title: Window functions
 description: ROW_NUMBER, RANK, DENSE_RANK e OVER per fare classifiche e confronti riga per riga.
 ---
 
-## Qui guardi il gruppo senza schiacciarlo in una sola riga
+## Analizzare righe correlate
 
 **Le window functions sono funzioni molto utili quando vuoi analizzare un gruppo di righe, ma senza trasformarlo in una sola riga come fa `GROUP BY`.**
 
-Sono perfette per classifiche, posizioni e confronti tra righe vicine.
+Sono utili per classifiche, posizioni e confronti tra righe vicine.
 
 ```sql
 SELECT
@@ -21,7 +21,7 @@ Questa query assegna un numero di posizione a ogni riga, ordinando i risultati p
 
 ## Le funzioni più famose
 
-Funzioni famose:
+Le funzioni più comuni sono:
 
 - `ROW_NUMBER()`
 - `RANK()`
@@ -42,4 +42,4 @@ Le window functions servono spesso per:
 - confrontare risultati vicini
 - aggiungere analisi senza perdere il dettaglio riga per riga
 
-**Sono un tema un po' più avanzato, ma molto importante quando inizi a fare analisi più ricche.**
+Sono funzioni avanzate, utili quando devi analizzare i dati senza perdere il dettaglio delle singole righe.

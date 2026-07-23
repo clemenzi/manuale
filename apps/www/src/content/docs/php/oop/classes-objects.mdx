@@ -5,11 +5,11 @@ description: I concetti essenziali della programmazione a oggetti in PHP.
 
 ## Perche usare gli oggetti
 
-Quando un programma cresce, variabili e funzioni sparse possono diventare difficili da seguire. La programmazione a oggetti aiuta a tenere insieme dati e comportamenti collegati.
+Quando un programma cresce, variabili e funzioni sparse possono diventare difficili da seguire. La programmazione a oggetti riunisce dati e comportamenti collegati.
 
 ## Classe e oggetto
 
-Una **classe** e un modello. Un **oggetto** e una copia concreta creata da quel modello.
+Una **classe** è un modello. Un **oggetto** è un'istanza concreta creata da quel modello.
 
 ```php
 <?php
@@ -25,22 +25,22 @@ $quaderno->prezzo = 3.50;
 echo $quaderno->nome;
 ```
 
-`new Prodotto()` crea un oggetto.
+`new Prodotto()` crea un'istanza della classe.
 
 ## Proprieta
 
-Le proprieta sono variabili dentro una classe.
+Le proprietà sono variabili definite dentro una classe.
 
 ```php
 public string $nome;
 public float $prezzo;
 ```
 
-`public` significa che puoi leggere e modificare la proprieta dall'esterno.
+`public` significa che puoi leggere e modificare la proprietà dall'esterno.
 
 ## Metodi
 
-I metodi sono funzioni dentro una classe.
+I metodi sono funzioni definite dentro una classe.
 
 ```php
 <?php
@@ -64,11 +64,11 @@ echo $prodotto->descrizione();
 
 ## Quando iniziare a usarli
 
-All'inizio puoi scrivere programmi semplici con variabili, array e funzioni. Gli oggetti diventano utili quando vuoi rappresentare concetti del progetto: utenti, prodotti, ordini, articoli.
+All'inizio puoi scrivere programmi semplici con variabili, array e funzioni. Gli oggetti diventano utili quando vuoi rappresentare concetti del progetto, come utenti, prodotti, ordini o articoli.
 
 ## Oggetti e array associativi
 
-Un array associativo puo descrivere un prodotto:
+Un array associativo può descrivere un prodotto:
 
 ```php
 <?php
@@ -88,7 +88,7 @@ class Prodotto {
 }
 ```
 
-La classe dice: un prodotto ha un nome e un prezzo. Questo aiuta quando il progetto cresce.
+La classe dice che un prodotto ha un nome e un prezzo. È utile quando il progetto cresce.
 
 ## Creare piu oggetti
 
@@ -114,4 +114,4 @@ Per creare un oggetto devi usare `new`.
 $prodotto = new Prodotto();
 ```
 
-Senza `new`, non stai creando un'istanza della classe.
+Senza `new` non stai creando un'istanza della classe.

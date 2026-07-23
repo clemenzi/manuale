@@ -3,15 +3,15 @@ title: Dizionari avanzati
 description: Tecniche avanzate per lavorare con i dizionari in Python.
 ---
 
-## Perché ti servono i dizionari avanzati
+## Tecniche avanzate per i dizionari
 
-I dizionari di base li conosci già. Queste tecniche avanzate ti permettono di **crearli in modo più compatto**, gestire chiavi mancanti senza errori, contare occorrenze, e molto altro — cose che tornano utili continuamente nella programmazione reale.
+Conosci già i dizionari di base. Queste tecniche permettono di **crearli in modo più compatto**, gestire chiavi mancanti e contare le occorrenze.
 
 ---
 
 ## Dictionary comprehension: creare dizionari in una riga
 
-Esattamente come le list comprehension, ma il risultato è un dizionario:
+Come le list comprehension, le dictionary comprehension costruiscono una struttura in una sola espressione; il risultato è un dizionario:
 
 ```python
 # Crea un dizionario {numero: suo_quadrato} per i numeri da 1 a 5
@@ -33,7 +33,7 @@ print(pari_quadrati)   # {0: 0, 2: 4, 4: 16, 6: 36, 8: 64}
 
 ## `get()`: accedere senza rischio di errore
 
-Se accedi a una chiave che non esiste con `dizionario["chiave"]`, Python lancia un `KeyError`. Il metodo `get()` restituisce invece un valore di default.
+Se accedi a una chiave inesistente con `dizionario["chiave"]`, Python solleva un `KeyError`. Il metodo `get()` restituisce invece un valore predefinito.
 
 ```python
 studenti = {"Alice": 8, "Bob": 7}
@@ -47,7 +47,7 @@ print(studenti.get("Carlo", "N/A"))  # N/A    ← chiave non trovata, usa il val
 
 ## `setdefault()`: aggiungi una chiave solo se non esiste
 
-Restituisce il valore se la chiave c'è già, altrimenti la aggiunge con il valore di default e restituisce quello.
+`setdefault()` restituisce il valore esistente; se la chiave manca, la aggiunge con il valore predefinito e restituisce quest'ultimo.
 
 ```python
 dizionario = {"a": 1}

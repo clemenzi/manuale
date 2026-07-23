@@ -11,14 +11,14 @@ Dalla tabella `clienti`, mostrare tutte le colonne di tutte le righe.
 <details>
 <summary>Soluzione spiegata</summary>
 
-In questo primo esercizio basta leggere l'intera tabella con `SELECT *`.
+Per leggere l'intera tabella usiamo `SELECT *`.
 
 ```sql
 SELECT *
 FROM clienti;
 ```
 
-La query non filtra nulla e chiede al database di restituire tutti i dati presenti in `clienti`.
+La query non applica filtri: restituisce tutte le righe e tutte le colonne di `clienti`.
 
 </details>
 
@@ -36,7 +36,7 @@ SELECT nome, email
 FROM clienti;
 ```
 
-Il risultato contiene solo i dati utili alla richiesta e resta piu facile da leggere.
+Il risultato contiene soltanto le due colonne richieste.
 
 </details>
 
@@ -47,7 +47,7 @@ Dalla tabella `prodotti (id, nome, prezzo)`, mostrare `nome` con l'alias `prodot
 <details>
 <summary>Soluzione spiegata</summary>
 
-Gli alias aiutano a rendere il risultato piu chiaro senza cambiare i dati.
+Gli alias cambiano i nomi mostrati nel risultato, non i dati della tabella.
 
 ```sql
 SELECT nome AS prodotto, prezzo AS costo
@@ -73,7 +73,7 @@ FROM clienti
 WHERE citta = 'Roma';
 ```
 
-La query controlla la colonna `citta` riga per riga e tiene solo i clienti di Roma.
+La query conserva solo le righe in cui `citta` vale `Roma`.
 
 </details>
 
@@ -103,7 +103,7 @@ Dalla tabella `prodotti (nome, prezzo)`, mostrare i prodotti con `prezzo` minore
 <details>
 <summary>Soluzione spiegata</summary>
 
-L'operatore `<=` serve quando vuoi includere anche il valore di confine.
+L'operatore `<=` include anche il valore di confine.
 
 ```sql
 SELECT nome, prezzo
@@ -130,7 +130,7 @@ FROM clienti
 WHERE citta = 'Roma' AND attivo = TRUE;
 ```
 
-La riga entra nel risultato solo se il cliente e sia di Roma sia attivo.
+Una riga entra nel risultato solo se il cliente è di Roma ed è attivo.
 
 </details>
 
@@ -149,7 +149,7 @@ FROM clienti
 WHERE citta = 'Roma' OR citta = 'Milano';
 ```
 
-La query raccoglie i clienti di entrambe le citta in un unico risultato.
+Il risultato comprende i clienti di entrambe le città.
 
 </details>
 
@@ -187,7 +187,7 @@ FROM clienti
 ORDER BY nome ASC;
 ```
 
-`ASC` ordina dal valore piu piccolo al piu grande, quindi nel caso dei testi in ordine alfabetico.
+`ASC` ordina i numeri dal più piccolo al più grande e i testi in ordine alfabetico.
 
 </details>
 
@@ -206,7 +206,7 @@ FROM prodotti
 ORDER BY prezzo DESC;
 ```
 
-La query e utile quando vuoi vedere subito gli elementi piu costosi.
+Così gli elementi più costosi compaiono per primi.
 
 </details>
 
@@ -244,7 +244,7 @@ FROM ordini
 LIMIT 5 OFFSET 5;
 ```
 
-`OFFSET 5` salta le prime cinque righe del risultato, poi `LIMIT 5` ne prende altre cinque.
+`OFFSET 5` salta le prime cinque righe; `LIMIT 5` seleziona le cinque successive.
 
 </details>
 
@@ -255,7 +255,7 @@ Dalla tabella `clienti (nome, email)`, mostrare i clienti che non hanno email sa
 <details>
 <summary>Soluzione spiegata</summary>
 
-Con `NULL` non si usa `=`, ma `IS NULL`.
+Per cercare un valore `NULL` usiamo `IS NULL`, non `=`.
 
 ```sql
 SELECT nome, email
@@ -300,7 +300,7 @@ INSERT INTO clienti (nome, email)
 VALUES ('Luca', 'luca@email.it');
 ```
 
-Il primo valore va nella colonna `nome`, il secondo nella colonna `email`.
+Il primo valore corrisponde a `nome`, il secondo a `email`.
 
 </details>
 
@@ -311,7 +311,7 @@ Nella tabella `prodotti (nome, prezzo)`, inserire due righe: `Mouse` a `19.90` e
 <details>
 <summary>Soluzione spiegata</summary>
 
-Un solo `INSERT` puo aggiungere piu righe.
+Un solo `INSERT` può aggiungere più righe.
 
 ```sql
 INSERT INTO prodotti (nome, prezzo)
@@ -339,7 +339,7 @@ SET citta = 'Bologna'
 WHERE id = 3;
 ```
 
-Senza `WHERE`, la query modificherebbe la citta di tutte le righe.
+Senza `WHERE`, la query modificherebbe la città di ogni riga.
 
 </details>
 
@@ -376,7 +376,7 @@ DELETE FROM clienti
 WHERE id = 8;
 ```
 
-Il filtro evita di cancellare piu righe del necessario.
+Il filtro limita la cancellazione alla riga con quell'identificativo.
 
 </details>
 
@@ -394,7 +394,7 @@ SELECT COUNT(*) AS numero_ordini
 FROM ordini;
 ```
 
-L'alias rende piu leggibile il nome della colonna nel risultato.
+L'alias dà un nome esplicito alla colonna del risultato.
 
 </details>
 
@@ -430,7 +430,7 @@ SELECT AVG(prezzo) AS prezzo_medio
 FROM prodotti;
 ```
 
-Il risultato e un solo numero che rappresenta il prezzo medio dei prodotti.
+Il risultato è un solo numero: il prezzo medio dei prodotti.
 
 </details>
 
@@ -448,7 +448,7 @@ SELECT MIN(prezzo) AS prezzo_minimo, MAX(prezzo) AS prezzo_massimo
 FROM prodotti;
 ```
 
-In una sola query otteniamo entrambi gli estremi del catalogo.
+La query restituisce insieme il prezzo minimo e quello massimo.
 
 </details>
 
@@ -751,7 +751,7 @@ WHERE id IN (
 );
 ```
 
-La soluzione segue un ragionamento in due passaggi molto naturale.
+La query prima seleziona gli ordini richiesti e poi recupera i clienti corrispondenti.
 
 </details>
 
@@ -774,7 +774,7 @@ SELECT id, cliente_id, totale
 FROM ordini_grandi;
 ```
 
-La CTE rende il passaggio intermedio esplicito e piu leggibile di una query annidata.
+La CTE dà un nome al passaggio intermedio e evita di annidare la stessa selezione.
 
 </details>
 
@@ -817,7 +817,7 @@ FROM ordini
 ORDER BY data_ordine DESC;
 ```
 
-Questo ordinamento e molto comune quando si consultano cronologie o liste di attivita.
+L'ordinamento mette in cima gli elementi più recenti.
 
 </details>
 
@@ -875,7 +875,7 @@ SELECT COUNT(email) AS email_presenti
 FROM clienti;
 ```
 
-Questo esercizio mostra la differenza tra contare le righe e contare i valori effettivamente presenti in una colonna.
+Qui `COUNT(*)` e `COUNT(email)` darebbero risultati diversi: il secondo ignora i `NULL`.
 
 </details>
 
@@ -907,7 +907,7 @@ Dalla tabella `prodotti (categoria, prezzo)`, mostrare per ogni categoria il num
 <details>
 <summary>Soluzione spiegata</summary>
 
-Possiamo calcolare piu valori aggregati nello stesso raggruppamento.
+Nello stesso raggruppamento possiamo calcolare più valori aggregati.
 
 ```sql
 SELECT categoria, COUNT(*) AS numero_prodotti, AVG(prezzo) AS prezzo_medio
@@ -967,7 +967,7 @@ Creare una CTE `totali_clienti` che calcoli la spesa totale per ogni cliente, po
 <details>
 <summary>Soluzione spiegata</summary>
 
-La CTE separa il calcolo dei totali dal filtro finale, rendendo la query piu leggibile.
+La CTE separa il calcolo dei totali dal filtro finale.
 
 ```sql
 WITH totali_clienti AS (

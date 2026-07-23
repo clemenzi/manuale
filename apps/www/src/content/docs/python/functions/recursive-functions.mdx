@@ -5,9 +5,9 @@ description: Funzioni che risolvono un problema chiamando se stesse.
 
 ## Cos'è la ricorsione?
 
-Una funzione ricorsiva è una funzione che, per risolvere un problema, **chiama se stessa** con una versione più piccola dello stesso problema.
+Una funzione ricorsiva risolve un problema **chiamando se stessa** con una versione più piccola dello stesso problema.
 
-Un'analogia: immagina di dover smontare una bambola matrioska (quelle russe una dentro l'altra). Come la apri? Apri la prima, trovi un'altra matrioska più piccola, la apri, trovi un'altra ancora più piccola... finché non trovi quella tinyissima che non si apre più. Quella è il **caso base**.
+Puoi pensare a una matrioska: apri una bambola, ne trovi una più piccola e ripeti finché arrivi a quella che non si apre più. Quella è il **caso base**.
 
 ## Le due parti fondamentali
 
@@ -16,7 +16,7 @@ Ogni funzione ricorsiva deve avere:
 1. **Il caso base** — la condizione che fa fermare la ricorsione
 2. **Il caso ricorsivo** — dove la funzione chiama se stessa con un problema più piccolo
 
-Senza il caso base, la funzione si chiamerebbe all'infinito e il programma si bloccherebbe con un errore.
+Senza il caso base, la funzione continuerebbe a chiamarsi e il programma terminerebbe con un errore.
 
 ## Esempio classico: il fattoriale
 
@@ -28,7 +28,7 @@ Il fattoriale di un numero (scritto con il simbolo `!`) è il prodotto di tutti 
 1! = 1
 ```
 
-Si può anche scrivere così: `5! = 5 × 4!`. E `4! = 4 × 3!`. Vedi il pattern? Il problema si riduce sempre.
+Si può anche scrivere così: `5! = 5 × 4!`. E `4! = 4 × 3!`. A ogni passaggio il problema si riduce.
 
 ```python
 def fattoriale(n):
@@ -42,7 +42,7 @@ print(fattoriale(5))   # 120
 print(fattoriale(3))   # 6
 ```
 
-Ecco cosa succede passo per passo quando chiami `fattoriale(5)`:
+Questi sono i passaggi della chiamata `fattoriale(5)`:
 
 ```
 fattoriale(5)
@@ -53,7 +53,7 @@ fattoriale(5)
                               → 1  ← caso base, si ferma!
 ```
 
-Poi si torna indietro calcolando: `2×1=2`, `3×2=6`, `4×6=24`, `5×24=120`.
+Quando raggiunge il caso base, Python risale calcolando `2×1=2`, `3×2=6`, `4×6=24` e `5×24=120`.
 
 ## Esempio: la successione di Fibonacci
 
@@ -76,10 +76,10 @@ for i in range(8):
 
 ## Un limite importante
 
-Python può gestire al massimo circa 1000 chiamate ricorsive in profondità. Se superi questo limite, ottieni un `RecursionError`. Per questo la ricorsione non è sempre la scelta migliore per problemi con numeri molto grandi.
+Python gestisce al massimo circa 1000 chiamate ricorsive annidate. Superato il limite, solleva un `RecursionError`. Per questo la ricorsione non è sempre adatta a problemi con numeri molto grandi.
 
 ## Quando usare la ricorsione?
 
-La ricorsione è utile quando il problema ha una struttura naturalmente "annidata" — cioè quando si può descrivere un problema grande come una versione più piccola dello stesso problema.
+La ricorsione è utile quando il problema ha una struttura naturalmente "annidata": un problema grande può essere descritto come una versione più piccola dello stesso problema.
 
 Per problemi semplici (come contare fino a 100, o scorrere una lista), usa i cicli `for` o `while`: sono più veloci e più facili da capire.

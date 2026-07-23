@@ -5,9 +5,9 @@ description: Come definire più funzioni con lo stesso nome ma parametri diversi
 
 ## Più versioni della stessa funzione
 
-Immagina di voler calcolare l'area di forme diverse: un cerchio, un rettangolo, un triangolo. Potresti chiamare le funzioni `areaDelCerchio`, `areaDelRettangolo`, `areaDelTriangolo`. Ma sarebbe più comodo chiamarle tutte `area` e lasciare al compilatore il compito di capire quale usare.
+Per calcolare l'area di forme diverse potresti usare nomi diversi, oppure mantenere il nome `area` e distinguere le funzioni con i parametri.
 
-In C++ questo si chiama **overloading** (sovraccarico): puoi avere più funzioni con lo stesso nome, purché abbiano parametri diversi.
+In C++ questo si chiama **overloading** (sovraccarico): più funzioni possono avere lo stesso nome se la loro lista di parametri è diversa.
 
 ## Come funziona
 
@@ -126,7 +126,7 @@ void saluta(string nome = "ospite") {
 }
 ```
 
-La regola generale:
+In generale:
 
 - Usa i **parametri di default** quando la funzione fa la stessa cosa con valori diversi
 - Usa l'**overloading** quando la funzione fa cose diverse per tipi diversi di input

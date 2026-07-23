@@ -3,11 +3,11 @@ title: Matematica
 description: Operazioni matematiche avanzate con il modulo math in Python.
 ---
 
-## Qual è la funzione del modulo math
+## A cosa serve il modulo math
 
 Gli operatori base (`+`, `-`, `*`, `/`, `**`) coprono la maggior parte dei calcoli quotidiani. Ma appena ti servono radici quadrate, logaritmi, seno e coseno, o il valore di pi greco, hai bisogno del modulo `math`.
 
-Per usarlo, basta questa riga all'inizio del tuo programma:
+Per usarlo, importa il modulo all'inizio del programma:
 
 ```python
 import math   # Importa il modulo matematica
@@ -17,7 +17,7 @@ import math   # Importa il modulo matematica
 
 ## Costanti matematiche
 
-Il modulo `math` include alcune costanti fondamentali già pronte. Eccole tutte:
+Il modulo `math` include alcune costanti matematiche già pronte:
 
 ```python
 import math
@@ -56,7 +56,7 @@ print(abs(-5))           # 5   — funzione già disponibile senza math
 print(math.fabs(-5.0))  # 5.0 — versione di math (restituisce sempre un decimale)
 ```
 
-Il valore assoluto è la "distanza da zero" — elimina il segno negativo.
+Il valore assoluto è la "distanza da zero" e non conserva il segno negativo.
 
 ---
 
@@ -96,7 +96,7 @@ print(math.log2(8))         # 3.0  — scorciatoia per log base 2 (2^3 = 8)
 
 ## Trigonometria
 
-Le funzioni trigonometriche lavorano in **radianti**, non in gradi. Python include funzioni di conversione:
+Le funzioni trigonometriche lavorano in **radianti**, non in gradi. Python offre funzioni per convertire le due unità:
 
 ```python
 import math
@@ -127,7 +127,7 @@ print(math.factorial(5))   # 120 — fattoriale: 5! = 5×4×3×2×1
 
 ## Il modulo `random`: numeri casuali
 
-Spesso usato insieme a `math`, il modulo `random` genera numeri casuali — utile per giochi, simulazioni, e molto altro:
+Usato spesso insieme a `math`, il modulo `random` genera numeri casuali per giochi e simulazioni:
 
 ```python
 import random

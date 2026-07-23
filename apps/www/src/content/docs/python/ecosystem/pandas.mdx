@@ -3,17 +3,17 @@ title: Pandas
 description: Introduzione alla libreria Pandas per l'analisi dei dati in Python.
 ---
 
-## Perché è utile usare Pandas
+## A cosa serve Pandas
 
-Immagina di avere un foglio Excel con migliaia di righe e di dover trovare tutti gli studenti con media superiore all'8, ordinarli per cognome, e salvare il risultato in un nuovo file. A mano richiederebbe ore.
+Supponi di avere un foglio Excel con migliaia di righe. Trovare gli studenti con media superiore all'8, ordinarli per cognome e salvare il risultato a mano richiederebbe molto tempo.
 
-Con **Pandas** lo fai in poche righe di codice Python — e puoi ripeterlo automaticamente ogni volta che i dati cambiano.
+Con **Pandas** puoi eseguire queste operazioni in poche righe di Python e ripeterle quando i dati cambiano.
 
 ---
 
 ## Cos'è Pandas?
 
-**Pandas** è la libreria Python più usata per lavorare con **dati tabellari** — cioè dati organizzati in righe e colonne, come un foglio Excel o una tabella di database.
+**Pandas** è una libreria Python per lavorare con **dati tabellari**, organizzati in righe e colonne come in un foglio Excel o in una tabella di database.
 
 Le due strutture principali sono:
 
@@ -64,7 +64,7 @@ print(voti_classe.mean())     # 7.5 — media
 
 ## DataFrame: la tabella di dati
 
-Un **DataFrame** è come un foglio Excel: ha righe e colonne con nomi.
+Un **DataFrame** rappresenta una tabella con righe e colonne denominate.
 
 ```python
 import pandas as pd
@@ -147,7 +147,7 @@ print(studenti.describe())
 
 ## Leggere e scrivere file
 
-Una delle funzionalità più utili: Pandas legge e scrive file CSV ed Excel direttamente.
+Pandas legge e scrive direttamente file CSV ed Excel.
 
 ```python
 # Leggere un file CSV (valori separati da virgole)

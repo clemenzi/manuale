@@ -3,11 +3,11 @@ title: DROP INDEX
 description: Come eliminare un indice che non sta aiutando o non serve più.
 ---
 
-## Non tutti gli indici meritano di restare
+## Quando un indice non serve più
 
-**Un indice utile è prezioso. Un indice inutile è solo peso.** Se un indice non porta benefici reali, puoi rimuoverlo.
+**Un indice che non porta benefici reali può essere rimosso.** Occupa spazio e deve essere aggiornato quando cambiano i dati.
 
-È come tenere un vecchio indice cartaceo di un archivio che nessuno consulta più. Occupa spazio e va mantenuto, ma non aiuta davvero.
+È come conservare l'indice cartaceo di un archivio che nessuno consulta più: occupa spazio e richiede manutenzione senza aiutare le ricerche.
 
 ## Un esempio piccolo
 
@@ -31,6 +31,6 @@ Puoi eliminare un indice quando:
 
 ## Un dettaglio pratico
 
-La sintassi precisa cambia un po' tra i database. L'idea però resta la stessa: **stai togliendo una struttura di supporto, non i dati veri della tabella.**
+La sintassi precisa cambia tra i database. In ogni caso, **stai rimuovendo una struttura di supporto, non i dati della tabella.**
 
 Prima di rimuovere un indice in un progetto reale, controlla se qualche query importante lo usa ancora. In caso di dubbio, misura prima e cambia dopo.

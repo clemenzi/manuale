@@ -5,7 +5,7 @@ description: Come passare dati a una funzione e ricevere un risultato.
 
 ## Parametri e argomenti
 
-Una funzione puo ricevere dati dall'esterno. I nomi scritti nella definizione si chiamano **parametri**.
+Una funzione può ricevere dati dall'esterno. I nomi scritti nella definizione si chiamano **parametri**.
 
 ```php
 <?php
@@ -16,7 +16,7 @@ function saluta($nome) {
 saluta("Luca");
 ```
 
-`$nome` e il parametro. `"Luca"` e l'argomento passato quando chiami la funzione.
+`$nome` è il parametro. `"Luca"` è l'argomento passato quando chiami la funzione.
 
 ## Piu parametri
 
@@ -37,7 +37,7 @@ Output:
 
 ## return
 
-`return` restituisce un valore a chi ha chiamato la funzione.
+`return` restituisce un valore al codice che ha chiamato la funzione.
 
 ```php
 <?php
@@ -49,11 +49,11 @@ $totale = somma(3, 4);
 echo $totale;
 ```
 
-La funzione non stampa direttamente. Calcola e consegna il risultato.
+La funzione non stampa direttamente: calcola e restituisce il risultato.
 
 ## Valori predefiniti
 
-Puoi dare un valore di default a un parametro.
+Puoi assegnare un valore predefinito a un parametro.
 
 ```php
 <?php
@@ -72,7 +72,7 @@ Ciao ospite
 
 ## Type declarations di base
 
-Puoi indicare che tipo di dato ti aspetti.
+Puoi indicare il tipo di dato atteso.
 
 ```php
 <?php
@@ -81,13 +81,13 @@ function calcolaIva(float $prezzo): float {
 }
 ```
 
-`float $prezzo` dice che il parametro deve essere un numero decimale. `: float` dice che la funzione restituisce un numero decimale.
+`float $prezzo` indica che il parametro deve essere un numero decimale. `: float` indica che la funzione restituisce un numero decimale.
 
-Queste indicazioni rendono gli errori piu facili da trovare.
+Queste indicazioni rendono più facili da trovare gli errori.
 
 ## echo o return?
 
-Usa `echo` quando vuoi mostrare qualcosa subito. Usa `return` quando vuoi consegnare un valore al resto del programma.
+Usa `echo` per mostrare qualcosa subito. Usa `return` per restituire un valore al resto del programma.
 
 ```php
 <?php
@@ -99,11 +99,11 @@ $messaggio = creaSaluto("Luca");
 echo $messaggio;
 ```
 
-Questa funzione e piu flessibile: puoi stampare il messaggio, salvarlo, mandarlo in una email o combinarlo con altro testo.
+Questa funzione è più flessibile: puoi stampare il messaggio, salvarlo, inviarlo in una email o combinarlo con altro testo.
 
 ## Parametri con nomi chiari
 
-I parametri sono variabili locali della funzione. Scegli nomi che spiegano il loro ruolo.
+I parametri sono variabili locali della funzione. Scegli nomi che ne descrivano il ruolo.
 
 ```php
 <?php
@@ -112,7 +112,7 @@ function calcolaTotale($prezzo, $quantita) {
 }
 ```
 
-`$prezzo` e `$quantita` sono piu chiari di `$a` e `$b`, tranne negli esempi matematici molto piccoli.
+`$prezzo` e `$quantita` sono più chiari di `$a` e `$b`, tranne negli esempi matematici molto piccoli.
 
 ## Errore comune: dimenticare di usare il valore di ritorno
 
@@ -125,7 +125,7 @@ function somma($a, $b) {
 somma(2, 3);
 ```
 
-La funzione calcola `5`, ma il valore viene perso. Se ti serve, salvalo o stampalo:
+La funzione calcola `5`, ma il valore viene scartato. Se ti serve, salvalo o stampalo:
 
 ```php
 <?php

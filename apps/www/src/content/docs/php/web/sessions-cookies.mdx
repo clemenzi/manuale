@@ -5,20 +5,20 @@ description: Come conservare informazioni tra una richiesta web e l'altra.
 
 ## Il problema della memoria nel web
 
-Ogni richiesta web e separata dalle altre. Se apri una pagina e poi un'altra, PHP non ricorda automaticamente chi sei.
+Ogni richiesta web è separata dalle altre. Se apri una pagina e poi un'altra, PHP non ricorda automaticamente chi sei.
 
-Sessioni e cookie servono a conservare informazioni tra una richiesta e la successiva.
+Sessioni e cookie conservano informazioni tra una richiesta e la successiva.
 
 ## Cookie
 
-Un cookie e un piccolo dato salvato nel browser dell'utente.
+Un cookie è un piccolo dato salvato nel browser dell'utente.
 
 ```php
 <?php
 setcookie("tema", "scuro", time() + 3600);
 ```
 
-Questo cookie dura un'ora. `3600` sono secondi.
+Questo cookie dura un'ora: `3600` è il numero di secondi.
 
 Alla richiesta successiva puoi leggerlo:
 
@@ -55,9 +55,9 @@ echo "Ciao $nome";
 
 ## Quando usare le sessioni
 
-Le sessioni sono adatte per login, carrelli e dati temporanei legati alla visita.
+Le sessioni sono adatte a login, carrelli e dati temporanei legati alla visita.
 
-I cookie sono adatti per piccole preferenze che possono restare nel browser.
+I cookie sono adatti a piccole preferenze che possono restare nel browser.
 
 ## Chiudere una sessione
 
@@ -89,7 +89,7 @@ $lingua = $_COOKIE["lingua"] ?? "it";
 
 ## Un esempio di login con sessione
 
-In un login reale dovresti controllare email e password nel database. Qui guardiamo solo il meccanismo della sessione.
+In un login reale dovresti controllare email e password nel database. Qui consideriamo solo il meccanismo della sessione.
 
 ```php
 <?php
@@ -98,7 +98,7 @@ session_start();
 $_SESSION["utente_id"] = 15;
 ```
 
-Nelle pagine riservate puoi controllare se l'utente e presente.
+Nelle pagine riservate puoi controllare se l'utente è presente.
 
 ```php
 <?php
@@ -112,4 +112,4 @@ if (!isset($_SESSION["utente_id"])) {
 
 ## Errore comune: dimenticare session_start
 
-Se usi `$_SESSION` senza `session_start()`, PHP non apre la sessione. Metti `session_start()` all'inizio del file, prima di stampare HTML.
+Se usi `$_SESSION` senza `session_start()`, PHP non apre la sessione. Inserisci `session_start()` all'inizio del file, prima di stampare HTML.

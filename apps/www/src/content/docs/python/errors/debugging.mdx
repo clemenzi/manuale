@@ -3,11 +3,11 @@ title: Debugging di base
 description: Come trovare e correggere gli errori nei programmi Python.
 ---
 
-## Perché ti serve fare debugging
+## Fare debugging
 
-Scrivere codice senza errori al primo colpo è praticamente impossibile — anche per i programmatori più esperti al mondo. Il **debugging** (o "debug") è l'arte di trovare e correggere gli errori nel tuo programma.
+È normale trovare errori anche dopo aver scritto il codice. Il **debugging** (o "debug") consiste nell'individuarli e correggerli.
 
-Pensa a un detective: quando qualcosa non funziona, devi raccogliere indizi, fare ipotesi e testare le tue teorie finché non trovi il colpevole.
+Quando qualcosa non funziona, raccogli informazioni, formula un'ipotesi e verifica se spiega il comportamento osservato.
 
 ---
 
@@ -15,7 +15,7 @@ Pensa a un detective: quando qualcosa non funziona, devi raccogliere indizi, far
 
 ### 1. Errori di sintassi
 
-Sono come errori grammaticali: hai scritto qualcosa che Python non capisce. Vengono segnalati **prima ancora che il programma parta**.
+Sono errori nel modo in cui hai scritto l'istruzione. Python li segnala **prima che il programma parta**.
 
 ```python
 # Manca i due punti alla fine della riga "if"
@@ -24,13 +24,13 @@ if x > 0
 # SyntaxError: expected ':'
 ```
 
-Sono i più semplici da correggere: Python ti dice esattamente dove si trova il problema.
+Di solito Python indica il punto in cui ha trovato il problema.
 
 ---
 
 ### 2. Errori durante l'esecuzione
 
-Il codice è scritto correttamente, ma qualcosa va storto **mentre il programma sta girando**.
+Il codice è valido, ma qualcosa va storto **durante l'esecuzione**.
 
 ```python
 lista = [1, 2, 3]
@@ -38,13 +38,13 @@ print(lista[10])   # Stai chiedendo il decimo elemento, ma ne esistono solo 3!
 # IndexError: list index out of range
 ```
 
-È come chiedere alla cassiera di un negozio il prodotto numero 10, ma sullo scaffale ce ne sono solo 3.
+L'indice richiesto non esiste perché la lista contiene solo tre elementi.
 
 ---
 
 ### 3. Errori logici
 
-Questi sono i più insidiosi: il programma **gira senza errori**, ma produce risultati sbagliati. Python non se ne accorge — sei tu che devi trovarli.
+In questo caso il programma **gira senza errori**, ma produce risultati sbagliati. Devi confrontare il risultato con quello atteso.
 
 ```python
 def calcola_media(numeri):
@@ -57,7 +57,7 @@ print(calcola_media([8, 7, 9]))  # Stampa 7.0 invece di 8.0 — sbagliato!
 
 ## Leggere il messaggio di errore (Traceback)
 
-Quando Python trova un errore, stampa un **traceback** — una specie di "mappa" che ti mostra cosa stava succedendo nel momento dell'errore.
+Quando trova un errore, Python stampa un **traceback**: mostra le chiamate che hanno portato al punto dell'errore.
 
 ```
 Traceback (most recent call last):
@@ -77,7 +77,7 @@ ZeroDivisionError: division by zero
 
 ## Tecnica 1: usare `print()` come spia
 
-Il modo più semplice per capire cosa sta succedendo dentro il tuo programma è inserire delle `print()` temporanee per "spiare" i valori delle variabili.
+Per controllare i valori durante l'esecuzione puoi inserire temporaneamente alcune `print()`.
 
 ```python
 def calcola_media(voti):
@@ -129,7 +129,7 @@ I livelli di gravità, dal meno al più grave:
 
 ## Tecnica 3: il debugger interattivo `pdb`
 
-Immagina di poter **mettere in pausa** il tuo programma nel mezzo dell'esecuzione e guardare dentro. È esattamente quello che fa `pdb`.
+`pdb` permette di **mettere in pausa** il programma durante l'esecuzione e ispezionarne lo stato.
 
 ```python
 def funzione_problematica(x, y):

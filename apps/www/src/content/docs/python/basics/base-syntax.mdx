@@ -5,17 +5,17 @@ description: Le regole fondamentali della sintassi Python — come "parla" il li
 
 ## Perché le regole esistono?
 
-Ogni linguaggio, anche quelli umani come l'italiano, ha delle regole grammaticali. Se scrivi "io mangio la pizza" funziona, ma se scrivi "pizza la mangio io" il significato cambia, e in certi casi non si capisce più nulla.
+Ogni linguaggio, compresi quelli umani come l'italiano, ha regole grammaticali. Se scrivi "io mangio la pizza" il significato è chiaro; cambiando l'ordine delle parole può diventare ambiguo.
 
-Python funziona allo stesso modo: ha delle **regole di sintassi** che devi rispettare. Se le rompi, Python si ferma e ti mostra un errore. Non perché sia cattivo, ma perché non riesce a capire cosa vuoi fare.
+Python segue le proprie **regole di sintassi**. Se ne violi una, si ferma e mostra un errore perché non riesce a interpretare l'istruzione.
 
 ## L'indentazione: gli spazi contano!
 
-Questa è la regola più importante e più diversa rispetto ad altri linguaggi.
+Questa è una delle regole che distinguono maggiormente Python da altri linguaggi.
 
-In Python, gli **spazi all'inizio di una riga** non sono opzionali o decorativi: **fanno parte del codice**. Servono a dire a Python quali istruzioni stanno "dentro" ad un blocco (come un `if` o un ciclo) e quali invece stanno "fuori".
+In Python, gli **spazi all'inizio di una riga** non sono decorativi: **fanno parte del codice**. Indicano quali istruzioni stanno "dentro" un blocco, come un `if` o un ciclo, e quali ne restano fuori.
 
-Immagina di scrivere una ricetta:
+Puoi paragonarlo a una ricetta:
 
 ```
 Se hai la farina:
@@ -24,7 +24,7 @@ Se hai la farina:
 prepara il forno
 ```
 
-Le righe rientrate (con gli spazi davanti) appartengono alla condizione "se hai la farina". L'ultima riga invece vale sempre, indipendentemente dalla farina. Python funziona esattamente così.
+Le righe rientrate appartengono alla condizione "se hai la farina". L'ultima viene eseguita comunque. Python organizza i blocchi allo stesso modo.
 
 ```python
 if 5 > 3:
@@ -34,7 +34,7 @@ print("Questa riga è FUORI dall'if")   # questa viene eseguita sempre
 
 Lo standard è usare **4 spazi** per ogni livello di rientro. Non mescolare spazi e tabulazioni (il tasto Tab): causa problemi.
 
-Se dimentichi il rientro, Python ti avvisa con un errore chiarissimo:
+Se dimentichi il rientro, Python segnala l'errore:
 
 ```python
 if 5 > 3:
@@ -45,7 +45,7 @@ print("Errore!")  # IndentationError: expected an indented block
 
 Python distingue sempre tra lettere maiuscole e minuscole. Questo si chiama essere **case-sensitive**.
 
-Quindi `nome`, `Nome` e `NOME` sono **tre cose completamente diverse** per Python:
+Per Python `nome`, `Nome` e `NOME` sono **tre nomi diversi**:
 
 ```python
 nome = "Alice"
@@ -107,4 +107,4 @@ assert   del      global   not      with
 async    elif     if       or       yield
 ```
 
-Non devi memorizzarle tutte ora. Le imparerai una alla volta quando ne avrai bisogno. L'importante è sapere che esistono: se Python ti dà un errore strano su un nome di variabile, controlla che non sia una keyword.
+Non serve memorizzarle subito. Le incontrerai una alla volta; se Python segnala un errore sul nome di una variabile, controlla che non sia una keyword.

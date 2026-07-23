@@ -3,11 +3,11 @@ title: Cos'è SQL
 description: Una guida semplice per capire cosa sia SQL, perché esiste e in quali situazioni lo usi davvero.
 ---
 
-## Partiamo da una scena concreta
+## Un esempio concreto
 
 **Immagina di avere un negozio online.** Ci sono clienti che comprano, prodotti in vendita, ordini fatti, pagamenti ricevuti, indirizzi per spedire. Tutte queste informazioni devono essere conservate da qualche parte, in modo ordinato e facile da cercare.
 
-Quel "posto" si chiama database. E **SQL è il linguaggio per parlare con quel posto**, per chiedergli le informazioni che ti servono e per aggiungerne di nuove.
+Quel "posto" si chiama database. **SQL è il linguaggio con cui chiedi dati al database e ne aggiungi di nuovi.**
 
 :::note
 Se non hai mai sentito la parola "database", niente paura. Pensa a un armadio con tanti cassetti numerati. Ogni cassetto contiene una cosa diversa: uno ha i nomi dei clienti, un altro ha i prodotti, un altro ancora gli ordini. Il database è proprio così, ma al posto dei fogli di carta usa i dati nel computer.
@@ -15,9 +15,9 @@ Se non hai mai sentito la parola "database", niente paura. Pensa a un armadio co
 
 ## Cosa significa il nome
 
-**SQL** sta per **Structured Query Language**. Il nome può sembrare impegnativo, ma l'idea è semplice: è un linguaggio fatto per fare richieste strutturate a un insieme di dati.
+**SQL** sta per **Structured Query Language**. È un linguaggio per fare richieste strutturate a un insieme di dati.
 
-Una _query_ è una richiesta. **Pensa a una query come a una domanda specifica** che fai a un amico: "Quali sono i clienti di Roma?" oppure "Dov'è quel prodotto?". La differenza è che invece di chiedere a un amico, la fai al database.
+Una _query_ è una richiesta. **Puoi leggerla come una domanda precisa**, per esempio "Quali sono i clienti di Roma?" oppure "Dov'è quel prodotto?". La domanda viene rivolta al database, non a una persona.
 
 :::note
 "Strutturato" significa che i dati sono organizzati in modo ordinato, come una tabella con righe e colonne, non sparsi ovunque.
@@ -25,14 +25,14 @@ Una _query_ è una richiesta. **Pensa a una query come a una domanda specifica**
 
 ## Cosa puoi fare con SQL
 
-Con SQL puoi fare quattro cose principali, come se stessi lavorando su un archivio:
+Con SQL puoi svolgere quattro operazioni di base:
 
 - **leggere** dati già salvati (come cercare un libro in una biblioteca)
 - **inserire** nuovi dati (come aggiungere un nuovo libro allo scaffale)
 - **aggiornare** dati esistenti (come correggere un errore di ortografia in una scheda)
 - **eliminare** dati che non servono più (come buttare un vecchio catalogo)
 
-E poi c'è anche il **collegare** dati che stanno in tabelle diverse — come unire la lista dei clienti con la lista degli ordini per vedere cosa hanno comprato.
+Puoi anche **collegare** dati che si trovano in tabelle diverse, per esempio clienti e ordini, per vedere cosa ha comprato ogni cliente.
 
 :::note
 In gergo tecnico, le "tabelle" sono come fogli Excel: hanno righe e colonne. Ogni riga è un elemento (un cliente, un prodotto), ogni colonna è un tipo di informazione (nome, prezzo, data).
@@ -40,7 +40,7 @@ In gergo tecnico, le "tabelle" sono come fogli Excel: hanno righe e colonne. Ogn
 
 ## Dove lo incontri nella pratica
 
-**SQL è molto più comune di quanto sembri.** Lo trovi dietro a tanti strumenti che usi ogni giorno, anche se non te ne accorgi:
+**SQL è comune negli strumenti che usi ogni giorno**, anche se di solito resta invisibile:
 
 - **siti di e-commerce** quando cerchi un prodotto
 - **app di prenotazione** quando controlli la disponibilità di un hotel
@@ -75,11 +75,11 @@ FROM clienti;
 Le parole chiave come SELECT e FROM sono sempre in maiuscolo per convenzione, ma SQL non è sensibile alle maiuscole. Puoi scriverle anche in minuscolo.
 :::
 
-**Hai appena letto il tuo primo comando SQL.** È un piccolo passo, ma è già il cuore di tutto: fare una domanda chiara ai dati.
+**Hai appena letto il tuo primo comando SQL.** La query formula una richiesta precisa al database.
 
 ## Perché vale la pena impararlo
 
-**Capire SQL ti rende più forte anche quando usi strumenti più comodi.** Se un giorno lavorerai con ORM, dashboard o framework, sapere SQL ti aiuterà a capire cosa succede davvero sotto la superficie.
+**Capire SQL aiuta anche quando usi strumenti più comodi.** Con un ORM, una dashboard o un framework puoi riconoscere le query eseguite e capire come vengono letti i dati.
 
 :::tip
 Quando una query ti sembra oscura, prova a trasformarla in una frase italiana. Spesso la nebbia si dirada subito.
@@ -87,4 +87,4 @@ Quando una query ti sembra oscura, prova a trasformarla in una frase italiana. S
 
 ## Riassunto veloce
 
-**SQL è come un linguaggio per parlare con un database.** Lo usi per chiedere informazioni, aggiungerne di nuove, modificarle o cancellarle. E non devi essere un esperto per iniziare: basta conoscere le basi per fare le tue prime richieste.
+**SQL è il linguaggio con cui interroghi un database.** Lo usi per leggere, aggiungere, modificare o cancellare dati. Per iniziare bastano le istruzioni di base.

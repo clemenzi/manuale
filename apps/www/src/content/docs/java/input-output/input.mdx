@@ -5,7 +5,7 @@ description: Come leggere dati inseriti dall'utente con Scanner.
 
 ## Leggere quello che scrive l'utente
 
-L'input e cio che entra nel programma. Nei primi esempi leggeremo dati dalla tastiera.
+L'input è ciò che entra nel programma. Nei primi esempi leggeremo dati dalla tastiera.
 
 Per farlo useremo `Scanner`, una classe della libreria standard di Java.
 
@@ -112,9 +112,9 @@ public class Profilo {
 }
 ```
 
-Il programma potrebbe saltare la richiesta del nome. Succede perche `nextInt()` legge il numero, ma lascia nel buffer il carattere di a capo.
+Il programma potrebbe saltare la richiesta del nome. Succede perché `nextInt()` legge il numero, ma lascia nel buffer il carattere di a capo.
 
-Una soluzione semplice e consumare quella riga prima di leggere il nome:
+Una soluzione semplice è consumare quella riga prima di leggere il nome:
 
 ```java
 System.out.print("Eta: ");
@@ -133,7 +133,7 @@ Negli esempi piccoli spesso vedrai:
 scanner.close();
 ```
 
-Chiudere lo scanner libera la risorsa usata per leggere.
+Chiudere lo scanner libera la risorsa usata per la lettura.
 
 In programmi brevi da terminale puoi metterlo alla fine:
 
@@ -171,4 +171,4 @@ public class Ordine {
 }
 ```
 
-L'input rende il programma meno fisso: invece di usare sempre gli stessi valori, puoi farli scegliere all'utente.
+L'input rende il programma variabile: invece di usare sempre gli stessi valori, puoi farli scegliere all'utente.

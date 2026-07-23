@@ -11,25 +11,25 @@ Inviare in output il testo `Ciao, PHP!`.
 <details>
 <summary>Soluzione spiegata</summary>
 
-Serve una sola istruzione `echo` per stampare il testo richiesto.
+Una sola istruzione `echo` stampa il testo richiesto.
 
 ```php
 <?php
 echo "Ciao, PHP!";
 ```
 
-Il programma esegue una sola istruzione e mostra esattamente la frase richiesta.
+L'output coincide con la frase richiesta.
 
 </details>
 
 ### Esercizio 2
 
-Conservare un nome e un'eta in due variabili e inviarli in output.
+Conservare un nome e un'età in due variabili e inviarli in output.
 
 <details>
 <summary>Soluzione spiegata</summary>
 
-Prima salviamo i valori in due variabili, poi li stampiamo con `echo`.
+Salviamo i due valori e poi li stampiamo con `echo`.
 
 ```php
 <?php
@@ -40,7 +40,7 @@ echo $nome . "\n";
 echo $eta;
 ```
 
-Le variabili permettono di riutilizzare i dati senza riscriverli ogni volta.
+Così puoi riutilizzare i dati senza riscriverli.
 
 </details>
 
@@ -62,7 +62,7 @@ $somma = $a + $b;
 echo $somma;
 ```
 
-La variabile `$somma` contiene il totale da stampare alla fine.
+`$somma` contiene il totale che viene stampato alla fine.
 
 </details>
 
@@ -84,7 +84,7 @@ $area = $base * $altezza;
 echo $area;
 ```
 
-Il programma esegue un solo calcolo e stampa il valore finale.
+L'output contiene il valore calcolato.
 
 </details>
 
@@ -191,7 +191,7 @@ $fahrenheit = $celsius * 9 / 5 + 32;
 echo $fahrenheit;
 ```
 
-Il risultato finale viene stampato come numero decimale.
+L'output è un numero decimale.
 
 </details>
 
@@ -214,13 +214,13 @@ $media = ($a + $b + $c) / 3;
 echo $media;
 ```
 
-La formula della media aritmetica richiede un solo passaggio finale.
+La divisione finale completa il calcolo della media.
 
 </details>
 
 ### Esercizio 11
 
-Verificare se un numero intero e pari o dispari.
+Verificare se un numero intero è pari o dispari.
 
 <details>
 <summary>Soluzione spiegata</summary>
@@ -238,13 +238,13 @@ if ($numero % 2 === 0) {
 }
 ```
 
-Se il resto e zero, il numero e pari; altrimenti e dispari.
+Se il resto è zero, il numero è pari; negli altri casi è dispari.
 
 </details>
 
 ### Esercizio 12
 
-Determinare se un numero e positivo, negativo oppure zero.
+Determinare se un numero è positivo, negativo oppure zero.
 
 <details>
 <summary>Soluzione spiegata</summary>
@@ -264,7 +264,7 @@ if ($numero > 0) {
 }
 ```
 
-Le condizioni vengono controllate dall'alto verso il basso.
+Le condizioni vengono valutate dall'alto verso il basso, fino al primo caso valido.
 
 </details>
 
@@ -289,13 +289,13 @@ if ($a > $b) {
 }
 ```
 
-Se i due numeri sono uguali, il programma stampa comunque il secondo valore, che ha lo stesso contenuto.
+Se i numeri coincidono, anche il secondo valore è corretto.
 
 </details>
 
 ### Esercizio 14
 
-Verificare se una persona e maggiorenne.
+Verificare se una persona è maggiorenne.
 
 <details>
 <summary>Soluzione spiegata</summary>
@@ -313,7 +313,7 @@ if ($eta >= 18) {
 }
 ```
 
-La soglia dei 18 anni divide i due casi richiesti.
+Il confronto con `18` distingue i due casi.
 
 </details>
 
@@ -324,7 +324,7 @@ Classificare un voto numerico come ottimo, buono, sufficiente o insufficiente.
 <details>
 <summary>Soluzione spiegata</summary>
 
-Le condizioni vanno ordinate dalla soglia piu alta a quella piu bassa.
+Controlliamo prima la soglia più alta, poi le successive.
 
 ```php
 <?php
@@ -341,18 +341,18 @@ if ($voto >= 9) {
 }
 ```
 
-Il programma si ferma alla prima condizione vera.
+Viene eseguito il primo ramo la cui condizione è vera.
 
 </details>
 
 ### Esercizio 16
 
-Verificare se un anno e bisestile.
+Verificare se un anno è bisestile.
 
 <details>
 <summary>Soluzione spiegata</summary>
 
-Un anno e bisestile se e divisibile per `400`, oppure se e divisibile per `4` ma non per `100`.
+Un anno è bisestile se è divisibile per `400`, oppure se è divisibile per `4` ma non per `100`.
 
 ```php
 <?php
@@ -414,7 +414,7 @@ if (($a >= 0 && $b >= 0) || ($a < 0 && $b < 0)) {
 }
 ```
 
-La condizione separa chiaramente i due casi utili.
+La condizione verifica entrambe le combinazioni possibili.
 
 </details>
 
@@ -450,7 +450,7 @@ Stabilire con `switch` se un giorno della settimana appartiene al weekend oppure
 <details>
 <summary>Soluzione spiegata</summary>
 
-`switch` e comodo quando confrontiamo lo stesso valore con piu possibilita.
+`switch` è utile quando confrontiamo lo stesso valore con più possibilità.
 
 ```php
 <?php
@@ -489,7 +489,7 @@ while ($numero <= 10) {
 }
 ```
 
-Il ciclo continua finche la condizione `$numero <= 10` resta vera.
+Il ciclo continua finché `$numero <= 10` è vera.
 
 </details>
 
@@ -539,7 +539,7 @@ while ($n >= 0) {
 }
 ```
 
-Il ciclo termina quando il valore scende sotto zero.
+Il ciclo termina dopo aver stampato `0`, quando il valore diventa negativo.
 
 </details>
 
@@ -615,7 +615,7 @@ Calcolare la somma degli elementi di un array.
 <details>
 <summary>Soluzione spiegata</summary>
 
-Scorriamo l'array con `foreach` e accumuliamo tutti i valori.
+`foreach` visita ogni elemento dell'array e lo aggiunge alla somma.
 
 ```php
 <?php
@@ -656,7 +656,7 @@ foreach ($numeri as $numero) {
 echo $massimo;
 ```
 
-Ogni volta che troviamo un valore piu grande aggiorniamo `$massimo`.
+Quando troviamo un valore più grande, aggiorniamo `$massimo`.
 
 </details>
 
@@ -693,7 +693,7 @@ Cercare un valore in un array e stampare la sua posizione oppure `-1`.
 <details>
 <summary>Soluzione spiegata</summary>
 
-La ricerca lineare controlla gli elementi uno per uno finche non trova quello richiesto.
+La ricerca lineare controlla gli elementi uno alla volta, fermandosi quando trova quello richiesto.
 
 ```php
 <?php
@@ -722,7 +722,7 @@ Rappresentare un prodotto con un array associativo e mostrare nome e prezzo solo
 <details>
 <summary>Soluzione spiegata</summary>
 
-Un array associativo rende piu leggibili i dati perche ogni valore ha una chiave chiara.
+In un array associativo ogni valore è legato a una chiave descrittiva.
 
 ```php
 <?php
@@ -748,7 +748,7 @@ Leggere il nome di un utente da un array associativo e mostrare una email predef
 <details>
 <summary>Soluzione spiegata</summary>
 
-L'operatore `??` permette di usare un valore di fallback quando una chiave manca.
+L'operatore `??` usa il valore di fallback quando la chiave non esiste.
 
 ```php
 <?php
@@ -763,7 +763,7 @@ echo $utente["nome"] . "\n";
 echo $email;
 ```
 
-In questo modo evitiamo errori e otteniamo comunque un risultato leggibile.
+Così il programma ha comunque un valore da mostrare.
 
 </details>
 
@@ -825,7 +825,7 @@ Verificare se un testo assomiglia a una email controllando la presenza di `@`.
 <details>
 <summary>Soluzione spiegata</summary>
 
-Non e una validazione completa, ma basta per allenare il controllo di una sottostringa.
+Non è una validazione completa: serve solo a esercitarsi sul controllo di una sottostringa.
 
 ```php
 <?php
@@ -881,7 +881,7 @@ $nuovoTesto = str_replace("PHP", "web", $testo);
 echo $nuovoTesto;
 ```
 
-La stringa originale non viene modificata in automatico: il risultato va salvato in una variabile.
+La stringa originale resta invariata; il risultato va salvato in una variabile.
 
 </details>
 
@@ -913,7 +913,7 @@ Scrivere una funzione che riceve un nome e stampa un saluto.
 <details>
 <summary>Soluzione spiegata</summary>
 
-Mettiamo la logica del saluto dentro una funzione separata, cosi possiamo riusarla.
+Spostiamo il saluto in una funzione, così possiamo richiamarla con nomi diversi.
 
 ```php
 <?php
@@ -948,7 +948,7 @@ echo somma(4, 9) . "\n";
 echo somma(10, 20);
 ```
 
-Il valore restituito puo essere usato ovunque serva nel programma.
+Il valore restituito può essere usato in qualunque punto del programma.
 
 </details>
 
@@ -970,7 +970,7 @@ function calcolaTotale(float $prezzo, int $quantita): float {
 echo calcolaTotale(3.50, 4);
 ```
 
-Le dichiarazioni di tipo rendono piu chiaro che cosa riceve e che cosa restituisce la funzione.
+Le dichiarazioni di tipo indicano che cosa riceve e che cosa restituisce la funzione.
 
 </details>
 
@@ -1080,7 +1080,7 @@ Creare un piccolo form con GET che riceve una ricerca e mostra il valore inviato
 <details>
 <summary>Soluzione spiegata</summary>
 
-Il form invia il contenuto del campo nell'URL, poi PHP legge il dato da `$_GET`.
+Il form mette il contenuto del campo nell'URL; PHP lo legge da `$_GET`.
 
 ```php
 <?php
@@ -1140,7 +1140,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </form>
 ```
 
-Quando il form contiene errori, il valore gia scritto non va perso.
+Anche dopo un errore, il valore già inserito resta nel campo.
 
 </details>
 
@@ -1205,7 +1205,7 @@ try {
 }
 ```
 
-Le query preparate riducono il rischio di SQL injection e rendono piu sicuro l'uso di dati esterni.
+Le query preparate separano il codice SQL dai dati esterni e riducono il rischio di SQL injection.
 
 </details>
 
@@ -1216,7 +1216,7 @@ Creare una classe `Conto` con saldo privato, costruttore, metodo per depositare 
 <details>
 <summary>Soluzione spiegata</summary>
 
-Qui uniamo costruttore, visibilita `private` e metodi pubblici per controllare i dati dell'oggetto.
+Qui il costruttore inizializza il saldo, mentre `private` e i metodi pubblici ne controllano l'accesso.
 
 ```php
 <?php

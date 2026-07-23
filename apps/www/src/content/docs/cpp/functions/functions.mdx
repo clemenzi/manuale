@@ -5,9 +5,9 @@ description: Come definire e usare le funzioni in C++.
 
 ## Cos'è una funzione?
 
-Immagina di dover calcolare l'area di un cerchio in dieci punti diversi del tuo programma. Scriveresti la stessa formula dieci volte? E se poi vuoi cambiarla, la aggiorni in dieci posti?
+Se devi calcolare l'area di un cerchio in più punti, ripetere la formula rende ogni modifica più difficile.
 
-Le **funzioni** risolvono questo problema: scrivi il codice una volta, gli dai un nome, e lo richiami ogni volta che ne hai bisogno. È come salvare una ricetta: la scrivi una volta, poi la segui ogni volta che vuoi cucinare quel piatto.
+Le **funzioni** raccolgono il codice in un punto, gli danno un nome e permettono di richiamarlo quando serve.
 
 ## Definire una funzione
 
@@ -32,7 +32,7 @@ void saluta() {
 
 ## Chiamare una funzione
 
-Una volta definita, puoi "chiamarla" (cioè eseguirla) scrivendo il suo nome seguito dalle parentesi:
+Una volta definita, puoi eseguirla scrivendo il suo nome seguito dalle parentesi:
 
 ```cpp
 void saluta() {
@@ -100,7 +100,7 @@ int main() {
 }
 ```
 
-Quando il compilatore incontra `return`, la funzione si ferma subito e restituisce il valore.
+Quando il programma esegue `return`, la funzione termina e restituisce il valore indicato.
 
 ## Il prototipo: dichiarare prima di usare
 

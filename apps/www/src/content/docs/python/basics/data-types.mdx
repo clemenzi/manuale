@@ -7,7 +7,7 @@ description: I diversi tipi di informazione che Python sa gestire.
 
 Il computer gestisce informazioni molto diverse tra loro: numeri, testi, valori vero/falso. Non ha senso sommare del testo come se fossero numeri, o confrontare un nome con un prezzo.
 
-Per questo ogni valore in Python ha un **tipo di dato**: una categoria che dice a Python com'è fatto quel valore e cosa puoi farci.
+Per questo ogni valore in Python ha un **tipo di dato**: indica com'è fatto e quali operazioni puoi eseguire su di esso.
 
 ## I tipi principali
 
@@ -72,11 +72,11 @@ risultato = None
 print(type(risultato))  # <class 'NoneType'>
 ```
 
-È come una scatola vuota: la scatola c'è, ma non c'è niente dentro.
+Puoi pensarlo come una scatola vuota: la variabile esiste, ma non contiene ancora dati.
 
 ## Tipi per raccogliere più valori insieme
 
-Oltre ai tipi semplici, Python ha tipi che contengono più valori contemporaneamente. Li vedremo in dettaglio nei capitoli successivi, ma è bene sapere che esistono:
+Python ha anche tipi che raccolgono più valori. Li vedrai nei capitoli successivi; per ora basta riconoscerli:
 
 | Tipo                | Esempio             | Cosa è                                            |
 | ------------------- | ------------------- | ------------------------------------------------- |
@@ -87,7 +87,7 @@ Oltre ai tipi semplici, Python ha tipi che contengono più valori contemporaneam
 
 ## Come Python assegna il tipo automaticamente
 
-In Python non devi dichiarare esplicitamente il tipo di una variabile: Python lo intuisce dal valore che assegni.
+In Python non devi dichiarare il tipo di una variabile: viene ricavato dal valore assegnato.
 
 ```python
 x = 10       # Python capisce che è un int
@@ -95,7 +95,7 @@ y = 3.14     # Python capisce che è un float
 z = "ciao"   # Python capisce che è una str
 ```
 
-Questo si chiama **tipizzazione dinamica**: il tipo non è fisso, e puoi anche cambiarlo nel corso del programma (anche se di solito non è una buona idea).
+Questa caratteristica si chiama **tipizzazione dinamica**. Il tipo non è fisso e può cambiare durante il programma, anche se di solito è meglio evitarlo.
 
 ## Riepilogo rapido
 

@@ -5,7 +5,7 @@ description: Tecniche avanzate per gestire le eccezioni in Python.
 
 ## Ripasso rapido
 
-Hai già visto come usare `try/except` per gestire gli errori. Ora vediamo tecniche più avanzate per situazioni più complesse.
+Hai già usato `try/except` per gestire gli errori. Qui trovi tecniche per casi più articolati.
 
 ```python
 try:
@@ -22,7 +22,7 @@ finally:
 
 ## Creare i tuoi errori personalizzati
 
-Python ti permette di creare **errori su misura** per il tuo programma. È utile quando vuoi segnalare situazioni specifiche con messaggi chiari.
+Python permette di creare **errori personalizzati** per segnalare situazioni specifiche con messaggi chiari.
 
 Pensa a un modulo di iscrizione scolastica: ha senso creare un errore `EtaNonValidaError` invece di usare il generico `ValueError`.
 
@@ -67,7 +67,7 @@ except VotoNonValidoError as e:
 
 ## Lanciare un errore manualmente con `raise`
 
-Puoi **provocare** tu stesso un errore quando ti accorgi che qualcosa non va, anche senza che Python lo faccia automaticamente.
+Puoi **sollevare** un errore quando una condizione non è valida, anche se Python non lo farebbe automaticamente.
 
 ```python
 def dividi(a, b):
@@ -82,7 +82,7 @@ except ValueError as e:
 # → Errore: Il divisore non può essere zero.
 ```
 
-È come un cassiere che si rifiuta di accettare una banconota falsa: non aspetta che la banca se ne accorga — interviene subito.
+Il controllo avviene nel punto in cui il programma rileva il problema.
 
 ---
 
@@ -106,7 +106,7 @@ Con `raise` da solo (senza argomenti), Python rilancia esattamente lo stesso err
 
 ## Collegare gli errori tra loro (catena di eccezioni)
 
-Puoi indicare che un errore è stato **causato** da un altro errore. Questo aiuta chi legge il messaggio di errore a capire l'intera catena di eventi.
+Puoi indicare che un errore è stato **causato** da un altro errore, mantenendo la catena delle eccezioni.
 
 ```python
 def carica_configurazione(filename):
@@ -129,7 +129,7 @@ except RuntimeError as e:
 
 ## La gerarchia degli errori
 
-Gli errori in Python sono organizzati come un albero genealogico. Catturare un errore "genitore" significa catturare anche tutti i suoi "figli".
+Le eccezioni Python sono organizzate in una gerarchia. Catturare un'eccezione "genitore" include anche le eccezioni derivate.
 
 ```
 BaseException
@@ -158,7 +158,7 @@ except LookupError:
 
 ## Context manager personalizzato (uso avanzato di `with`)
 
-Hai già usato `with open(...)` per aprire file. Puoi creare i tuoi "context manager" che gestiscono automaticamente l'apertura e la chiusura di risorse — anche in caso di errore.
+Hai già usato `with open(...)` per aprire file. Puoi creare "context manager" che gestiscono l'apertura e la chiusura delle risorse, anche in caso di errore.
 
 ```python
 class GestoreRisorse:
@@ -207,4 +207,4 @@ except Exception as e:
     raise   # Non nascondere l'errore — rilancierlo
 ```
 
-La regola d'oro: **cattura solo gli errori che sai come gestire**. Per tutti gli altri, lascia che si propaghino e vengano visti.
+Regola: **cattura solo gli errori che sai come gestire**. Lascia propagare gli altri.

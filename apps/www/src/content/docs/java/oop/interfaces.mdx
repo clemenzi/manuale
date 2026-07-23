@@ -3,9 +3,9 @@ title: Interfacce
 description: Come definire comportamenti comuni che classi diverse possono implementare.
 ---
 
-## Cosa e un'interfaccia
+## Cos'è un'interfaccia
 
-Un'interfaccia descrive un comportamento che una classe promette di avere.
+Un'interfaccia descrive un comportamento che una classe promette di offrire.
 
 Non dice necessariamente come farlo. Dice quali metodi devono esistere.
 
@@ -42,7 +42,7 @@ public class Documento implements Stampabile {
 }
 ```
 
-`implements Stampabile` significa: `Documento` rispetta il contratto `Stampabile`.
+`implements Stampabile` significa che `Documento` rispetta il contratto `Stampabile`.
 
 ## Classi diverse, stesso comportamento
 
@@ -61,7 +61,7 @@ public class Foto implements Stampabile {
 }
 ```
 
-`Documento` e `Foto` sono classi diverse, ma entrambe sanno stampare.
+`Documento` e `Foto` sono classi diverse, ma entrambe offrono lo stesso comportamento.
 
 ## Usare il tipo interfaccia
 
@@ -88,9 +88,9 @@ Foto: vacanza.jpg
 
 Il programma non ha bisogno di sapere tutti i dettagli interni. Gli basta sapere che entrambi sono `Stampabile`.
 
-## Perche sono utili
+## Perché sono utili
 
-Le interfacce aiutano a scrivere codice flessibile.
+Le interfacce permettono di scrivere codice meno legato a una classe specifica.
 
 Puoi dire: "mi serve qualcosa che sappia fare questa azione", senza fissarti su una classe specifica.
 
@@ -113,14 +113,14 @@ public class Studente extends Persona {
 }
 ```
 
-Ma puo implementare piu interfacce:
+Ma può implementare più interfacce:
 
 ```java
 public class Documento implements Stampabile, Salvabile {
 }
 ```
 
-Questo rende le interfacce molto utili per descrivere comportamenti comuni.
+Questo le rende utili per descrivere comportamenti comuni.
 
 ## Regola pratica
 

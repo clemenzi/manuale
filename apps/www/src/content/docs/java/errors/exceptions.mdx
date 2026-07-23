@@ -3,9 +3,9 @@ title: Eccezioni
 description: Come gestire situazioni impreviste con try, catch e finally.
 ---
 
-## Cosa e un'eccezione
+## Cos'è un'eccezione
 
-Un'eccezione e un problema che avviene mentre il programma e in esecuzione.
+Un'eccezione è un problema che avviene mentre il programma è in esecuzione.
 
 Esempi:
 
@@ -17,7 +17,7 @@ Java usa le eccezioni per segnalare questi casi.
 
 ## try e catch
 
-Con `try catch` puoi provare un'operazione e gestire l'errore se succede.
+Con `try catch` puoi provare un'operazione e gestire l'errore se si verifica.
 
 ```java
 try {
@@ -34,7 +34,7 @@ Output:
 Non e un numero valido.
 ```
 
-`Integer.parseInt("abc")` fallisce perche `"abc"` non e un numero.
+`Integer.parseInt("abc")` fallisce perché `"abc"` non è un numero.
 
 ## Un esempio con input
 
@@ -66,7 +66,7 @@ Se scrive `ciao`, il programma mostra un messaggio chiaro invece di interrompers
 
 ## finally
 
-`finally` contiene codice che viene eseguito comunque, sia se tutto va bene sia se c'e un errore.
+`finally` contiene codice che viene eseguito comunque, sia se tutto va bene sia se c'è un errore.
 
 ```java
 try {
@@ -78,13 +78,13 @@ try {
 }
 ```
 
-E utile per chiudere risorse, come file o connessioni.
+È utile per chiudere risorse, come file o connessioni.
 
 ## Eccezioni controllate e non controllate
 
 Java distingue due famiglie importanti.
 
-Le **eccezioni controllate** devono essere gestite o dichiarate. Un esempio comune e `IOException`, usata quando lavori con file.
+Le **eccezioni controllate** devono essere gestite o dichiarate. Un esempio comune è `IOException`, usata quando lavori con file.
 
 Le **eccezioni non controllate** possono avvenire a runtime e Java non ti obbliga sempre a gestirle. Esempi:
 
@@ -104,7 +104,7 @@ catch (Exception e) {
 }
 ```
 
-Funziona, ma e molto generico.
+Funziona, ma è molto generico.
 
 Quando puoi, cattura l'eccezione specifica:
 
@@ -114,7 +114,7 @@ catch (NumberFormatException e) {
 }
 ```
 
-Il messaggio e piu chiaro e il codice e piu facile da controllare.
+Il messaggio è più chiaro e il codice è più facile da controllare.
 
 ## Regola pratica
 

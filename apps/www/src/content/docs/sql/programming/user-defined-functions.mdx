@@ -3,11 +3,11 @@ title: Funzioni definite dall'utente
 description: Funzioni SQL create da te per restituire valori o risultati riutilizzabili.
 ---
 
-## Quando vuoi insegnare al database una piccola operazione nuova
+## Definire una funzione riutilizzabile
 
 **Una funzione definita dall'utente permette di aggiungere una nuova funzione al tuo database.** È simile a una stored procedure, ma in genere nasce per restituire un valore o un risultato.
 
-Pensa a una calcolatrice con un tasto personalizzato. Premi quel tasto, gli dai un numero, e lei ti restituisce il risultato del calcolo che usi spesso.
+La funzione riceve argomenti ed esegue il calcolo definito, restituendo un valore.
 
 ## Un esempio piccolo
 
@@ -23,7 +23,7 @@ END;
 
 Se hai un calcolo o una trasformazione che si ripete spesso, racchiuderla in una funzione può rendere il codice più ordinato.
 
-Invece di riscrivere sempre la stessa formula, dai un nome a quell'idea.
+Invece di riscrivere la stessa formula, puoi darle un nome.
 
 Potresti poi usarla in una query:
 
@@ -41,7 +41,7 @@ Non è una regola assoluta per tutti i database, ma puoi pensare così:
 - la **procedura** esegue passi
 - la **funzione** restituisce qualcosa
 
-Questa scorciatoia mentale aiuta molto quando inizi.
+Questa distinzione è utile quando inizi.
 
 :::note
 La sintassi delle funzioni cambia parecchio tra PostgreSQL, MySQL, SQL Server e altri database. L'idea di base, però, resta la stessa.

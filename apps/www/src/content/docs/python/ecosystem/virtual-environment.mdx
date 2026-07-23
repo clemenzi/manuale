@@ -3,24 +3,24 @@ title: Ambiente virtuale
 description: Come isolare le dipendenze dei progetti Python con gli ambienti virtuali.
 ---
 
-## Perché ti serve un ambiente virtuale
+## A cosa serve un ambiente virtuale
 
-Immagina di avere due progetti Python sul tuo computer:
+Supponi di avere due progetti Python sul computer:
 
 - **Progetto A** funziona con la versione 2.25 della libreria `requests`
 - **Progetto B** ha bisogno della versione 2.31 della stessa libreria
 
-Se installi tutto "globalmente" (cioè direttamente sul tuo Python di sistema), i due progetti entrano in conflitto: puoi avere una versione sola, e l'altra non funziona.
+Se installi tutto "globalmente", cioè nel Python di sistema, i due progetti entrano in conflitto: una sola versione può essere attiva.
 
-Gli **ambienti virtuali** risolvono questo problema: ogni progetto ha la sua "bolla" separata con le proprie librerie, nella versione giusta.
+Gli **ambienti virtuali** separano le dipendenze: ogni progetto ha le proprie librerie e le versioni richieste.
 
 ---
 
 ## Cos'è un ambiente virtuale?
 
-Un ambiente virtuale è una **cartella isolata** che contiene una copia di Python e di tutte le librerie installate per quel progetto. È separata dal Python del sistema e dagli altri progetti.
+Un ambiente virtuale è una **cartella isolata** con Python e le librerie installate per un progetto. È separata dal Python di sistema e dagli altri ambienti.
 
-Pensa a uno zaino: ogni studente ha il suo, con i propri libri e materiali. Anche se due studenti usano lo stesso manuale, le loro copie sono indipendenti.
+Ogni progetto ha quindi il proprio insieme di dipendenze, anche quando due progetti usano la stessa libreria.
 
 ---
 
@@ -32,13 +32,13 @@ Python include già il modulo `venv` per creare ambienti virtuali. Nella cartell
 python -m venv venv
 ```
 
-Questo crea una sottocartella chiamata `venv` con tutto il necessario. Puoi darle qualsiasi nome, ma `venv` o `.venv` sono le convenzioni più usate.
+Il comando crea una sottocartella chiamata `venv` con il necessario. Puoi scegliere un altro nome, ma `venv` e `.venv` sono le convenzioni più comuni.
 
 ---
 
 ## Attivare l'ambiente virtuale
 
-Prima di poterlo usare, devi "attivarlo":
+Prima di usarlo, devi "attivarlo":
 
 **Su macOS e Linux:**
 
@@ -58,7 +58,7 @@ Quando l'ambiente è attivo, il nome appare all'inizio del prompt del terminale:
 (venv) $
 ```
 
-Da questo momento, qualsiasi `pip install` installerà le librerie **solo in questo ambiente**, non sul sistema globale.
+Da quel momento, `pip install` installerà le librerie **solo in questo ambiente**, non nel sistema globale.
 
 ---
 

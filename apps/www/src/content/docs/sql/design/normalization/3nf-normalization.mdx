@@ -3,13 +3,13 @@ title: Normalizzazione 3NF
 description: La terza forma normale e l'idea di evitare dipendenze indirette.
 ---
 
-## Qui elimini i passaggi indiretti che sporcano il modello
+## Evitare le dipendenze indirette
 
 **La terza forma normale, o 3NF, dice che le colonne non chiave devono dipendere dalla chiave primaria, non da altre colonne non chiave.**
 
-In pratica: evita passaggi indiretti che creano duplicazioni e confusione.
+In pratica, evita dipendenze indirette che creano duplicazioni e incoerenze.
 
-Pensa a una scheda cliente con `cap` e `citta`. Se la città dipende dal CAP, e il CAP dipende dal cliente, hai una dipendenza indiretta.
+Considera una scheda cliente con `cap` e `citta`. Se la città dipende dal CAP, e il CAP dal cliente, hai una dipendenza indiretta.
 
 ## Un esempio intuitivo
 
@@ -32,7 +32,7 @@ Una struttura più pulita può separare i CAP in una tabella dedicata.
 
 La 3NF riduce il rischio di incoerenze.
 
-Se un dato vive nel posto giusto, quando cambia lo aggiorni una volta sola. **È questo uno dei vantaggi più grandi della normalizzazione.**
+Se un dato sta nel posto giusto, quando cambia lo aggiorni una volta sola. **È uno dei vantaggi principali della normalizzazione.**
 
 ## Un modo semplice per ricordarla
 

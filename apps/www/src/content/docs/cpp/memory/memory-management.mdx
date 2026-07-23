@@ -5,9 +5,9 @@ description: Introduzione all'allocazione dinamica della memoria con new e delet
 
 ## Come funziona la memoria in C++?
 
-Immagina di organizzare una festa. Non sai quante persone verranno. Se prenoti 10 sedie prima, e vengono in 50, hai un problema. Se ne prenoti 200, e vengono in 10, hai sprecato spazio.
+La memoria dinamica serve quando la quantità di memoria necessaria si conosce solo durante l'esecuzione.
 
-La **memoria dinamica** risolve questo problema: puoi "prenotare" esattamente la quantità di memoria che ti serve, nel momento in cui sai quanta ne hai bisogno.
+Con la **memoria dinamica** allochi la quantità necessaria a runtime e la liberi quando hai finito.
 
 ## Due tipi di memoria
 
@@ -27,7 +27,7 @@ int* ptr = new int;         // crei uno spazio nella memoria heap
 int* arr = new int[100];    // un array di 100 interi — deciso a runtime
 ```
 
-Pensa all'heap come a un magazzino enorme. Puoi affittare uno spazio, usarlo, e poi restituirlo. Se non lo restituisci, rimane occupato inutilmente.
+La memoria allocata nell'heap resta occupata finché non la liberi o finché il processo non termina.
 
 ## Allocare memoria: `new`
 
@@ -150,7 +150,7 @@ int main() {
 
 ## La soluzione moderna: puntatori smart
 
-Gestire `new` e `delete` manualmente è complicato e soggetto a errori. In C++ moderno si usano i **puntatori smart**, che si occupano di liberare la memoria automaticamente quando non serve più:
+Gestire `new` e `delete` manualmente espone a errori. In C++ moderno si usano i **puntatori smart**, che liberano la memoria automaticamente:
 
 ```cpp
 #include <memory>

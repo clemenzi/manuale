@@ -5,9 +5,9 @@ description: Come funziona il processo di trasformazione del codice C++ in un pr
 
 ## Come funziona la compilazione?
 
-Quando premi "compila" nel tuo editor, sembra che il programma parta magicamente. In realtà, dietro le quinte succedono tre cose distinte.
+Quando compili un programma C++, il sistema esegue tre fasi distinte.
 
-Capire questo processo ti aiuta a:
+Conoscere queste fasi aiuta a:
 
 - **interpretare gli errori** — ci sono errori di compilazione ed errori di linking, e si risolvono in modi diversi
 - **lavorare con progetti grandi** — con più file `.cpp`, devi sapere come metterli insieme
@@ -17,7 +17,7 @@ Capire questo processo ti aiuta a:
 
 ## Le tre fasi: dalla ricetta al piatto
 
-Pensa al tuo codice come a una ricetta scritta in italiano. Per "eseguirla" su un computer, bisogna:
+Il processo completo comprende:
 
 1. **Preprocessing** — il preprocessore prepara gli ingredienti (espande `#include`, sostituisce le macro `#define`, ecc.)
 2. **Compilazione** — il compilatore traduce la ricetta in lingua macchina
@@ -84,13 +84,13 @@ Di solito fai tutto in un unico comando, senza pensare alle fasi:
 g++ main.cpp matematica.cpp -o programma
 ```
 
-Questo comando esegue automaticamente tutte e tre le fasi per ogni file `.cpp` e poi collega tutto insieme.
+Questo comando esegue le tre fasi per ogni file `.cpp` e poi collega i risultati.
 
 ---
 
 ## I flag di g++ più utili
 
-I **flag** sono opzioni che puoi aggiungere al comando per modificarne il comportamento. Iniziano sempre con `-`.
+I **flag** sono opzioni che modificano il comportamento del comando e iniziano con `-`.
 
 ### Il nome dell'output
 
@@ -267,7 +267,7 @@ Per cancellare i file compilati:
 make clean
 ```
 
-Non devi padroneggiare il Makefile subito — ma è utile sapere che esiste.
+Non è necessario imparare subito ogni dettaglio di un Makefile; basta sapere a cosa serve.
 
 ---
 

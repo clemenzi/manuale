@@ -3,11 +3,11 @@ title: Sequence e auto-increment
 description: Come generare identificatori automatici senza sceglierli a mano.
 ---
 
-## Dare numeri a mano è scomodo e rischioso
+## Identificatori assegnati dal database
 
-**Molte tabelle hanno una colonna `id` che cresce automaticamente.** È come il numeretto preso in fila: ogni volta il sistema assegna il successivo.
+**Molte tabelle hanno una colonna `id` che cresce automaticamente.** Il database assegna un nuovo identificatore quando inserisci una riga.
 
-Questo evita di dover scegliere gli identificatori a mano, con il rischio di errori o duplicati.
+Così non devi scegliere gli identificatori a mano, riducendo il rischio di errori o duplicati.
 
 ## Un esempio semplice
 
@@ -46,7 +46,7 @@ L'auto-incremento è utile quando:
 
 ## Una cosa importante da capire
 
-**Il numero automatico serve soprattutto come identificatore tecnico.** Non sempre è una buona idea attribuirgli significati di business, come numero fattura o codice pubblico visibile all'utente.
+**Il numero automatico serve soprattutto come identificatore tecnico.** Non è sempre adatto a rappresentare un dato di business, come un numero fattura o un codice pubblico visibile all'utente.
 
 Per quei casi, spesso servono regole diverse.
 

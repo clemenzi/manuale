@@ -3,11 +3,11 @@ title: Relazioni tra tabelle
 description: Uno a uno, uno a molti e molti a molti spiegati con esempi concreti.
 ---
 
-## Quando le tabelle si collegano
+## Come si collegano le tabelle
 
-Un database diventa davvero utile quando le tabelle non restano isolate.
+Le tabelle diventano utili anche per i collegamenti che stabiliscono tra loro.
 
-Pensa a una scuola. Hai studenti, classi, insegnanti e voti. Ogni elenco ha senso da solo, ma il valore vero arriva quando capisci come si collegano.
+In una scuola puoi avere studenti, classi, insegnanti e voti. Ogni elenco descrive un aspetto diverso; le relazioni mostrano come sono collegati.
 
 In SQL questi collegamenti si chiamano **relazioni**.
 
@@ -23,7 +23,7 @@ Una relazione uno a uno significa che una riga di una tabella corrisponde a una 
 
 Esempio: un utente può avere un solo profilo esteso.
 
-È come una persona e la sua carta d’identità: una persona ha una carta, e quella carta appartiene a quella persona.
+Per esempio, un utente e il suo profilo esteso possono essere rappresentati da due righe collegate.
 
 ```sql
 CREATE TABLE utenti (
@@ -62,7 +62,7 @@ CREATE TABLE ordini (
 
 La colonna `cliente_id` sta nella tabella `ordini`, perché ogni ordine deve ricordare a quale cliente appartiene.
 
-È come una biblioteca: un lettore può fare molti prestiti, ma ogni prestito è intestato a un lettore preciso.
+Lo stesso schema vale per una biblioteca: un lettore può avere molti prestiti, ma ogni prestito appartiene a un lettore preciso.
 
 ## Molti a molti
 
@@ -88,7 +88,7 @@ CREATE TABLE righe_ordine (
 
 `righe_ordine` collega ordini e prodotti. In più salva anche la quantità.
 
-È come un foglio di iscrizioni: non è solo la lista degli studenti e non è solo la lista dei corsi. Dice quale studente partecipa a quale corso.
+La tabella ponte registra quindi quale elemento di un insieme è collegato a quale elemento dell'altro.
 
 ## Come capire che relazione ti serve
 
@@ -105,11 +105,11 @@ Se “molti” vale da entrambe le parti, probabilmente ti serve una tabella pon
 
 ## Il ruolo delle chiavi esterne
 
-Una **chiave esterna** (`FOREIGN KEY`) protegge il collegamento tra due tabelle.
+Una **chiave esterna** (`FOREIGN KEY`) vincola il collegamento tra due tabelle.
 
 Senza questa regola, potresti salvare un ordine con `cliente_id = 999` anche se non esiste nessun cliente con id 999.
 
-Con la chiave esterna, il database controlla per te che il collegamento abbia senso.
+Con la chiave esterna, il database controlla che il collegamento punti a una riga esistente.
 
 ## Riepilogo rapido
 

@@ -5,13 +5,13 @@ description: Come insegnare al programma a prendere decisioni con if, elif ed el
 
 ## Perché le condizioni?
 
-Un programma che fa sempre le stesse cose, senza mai adattarsi alla situazione, è poco utile. Le **condizioni** permettono al programma di prendere decisioni: fare una cosa se qualcosa è vero, un'altra cosa se è falso.
+Le **condizioni** permettono al programma di scegliere cosa fare in base a un valore: eseguire un'istruzione se una situazione è vera e un'altra se è falsa.
 
-È come un semaforo: se la luce è verde, vai; se è rossa, fermati.
+Un semaforo segue la stessa logica: con il verde passi, con il rosso ti fermi.
 
 ## Il blocco `if` — "se"
 
-La parola `if` significa "se" in inglese. Dice a Python: "esegui questo blocco di codice solo se la condizione è vera".
+La parola `if` significa "se" in inglese. Dice a Python di eseguire il blocco solo quando la condizione è vera.
 
 ```python
 if condizione:
@@ -35,7 +35,7 @@ Il codice dentro l'`if` deve essere rientrato di 4 spazi. Questa è la regola fo
 
 ## Il blocco `else` — "altrimenti"
 
-`else` significa "altrimenti". Si usa per definire cosa fare quando la condizione dell'`if` è falsa:
+`else` significa "altrimenti". Definisce cosa fare quando la condizione dell'`if` è falsa:
 
 ```python
 eta = 15
@@ -46,11 +46,11 @@ else:
     print("Sei minorenne.")
 ```
 
-Python controlla la condizione. Se è vera, esegue il blocco `if`. Se è falsa, esegue il blocco `else`. Non possono essere eseguiti entrambi.
+Python controlla la condizione ed esegue un solo blocco: `if` se è vera, `else` se è falsa.
 
 ## Il blocco `elif` — "altrimenti se"
 
-`elif` è l'abbreviazione di "else if" (altrimenti se). Serve quando hai più di due possibilità da gestire:
+`elif` è l'abbreviazione di "else if" (altrimenti se). Serve per gestire più di due possibilità:
 
 ```python
 voto = 75
@@ -65,7 +65,7 @@ else:
     print("Insufficiente.")
 ```
 
-Python controlla le condizioni dall'alto verso il basso e si ferma alla **prima** che è vera. Le altre vengono saltate.
+Python controlla le condizioni dall'alto verso il basso e si ferma alla **prima** vera. Le successive non vengono valutate.
 
 Con `voto = 75`:
 
@@ -74,7 +74,7 @@ Con `voto = 75`:
 
 ## Condizioni annidate
 
-Puoi mettere un `if` dentro un altro `if`. Si chiama annidamento:
+Puoi inserire un `if` dentro un altro `if`: è un annidamento.
 
 ```python
 eta = 20
@@ -93,7 +93,7 @@ Ogni livello di annidamento aggiunge altri 4 spazi di indentazione. Tieni d'occh
 
 ## Combinare condizioni con `and` e `or`
 
-Invece di annidare, spesso puoi combinare due condizioni in una sola riga:
+Spesso puoi evitare l'annidamento combinando due condizioni:
 
 ```python
 eta = 20

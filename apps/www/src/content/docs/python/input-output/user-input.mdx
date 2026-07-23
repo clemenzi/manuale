@@ -5,11 +5,11 @@ description: Come chiedere informazioni all'utente durante l'esecuzione del prog
 
 ## Perché l'input è importante?
 
-Un programma che fa sempre le stesse cose con gli stessi dati è limitato. Con l'**input utente**, il programma può fare domande e comportarsi in modo diverso in base alle risposte. Questo è il primo passo per creare programmi davvero interattivi.
+Con l'**input utente**, un programma può ricevere dati, porre domande e reagire alle risposte invece di usare sempre gli stessi valori.
 
 ## La funzione `input()`
 
-`input()` mostra un messaggio e poi si mette in attesa: il programma si ferma finché l'utente non scrive qualcosa e preme Invio.
+`input()` mostra un messaggio e mette in pausa il programma finché l'utente non scrive qualcosa e preme Invio.
 
 ```python
 nome = input("Come ti chiami? ")
@@ -23,11 +23,11 @@ Come ti chiami? Alice
 Ciao, Alice!
 ```
 
-Il testo dentro le parentesi di `input()` è il messaggio che viene mostrato all'utente.
+Il testo tra parentesi è il messaggio mostrato all'utente.
 
 ## Attenzione: `input()` restituisce sempre testo
 
-Anche se l'utente digita un numero, `input()` lo tratta sempre come **testo** (stringa). Se vuoi fare calcoli, devi convertire:
+Anche quando l'utente digita un numero, `input()` restituisce sempre **testo** (una stringa). Per fare calcoli devi convertirlo:
 
 ```python
 # Questo NON funziona per fare calcoli:
@@ -47,7 +47,7 @@ print(f"Altezza: {altezza} m")
 
 Se l'utente digita "pippo" invece di un numero e tu usi `int()`, il programma crasha con un errore.
 
-Per gestire questo caso elegantemente, usa `try/except`:
+Gestisci questo caso con `try/except`:
 
 ```python
 try:
@@ -59,7 +59,7 @@ except ValueError:
 
 ## Continuare a chiedere finché la risposta è valida
 
-Un pattern molto comune: ripetere la domanda finché l'utente non inserisce un valore accettabile.
+Un uso comune è ripetere la domanda finché l'utente non inserisce un valore accettabile.
 
 ```python
 while True:

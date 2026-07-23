@@ -5,13 +5,13 @@ description: Come trasformare un valore da un tipo all'altro in Python.
 
 ## Perché convertire i tipi?
 
-Immagina di voler stampare questo messaggio: `"Hai 16 anni"`. Il numero `16` è un intero, ma per metterlo in mezzo al testo devi trasformarlo in una stringa di testo. Senza questa trasformazione, Python si ferma con un errore.
+Per stampare `"Hai 16 anni"`, il numero `16` deve comparire dentro una stringa. Se lo concateni al testo senza convertirlo, Python segnala un errore.
 
-Questa operazione — trasformare un valore da un tipo all'altro — si chiama **conversione di tipo**.
+Trasformare un valore da un tipo all'altro si chiama **conversione di tipo**.
 
 ## Conversione automatica (implicita)
 
-A volte Python fa la conversione da solo, senza che tu debba fare niente. Succede quando sommi un numero intero con uno decimale: Python trasforma automaticamente l'intero in decimale per poter fare il calcolo.
+In alcuni casi Python converte il tipo automaticamente. Quando sommi un intero e un decimale, per esempio, trasforma l'intero in decimale prima del calcolo.
 
 ```python
 intero = 5
@@ -26,11 +26,11 @@ Python fa questo solo quando è sicuro di non perdere informazioni.
 
 ## Conversione manuale (esplicita)
 
-Altre volte devi essere tu a dire a Python di convertire. Si usano funzioni apposite.
+Negli altri casi devi chiedere esplicitamente la conversione con funzioni dedicate.
 
 ### `int()` — trasforma in numero intero
 
-Ecco come `int()` converte valori di tipo diverso in un numero intero:
+`int()` converte valori di tipo diverso in un numero intero:
 
 ```python
 x = int(3.9)     # 3  — la parte decimale viene TAGLIATA (non arrotondata!)
@@ -47,7 +47,7 @@ print(x, y, z, w)  # 3 42 1 0
 
 ### `float()` — trasforma in numero decimale
 
-Ecco come `float()` trasforma un valore in un numero con la virgola:
+`float()` trasforma un valore in un numero decimale:
 
 ```python
 a = float(5)       # 5.0
@@ -59,7 +59,7 @@ print(a, b, d)  # 5.0 3.14 1.0
 
 ### `str()` — trasforma in testo
 
-Questa è la conversione più usata, perché spesso devi mettere numeri dentro messaggi di testo:
+Questa conversione è comune quando devi inserire numeri in un messaggio di testo:
 
 ```python
 eta = 16
@@ -71,7 +71,7 @@ f = str(3.14)   # "3.14"
 b = str(True)   # "True"
 ```
 
-In alternativa alle conversioni manuali, puoi usare le **f-string** (stringhe formattate), che gestiscono tutto automaticamente:
+In alternativa puoi usare le **f-string** (stringhe formattate), che inseriscono automaticamente il valore nel testo:
 
 ```python
 eta = 16
@@ -80,7 +80,7 @@ print(f"Ho {eta} anni")  # "Ho 16 anni" — più comodo!
 
 ### `bool()` — trasforma in vero/falso
 
-Ogni valore in Python può essere convertito in booleano. I valori "vuoti" o "zero" diventano `False`, tutto il resto diventa `True`:
+Ogni valore in Python può essere convertito in booleano. I valori "vuoti" o uguali a zero diventano `False`; gli altri diventano `True`:
 
 ```python
 print(bool(0))      # False — zero è falso
@@ -95,14 +95,14 @@ print(bool("ciao")) # True  — qualsiasi testo non vuoto è vero
 
 ## Cosa succede se la conversione non è possibile?
 
-Se provi a convertire qualcosa che non ha senso, Python ti dà un `ValueError`:
+Se il valore non è convertibile, Python solleva un `ValueError`:
 
 ```python
 int("ciao")   # ValueError — "ciao" non è un numero!
 float("abc")  # ValueError
 ```
 
-Per gestire questo caso senza far crashare il programma, puoi usare un blocco `try/except` (che vedremo in dettaglio nel capitolo sugli errori):
+Puoi gestire questo caso con un blocco `try/except`, descritto in dettaglio nel capitolo sugli errori:
 
 ```python
 valore_inserito = "pippo"

@@ -3,7 +3,7 @@ title: Date e orari
 description: Lavorare con date e orari usando il modulo datetime in Python.
 ---
 
-## Perché è utile usare date e orari in modo corretto
+## Lavorare con date e orari
 
 Qualunque programma reale prima o poi ha a che fare con le date: "quando è stata inviata questa email?", "quanti giorni mancano al compleanno?", "quanti giorni fa ho creato questo file?". Python ha un modulo dedicato per tutto questo.
 
@@ -73,7 +73,7 @@ print(adesso.second)   # Secondi (0-59)
 
 ## Formattare una data come testo: `strftime()`
 
-Per default le date si stampano nel formato `2024-01-15`. Con `strftime()` puoi scegliere tu come vuoi che appaia:
+Per impostazione predefinita le date vengono mostrate nel formato `2024-01-15`. Con `strftime()` puoi scegliere il formato del testo:
 
 ```python
 from datetime import datetime
@@ -143,7 +143,7 @@ print(f"Giorni vissuti: {differenza.days}")
 
 ## Confrontare date
 
-Le date si confrontano come i numeri — con `<`, `>`, `==`:
+Le date si confrontano come i numeri, usando `<`, `>` e `==`:
 
 ```python
 from datetime import date

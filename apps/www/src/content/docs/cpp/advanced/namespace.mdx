@@ -5,24 +5,24 @@ description: Cosa sono i namespace e come si usa std in C++.
 
 ## Cos'è un namespace?
 
-Immagina che due studenti nella stessa classe si chiamino entrambi "Marco". Ogni volta che la prof dice "Marco!", nasce confusione. La soluzione? Usare il cognome: "Marco Rossi" e "Marco Bianchi".
+Un **namespace** qualifica i nomi e impedisce che definizioni omonime entrino in conflitto.
 
-I **namespace** in C++ funzionano allo stesso modo. Se due librerie diverse definiscono una funzione chiamata `print`, il compilatore non saprebbe quale usare. Con i namespace, puoi distinguerle: `LibreriaA::print` e `LibreriaB::print`.
+Se due librerie definiscono `print`, puoi distinguerle con `LibreriaA::print` e `LibreriaB::print`.
 
 ## Il namespace `std`
 
-Tutto quello che fa parte della libreria standard del C++ si trova nel namespace `std` (abbreviazione di "standard"). Per usare `cout`, devi indicare che appartiene a `std`:
+La libreria standard del C++ usa il namespace `std`. Per riferirti a `cout`, puoi scrivere:
 
 ```cpp
 std::cout << "Ciao!" << std::endl;
 std::string nome = "Alice";
 ```
 
-Il `::` si legge "appartenente a". Quindi `std::cout` significa "cout appartenente a std".
+L'operatore `::` qualifica il nome: `std::cout` indica `cout` nel namespace `std`.
 
 ## `using namespace std`: la scorciatoia
 
-Scrivere `std::` ogni volta è scomodo. Con `using namespace std;` importi tutto il namespace `std` e puoi usarlo senza prefisso:
+Con `using namespace std;` rendi disponibili i nomi di `std` senza il prefisso:
 
 ```cpp
 #include <iostream>
@@ -35,7 +35,7 @@ int main() {
 }
 ```
 
-Questa è la forma che hai visto in quasi tutto il codice di questo manuale.
+Questa forma compare negli esempi introduttivi del manuale.
 
 ## `using` per nomi specifici
 
@@ -54,7 +54,7 @@ int main() {
 }
 ```
 
-Questo è più preciso ed è la scelta preferita nei progetti grandi.
+Importare solo i nomi necessari riduce il rischio di conflitti, soprattutto nei progetti grandi.
 
 ## Creare i tuoi namespace
 

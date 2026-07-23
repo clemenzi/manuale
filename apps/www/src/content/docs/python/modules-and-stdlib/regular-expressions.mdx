@@ -3,15 +3,15 @@ title: Espressioni regolari
 description: Introduzione alle espressioni regolari con il modulo re in Python.
 ---
 
-## Perché ti servono le espressioni regolari
+## A cosa servono le espressioni regolari
 
-Immagina di dover controllare se un indirizzo email è scritto correttamente, o di dover trovare tutti i numeri di telefono in un testo. Potresti farlo con decine di condizioni `if`, oppure usare uno strumento molto più potente: le **espressioni regolari**.
+Per controllare un indirizzo email o trovare numeri di telefono in un testo, potresti scrivere molte condizioni `if`. Le **espressioni regolari** descrivono questi schemi in modo compatto.
 
 ---
 
 ## Cosa sono le espressioni regolari?
 
-Le **espressioni regolari** (dette anche "regex" o "regexp") sono una mini-lingua per descrivere **schemi di testo**. Servono a:
+Le **espressioni regolari** (dette anche "regex" o "regexp") descrivono **schemi di testo**. Puoi usarle per:
 
 - Verificare se una stringa corrisponde a un certo formato ("è un'email valida?")
 - Trovare schemi in un testo ("tutti i numeri in questo paragrafo")
@@ -71,7 +71,7 @@ else:
     print("Nessun numero trovato")
 ```
 
-Il prefisso `r` prima delle virgolette (`r"..."`) indica una **raw string** (stringa "grezza"). Senza la `r`, Python interpreterebbe `\d` come una sequenza speciale (come `\n` per andare a capo), stravolgendo il significato della regex. Con la `r`, Python lascia il testo esattamente come l'hai scritto, senza trasformare niente. Usa sempre `r"..."` quando scrivi espressioni regolari.
+Il prefisso `r` prima delle virgolette (`r"..."`) indica una **raw string** (stringa "grezza"). Senza `r`, Python interpreterebbe `\d` come una sequenza speciale, come `\n`. Con `r`, Python lascia il testo invariato. Usa `r"..."` nelle espressioni regolari.
 
 ---
 
@@ -132,7 +132,7 @@ print(parti)   # ['mela', 'banana', 'uva', 'ciliegia']
 
 ## Estrarre parti specifiche: i gruppi con `()`
 
-Le parentesi tonde creano dei **gruppi** — puoi estrarre separatamente ogni parte del risultato:
+Le parentesi tonde creano dei **gruppi** e permettono di estrarre separatamente le parti del risultato:
 
 ```python
 import re
@@ -151,7 +151,7 @@ if match:
 
 ## Riutilizzare uno schema: `re.compile()`
 
-Se usi lo stesso schema molte volte, "compilalo" una volta sola per rendere il codice più efficiente:
+Se usi lo stesso schema molte volte, "compilalo" una volta sola:
 
 ```python
 import re

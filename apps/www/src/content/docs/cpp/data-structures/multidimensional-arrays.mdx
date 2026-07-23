@@ -5,9 +5,9 @@ description: Come usare array a due o più dimensioni in C++.
 
 ## Array con più dimensioni
 
-Un array normale è come una fila di scatole. Ma a volte i dati sono naturalmente organizzati in una **griglia**: i voti di più studenti in più materie, le celle di una scacchiera, i pixel di un'immagine.
+Alcuni dati sono organizzati naturalmente in una **griglia**, per esempio voti, celle di una scacchiera o pixel di un'immagine.
 
-Un **array bidimensionale** è come una tabella con righe e colonne: hai bisogno di due numeri per identificare ogni cella.
+Un **array bidimensionale** rappresenta una tabella di righe e colonne; servono due indici per raggiungere una cella.
 
 ## Dichiarare un array 2D
 
@@ -49,7 +49,7 @@ Immagina le coordinate come `[Y][X]`: prima la riga (verticale), poi la colonna 
 
 ## Scorrere con due cicli annidati
 
-Per visitare tutti gli elementi di una matrice, si usano due cicli `for` annidati: uno per le righe, uno per le colonne:
+Per visitare tutti gli elementi di una matrice servono due cicli `for` annidati: uno per le righe e uno per le colonne:
 
 ```cpp
 int matrice[3][3] = {

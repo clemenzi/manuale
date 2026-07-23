@@ -5,15 +5,15 @@ description: Il concetto di puntatori in C++, come funzionano e come usarli.
 
 ## Cos'è un puntatore?
 
-Immagina di avere un quaderno con le istruzioni per trovare un tesoro. Il quaderno non contiene il tesoro — contiene l'**indirizzo** dove trovarlo.
+Un **puntatore** non contiene direttamente il valore: contiene l'**indirizzo** della memoria in cui il valore si trova.
 
-Un **puntatore** funziona allo stesso modo: non contiene un valore direttamente, ma contiene la **posizione in memoria** dove quel valore si trova.
+Il puntatore può quindi essere usato per leggere o modificare quel valore tramite la sua **posizione in memoria**.
 
 Questo ti permette di fare cose che altrimenti non potresti fare, come modificare una variabile dall'interno di una funzione.
 
 ## La memoria del computer come una via di appartamenti
 
-Pensa alla RAM come a una lunghissima via con migliaia di appartamenti. Ogni appartamento ha un **numero civico** (l'indirizzo) e può contenere un valore.
+La RAM assegna un indirizzo alle aree in cui conserva i dati. Ogni variabile occupa una di queste aree.
 
 Quando dichiari `int x = 42;`, il computer affitta un appartamento per `x` e ci mette dentro il numero 42.
 
@@ -67,7 +67,7 @@ cout << *ptr << endl;   // legge il valore di x → stampa 42
 cout << x << endl;      // x è cambiata! stampa 100
 ```
 
-È come andare all'appartamento indicato sul bigliettino e sostituire il contenuto.
+La dereferenziazione accede quindi al valore memorizzato all'indirizzo.
 
 ## Riepilogo dei simboli
 

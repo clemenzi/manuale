@@ -5,16 +5,16 @@ description: La differenza tra le stringhe in stile C (char array) e il tipo str
 
 ## Le stringhe in stile C
 
-In C++ esistono due modi diversi per lavorare con le parole e le frasi. Il primo è il modo "vecchio", ereditato dal linguaggio C. Il secondo è il modo moderno, molto più semplice.
+In C++ puoi rappresentare il testo con array di caratteri, ereditati dal C, oppure con `std::string`.
 
-Devi conoscere entrambi perché li incontrerai nel codice esistente, ma nella pratica ne userai quasi sempre uno solo.
+Conoscere entrambi serve per leggere codice esistente; nei nuovi programmi si usa quasi sempre `std::string`.
 
 ## I due metodi
 
 1. **Stringhe C-style** — sono array di caratteri (`char[]`), ereditate dal linguaggio C. Più complicate da usare.
 2. **`std::string`** — la stringa moderna del C++, molto più semplice e sicura.
 
-**Regola pratica: usa sempre `std::string`.** Impara le stringhe C-style solo per capire il codice che le usa.
+**Regola pratica: usa `std::string`.** Le stringhe C-style servono soprattutto per interoperare con codice C o API che le richiedono.
 
 ## Le stringhe C-style: array di caratteri
 
@@ -65,7 +65,7 @@ char a[10] = "Ciao";
 
 ## Le stringhe moderne: `std::string`
 
-`std::string` risolve tutti i problemi delle stringhe C-style. Per usarla, includi `<string>`:
+`std::string` offre concatenazione, confronto e gestione della lunghezza senza ricorrere alle funzioni di `<cstring>`:
 
 ```cpp
 #include <string>
@@ -156,4 +156,4 @@ int main() {
 }
 ```
 
-Il codice con `std::string` è molto più semplice e difficile da sbagliare.
+In questo esempio `std::string` evita la gestione manuale dei buffer.

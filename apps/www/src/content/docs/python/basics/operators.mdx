@@ -5,11 +5,11 @@ description: I simboli con cui fare calcoli, confronti e operazioni logiche in P
 
 ## Cosa sono gli operatori?
 
-Un **operatore** è un simbolo che esegue un'operazione su uno o più valori. Li usi già ogni giorno: `+`, `-`, `*` sono operatori matematici. In Python ce ne sono molti altri.
+Un **operatore** è un simbolo che esegue un'operazione su uno o più valori. `+`, `-` e `*` sono operatori matematici; Python ne mette a disposizione anche altri.
 
 ## Operatori aritmetici — per i calcoli
 
-Funzionano come la matematica che conosci già, con qualche aggiunta:
+Seguono le regole della matematica, con alcune operazioni aggiuntive:
 
 | Operatore | Significato                       | Esempio  | Risultato |
 | --------- | --------------------------------- | -------- | --------- |
@@ -21,9 +21,9 @@ Funzionano come la matematica che conosci già, con qualche aggiunta:
 | `%`       | Resto della divisione             | `5 % 2`  | `1`       |
 | `**`      | Potenza                           | `5 ** 2` | `25`      |
 
-L'operatore `//` (doppio slash) divide e butta via i decimali. È come chiedere "quante volte 2 entra in 5?" — la risposta è 2, con 1 di resto.
+L'operatore `//` (doppio slash) divide e scarta la parte decimale. `5 // 2` risponde alla domanda: "quante volte 2 entra in 5?" Il risultato è 2.
 
-L'operatore `%` (modulo) restituisce solo il resto. Torna utilissimo per sapere se un numero è pari o dispari: se `numero % 2` vale `0`, il numero è pari.
+L'operatore `%` (modulo) restituisce il resto. Per esempio, se `numero % 2` vale `0`, il numero è pari.
 
 ```python
 a = 10
@@ -39,7 +39,7 @@ print(a ** b)  # 1000  (10 alla potenza 3)
 
 ## Operatori di confronto — per fare domande
 
-Confrontano due valori e restituiscono sempre `True` o `False`:
+Confrontano due valori e restituiscono `True` oppure `False`:
 
 | Operatore | Significato          | Esempio            |
 | --------- | -------------------- | ------------------ |
@@ -60,7 +60,7 @@ print(x < 3)   # False
 
 ## Operatori logici — per combinare condizioni
 
-Servono a mettere insieme più condizioni:
+Servono a combinare più condizioni:
 
 | Operatore | Significato                                        |
 | --------- | -------------------------------------------------- |
@@ -76,7 +76,7 @@ print(not 5 > 3)          # False — 5 > 3 è True, not lo inverte
 
 ## Operatori di assegnazione — scorciatoie per aggiornare variabili
 
-Invece di scrivere `x = x + 3`, puoi usare la versione abbreviata `x += 3`. Significano la stessa cosa:
+Al posto di `x = x + 3` puoi usare la forma abbreviata `x += 3`. Le due istruzioni hanno lo stesso effetto:
 
 | Abbreviazione | Equivalente completo |
 | ------------- | -------------------- |
@@ -99,7 +99,7 @@ print(punteggio)  # 130
 
 ## Operatori `in` e `not in` — per cercare elementi
 
-Verificano se un valore è presente (o assente) in una lista, in una stringa o in qualsiasi altra sequenza:
+Verificano se un valore è presente o assente in una lista, una stringa o un'altra sequenza:
 
 ```python
 frutta = ["mela", "banana", "ciliegia"]
@@ -114,7 +114,7 @@ print("pizza" in testo)      # False
 
 ## L'ordine delle operazioni
 
-Come in matematica, Python esegue le operazioni in un ordine preciso. Le parentesi hanno sempre la precedenza massima:
+Come in matematica, Python esegue le operazioni secondo un ordine preciso. Le parentesi hanno la precedenza più alta:
 
 ```python
 print(2 + 3 * 4)    # 14 — prima la moltiplicazione, poi l'addizione

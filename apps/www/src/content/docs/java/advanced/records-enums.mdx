@@ -5,14 +5,14 @@ description: Come rappresentare dati compatti e insiemi di valori fissi.
 
 ## Due strumenti per dati semplici
 
-Java offre strumenti che rendono piu comodo rappresentare alcuni dati.
+Java offre strumenti comodi per rappresentare alcuni dati.
 
 In questa pagina vediamo:
 
 - `enum`, per valori fissi
 - `record`, per oggetti semplici e immutabili
 
-Sono concetti piu moderni rispetto alle basi, ma molto utili quando il modello dei dati e chiaro.
+Sono concetti più moderni rispetto alle basi, utili quando il modello dei dati è chiaro.
 
 ## enum
 
@@ -32,7 +32,7 @@ public enum Giorno {
 }
 ```
 
-Una variabile di tipo `Giorno` puo contenere solo uno di questi valori.
+Una variabile di tipo `Giorno` può contenere solo uno di questi valori.
 
 ```java
 Giorno oggi = Giorno.LUNEDI;
@@ -52,7 +52,7 @@ Ma potresti anche sbagliare:
 String stato = "pagatto";
 ```
 
-Con un enum, Java controlla i valori validi.
+Con un enum, Java controlla che i valori siano validi.
 
 ```java
 public enum StatoOrdine {
@@ -136,7 +136,7 @@ I metodi di lettura hanno lo stesso nome dei campi: `nome()` e `prezzo()`.
 
 ## Record immutabili
 
-Un record e pensato per dati immutabili: dopo la creazione, non cambi i campi.
+Un record è pensato per dati immutabili: dopo la creazione, non cambi i campi.
 
 Non fai:
 

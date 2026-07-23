@@ -3,9 +3,9 @@ title: Alias
 description: Come usare AS per dare soprannomi temporanei a colonne e tabelle.
 ---
 
-## A volte un nome più corto o più chiaro aiuta tantissimo
+## Dare un nome temporaneo
 
-**Un alias è un soprannome temporaneo.** Lo usi per rendere i risultati più leggibili o per abbreviare i nomi nelle query più lunghe.
+**Un alias è un nome temporaneo.** Puoi usarlo per rendere il risultato più leggibile o abbreviare una query lunga.
 
 ```sql
 SELECT nome AS cliente
@@ -16,7 +16,7 @@ Qui la colonna `nome` apparirà con il nome `cliente` nel risultato.
 
 ## Perché sono comodi
 
-Gli alias aiutano in due modi:
+Gli alias servono soprattutto a:
 
 - rendono il risultato più parlante
 - accorciano la scrittura quando ci sono tabelle con nomi lunghi
@@ -34,6 +34,6 @@ Qui `c` è un soprannome della tabella `clienti`.
 
 ## Dove diventano davvero preziosi
 
-Nelle query con `JOIN`, gli alias migliorano tantissimo la leggibilità. Invece di ripetere sempre il nome completo della tabella, puoi usare un nome corto e chiaro.
+Nelle query con `JOIN` evitano di ripetere ogni volta il nome completo della tabella.
 
 **Non cambiano i dati. Cambiano solo il modo in cui la query viene scritta o mostrata.**

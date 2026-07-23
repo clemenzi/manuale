@@ -5,7 +5,7 @@ description: Come rappresentare date, orari e intervalli nei programmi PHP.
 
 ## Perche le date richiedono attenzione
 
-Una data sembra semplice, ma puo includere giorno, mese, anno, ora, minuti, secondi e fuso orario. PHP offre `DateTime` per gestirle in modo piu ordinato.
+Una data sembra semplice, ma può includere giorno, mese, anno, ora, minuti, secondi e fuso orario. PHP offre `DateTime` per gestire questi dati in modo ordinato.
 
 ## Creare una data
 
@@ -16,7 +16,7 @@ $oggi = new DateTime();
 echo $oggi->format('d/m/Y');
 ```
 
-`new DateTime()` crea un oggetto con data e ora attuali. `format` decide come mostrarlo.
+`new DateTime()` crea un oggetto con data e ora attuali. `format` stabilisce come visualizzarlo.
 
 ## Creare una data specifica
 
@@ -35,7 +35,7 @@ Output:
 
 ## Fusi orari
 
-Il fuso orario dice a quale zona del mondo si riferisce l'orario.
+Il fuso orario indica a quale zona del mondo si riferisce l'orario.
 
 ```php
 <?php
@@ -44,18 +44,18 @@ $roma = new DateTime('now', new DateTimeZone('Europe/Rome'));
 echo $roma->format('H:i');
 ```
 
-Usare il fuso giusto evita risultati strani, soprattutto nei siti usati da persone in paesi diversi.
+Usare il fuso corretto evita risultati inattesi, soprattutto nei siti usati da persone in paesi diversi.
 
 ## Timestamp
 
-Un timestamp e un numero che rappresenta un momento nel tempo.
+Un timestamp è un numero che rappresenta un momento nel tempo.
 
 ```php
 <?php
 echo time();
 ```
 
-E utile per confronti tecnici, ma per codice leggibile spesso `DateTime` e piu chiaro.
+È utile per i confronti tecnici, ma nel codice `DateTime` è spesso più chiaro.
 
 ## Confrontare date
 
@@ -69,11 +69,11 @@ if ($oggi < $scadenza) {
 }
 ```
 
-PHP confronta i due momenti e decide quale viene prima.
+PHP confronta i due momenti e stabilisce quale viene prima.
 
 ## Aggiungere o togliere tempo
 
-Con `modify` puoi spostare una data avanti o indietro.
+Con `modify` puoi spostare una data in avanti o indietro.
 
 ```php
 <?php
@@ -89,7 +89,7 @@ Output:
 09/05/2026
 ```
 
-Questo e utile per scadenze, promemoria e periodi di prova.
+È utile per scadenze, promemoria e periodi di prova.
 
 ## Differenza tra due date
 
@@ -109,7 +109,7 @@ Output:
 8
 ```
 
-`diff` restituisce un intervallo. La proprieta `days` contiene il numero totale di giorni tra le due date.
+`diff` restituisce un intervallo. La proprietà `days` contiene il numero totale di giorni tra le due date.
 
 ## Errore comune: formato ambiguo
 

@@ -5,11 +5,11 @@ description: Come presentare i dati in modo leggibile e ordinato.
 
 ## Perché formattare l'output?
 
-Stampare dati grezzi funziona, ma non è sempre leggibile. Formattare l'output significa presentare le informazioni in modo chiaro: numeri con il numero giusto di cifre decimali, testo allineato in colonne ordinate.
+I dati grezzi non sono sempre facili da leggere. La formattazione permette di scegliere il numero di cifre decimali e di allineare il testo in colonne.
 
 ## Le f-string: il metodo consigliato
 
-Le **f-string** (disponibili da Python 3.6) sono il modo più comodo e leggibile per costruire stringhe con variabili. Si scrivono mettendo `f` prima delle virgolette:
+Le **f-string**, disponibili da Python 3.6, permettono di inserire variabili nelle stringhe in modo diretto. Si scrivono mettendo `f` prima delle virgolette:
 
 ```python
 nome = "Alice"
@@ -18,7 +18,7 @@ print(f"Mi chiamo {nome} e ho {eta} anni.")
 # Mi chiamo Alice e ho 16 anni.
 ```
 
-Dentro le parentesi graffe puoi scrivere qualsiasi espressione Python:
+Tra le parentesi graffe puoi scrivere un'espressione Python:
 
 ```python
 a, b = 5, 3
@@ -47,7 +47,7 @@ print(f"{percentuale:.0%}")   # 75%
 print(f"{percentuale:.2%}")   # 75.00%
 ```
 
-Python moltiplica per 100 e aggiunge il simbolo `%` automaticamente.
+Con questo formato Python moltiplica per 100 e aggiunge automaticamente `%`.
 
 ## Separatore delle migliaia
 
@@ -60,7 +60,7 @@ print(f"{numero:,}")   # 1,234,567
 
 ## Allineare il testo in colonne
 
-Quando vuoi creare tabelle con colonne ordinate, puoi specificare la larghezza e l'allineamento:
+Per creare colonne allineate puoi specificare larghezza e direzione dell'allineamento:
 
 ```python
 print(f"{'Sinistra':<15}|")   # allineato a sinistra — 15 caratteri

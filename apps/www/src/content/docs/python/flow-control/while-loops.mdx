@@ -5,9 +5,9 @@ description: Come ripetere un'azione finché una condizione rimane vera.
 
 ## Il ciclo `while` — "finché"
 
-Il ciclo `while` ripete un blocco di codice **finché una condizione rimane vera**. È diverso dal `for`: non sai in anticipo quante volte ripeterà, dipende da cosa succede durante l'esecuzione.
+Il ciclo `while` ripete un blocco di codice **finché una condizione rimane vera**. A differenza del `for`, non richiede di conoscere in anticipo il numero di iterazioni.
 
-Pensa a un ascensore: le porte rimangono aperte finché non premi il pulsante di un piano. Non sai in anticipo quando lo premeranno.
+Puoi pensare a una porta che resta aperta finché non si verifica una certa condizione.
 
 ```python
 while condizione:
@@ -34,7 +34,7 @@ Output:
 5
 ```
 
-Come funziona:
+Il ciclo procede così:
 
 1. Python controlla: `contatore <= 5`? Sì (1 ≤ 5) → esegue il blocco
 2. Stampa `1`, poi `contatore` diventa `2`
@@ -44,7 +44,7 @@ Come funziona:
 
 ## Attenzione al ciclo infinito!
 
-Se la condizione non diventa mai falsa, il ciclo non finisce mai. Il programma si blocca per sempre:
+Se la condizione non diventa mai falsa, il ciclo non termina e il programma continua a eseguirlo:
 
 ```python
 # NON eseguire questo codice!
@@ -58,7 +58,7 @@ Se ti capita accidentalmente, puoi fermare il programma con **Ctrl+C** nel termi
 
 ## Interrompere con `break`
 
-`break` ferma il ciclo immediatamente, anche se la condizione è ancora vera. È utile quando vuoi uscire dal ciclo in base a qualcosa che succede dentro:
+`break` ferma subito il ciclo, anche se la condizione è ancora vera. È utile quando la decisione di uscire dipende dal contenuto del ciclo:
 
 ```python
 while True:         # questo ciclo non finirebbe mai da solo...
@@ -71,7 +71,7 @@ print("Programma terminato.")
 
 ## Saltare un giro con `continue`
 
-`continue` salta il resto del codice in questo giro e passa subito al prossimo controllo della condizione:
+`continue` salta il resto dell'iterazione e passa al controllo successivo della condizione:
 
 ```python
 contatore = 0
@@ -97,7 +97,7 @@ Output:
 
 ### Chiedere un input fino a quando è valido
 
-Un uso classico del `while`: continuare a chiedere all'utente di inserire qualcosa finché non inserisce un valore accettabile.
+Un uso comune di `while` è ripetere una richiesta finché l'utente non inserisce un valore accettabile.
 
 ```python
 while True:

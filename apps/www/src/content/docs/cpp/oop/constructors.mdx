@@ -5,9 +5,9 @@ description: Come usare i costruttori per inizializzare gli oggetti in C++.
 
 ## Cos'è un costruttore?
 
-Ogni volta che crei un oggetto, i suoi campi inizialmente contengono valori casuali. Se dimentichi di impostarli prima di usarli, il programma si comporta in modo imprevedibile.
+Se una classe non inizializza i propri campi, alcuni membri possono contenere valori indeterminati. Usarli prima di assegnarli produce risultati imprevedibili.
 
-Il **costruttore** risolve questo: è una funzione speciale che viene chiamata **automaticamente** ogni volta che crei un oggetto, e il suo compito è impostare i valori iniziali. Come il modulo di registrazione che compili quando apri un conto in banca.
+Il **costruttore** è una funzione speciale chiamata **automaticamente** quando crei un oggetto; inizializza i suoi membri.
 
 ## Come funziona un costruttore
 
@@ -84,7 +84,7 @@ public:
 };
 ```
 
-È preferita perché inizializza i campi direttamente, senza prima crearli vuoti e poi assegnarli.
+La lista inizializza i campi direttamente, senza una successiva assegnazione nel corpo del costruttore.
 
 ## Più costruttori per la stessa classe
 

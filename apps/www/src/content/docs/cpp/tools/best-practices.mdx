@@ -5,9 +5,9 @@ description: Come scrivere codice C++ leggibile, manutenibile e professionale.
 
 ## Scrivere codice che si capisce
 
-Scrivere codice che funziona è il primo traguardo. Scrivere codice che **si capisce, si modifica facilmente e non crea problemi nel tempo** è il secondo — ed è quello che distingue un programmatore che cresce da uno che rimane bloccato.
+Il codice dovrebbe funzionare, ma anche essere leggibile e modificabile senza introdurre errori.
 
-Queste abitudini ti aiutano a:
+Queste abitudini aiutano a:
 
 - Trovare i bug più in fretta
 - Capire il tuo stesso codice dopo settimane senza toccarlo
@@ -128,7 +128,7 @@ cout << x;   // stampa 0
 
 ## Valida l'input dell'utente
 
-Non fidarti mai di quello che l'utente inserisce:
+Tratta l'input dell'utente come un dato da verificare:
 
 ```cpp
 int eta;
@@ -197,7 +197,7 @@ getline(file, riga);   // ora è sicuro
 
 ## Non ripetere il codice (DRY)
 
-DRY significa "Don't Repeat Yourself" — non ripeterti. Se scrivi lo stesso codice in più punti, estrailo in una funzione:
+DRY significa "Don't Repeat Yourself". Se la stessa logica compare in più punti, estraila in una funzione:
 
 ```cpp
 // Scadente: stessa struttura ripetuta

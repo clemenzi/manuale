@@ -3,15 +3,15 @@ title: Array (Liste come array)
 description: Come usare le liste Python come array e quando usare librerie specifiche.
 ---
 
-## Perché è utile usare gli array in Python
+## Array e liste in Python
 
-In altri linguaggi come C++ o Java, un **array** è una sequenza di elementi tutti dello stesso tipo, con una posizione numerata che parte da 0. In Python, le **liste** svolgono questo ruolo nella maggior parte dei casi — e sono ancora più flessibili.
+In linguaggi come C++ o Java, un **array** è una sequenza di elementi dello stesso tipo, indicizzati a partire da 0. In Python questo ruolo è svolto nella maggior parte dei casi dalle **liste**, che sono più flessibili.
 
 ---
 
 ## Le liste come array
 
-Per uso generico, le liste Python si comportano esattamente come array:
+Per gli usi generici, le liste Python si comportano come array:
 
 ```python
 # Una sequenza di numeri interi, con indici 0, 1, 2, 3, 4
@@ -31,7 +31,7 @@ print(numeri)   # [10, 25, 30, 40, 50]
 
 ## Il modulo `array`: più efficiente per grandi quantità di numeri
 
-Python ha un modulo chiamato `array` che offre array più efficienti in memoria rispetto alle liste normali. A differenza delle liste, però, possono contenere solo elementi dello **stesso tipo**.
+Il modulo `array` offre array che usano meno memoria delle liste. A differenza delle liste, possono contenere solo elementi dello **stesso tipo**.
 
 ```python
 import array
@@ -65,7 +65,7 @@ I codici tipo più usati:
 
 ## Matrici: array a due dimensioni
 
-Una **matrice** è come una tabella con righe e colonne. In Python si rappresenta come una lista di liste:
+Una **matrice** è una tabella con righe e colonne. In Python puoi rappresentarla come una lista di liste:
 
 ```python
 # Una tabella 3×3
@@ -126,6 +126,6 @@ print(sorted(numeri))  # [1, 2, 3, 5, 8, 9] — copia ordinata
 
 ## Quando usare NumPy invece delle liste?
 
-Le liste Python vanno bene per la maggior parte degli usi. Ma se devi fare **calcoli matematici su grandi quantità di numeri** — come la media di 10.000 valori, moltiplicare matrici, o applicare funzioni statistiche — usa la libreria **NumPy**.
+Le liste Python sono sufficienti per molti usi. Per **calcoli matematici su grandi quantità di numeri**, come la media di 10.000 valori o la moltiplicazione di matrici, usa **NumPy**.
 
 NumPy fa le stesse cose delle liste, ma è molto più veloce per i calcoli numerici intensivi. Lo vedremo nella sezione dedicata all'ecosistema Python.

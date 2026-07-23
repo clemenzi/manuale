@@ -5,9 +5,9 @@ description: Come installare librerie PHP e gestire dipendenze di progetto.
 
 ## Cosa e Composer
 
-Composer e il gestore di dipendenze piu usato in PHP. Una dipendenza e una libreria esterna che il tuo progetto usa per non riscrivere tutto da zero.
+Composer è il gestore di dipendenze più usato in PHP. Una dipendenza è una libreria esterna che il progetto usa senza doverla riscrivere da zero.
 
-Esempio: invece di scrivere da solo una libreria per inviare email, puoi installarne una gia pronta.
+Per esempio, invece di scrivere una libreria per inviare email, puoi installarne una già pronta.
 
 ## composer.json
 
@@ -29,7 +29,7 @@ Composer aggiorna `composer.json` e scarica il codice nella cartella `vendor`.
 
 ## Installare dipendenze
 
-Se scarichi un progetto che ha gia `composer.json`, esegui:
+Se scarichi un progetto che contiene già `composer.json`, esegui:
 
 ```bash
 composer install
@@ -39,14 +39,14 @@ Composer legge anche `composer.lock`, se presente, e installa le versioni previs
 
 ## Autoload
 
-Composer crea un file di autoload che carica classi e librerie.
+Composer crea un file di autoload per caricare classi e librerie.
 
 ```php
 <?php
 require __DIR__ . '/vendor/autoload.php';
 ```
 
-Dopo questa riga puoi usare le librerie installate.
+Dopo questa riga puoi usare le librerie installate nel progetto.
 
 ## Aggiornare con cautela
 
@@ -56,7 +56,7 @@ Per aggiornare le librerie:
 composer update
 ```
 
-Questo comando puo cambiare versioni. Nei progetti reali va usato con attenzione e seguito da test.
+Questo comando può cambiare le versioni. Nei progetti reali va usato con attenzione e seguito da test.
 
 ## Regola pratica
 
@@ -64,17 +64,17 @@ Questo comando puo cambiare versioni. Nei progetti reali va usato con attenzione
 - `composer install` installa cio che il progetto richiede
 - `composer update` aggiorna le versioni consentite
 
-Composer diventa importante quando il progetto smette di essere un singolo file e inizia a usare librerie esterne.
+Composer diventa utile quando il progetto supera il singolo file e inizia a usare librerie esterne.
 
 ## composer.lock
 
 Quando installi dipendenze, Composer crea spesso anche `composer.lock`. Questo file registra le versioni esatte installate.
 
-Il suo scopo e semplice: se un'altra persona installa il progetto, riceve le stesse versioni delle librerie. Cosi si evitano differenze difficili da capire.
+Il suo scopo è semplice: se un'altra persona installa il progetto, riceve le stesse versioni delle librerie. Così si evitano differenze difficili da capire.
 
 ## Cartella vendor
 
-La cartella `vendor` contiene il codice scaricato da Composer. Di solito non la modifichi a mano.
+La cartella `vendor` contiene il codice scaricato da Composer. Di solito non va modificata a mano.
 
 In molti progetti `vendor` non viene salvata in Git. Si salva invece `composer.json` e `composer.lock`, poi ogni persona esegue:
 
@@ -93,8 +93,8 @@ require __DIR__ . '/vendor/autoload.php';
 // Qui puoi usare le librerie installate con Composer
 ```
 
-Ogni libreria ha la propria documentazione, ma il punto di ingresso nel progetto PHP resta quasi sempre `vendor/autoload.php`.
+Ogni libreria ha la propria documentazione, ma nel progetto PHP il punto di ingresso resta quasi sempre `vendor/autoload.php`.
 
 ## Regola pratica
 
-Non installare librerie per ogni piccola cosa. Prima capisci il problema. Poi scegli una libreria quando ti evita lavoro complesso o delicato.
+Non installare una libreria per ogni piccola cosa. Prima capisci il problema, poi scegli una libreria se ti evita lavoro complesso o delicato.

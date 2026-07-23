@@ -5,7 +5,7 @@ description: Come salvare valori in PHP con variabili e costanti.
 
 ## Variabili
 
-Una variabile e una specie di scatola con un'etichetta. Dentro puoi mettere un valore e riprenderlo piu tardi.
+Una variabile è un nome a cui associ un valore, che puoi usare di nuovo più avanti.
 
 In PHP le variabili iniziano con `$`.
 
@@ -21,7 +21,7 @@ echo $nome;
 
 ## Cambiare valore
 
-Una variabile puo cambiare durante il programma.
+Una variabile può cambiare durante l'esecuzione del programma.
 
 ```php
 <?php
@@ -37,11 +37,11 @@ Output:
 15
 ```
 
-PHP prende il vecchio valore di `$totale`, aggiunge `5` e salva il nuovo valore nella stessa variabile.
+PHP legge il valore di `$totale`, aggiunge `5` e salva il risultato nella stessa variabile.
 
 ## Nomi validi
 
-Un nome di variabile puo contenere lettere, numeri e `_`, ma non puo iniziare con un numero.
+Un nome di variabile può contenere lettere, numeri e `_`, ma non può iniziare con un numero.
 
 ```php
 <?php
@@ -53,7 +53,7 @@ Scegli nomi chiari. `$prezzo` e meglio di `$p`.
 
 ## Costanti
 
-Una costante salva un valore che non dovrebbe cambiare.
+Una costante salva un valore che non deve cambiare.
 
 ```php
 <?php
@@ -73,11 +73,11 @@ define("NOME_SITO", "Manuale PHP");
 echo NOME_SITO;
 ```
 
-Usa una variabile quando il valore puo cambiare. Usa una costante quando il valore deve restare fisso.
+Usa una variabile quando il valore può cambiare e una costante quando deve restare fisso.
 
 ## Variabili nei calcoli
 
-Le variabili diventano utili quando il valore viene riusato piu volte.
+Le variabili sono utili quando devi riusare un valore più volte.
 
 ```php
 <?php
@@ -88,11 +88,11 @@ $totale = $prezzo - $sconto;
 echo "Totale: $totale euro";
 ```
 
-Se domani il prezzo cambia, modifichi solo `$prezzo`. Il calcolo continua a funzionare.
+Se il prezzo cambia, modifichi solo `$prezzo`; il calcolo resta lo stesso.
 
 ## Errore comune: dimenticare il dollaro
 
-In PHP `$nome` e `nome` non sono la stessa cosa.
+In PHP `$nome` e `nome` indicano due cose diverse.
 
 ```php
 <?php
@@ -100,18 +100,18 @@ $nome = "Luca";
 echo nome;
 ```
 
-Questo codice e sbagliato perche `nome` senza `$` non indica la variabile. Quando vuoi leggere o modificare una variabile, usa sempre il dollaro.
+Il codice è sbagliato perché `nome` senza `$` non indica la variabile. Quando leggi o modifichi una variabile, usa sempre il dollaro.
 
 ## Scegliere tra const e define
 
-Per iniziare, usa `const` quando dichiari costanti semplici nei tuoi file.
+All'inizio, usa `const` per dichiarare costanti semplici nei tuoi file.
 
 ```php
 <?php
 const COSTO_SPEDIZIONE = 4.90;
 ```
 
-`define` esiste ancora e lo incontrerai in molti progetti, ma `const` e piu leggibile nei casi base.
+`define` esiste ancora e lo incontrerai in molti progetti, ma `const` è più leggibile nei casi semplici.
 
 ## Prova tu
 

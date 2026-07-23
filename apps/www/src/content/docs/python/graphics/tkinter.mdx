@@ -3,15 +3,15 @@ title: Interfacce grafiche con Tkinter
 description: Creare finestre e interfacce grafiche semplici con Tkinter in Python.
 ---
 
-## Perché ti serve Tkinter per le interfacce grafiche
+## Tkinter per le interfacce grafiche
 
-Finora i tuoi programmi comunicano con l'utente tramite il terminale: testo che appare e testo che viene scritto. Con **Tkinter** puoi creare vere finestre grafiche con pulsanti, campi di testo, menu a tendina — come i programmi che usi ogni giorno.
+Finora i programmi mostrano e ricevono testo dal terminale. Con **Tkinter** puoi creare finestre con pulsanti, campi di testo e menu a tendina.
 
 ---
 
 ## Cos'è Tkinter?
 
-**Tkinter** è la libreria per creare interfacce grafiche già inclusa in Python. Non devi installare nulla. Permette di creare finestre con tutti i classici elementi: etichette, pulsanti, caselle di testo, caselle di spunta, e molto altro.
+**Tkinter** è la libreria per le interfacce grafiche inclusa in Python. Non devi installare nulla. Offre elementi come etichette, pulsanti, caselle di testo e caselle di spunta.
 
 ---
 
@@ -29,13 +29,13 @@ root.geometry("400x300")   # larghezza × altezza in pixel
 root.mainloop()
 ```
 
-Il metodo `mainloop()` è fondamentale: è il ciclo che mantiene la finestra in vita e reagisce a tutto ciò che l'utente fa (click, digitazione, ecc.).
+`mainloop()` mantiene aperta la finestra e gestisce le azioni dell'utente, come clic e digitazione.
 
 ---
 
 ## I componenti principali (Widget)
 
-In Tkinter, ogni elemento visibile si chiama **widget**.
+In Tkinter ogni elemento visibile è un **widget**.
 
 ### Label — testo fisso
 
@@ -69,7 +69,7 @@ pulsante.pack(pady=20)
 root.mainloop()
 ```
 
-`command=saluta` indica quale funzione chiamare quando il pulsante viene premuto.
+`command=saluta` indica la funzione da chiamare quando l'utente preme il pulsante.
 
 ---
 
@@ -98,7 +98,7 @@ root.mainloop()
 
 ## Esempio completo: app di saluto
 
-Metti insieme Label, Entry e Button per fare una piccola app interattiva:
+Puoi combinare Label, Entry e Button in una piccola applicazione interattiva:
 
 ```python
 import tkinter as tk
@@ -135,7 +135,7 @@ root.mainloop()
 
 ## Posizionare i widget in griglia con `grid()`
 
-`pack()` mette i widget uno sotto l'altro. Con `grid()` puoi posizionarli in una **tabella** di righe e colonne — utile per form o calcolatrici:
+`pack()` dispone i widget uno sotto l'altro. Con `grid()` puoi posizionarli in una **tabella** di righe e colonne, utile per moduli e calcolatrici:
 
 ```python
 import tkinter as tk

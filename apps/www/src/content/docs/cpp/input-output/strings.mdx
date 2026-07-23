@@ -5,9 +5,9 @@ description: Come usare le stringhe in C++ con il tipo string.
 
 ## Lavorare con il testo in C++
 
-I programmi lavorano con parole, nomi, frasi, URL, messaggi... non solo numeri. Le **stringhe** sono il modo in cui il programma lavora con il testo.
+I programmi lavorano anche con parole, frasi e messaggi. Le **stringhe** rappresentano questo testo.
 
-In C++ moderno si usa il tipo `string`, che rende il lavoro con il testo semplice e sicuro.
+In C++ moderno si usa il tipo `string`, che offre operazioni per costruire e modificare il testo.
 
 ## Includere la libreria
 
@@ -29,7 +29,7 @@ Le stringhe usano le **virgolette doppie** `"`. Le virgolette singole `'` sono p
 
 ## Unire stringhe: concatenazione
 
-Puoi unire due stringhe con `+`:
+L'operatore `+` concatena due stringhe:
 
 ```cpp
 string nome = "Alice";
@@ -58,7 +58,7 @@ cout << nome.length() << endl;  // 5
 
 ## Accedere a un singolo carattere
 
-Come gli array, puoi leggere o modificare un singolo carattere usando l'indice tra `[]`. Gli indici partono da 0:
+Come negli array, puoi leggere o modificare un carattere con un indice tra `[]`. Gli indici partono da 0:
 
 ```cpp
 string nome = "Alice";

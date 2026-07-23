@@ -3,9 +3,9 @@ title: Set operations
 description: UNION, UNION ALL, INTERSECT ed EXCEPT per combinare risultati di query diverse.
 ---
 
-## Qui lavori su insiemi di risultati
+## Combinare risultati
 
-**Le set operations permettono di combinare il risultato di più query.** Invece di pensare riga per riga, qui ragioni per insiemi.
+**Le set operations combinano i risultati di più query.** In questo caso ragioni sugli insiemi restituiti dalle query.
 
 È un po' come mettere insieme due liste, tenere solo gli elementi in comune o togliere una lista dall'altra.
 
@@ -35,4 +35,4 @@ Se vuoi tenere anche i ripetuti, scegli `UNION ALL`.
 
 Per combinare query con queste operazioni, **le colonne restituite devono essere compatibili** per numero e tipo.
 
-In pratica, le due query devono parlare la stessa lingua in uscita.
+In pratica, le due query devono restituire colonne compatibili.

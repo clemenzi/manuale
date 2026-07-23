@@ -5,13 +5,13 @@ description: Come organizzare file, classi e nomi in progetti PHP piu grandi.
 
 ## Il problema dei file
 
-In un progetto piccolo puoi usare `require` per includere file a mano. In un progetto piu grande diventa scomodo.
+In un progetto piccolo puoi usare `require` per includere i file a mano. In un progetto più grande diventa scomodo.
 
-L'autoload carica le classi quando servono, senza scrivere `require` per ogni file.
+L'autoload carica le classi quando servono, senza dover scrivere `require` per ogni file.
 
 ## Namespace
 
-Un namespace e uno spazio dei nomi. Serve a evitare conflitti tra classi con lo stesso nome.
+Un namespace è uno spazio dei nomi. Serve a evitare conflitti tra classi con lo stesso nome.
 
 ```php
 <?php
@@ -21,7 +21,7 @@ class Prodotto {
 }
 ```
 
-Questa classe si chiama davvero `App\Model\Prodotto`.
+Il nome completo di questa classe è `App\Model\Prodotto`.
 
 ## use
 
@@ -34,11 +34,11 @@ use App\Model\Prodotto;
 $prodotto = new Prodotto();
 ```
 
-Senza `use`, dovresti scrivere il nome completo.
+Senza `use` dovresti scrivere il nome completo.
 
 ## Struttura delle cartelle
 
-Una struttura comune e:
+Una struttura comune è:
 
 ```text
 progetto/
@@ -80,11 +80,11 @@ require __DIR__ . '/vendor/autoload.php';
 
 ## Nomi coerenti
 
-Usa nomi di classi chiari e una cartella coerente con il namespace. Questo rende il progetto piu facile da navigare.
+Usa nomi di classi chiari e una cartella coerente con il namespace. Così il progetto è più facile da navigare.
 
 ## Un file, una classe principale
 
-Una convenzione semplice e mettere una classe principale per file.
+Una convenzione semplice è mettere una classe principale per file.
 
 ```php
 <?php
@@ -98,13 +98,13 @@ Questo file potrebbe chiamarsi `src/Model/Prodotto.php`. Il percorso rispecchia 
 
 ## Perche serve dump-autoload
 
-Quando cambi la configurazione dell'autoload in `composer.json`, Composer deve rigenerare le informazioni interne.
+Quando cambi la configurazione dell'autoload in `composer.json`, Composer deve rigenerare le informazioni necessarie.
 
 ```bash
 composer dump-autoload
 ```
 
-Se aggiungi una nuova classe seguendo la struttura gia configurata, spesso non serve fare altro. Se invece cambi la mappa dei namespace, esegui questo comando.
+Se aggiungi una nuova classe seguendo la struttura già configurata, spesso non serve fare altro. Se cambi la mappa dei namespace, esegui questo comando.
 
 ## Errore comune: namespace e cartella incoerenti
 
@@ -115,4 +115,4 @@ Se dichiari:
 namespace App\Model;
 ```
 
-ma metti il file in una cartella non collegata ad `App\\`, Composer potrebbe non trovarlo. Quando una classe non viene caricata, controlla nome del namespace, nome della classe, percorso del file e configurazione `psr-4`.
+ma metti il file in una cartella non collegata ad `App\\`, Composer potrebbe non trovarlo. Quando una classe non viene caricata, controlla il namespace, il nome della classe, il percorso del file e la configurazione `psr-4`.

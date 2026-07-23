@@ -3,11 +3,11 @@ title: CREATE DATABASE
 description: Come creare il contenitore principale che ospiterà tabelle e dati.
 ---
 
-## Prima esiste il contenitore, poi il contenuto
+## Creare il database
 
-**Un database è il contenitore generale dei tuoi dati.** Prima di creare tabelle, colonne e righe, devi avere un posto in cui tutto questo possa vivere.
+**Un database è il contenitore generale dei dati.** Tabelle, colonne e righe vengono create al suo interno.
 
-È simile a quando prepari una cartella principale prima di riempirla di documenti e sottocartelle.
+Puoi paragonarlo a una cartella principale che contiene documenti e sottocartelle.
 
 ## La sintassi più semplice
 
@@ -15,17 +15,17 @@ description: Come creare il contenitore principale che ospiterà tabelle e dati.
 CREATE DATABASE negozio;
 ```
 
-Con questa istruzione chiedi al server di creare un database chiamato `negozio`.
+Questa istruzione chiede al server di creare un database chiamato `negozio`.
 
 ## Cosa NON fa questo comando
 
-**`CREATE DATABASE` non crea ancora tabelle e non salva ancora clienti, prodotti o ordini.** Prepara solo il contenitore vuoto.
+**`CREATE DATABASE` non crea tabelle e non salva clienti, prodotti o ordini.** Crea solo il database vuoto.
 
 Dopo questo comando, di solito il passo successivo è collegarti a quel database e iniziare a definirne la struttura.
 
 ## Quando si usa davvero
 
-Questo comando compare spesso quando:
+Puoi usare questo comando quando:
 
 - inizi un progetto nuovo
 - prepari un ambiente di sviluppo o test
@@ -41,4 +41,4 @@ In SQLite, invece, il database spesso coincide con un file. Il concetto è simil
 
 ## Da portare a casa
 
-Ricorda questa idea: **il database è la casa, le tabelle sono le stanze**. Con `CREATE DATABASE` stai costruendo la casa, non stai ancora arredando le stanze.
+Ricorda: **il database è la casa, le tabelle sono le stanze**. Con `CREATE DATABASE` costruisci la casa; le tabelle vengono dopo.

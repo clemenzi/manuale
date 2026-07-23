@@ -4,11 +4,11 @@ description: Cos'e PHP, dove viene usato e come iniziare a costruire pagine web 
 icon: BookOpen
 ---
 
-## Cos'e PHP?
+## Cos'è PHP?
 
-PHP e un **linguaggio di programmazione per il web**. Serve soprattutto a creare pagine che cambiano in base ai dati, all'utente o a quello che succede sul sito.
+PHP è un **linguaggio di programmazione per il web**. Serve soprattutto a creare pagine che cambiano in base ai dati, all'utente o a ciò che succede sul sito.
 
-Una pagina HTML normale e come un volantino stampato: tutti vedono la stessa cosa. Una pagina PHP, invece, puo preparare contenuti diversi prima di mandarli al browser.
+Una pagina HTML normale è come un volantino stampato: tutti vedono la stessa cosa. Una pagina PHP, invece, può preparare contenuti diversi prima di inviarli al browser.
 
 ```php
 <?php
@@ -16,24 +16,24 @@ $nome = "Luca";
 echo "Ciao, $nome!";
 ```
 
-Questo codice crea un messaggio usando un valore salvato nella variabile `$nome`.
+Il codice crea un messaggio usando il valore salvato nella variabile `$nome`.
 
 ## Lato server e lato client
 
-Quando apri un sito, il tuo browser riceve HTML, CSS e JavaScript. Questi lavorano sul tuo computer o telefono: per questo si dice **lato client**.
+Quando apri un sito, il browser riceve HTML, CSS e JavaScript. Questi elementi lavorano sul computer o sul telefono: per questo si dice **lato client**.
 
-PHP lavora prima, sul computer che ospita il sito: il **server**. Il server esegue PHP, produce HTML e poi manda il risultato al browser.
+PHP lavora prima sul computer che ospita il sito, cioè il **server**. Il server esegue PHP, produce HTML e invia il risultato al browser.
 
 ```php
 <?php
 echo "<h1>Benvenuto</h1>";
 ```
 
-Il browser non vede il codice PHP. Vede solo l'HTML prodotto.
+Il browser non vede il codice PHP: riceve solo l'HTML prodotto.
 
 ## Dove si usa PHP
 
-PHP e usato per:
+PHP è usato per:
 
 - pagine web dinamiche
 - form di contatto
@@ -45,31 +45,31 @@ Molti progetti famosi, incluso WordPress, usano PHP.
 
 ## Cosa imparerai in questa guida
 
-Partiremo dalle basi: installazione, sintassi, variabili e tipi di dato. Poi vedremo condizioni, cicli, funzioni e array.
+Partiremo dalle basi: installazione, sintassi, variabili e tipi di dato. Poi passeremo a condizioni, cicli, funzioni e array.
 
 Dopo le fondamenta passeremo al web: HTML, form, sessioni, cookie e upload di file. Infine vedremo database, oggetti, gestione degli errori e strumenti come Composer.
 
-L'obiettivo non e imparare tutto a memoria. E capire abbastanza bene da leggere codice PHP semplice, modificarlo con sicurezza e costruire piccoli programmi web.
+L'obiettivo non è imparare tutto a memoria, ma capire abbastanza da leggere codice PHP semplice, modificarlo con sicurezza e costruire piccoli programmi web.
 
 ## Cosa devi sapere prima di iniziare
 
-Puoi iniziare anche se non hai mai scritto PHP. Ti aiutera conoscere almeno l'idea di una pagina HTML, perche PHP viene spesso usato per produrre HTML dinamico.
+Puoi iniziare anche se non hai mai scritto PHP. Ti aiuterà conoscere almeno l'idea di una pagina HTML, perché PHP viene spesso usato per produrre HTML dinamico.
 
-Non devi conoscere database, oggetti o strumenti professionali. Li incontrerai piu avanti, quando le basi saranno gia piu familiari.
+Non devi conoscere database, oggetti o strumenti professionali. Li incontrerai più avanti, quando le basi saranno già più familiari.
 
 ## Come studiare questa guida
 
-PHP si capisce meglio scrivendo codice piccolo e osservando cosa succede. Per ogni pagina prova a fare tre cose:
+PHP si capisce meglio scrivendo codice piccolo e osservando il risultato. Per ogni pagina prova a fare tre cose:
 
 1. copia l'esempio principale in un file `.php`
 2. eseguilo con il terminale o con il server locale
 3. cambia un valore e guarda come cambia il risultato
 
-Questo passaggio e importante. Leggere codice aiuta, ma modificarlo ti fa capire davvero quali parti contano.
+Leggere il codice aiuta, ma modificarlo ti fa capire quali parti contano davvero.
 
 ## Un esempio molto piccolo
 
-PHP puo prendere un dato e usarlo per costruire una risposta.
+PHP può prendere un dato e usarlo per costruire una risposta.
 
 ```php
 <?php
@@ -85,11 +85,11 @@ Output:
 Il prodotto quaderno costa 3.5 euro.
 ```
 
-In poche righe hai gia tre idee importanti: una variabile, un numero e un testo prodotto dal programma.
+In poche righe compaiono già tre idee importanti: una variabile, un numero e un testo prodotto dal programma.
 
 ## Percorso consigliato
 
-Se parti da zero, segui le sezioni in questo ordine:
+Se parti da zero, segui le sezioni in quest'ordine:
 
 1. installazione e primo programma
 2. sintassi, variabili, tipi di dato e operatori
@@ -101,4 +101,4 @@ Se parti da zero, segui le sezioni in questo ordine:
 8. database con PDO e query preparate
 9. classi, oggetti, errori e strumenti
 
-Le ultime sezioni sono piu vicine al lavoro su progetti reali. Non avere fretta di arrivarci: se variabili, condizioni, cicli e funzioni sono chiari, tutto il resto diventa meno misterioso.
+Le ultime sezioni sono più vicine al lavoro su progetti reali. Non avere fretta: se variabili, condizioni, cicli e funzioni sono chiari, il resto sarà più facile da seguire.

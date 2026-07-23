@@ -5,9 +5,9 @@ description: Tecniche e strumenti per trovare e correggere gli errori nei progra
 
 ## Cosa significa fare debugging?
 
-Tutti i programmatori scrivono codice con bug. Non è una questione di bravura — è normale. La differenza tra un programmatore esperto e uno alle prime armi spesso sta nella **velocità con cui trovano e correggono** gli errori.
+I bug fanno parte dello sviluppo. Il debugging consiste nel riprodurli, capire la causa e correggere il codice.
 
-Il debugging (eliminazione dei bug) è un'abilità che si impara con la pratica. Queste tecniche ti aiuteranno a trovare i problemi più velocemente.
+Le tecniche seguenti aiutano a restringere il punto in cui nasce il problema.
 
 ## I tre tipi di errori
 
@@ -32,7 +32,7 @@ Il formato è: `file:riga:colonna: tipo: messaggio`
 - `error` — tipo di problema (`error` = grave, `warning` = avviso)
 - Il messaggio spiega cosa c'è di sbagliato
 
-**Consiglio importante:** correggi sempre il **primo** errore nella lista. Spesso un errore ne genera altri a cascata. Una volta sistemato il primo, molti degli altri spariscono.
+Correggi prima il **primo** errore della lista: gli errori successivi possono dipendere da quello.
 
 ## I warning: segnali di pericolo
 
@@ -42,7 +42,7 @@ I warning non impediscono la compilazione, ma segnalano codice potenzialmente pr
 warning: unused variable 'x' [-Wunused-variable]
 ```
 
-Non ignorarli — spesso indicano errori logici nascosti.
+Non ignorarli: possono segnalare codice che produce risultati inattesi.
 
 Compila sempre con `-Wall` per vedere tutti i warning:
 

@@ -3,9 +3,9 @@ title: Conversione dei tipi
 description: Come convertire valori tra tipi diversi ed evitare errori comuni.
 ---
 
-## Perche convertire un tipo
+## Perché convertire un tipo
 
-A volte hai un valore in un tipo, ma ti serve in un altro.
+A volte hai un valore di un tipo, ma ti serve di un altro.
 
 Per esempio:
 
@@ -19,7 +19,7 @@ Questa operazione si chiama **conversione di tipo**.
 
 Java permette alcune conversioni senza istruzioni speciali.
 
-Per esempio, un `int` puo diventare un `double`:
+Per esempio, un `int` può diventare un `double`:
 
 ```java
 int eta = 20;
@@ -34,11 +34,11 @@ Output:
 20.0
 ```
 
-Questa conversione e sicura: un numero intero puo essere rappresentato come numero decimale senza perdere informazione.
+Questa conversione è sicura: un numero intero può essere rappresentato come numero decimale senza perdere informazioni.
 
 ## Cast esplicito
 
-La conversione opposta non e automatica.
+La conversione opposta non è automatica.
 
 ```java
 double prezzo = 12.90;
@@ -62,11 +62,11 @@ Output:
 12
 ```
 
-Il cast a `int` taglia la parte decimale. Non arrotonda.
+Il cast a `int` elimina la parte decimale; non arrotonda.
 
 ## Perdita di informazioni
 
-Questo dettaglio e importante:
+Questo dettaglio è importante:
 
 ```java
 double media = 7.8;
@@ -100,7 +100,7 @@ Output:
 
 ## Convertire testo in numero
 
-Quando leggi input dall'utente o da un file, spesso i dati arrivano come testo.
+Quando leggi input dall'utente o da un file, i dati arrivano spesso come testo.
 
 Per trasformare una `String` in un `int`, usa `Integer.parseInt`:
 
@@ -141,9 +141,9 @@ String testo = "ciao";
 int numero = Integer.parseInt(testo); // errore a runtime
 ```
 
-`"ciao"` non puo diventare un numero intero.
+`"ciao"` non può diventare un numero intero.
 
-Piu avanti vedremo come gestire questi casi con le eccezioni.
+Più avanti vedremo come gestire questi casi con le eccezioni.
 
 ## Convertire numero in testo
 
@@ -166,10 +166,10 @@ Java converte il numero in testo per poter costruire la frase.
 
 ## Regola pratica
 
-Chiediti sempre:
+Chiediti:
 
 - sto passando da un tipo piu piccolo a uno piu ampio?
 - rischio di perdere dati?
 - il testo contiene davvero un numero?
 
-Se la conversione puo perdere informazione, Java ti chiede di essere esplicito. E una protezione, non un fastidio.
+Se la conversione può perdere informazioni, Java ti chiede di essere esplicito. È una protezione, non un ostacolo.

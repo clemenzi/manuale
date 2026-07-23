@@ -5,11 +5,11 @@ description: Come leggere dati inseriti dall'utente con cin in C++.
 
 ## Come si legge l'input dell'utente?
 
-Un programma che fa sempre la stessa cosa con gli stessi dati non è molto utile. `cin` ti permette di leggere quello che l'utente scrive dalla tastiera, rendendo il programma interattivo.
+`cin` legge dalla tastiera i dati inseriti dall'utente, così il programma può lavorare con valori scelti durante l'esecuzione.
 
 ## Cos'è `cin`?
 
-`cin` è lo strumento del C++ per leggere l'input dall'utente tramite tastiera. Come `cout`, fa parte della libreria `<iostream>`.
+`cin` legge l'input dalla tastiera e, come `cout`, appartiene alla libreria `<iostream>`.
 
 ## L'operatore `>>`
 
@@ -20,7 +20,7 @@ int x;
 cin >> x;
 ```
 
-Quando il programma arriva a questa riga, si ferma e aspetta che l'utente scriva qualcosa e prema Invio. Il valore inserito viene salvato nella variabile `x`.
+Quando il programma arriva a questa riga, aspetta l'input e salva il valore letto nella variabile `x`.
 
 ## Leggere un numero intero
 
@@ -73,7 +73,7 @@ Se l'utente scrive "Alice Bianchi", `cin >> nome` legge solo "Alice" e scarta "B
 
 ## Leggere una riga intera (con spazi)
 
-Per leggere tutta la riga compreso gli spazi, usa `getline()`:
+Per leggere tutta la riga, spazi compresi, usa `getline()`:
 
 ```cpp
 #include <iostream>

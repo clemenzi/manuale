@@ -3,13 +3,13 @@ title: GROUP BY
 description: Come raggruppare le righe che condividono lo stesso valore.
 ---
 
-## Ragionare per gruppi
+## Raggruppare le righe
 
-`GROUP BY` serve quando non vuoi guardare le righe una per una, ma vuoi **raggrupparle**.
+`GROUP BY` serve quando vuoi **raggruppare** le righe che condividono uno stesso valore.
 
 Immagina una pila di schede clienti. Invece di leggerle in ordine, le dividi per città: Roma da una parte, Milano da un’altra, Torino da un’altra ancora.
 
-SQL fa la stessa cosa con `GROUP BY`.
+`GROUP BY` applica questa logica ai dati della tabella.
 
 ```sql
 SELECT citta, COUNT(*) AS numero_clienti
@@ -58,7 +58,7 @@ Per esempio:
 - `SUM(totale)` somma i totali del gruppo.
 - `AVG(prezzo)` calcola la media del gruppo.
 
-Per questo `GROUP BY` è così usato nei report.
+Per questo `GROUP BY` è comune nei report.
 
 ## Una regola da ricordare
 
@@ -99,7 +99,7 @@ GROUP BY citta, stato;
 
 Qui SQL crea un gruppo per ogni combinazione di `citta` e `stato`.
 
-È come dividere prima le schede per città e poi, dentro ogni città, separarle per stato.
+Prima raggruppi per città, poi per stato all'interno di ogni città.
 
 ## Riepilogo rapido
 

@@ -5,21 +5,21 @@ description: Come lavorare con il testo in Python.
 
 ## Cosa sono le stringhe?
 
-Una **stringa** è semplicemente del testo: un nome, un messaggio, una frase. In Python le stringhe si scrivono tra virgolette singole `'...'` o doppie `"..."`:
+Una **stringa** rappresenta testo, come un nome, un messaggio o una frase. In Python si scrive tra virgolette singole `'...'` o doppie `"..."`:
 
 ```python
 nome = "Alice"
 saluto = 'Ciao, mondo!'
 ```
 
-Usa virgolette doppie se dentro il testo c'è un apostrofo, e singole se c'è già una virgoletta doppia:
+Puoi usare le virgolette doppie quando il testo contiene un apostrofo, e quelle singole quando contiene virgolette doppie:
 
 ```python
 con_apice = "It's a great day"       # apostrofo dentro → virgolette doppie fuori
 con_virgolette = 'Disse "ciao!"'     # virgolette doppie dentro → singole fuori
 ```
 
-Per testo su più righe, usa le virgolette triple:
+Per un testo su più righe usa le virgolette triple:
 
 ```python
 poesia = """Questa stringa
@@ -29,7 +29,7 @@ più righe."""
 
 ## Accedere ai singoli caratteri
 
-Come nelle liste, ogni carattere ha una posizione (indice) che parte da `0`:
+Come nelle liste, ogni carattere ha un indice che parte da `0`:
 
 ```python
 testo = "Python"
@@ -41,7 +41,7 @@ print(testo[-2])  # o  — penultimo
 
 ## Estrarre una parte di stringa (slicing)
 
-Puoi estrarre una sottostringa indicando da dove a dove:
+Puoi estrarre una sottostringa indicando l'indice iniziale e quello finale:
 
 ```python
 testo = "Python"
@@ -60,7 +60,7 @@ print(len(testo))  # 6
 
 ## Mettere stringhe insieme
 
-Puoi unire due stringhe con `+` e ripetere una stringa con `*`:
+Con `+` puoi unire due stringhe; con `*` puoi ripetere una stringa:
 
 ```python
 a = "Ciao"
@@ -69,9 +69,9 @@ print(a + b)   # Ciao mondo
 print(a * 3)   # CiaoCiaoCiao
 ```
 
-## Le f-string: il modo migliore per inserire variabili
+## Le f-string: inserire variabili nel testo
 
-Invece di unire le stringhe con `+` (che è scomodo), usa le **f-string**: scrivi una `f` prima delle virgolette e metti le variabili tra parentesi graffe `{}`:
+Per inserire variabili nel testo puoi usare le **f-string**: scrivi una `f` prima delle virgolette e metti le variabili tra parentesi graffe `{}`:
 
 ```python
 nome = "Alice"
@@ -85,11 +85,11 @@ print(f"La somma di {a} e {b} è {a + b}.")
 # La somma di 5 e 3 è 8.
 ```
 
-Le f-string sono la forma moderna e più leggibile. Usale sempre quando devi mettere variabili nel testo.
+Le f-string rendono espliciti i valori inseriti nella stringa e sono adatte a questo caso.
 
 ## Metodi utili delle stringhe
 
-Le stringhe hanno molti strumenti integrati. Ecco i più usati, divisi per categoria.
+Le stringhe hanno molti metodi integrati. Questi sono alcuni dei più usati.
 
 ### Cambiare maiuscole e rimuovere spazi
 
@@ -147,7 +147,7 @@ print("Nome:\tAlice")
 
 ## Le stringhe non si modificano
 
-Attenzione: le stringhe sono **immutabili**. Non puoi cambiare un singolo carattere. Se hai bisogno di una stringa modificata, devi crearne una nuova:
+Le stringhe sono **immutabili**: non puoi cambiare un singolo carattere. Per ottenere una versione modificata devi crearne una nuova:
 
 ```python
 testo = "ciao"

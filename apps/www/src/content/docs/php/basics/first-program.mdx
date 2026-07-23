@@ -14,7 +14,7 @@ Scrivi questo codice:
 echo "Ciao, PHP!";
 ```
 
-La riga `<?php` dice: da qui inizia codice PHP. La parola `echo` mostra un testo.
+La riga `<?php` indica l'inizio del codice PHP. La parola `echo` mostra un testo.
 
 ## Eseguire il file dal terminale
 
@@ -30,11 +30,11 @@ Output:
 Ciao, PHP!
 ```
 
-PHP legge il file ed esegue le istruzioni dall'alto verso il basso.
+PHP legge il file ed esegue le istruzioni dall'alto verso il basso, nell'ordine in cui sono scritte.
 
 ## Aggiungere una seconda istruzione
 
-Modifica il file cosi:
+Modifica il file così:
 
 ```php
 <?php
@@ -42,7 +42,7 @@ echo "Ciao, PHP!\n";
 echo "Questo e il mio primo programma.";
 ```
 
-`\n` crea una nuova riga nel terminale.
+`\n` inserisce una nuova riga nell'output del terminale.
 
 Output:
 
@@ -53,7 +53,7 @@ Questo e il mio primo programma.
 
 ## Usare il server locale integrato
 
-PHP puo anche avviare un piccolo server locale. Serve quando vuoi vedere una pagina nel browser.
+PHP può anche avviare un piccolo server locale, utile per vedere una pagina nel browser.
 
 Crea `index.php`:
 
@@ -76,15 +76,15 @@ Apri `http://localhost:8000` nel browser. Vedrai il titolo prodotto da PHP.
 
 Hai usato PHP in due modi diversi.
 
-Nel primo caso hai eseguito un file dal terminale. Questo e utile per esercizi piccoli, prove veloci e script che non devono mostrare una pagina web.
+Nel primo caso hai eseguito un file dal terminale. È utile per esercizi piccoli, prove veloci e script che non devono mostrare una pagina web.
 
-Nel secondo caso hai avviato un server locale. Il browser ha chiesto una pagina a `localhost:8000`, PHP ha eseguito `index.php` e ha mandato al browser il risultato.
+Nel secondo caso hai avviato un server locale. Il browser ha chiesto una pagina a `localhost:8000`, PHP ha eseguito `index.php` e ha inviato il risultato.
 
-`localhost` significa "questo computer". Non e un sito pubblico: e un indirizzo speciale che usi per provare il progetto sulla tua macchina.
+`localhost` significa "questo computer". Non è un sito pubblico, ma un indirizzo speciale per provare il progetto sulla tua macchina.
 
 ## Errore comune: aprire il file direttamente
 
-Se apri `index.php` facendo doppio clic sul file, il browser potrebbe mostrarti il codice o non eseguirlo correttamente. Per eseguire PHP serve passare da PHP stesso, con il comando:
+Se apri `index.php` con un doppio clic, il browser potrebbe mostrare il codice o non eseguirlo correttamente. Per eseguire PHP devi usare il comando:
 
 ```bash
 php -S localhost:8000
@@ -94,4 +94,4 @@ Poi apri l'indirizzo nel browser.
 
 ## Prova tu
 
-Modifica il messaggio dentro `echo`, salva il file e ricarica la pagina. Se il testo cambia, hai completato il ciclo base: scrivi, salvi, esegui, osservi il risultato.
+Modifica il messaggio dentro `echo`, salva il file e ricarica la pagina. Se il testo cambia, hai completato il ciclo di base: scrivi, salvi, esegui e osservi il risultato.

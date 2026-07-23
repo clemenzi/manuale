@@ -3,9 +3,9 @@ title: Ciclo while
 description: Come ripetere istruzioni finche una condizione resta vera.
 ---
 
-## Ripetere finche una condizione e vera
+## Ripetere finché una condizione è vera
 
-Il ciclo `while` ripete un blocco finche una condizione resta vera.
+Il ciclo `while` ripete un blocco finché una condizione resta vera.
 
 ```java
 int numero = 1;
@@ -42,7 +42,7 @@ Nel nostro esempio:
 while (numero <= 3)
 ```
 
-il ciclo continua finche `numero` e minore o uguale a 3.
+il ciclo continua finché `numero` è minore o uguale a 3.
 
 Dentro il ciclo aggiorniamo la variabile:
 
@@ -72,7 +72,7 @@ Un ciclo che non finisce si chiama **ciclo infinito**.
 
 ## Usare while con input utente
 
-`while` e molto utile quando non sai prima quante volte l'utente fara qualcosa.
+`while` è utile quando non sai quante volte l'utente farà qualcosa.
 
 ```java
 import java.util.Scanner;
@@ -93,7 +93,7 @@ public class Password {
 }
 ```
 
-Il ciclo continua finche la password non e `"java"`.
+Il ciclo continua finché la password non è `"java"`.
 
 `!password.equals("java")` significa: "la password non e uguale a java".
 
@@ -126,7 +126,7 @@ Ogni giro aumenta `tentativi` di 1.
 
 ## while o for?
 
-Usa `for` quando sai gia quante volte ripetere:
+Usa `for` quando sai già quante volte ripetere:
 
 ```java
 for (int i = 0; i < 5; i++) {
@@ -144,7 +144,7 @@ while (!password.equals("java")) {
 
 ## Un ciclo che potrebbe non partire
 
-Poiche `while` controlla la condizione all'inizio, il blocco potrebbe non essere eseguito nemmeno una volta.
+Poiché `while` controlla la condizione all'inizio, il blocco potrebbe non essere eseguito nemmeno una volta.
 
 ```java
 int numero = 10;

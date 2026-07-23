@@ -5,9 +5,9 @@ description: Come connettere PHP a un database usando PDO.
 
 ## Cosa e PDO
 
-PDO e uno strumento di PHP per parlare con database diversi usando un'interfaccia comune.
+PDO è uno strumento di PHP per comunicare con database diversi attraverso un'interfaccia comune.
 
-Puoi pensarlo come un adattatore: il tuo codice PHP usa PDO, e PDO si occupa di comunicare con il database.
+Puoi pensarlo come un adattatore: il codice PHP usa PDO, che comunica con il database.
 
 ## Dati di connessione
 
@@ -34,7 +34,7 @@ $pdo = new PDO($dsn, $utente, $password);
 
 ## Gestire gli errori
 
-Aggiungi opzioni per ricevere errori chiari.
+Aggiungi opzioni per ricevere messaggi di errore chiari.
 
 ```php
 <?php
@@ -44,11 +44,11 @@ $pdo = new PDO($dsn, $utente, $password, [
 ]);
 ```
 
-`ERRMODE_EXCEPTION` fa lanciare eccezioni quando qualcosa va storto. `FETCH_ASSOC` restituisce righe come array associativi.
+`ERRMODE_EXCEPTION` fa lanciare eccezioni quando qualcosa va storto. `FETCH_ASSOC` restituisce le righe come array associativi.
 
 ## Proteggere le credenziali
 
-Non mettere password reali in file pubblici o condivisi. Nei progetti veri si usano variabili d'ambiente o file di configurazione non caricati online.
+Non mettere password reali in file pubblici o condivisi. Nei progetti reali si usano variabili d'ambiente o file di configurazione esclusi dalla pubblicazione.
 
 ## Verificare il collegamento
 
@@ -57,11 +57,11 @@ Non mettere password reali in file pubblici o condivisi. Nei progetti veri si us
 echo "Connessione riuscita";
 ```
 
-Se il codice arriva a questa riga senza errori, PHP e riuscito a collegarsi.
+Se il codice arriva a questa riga senza errori, PHP è riuscito a collegarsi.
 
 ## Gestire un errore di connessione
 
-Una connessione puo fallire: password sbagliata, database spento, nome del database errato. Per questo conviene usare `try` e `catch`.
+Una connessione può fallire per una password sbagliata, un database spento o un nome errato. Per gestire questi casi puoi usare `try` e `catch`.
 
 ```php
 <?php
@@ -77,11 +77,11 @@ try {
 }
 ```
 
-Durante lo studio puoi leggere il messaggio tecnico dell'errore. In un sito pubblico, invece, mostra un messaggio generico e registra il dettaglio nei log.
+Durante lo studio puoi leggere il messaggio tecnico dell'errore. In un sito pubblico mostra invece un messaggio generico e registra il dettaglio nei log.
 
 ## Primo controllo con una query semplice
 
-Dopo la connessione puoi provare una query piccola.
+Dopo la connessione puoi provare una query semplice.
 
 ```php
 <?php
@@ -91,8 +91,8 @@ $risultato = $stmt->fetchColumn();
 echo $risultato;
 ```
 
-Se vedi `1`, PHP ha parlato con il database e ha ricevuto una risposta.
+Se vedi `1`, PHP ha comunicato con il database e ha ricevuto una risposta.
 
 ## Errore comune: confondere PDO con SQL
 
-PDO non sostituisce SQL. PDO e il mezzo con cui PHP invia istruzioni SQL al database e riceve risultati.
+PDO non sostituisce SQL: è il mezzo con cui PHP invia istruzioni SQL al database e riceve risultati.

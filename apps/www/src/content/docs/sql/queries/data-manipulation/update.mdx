@@ -3,9 +3,9 @@ title: UPDATE
 description: Come modificare dati già presenti nel database senza toccare le righe sbagliate.
 ---
 
-## Modificare una riga esistente
+## Modificare una riga
 
-`UPDATE` serve quando un dato esiste già, ma deve cambiare.
+`UPDATE` serve quando devi cambiare un dato già presente.
 
 Un cliente cambia città. Un prodotto cambia prezzo. Un ordine passa da “in preparazione” a “spedito”. In tutti questi casi non vuoi creare una nuova riga: vuoi aggiornare quella giusta.
 
@@ -41,13 +41,13 @@ Qui cambi sia la città sia l’email dello stesso cliente.
 
 ## Il ruolo di `WHERE`
 
-La parte più delicata è `WHERE`.
+La parte da controllare con più attenzione è `WHERE`.
 
 ```sql
 WHERE id = 1
 ```
 
-Questa condizione sceglie la riga da modificare. Senza di lei, il database non sa che vuoi aggiornare un solo cliente.
+Questa condizione sceglie la riga da modificare. Senza di essa, il database può aggiornare tutte le righe.
 
 > **Attenzione:** Un `UPDATE` senza `WHERE` può modificare tutte le righe della tabella.
 
@@ -77,7 +77,7 @@ WHERE id = 5;
 
 `prezzo * 1.10` significa: “prendi il prezzo attuale e moltiplicalo per 1,10”.
 
-È una possibilità utile, ma va usata con attenzione. Anche qui, il filtro `WHERE` decide quali righe cambieranno.
+Anche in questo caso il filtro `WHERE` decide quali righe cambiano.
 
 ## Riepilogo rapido
 

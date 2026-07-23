@@ -3,7 +3,7 @@ title: Incapsulamento
 description: Come proteggere i dati di un oggetto con private, getter e setter.
 ---
 
-## Perche non lasciare tutto pubblico
+## Perché non lasciare tutto pubblico
 
 Finora abbiamo modificato i campi direttamente:
 
@@ -11,13 +11,13 @@ Finora abbiamo modificato i campi direttamente:
 persona.eta = -5;
 ```
 
-Java lo permette se il campo e accessibile, ma questo valore non ha senso.
+Java lo permette se il campo è accessibile, ma questo valore non ha senso.
 
-L'**incapsulamento** serve a proteggere i dati di un oggetto e controllare come vengono letti o modificati.
+L'**incapsulamento** protegge i dati di un oggetto e controlla come vengono letti o modificati.
 
 ## private
 
-Con `private`, un campo puo essere usato solo dentro la classe.
+Con `private`, un campo può essere usato solo dentro la classe.
 
 ```java
 public class Persona {
@@ -68,7 +68,7 @@ public void setNome(String nome) {
 }
 ```
 
-Il vantaggio e che puoi controllare il valore prima di salvarlo.
+Il vantaggio è poter controllare il valore prima di salvarlo.
 
 ```java
 public void setEta(int eta) {
@@ -151,4 +151,4 @@ L'incapsulamento aiuta a:
 - cambiare l'interno della classe senza rompere tutto il programma
 - rendere chiaro quali azioni sono permesse
 
-All'inizio sembra piu lungo. Nei programmi reali rende il codice piu sicuro e ordinato.
+All'inizio sembra più lungo. Nei programmi reali rende il codice più sicuro e ordinato.

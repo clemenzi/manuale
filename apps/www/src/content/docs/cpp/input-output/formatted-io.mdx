@@ -5,9 +5,9 @@ description: Come formattare l'output in C++ con setw, setprecision e altre opzi
 
 ## Controllare l'aspetto dell'output
 
-Stampare "3.14159265358979" va bene in alcuni casi, ma se stai mostrando un prezzo vuoi "3.14". Se stai costruendo una tabella vuoi che le colonne siano allineate.
+Il formato predefinito non è sempre adatto: un prezzo può richiedere due cifre decimali e una tabella colonne allineate.
 
-Il C++ offre strumenti per controllare con precisione come appaiono i dati sullo schermo. Per usarli, includi `<iomanip>`:
+La libreria `<iomanip>` contiene gli strumenti per controllare la visualizzazione dei dati:
 
 ```cpp
 #include <iostream>
@@ -46,7 +46,7 @@ cout << scientific << setprecision(3) << grande << endl;  // 1.235e+06
 
 ## Larghezza minima: `setw`
 
-`setw(n)` riserva almeno `n` spazi per il prossimo valore stampato. Se il valore è più corto, vengono aggiunti spazi davanti (a destra di default):
+`setw(n)` riserva almeno `n` posizioni per il prossimo valore. Se il valore è più corto, aggiunge spazi (a sinistra per l'allineamento predefinito):
 
 ```cpp
 cout << setw(10) << "Nome" << setw(10) << "Età" << endl;

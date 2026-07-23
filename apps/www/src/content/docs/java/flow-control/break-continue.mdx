@@ -5,14 +5,14 @@ description: Come interrompere o saltare un passaggio dentro un ciclo.
 
 ## Controllare meglio un ciclo
 
-A volte un ciclo non deve arrivare alla sua fine naturale.
+A volte un ciclo deve fermarsi prima della fine.
 
 Java offre due parole utili:
 
 - `break` interrompe il ciclo
 - `continue` salta al giro successivo
 
-Usale con misura: rendono alcuni casi piu semplici, ma se abusate possono rendere il flusso difficile da seguire.
+Usale con misura: in alcuni casi semplificano il codice, ma troppe interruzioni rendono il flusso difficile da seguire.
 
 ## break
 
@@ -40,7 +40,7 @@ Quando `i` vale `4`, Java esegue `break` e il ciclo finisce.
 
 ## Cercare un valore
 
-`break` e utile quando hai trovato quello che cercavi.
+`break` è utile quando hai trovato quello che cercavi.
 
 ```java
 int[] numeri = {4, 8, 15, 16, 23, 42};
@@ -67,7 +67,7 @@ Dopo aver trovato `16`, non serve controllare gli altri numeri.
 
 ## continue
 
-`continue` salta il resto del blocco e passa al prossimo giro.
+`continue` salta il resto del blocco e passa al giro successivo.
 
 ```java
 for (int i = 1; i <= 5; i++) {

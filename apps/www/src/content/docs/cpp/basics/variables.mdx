@@ -7,7 +7,7 @@ description: Come dichiarare e usare le variabili in C++.
 
 Un programma deve ricordare delle informazioni mentre lavora: il nome dell'utente, il punteggio di un gioco, il risultato di un calcolo.
 
-Le **variabili** sono i contenitori in cui il programma memorizza queste informazioni. Pensa a una variabile come a una scatola con un'etichetta: l'etichetta è il nome della variabile, il contenuto della scatola è il suo valore.
+Le **variabili** sono i nomi associati ai valori che il programma conserva e può aggiornare durante l'esecuzione.
 
 ## Dichiarare una variabile
 
@@ -19,11 +19,11 @@ double altezza; // una scatola per numeri decimali, chiamata "altezza"
 char iniziale;  // una scatola per un singolo carattere, chiamata "iniziale"
 ```
 
-Dopo la dichiarazione, la scatola esiste in memoria, ma è vuota (o meglio: contiene un valore casuale imprevedibile).
+Dopo la dichiarazione, una variabile locale non inizializzata contiene un valore indeterminato.
 
 ## Inizializzare una variabile
 
-**Inizializzare** significa mettere subito un valore nella scatola al momento in cui la crei:
+**Inizializzare** significa assegnare il primo valore mentre dichiari la variabile:
 
 ```cpp
 int eta = 16;
@@ -39,7 +39,7 @@ int x{10};       // equivalente a int x = 10;
 double pi{3.14};
 ```
 
-Questa forma è preferita dai programmatori più esperti perché il compilatore la controlla più attentamente.
+Questa forma consente controlli più severi sulle conversioni e può evitare perdita di dati.
 
 ## Cambiare il valore
 
@@ -106,7 +106,7 @@ int x;
 cout << x;  // stampa un numero imprevedibile — comportamento non definito!
 ```
 
-In Python questo causa un errore chiaro. In C++ il compilatore potrebbe non avvertire, e il programma si comporta in modo strano.
+In Python questo causa un errore chiaro. In C++ il compilatore potrebbe non avvertire e il programma può produrre risultati imprevedibili.
 
 **Regola pratica: inizializza sempre le variabili quando le dichiari.**
 

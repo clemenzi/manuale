@@ -5,7 +5,7 @@ description: Come sono organizzati classi, metodi e istruzioni in un file Java.
 
 ## Guardare un programma a strati
 
-Un programma Java sembra lungo anche quando fa poco. Questo succede perche Java vuole una struttura esplicita.
+Un programma Java può sembrare lungo anche quando fa poco, perché Java usa una struttura esplicita.
 
 Partiamo da un esempio:
 
@@ -32,7 +32,7 @@ public class Programma {
 }
 ```
 
-Una **classe** e un blocco che raccoglie codice. Nei primi esempi useremo una classe come contenitore principale.
+Una **classe** è un blocco che raccoglie codice. Nei primi esempi la useremo come contenitore principale.
 
 Il nome della classe pubblica deve corrispondere al nome del file.
 
@@ -57,9 +57,9 @@ public static void main(String[] args) {
 }
 ```
 
-Il metodo `main` e il punto di partenza del programma. Quando scrivi `java Programma`, Java cerca questo metodo e inizia da li.
+Il metodo `main` è il punto di partenza del programma. Quando scrivi `java Programma`, Java cerca questo metodo e inizia da lì.
 
-Per ora non serve capire ogni parola della riga. Tienila come formula di avvio:
+Per ora non serve capire ogni parola della riga. Usala come formula di avvio:
 
 ```java
 public static void main(String[] args)
@@ -76,7 +76,7 @@ System.out.println("Inizio");
 System.out.println("Fine");
 ```
 
-Una **istruzione** e un comando che Java deve eseguire.
+Una **istruzione** è un comando che Java deve eseguire.
 
 In Java molte istruzioni finiscono con il punto e virgola `;`.
 
@@ -85,7 +85,7 @@ int eta = 20;
 System.out.println(eta);
 ```
 
-Il punto e virgola dice a Java: "questa istruzione e finita".
+Il punto e virgola dice a Java: "questa istruzione è finita".
 
 ## Le parentesi graffe
 
@@ -109,7 +109,7 @@ public class Programma {
 
 Il blocco di `main` sta dentro il blocco della classe.
 
-L'indentazione, cioe gli spazi all'inizio delle righe, non cambia il significato per Java. Serve pero a noi per leggere meglio.
+L'indentazione, cioè gli spazi all'inizio delle righe, non cambia il significato per Java. Serve però a leggere meglio il codice.
 
 ## Un programma con piu istruzioni
 
@@ -142,7 +142,7 @@ Il programma viene eseguito dall'alto verso il basso, una riga alla volta.
 Quando scrivi un file Java di base, controlla tre cose:
 
 1. il nome del file corrisponde al nome della classe
-2. il metodo `main` e scritto correttamente
+2. il metodo `main` è scritto correttamente
 3. ogni istruzione che lo richiede finisce con `;`
 
-Molti errori iniziali nascono da uno di questi tre dettagli.
+Molti errori iniziali nascono da uno di questi dettagli.

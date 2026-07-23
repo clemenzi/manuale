@@ -3,23 +3,23 @@ title: Ereditarietà in Python
 description: Come creare classi basate su altre classi in Python.
 ---
 
-## Perché è utile usare l'ereditarietà
+## A cosa serve l'ereditarietà
 
-Immagina di dover descrivere gli animali in un programma: cani, gatti, uccelli. Tutti respirano, tutti mangiano — ma ognuno fa un suono diverso. Dovresti riscrivere il codice per "respira" e "mangia" tre volte?
+Se descrivi cani, gatti e uccelli, alcune operazioni sono comuni: tutti respirano e mangiano, ma producono suoni diversi.
 
-L'**ereditarietà** risolve questo problema: scrivi il codice comune una volta sola in una classe "genitore", e le classi "figlie" lo ereditano automaticamente — aggiungendo solo le loro particolarità.
+Con l'**ereditarietà** scrivi il codice comune nella classe "genitore". Le classi "figlie" lo ereditano e aggiungono le proprie caratteristiche.
 
 ---
 
 ## La metafora della famiglia
 
-Pensa all'ereditarietà biologica:
+L'analogia con l'ereditarietà biologica è questa:
 
 - Un figlio eredita dai genitori molte caratteristiche (colore degli occhi, gruppo sanguigno)
 - Ma ha anche caratteristiche sue proprie
 - Può anche avere caratteristiche simili ai genitori ma con variazioni (stesso naso, ma di misura diversa)
 
-In programmazione funziona esattamente così.
+In programmazione il principio è simile.
 
 ---
 
@@ -73,7 +73,7 @@ micio.fa_le_fusa() # → Micio fa le fusa...
 
 ## Sovrascrivere i metodi (Override)
 
-La classe figlia può **ridefinire** un metodo del genitore per cambiarne il comportamento. È come un figlio che ha "lo stesso tipo di carattere" del padre, ma con sfumature diverse.
+La classe figlia può **ridefinire** un metodo del genitore e cambiarne il comportamento.
 
 ```python
 class Animale:

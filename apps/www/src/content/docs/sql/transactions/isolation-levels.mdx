@@ -3,13 +3,11 @@ title: Livelli di isolamento
 description: READ COMMITTED, REPEATABLE READ, SERIALIZABLE e gli altri livelli principali.
 ---
 
-## Quando più persone lavorano insieme, il problema non è solo cosa fai ma cosa vedi
+## Controllare cosa vede una transazione
 
 **I livelli di isolamento stabiliscono quanto una transazione può vedere del lavoro delle altre transazioni in corso.**
 
-Se due persone modificano o leggono dati nello stesso momento, il database deve decidere quanta "privacy" dare a ciascuna operazione.
-
-Pensa a due persone che aggiornano lo stesso documento. Possono vedere subito le modifiche dell'altra? Devono aspettare? Il sistema deve scegliere una regola.
+Quando più transazioni leggono o modificano gli stessi dati, il database stabilisce quali modifiche può vedere ciascuna.
 
 Livelli noti:
 
@@ -20,7 +18,7 @@ Livelli noti:
 
 ## La regola intuitiva
 
-**Più isolamento significa di solito più sicurezza e prevedibilità, ma anche meno libertà di lavorare in parallelo.**
+**Più isolamento significa di solito maggiore prevedibilità, ma anche meno concorrenza.**
 
 È sempre un equilibrio tra protezione e prestazioni.
 

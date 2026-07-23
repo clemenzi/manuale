@@ -5,11 +5,11 @@ description: Come riusare e organizzare comportamento tra classi PHP.
 
 ## Prima la soluzione semplice
 
-Ereditarieta, interfacce e trait sono strumenti utili, ma non servono in ogni programma. Prima prova con classi piccole e metodi chiari. Usa questi strumenti quando risolvono un problema reale.
+Ereditarietà, interfacce e trait sono strumenti utili, ma non servono in ogni programma. Prima prova con classi piccole e metodi chiari. Usali quando risolvono un problema reale.
 
 ## Ereditarieta con extends
 
-L'ereditarieta permette a una classe di partire da un'altra classe.
+L'ereditarietà permette a una classe di partire da un'altra classe.
 
 ```php
 <?php
@@ -29,11 +29,11 @@ $admin = new Admin();
 echo $admin->saluta();
 ```
 
-`Admin` eredita il metodo `saluta` da `Utente`.
+`Admin` eredita da `Utente` il metodo `saluta`.
 
 ## Interfacce con implements
 
-Un'interfaccia descrive quali metodi una classe deve avere.
+Un'interfaccia descrive i metodi che una classe deve avere.
 
 ```php
 <?php
@@ -48,11 +48,11 @@ class Email implements Notificabile {
 }
 ```
 
-L'interfaccia non spiega come fare il lavoro. Stabilisce il contratto.
+L'interfaccia non spiega come eseguire il lavoro: stabilisce il contratto.
 
 ## Trait
 
-Un trait permette di riusare metodi in piu classi.
+Un trait permette di riusare metodi in più classi.
 
 ```php
 <?php
@@ -94,7 +94,7 @@ class Bonifico implements Pagabile {
 }
 ```
 
-Entrambe le classi promettono di avere un metodo `paga`.
+Entrambe le classi garantiscono di avere un metodo `paga`.
 
 ## Quando evitare l'ereditarieta
 
@@ -102,4 +102,4 @@ Non usare `extends` solo per riusare due righe di codice. L'ereditarieta crea un
 
 ## Riepilogo
 
-Questi strumenti servono a organizzare progetti piu grandi. Se una pagina con classi semplici e metodi chiari risolve il problema, resta su quella strada. La semplicita e una scelta tecnica, non una mancanza.
+Questi strumenti servono a organizzare progetti più grandi. Se classi semplici e metodi chiari risolvono il problema, resta su quella strada. La semplicità è una scelta tecnica, non una mancanza.

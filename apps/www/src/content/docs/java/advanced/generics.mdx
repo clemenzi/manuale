@@ -5,7 +5,7 @@ description: Come usare tipi parametrizzati per collezioni e classi riutilizzabi
 
 ## Il problema che risolvono
 
-Hai gia visto codice come questo:
+Hai già visto codice come questo:
 
 ```java
 ArrayList<String> nomi = new ArrayList<>();
@@ -17,7 +17,7 @@ Questa idea si chiama **generics**.
 
 ## Tipi piu sicuri
 
-Senza generics, una lista potrebbe contenere di tutto: testi, numeri, oggetti diversi.
+Senza generics, una lista potrebbe contenere valori di tipi diversi.
 
 Con i generics, Java controlla il tipo.
 
@@ -29,7 +29,7 @@ nomi.add("Sara");
 // nomi.add(10); // errore
 ```
 
-`10` e un `int`, non una `String`. Java lo segnala subito.
+`10` è un `int`, non una `String`. Java lo segnala subito.
 
 ## Generics nelle collezioni
 
@@ -68,7 +68,7 @@ public class Scatola<T> {
 }
 ```
 
-`T` e un parametro di tipo. Significa: il tipo verra scelto quando userai la classe.
+`T` è un parametro di tipo: il tipo verrà scelto quando userai la classe.
 
 ## Usare la classe generica
 
@@ -91,7 +91,7 @@ Luca
 42
 ```
 
-La stessa classe `Scatola` funziona con tipi diversi, ma resta controllata.
+La stessa classe `Scatola` funziona con tipi diversi, mantenendo il controllo sui valori.
 
 ## Perche non usare Object
 
@@ -103,7 +103,7 @@ public class Scatola {
 }
 ```
 
-Il problema e che poi perdi informazioni sul tipo e devi fare cast manuali.
+Il problema è che perdi informazioni sul tipo e devi fare cast manuali.
 
 I generics evitano molti cast e molti errori.
 

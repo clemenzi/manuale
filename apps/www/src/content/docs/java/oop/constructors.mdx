@@ -13,9 +13,9 @@ persona.nome = "Luca";
 persona.eta = 20;
 ```
 
-Funziona, ma e facile dimenticare un campo.
+Funziona, ma è facile dimenticare un campo.
 
-Un **costruttore** serve a inizializzare l'oggetto nel momento in cui viene creato.
+Un **costruttore** inizializza l'oggetto nel momento in cui viene creato.
 
 ## Creare un costruttore
 
@@ -33,7 +33,7 @@ public class Persona {
 
 Il costruttore ha lo stesso nome della classe.
 
-Non ha tipo di ritorno: non scrivi ne `void` ne `int` ne altro.
+Non ha tipo di ritorno: non scrivi né `void` né `int` né altro.
 
 ## Usare il costruttore
 
@@ -76,7 +76,7 @@ La riga si legge cosi: "metti nel campo `nome` di questo oggetto il valore ricev
 
 ## Costruttore predefinito
 
-Se non scrivi nessun costruttore, Java ne crea uno vuoto per te.
+Se non scrivi nessun costruttore, Java ne crea automaticamente uno vuoto.
 
 ```java
 public class Persona {
@@ -91,11 +91,11 @@ Puoi fare:
 Persona persona = new Persona();
 ```
 
-Ma appena scrivi un costruttore con parametri, Java non crea piu automaticamente quello vuoto.
+Appena scrivi un costruttore con parametri, Java non crea più automaticamente quello vuoto.
 
 ## Piu costruttori
 
-Puoi avere piu costruttori con parametri diversi.
+Puoi avere più costruttori con parametri diversi.
 
 ```java
 public class Persona {
@@ -121,7 +121,7 @@ Persona a = new Persona();
 Persona b = new Persona("Sara", 25);
 ```
 
-Questo e un caso di overloading applicato ai costruttori.
+Questo è un caso di overloading applicato ai costruttori.
 
 ## Esempio completo
 
@@ -153,4 +153,4 @@ public class Negozio {
 }
 ```
 
-I costruttori rendono piu difficile creare oggetti incompleti.
+I costruttori rendono più difficile creare oggetti incompleti.

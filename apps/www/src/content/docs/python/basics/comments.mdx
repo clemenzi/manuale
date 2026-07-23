@@ -5,11 +5,11 @@ description: Come lasciare note nel codice per te stesso e per chi leggerà il t
 
 ## Perché scrivere commenti?
 
-Immagina di aprire un tuo vecchio quaderno di appunti dopo sei mesi. Se hai scritto solo formule e numeri senza spiegazioni, probabilmente non ricordi più cosa significano.
+Se riapri dopo sei mesi un quaderno pieno solo di formule e numeri, potresti non ricordare più cosa significano.
 
-Nel codice succede la stessa cosa. Un **commento** è una nota che scrivi nel codice per spiegare cosa sta succedendo. Python ignora completamente i commenti quando esegue il programma: sono messaggi solo per gli esseri umani.
+Nel codice succede qualcosa di simile. Un **commento** è una nota per spiegare una scelta o un passaggio. Python lo ignora quando esegue il programma.
 
-Scrivere buoni commenti è una delle abitudini più importanti di un programmatore.
+Un buon commento aiuta chi leggerà il codice in seguito, compreso te stesso.
 
 ## Commenti su una riga
 
@@ -25,7 +25,7 @@ print("Ciao!")  # Puoi mettere un commento anche dopo il codice
 
 ## Commenti su più righe
 
-Se vuoi scrivere un commento lungo, hai due opzioni.
+Per una nota su più righe puoi scegliere tra due forme.
 
 **Opzione 1:** Metti `#` all'inizio di ogni riga
 
@@ -45,11 +45,11 @@ Viene spesso usato all'inizio di un file per descriverlo.
 """
 ```
 
-Tecnicamente le virgolette triple creano una stringa di testo, non un vero commento. Ma se non la assegni a nessuna variabile, Python la ignora lo stesso. Vengono usate moltissimo in pratica.
+Tecnicamente le virgolette triple creano una stringa, non un commento. Se non la assegni a una variabile, però, Python non la usa. Questa forma compare spesso all'inizio dei file.
 
 ## Cosa scrivere (e cosa NON scrivere)
 
-Un buon commento spiega il **perché** di una scelta, non il **cosa** fa il codice (quello si dovrebbe capire già leggendo il codice).
+Un buon commento spiega il **perché** di una scelta, non il **cosa** che il codice rende già evidente.
 
 ```python
 # Male: il commento dice l'ovvio, non aggiunge nulla
@@ -64,7 +64,7 @@ area = 3.14159 * raggio ** 2  # formula del cerchio: pi * r²
 
 ## Le docstring: commenti per le funzioni
 
-Le **docstring** sono commenti speciali che si mettono subito dentro una funzione (o una classe) per spiegare cosa fa. Si scrivono con le virgolette triple:
+Le **docstring** sono stringhe speciali inserite all'inizio di una funzione o di una classe per descriverne lo scopo. Si scrivono con le virgolette triple:
 
 ```python
 def calcola_area(base, altezza):

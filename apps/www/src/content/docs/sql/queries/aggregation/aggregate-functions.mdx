@@ -3,7 +3,7 @@ title: Funzioni aggregate
 description: COUNT, SUM, AVG, MIN e MAX per riassumere molte righe in un solo risultato.
 ---
 
-## Quando non vuoi vedere ogni riga
+## Riassumere molte righe
 
 A volte non ti interessa leggere tutti i dati uno per uno. Vuoi un riassunto.
 
@@ -14,7 +14,7 @@ Per esempio:
 - qual è il prezzo più alto?
 - qual è la media dei voti?
 
-Le **funzioni aggregate** servono proprio a questo: prendono molte righe e restituiscono un risultato riassuntivo.
+Le **funzioni aggregate** prendono molte righe e restituiscono un risultato riassuntivo.
 
 ## Contare le righe con `COUNT`
 
@@ -31,7 +31,7 @@ Se la tabella contiene 125 ordini, il risultato sarà un numero solo: `125`.
 
 ## Le funzioni più usate
 
-Ecco le aggregate che incontrerai più spesso:
+Le funzioni aggregate più comuni sono:
 
 | Funzione  | Cosa fa                   |
 | --------- | ------------------------- |
@@ -71,7 +71,7 @@ SELECT MIN(prezzo)
 FROM prodotti;
 ```
 
-Ogni query restituisce un solo valore, perché stai chiedendo un riassunto.
+Queste query restituiscono un valore riassuntivo.
 
 ## Dare un nome al risultato
 
@@ -84,7 +84,7 @@ FROM ordini;
 
 Ora il risultato avrà una colonna chiamata `numero_ordini`.
 
-È un dettaglio piccolo, ma rende le query molto più chiare, soprattutto nei report.
+Il nome rende il risultato più chiaro, soprattutto nei report.
 
 ## Attenzione a `NULL`
 

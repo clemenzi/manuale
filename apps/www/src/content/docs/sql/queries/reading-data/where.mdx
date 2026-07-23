@@ -3,13 +3,13 @@ title: WHERE
 description: Come filtrare le righe che ti servono davvero, senza leggere tutto.
 ---
 
-## Scegliere quali righe vedere
+## Filtrare le righe
 
 `WHERE` serve a dire al database: **mostrami solo le righe che rispettano questa condizione**.
 
 Senza `WHERE`, una query legge tutte le righe della tabella. Con `WHERE`, invece, restringi il risultato.
 
-È come cercare in una rubrica solo le persone che vivono a Roma, invece di leggere tutti i contatti uno per uno.
+È come cercare in una rubrica solo le persone che vivono a Roma.
 
 ```sql
 SELECT nome, citta
@@ -31,7 +31,7 @@ La parte importante è questa:
 WHERE citta = 'Roma'
 ```
 
-SQL controlla la condizione una riga alla volta.
+SQL valuta la condizione una riga alla volta.
 
 Se la riga ha `Roma` nella colonna `citta`, entra nel risultato. Se ha `Milano`, `Napoli` o qualsiasi altro valore, viene esclusa.
 
@@ -61,7 +61,7 @@ Il risultato sarà:
 | --- | ------ |
 | 2   | 120.00 |
 
-La query non ha “saltato” le altre righe per caso. Le ha controllate e ha tenuto solo quella in cui `totale > 100` era vero.
+La query ha controllato tutte le righe e ha mantenuto quella in cui `totale > 100` era vero.
 
 ## Gli operatori più comuni
 
@@ -76,7 +76,7 @@ Dopo `WHERE` puoi usare diversi operatori:
 | `>=`      | almeno      | `prezzo >= 10`         |
 | `<=`      | al massimo  | `quantita <= 5`        |
 
-Non serve impararli tutti a memoria subito. Li userai così spesso che diventeranno familiari.
+Non serve impararli tutti subito: li incontrerai spesso nelle query.
 
 ## Testi, numeri e date
 

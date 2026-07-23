@@ -5,7 +5,7 @@ description: Come usare chiavi testuali per rappresentare dati strutturati.
 
 ## Dalle posizioni ai nomi
 
-Negli array indicizzati leggi i valori con numeri come `0` e `1`. Negli array associativi usi chiavi testuali.
+Negli array indicizzati leggi i valori con numeri come `0` e `1`; negli array associativi usi chiavi testuali.
 
 ```php
 <?php
@@ -16,7 +16,7 @@ $utente = [
 ];
 ```
 
-Qui `"nome"`, `"eta"` ed `"email"` sono chiavi.
+Qui `"nome"`, `"eta"` ed `"email"` sono le chiavi.
 
 ## Leggere un valore
 
@@ -48,7 +48,7 @@ $prodotto = [
 $prodotto["prezzo"] = 3.20;
 ```
 
-Stai cambiando solo il valore collegato alla chiave `"prezzo"`.
+Stai cambiando solo il valore associato alla chiave `"prezzo"`.
 
 ## Aggiungere una chiave
 
@@ -75,11 +75,11 @@ foreach ($utente as $chiave => $valore) {
 }
 ```
 
-Gli array associativi sono utili per rappresentare profili, prodotti, impostazioni e dati che hanno un nome preciso.
+Gli array associativi sono utili per rappresentare profili, prodotti, impostazioni e altri dati con un nome preciso.
 
 ## Un prodotto come array associativo
 
-Quando i dati descrivono una stessa cosa, le chiavi rendono il codice piu leggibile.
+Quando i dati descrivono una stessa cosa, le chiavi rendono il codice più leggibile.
 
 ```php
 <?php
@@ -94,11 +94,11 @@ if ($prodotto["disponibile"]) {
 }
 ```
 
-Leggendo le chiavi capisci subito che cosa rappresenta ogni valore.
+Le chiavi rendono immediato il significato di ogni valore.
 
 ## Controllare se una chiave esiste
 
-Prima di leggere una chiave che potrebbe mancare, puoi usare `isset`.
+Prima di leggere una chiave che potrebbe mancare, puoi controllarla con `isset`.
 
 ```php
 <?php
@@ -128,4 +128,4 @@ Scrivi invece:
 echo $utente["nome"];
 ```
 
-Le virgolette fanno capire a PHP che `nome` e una chiave testuale.
+Le virgolette indicano a PHP che `nome` è una chiave testuale.

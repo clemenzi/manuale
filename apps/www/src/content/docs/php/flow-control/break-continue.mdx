@@ -5,14 +5,14 @@ description: Come interrompere o saltare un passaggio dentro un ciclo.
 
 ## Due comandi per controllare un ciclo
 
-Dentro un ciclo puoi avere bisogno di fermarti prima o saltare un giro. PHP offre due parole utili:
+In un ciclo può servire fermarsi prima o saltare un giro. PHP offre due parole chiave:
 
 - `break` interrompe il ciclo
 - `continue` salta al giro successivo
 
 ## Uscire con break
 
-Immagina di cercare un nome in una lista. Quando lo trovi, non serve continuare.
+Se cerchi un nome in una lista, dopo averlo trovato non serve continuare.
 
 ```php
 <?php
@@ -26,11 +26,11 @@ foreach ($nomi as $nome) {
 }
 ```
 
-Appena PHP incontra `break`, esce dal ciclo.
+Quando incontra `break`, PHP esce dal ciclo.
 
 ## Saltare un giro con continue
 
-`continue` non chiude il ciclo. Salta solo il resto del blocco corrente.
+`continue` non chiude il ciclo: salta il resto del blocco corrente.
 
 ```php
 <?php
@@ -53,17 +53,17 @@ Output:
 5
 ```
 
-I numeri pari vengono saltati.
+Il ciclo salta i numeri pari.
 
 ## Quando usarli
 
-`break` e utile quando hai gia ottenuto quello che cercavi. `continue` e utile quando un elemento non ti interessa, ma vuoi controllare gli altri.
+`break` è utile quando hai già trovato ciò che cercavi. `continue` serve quando un elemento non ti interessa, ma vuoi controllare gli altri.
 
 > **Attenzione:** se usi troppi `break` e `continue`, il ciclo puo diventare difficile da leggere. Usali quando rendono il codice piu chiaro.
 
 ## break in un ciclo for
 
-`break` non funziona solo con `foreach`. Puoi usarlo anche con `for` e `while`.
+`break` non funziona solo con `foreach`: puoi usarlo anche con `for` e `while`.
 
 ```php
 <?php
@@ -84,11 +84,11 @@ Output:
 3
 ```
 
-Quando `$numero` diventa `4`, il ciclo si ferma.
+Quando `$numero` raggiunge `4`, il ciclo si ferma.
 
 ## continue per filtrare dati
 
-`continue` e utile quando vuoi ignorare alcuni elementi prima di fare il lavoro principale.
+`continue` è utile per ignorare alcuni elementi prima del lavoro principale.
 
 ```php
 <?php
@@ -103,8 +103,8 @@ foreach ($nomi as $nome) {
 }
 ```
 
-La stringa vuota viene saltata. Il resto del ciclo lavora solo sui nomi validi.
+Il ciclo salta la stringa vuota e lavora solo sui nomi validi.
 
 ## Domanda guida
 
-Prima di usare uno dei due comandi chiediti: voglio fermare tutta la ripetizione o saltare solo questo elemento? La risposta ti dice se scegliere `break` o `continue`.
+Prima di usare uno dei due comandi chiediti: vuoi fermare tutto il ciclo o saltare solo questo elemento? La risposta indica se usare `break` o `continue`.

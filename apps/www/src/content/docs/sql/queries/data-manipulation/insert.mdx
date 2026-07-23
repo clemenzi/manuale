@@ -3,9 +3,9 @@ title: INSERT
 description: Come aggiungere nuove righe a una tabella in modo chiaro e sicuro.
 ---
 
-## Aggiungere una nuova riga
+## Inserire una riga
 
-`INSERT` serve quando vuoi **mettere nuovi dati dentro una tabella**.
+`INSERT` serve per **aggiungere dati a una tabella**.
 
 Se la tabella è una rubrica, `INSERT` aggiunge un nuovo contatto. Se è un catalogo prodotti, aggiunge un nuovo prodotto.
 
@@ -22,7 +22,7 @@ Puoi leggerlo così:
 
 Il primo valore, `'Luca'`, finisce nella prima colonna indicata, cioè `nome`. Il secondo valore, `'luca@email.it'`, finisce in `email`.
 
-## Perché scrivere i nomi delle colonne
+## Scrivere i nomi delle colonne
 
 SQL permette anche forme più brevi, ma quando stai imparando è meglio indicare sempre le colonne.
 
@@ -42,7 +42,7 @@ INSERT INTO clienti (id, nome, email)
 VALUES (1, 'Luca', 'luca@email.it');
 ```
 
-Anche tra qualche mese capirai subito cosa stai inserendo e dove.
+Anche in seguito sarà chiaro che cosa stai inserendo e in quale colonna.
 
 ## Inserire più righe insieme
 
@@ -70,7 +70,7 @@ INSERT INTO clienti (email)
 VALUES ('senza.nome@email.it');
 ```
 
-Il database ti sta proteggendo da un dato incompleto: non vuole salvare un cliente senza nome.
+Il database rifiuta il dato perché `nome` è obbligatorio.
 
 ## Attenzione ai tipi di dato
 
@@ -87,7 +87,7 @@ Qui stai inserendo:
 - un numero decimale: `39.90`
 - un valore vero/falso: `TRUE`
 
-Non tutti i database scrivono i valori booleani nello stesso identico modo, ma l’idea resta la stessa: ogni valore deve essere adatto alla sua colonna.
+Non tutti i database rappresentano i valori booleani nello stesso modo, ma ogni valore deve essere compatibile con la sua colonna.
 
 ## Prima di eseguire un `INSERT`
 
@@ -97,7 +97,7 @@ Fai un controllo veloce:
 - i valori sono nell’ordine giusto?
 - ogni valore ha il tipo corretto?
 
-Sono domande semplici, ma evitano molti errori.
+Questi controlli evitano errori comuni.
 
 ## Riepilogo rapido
 

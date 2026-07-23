@@ -5,11 +5,11 @@ description: Come far prendere decisioni a un programma PHP con if, else e switc
 
 ## A cosa servono le condizioni
 
-Una condizione e un bivio. Se succede una cosa, il programma fa un'azione. Altrimenti ne fa un'altra.
+Una condizione è un bivio: in base al risultato, il programma esegue un'azione oppure un'altra.
 
 ## if
 
-`if` esegue un blocco solo quando la condizione e vera.
+`if` esegue un blocco solo quando la condizione è vera.
 
 ```php
 <?php
@@ -20,11 +20,11 @@ if ($eta >= 18) {
 }
 ```
 
-La condizione sta tra parentesi tonde. Le istruzioni da eseguire stanno tra parentesi graffe.
+La condizione sta tra parentesi tonde, mentre le istruzioni da eseguire stanno tra parentesi graffe.
 
 ## else
 
-`else` copre il caso contrario.
+`else` gestisce il caso contrario.
 
 ```php
 <?php
@@ -39,7 +39,7 @@ if ($eta >= 18) {
 
 ## elseif
 
-`elseif` permette di controllare piu casi.
+`elseif` permette di controllare più casi.
 
 ```php
 <?php
@@ -54,11 +54,11 @@ if ($voto >= 9) {
 }
 ```
 
-PHP controlla dall'alto verso il basso e si ferma al primo blocco valido.
+PHP controlla le condizioni dall'alto verso il basso e si ferma al primo blocco valido.
 
 ## switch
 
-`switch` e comodo quando confronti lo stesso valore con piu possibilita.
+`switch` è comodo quando devi confrontare lo stesso valore con più possibilità.
 
 ```php
 <?php
@@ -74,11 +74,11 @@ switch ($giorno) {
 }
 ```
 
-`break` evita che PHP continui nei casi successivi. `default` gestisce tutto quello che non e stato previsto prima.
+`break` impedisce a PHP di passare ai casi successivi. `default` gestisce ciò che non è stato previsto.
 
 ## Condizioni booleane
 
-Una condizione deve diventare `true` o `false`.
+Una condizione deve restituire `true` o `false`.
 
 ```php
 <?php
@@ -89,11 +89,11 @@ if ($utenteAttivo) {
 }
 ```
 
-Quando il nome e chiaro, il codice si legge quasi come una frase.
+Con un nome chiaro, il codice si legge quasi come una frase.
 
 ## Combinare piu controlli
 
-Una decisione puo dipendere da piu condizioni.
+Una decisione può dipendere da più condizioni.
 
 ```php
 <?php
@@ -107,11 +107,11 @@ if ($eta >= 18 && $haDocumento) {
 }
 ```
 
-`&&` richiede che entrambe le condizioni siano vere. Se una delle due e falsa, PHP passa a `else`.
+`&&` richiede che entrambe le condizioni siano vere. Se una delle due è falsa, PHP passa a `else`.
 
 ## Rendere leggibile una condizione
 
-Quando una condizione diventa lunga, puoi salvarne una parte in una variabile con un nome chiaro.
+Quando una condizione diventa lunga, puoi assegnarne una parte a una variabile con un nome chiaro.
 
 ```php
 <?php
@@ -125,11 +125,11 @@ if ($haDirittoSconto) {
 }
 ```
 
-Il programma fa la stessa cosa, ma e piu facile da leggere.
+Il programma fa la stessa cosa, ma il codice è più leggibile.
 
 ## Errore comune: troppi livelli annidati
 
-Se metti un `if` dentro un `if` dentro un altro `if`, il codice diventa faticoso. Spesso puoi usare `elseif`, variabili booleane o funzioni piccole per chiarire la logica.
+Se metti un `if` dentro un altro `if`, il codice diventa difficile da seguire. Spesso puoi usare `elseif`, variabili booleane o funzioni piccole per chiarire la logica.
 
 ## Prova tu
 

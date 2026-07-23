@@ -3,11 +3,11 @@ title: Indici avanzati
 description: Indici composti, full-text, B-tree e hash spiegati senza gergo inutile.
 ---
 
-## Esistono indici diversi perché i problemi da risolvere sono diversi
+## Tipi di indice per esigenze diverse
 
-**Non tutti gli indici funzionano nello stesso modo.** Alcuni sono pensati per confronti classici, altri per più colonne insieme, altri ancora per cercare dentro grandi testi.
+**Non tutti gli indici funzionano nello stesso modo.** Alcuni servono per i confronti comuni, altri per più colonne e altri ancora per la ricerca in testi lunghi.
 
-È come avere strumenti diversi in cucina: un coltello, una grattugia e un colino non fanno lo stesso lavoro. Sono tutti utili, ma solo nel contesto giusto.
+La scelta dipende dal tipo di ricerca che devi eseguire.
 
 ## Alcuni tipi importanti
 
@@ -27,19 +27,19 @@ CREATE INDEX idx_clienti_cognome_nome
 ON clienti(cognome, nome);
 ```
 
-Questo indice può aiutare quando cerchi spesso per cognome e poi per nome.
+Questo indice può aiutare quando cerchi spesso prima per cognome e poi per nome.
 
 ## B-tree, hash e full-text
 
 **B-tree** è il tipo più comune e versatile.  
 **hash** può aiutare in alcuni confronti di uguaglianza.  
-**full-text** è pensato per ricerche testuali più ricche, dove non basta un semplice confronto.
+**full-text** è pensato per ricerche testuali più ricche, quando non basta un confronto semplice.
 
 Per esempio, una ricerca full-text può essere utile quando vuoi cercare parole dentro descrizioni lunghe, articoli o commenti.
 
 ## Un promemoria importante
 
-Ogni database offre opzioni diverse. **Non è necessario imparare tutti i tipi in una volta.** La cosa più utile all'inizio è capire che esistono indici specializzati per problemi diversi.
+Ogni database offre opzioni diverse. **Non è necessario imparare tutti i tipi in una volta.** All'inizio basta riconoscere che esistono indici specializzati per ricerche diverse.
 
 :::tip
 Parti dagli indici semplici. Gli indici avanzati hanno senso quando hai già una query reale da migliorare.

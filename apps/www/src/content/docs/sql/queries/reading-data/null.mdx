@@ -3,13 +3,13 @@ title: Valori NULL
 description: Come rappresentare e controllare l'assenza di un valore in SQL.
 ---
 
-## Quando un dato manca
+## Rappresentare un dato mancante
 
 `NULL` significa che un valore **non c’è** oppure **non è conosciuto**.
 
 Non significa zero. Non significa testo vuoto. Non significa “no”. Significa proprio: “qui il dato manca”.
 
-È come una casella lasciata vuota in un modulo. La casella esiste, ma nessuno ci ha scritto dentro nulla.
+La colonna esiste, ma per quella riga non è disponibile alcun valore.
 
 ## Cercare valori mancanti
 
@@ -25,7 +25,7 @@ La parte importante è `IS NULL`.
 
 Con `NULL` non si usa `=`, perché `NULL` non si comporta come un valore normale.
 
-Questa query sembra naturale, ma è sbagliata:
+Questa query non funziona come previsto:
 
 ```sql
 SELECT nome, email
@@ -41,7 +41,7 @@ FROM clienti
 WHERE email IS NULL;
 ```
 
-In pratica non chiedi “email è uguale a mancante?”. Chiedi “email è mancante?”.
+La condizione corretta chiede se l'email manca, non se è uguale a un valore chiamato `NULL`.
 
 ## Cercare valori presenti
 
@@ -78,7 +78,7 @@ Questa differenza è importante nei calcoli, nei filtri e nei report.
 - un’informazione non è disponibile
 - una `LEFT JOIN` non trova una riga collegata
 
-Pensarlo come “dato mancante” è la scorciatoia mentale più utile.
+Consideralo semplicemente un dato mancante o sconosciuto.
 
 ## Riepilogo rapido
 

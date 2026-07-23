@@ -3,11 +3,11 @@ title: Subquery
 description: Come usare una query dentro un'altra per costruire richieste a più passaggi.
 ---
 
-## Una domanda dentro un’altra domanda
+## Una query dentro un'altra
 
 Una **subquery** è una query scritta dentro un’altra query.
 
-Ti serve quando la risposta finale dipende da un passaggio intermedio. Prima trovi qualcosa. Poi usi quel risultato per fare la domanda principale.
+Serve quando la risposta finale dipende da un passaggio intermedio: prima calcoli un risultato, poi lo usi nella query principale.
 
 Immagina di voler trovare i clienti che hanno fatto almeno un ordine sopra 100 euro. Puoi pensarla in due passi:
 
@@ -50,7 +50,7 @@ In tutti questi casi, una parte della query prepara il risultato per l’altra.
 
 ## Subquery con una lista
 
-Quando la query interna restituisce più valori, spesso usi `IN`.
+Quando la query interna restituisce più valori, puoi usare `IN`.
 
 ```sql
 SELECT nome
@@ -88,7 +88,7 @@ Qui non usi `IN`, perché non stai confrontando con una lista. Stai confrontando
 
 Le subquery sono comode, ma possono diventare difficili da leggere quando si annidano troppo.
 
-Se senti che la query sta diventando una matrioska, spesso una CTE con `WITH` è più chiara. Le vediamo nella pagina dedicata.
+Se le subquery sono troppo annidate, una CTE con `WITH` può rendere la query più leggibile. La trovi nella pagina dedicata.
 
 ## Riepilogo rapido
 

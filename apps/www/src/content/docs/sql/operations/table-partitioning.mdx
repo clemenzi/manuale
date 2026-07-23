@@ -3,19 +3,19 @@ title: Partizionamento delle tabelle
 description: Dividere una tabella grande in parti più piccole per gestirla meglio.
 ---
 
-## Quando una tabella diventa troppo grande, dividerla può aiutare
+## Dividere una tabella molto grande
 
 **Il partizionamento divide una tabella molto grande in sezioni più piccole.** Per esempio puoi separare i dati per mese, per anno o per area geografica.
 
 Questo può aiutare su dataset grandi e query mirate.
 
-È come dividere le bollette in raccoglitori per anno. Se cerchi una bolletta del 2025, non apri tutti i raccoglitori della casa.
+Se una query riguarda un solo intervallo, il database può evitare di leggere le altre partizioni.
 
 ## Perché funziona
 
 Se la query cerca solo un pezzo del totale, il database può evitare di attraversare tutto.
 
-Non è una bacchetta magica, ma in certi scenari è uno strumento molto utile.
+Non risolve ogni problema, ma può aiutare in scenari specifici.
 
 ## Un esempio mentale
 
@@ -31,7 +31,7 @@ Dal punto di vista dell'utente puoi continuare a pensare a una tabella unica, ma
 
 Il partizionamento non sostituisce query scritte bene, indici sensati e una buona progettazione.
 
-**Aiuta molto, ma funziona davvero bene quando si combina con altre scelte intelligenti.**
+**Funziona meglio insieme a query, indici e schema adeguati.**
 
 :::caution
 Il partizionamento aggiunge complessità. Ha senso quando il volume dei dati è davvero grande o quando hai un motivo operativo chiaro.

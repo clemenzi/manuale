@@ -5,9 +5,9 @@ description: Come usare gli array in C++ per memorizzare sequenze di valori dell
 
 ## Cos'è un array?
 
-Immagina di dover memorizzare i voti di 30 studenti. Creeresti 30 variabili diverse? `voto1`, `voto2`, ... `voto30`? Sarebbe un disastro.
+Per memorizzare i voti di 30 studenti, trenta variabili separate come `voto1` e `voto2` renderebbero il codice difficile da gestire.
 
-Un **array** è una fila di scatole numerate che contengono valori dello stesso tipo. Un solo nome, tanti valori. Puoi accedere a ciascuna scatola usando il suo numero (chiamato **indice**).
+Un **array** contiene una sequenza di valori dello stesso tipo sotto un unico nome. Ogni elemento si raggiunge tramite il suo **indice**.
 
 ## Dichiarare un array
 
@@ -85,7 +85,7 @@ cout << numeri[10] << endl;  // PERICOLO: indice fuori limiti
 numeri[10] = 99;             // PERICOLO: potrebbe causare crash o dati corrotti
 ```
 
-Fai sempre attenzione che gli indici siano compresi tra `0` e `dimensione - 1`.
+Gli indici devono essere compresi tra `0` e `dimensione - 1`.
 
 ## Scorrere un array con `for`
 

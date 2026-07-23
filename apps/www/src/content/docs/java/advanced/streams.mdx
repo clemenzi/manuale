@@ -5,7 +5,7 @@ description: Come trasformare e filtrare collezioni con una sintassi dichiarativ
 
 ## Cosa sono gli stream
 
-Uno stream e un modo per lavorare su una sequenza di dati dichiarando cosa vuoi ottenere.
+Uno stream è un modo per lavorare su una sequenza di dati dichiarando il risultato che vuoi ottenere.
 
 Invece di scrivere ogni passaggio con un ciclo, componi operazioni come:
 
@@ -13,7 +13,7 @@ Invece di scrivere ogni passaggio con un ciclo, componi operazioni come:
 - trasforma
 - raccogli il risultato
 
-Gli stream non sostituiscono sempre i cicli. Sono uno strumento in piu, utile quando il flusso di trasformazione e chiaro.
+Gli stream non sostituiscono sempre i cicli. Sono uno strumento in più, utile quando il flusso di trasformazione è chiaro.
 
 ## Da lista a stream
 
@@ -43,11 +43,11 @@ Output:
 [Luca, Sara]
 ```
 
-`Mina` ha 4 caratteri, quindi viene esclusa dalla condizione `> 4`.
+`Mina` ha 4 caratteri, quindi non soddisfa la condizione `> 4`.
 
 ## Collezione e stream
 
-Una collezione, come `ArrayList`, contiene davvero i dati.
+Una collezione, come `ArrayList`, contiene i dati.
 
 Uno stream e un flusso di lavoro su quei dati.
 
@@ -128,7 +128,7 @@ Prima filtriamo i nomi lunghi 4 caratteri. Poi li trasformiamo in maiuscolo.
 
 Uno stream e adatto quando stai descrivendo una trasformazione sui dati.
 
-Un ciclo normale puo essere migliore quando:
+Un ciclo normale può essere migliore quando:
 
 - la logica ha molti passaggi
 - devi modificare variabili esterne
@@ -140,4 +140,4 @@ Se puoi leggere la catena ad alta voce, lo stream e probabilmente chiaro:
 
 "prendi i nomi, tieni quelli lunghi 4, trasformali in maiuscolo, raccoglili in una lista".
 
-Se devi fermarti a decifrare ogni pezzo, usa un ciclo piu esplicito.
+Se devi fermarti a decifrare ogni pezzo, usa un ciclo più esplicito.

@@ -11,7 +11,7 @@ Inviare in output il testo `Ciao, C++!`.
 <details>
 <summary>Soluzione spiegata</summary>
 
-Basta usare `cout` per stampare il testo richiesto.
+Usa `cout` per stampare il testo richiesto.
 
 ```cpp
 #include <iostream>
@@ -23,7 +23,7 @@ int main() {
 }
 ```
 
-Il programma esegue una sola istruzione e mostra il messaggio sullo schermo.
+L'output contiene il messaggio richiesto.
 
 </details>
 
@@ -34,7 +34,7 @@ Conservare un nome e un'età in due variabili e inviarli in output.
 <details>
 <summary>Soluzione spiegata</summary>
 
-Prima salviamo i dati in due variabili, poi li stampiamo con `cout`.
+Salviamo i dati in due variabili e poi li stampiamo con `cout`.
 
 ```cpp
 #include <iostream>
@@ -52,7 +52,7 @@ int main() {
 }
 ```
 
-Le variabili permettono di riutilizzare i valori senza riscriverli ogni volta.
+Così puoi riutilizzare i valori senza riscriverli.
 
 </details>
 
@@ -108,7 +108,7 @@ int main() {
 }
 ```
 
-Il programma esegue un solo calcolo e stampa il valore finale.
+L'output contiene il valore calcolato.
 
 </details>
 
@@ -140,7 +140,7 @@ int main() {
 }
 ```
 
-Dopo lo scambio, `x` contiene il vecchio valore di `y` e `y` contiene il vecchio valore di `x`.
+Dopo lo scambio, `x` contiene il vecchio valore di `y` e viceversa.
 
 </details>
 
@@ -170,7 +170,7 @@ int main() {
 }
 ```
 
-Il valore digitato dall'utente viene salvato nella variabile `nome`.
+Il testo digitato viene salvato nella variabile `nome`.
 
 </details>
 
@@ -235,7 +235,7 @@ int main() {
 }
 ```
 
-Il programma moltiplica il costo di una singola unità per il numero di pezzi.
+Il totale è il costo di una singola unità moltiplicato per il numero di pezzi.
 
 </details>
 
@@ -246,7 +246,7 @@ Convertire una temperatura da gradi Celsius a gradi Fahrenheit.
 <details>
 <summary>Soluzione spiegata</summary>
 
-Applichiamo la formula `fahrenheit = celsius * 9 / 5 + 32`.
+La conversione segue la formula `fahrenheit = celsius * 9 / 5 + 32`.
 
 ```cpp
 #include <iostream>
@@ -301,7 +301,7 @@ int main() {
 }
 ```
 
-La formula della media aritmetica richiede un solo passaggio finale.
+La divisione finale completa il calcolo della media.
 
 </details>
 
@@ -369,7 +369,7 @@ int main() {
 }
 ```
 
-Le condizioni vengono controllate dall'alto verso il basso.
+Le condizioni vengono valutate dall'alto verso il basso.
 
 </details>
 
@@ -520,7 +520,7 @@ int main() {
 }
 ```
 
-Il programma si ferma alla prima condizione vera.
+Viene eseguito il primo ramo la cui condizione è vera.
 
 </details>
 
@@ -589,7 +589,7 @@ int main() {
 }
 ```
 
-La condizione separa chiaramente i due casi utili.
+La condizione verifica entrambe le combinazioni possibili.
 
 </details>
 
@@ -662,7 +662,7 @@ Calcolare la somma dei numeri da 1 a `n` usando `while`.
 <details>
 <summary>Soluzione spiegata</summary>
 
-Accumuliamo i valori in una variabile `totale`.
+Sommiamo i valori nella variabile `totale`.
 
 ```cpp
 #include <iostream>
@@ -719,7 +719,7 @@ int main() {
 }
 ```
 
-Il ciclo termina quando il valore scende sotto zero.
+Il ciclo termina dopo aver stampato `0`, quando il valore diventa negativo.
 
 </details>
 
@@ -730,7 +730,7 @@ Stampare la tabellina del 7 usando `for`.
 <details>
 <summary>Soluzione spiegata</summary>
 
-Con `for` ripetiamo lo stesso calcolo per tutti i valori da 1 a 10.
+Il ciclo `for` calcola la tabellina per i valori da 1 a 10.
 
 ```cpp
 #include <iostream>
@@ -1093,7 +1093,7 @@ Cercare un numero in un array e stampare la sua posizione oppure `-1`.
 <details>
 <summary>Soluzione spiegata</summary>
 
-La ricerca lineare controlla gli elementi uno per uno finché non trova quello richiesto.
+La ricerca lineare controlla gli elementi uno alla volta e si ferma quando trova quello richiesto.
 
 ```cpp
 #include <iostream>
@@ -1196,7 +1196,7 @@ int main() {
 }
 ```
 
-Il vector cresce automaticamente mentre leggiamo i dati.
+`push_back()` aggiunge i valori e fa crescere il vector quando serve.
 
 </details>
 
@@ -1235,7 +1235,7 @@ int main() {
 }
 ```
 
-Un solo passaggio sul vector basta per trovare entrambi i valori.
+Lo stesso passaggio sul vector trova sia il minimo sia il massimo.
 
 </details>
 
@@ -1268,7 +1268,7 @@ int main() {
 }
 ```
 
-Dopo la chiamata a `sort()`, il vector è già modificato.
+`sort()` modifica direttamente il vector.
 
 </details>
 
@@ -1538,7 +1538,7 @@ Creare una classe `Rettangolo` con metodi per area e perimetro.
 <details>
 <summary>Soluzione spiegata</summary>
 
-La classe raccoglie i dati del rettangolo e le operazioni che sanno usare quei dati.
+La classe raccoglie i dati del rettangolo e i metodi che li usano.
 
 ```cpp
 #include <iostream>
@@ -1570,7 +1570,7 @@ int main() {
 }
 ```
 
-I metodi usano direttamente i campi dell'oggetto su cui vengono chiamati.
+Ogni metodo usa i campi dell'oggetto su cui viene chiamato.
 
 </details>
 
@@ -1581,7 +1581,7 @@ Creare una classe `ContoBancario` con metodi per depositare, prelevare e leggere
 <details>
 <summary>Soluzione spiegata</summary>
 
-Qui usiamo campi privati e metodi pubblici per controllare meglio i dati dell'oggetto.
+I campi privati restano nascosti; i metodi pubblici controllano le modifiche al saldo.
 
 ```cpp
 #include <iostream>
@@ -1711,6 +1711,6 @@ int main() {
 }
 ```
 
-Dopo ogni passata, uno dei valori più grandi si sposta verso la fine dell'array.
+A ogni passata, uno dei valori più grandi raggiunge la parte finale dell'array.
 
 </details>

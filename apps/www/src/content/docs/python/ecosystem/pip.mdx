@@ -3,19 +3,19 @@ title: Uso di pacchetti (pip)
 description: Come installare e gestire pacchetti Python con pip.
 ---
 
-## Qual è la funzione di pip
+## A cosa serve pip
 
-Python ha già molte funzionalità integrate, ma la sua vera forza è l'enorme numero di **librerie esterne** create dalla comunità: strumenti per fare grafica, analisi dati, intelligenza artificiale, giochi, siti web e molto altro.
+Python include molte funzionalità, mentre la comunità mette a disposizione **librerie esterne** per grafica, analisi dei dati, intelligenza artificiale, giochi e siti web.
 
-**pip** è lo strumento che ti permette di scaricare e installare queste librerie in pochi secondi.
+**pip** scarica e installa queste librerie.
 
 ---
 
 ## Cos'è pip?
 
-**pip** è il "gestore di pacchetti" ufficiale di Python. È come un negozio online: ti permette di cercare e installare gratuitamente oltre 400.000 librerie da **PyPI** (il deposito ufficiale di Python, all'indirizzo pypi.org).
+**pip** è il gestore di pacchetti di Python. Installa pacchetti dal **PyPI**, il deposito ufficiale disponibile all'indirizzo pypi.org.
 
-Pip è già incluso con Python — non devi installarlo separatamente.
+pip è già incluso con Python e non richiede un'installazione separata.
 
 ---
 
@@ -42,7 +42,7 @@ pip3 --version
 pip install nome-libreria
 ```
 
-Esempio: installare `requests`, la libreria più usata per fare richieste al web:
+Per esempio, puoi installare `requests` per fare richieste web:
 
 ```bash
 pip install requests
@@ -90,7 +90,7 @@ numpy      1.26.0
 
 ## Il file `requirements.txt`: condividere le dipendenze
 
-Quando condividi un progetto con altri, devono sapere quali librerie installare. Il file `requirements.txt` elenca tutto quello che serve.
+Quando condividi un progetto, il file `requirements.txt` elenca le librerie necessarie per installarlo.
 
 **Creare il file** (salva le librerie attualmente installate):
 

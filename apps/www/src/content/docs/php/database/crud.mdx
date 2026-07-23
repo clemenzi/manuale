@@ -5,14 +5,14 @@ description: Come creare, leggere, aggiornare e cancellare dati con PHP e SQL.
 
 ## Cosa significa CRUD
 
-CRUD indica le quattro operazioni principali sui dati:
+CRUD indica quattro operazioni fondamentali sui dati:
 
 - Create: creare
 - Read: leggere
 - Update: aggiornare
 - Delete: cancellare
 
-In un sito reale le usi continuamente: aggiungere un prodotto, mostrare una lista, modificare un profilo, eliminare un commento.
+In un sito reale le usi continuamente: aggiungere un prodotto, mostrare una lista, modificare un profilo o eliminare un commento.
 
 ## Create: inserire dati
 
@@ -40,7 +40,7 @@ foreach ($prodotti as $prodotto) {
 }
 ```
 
-`fetchAll` legge tutte le righe trovate.
+`fetchAll` restituisce tutte le righe trovate.
 
 ## Update: modificare dati
 
@@ -56,7 +56,7 @@ $stmt->execute([
 ]);
 ```
 
-`WHERE` e fondamentale: senza, rischi di modificare tutte le righe.
+`WHERE` è fondamentale: senza, rischi di modificare tutte le righe.
 
 ## Delete: cancellare dati
 
@@ -66,11 +66,11 @@ $stmt = $pdo->prepare("DELETE FROM prodotti WHERE id = :id");
 $stmt->execute(["id" => 1]);
 ```
 
-Anche qui `WHERE` decide cosa cancellare.
+Anche qui `WHERE` stabilisce quali righe cancellare.
 
 ## Collegamento con le pagine web
 
-Di solito un form raccoglie dati, PHP li valida, poi una query preparata li salva o li modifica.
+Di solito un form raccoglie i dati, PHP li valida e una query preparata li salva o li modifica.
 
 Ordine consigliato:
 
@@ -82,7 +82,7 @@ Ordine consigliato:
 
 ## Una piccola pagina di lettura
 
-Una pagina che mostra prodotti potrebbe essere cosi:
+Una pagina che mostra prodotti potrebbe essere così:
 
 ```php
 <?php
@@ -100,11 +100,11 @@ $prodotti = $stmt->fetchAll();
 </ul>
 ```
 
-PHP legge i dati. HTML li mostra. `htmlspecialchars` protegge il testo prima di inserirlo nella pagina.
+PHP legge i dati e HTML li mostra. `htmlspecialchars` protegge il testo prima che venga inserito nella pagina.
 
 ## Confermare prima di cancellare
 
-La cancellazione e l'operazione piu delicata. In un'interfaccia reale conviene chiedere conferma e usare POST, non un semplice link GET.
+La cancellazione è l'operazione più delicata. In un'interfaccia reale conviene chiedere conferma e usare POST, non un semplice link GET.
 
 ```php
 <form method="post" action="elimina.php">
@@ -115,4 +115,4 @@ La cancellazione e l'operazione piu delicata. In un'interfaccia reale conviene c
 
 ## Riepilogo
 
-CRUD non e una funzione speciale di PHP. E un modo per ricordare le azioni fondamentali sui dati. In PHP le realizzi con form, validazione, PDO e query preparate.
+CRUD non è una funzione speciale di PHP, ma un modo per ricordare le operazioni fondamentali sui dati. In PHP le realizzi con form, validazione, PDO e query preparate.

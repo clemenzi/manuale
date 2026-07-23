@@ -3,11 +3,11 @@ title: NumPy
 description: Introduzione alla libreria NumPy per il calcolo numerico in Python.
 ---
 
-## Perché è utile usare NumPy
+## A cosa serve NumPy
 
-Le liste Python vanno bene per la maggior parte dei casi. Ma quando hai bisogno di fare **calcoli matematici su migliaia o milioni di numeri**, le liste diventano lente. NumPy risolve questo problema: fa le stesse operazioni ma in modo molto più veloce.
+Le liste Python sono sufficienti in molti casi. Per **calcoli matematici su migliaia o milioni di numeri**, però, NumPy esegue le operazioni più rapidamente.
 
-NumPy è alla base di quasi tutto l'ecosistema scientifico di Python: pandas, matplotlib, scikit-learn usano tutti NumPy internamente.
+NumPy è usato da molte librerie scientifiche Python, tra cui pandas, matplotlib e scikit-learn.
 
 ---
 
@@ -27,7 +27,7 @@ import numpy as np
 
 ## Gli array di NumPy
 
-La struttura centrale di NumPy è l'**array** (`ndarray`) — simile a una lista Python, ma pensata per i calcoli numerici.
+La struttura centrale di NumPy è l'**array** (`ndarray`), simile a una lista Python ma pensata per i calcoli numerici.
 
 ```python
 import numpy as np
@@ -67,7 +67,7 @@ print(np.random.rand(3))     # 3 numeri decimali casuali tra 0 e 1
 
 ## La potenza delle operazioni vettoriali
 
-Con le liste Python, per moltiplicare ogni elemento per 2 dovresti scrivere un ciclo. Con NumPy, le operazioni si applicano **all'intero array in una volta sola**:
+Con una lista Python dovresti usare un ciclo per moltiplicare ogni elemento per 2. Con NumPy l'operazione si applica **all'intero array in una volta sola**:
 
 ```python
 import numpy as np
@@ -86,7 +86,7 @@ print(a + b)     # [11 22 33 44 55]
 print(a * b)     # [ 10  40  90 160 250]
 ```
 
-Questo approccio è detto **vettorializzazione**: invece di fare le operazioni una alla volta con un ciclo, NumPy le fa tutte insieme in modo ottimizzato.
+Questo approccio si chiama **vettorializzazione**: NumPy applica l'operazione agli elementi senza un ciclo scritto dall'utente.
 
 ---
 
@@ -145,7 +145,7 @@ risultato = array * 2
 print(f"NumPy:        {time.time() - inizio:.3f} secondi")
 ```
 
-NumPy è tipicamente **10-100 volte più veloce** delle liste Python per operazioni numeriche. Su un milione di elementi, la differenza è notevole.
+Per le operazioni numeriche NumPy è tipicamente **10-100 volte più veloce** delle liste Python. Su un milione di elementi la differenza è notevole.
 
 ---
 

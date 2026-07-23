@@ -5,17 +5,17 @@ description: Come riconoscere gli errori PHP piu frequenti e leggerne i messaggi
 
 ## Leggere un errore
 
-Un messaggio di errore di solito dice tre cose:
+Un messaggio di errore di solito indica tre cose:
 
 1. che tipo di errore e
 2. in quale file e successo
 3. a quale riga guardare
 
-La riga indicata non e sempre la causa esatta, ma e un ottimo punto da cui partire.
+La riga indicata non è sempre la causa esatta, ma è un buon punto da cui partire.
 
 ## Parse error
 
-Un parse error significa che PHP non riesce a capire la sintassi.
+Un parse error significa che PHP non riesce a interpretare la sintassi.
 
 ```php
 <?php
@@ -66,7 +66,7 @@ La funzione si aspettava numeri interi, ma riceve una stringa.
 
 ## Metodo pratico
 
-Quando vedi un errore:
+Quando compare un errore:
 
 1. leggi il tipo di errore
 2. apri il file indicato
@@ -82,18 +82,18 @@ Un messaggio puo assomigliare a questo:
 Parse error: syntax error, unexpected token "echo" in index.php on line 5
 ```
 
-Leggilo pezzo per pezzo:
+Leggilo un pezzo alla volta:
 
 - `Parse error` indica un problema di sintassi
 - `unexpected token "echo"` dice che PHP ha trovato `echo` dove non se lo aspettava
 - `index.php` e il file
 - `line 5` e la riga da controllare
 
-Spesso l'errore vero e nella riga precedente: un punto e virgola mancante, una parentesi non chiusa o una virgoletta dimenticata.
+Spesso l'errore vero è nella riga precedente: un punto e virgola mancante, una parentesi non chiusa o una virgoletta dimenticata.
 
 ## Warning non significa "ignorami"
 
-Un warning puo lasciare continuare il programma, ma va comunque capito. Se PHP avvisa che un file manca o che una variabile non esiste, il risultato della pagina potrebbe essere sbagliato.
+Un warning può lasciare continuare il programma, ma va comunque capito. Se PHP avvisa che manca un file o che una variabile non esiste, il risultato della pagina potrebbe essere sbagliato.
 
 ## Prova tu
 

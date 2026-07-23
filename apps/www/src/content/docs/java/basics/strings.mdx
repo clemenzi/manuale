@@ -3,16 +3,16 @@ title: Stringhe
 description: Come lavorare con testi, concatenazione e metodi comuni di String.
 ---
 
-## Cosa e una stringa
+## Cos'è una stringa
 
-Una stringa e un testo. In Java il tipo per i testi e `String`.
+Una stringa è un testo. In Java il tipo per i testi è `String`.
 
 ```java
 String nome = "Luca";
 String messaggio = "Benvenuto";
 ```
 
-Le stringhe usano le virgolette doppie.
+Le stringhe si scrivono tra virgolette doppie.
 
 ```java
 String parola = "ciao";
@@ -26,7 +26,7 @@ char iniziale = 'L';
 
 ## Concatenare stringhe
 
-Per unire stringhe, usa `+`.
+Per unire stringhe usa `+`.
 
 ```java
 String nome = "Luca";
@@ -52,7 +52,7 @@ Java converte il numero in testo per costruire il messaggio.
 
 ## Contare i caratteri con length
 
-Le stringhe hanno metodi, cioe azioni che puoi chiamare sul valore.
+Le stringhe hanno metodi, cioè operazioni che puoi chiamare sul valore.
 
 `length()` conta i caratteri:
 
@@ -67,11 +67,11 @@ Output:
 4
 ```
 
-La chiamata si legge cosi: "sulla stringa `nome`, esegui il metodo `length`".
+La chiamata si legge così: "sulla stringa `nome`, esegui il metodo `length`".
 
 ## Confrontare stringhe con equals
 
-Per confrontare il contenuto di due stringhe, usa `equals`.
+Per confrontare il contenuto di due stringhe usa `equals`.
 
 ```java
 String password = "segreto";
@@ -89,9 +89,9 @@ false
 
 > **Attenzione:** con le stringhe evita `==` per confrontare il testo. Usa `equals`.
 
-`==` controlla se due riferimenti puntano allo stesso oggetto. `equals` controlla se il contenuto e uguale.
+`==` controlla se due riferimenti puntano allo stesso oggetto. `equals` controlla se il contenuto è uguale.
 
-Per iniziare, ricordati questa regola pratica:
+Per iniziare, tieni a mente questa regola:
 
 ```java
 testo.equals("valore")
@@ -114,7 +114,7 @@ Output:
 program
 ```
 
-Gli indici partono da `0`. Il primo numero e incluso, il secondo e escluso.
+Gli indici partono da `0`. Il primo numero è incluso, il secondo è escluso.
 
 In `"programmare"`:
 
@@ -142,7 +142,7 @@ LUCA
 luca
 ```
 
-Questi metodi non modificano la stringa originale. Creano un nuovo testo.
+Questi metodi non modificano la stringa originale: creano un nuovo testo.
 
 ## Esempio completo
 
@@ -165,4 +165,4 @@ public class NomeUtente {
 }
 ```
 
-Le stringhe saranno ovunque nei programmi Java: messaggi, input, nomi, percorsi di file e dati letti dall'esterno.
+Nei programmi Java userai stringhe per messaggi, input, nomi, percorsi di file e dati letti dall'esterno.

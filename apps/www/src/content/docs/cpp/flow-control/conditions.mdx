@@ -5,9 +5,9 @@ description: Prendere decisioni nel codice con if, else if, else e switch in C++
 
 ## Perché le condizioni?
 
-Un programma che fa sempre la stessa cosa non è molto utile. I programmi interessanti prendono **decisioni**: se l'utente è maggiorenne, mostra il contenuto; se il voto è sufficiente, passa alla classe successiva; se piove, porta l'ombrello.
+Un programma può seguire strade diverse in base ai dati: per esempio, mostrare un contenuto a un maggiorenne o accettare un voto sufficiente.
 
-Le condizioni permettono al programma di scegliere tra strade diverse in base a una situazione.
+Le condizioni permettono di scegliere quale blocco eseguire.
 
 ## L'istruzione `if`
 
@@ -67,7 +67,7 @@ Il programma controlla le condizioni dall'alto verso il basso e si ferma alla pr
 
 ## Condizioni annidate
 
-Puoi mettere un `if` dentro un altro `if`. Pensa a esso come a una serie di domande: prima la domanda principale, poi le sotto-domande.
+Puoi mettere un `if` dentro un altro `if`, controllando prima la condizione esterna e poi quella interna.
 
 ```cpp
 int eta = 20;
@@ -111,7 +111,7 @@ if (temperatura > 20 && !piove) {
 
 ## Il costrutto `switch`
 
-Quando devi confrontare una variabile con molti valori fissi, `switch` è più leggibile di una lunga serie di `else if`. Funziona come un selettore: vai direttamente al caso corrispondente.
+Quando devi confrontare una variabile con molti valori fissi, `switch` può essere più leggibile di una lunga serie di `else if`.
 
 ```cpp
 int giorno = 3;

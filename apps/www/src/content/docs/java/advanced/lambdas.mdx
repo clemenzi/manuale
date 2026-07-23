@@ -5,7 +5,7 @@ description: Come scrivere funzioni brevi da passare ad altri metodi.
 
 ## A cosa servono le lambda
 
-Una **lambda** e un modo breve per scrivere una piccola azione.
+Una **lambda** è un modo breve per scrivere una piccola azione.
 
 La usi quando un metodo ti chiede:
 
@@ -34,9 +34,9 @@ La forma piu comune e questa:
 parametro -> azione
 ```
 
-Il `parametro` e il valore che Java passa alla lambda.
+Il `parametro` è il valore che Java passa alla lambda.
 
-L'`azione` e il codice che vuoi eseguire con quel valore.
+L'`azione` è il codice che vuoi eseguire con quel valore.
 
 Esempio:
 
@@ -89,7 +89,7 @@ Java prende un elemento alla volta dalla lista. Ogni elemento viene chiamato `no
 
 ## Confronto con il for-each
 
-La stessa cosa si puo scrivere anche con un ciclo `for-each`.
+La stessa cosa si può scrivere anche con un ciclo `for-each`.
 
 ```java
 for (String nome : nomi) {
@@ -103,7 +103,7 @@ Con una lambda diventa:
 nomi.forEach(nome -> System.out.println(nome));
 ```
 
-I due esempi fanno la stessa cosa.
+I due esempi producono lo stesso risultato.
 
 All'inizio il ciclo `for-each` e spesso piu facile da leggere. La lambda diventa utile quando usi metodi che vogliono ricevere una piccola azione, come `forEach`, `sort`, `filter` o `map`.
 
@@ -265,7 +265,7 @@ Le lambda sono utili quando:
 - stai passando un comportamento a un metodo
 - usi collezioni, ordinamenti o stream
 
-Evita lambda troppo lunghe. Se dentro la lambda ci sono molte righe, spesso e meglio creare un metodo con un nome chiaro.
+Evita lambda troppo lunghe. Se contengono molte righe, spesso è meglio creare un metodo con un nome chiaro.
 
 ## Da ricordare
 

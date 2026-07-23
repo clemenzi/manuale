@@ -3,15 +3,15 @@ title: Join
 description: Come collegare tabelle diverse con INNER JOIN, LEFT JOIN, RIGHT JOIN e FULL JOIN.
 ---
 
-## Mettere insieme dati che vivono in tabelle diverse
+## Collegare tabelle diverse
 
 In un database relazionale, le informazioni non stanno sempre tutte nella stessa tabella.
 
 Per esempio, potresti avere una tabella `clienti` e una tabella `ordini`. La prima contiene le persone. La seconda contiene gli acquisti.
 
-Da sole sono utili, ma insieme raccontano una storia più completa: **chi ha comprato cosa**.
+Da sole mostrano informazioni parziali; insieme permettono di sapere **chi ha comprato cosa**.
 
-Le `JOIN` servono proprio a questo: collegare tabelle diverse mentre leggi i dati.
+Le `JOIN` collegano tabelle diverse mentre leggi i dati.
 
 ## Un primo esempio
 
@@ -61,7 +61,7 @@ Nel nostro esempio:
 - Marta ha un ordine, quindi appare.
 - Sara non ha ordini, quindi non appare.
 
-È come fare l’appello usando due liste e tenere solo i nomi che riesci ad abbinare.
+Il risultato contiene solo i nomi presenti in entrambe le liste.
 
 ## La parte più importante: `ON`
 
@@ -83,7 +83,7 @@ Quando usi più tabelle, possono esistere colonne con lo stesso nome.
 
 Per esempio, sia `clienti` sia `ordini` hanno una colonna `id`. Scrivere `clienti.id` o `ordini.id` evita ambiguità.
 
-È come usare nome e cognome quando in una stanza ci sono due persone chiamate Luca.
+Il nome della tabella chiarisce a quale `id` ti riferisci.
 
 ## `LEFT JOIN`: tenere anche chi non ha corrispondenze
 

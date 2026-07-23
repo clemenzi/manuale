@@ -5,9 +5,9 @@ description: Come evitare che il programma si blocchi quando qualcosa va storto.
 
 ## Cosa succede quando si verifica un errore?
 
-Ogni tanto il programma incontra una situazione che non riesce a gestire: l'utente scrive del testo quando ci si aspetta un numero, si cerca di dividere per zero, si prova ad aprire un file che non esiste.
+Un programma può incontrare situazioni che non sa gestire: l'utente inserisce testo al posto di un numero, il codice divide per zero o apre un file inesistente.
 
-In questi casi Python "lancia" un **errore** (chiamato tecnicamente _eccezione_) e, se non lo gestisci, il programma si blocca e mostra un messaggio di errore.
+In questi casi Python "lancia" un **errore**, chiamato tecnicamente _eccezione_. Se non lo gestisci, il programma si interrompe e mostra un messaggio.
 
 Esempi di errori comuni:
 
@@ -23,7 +23,7 @@ print(lista[10])            # IndexError — la lista non ha la posizione 10
 
 ## Il blocco `try / except`
 
-Per evitare che il programma si blocchi, "avvolgi" il codice rischioso in un blocco `try`. Se si verifica un errore, Python salta al blocco `except` invece di fermarsi:
+Inserisci il codice che può fallire in un blocco `try`. Se si verifica un errore, Python passa al blocco `except`:
 
 ```python
 try:
@@ -32,11 +32,11 @@ except ZeroDivisionError:
     print("Non puoi dividere per zero!")
 ```
 
-Traduzione in parole: "**Prova** a eseguire questo codice. Se si verifica un `ZeroDivisionError`, **invece** fai questo."
+In altre parole: "**Prova** a eseguire questo codice. Se si verifica un `ZeroDivisionError`, **invece** esegui quest'altro."
 
 ## Gestire più tipi di errori
 
-Puoi avere più blocchi `except`, uno per ogni tipo di errore che vuoi gestire:
+Puoi usare più blocchi `except`, uno per ogni tipo di errore da gestire:
 
 ```python
 try:
@@ -65,7 +65,7 @@ else:
 
 ## Il blocco `finally` — "sempre, in ogni caso"
 
-Il blocco `finally` viene **sempre eseguito**, che ci sia stato un errore o no. Torna utile per fare "pulizia" (chiudere un file, liberare risorse):
+Il blocco `finally` viene **sempre eseguito**, con o senza errori. Puoi usarlo per la "pulizia", come chiudere un file o liberare risorse:
 
 ```python
 try:

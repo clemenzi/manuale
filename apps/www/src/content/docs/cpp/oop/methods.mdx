@@ -5,11 +5,11 @@ description: Come definire e usare i metodi nelle classi C++.
 
 ## Cosa sono i metodi?
 
-Un oggetto non è solo un contenitore di dati — può anche fare cose. I **metodi** sono le azioni che un oggetto sa compiere.
+Un oggetto contiene dati e può eseguire operazioni su quei dati. I **metodi** definiscono queste operazioni.
 
-Un oggetto `Cane` ha dati (nome, razza, età) ma può anche abbaiare, mangiare, corrrere. Un oggetto `ContoBancario` ha un saldo, ma può anche ricevere depositi e prelievi.
+Un oggetto `Cane` può contenere nome, razza ed età e offrire metodi come abbaiare. Un `ContoBancario` può gestire depositi e prelievi.
 
-I metodi sono semplicemente **funzioni scritte dentro una classe**.
+Un metodo è una **funzione definita dentro una classe**.
 
 ## Definire metodi dentro la classe
 
@@ -67,7 +67,7 @@ L'operatore `::` dice "questo metodo appartiene alla classe Cerchio".
 
 ## Metodi che non modificano i dati: `const`
 
-Se un metodo legge solo i dati senza cambiarli, aggiungere `const` alla fine è una buona abitudine. Serve come promessa al compilatore (e al lettore del codice):
+Se un metodo legge i dati senza modificarli, aggiungi `const` alla fine della dichiarazione. Il compilatore potrà verificare questo vincolo:
 
 ```cpp
 class Rettangolo {

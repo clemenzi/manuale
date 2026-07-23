@@ -5,9 +5,9 @@ description: Come usare il contenitore vector della STL in C++.
 
 ## Cos'è un vector?
 
-Un array normale ha un problema fondamentale: la dimensione deve essere decisa prima di eseguire il programma. Se non sai in anticipo quanti dati avrai, sei bloccato.
+Un array normale ha una dimensione fissata prima dell'esecuzione. Questo è scomodo quando il numero di dati non è noto.
 
-Il `vector` risolve questo problema: è come un array, ma **cambia dimensione automaticamente** mentre il programma gira. Aggiungi elementi e lui cresce. Rimuovili e lui si riduce.
+Il `vector` è una sequenza ridimensionabile: **cambia dimensione automaticamente** quando aggiungi o rimuovi elementi.
 
 Per usarlo, includi `<vector>`:
 
@@ -53,7 +53,7 @@ v[1] = 99;
 cout << v[1] << endl;   // 99
 ```
 
-Per un accesso più sicuro (il programma ti avvisa se esci dai limiti), usa `.at()`:
+Per controllare i limiti durante l'accesso, usa `.at()`:
 
 ```cpp
 cout << v.at(2) << endl;   // 30
