@@ -1,0 +1,68 @@
+---
+title: Validazione e debug
+description: Come trovare tag mancanti, annidamenti errati e altri problemi nel markup.
+---
+
+## Quando la pagina non è quella prevista
+
+Il **debug** è il lavoro con cui cerchi la causa di un problema. In HTML gli errori più comuni sono piccoli: un tag non chiuso, un annidamento scorretto, un attributo scritto male o un percorso inesistente.
+
+Il browser prova spesso a correggere il markup invece di mostrare un messaggio. La pagina può quindi apparire, ma avere una struttura diversa da quella desiderata.
+
+## Leggere una parte alla volta
+
+Questo codice chiude gli elementi nell'ordine sbagliato:
+
+```html
+<p>Oggi trovi <strong>pane integrale.</p></strong>
+```
+
+`strong` è stato aperto dentro `p`, quindi deve essere chiuso prima:
+
+```html
+<p>Oggi trovi <strong>pane integrale.</strong></p>
+```
+
+Quando il problema riguarda una sezione, confronta le aperture e le chiusure dall'interno verso l'esterno. L'indentazione aiuta a vedere i livelli.
+
+## Controllare nomi e attributi
+
+In questo esempio l'attributo del link è scritto male:
+
+```html
+<a herf="contatti.html">Contatti</a>
+```
+
+Il nome corretto è `href`:
+
+```html
+<a href="contatti.html">Contatti</a>
+```
+
+L'editor può segnalare alcuni errori, ma non conosce sempre la tua intenzione. Se un link o un'immagine non funziona, controlla nome dell'attributo, virgolette, percorso, maiuscole ed estensione del file.
+
+## Ispezionare il risultato
+
+Apri i DevTools e guarda il pannello Elements. Mostra la struttura interpretata dal browser, non soltanto il testo che hai scritto.
+
+Se un paragrafo compare nel punto sbagliato, espandi gli elementi vicini e verifica in quale contenitore è finito. Poi torna al file sorgente per correggerlo.
+
+## Usare un validatore
+
+Un **validatore HTML** confronta il documento con le regole del linguaggio. Può segnalare tag non ammessi, attributi errati, id duplicati e annidamenti non validi.
+
+Puoi incollare il codice in un validatore oppure caricare il file. Leggi i messaggi dall'alto verso il basso: un primo errore può provocarne molti altri nelle righe successive.
+
+La validazione controlla la correttezza del markup, ma non garantisce che il contenuto sia chiaro, accessibile o graficamente riuscito. È uno strumento, non un giudizio completo sulla pagina.
+
+## Correggere in modo incrementale
+
+Quando non trovi la causa:
+
+1. salva una copia del codice che funziona;
+2. concentrati sulla sezione problematica;
+3. correggi il primo errore segnalato;
+4. salva e ricarica;
+5. controlla di nuovo prima di fare altre modifiche.
+
+Cambiare molte righe insieme rende difficile capire quale modifica ha risolto o creato il problema. Un passo alla volta trasforma il debug in un confronto controllabile.

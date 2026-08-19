@@ -89,8 +89,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "MANUALE",
-      description:
-        "Una guida pratica alla programmazione in Python, PHP, Java, SQL e C++ per chi parte da zero.",
+      description: "Guide pratiche a HTML, Python, PHP, Java, SQL e C++ per chi parte da zero.",
       favicon: "/favicon.ico",
       locales: {
         root: {
@@ -125,6 +124,80 @@ export default defineConfig({
       ],
       customCss: ["./src/styles/global.css"],
       sidebar: [
+        {
+          label: "HTML",
+          items: [
+            "html",
+            {
+              label: "Per iniziare",
+              collapsed: false,
+              items: [
+                "html/getting-started/how-web-pages-work",
+                "html/getting-started/tools-and-first-page",
+                "html/getting-started/document-structure",
+              ],
+            },
+            {
+              label: "Le basi",
+              collapsed: false,
+              items: [
+                "html/basics/elements-tags-attributes",
+                "html/basics/headings-paragraphs",
+                "html/basics/text-emphasis",
+                "html/basics/comments-entities",
+              ],
+            },
+            {
+              label: "Link e contenuti multimediali",
+              collapsed: false,
+              items: [
+                "html/links-media/links",
+                "html/links-media/paths",
+                "html/links-media/images",
+                "html/links-media/audio-video",
+              ],
+            },
+            {
+              label: "Organizzare i contenuti",
+              collapsed: false,
+              items: [
+                "html/content-structure/lists",
+                "html/content-structure/tables",
+                "html/content-structure/semantic-elements",
+                "html/content-structure/div-span",
+              ],
+            },
+            {
+              label: "Form",
+              collapsed: true,
+              items: [
+                "html/forms/form-basics",
+                "html/forms/input-types",
+                "html/forms/labels-validation",
+                "html/forms/accessible-forms",
+              ],
+            },
+            {
+              label: "Accessibilità",
+              collapsed: true,
+              items: [
+                "html/accessibility/document-language-title",
+                "html/accessibility/headings-landmarks",
+                "html/accessibility/alternative-text",
+                "html/accessibility/keyboard-accessibility",
+              ],
+            },
+            {
+              label: "Strumenti e buone pratiche",
+              collapsed: true,
+              items: [
+                "html/tools/browser-devtools",
+                "html/tools/validation-debugging",
+                "html/tools/best-practices",
+              ],
+            },
+          ],
+        },
         {
           label: "Python",
           items: [

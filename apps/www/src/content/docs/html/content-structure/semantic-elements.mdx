@@ -1,0 +1,70 @@
+---
+title: Elementi semantici della pagina
+description: Come organizzare una pagina con header, nav, main, article, section e footer.
+---
+
+## Dare un nome alle aree della pagina
+
+Gli elementi semantici descrivono il ruolo delle diverse parti di una pagina. Invece di dire soltanto “questo è un contenitore”, dicono “questa è la navigazione” oppure “questo è il contenuto principale”.
+
+Una struttura chiara aiuta chi legge il codice, i motori di ricerca e le tecnologie assistive.
+
+## Le aree principali
+
+- `<header>` rappresenta l'intestazione di una pagina o di una sezione;
+- `<nav>` contiene i collegamenti principali di navigazione;
+- `<main>` racchiude il contenuto principale e unico della pagina;
+- `<article>` contiene un contenuto autonomo, come una notizia o una ricetta;
+- `<section>` raggruppa contenuti sullo stesso argomento;
+- `<aside>` contiene informazioni collegate ma secondarie;
+- `<footer>` rappresenta la parte conclusiva di una pagina o sezione.
+
+## Un esempio completo
+
+```html
+<body>
+  <header>
+    <p>Panificio Aurora</p>
+    <nav aria-label="Navigazione principale">
+      <a href="index.html">Home</a>
+      <a href="prodotti.html">Prodotti</a>
+      <a href="contatti.html">Contatti</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Pane preparato ogni mattina</h1>
+
+    <section>
+      <h2>I prodotti del giorno</h2>
+      <article>
+        <h3>Pane ai cereali</h3>
+        <p>Preparato con farina integrale e semi misti.</p>
+      </article>
+    </section>
+
+    <aside>
+      <h2>Ordini speciali</h2>
+      <p>Puoi prenotare il pane entro le 18 del giorno precedente.</p>
+    </aside>
+  </main>
+
+  <footer>
+    <p>Panificio Aurora, via Roma 12.</p>
+  </footer>
+</body>
+```
+
+## Come scegliere l'elemento
+
+Usa `article` quando il contenuto potrebbe vivere anche da solo: una recensione, una notizia, una scheda prodotto. Usa `section` per una parte tematica della pagina, di solito introdotta da un titolo.
+
+`header` e `footer` possono apparire più volte. Un `article`, per esempio, può avere una propria intestazione e un proprio piè di pagina.
+
+`main`, invece, dovrebbe rappresentare una sola volta il contenuto principale visibile della pagina. Menu ripetuti, logo e informazioni generali del sito restano fuori.
+
+## La semantica non cambia l'aspetto
+
+Questi elementi non creano automaticamente un layout elaborato. Senza CSS appaiono soprattutto come blocchi uno sotto l'altro.
+
+Sceglili per il significato. L'aspetto verrà dopo. Se nessun elemento specifico descrive davvero il contenuto, puoi usare un contenitore generico come `div`, che vedremo nella prossima pagina.

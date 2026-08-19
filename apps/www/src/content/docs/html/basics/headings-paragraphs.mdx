@@ -1,0 +1,68 @@
+---
+title: Titoli e paragrafi
+description: Come dare una gerarchia al testo con titoli e paragrafi HTML.
+---
+
+## Dividere il testo in parti
+
+Una pagina senza titoli è difficile da scorrere. HTML offre sei livelli di intestazione, da `<h1>` a `<h6>`, per descrivere la gerarchia dei contenuti.
+
+`h1` è il titolo principale. `h2` apre una sezione importante, `h3` una sottosezione di quella sezione e così via.
+
+```html
+<h1>Panificio Aurora</h1>
+
+<h2>I nostri prodotti</h2>
+<h3>Pane</h3>
+<h3>Dolci</h3>
+
+<h2>Orari</h2>
+```
+
+La gerarchia assomiglia all'indice di un libro. “Pane” e “Dolci” appartengono alla sezione “I nostri prodotti”, mentre “Orari” è una nuova sezione dello stesso livello.
+
+## Scegliere il livello corretto
+
+Scegli un titolo in base al ruolo, non alla dimensione che il browser gli assegna.
+
+Di solito una pagina ha un solo titolo principale `<h1>`. Dopo `h1`, usa `h2` per le sezioni principali. Se una sezione ha parti interne, usa `h3`.
+
+Evita di saltare da `h2` a `h4` solo perché preferisci l'aspetto di `h4`. Le dimensioni si cambiano con CSS; HTML deve conservare una struttura logica.
+
+Una buona domanda è: “Se trasformassi questi titoli in un indice, l'ordine avrebbe senso?”.
+
+## Scrivere paragrafi
+
+L'elemento `<p>` rappresenta un paragrafo completo:
+
+```html
+<p>Prepariamo pane fresco ogni mattina.</p>
+<p>Usiamo farine locali e lievito madre.</p>
+```
+
+Ogni idea distinta merita il proprio paragrafo. Non usare una lunga serie di interruzioni di riga per separare i testi.
+
+Il browser ignora quasi tutti gli spazi e gli “a capo” scritti nel codice:
+
+```html
+<p>Questo testo continua sulla stessa riga del paragrafo.</p>
+```
+
+Nel browser le parole scorrono normalmente. È il tag `<p>`, non l'andata a capo nel file, a definire il paragrafo.
+
+## Una struttura completa
+
+```html
+<main>
+  <h1>Panificio Aurora</h1>
+  <p>Pane e dolci preparati nel nostro laboratorio.</p>
+
+  <h2>Pane del giorno</h2>
+  <p>Oggi trovi pane integrale e focaccia.</p>
+
+  <h2>Dove siamo</h2>
+  <p>Ci trovi in via Roma 12.</p>
+</main>
+```
+
+Anche senza colori o immagini, la pagina ha già una struttura comprensibile. Questa gerarchia aiuta sia chi legge visivamente sia chi usa strumenti che elencano i titoli per muoversi più velocemente.

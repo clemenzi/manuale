@@ -1,0 +1,72 @@
+---
+title: Strumenti del browser
+description: Come ispezionare elementi e modificare temporaneamente una pagina con i DevTools.
+---
+
+## Guardare la pagina dal punto di vista del browser
+
+I browser includono gli **strumenti di sviluppo**, spesso chiamati DevTools. Permettono di ispezionare la struttura che il browser ha costruito a partire dal file HTML.
+
+Sono utili anche se hai appena iniziato: puoi trovare un elemento, controllare i suoi attributi e provare una modifica senza rischiare di rovinare il file.
+
+## Aprire gli strumenti
+
+In molti browser puoi:
+
+- fare clic destro su un elemento e scegliere **Ispeziona**;
+- premere `F12` su Windows o Linux;
+- premere `Cmd+Option+I` su macOS.
+
+Il nome dei pannelli può cambiare leggermente. Quello che mostra HTML si chiama normalmente **Elements** o **Inspector**.
+
+## Ispezionare un elemento
+
+Apri la tua pagina del Panificio Aurora, fai clic destro sul titolo e scegli **Ispeziona**. Il browser evidenzierà una riga simile a questa:
+
+```html
+<h1>Panificio Aurora</h1>
+```
+
+Passando sopra gli elementi nel pannello, vedrai evidenziata la parte corrispondente nella pagina. Puoi espandere i piccoli triangoli per osservare gli elementi annidati.
+
+Questa struttura può differire leggermente dal testo originale. Quando il markup è incompleto, il browser prova a correggerlo per costruire una pagina valida.
+
+## Fare una modifica temporanea
+
+Nel pannello Elements, fai doppio clic sul testo del titolo e sostituiscilo con:
+
+```text
+Panificio Luna
+```
+
+La pagina cambia subito. Ora ricaricala: torna il testo originale.
+
+Le modifiche nei DevTools esistono soltanto nella copia che il browser sta mostrando. **Non cambiano `index.html`**. Per rendere permanente una modifica devi:
+
+1. aprire il file nell'editor;
+2. modificare il codice;
+3. salvare;
+4. ricaricare il browser.
+
+## Controllare attributi e percorsi
+
+Se un'immagine non appare, ispeziona il suo elemento:
+
+```html
+<img src="immagini/pane.jpg" alt="Pane appena sfornato" />
+```
+
+Controlla che `src` corrisponda davvero alla cartella e al nome del file. Puoi anche selezionare l'indirizzo nel pannello per vedere quale risorsa il browser sta cercando.
+
+Per un link, controlla allo stesso modo `href`. Molti problemi HTML sono semplici differenze tra il percorso scritto e quello reale.
+
+## Una prova guidata
+
+Prova a:
+
+1. ispezionare un paragrafo;
+2. cambiare temporaneamente il suo testo;
+3. aggiungere un attributo `hidden` dal pannello;
+4. ricaricare la pagina.
+
+Il paragrafo ricomparirà con il testo originale. Hai usato i DevTools come un banco di prova, senza toccare il documento salvato.

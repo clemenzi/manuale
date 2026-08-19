@@ -1,0 +1,70 @@
+---
+title: Div e span
+description: Quando usare contenitori generici senza perdere la struttura semantica del documento.
+---
+
+## Contenitori senza significato specifico
+
+`<div>` e `<span>` sono contenitori generici. Raggruppano contenuti, ma non spiegano che cosa rappresentano.
+
+Sono utili soprattutto quando devi applicare uno stile CSS o collegare un comportamento JavaScript e nessun elemento semantico è adatto.
+
+## Div: raggruppare una parte
+
+`div` crea un contenitore che il browser dispone normalmente come un blocco separato:
+
+```html
+<div class="scheda-prodotto">
+  <h2>Pane integrale</h2>
+  <p>Preparato con lievito madre.</p>
+  <p>Prezzo: 4 €</p>
+</div>
+```
+
+L'attributo `class` assegna un nome riutilizzabile al gruppo. Più schede possono avere la stessa classe e ricevere lo stesso stile CSS.
+
+## Span: racchiudere una parte di testo
+
+`span` rimane normalmente dentro la riga e racchiude una piccola parte del contenuto:
+
+```html
+<p>Prezzo: <span class="prezzo">4 €</span></p>
+```
+
+Puoi usare la classe `prezzo` per cambiare l'aspetto di tutti i prezzi senza attribuire loro un significato HTML che non hanno.
+
+La distinzione visiva tra “blocco” e “in linea” è il comportamento predefinito, non una regola immutabile: CSS può cambiarlo. La differenza più importante è che `div` raggruppa normalmente porzioni ampie, mentre `span` si inserisce nel testo.
+
+## Prima cerca un elemento semantico
+
+Questo codice usa contenitori generici per tutto:
+
+```html
+<div class="navigazione">...</div>
+<div class="contenuto-principale">...</div>
+<div class="pie-di-pagina">...</div>
+```
+
+HTML offre nomi più precisi:
+
+```html
+<nav>...</nav>
+<main>...</main>
+<footer>...</footer>
+```
+
+La seconda versione comunica il ruolo delle aree anche senza leggere le classi.
+
+> **Suggerimento:** prima di aggiungere un `div`, chiediti se esiste un elemento come `section`, `article`, `nav`, `header` o `footer` che descrive meglio il contenuto.
+
+## Classi e id
+
+Una `class` può comparire su molti elementi. Un `id` deve identificare un solo elemento nella pagina.
+
+```html
+<section id="prodotti" class="sezione-evidenziata">
+  <h2>Prodotti</h2>
+</section>
+```
+
+Usa nomi che descrivono il ruolo, come `scheda-prodotto`, invece dell'aspetto momentaneo, come `riquadro-rosso`. Il colore può cambiare; il ruolo della scheda resta.

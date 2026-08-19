@@ -1,0 +1,68 @@
+---
+title: Immagini
+description: Come inserire immagini fornendo sorgente, testo alternativo e dimensioni appropriate.
+---
+
+## Inserire un'immagine
+
+L'elemento vuoto `<img>` mostra un'immagine. I suoi due attributi fondamentali sono `src` e `alt`:
+
+```html
+<img src="immagini/pane.jpg" alt="Tre pagnotte su un tavolo di legno" />
+```
+
+`src` indica dove si trova il file. `alt` fornisce un'alternativa testuale quando l'immagine non viene vista, per esempio perché non si carica o perché la persona usa un lettore di schermo.
+
+## Scrivere un testo alternativo utile
+
+Il testo `alt` dipende dallo scopo dell'immagine, non soltanto da ciò che contiene.
+
+Se la fotografia presenta un prodotto, descrivi l'informazione importante:
+
+```html
+<img src="focaccia.jpg" alt="Focaccia rotonda con pomodorini e olive" />
+```
+
+Evita formule come “immagine di”: il lettore di schermo annuncia già che si tratta di un'immagine.
+
+Se l'immagine è puramente decorativa e non aggiunge informazioni, usa un attributo vuoto:
+
+```html
+<img src="decorazione-grano.svg" alt="" />
+```
+
+Non omettere `alt`. Un attributo vuoto comunica intenzionalmente che l'immagine può essere ignorata; un attributo assente può far leggere il nome del file.
+
+## Indicare le dimensioni
+
+Gli attributi `width` e `height` dichiarano le dimensioni originali in pixel:
+
+```html
+<img src="immagini/pane.jpg" alt="Tre pagnotte su un tavolo di legno" width="800" height="533" />
+```
+
+Queste informazioni permettono al browser di riservare lo spazio prima che il file sia caricato, riducendo gli spostamenti improvvisi del contenuto. Per adattare visivamente l'immagine a schermi diversi userai poi CSS.
+
+## Immagine con didascalia
+
+Quando immagine e didascalia formano un'unica unità, usa `<figure>` e `<figcaption>`:
+
+```html
+<figure>
+  <img
+    src="immagini/forno.jpg"
+    alt="Il fornaio inserisce il pane nel forno"
+    width="800"
+    height="533"
+  />
+  <figcaption>La prima infornata viene preparata alle 5 del mattino.</figcaption>
+</figure>
+```
+
+La didascalia è visibile a tutti e può aggiungere contesto. Non deve per forza ripetere il testo alternativo.
+
+## Formato e peso del file
+
+JPEG è adatto spesso alle fotografie; PNG a immagini che richiedono trasparenza; SVG a icone e illustrazioni vettoriali; WebP e AVIF possono ridurre il peso mantenendo una buona qualità.
+
+Qualunque formato tu scelga, evita file molto più grandi dello spazio in cui appariranno. Un'immagine pesante rallenta la pagina, soprattutto su una connessione mobile.

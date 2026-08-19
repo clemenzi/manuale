@@ -1,0 +1,67 @@
+---
+title: Audio e video
+description: Come aggiungere contenuti audio e video con controlli e alternative accessibili.
+---
+
+## Aggiungere un file audio
+
+L'elemento `<audio>` permette al browser di riprodurre un suono. L'attributo `controls` mostra i comandi per avviare, mettere in pausa e regolare il volume.
+
+```html
+<audio controls>
+  <source src="media/intervista.mp3" type="audio/mpeg" />
+  Il tuo browser non può riprodurre questo audio.
+</audio>
+```
+
+`source` indica il file e il suo formato. Il testo dentro `audio` è un contenuto di fallback: appare se il browser non supporta l'elemento.
+
+Puoi offrire più formati. Il browser usa il primo che riconosce:
+
+```html
+<audio controls>
+  <source src="media/intervista.ogg" type="audio/ogg" />
+  <source src="media/intervista.mp3" type="audio/mpeg" />
+  Il tuo browser non può riprodurre questo audio.
+</audio>
+```
+
+## Aggiungere un video
+
+Il funzionamento di `<video>` è simile:
+
+```html
+<video controls width="640" height="360">
+  <source src="media/laboratorio.mp4" type="video/mp4" />
+  Il tuo browser non può riprodurre questo video.
+</video>
+```
+
+Puoi aggiungere `poster` per mostrare un'immagine prima della riproduzione:
+
+```html
+<video controls poster="immagini/anteprima-laboratorio.jpg">
+  <source src="media/laboratorio.mp4" type="video/mp4" />
+</video>
+```
+
+## Sottotitoli
+
+I sottotitoli rendono il video comprensibile a chi non sente l'audio, si trova in un ambiente rumoroso o non conosce bene la lingua parlata.
+
+```html
+<video controls>
+  <source src="media/laboratorio.mp4" type="video/mp4" />
+  <track src="media/sottotitoli-it.vtt" kind="captions" srclang="it" label="Italiano" default />
+</video>
+```
+
+Il file `.vtt` contiene testo e tempi di visualizzazione. `kind="captions"` indica che include dialoghi e suoni importanti.
+
+Per un audio senza immagini, fornisci anche una trascrizione testuale nella pagina. Una trascrizione aiuta inoltre chi preferisce leggere o vuole cercare una frase.
+
+## Lasciare il controllo alla persona
+
+Evita la riproduzione automatica con suono. Può disturbare, consumare dati e creare problemi a chi usa tecnologie assistive.
+
+`controls` è quindi una scelta importante: lascia alla persona il controllo della riproduzione. Ricorda anche che audio e video possono essere file pesanti; comprimili e offri soltanto la qualità necessaria.

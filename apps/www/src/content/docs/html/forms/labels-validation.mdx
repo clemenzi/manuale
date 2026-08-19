@@ -1,0 +1,65 @@
+---
+title: Etichette e validazione
+description: Come descrivere i campi e applicare i controlli HTML prima dell'invio.
+---
+
+## Dare un nome visibile ai campi
+
+Ogni campo deve avere un'etichetta che spiega quale dato inserire. Collega `<label>` al campo usando `for` e `id` con lo stesso valore:
+
+```html
+<label for="nome">Nome completo</label> <input id="nome" name="nome" type="text" />
+```
+
+Se selezioni il testo “Nome completo”, il browser porta il cursore nel campo. Il collegamento aiuta anche un lettore di schermo ad annunciare l'etichetta corretta.
+
+Il `name` serve all'invio; l'`id` collega elementi dentro la pagina. Possono avere lo stesso valore, ma svolgono compiti diversi.
+
+## Rendere un dato obbligatorio
+
+L'attributo booleano `required` impedisce l'invio quando il campo è vuoto:
+
+```html
+<label for="email">Email</label> <input id="email" name="email" type="email" required />
+```
+
+Comunica anche nel testo che il campo è obbligatorio. Non affidarti soltanto al messaggio mostrato dopo un errore.
+
+## Controllare la lunghezza
+
+`minlength` e `maxlength` impostano il numero minimo e massimo di caratteri:
+
+```html
+<label for="messaggio">Messaggio, da 10 a 300 caratteri</label>
+<textarea id="messaggio" name="messaggio" minlength="10" maxlength="300" required></textarea>
+```
+
+La regola è più facile da rispettare quando viene spiegata prima del campo o nella sua etichetta.
+
+## Controllare un intervallo
+
+Per i numeri e le date puoi usare `min` e `max`:
+
+```html
+<label for="quantita">Quantità, da 1 a 20</label>
+<input id="quantita" name="quantita" type="number" min="1" max="20" required />
+```
+
+## Richiedere un formato
+
+`pattern` accetta un'espressione regolare, cioè una regola testuale per il formato. Per esempio, un codice formato da tre lettere maiuscole e tre cifre:
+
+```html
+<label for="codice">Codice ordine, per esempio ABC123</label>
+<input id="codice" name="codice" pattern="[A-Z]{3}[0-9]{3}" type="text" />
+```
+
+Le espressioni regolari possono diventare difficili da leggere. Usa `pattern` soltanto quando il formato è davvero necessario e spiegalo con un esempio.
+
+## Cosa fa il browser
+
+Quando premi il pulsante di invio, il browser controlla attributi come `required`, `type`, `min` e `pattern`. Se una regola non è rispettata, blocca l'invio e mostra un messaggio.
+
+Questa è **validazione lato client**: dà un riscontro immediato, ma può essere aggirata o non funzionare come previsto.
+
+Il server deve sempre controllare di nuovo tutti i dati. La validazione lato server protegge l'applicazione e decide quali valori accettare davvero. HTML migliora l'esperienza, non sostituisce questi controlli.

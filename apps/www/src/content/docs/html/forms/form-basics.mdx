@@ -1,0 +1,84 @@
+---
+title: Introduzione ai form
+description: Come raccogliere dati con form, campi, pulsanti e invio delle informazioni.
+---
+
+## Raccogliere informazioni
+
+Un **form** è una parte della pagina che permette alla persona di inserire e inviare dati. Lo trovi nelle ricerche, negli accessi, nelle prenotazioni e nei moduli di contatto.
+
+Ecco un form molto piccolo:
+
+```html
+<form action="/ricerca" method="get">
+  <label for="parola">Cerca nel catalogo</label>
+  <input id="parola" name="q" type="text" />
+  <button type="submit">Cerca</button>
+</form>
+```
+
+`form` racchiude i controlli. `input` permette di scrivere; `button` invia i dati.
+
+## La destinazione con action
+
+L'attributo `action` indica l'indirizzo che riceverà i dati:
+
+```html
+<form action="/ricerca"></form>
+```
+
+La risorsa all'indirizzo `/ricerca` deve essere preparata per elaborare la richiesta. HTML raccoglie e invia i valori, ma non decide cosa farne. Per salvare un ordine o spedire un'email serve codice sul server.
+
+Negli esercizi puoi comunque costruire il form e osservare i suoi controlli. L'invio potrebbe portare a una pagina inesistente finché non aggiungerai un backend.
+
+## Il metodo di invio
+
+`method` indica come inviare i dati. I due valori più comuni sono `get` e `post`.
+
+Con `get`, i dati compaiono nell'indirizzo. È adatto a ricerche e filtri:
+
+```text
+/ricerca?q=focaccia
+```
+
+Con `post`, i dati viaggiano nel corpo della richiesta. È adatto a operazioni che creano o cambiano informazioni, come inviare una prenotazione.
+
+> **Attenzione:** `post` non rende automaticamente segreti i dati. Per proteggerli, un sito pubblicato deve usare HTTPS e gestirli correttamente sul server.
+
+## Perché name è importante
+
+Il server riceve coppie formate da nome e valore. L'attributo `name` definisce il nome del dato:
+
+```html
+<input name="nome" type="text" />
+```
+
+Se una persona scrive “Giulia”, il form invia un dato simile a:
+
+```text
+nome=Giulia
+```
+
+Un campo senza `name` normalmente non viene incluso nell'invio.
+
+## Il pulsante
+
+Dentro un form, dichiara sempre il tipo del pulsante:
+
+```html
+<button type="submit">Invia richiesta</button>
+```
+
+`submit` invia il form. Un pulsante che deve svolgere un'altra azione usa invece `type="button"`.
+
+## Il flusso completo
+
+Quando la persona preme “Cerca”:
+
+1. il browser raccoglie i controlli con un `name`;
+2. controlla le regole HTML di validazione;
+3. prepara i dati secondo `method`;
+4. li invia all'indirizzo indicato da `action`;
+5. il server restituisce una nuova risposta.
+
+Nelle prossime pagine vedremo come scegliere i campi e descriverli in modo chiaro.

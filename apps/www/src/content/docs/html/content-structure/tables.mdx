@@ -1,0 +1,87 @@
+---
+title: Tabelle
+description: Come rappresentare dati tabellari con righe, celle, intestazioni e didascalie.
+---
+
+## Quando usare una tabella
+
+Una tabella serve a confrontare **dati organizzati in righe e colonne**: orari, prezzi, misure o risultati.
+
+Non usarla per disporre visivamente le parti di una pagina. Per il layout userai CSS; una tabella deve continuare ad avere senso quando viene letta riga per riga.
+
+## Righe e celle
+
+`<table>` racchiude la tabella. `<tr>` crea una riga, `<th>` una cella di intestazione e `<td>` una cella di dati.
+
+```html
+<table>
+  <tr>
+    <th>Prodotto</th>
+    <th>Prezzo</th>
+  </tr>
+  <tr>
+    <td>Pane integrale</td>
+    <td>4 €</td>
+  </tr>
+  <tr>
+    <td>Focaccia</td>
+    <td>3 €</td>
+  </tr>
+</table>
+```
+
+Ogni riga deve contenere celle coerenti con le colonne. In questo esempio la prima colonna contiene prodotti e la seconda prezzi.
+
+## Aggiungere una didascalia
+
+`<caption>` dà un titolo alla tabella e si mette subito dopo il tag di apertura:
+
+```html
+<table>
+  <caption>
+    Prezzi dei prodotti da forno
+  </caption>
+  <!-- Righe della tabella -->
+</table>
+```
+
+La didascalia aiuta a capire lo scopo dei dati prima di leggerli.
+
+## Separare intestazione e corpo
+
+Per una tabella più completa, raggruppa le righe con `<thead>` e `<tbody>`:
+
+```html
+<table>
+  <caption>
+    Orari di apertura
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Giorno</th>
+      <th scope="col">Mattina</th>
+      <th scope="col">Pomeriggio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Lunedì</th>
+      <td>08:00–13:00</td>
+      <td>16:00–19:00</td>
+    </tr>
+    <tr>
+      <th scope="row">Martedì</th>
+      <td>08:00–13:00</td>
+      <td>16:00–19:00</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+`scope="col"` indica un'intestazione di colonna; `scope="row"` un'intestazione di riga. Questa relazione aiuta i lettori di schermo ad annunciare il contesto di ogni dato.
+
+## Mantenerla semplice
+
+Tabelle molto larghe sono difficili da leggere su uno schermo piccolo. Se puoi, riduci il numero di colonne e usa intestazioni brevi.
+
+Evita celle unite finché non servono davvero: `rowspan` e `colspan` rendono la struttura più complessa. Una tabella semplice è più facile da capire, rendere accessibile e adattare ai dispositivi mobili.

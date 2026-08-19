@@ -1,0 +1,67 @@
+---
+title: Strumenti e prima pagina
+description: Come preparare un editor, creare un file HTML e aprirlo nel browser.
+---
+
+## Cosa ti serve
+
+Per creare la prima pagina bastano due strumenti:
+
+1. un **editor di testo**, dove scrivi il codice;
+2. un **browser**, dove guardi il risultato.
+
+Puoi usare Visual Studio Code, Zed o un altro editor pensato per il codice. Evita programmi come Word: aggiungono formattazioni invisibili che non fanno parte di HTML.
+
+## Preparare la cartella
+
+Crea sul computer una cartella chiamata `sito-html`. Al suo interno creeremo tutti i file del piccolo sito.
+
+Apri la cartella con l'editor e aggiungi un file chiamato:
+
+```text
+index.html
+```
+
+Controlla che il nome non sia `index.html.txt`. L'estensione finale deve essere `.html`.
+
+## Scrivere la prima pagina
+
+Inserisci questo codice nel file:
+
+```html
+<h1>La mia prima pagina</h1>
+<p>Ciao! Sto imparando a scrivere HTML.</p>
+```
+
+Ora salva il file. Nell'editor puoi usare il menu **File → Salva** oppure la scorciatoia `Ctrl+S` su Windows e Linux, `Cmd+S` su macOS.
+
+## Aprire il file nel browser
+
+Trova `index.html` nella cartella e aprilo con un doppio clic. Il browser dovrebbe mostrare un titolo grande e, sotto, un paragrafo.
+
+Se vedi il codice con i simboli `<` e `>`, controlla l'estensione del file. Se vedi una pagina vecchia, assicurati di aver salvato e premi il pulsante di ricarica del browser.
+
+## Fare una modifica
+
+Torniamo nell'editor e aggiungiamo un altro paragrafo:
+
+```html
+<h1>La mia prima pagina</h1>
+<p>Ciao! Sto imparando a scrivere HTML.</p>
+<p>Questa pagina parla dei miei libri preferiti.</p>
+```
+
+Salva di nuovo, poi torna al browser e ricarica la pagina. Il nuovo testo apparirà sotto il primo paragrafo.
+
+Questo è il ciclo di lavoro che userai spesso:
+
+1. modifica il file nell'editor;
+2. salva;
+3. ricarica la pagina nel browser;
+4. osserva il risultato.
+
+## Un piccolo esperimento
+
+Prova a cambiare il testo dentro `<h1>` con il tuo nome. Poi aggiungi un terzo paragrafo.
+
+Non cambiare ancora i simboli che circondano `h1` e `p`: sono i tag che permettono al browser di capire il ruolo del testo. Nella prossima lezione completeremo il file con la struttura richiesta da un vero documento HTML.

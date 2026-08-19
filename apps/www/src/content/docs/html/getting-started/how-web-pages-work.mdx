@@ -1,0 +1,56 @@
+---
+title: Come funzionano le pagine web
+description: Cosa succede quando il browser richiede, riceve e mostra un documento HTML.
+---
+
+## Dal tuo browser al sito
+
+Quando scrivi un indirizzo web e premi Invio, la pagina non si trova già dentro il browser. Il browser deve chiederla al computer che la conserva.
+
+Quel computer si chiama **server**. Il programma che usi per visitare il sito, come Firefox, Chrome o Safari, è invece il **client**.
+
+Il passaggio assomiglia a una richiesta al banco di una biblioteca:
+
+1. il browser invia una richiesta per una pagina;
+2. il server cerca la risorsa richiesta;
+3. il server manda una risposta;
+4. il browser interpreta i file ricevuti e mostra la pagina.
+
+La richiesta contiene anche l'indirizzo della risorsa. La risposta può contenere HTML e indicare altri file da caricare, come immagini o fogli di stile CSS.
+
+## Il documento HTML
+
+Il server invia HTML come testo. Una parte della risposta potrebbe essere questa:
+
+```html
+<h1>Panificio Aurora</h1>
+<p>Pane fresco ogni mattina.</p>
+```
+
+Il browser non mostra i tag `<h1>` e `<p>` come testo. Li interpreta come istruzioni sulla struttura e presenta un titolo seguito da un paragrafo.
+
+Un file HTML usa normalmente l'estensione `.html`, per esempio `index.html` o `contatti.html`. Il nome `index.html` viene spesso usato per la pagina iniziale di una cartella o di un sito.
+
+## Che cosa significa rendering
+
+Il processo con cui il browser trasforma il codice in ciò che vedi si chiama **rendering**.
+
+Durante il rendering, il browser legge gli elementi HTML e costruisce una rappresentazione ordinata della pagina. Se incontra un'immagine, prova a caricare il file indicato. Se trova un link, lo rende selezionabile.
+
+HTML descrive il contenuto, ma non è una fotografia. Browser diversi possono mostrare piccoli dettagli in modo leggermente diverso. Il significato della struttura, però, resta lo stesso.
+
+## Una pagina locale non usa un server remoto
+
+Durante i primi esercizi apriremo direttamente un file dal computer. In questo caso il browser legge `index.html` dal disco e non deve contattare un server su Internet.
+
+Il risultato HTML è lo stesso, ma l'indirizzo comincerà probabilmente con `file://` invece di `https://`.
+
+> **Nota:** più avanti, quando un sito viene pubblicato, i file vengono messi su un server e raggiunti attraverso un indirizzo web.
+
+## Il flusso da ricordare
+
+Per ora basta tenere a mente questo percorso:
+
+**indirizzo → richiesta → risposta HTML → rendering nel browser**.
+
+Nella prossima pagina creerai un file HTML e vedrai questo ultimo passaggio direttamente sul tuo computer.

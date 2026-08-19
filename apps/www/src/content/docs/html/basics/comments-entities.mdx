@@ -1,0 +1,70 @@
+---
+title: Commenti e caratteri speciali
+description: Come inserire note nel codice e rappresentare caratteri riservati in HTML.
+---
+
+## Scrivere note nel codice
+
+Un **commento** è una nota destinata a chi legge il file HTML. Il browser la ignora e non la mostra nella pagina.
+
+Un commento comincia con `<!--` e finisce con `-->`:
+
+```html
+<!-- Orari aggiornati per il mese di agosto -->
+<p>Aperto dalle 8 alle 13.</p>
+```
+
+Può occupare anche più righe:
+
+```html
+<!--
+  Questa sezione verrà completata
+  quando arriveranno le nuove fotografie.
+-->
+```
+
+## Quando i commenti aiutano
+
+Un commento è utile per spiegare una scelta che il codice non rende evidente o per lasciare una nota temporanea.
+
+Evita invece commenti che ripetono il contenuto:
+
+```html
+<!-- Titolo -->
+<h1>Contatti</h1>
+```
+
+Il tag `h1` è già chiaro. Troppi commenti rendono il file più lungo senza renderlo più comprensibile.
+
+> **Attenzione:** un commento HTML non protegge informazioni riservate. Chi visita la pagina può vedere il codice sorgente, commenti compresi. Non inserire password, dati personali o chiavi di accesso.
+
+## Mostrare caratteri riservati
+
+I caratteri `<`, `>` e `&` hanno un significato speciale in HTML. Il simbolo `<`, per esempio, può indicare l'inizio di un tag.
+
+Per mostrarli come testo puoi usare un **riferimento a carattere**, spesso chiamato anche entità HTML:
+
+| Codice scritto | Carattere mostrato |
+| -------------- | ------------------ |
+| `&lt;`         | `<`                |
+| `&gt;`         | `>`                |
+| `&amp;`        | `&`                |
+| `&quot;`       | `"`                |
+
+Per scrivere la frase “5 < 10” senza rischiare che `<` venga interpretato come codice, usa:
+
+```html
+<p>5 &lt; 10</p>
+```
+
+Per un nome che contiene una e commerciale:
+
+```html
+<p>Pane &amp; Dolci</p>
+```
+
+Non devi sostituire ogni lettera con un'entità. I normali caratteri accentati funzionano quando il documento usa `<meta charset="UTF-8" />`. Usa i riferimenti soprattutto per i caratteri riservati o per simboli difficili da digitare.
+
+## Commento o contenuto nascosto?
+
+Non usare i commenti come sistema definitivo per nascondere contenuti. Servono a documentare il codice, non a controllare ciò che un utente può conoscere. Se un'informazione non deve essere pubblica, non deve arrivare nel file HTML.

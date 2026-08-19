@@ -1,0 +1,68 @@
+---
+title: Struttura del documento
+description: Le parti essenziali di una pagina HTML, dal doctype agli elementi head e body.
+---
+
+## Una pagina completa
+
+Il browser riesce a mostrare anche poche righe isolate, ma un documento HTML corretto contiene una struttura precisa. Sostituisci il contenuto di `index.html` con questo:
+
+```html
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Il mio primo sito</title>
+  </head>
+  <body>
+    <h1>La mia prima pagina</h1>
+    <p>Ciao! Sto imparando a scrivere HTML.</p>
+  </body>
+</html>
+```
+
+Salva e ricarica il browser. Il contenuto visibile sarà simile a prima, ma ora il documento contiene tutte le informazioni essenziali.
+
+## Il doctype
+
+La prima riga è:
+
+```html
+<!doctype html>
+```
+
+Dice al browser di interpretare il documento secondo le regole moderne di HTML. Non è un elemento della pagina e non ha un tag di chiusura.
+
+## L'elemento html
+
+`<html>` racchiude tutto il documento. L'attributo `lang="it"` dichiara che il contenuto è in italiano. Questa informazione aiuta browser, motori di ricerca e tecnologie assistive.
+
+```html
+<html lang="it">
+  <!-- Tutto il documento si trova qui -->
+</html>
+```
+
+## Head e body
+
+Dentro `<html>` trovi due parti:
+
+- `<head>` contiene informazioni **sulla pagina**;
+- `<body>` contiene ciò che appare **nella pagina**.
+
+Nel `head`, `charset` permette di rappresentare correttamente lettere accentate e altri caratteri. `viewport` aiuta la pagina ad adattarsi allo schermo. `<title>` imposta il testo mostrato nella scheda del browser.
+
+Nel `body` metti titoli, paragrafi, immagini, link e gli altri contenuti visibili.
+
+> **Attenzione:** `<head>` e `<header>` non sono la stessa cosa. `head` conserva informazioni sul documento; `header`, che vedremo più avanti, rappresenta un'intestazione visibile nel `body`.
+
+## Annidamento e indentazione
+
+Un elemento dentro un altro è **annidato**. Nel nostro esempio, `h1` è dentro `body`, che è dentro `html`.
+
+Gli spazi all'inizio delle righe si chiamano **indentazione**. Il browser mostra la pagina anche senza questi spazi, ma l'indentazione rende chiaro dove comincia e finisce ogni livello.
+
+Usa due spazi per ogni livello e mantieni la stessa scelta in tutto il file. Quando apri un elemento, chiudilo prima di chiudere il suo contenitore.
+
+Ora hai un documento completo che useremo come base per gli esempi successivi.

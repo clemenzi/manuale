@@ -1,0 +1,99 @@
+---
+title: Buone pratiche
+description: Come scrivere HTML semplice, semantico, leggibile e facile da mantenere.
+---
+
+## Scrivere per chi leggerà dopo
+
+Un buon documento HTML non deve soltanto apparire nel browser. Deve essere comprensibile, accessibile e facile da modificare.
+
+Queste abitudini non richiedono strumenti avanzati. Puoi applicarle fin dalla prima pagina.
+
+## Scegliere elementi semantici
+
+Usa l'elemento che descrive il ruolo del contenuto:
+
+```html
+<div class="titolo-grande">Prodotti</div>
+```
+
+Se è davvero un titolo di sezione, scrivi:
+
+```html
+<h2>Prodotti</h2>
+```
+
+Allo stesso modo, preferisci `nav`, `main`, `article` e `button` a contenitori generici che imitano il loro aspetto.
+
+## Mantenere un'indentazione coerente
+
+L'indentazione mostra l'annidamento:
+
+```html
+<article>
+  <h2>Pane integrale</h2>
+  <p>Preparato ogni mattina.</p>
+</article>
+```
+
+Scegli due spazi per ogni livello e usali in tutto il progetto. Lascia righe vuote tra gruppi importanti, ma non aggiungere spazi casuali.
+
+## Usare nomi che restano validi
+
+Classi e id dovrebbero descrivere il ruolo:
+
+```html
+<section class="prodotti-in-evidenza"></section>
+```
+
+Un nome come `riquadro-giallo` diventa sbagliato appena cambi colore. `prodotti-in-evidenza` continua invece a spiegare lo scopo.
+
+Usa minuscole e trattini nei nomi. Evita spazi, accenti e abbreviazioni difficili da capire.
+
+## Separare struttura, aspetto e comportamento
+
+HTML descrive la struttura, CSS l'aspetto e JavaScript il comportamento. Tieni il più possibile questi compiti separati.
+
+Invece di aggiungere stili direttamente a ogni elemento:
+
+```html
+<p style="color: red; font-size: 20px;">Prodotto esaurito</p>
+```
+
+assegna una classe e definisci lo stile in CSS:
+
+```html
+<p class="prodotto-esaurito">Prodotto esaurito</p>
+```
+
+Così puoi cambiare tutte le occorrenze da un unico posto. Per la stessa ragione, evita eventi JavaScript scritti direttamente negli attributi quando inizierai ad aggiungere interazioni.
+
+## Considerare l'accessibilità dall'inizio
+
+Non aspettare la fine del progetto per aggiungere accessibilità. Durante la scrittura:
+
+- mantieni una gerarchia di titoli logica;
+- associa ogni campo alla sua etichetta;
+- scrivi alternative per le immagini;
+- usa link e pulsanti per il loro vero compito;
+- prova la pagina con la tastiera;
+- dichiara lingua e titolo del documento.
+
+Correggere la struttura mentre la costruisci è più semplice che rifarla alla fine.
+
+## Validare e provare
+
+Prima di considerare conclusa una pagina:
+
+1. aprila nel browser e prova link e form;
+2. controllala a diverse larghezze;
+3. naviga usando soltanto la tastiera;
+4. ispeziona gli elementi nei DevTools;
+5. esegui una validazione HTML;
+6. correggi prima gli errori di struttura.
+
+## Una base solida
+
+HTML semplice non significa HTML povero. Una struttura semantica, pochi contenitori inutili e nomi chiari rendono la pagina più robusta.
+
+Ora hai gli strumenti per creare un piccolo sito composto da più pagine. Parti da un documento completo, aggiungi contenuti nell'ordine imparato e verifica ogni passaggio nel browser.

@@ -1,0 +1,74 @@
+---
+title: Elementi, tag e attributi
+description: Come riconoscere e scrivere gli elementi che compongono un documento HTML.
+---
+
+## Elementi e tag
+
+Una pagina HTML è composta da **elementi**. Ogni elemento descrive il ruolo di una parte del contenuto: titolo, paragrafo, link, immagine e così via.
+
+Questo è un elemento paragrafo:
+
+```html
+<p>Oggi il negozio chiude alle 19.</p>
+```
+
+L'elemento contiene tre parti:
+
+- il tag di apertura `<p>`;
+- il contenuto `Oggi il negozio chiude alle 19.`;
+- il tag di chiusura `</p>`.
+
+La barra `/` distingue il tag di chiusura. I tag non appaiono nella pagina: aiutano il browser a interpretare il testo.
+
+## Annidare gli elementi
+
+Un elemento può trovarsi dentro un altro. Si dice che è **annidato**.
+
+```html
+<p>Il corso inizia <strong>lunedì</strong>.</p>
+```
+
+`strong` si trova dentro `p` e indica che la parola “lunedì” è particolarmente importante.
+
+Gli elementi devono chiudersi nell'ordine inverso rispetto all'apertura:
+
+```html
+<p>Il corso inizia <strong>lunedì</strong>.</p>
+```
+
+Non chiudere prima il paragrafo e poi `strong`: i due elementi si incrocerebbero e la struttura diventerebbe ambigua.
+
+## Attributi
+
+Gli **attributi** aggiungono informazioni a un elemento. Si scrivono nel tag di apertura con la forma `nome="valore"`.
+
+```html
+<a href="contatti.html">Vai ai contatti</a>
+```
+
+L'elemento `a` crea un collegamento. L'attributo `href` indica quale risorsa aprire.
+
+Un elemento può avere più attributi, separati da uno spazio:
+
+```html
+<html lang="it" class="pagina-principale"></html>
+```
+
+Mettere il valore tra virgolette è una buona abitudine: rende il codice chiaro e funziona anche quando il valore contiene spazi.
+
+## Elementi vuoti
+
+Alcuni elementi non racchiudono testo e non hanno un tag di chiusura. Sono chiamati **elementi vuoti**.
+
+```html
+<img src="pane.jpg" alt="Una pagnotta appena sfornata" />
+```
+
+`img` descrive un'immagine attraverso gli attributi. In HTML la barra finale prima di `>` è facoltativa: sia `<img ...>` sia `<img ... />` sono validi. In questa guida la useremo per rendere subito riconoscibili gli elementi vuoti.
+
+## Minuscole e leggibilità
+
+HTML non distingue tra maiuscole e minuscole nei nomi dei tag, ma la convenzione moderna è scriverli in minuscolo. Preferisci quindi `<p>` a `<P>`.
+
+Un codice coerente è più facile da rileggere e da correggere. Prima di aggiungere nuovi elementi, controlla sempre apertura, contenuto, chiusura e annidamento.

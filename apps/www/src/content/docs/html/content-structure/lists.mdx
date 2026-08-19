@@ -1,0 +1,84 @@
+---
+title: Liste
+description: Come organizzare elementi correlati in liste ordinate, non ordinate e descrittive.
+---
+
+## Raggruppare elementi collegati
+
+Una lista comunica che più elementi appartengono allo stesso gruppo. HTML offre tipi diversi in base alla relazione tra gli elementi.
+
+## Lista non ordinata
+
+Usa `<ul>`, cioè _unordered list_, quando l'ordine non cambia il significato. Ogni voce usa `<li>`, _list item_.
+
+```html
+<h2>Ingredienti</h2>
+<ul>
+  <li>Farina</li>
+  <li>Acqua</li>
+  <li>Lievito</li>
+  <li>Sale</li>
+</ul>
+```
+
+Il browser mostra normalmente un simbolo davanti a ogni voce. Quel simbolo è soltanto l'aspetto predefinito; il significato è “insieme di elementi senza un ordine necessario”.
+
+## Lista ordinata
+
+Usa `<ol>`, cioè _ordered list_, quando la sequenza conta:
+
+```html
+<h2>Come ordinare</h2>
+<ol>
+  <li>Scegli i prodotti.</li>
+  <li>Inserisci i dati di consegna.</li>
+  <li>Conferma l'ordine.</li>
+</ol>
+```
+
+Il browser numera le voci. Se scambi il primo e il terzo passaggio, la procedura non funziona più: per questo la lista è ordinata.
+
+## Liste annidate
+
+Una voce può contenere una seconda lista. Metti la lista interna dentro il relativo `<li>`:
+
+```html
+<ul>
+  <li>
+    Pane
+    <ul>
+      <li>Integrale</li>
+      <li>Ai cereali</li>
+    </ul>
+  </li>
+  <li>Focacce</li>
+</ul>
+```
+
+“Integrale” e “Ai cereali” sono tipi di pane, non elementi allo stesso livello di “Focacce”. L'annidamento rende visibile questa relazione.
+
+## Liste di descrizioni
+
+Quando devi associare termini e spiegazioni, usa `<dl>`. Ogni termine usa `<dt>` e la sua descrizione `<dd>`:
+
+```html
+<dl>
+  <dt>Lievito madre</dt>
+  <dd>Impasto fermentato usato per far crescere il pane.</dd>
+
+  <dt>Farina integrale</dt>
+  <dd>Farina che conserva tutte le parti del chicco.</dd>
+</dl>
+```
+
+Questa struttura è adatta a glossari, domande e risposte brevi o coppie nome-valore.
+
+## Scegliere in base al significato
+
+Non usare una lista soltanto per ottenere pallini o numeri. Prima chiediti che relazione hanno gli elementi:
+
+- ordine irrilevante: `ul`;
+- sequenza o classifica: `ol`;
+- termine e spiegazione: `dl`.
+
+Il tipo corretto rende il contenuto più comprensibile anche quando lo stile grafico cambia.

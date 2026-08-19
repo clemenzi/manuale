@@ -1,0 +1,72 @@
+---
+title: Testi alternativi
+description: Come descrivere immagini e contenuti non testuali in base al loro scopo.
+---
+
+## Lo scopo viene prima della descrizione
+
+Il testo alternativo comunica ciò che un'immagine aggiunge alla pagina. Viene usato quando l'immagine non è disponibile e può essere letto da una tecnologia assistiva.
+
+Non esiste una descrizione corretta in ogni situazione. La stessa fotografia può avere un ruolo diverso in due pagine.
+
+## Immagini informative
+
+Se l'immagine comunica un'informazione, l'attributo `alt` deve trasmettere la parte necessaria:
+
+```html
+<img src="pane-segale.jpg" alt="Pagnotta di segale scura con semi in superficie" />
+```
+
+Mantieni il testo breve e legato al contesto. Non elencare ogni dettaglio visibile se non serve a capire la pagina.
+
+Se il testo vicino contiene già tutte le informazioni, l'alternativa può essere più concisa per evitare ripetizioni.
+
+## Immagini decorative
+
+Un'immagine è decorativa quando può scomparire senza togliere informazioni o funzioni. In questo caso usa `alt=""`:
+
+```html
+<img src="spiga-decorativa.svg" alt="" />
+```
+
+L'attributo vuoto dice al lettore di schermo di ignorare l'immagine. Non omettere l'attributo: in alcuni casi verrebbe annunciato il nome del file.
+
+## Immagini funzionali
+
+Quando un'immagine si trova dentro un link o un pulsante e non c'è altro testo, l'alternativa descrive **l'azione**, non l'aspetto.
+
+```html
+<a href="index.html">
+  <img src="logo.svg" alt="Panificio Aurora, torna alla pagina iniziale" />
+</a>
+```
+
+Se nello stesso link compare già il nome visibile, evita la ripetizione:
+
+```html
+<a href="index.html">
+  <img src="logo.svg" alt="" />
+  <span>Panificio Aurora</span>
+</a>
+```
+
+## Didascalie
+
+Una didascalia è visibile a tutti e può spiegare il contesto:
+
+```html
+<figure>
+  <img src="laboratorio.jpg" alt="Due fornai lavorano un impasto" />
+  <figcaption>Il laboratorio durante la preparazione del pane mattutino.</figcaption>
+</figure>
+```
+
+`alt` e `figcaption` non devono ripetersi parola per parola. Il primo sostituisce l'informazione visiva; la seconda aggiunge un commento visibile.
+
+## Immagini complesse
+
+Un grafico o una mappa può richiedere più informazioni di quelle adatte a un breve `alt`. Scrivi allora un'alternativa concisa e fornisci i dati o una spiegazione completa nel testo vicino.
+
+Per esempio, accanto a un grafico delle vendite puoi inserire una tabella con gli stessi valori. In questo modo il contenuto non dipende dalla capacità di vedere l'immagine.
+
+Prima di scrivere `alt`, chiediti: “Se questa immagine non ci fosse, quale informazione mancherebbe?”. La risposta è il punto di partenza.

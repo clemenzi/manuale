@@ -4,34 +4,46 @@ import { CardGrid, LinkCard, LinkButton } from "@astrojs/starlight/components";
 
 const tracks = [
   {
+    href: "/html/",
+    title: "HTML",
+    description:
+      "Per costruire pagine web: struttura, testi, link, immagini, form e accessibilità spiegati partendo da zero.",
+    hasExercises: false,
+  },
+  {
     href: "/python/",
     title: "Python",
     description:
       "Un ottimo primo linguaggio: basi della programmazione, automazioni e tanti esempi facili da seguire.",
+    hasExercises: true,
   },
   {
     href: "/php/",
     title: "PHP",
     description:
       "Per creare siti dinamici: sintassi, form, sessioni, database e logica lato server spiegati bene.",
+    hasExercises: true,
   },
   {
     href: "/java/",
     title: "Java",
     description:
       "Per costruire basi solide: programmi, oggetti, collezioni, gestione degli errori e strumenti utili.",
+    hasExercises: true,
   },
   {
     href: "/sql/",
     title: "SQL",
     description:
       "Per capire davvero i database: query, tabelle, join e operazioni reali spiegate passo dopo passo.",
+    hasExercises: true,
   },
   {
     href: "/cpp/",
     title: "C++",
     description:
       "Per andare piu a fondo: sintassi, compilazione, memoria, oggetti e prestazioni senza salti difficili.",
+    hasExercises: true,
   },
 ];
 ---
@@ -40,7 +52,7 @@ const tracks = [
   frontmatter={{
     title: "Impara a programmare con guide semplici e pratiche",
     description:
-      "Manuale raccoglie guide di programmazione in italiano per studiare Python, PHP, Java, SQL e C++ con spiegazioni chiare, esempi concreti ed esercizi progressivi.",
+      "Manuale raccoglie guide in italiano per studiare HTML, Python, PHP, Java, SQL e C++ con spiegazioni chiare, esempi concreti ed esercizi progressivi.",
     tableOfContents: false,
     hero: {
       title: "Impara a programmare senza perderti per strada.",
@@ -113,7 +125,7 @@ const tracks = [
 
       <CardGrid>
         {
-          tracks.map((track) => (
+          tracks.filter((track) => track.hasExercises).map((track) => (
             <LinkCard
               href={`/exercises${track.href}`}
               title={track.title}

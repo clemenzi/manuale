@@ -1,0 +1,78 @@
+---
+title: Link
+description: Come collegare pagine, sezioni, indirizzi email e risorse esterne.
+---
+
+## Collegare una risorsa
+
+I link permettono di passare da una risorsa a un'altra. Sono ciò che rende il web un insieme di pagine collegate invece di una raccolta di documenti isolati.
+
+Un link usa l'elemento `<a>` e l'attributo `href`:
+
+```html
+<a href="contatti.html">Vai alla pagina dei contatti</a>
+```
+
+`href` indica la destinazione. Il testo tra i tag è la parte che la persona può selezionare.
+
+## Link interni ed esterni
+
+Un link **interno** porta a un'altra pagina dello stesso sito:
+
+```html
+<a href="prodotti.html">Scopri i prodotti</a>
+```
+
+Un link **esterno** usa un indirizzo completo e porta a un altro sito:
+
+```html
+<a href="https://www.example.com">Visita il sito del fornitore</a>
+```
+
+L'indirizzo completo comprende il protocollo `https://` e il nome del sito.
+
+Per aprire un link in una nuova scheda puoi aggiungere `target="_blank"`. Fallo solo quando c'è un motivo, perché cambiare scheda può sorprendere chi naviga.
+
+```html
+<a href="https://www.example.com" target="_blank" rel="noopener noreferrer">
+  Visita il sito del fornitore
+</a>
+```
+
+`rel` descrive la relazione con la nuova pagina e aggiunge una protezione utile quando usi `_blank`.
+
+## Link a una sezione
+
+Puoi collegare un punto preciso della stessa pagina. Assegna prima un `id` all'elemento di destinazione:
+
+```html
+<h2 id="orari">Orari di apertura</h2>
+```
+
+Poi usa l'id preceduto da `#`:
+
+```html
+<a href="#orari">Vai agli orari</a>
+```
+
+Ogni `id` deve essere unico nella pagina. Puoi collegare anche una sezione di un altro file con `contatti.html#orari`.
+
+## Email e telefono
+
+Un link può aprire il programma di posta:
+
+```html
+<a href="mailto:info@example.com">Scrivici un'email</a>
+```
+
+Sui dispositivi compatibili, `tel:` avvia una chiamata:
+
+```html
+<a href="tel:+390612345678">Chiama lo 06 12345678</a>
+```
+
+## Scrivere testi chiari
+
+Il testo del link deve spiegare la destinazione anche senza leggere la frase intorno. Preferisci “Leggi gli orari di apertura” a “Clicca qui”.
+
+Questo aiuta chi scorre velocemente la pagina e chi usa una tecnologia assistiva per ottenere l'elenco dei collegamenti.

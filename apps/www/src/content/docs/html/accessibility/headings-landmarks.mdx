@@ -1,0 +1,77 @@
+---
+title: Gerarchia e aree della pagina
+description: Come rendere i contenuti navigabili con titoli coerenti e aree semantiche.
+---
+
+## Una mappa per orientarsi
+
+Su una pagina lunga, chi vede lo schermo può scorrere e riconoscere titoli, menu e colonne. Una persona che usa un lettore di schermo può ottenere risultati simili attraverso titoli e **landmark**.
+
+Un landmark è un'area importante della pagina, come navigazione o contenuto principale. Gli elementi semantici HTML creano molti di questi punti di riferimento automaticamente.
+
+## Costruire la gerarchia dei titoli
+
+Il titolo principale usa normalmente `<h1>`. Le sezioni principali usano `<h2>` e le loro sottosezioni `<h3>`:
+
+```html
+<h1>I nostri prodotti</h1>
+
+<h2>Pane</h2>
+<h3>Pane integrale</h3>
+<h3>Pane ai cereali</h3>
+
+<h2>Dolci</h2>
+<h3>Crostate</h3>
+```
+
+Un lettore di schermo può mostrare l'elenco dei titoli e saltare direttamente a “Dolci”. Se i livelli seguono un ordine logico, quell'elenco diventa un indice affidabile.
+
+Non scegliere `h4` perché appare più piccolo e non usare un paragrafo in grassetto al posto di un titolo. CSS controlla l'aspetto; il livello HTML descrive la posizione nella gerarchia.
+
+## Definire le aree principali
+
+Una pagina può avere questa struttura:
+
+```html
+<header>
+  <a href="index.html">Panificio Aurora</a>
+  <nav aria-label="Principale">...</nav>
+</header>
+
+<main>
+  <h1>I nostri prodotti</h1>
+  <!-- Contenuto unico della pagina -->
+</main>
+
+<footer>
+  <p>Via Roma 12</p>
+</footer>
+```
+
+`header`, `nav`, `main` e `footer` comunicano il ruolo delle aree. Una persona può saltare direttamente al `main`, evitando di attraversare il menu a ogni cambio di pagina.
+
+## Distinguere più navigazioni
+
+Una pagina può avere più elementi `nav`, per esempio menu principale e collegamenti nel piè di pagina. Aggiungi un nome accessibile per distinguerli:
+
+```html
+<nav aria-label="Principale">...</nav>
+<nav aria-label="Informazioni legali">...</nav>
+```
+
+Il nome non deve ripetere la parola “navigazione”, perché il ruolo `nav` viene già annunciato.
+
+## Sezioni con un nome
+
+Una `<section>` dovrebbe normalmente avere un titolo:
+
+```html
+<section>
+  <h2>Prodotti del giorno</h2>
+  <p>Oggi trovi focaccia e pane integrale.</p>
+</section>
+```
+
+Il titolo spiega lo scopo della sezione a tutte le persone. Non creare molte sezioni anonime soltanto per ragioni grafiche: in quel caso un `div` può essere più appropriato.
+
+La verifica più semplice consiste nel leggere soltanto i titoli della pagina. Se raccontano chiaramente la struttura, hai costruito una buona mappa.

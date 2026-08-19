@@ -1,0 +1,77 @@
+---
+title: Form accessibili
+description: Come raggruppare, descrivere e rendere utilizzabili i campi per tutte le persone.
+---
+
+## Un form comprensibile prima dell'invio
+
+Un form accessibile spiega che cosa chiede, quali campi sono obbligatori e come correggere un errore. Deve funzionare con mouse, tastiera, schermo piccolo e tecnologie assistive.
+
+La prima regola è semplice: usa gli elementi HTML nativi nel modo previsto.
+
+## Etichette sempre visibili
+
+Ogni controllo deve avere una `<label>` chiara:
+
+```html
+<label for="telefono">Numero di telefono</label> <input id="telefono" name="telefono" type="tel" />
+```
+
+Il `placeholder` non sostituisce l'etichetta. Scompare quando inizi a scrivere, può avere poco contrasto e spesso contiene soltanto un esempio.
+
+```html
+<label for="telefono">Numero di telefono</label>
+<input id="telefono" name="telefono" type="tel" placeholder="06 12345678" />
+```
+
+Qui l'etichetta descrive il dato; il placeholder mostra un formato possibile.
+
+## Raggruppare opzioni collegate
+
+Usa `<fieldset>` e `<legend>` per dare un nome a un gruppo di controlli, come una serie di radio:
+
+```html
+<fieldset>
+  <legend>Come vuoi ricevere l'ordine?</legend>
+
+  <label>
+    <input name="consegna" type="radio" value="ritiro" />
+    Ritiro in negozio
+  </label>
+
+  <label>
+    <input name="consegna" type="radio" value="domicilio" />
+    Consegna a domicilio
+  </label>
+</fieldset>
+```
+
+La legenda viene annunciata insieme alle opzioni e chiarisce la domanda a cui rispondono.
+
+## Istruzioni ed errori
+
+Scrivi le regole prima che la persona invii il form. Se un campo produce un errore, il messaggio deve dire che cosa è successo e come correggerlo.
+
+```html
+<label for="codice">Codice ordine</label>
+<p id="formato-codice">Usa tre lettere e tre numeri, per esempio ABC123.</p>
+<input
+  id="codice"
+  name="codice"
+  type="text"
+  aria-describedby="formato-codice"
+  pattern="[A-Z]{3}[0-9]{3}"
+/>
+```
+
+`aria-describedby` collega l'istruzione al campo. ARIA aggiunge informazioni di accessibilità, ma va usata quando HTML da solo non esprime la relazione.
+
+> **Suggerimento:** preferisci sempre un vero `button`, `label`, `fieldset` o altro elemento nativo. ARIA non aggiunge automaticamente il comportamento che manca a un `div`.
+
+## Un ordine naturale
+
+Disponi i campi nello stesso ordine in cui devono essere compilati. La navigazione con Tab segue normalmente l'ordine del documento.
+
+Non usare valori positivi di `tabindex` per forzare un percorso diverso: diventano difficili da mantenere. Se l'ordine non è corretto, cambia la struttura HTML.
+
+Alla fine prova il form senza mouse: usa Tab per spostarti, Spazio per le checkbox e Invio per inviare. Se non riesci a capire dove ti trovi o quale campo stai compilando, anche altre persone avranno lo stesso problema.

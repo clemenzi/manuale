@@ -1,0 +1,78 @@
+---
+title: Testo, enfasi e citazioni
+description: Come descrivere enfasi, importanza, citazioni e altri significati del testo.
+---
+
+## Descrivere il significato del testo
+
+HTML non serve soltanto a dividere il contenuto in titoli e paragrafi. Può indicare che una parola è importante, che va letta con enfasi o che proviene da una citazione.
+
+Queste informazioni sono **semantiche**: descrivono il significato, non soltanto l'aspetto.
+
+## Importanza con strong
+
+Usa `<strong>` per una parte particolarmente importante:
+
+```html
+<p><strong>Attenzione:</strong> il negozio chiude alle 18.</p>
+```
+
+I browser mostrano normalmente `strong` in grassetto. Il punto principale, però, è l'importanza. Per rendere una frase in grassetto solo per decorazione userai CSS.
+
+## Enfasi con em
+
+Usa `<em>` quando vuoi cambiare l'enfasi della frase:
+
+```html
+<p>La consegna è prevista per <em>oggi</em>, non per domani.</p>
+```
+
+Il browser mostra spesso `em` in corsivo. Anche qui l'aspetto è una conseguenza del significato.
+
+Puoi annidare questi elementi quando entrambi i significati servono:
+
+```html
+<p>
+  <strong>Non aprire <em>mai</em> questo contenitore.</strong>
+</p>
+```
+
+## Evidenziare e annotare
+
+`<mark>` segnala un testo rilevante nel contesto, come una parola trovata in una ricerca:
+
+```html
+<p>Il corso di <mark>HTML</mark> inizia lunedì.</p>
+```
+
+`<small>` rappresenta note secondarie, avvertenze brevi o informazioni legali:
+
+```html
+<p><small>Prezzi comprensivi di IVA.</small></p>
+```
+
+Non usare `small` soltanto per rimpicciolire un testo qualsiasi. Le dimensioni appartengono al CSS.
+
+## Citazioni brevi e lunghe
+
+Per una citazione breve inserita dentro un paragrafo usa `<q>`:
+
+```html
+<p>La cliente ha scritto: <q>Il pane era ottimo.</q></p>
+```
+
+Il browser aggiunge normalmente le virgolette.
+
+Per una citazione che forma un blocco autonomo usa `<blockquote>`:
+
+```html
+<blockquote cite="https://example.com/recensione">
+  <p>Una piccola bottega con prodotti curati e personale gentile.</p>
+</blockquote>
+```
+
+L'attributo `cite` può contenere l'indirizzo della fonte. Non viene mostrato automaticamente: se vuoi rendere visibile la fonte, aggiungi anche un link nel contenuto.
+
+## La domanda da farti
+
+Prima di scegliere un elemento, chiediti che cosa significa quel testo. È importante? Ha enfasi? È una citazione? Se vuoi soltanto cambiare colore, peso o dimensione, il compito appartiene a CSS.

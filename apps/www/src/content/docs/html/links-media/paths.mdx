@@ -1,0 +1,78 @@
+---
+title: Percorsi e cartelle
+description: Come usare percorsi relativi e assoluti per raggiungere file e risorse.
+---
+
+## Dire al browser dove si trova un file
+
+Un **percorso** è l'indirizzo di un file. Lo usi negli attributi come `href` per i link e `src` per le immagini.
+
+Immagina questa struttura:
+
+```text
+sito-html/
+├── index.html
+├── pagine/
+│   ├── contatti.html
+│   └── prodotti.html
+└── immagini/
+    └── pane.jpg
+```
+
+Il percorso da scrivere dipende sempre dal file in cui ti trovi.
+
+## File nella stessa cartella
+
+Da `contatti.html` puoi raggiungere `prodotti.html` usando soltanto il nome, perché i due file sono nella stessa cartella:
+
+```html
+<a href="prodotti.html">Guarda i prodotti</a>
+```
+
+Puoi scrivere anche `./prodotti.html`. Il simbolo `.` significa “cartella corrente”, ma quando il file è vicino viene spesso omesso.
+
+## Entrare in una cartella
+
+Da `index.html`, per raggiungere la fotografia dentro `immagini`, scrivi il nome della cartella seguito da `/`:
+
+```html
+<img src="immagini/pane.jpg" alt="Pane appena sfornato" />
+```
+
+Ogni `/` rappresenta un passaggio nella struttura delle cartelle.
+
+## Tornare alla cartella superiore
+
+Da `pagine/contatti.html`, il file `index.html` si trova un livello più in alto. `..` significa “cartella superiore”:
+
+```html
+<a href="../index.html">Torna alla pagina iniziale</a>
+```
+
+Per raggiungere l'immagine dalla stessa pagina, prima sali e poi entri in `immagini`:
+
+```html
+<img src="../immagini/pane.jpg" alt="Pane appena sfornato" />
+```
+
+## Percorsi dalla radice del sito
+
+Un percorso che comincia con `/` parte dalla **radice del sito**:
+
+```html
+<a href="/pagine/contatti.html">Contatti</a>
+```
+
+Questa forma è utile su un sito pubblicato, ma può non funzionare come previsto quando apri direttamente un file con `file://`. Nei primi esercizi locali, i percorsi relativi sono più semplici.
+
+## Indirizzi assoluti
+
+Un indirizzo assoluto contiene tutte le informazioni necessarie:
+
+```html
+<a href="https://www.example.com/catalogo.html">Catalogo esterno</a>
+```
+
+Usalo per risorse su altri siti. Per i file del tuo progetto preferisci percorsi relativi: se sposti l'intera cartella del sito, continueranno a funzionare.
+
+> **Attenzione:** nomi e percorsi possono distinguere maiuscole e minuscole sul server. Se il file si chiama `pane.jpg`, `Pane.jpg` potrebbe non essere trovato. Usa nomi minuscoli, senza spazi, e controllali con cura.

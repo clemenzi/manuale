@@ -1,0 +1,69 @@
+---
+title: Navigazione da tastiera
+description: Come mantenere link, pulsanti e controlli utilizzabili senza mouse.
+---
+
+## Usare una pagina senza mouse
+
+Molte persone navigano con la tastiera: per necessità, per velocità o perché usano una tecnologia assistiva. Una pagina deve permettere di raggiungere e attivare tutti i controlli interattivi.
+
+Il punto attivo della tastiera si chiama **focus**. Il browser lo mostra normalmente con un contorno intorno a link, pulsanti e campi.
+
+## I tasti principali
+
+- `Tab` sposta il focus all'elemento successivo;
+- `Shift+Tab` torna all'elemento precedente;
+- `Invio` attiva normalmente link e pulsanti;
+- `Spazio` attiva pulsanti e caselle di controllo;
+- le frecce cambiano l'opzione in alcuni controlli, come i radio.
+
+Non rimuovere il contorno del focus con CSS senza fornire un'alternativa chiaramente visibile. Senza indicatore, chi usa la tastiera non sa dove si trova.
+
+## Usare elementi nativi
+
+Per andare a un'altra pagina usa un link:
+
+```html
+<a href="prodotti.html">Guarda i prodotti</a>
+```
+
+Per eseguire un'azione usa un pulsante:
+
+```html
+<button type="button">Apri il menu</button>
+```
+
+Questi elementi ricevono il focus e rispondono ai tasti corretti senza lavoro aggiuntivo. Un `div` con un evento di clic non diventa automaticamente un pulsante per la tastiera.
+
+La regola pratica è:
+
+- **link**: porta a una destinazione;
+- **button**: cambia qualcosa nella pagina o avvia un'azione.
+
+## Seguire l'ordine del documento
+
+Il focus segue normalmente l'ordine degli elementi nel codice HTML:
+
+```html
+<a href="index.html">Home</a>
+<a href="prodotti.html">Prodotti</a>
+<a href="contatti.html">Contatti</a>
+```
+
+Questo ordine dovrebbe corrispondere al percorso visivo e logico della pagina.
+
+`tabindex="0"` può aggiungere al percorso un elemento che normalmente non riceve focus. `tabindex="-1"` permette di spostare il focus su un elemento tramite JavaScript, ma lo esclude dalla normale sequenza con Tab.
+
+Evita valori positivi come `tabindex="3"`: creano un ordine separato, fragile e difficile da prevedere. Quasi sempre è meglio correggere l'ordine del documento.
+
+## Fare una prova manuale
+
+Apri la pagina, lascia il mouse e premi ripetutamente Tab. Controlla che:
+
+1. il focus sia sempre visibile;
+2. l'ordine abbia senso;
+3. ogni controllo sia raggiungibile;
+4. link e pulsanti funzionino con la tastiera;
+5. non rimani bloccato dentro una parte della pagina.
+
+Questa prova non sostituisce una verifica completa di accessibilità, ma trova molti problemi comuni in pochi minuti.

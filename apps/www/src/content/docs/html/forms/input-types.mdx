@@ -1,0 +1,97 @@
+---
+title: Tipi di campo
+description: Come scegliere campi adatti per testo, numeri, date, opzioni e testi lunghi.
+---
+
+## Un campo adatto a ogni dato
+
+L'attributo `type` comunica al browser quale informazione deve ricevere un `<input>`. Scegliere il tipo corretto può mostrare una tastiera più adatta sul telefono e attivare controlli di base.
+
+## Testo, email e password
+
+`text` raccoglie una breve riga di testo:
+
+```html
+<label for="nome">Nome</label> <input id="nome" name="nome" type="text" />
+```
+
+`email` è pensato per un indirizzo email:
+
+```html
+<label for="email">Email</label> <input id="email" name="email" type="email" />
+```
+
+Il browser può segnalare un valore che non assomiglia a un indirizzo. `password` nasconde visivamente i caratteri, ma il valore deve comunque essere protetto durante l'invio e sul server.
+
+```html
+<label for="password">Password</label> <input id="password" name="password" type="password" />
+```
+
+## Numeri e date
+
+Per una quantità numerica usa `number`:
+
+```html
+<label for="quantita">Quantità</label> <input id="quantita" name="quantita" type="number" min="1" />
+```
+
+Non usarlo per numeri che non rappresentano quantità, come un codice postale o un numero di telefono. In quei casi lo zero iniziale e altri caratteri possono essere importanti.
+
+Per scegliere una data usa `date`:
+
+```html
+<label for="consegna">Data di consegna</label> <input id="consegna" name="consegna" type="date" />
+```
+
+L'aspetto del selettore dipende dal browser e dal sistema operativo.
+
+## Caselle di controllo
+
+Una checkbox rappresenta una scelta indipendente:
+
+```html
+<label>
+  <input name="novita" type="checkbox" />
+  Voglio ricevere le novità
+</label>
+```
+
+Più checkbox possono essere selezionate contemporaneamente.
+
+## Pulsanti radio
+
+I radio permettono di scegliere una sola opzione del gruppo. Condividono lo stesso `name` e hanno valori diversi:
+
+```html
+<p>Tipo di consegna</p>
+
+<label>
+  <input name="consegna" type="radio" value="ritiro" />
+  Ritiro in negozio
+</label>
+
+<label>
+  <input name="consegna" type="radio" value="domicilio" />
+  Consegna a domicilio
+</label>
+```
+
+## Menu e testo lungo
+
+`select` crea una scelta tra opzioni:
+
+```html
+<label for="prodotto">Prodotto</label>
+<select id="prodotto" name="prodotto">
+  <option value="pane">Pane</option>
+  <option value="focaccia">Focaccia</option>
+</select>
+```
+
+Per messaggi su più righe usa `<textarea>`, che non è un input vuoto e richiede il tag di chiusura:
+
+```html
+<label for="note">Note per l'ordine</label> <textarea id="note" name="note" rows="5"></textarea>
+```
+
+Scegli il controllo in base al dato e al numero di opzioni. Un campo prevedibile richiede meno fatica e riduce gli errori.
