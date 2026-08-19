@@ -7,8 +7,6 @@ description: List comprehension e tecniche avanzate per le liste in Python.
 
 Conosci già le liste di base. Qui trovi tecniche per scrivere codice Python **più corto, più leggibile e più efficiente**.
 
----
-
 ## List comprehension: creare liste in una riga
 
 La **list comprehension** costruisce una lista a partire da un'altra sequenza in una sola riga.
@@ -29,8 +27,6 @@ print(quadrati)   # [1, 4, 9, 16, 25]
 
 Leggi la list comprehension come: _"x al quadrato, per ogni x in range(1, 6)"_.
 
----
-
 ### Con un filtro (`if`)
 
 Puoi aggiungere una condizione per includere solo certi elementi:
@@ -46,8 +42,6 @@ lunghe = [p for p in parole if len(p) > 4]
 print(lunghe)   # ['banana', 'ciliegia']
 ```
 
----
-
 ### Con `if-else` (trasformazione condizionale)
 
 Puoi trasformare ogni elemento in modo diverso a seconda di una condizione:
@@ -58,8 +52,6 @@ numeri = range(6)
 classificati = ["pari" if x % 2 == 0 else "dispari" for x in numeri]
 print(classificati)   # ['pari', 'dispari', 'pari', 'dispari', 'pari', 'dispari']
 ```
-
----
 
 ### List comprehension annidate (per le matrici)
 
@@ -75,8 +67,6 @@ matrice = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 piatta = [elem for riga in matrice for elem in riga]
 print(piatta)   # [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
-
----
 
 ## Ordinare con `sorted()` e una chiave personalizzata
 
@@ -98,8 +88,6 @@ decrescente = sorted(studenti, key=lambda s: s[1], reverse=True)
 print(decrescente)   # [('Bob', 17), ('Alice', 16), ('Carlo', 15)]
 ```
 
----
-
 ## `map()` e `filter()`: applicare funzioni a liste
 
 ```python
@@ -117,8 +105,6 @@ print(grandi)   # [4, 5]
 :::note
 Spesso le list comprehension sono più leggibili di `map` e `filter`. Usa quella forma che trovi più chiara.
 :::
-
----
 
 ## `zip()`: scorrere più liste insieme
 
@@ -141,8 +127,6 @@ coppie = list(zip(nomi, voti, citta))
 print(coppie)
 # → [('Alice', 8, 'Roma'), ('Bob', 7, 'Milano'), ('Carlo', 9, 'Napoli')]
 ```
-
----
 
 ## Operazioni comuni sulle liste
 

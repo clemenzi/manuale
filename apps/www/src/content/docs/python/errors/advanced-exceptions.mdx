@@ -18,8 +18,6 @@ finally:
     # eseguito SEMPRE, con o senza errori
 ```
 
----
-
 ## Creare i tuoi errori personalizzati
 
 Python permette di creare **errori personalizzati** per segnalare situazioni specifiche con messaggi chiari.
@@ -63,8 +61,6 @@ except VotoNonValidoError as e:
 # → Errore: Il voto deve essere tra 0 e 10 (voto ricevuto: 15)
 ```
 
----
-
 ## Lanciare un errore manualmente con `raise`
 
 Puoi **sollevare** un errore quando una condizione non è valida, anche se Python non lo farebbe automaticamente.
@@ -84,8 +80,6 @@ except ValueError as e:
 
 Il controllo avviene nel punto in cui il programma rileva il problema.
 
----
-
 ## Catturare un errore, fare qualcosa, e rilancerlo
 
 A volte vuoi **registrare** che un errore è avvenuto (ad esempio scriverlo in un file di log), ma poi vuoi comunque che l'errore si propaghi al chiamante.
@@ -101,8 +95,6 @@ def leggi_file(percorso):
 ```
 
 Con `raise` da solo (senza argomenti), Python rilancia esattamente lo stesso errore che hai appena catturato.
-
----
 
 ## Collegare gli errori tra loro (catena di eccezioni)
 
@@ -124,8 +116,6 @@ except RuntimeError as e:
     print(f"Errore: {e}")
     print(f"Causato da: {e.__cause__}")
 ```
-
----
 
 ## La gerarchia degli errori
 
@@ -154,8 +144,6 @@ except LookupError:
     print("Errore di ricerca (indice o chiave non trovata)")
 ```
 
----
-
 ## Context manager personalizzato (uso avanzato di `with`)
 
 Hai già usato `with open(...)` per aprire file. Puoi creare "context manager" che gestiscono l'apertura e la chiusura delle risorse, anche in caso di errore.
@@ -179,8 +167,6 @@ with GestoreRisorse() as r:
     print("Sto usando la risorsa")
     # Se qui avviene un errore, __exit__ viene comunque chiamato
 ```
-
----
 
 ## Buone pratiche
 

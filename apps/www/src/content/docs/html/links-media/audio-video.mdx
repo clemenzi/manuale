@@ -14,7 +14,7 @@ L'elemento `<audio>` permette al browser di riprodurre un suono. L'attributo `co
 </audio>
 ```
 
-`source` indica il file e il suo formato. Il testo dentro `audio` è un contenuto di fallback: appare se il browser non supporta l'elemento.
+`source` indica il file e, con `type`, il suo formato. Il testo dentro `audio` è un contenuto di **ripiego** (_fallback_): viene usato dai browser che non supportano l'elemento.
 
 Puoi offrire più formati. Il browser usa il primo che riconosce:
 
@@ -28,7 +28,7 @@ Puoi offrire più formati. Il browser usa il primo che riconosce:
 
 ## Aggiungere un video
 
-Il funzionamento di `<video>` è simile:
+Il funzionamento di `<video>` è simile. Anche qui `controls` lascia alla persona i comandi di riproduzione:
 
 ```html
 <video controls width="640" height="360">
@@ -56,9 +56,9 @@ I sottotitoli rendono il video comprensibile a chi non sente l'audio, si trova i
 </video>
 ```
 
-Il file `.vtt` contiene testo e tempi di visualizzazione. `kind="captions"` indica che include dialoghi e suoni importanti.
+Il file `.vtt` contiene il testo e i tempi in cui deve apparire. `kind="captions"` indica che la traccia comprende dialoghi e suoni importanti; `srclang="it"` dichiara la lingua italiana e `default` la seleziona inizialmente.
 
-Per un audio senza immagini, fornisci anche una trascrizione testuale nella pagina. Una trascrizione aiuta inoltre chi preferisce leggere o vuole cercare una frase.
+Per un audio senza immagini, fornisci anche una trascrizione testuale nella pagina. I sottotitoli seguono il tempo del video; una trascrizione raccoglie invece il contenuto in un testo che si può leggere e cercare.
 
 ## Lasciare il controllo alla persona
 

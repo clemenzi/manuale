@@ -9,8 +9,6 @@ In un programma grande, mettere tutto il codice in un unico file lo rende diffic
 
 I **moduli** permettono di dividere il codice in file separati, organizzati per argomento. Ogni file `.py` è un modulo. Python include inoltre centinaia di moduli pronti nella **libreria standard**.
 
----
-
 ## Importare un modulo con `import`
 
 Per usare un modulo, importalo all'inizio del file:
@@ -26,8 +24,6 @@ print(math.ceil(3.2))    # 4   — arrotondamento verso l'alto
 
 `math.sqrt` indica la funzione `sqrt` contenuta nel modulo `math`.
 
----
-
 ## Importare solo quello che ti serve con `from ... import`
 
 Se conosci già le funzioni necessarie, puoi importarle direttamente e omettere il nome del modulo nelle chiamate:
@@ -40,8 +36,6 @@ print(sqrt(25))    # 5.0
 print(floor(4.9))  # 4
 ```
 
----
-
 ## `from math import *` — sconsigliato
 
 Puoi importare tutto con `*`, ma questa forma è sconsigliata:
@@ -53,8 +47,6 @@ print(sin(0))   # Funziona, ma...
 ```
 
 Così non è più chiaro da quale modulo provengano le funzioni. Inoltre, nomi uguali provenienti da moduli diversi possono sovrascriversi.
-
----
 
 ## Rinominare con `as`
 
@@ -74,8 +66,6 @@ Alcune librerie molto usate hanno soprannomi convenzionali che tutti usano:
 import numpy as np    # Convenzione universale per NumPy
 import pandas as pd   # Convenzione universale per Pandas
 ```
-
----
 
 ## Creare il tuo modulo
 
@@ -106,8 +96,6 @@ print(calcolatrice.somma(3, 4))    # 7
 print(calcolatrice.pi)             # 3.14159
 ```
 
----
-
 ## Il blocco `if __name__ == "__main__"`
 
 Quando importa un modulo, Python esegue il codice contenuto nel file. Il codice di test potrebbe quindi partire anche durante un'importazione.
@@ -128,8 +116,6 @@ if __name__ == "__main__":
 
 `__name__ == "__main__"` è `True` solo nel file avviato direttamente, non nei moduli importati.
 
----
-
 ## Moduli utili già inclusi in Python
 
 | Modulo     | A cosa serve                                            |
@@ -141,8 +127,6 @@ if __name__ == "__main__":
 | `json`     | Leggere e scrivere file JSON                            |
 | `re`       | Espressioni regolari (ricerche avanzate nel testo)      |
 | `time`     | Misurare il tempo, mettere in pausa il programma        |
-
----
 
 ## Il modulo `random` — numeri casuali
 
@@ -157,8 +141,6 @@ lista = [1, 2, 3, 4, 5]
 random.shuffle(lista)   # Mescola la lista (modifica la lista originale)
 print(lista)            # Ordine casuale, es: [3, 1, 5, 2, 4]
 ```
-
----
 
 ## Il modulo `os` — interazione con il sistema
 

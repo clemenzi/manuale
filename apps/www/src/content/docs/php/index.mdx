@@ -1,12 +1,12 @@
 ---
 title: Introduzione a PHP
-description: Cos'e PHP, dove viene usato e come iniziare a costruire pagine web dinamiche.
+description: Cos’è PHP, dove viene usato e come iniziare a costruire pagine web dinamiche.
 icon: BookOpen
 ---
 
 ## Cos'è PHP?
 
-PHP è un **linguaggio di programmazione per il web**. Serve soprattutto a creare pagine che cambiano in base ai dati, all'utente o a ciò che succede sul sito.
+PHP è un **linguaggio di programmazione usato soprattutto sul web**. Può leggere dati, prendere decisioni e costruire la risposta che un sito invia al browser.
 
 Una pagina HTML normale è come un volantino stampato: tutti vedono la stessa cosa. Una pagina PHP, invece, può preparare contenuti diversi prima di inviarli al browser.
 
@@ -16,11 +16,11 @@ $nome = "Luca";
 echo "Ciao, $nome!";
 ```
 
-Il codice crea un messaggio usando il valore salvato nella variabile `$nome`.
+Il codice salva il testo `"Luca"` nella variabile `$nome`. Poi `echo` usa quel valore per produrre il messaggio `Ciao, Luca!`.
 
 ## Lato server e lato client
 
-Quando apri un sito, il browser riceve HTML, CSS e JavaScript. Questi elementi lavorano sul computer o sul telefono: per questo si dice **lato client**.
+Quando apri un sito, il browser riceve HTML e CSS e può eseguire JavaScript. Il codice che lavora nel browser viene chiamato **lato client**.
 
 PHP lavora prima sul computer che ospita il sito, cioè il **server**. Il server esegue PHP, produce HTML e invia il risultato al browser.
 
@@ -29,7 +29,7 @@ PHP lavora prima sul computer che ospita il sito, cioè il **server**. Il server
 echo "<h1>Benvenuto</h1>";
 ```
 
-Il browser non vede il codice PHP: riceve solo l'HTML prodotto.
+Il browser non riceve il codice PHP: riceve soltanto l'HTML prodotto, in questo caso `<h1>Benvenuto</h1>`.
 
 ## Dove si usa PHP
 

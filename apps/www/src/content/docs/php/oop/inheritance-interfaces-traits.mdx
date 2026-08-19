@@ -1,5 +1,5 @@
 ---
-title: Ereditarieta, interfacce e trait
+title: Ereditarietà, interfacce e trait
 description: Come riusare e organizzare comportamento tra classi PHP.
 ---
 
@@ -7,7 +7,7 @@ description: Come riusare e organizzare comportamento tra classi PHP.
 
 Ereditarietà, interfacce e trait sono strumenti utili, ma non servono in ogni programma. Prima prova con classi piccole e metodi chiari. Usali quando risolvono un problema reale.
 
-## Ereditarieta con extends
+## Ereditarietà con extends
 
 L'ereditarietà permette a una classe di partire da un'altra classe.
 
@@ -69,9 +69,9 @@ class Ordine {
 
 ## Quando usarli
 
-Usa `extends` quando una classe e davvero una versione piu specifica di un'altra. Usa un'interfaccia quando classi diverse devono rispettare lo stesso contratto. Usa un trait per condividere piccoli comportamenti, senza costruire una gerarchia complicata.
+Usa `extends` quando una classe è davvero una versione più specifica di un'altra. Usa un'interfaccia quando classi diverse devono rispettare lo stesso contratto. Usa un trait per condividere piccoli comportamenti, senza costruire una gerarchia complicata.
 
-## Un esempio di interfaccia con piu classi
+## Un esempio di interfaccia con più classi
 
 Il valore di un'interfaccia si vede quando classi diverse possono essere usate nello stesso modo.
 
@@ -96,9 +96,9 @@ class Bonifico implements Pagabile {
 
 Entrambe le classi garantiscono di avere un metodo `paga`.
 
-## Quando evitare l'ereditarieta
+## Quando evitare l'ereditarietà
 
-Non usare `extends` solo per riusare due righe di codice. L'ereditarieta crea un legame forte tra classi. Se il legame non rappresenta davvero un rapporto "e un tipo di", una funzione, una composizione o un trait piccolo possono essere piu semplici.
+Non usare `extends` solo per riusare due righe di codice. L'ereditarietà crea un legame forte tra classi. Se il legame non rappresenta davvero un rapporto "è un tipo di", una funzione, una composizione o un trait piccolo possono essere più semplici.
 
 ## Riepilogo
 

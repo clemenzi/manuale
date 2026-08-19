@@ -11,11 +11,11 @@ L'elemento vuoto `<img>` mostra un'immagine. I suoi due attributi fondamentali s
 <img src="immagini/pane.jpg" alt="Tre pagnotte su un tavolo di legno" />
 ```
 
-`src` indica dove si trova il file. `alt` fornisce un'alternativa testuale quando l'immagine non viene vista, per esempio perché non si carica o perché la persona usa un lettore di schermo.
+`src`, abbreviazione di _source_, indica dove si trova il file. `alt`, abbreviazione di _alternative text_, comunica in forma testuale ciò che l'immagine aggiunge alla pagina. Può essere mostrato se il file non si carica e letto da un lettore di schermo.
 
 ## Scrivere un testo alternativo utile
 
-Il testo `alt` dipende dallo scopo dell'immagine, non soltanto da ciò che contiene.
+Il testo `alt` dipende dallo scopo dell'immagine, non soltanto da ciò che contiene. Prima di scriverlo chiediti quale informazione perderebbe chi non vede l'immagine.
 
 Se la fotografia presenta un prodotto, descrivi l'informazione importante:
 
@@ -41,7 +41,7 @@ Gli attributi `width` e `height` dichiarano le dimensioni originali in pixel:
 <img src="immagini/pane.jpg" alt="Tre pagnotte su un tavolo di legno" width="800" height="533" />
 ```
 
-Queste informazioni permettono al browser di riservare lo spazio prima che il file sia caricato, riducendo gli spostamenti improvvisi del contenuto. Per adattare visivamente l'immagine a schermi diversi userai poi CSS.
+Queste informazioni permettono al browser di riservare lo spazio prima che il file sia caricato, riducendo gli spostamenti improvvisi del contenuto. Non obbligano l'immagine a restare sempre di quelle dimensioni: per adattarla a schermi diversi userai CSS.
 
 ## Immagine con didascalia
 
@@ -63,6 +63,6 @@ La didascalia è visibile a tutti e può aggiungere contesto. Non deve per forza
 
 ## Formato e peso del file
 
-JPEG è adatto spesso alle fotografie; PNG a immagini che richiedono trasparenza; SVG a icone e illustrazioni vettoriali; WebP e AVIF possono ridurre il peso mantenendo una buona qualità.
+JPEG è spesso adatto alle fotografie. PNG è utile quando serve la trasparenza. SVG funziona bene per loghi, icone e illustrazioni composte da forme. WebP e AVIF possono offrire file più leggeri mantenendo una buona qualità.
 
 Qualunque formato tu scelga, evita file molto più grandi dello spazio in cui appariranno. Un'immagine pesante rallenta la pagina, soprattutto su una connessione mobile.

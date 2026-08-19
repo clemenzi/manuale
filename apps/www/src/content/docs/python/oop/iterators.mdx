@@ -7,8 +7,6 @@ description: Come funzionano gli iteratori in Python.
 
 Quando scrivi `for elemento in lista`, Python usa un meccanismo chiamato **iteratore**. Capirlo permette di creare sequenze personalizzate, anche capaci di generare dati solo quando servono.
 
----
-
 ## La differenza tra iterabile e iteratore
 
 - **Iterabile**: qualcosa su cui puoi fare un ciclo `for`. Liste, stringhe, tuple, dizionari sono iterabili.
@@ -18,8 +16,6 @@ Un'analogia utile è un libro:
 
 - Il **libro** è l'iterabile (contiene tutti i capitoli)
 - Il **segnalibro** è l'iteratore (ricorda a quale pagina sei arrivato)
-
----
 
 ## Come funziona `for` dentro Python
 
@@ -47,8 +43,6 @@ print(next(iteratore))    # 2 ← prende il secondo elemento e avanza
 print(next(iteratore))    # 3 ← prende il terzo elemento e avanza
 # print(next(iteratore))  # Qui lancerebbe StopIteration: la lista è finita!
 ```
-
----
 
 ## Creare un iteratore personalizzato
 
@@ -85,8 +79,6 @@ for numero in ContaDa(1, 5):
 # → 5
 ```
 
----
-
 ## Generatori: il modo più semplice
 
 Una classe iteratore completa funziona, ma richiede parecchio codice. I **generatori** permettono di ottenere lo stesso risultato in modo più breve.
@@ -108,8 +100,6 @@ for numero in conta_da(1, 5):
 
 La differenza rispetto a `return`: con `return` la funzione finisce e dimentica tutto. Con `yield` la funzione si mette in pausa e ricorda esattamente dove si trovava.
 
----
-
 ## Generator expression: la versione compatta
 
 Come le **list comprehension** (la sintassi `[x**2 for x in range(10)]` che crea una lista in una riga) ma con le parentesi tonde invece di quelle quadre. Producono un generatore invece di una lista: i valori vengono calcolati uno alla volta, solo quando servono, risparmiando memoria.
@@ -124,8 +114,6 @@ quadrati_gen = (x ** 2 for x in range(10))
 for q in quadrati_gen:
     print(q)   # → 0, 1, 4, 9, 16, 25, 36, 49, 64, 81
 ```
-
----
 
 ## Perché usare i generatori? Il problema della memoria
 
@@ -142,8 +130,6 @@ numeri_gen = range(1_000_000)
 ```
 
 I generatori sono come un nastro trasportatore: producono un pezzo alla volta, invece di mettere tutto sul tavolo in una volta.
-
----
 
 ## Strumenti pronti: il modulo `itertools`
 

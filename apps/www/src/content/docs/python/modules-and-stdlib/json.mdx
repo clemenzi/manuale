@@ -9,8 +9,6 @@ Quando un'app mostra dati provenienti dal web, come il meteo o i risultati di un
 
 JSON è un formato comune per scambiare informazioni tra programmi. Puoi usarlo per scaricare dati, salvarli e leggerli.
 
----
-
 ## Cos'è il JSON?
 
 **JSON** (si legge "djèizon") è un formato di testo per rappresentare dati strutturati. Assomiglia molto ai dizionari e alle liste Python:
@@ -30,15 +28,11 @@ JSON è un formato comune per scambiare informazioni tra programmi. Puoi usarlo 
 
 È leggibile dalle persone, soprattutto se indentato, e può essere interpretato dai programmi.
 
----
-
 ## Importare il modulo
 
 ```python
 import json
 ```
-
----
 
 ## Da Python a JSON: `json.dumps()`
 
@@ -88,8 +82,6 @@ Output indentato:
 | `True` / `False` | `true` / `false`  |
 | `None`           | `null`            |
 
----
-
 ## Da JSON a Python: `json.loads()`
 
 `loads()` esegue l'operazione inversa: converte una stringa JSON in un dizionario o una lista Python.
@@ -105,8 +97,6 @@ print(dati["nome"])    # Alice
 print(dati["voti"])    # [8, 7, 9]
 print(type(dati))      # <class 'dict'>
 ```
-
----
 
 ## Scrivere JSON su file: `json.dump()`
 
@@ -137,8 +127,6 @@ Il file `studenti.json` conterrà:
 ]
 ```
 
----
-
 ## Leggere JSON da file: `json.load()`
 
 `load()` legge un file JSON e lo converte in una struttura Python:
@@ -155,8 +143,6 @@ for studente in studenti:
 # → Bob: 7
 ```
 
----
-
 ## Gestire errori di formato
 
 Se la stringa JSON non è valida, per esempio perché contiene una virgola di troppo, Python solleva un errore. Puoi gestirlo con `try/except`:
@@ -169,8 +155,6 @@ try:
 except json.JSONDecodeError as e:
     print(f"Errore: il testo non è JSON valido — {e}")
 ```
-
----
 
 ## Esempio pratico: file di configurazione
 

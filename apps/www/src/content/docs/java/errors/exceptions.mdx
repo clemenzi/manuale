@@ -24,14 +24,14 @@ try {
     int numero = Integer.parseInt("abc");
     System.out.println(numero);
 } catch (NumberFormatException e) {
-    System.out.println("Non e un numero valido.");
+    System.out.println("Non è un numero valido.");
 }
 ```
 
 Output:
 
 ```text
-Non e un numero valido.
+Non è un numero valido.
 ```
 
 `Integer.parseInt("abc")` fallisce perché `"abc"` non è un numero.

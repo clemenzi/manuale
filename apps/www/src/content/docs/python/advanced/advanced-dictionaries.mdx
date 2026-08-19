@@ -7,8 +7,6 @@ description: Tecniche avanzate per lavorare con i dizionari in Python.
 
 Conosci già i dizionari di base. Queste tecniche permettono di **crearli in modo più compatto**, gestire chiavi mancanti e contare le occorrenze.
 
----
-
 ## Dictionary comprehension: creare dizionari in una riga
 
 Come le list comprehension, le dictionary comprehension costruiscono una struttura in una sola espressione; il risultato è un dizionario:
@@ -29,8 +27,6 @@ pari_quadrati = {x: x**2 for x in range(10) if x % 2 == 0}
 print(pari_quadrati)   # {0: 0, 2: 4, 4: 16, 6: 36, 8: 64}
 ```
 
----
-
 ## `get()`: accedere senza rischio di errore
 
 Se accedi a una chiave inesistente con `dizionario["chiave"]`, Python solleva un `KeyError`. Il metodo `get()` restituisce invece un valore predefinito.
@@ -42,8 +38,6 @@ print(studenti.get("Alice"))         # 8      ← chiave trovata
 print(studenti.get("Carlo"))         # None   ← chiave non trovata, nessun errore
 print(studenti.get("Carlo", "N/A"))  # N/A    ← chiave non trovata, usa il valore di default
 ```
-
----
 
 ## `setdefault()`: aggiungi una chiave solo se non esiste
 
@@ -76,8 +70,6 @@ print(raggruppate)
 # {'m': ['mela', 'more', 'mandarino'], 'b': ['banana']}
 ```
 
----
-
 ## `Counter`: conta le occorrenze automaticamente
 
 Dal modulo `collections`, `Counter` è un dizionario speciale pensato per contare quante volte appare ogni elemento.
@@ -101,8 +93,6 @@ print(lettere)
 # Counter({'i': 4, 's': 4, 'p': 2, 'm': 1})
 ```
 
----
-
 ## `defaultdict`: valori di default automatici
 
 Un altro strumento di `collections`. Con `defaultdict` non devi mai preoccuparti di controllare se una chiave esiste: se non c'è, viene creata automaticamente con il valore di default che hai scelto.
@@ -121,8 +111,6 @@ print(dict(gruppi))
 # {'3A': ['Alice', 'Carlo'], '3B': ['Bob']}
 ```
 
----
-
 ## Unire due dizionari
 
 ```python
@@ -138,8 +126,6 @@ unito2 = {**d1, **d2}
 print(unito2)  # {'a': 1, 'b': 3, 'c': 4}
 ```
 
----
-
 ## Invertire un dizionario (chiavi ↔ valori)
 
 ```python
@@ -149,8 +135,6 @@ print(invertito)   # {1: 'a', 2: 'b', 3: 'c'}
 ```
 
 Attenzione: funziona solo se i valori sono unici. Se due chiavi avevano lo stesso valore, una verrà sovrascritta.
-
----
 
 ## Ordinare un dizionario
 

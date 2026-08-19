@@ -154,17 +154,17 @@ Senza la conversione, PHP leggerebbe i dati come stringhe.
 
 ### Esercizio 8
 
-Leggere un prezzo e una quantita e calcolare il totale.
+Leggere un prezzo e una quantità e calcolare il totale.
 
 <details>
 <summary>Soluzione spiegata</summary>
 
-Per il prezzo usiamo un numero decimale, mentre la quantita puo essere intera.
+Per il prezzo usiamo un numero decimale, mentre la quantità può essere intera.
 
 ```php
 <?php
 $prezzo = (float) readline("Prezzo: ");
-$quantita = (int) readline("Quantita: ");
+$quantita = (int) readline("Quantità: ");
 $totale = $prezzo * $quantita;
 
 echo $totale;
@@ -275,7 +275,7 @@ Determinare il maggiore tra due numeri.
 <details>
 <summary>Soluzione spiegata</summary>
 
-Confrontiamo i due valori e stampiamo quello piu grande.
+Confrontiamo i due valori e stampiamo quello più grande.
 
 ```php
 <?php
@@ -300,11 +300,11 @@ Verificare se una persona è maggiorenne.
 <details>
 <summary>Soluzione spiegata</summary>
 
-Basta controllare se l'eta e almeno `18`.
+Basta controllare se l'età è almeno `18`.
 
 ```php
 <?php
-$eta = (int) readline("Eta: ");
+$eta = (int) readline("Età: ");
 
 if ($eta >= 18) {
     echo "Maggiorenne";
@@ -420,7 +420,7 @@ La condizione verifica entrambe le combinazioni possibili.
 
 ### Esercizio 19
 
-Scrivere un controllo per un ordine: se il totale e almeno 30 euro e il prodotto e disponibile, mostrare `Ordine confermato`. Altrimenti mostrare `Ordine non disponibile`.
+Scrivere un controllo per un ordine: se il totale e almeno 30 euro e il prodotto è disponibile, mostrare `Ordine confermato`. Altrimenti mostrare `Ordine non disponibile`.
 
 <details>
 <summary>Soluzione spiegata</summary>
@@ -717,7 +717,7 @@ Se il numero non viene trovato, `$posizione` resta uguale a `-1`.
 
 ### Esercizio 31
 
-Rappresentare un prodotto con un array associativo e mostrare nome e prezzo solo se il prodotto e disponibile.
+Rappresentare un prodotto con un array associativo e mostrare nome e prezzo solo se il prodotto è disponibile.
 
 <details>
 <summary>Soluzione spiegata</summary>
@@ -954,7 +954,7 @@ Il valore restituito può essere usato in qualunque punto del programma.
 
 ### Esercizio 41
 
-Scrivere una funzione che calcola il totale a partire da prezzo e quantita e restituisce il risultato.
+Scrivere una funzione che calcola il totale a partire da prezzo e quantità e restituisce il risultato.
 
 <details>
 <summary>Soluzione spiegata</summary>
@@ -1044,7 +1044,7 @@ $prodotti = ["Penna", "Quaderno", "Zaino"];
 </ul>
 ```
 
-La sintassi con `foreach` e `endforeach` rende il template piu leggibile quando lavoriamo in HTML.
+La sintassi con `foreach` e `endforeach` rende il template più leggibile quando lavoriamo in HTML.
 
 </details>
 
@@ -1121,7 +1121,7 @@ $errore = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($nome === "") {
-        $errore = "Il nome e obbligatorio";
+        $errore = "Il nome è obbligatorio";
     }
 }
 ?>
@@ -1244,6 +1244,6 @@ $conto->deposita(25);
 echo $conto->leggiSaldo();
 ```
 
-Il saldo non puo essere modificato direttamente dall'esterno, ma solo attraverso i metodi scelti dalla classe.
+Il saldo non può essere modificato direttamente dall'esterno, ma solo attraverso i metodi scelti dalla classe.
 
 </details>

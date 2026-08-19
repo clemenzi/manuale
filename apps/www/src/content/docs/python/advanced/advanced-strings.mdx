@@ -7,8 +7,6 @@ description: Metodi avanzati per la manipolazione delle stringhe in Python.
 
 Le stringhe sono ovunque: nomi, messaggi, dati da file, risposte dal web. Python ha decine di strumenti pronti per cercare, modificare, tagliare e unire testo. In questa pagina vediamo quelli più utili nella pratica.
 
----
-
 ## Cercare testo dentro una stringa
 
 ### `find()` — trova la posizione di una sottostringa
@@ -36,8 +34,6 @@ testo = "Ciao mondo! Ciao Python!"
 print(testo.replace("Ciao", "Salve"))       # Salve mondo! Salve Python!
 print(testo.replace("Ciao", "Salve", 1))    # Salve mondo! Ciao Python! (solo la prima)
 ```
-
----
 
 ## Tagliare e unire
 
@@ -76,8 +72,6 @@ print(" - ".join(parole))   # mela - banana - ciliegia
 print("".join(parole))      # melebananaciliegia
 ```
 
----
-
 ## Pulizia del testo
 
 ### Rimuovere spazi in eccesso
@@ -93,8 +87,6 @@ testo2 = "###ciao###"
 print(testo2.strip("#"))   # "ciao"
 ```
 
----
-
 ## Cambiare maiuscole e minuscole
 
 ```python
@@ -105,8 +97,6 @@ print(testo.capitalize())   # Ciao mondo   ← solo la prima lettera maiuscola
 print(testo.title())        # Ciao Mondo   ← prima lettera di ogni parola maiuscola
 print(testo.swapcase())     # CIAO MONDO   ← inverte: minuscole↔maiuscole
 ```
-
----
 
 ## Verificare il contenuto di una stringa
 
@@ -123,8 +113,6 @@ print("123".isdigit())     # True  ← solo cifre
 print("   ".isspace())     # True  ← solo spazi
 ```
 
----
-
 ## Allineamento e riempimento
 
 Utili per creare tabelle o output ben formattato:
@@ -137,8 +125,6 @@ print("ciao".center(10))         # "   ciao   " ← centra
 print("ciao".center(10, "-"))    # "---ciao---" ← centra con carattere personalizzato
 ```
 
----
-
 ## Dividere in tre parti con `partition()`
 
 `partition()` divide la stringa in esattamente tre parti: prima del separatore, il separatore stesso, dopo il separatore.
@@ -150,8 +136,6 @@ print(prima)   # "nome"
 print(sep)     # ":"
 print(dopo)    # " Alice"
 ```
-
----
 
 ## Esempio pratico: leggere dati separati da virgole
 

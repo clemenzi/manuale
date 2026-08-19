@@ -11,13 +11,13 @@ La usi quando un metodo ti chiede:
 
 "Che cosa devo fare con questo valore?"
 
-Per esempio, una lista puo chiederti cosa fare con ogni nome. Tu puoi rispondere con una lambda:
+Per esempio, una lista può chiederti cosa fare con ogni nome. Tu puoi rispondere con una lambda:
 
 ```java
 nome -> System.out.println(nome)
 ```
 
-Si legge cosi:
+Si legge così:
 
 "prendi un `nome` e stampalo".
 
@@ -26,9 +26,9 @@ La freccia `->` separa due parti:
 - a sinistra c'e il valore che arriva
 - a destra c'e l'azione da eseguire
 
-## La forma piu semplice
+## La forma più semplice
 
-La forma piu comune e questa:
+La forma più comune e questa:
 
 ```java
 parametro -> azione
@@ -44,7 +44,7 @@ Esempio:
 nome -> System.out.println(nome)
 ```
 
-Qui `nome` non e una variabile creata prima da noi. E il nome che diamo al valore ricevuto dalla lambda.
+Qui `nome` non è una variabile creata prima da noi. È il nome che diamo al valore ricevuto dalla lambda.
 
 ## Usare una lambda con forEach
 
@@ -105,13 +105,13 @@ nomi.forEach(nome -> System.out.println(nome));
 
 I due esempi producono lo stesso risultato.
 
-All'inizio il ciclo `for-each` e spesso piu facile da leggere. La lambda diventa utile quando usi metodi che vogliono ricevere una piccola azione, come `forEach`, `sort`, `filter` o `map`.
+All'inizio il ciclo `for-each` e spesso più facile da leggere. La lambda diventa utile quando usi metodi che vogliono ricevere una piccola azione, come `forEach`, `sort`, `filter` o `map`.
 
-## Lambda con piu righe
+## Lambda con più righe
 
 Se l'azione e molto breve, puoi scriverla dopo la freccia.
 
-Se invece servono piu righe, usa le parentesi graffe.
+Se invece servono più righe, usa le parentesi graffe.
 
 ```java
 nomi.forEach(nome -> {
@@ -137,7 +137,7 @@ Qui succedono due cose per ogni nome:
 
 ## Lambda che restituisce un valore
 
-Una lambda puo anche produrre un risultato.
+Una lambda può anche produrre un risultato.
 
 Per esempio:
 
@@ -209,7 +209,7 @@ Java mette `5` al posto di `numero` e calcola `5 * 2`.
 
 ## Lambda con due parametri
 
-Una lambda puo ricevere anche piu valori.
+Una lambda può ricevere anche più valori.
 
 In quel caso metti i parametri tra parentesi.
 

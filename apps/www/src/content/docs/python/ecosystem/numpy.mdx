@@ -9,8 +9,6 @@ Le liste Python sono sufficienti in molti casi. Per **calcoli matematici su migl
 
 NumPy è usato da molte librerie scientifiche Python, tra cui pandas, matplotlib e scikit-learn.
 
----
-
 ## Installazione e importazione
 
 ```bash
@@ -22,8 +20,6 @@ Per convenzione, NumPy si importa sempre con il soprannome `np`:
 ```python
 import numpy as np
 ```
-
----
 
 ## Gli array di NumPy
 
@@ -47,8 +43,6 @@ print(m)
 print(m.shape)    # (3, 3) — 3 righe, 3 colonne
 ```
 
----
-
 ## Creare array già pronti
 
 ```python
@@ -62,8 +56,6 @@ print(np.arange(0, 10, 2))   # [0 2 4 6 8] — come range(), ma per array
 print(np.linspace(0, 1, 5))  # [0. 0.25 0.5 0.75 1.] — 5 punti equidistanti tra 0 e 1
 print(np.random.rand(3))     # 3 numeri decimali casuali tra 0 e 1
 ```
-
----
 
 ## La potenza delle operazioni vettoriali
 
@@ -88,8 +80,6 @@ print(a * b)     # [ 10  40  90 160 250]
 
 Questo approccio si chiama **vettorializzazione**: NumPy applica l'operazione agli elementi senza un ciclo scritto dall'utente.
 
----
-
 ## Funzioni matematiche integrate
 
 ```python
@@ -105,8 +95,6 @@ print(np.max(a))    # 25    — valore massimo
 print(np.std(a))    # deviazione standard
 ```
 
----
-
 ## Accedere agli elementi
 
 ```python
@@ -121,8 +109,6 @@ print(m[1, 2])      # 6              ← riga 1, colonna 2
 print(m[:, 0])      # [1 4 7]        ← tutta la colonna 0
 print(m[0:2, 1:3])  # [[2 3] [5 6]]  ← un sotto-blocco (righe 0-1, colonne 1-2)
 ```
-
----
 
 ## NumPy vs liste Python: la differenza di velocità
 
@@ -146,8 +132,6 @@ print(f"NumPy:        {time.time() - inizio:.3f} secondi")
 ```
 
 Per le operazioni numeriche NumPy è tipicamente **10-100 volte più veloce** delle liste Python. Su un milione di elementi la differenza è notevole.
-
----
 
 ## Quando usare NumPy vs liste
 

@@ -101,7 +101,7 @@ public class Profilo {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Eta: ");
+        System.out.print("Età: ");
         int eta = scanner.nextInt();
 
         System.out.print("Nome: ");
@@ -117,7 +117,7 @@ Il programma potrebbe saltare la richiesta del nome. Succede perché `nextInt()`
 Una soluzione semplice è consumare quella riga prima di leggere il nome:
 
 ```java
-System.out.print("Eta: ");
+System.out.print("Età: ");
 int eta = scanner.nextInt();
 scanner.nextLine(); // consuma l'a capo rimasto
 
@@ -157,7 +157,7 @@ public class Ordine {
         System.out.print("Prodotto: ");
         String prodotto = scanner.nextLine();
 
-        System.out.print("Quantita: ");
+        System.out.print("Quantità: ");
         int quantita = scanner.nextInt();
 
         System.out.print("Prezzo: ");

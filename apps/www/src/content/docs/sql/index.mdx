@@ -8,17 +8,15 @@ icon: Database
 
 Quando cerchi un prodotto in un negozio online, controlli il saldo del conto o apri lo storico degli ordini, un'applicazione sta leggendo dati da un archivio.
 
-**SQL è il linguaggio che usi per fare queste richieste.** Ti permette di leggere, aggiungere, modificare e cancellare informazioni salvate in un database.
+**SQL è il linguaggio con cui descrivi queste richieste.** Puoi usarlo per leggere, aggiungere, modificare e cancellare informazioni salvate in un database.
 
 Puoi pensare a SQL come al linguaggio con cui fai richieste precise a un archivio. Indichi cosa cerchi e il database restituisce il risultato corrispondente.
-
----
 
 ## Cos'è SQL?
 
 **SQL** sta per **Structured Query Language**. In italiano possiamo leggerlo come "linguaggio per fare richieste organizzate ai dati".
 
-Un database è come un insieme di tabelle, simili a fogli di calcolo. Ogni tabella raccoglie un tipo di informazione: clienti, prodotti, ordini, prenotazioni, pagamenti.
+All'inizio puoi immaginare un database relazionale come un insieme di tabelle simili a fogli di calcolo. Ogni tabella raccoglie un tipo di informazione: clienti, prodotti, ordini, prenotazioni o pagamenti. L'analogia aiuta a orientarsi, ma un database aggiunge regole, relazioni e strumenti che un semplice foglio non offre.
 
 Con SQL puoi dire cose come:
 
@@ -27,8 +25,6 @@ Con SQL puoi dire cose come:
 - cambia l'indirizzo di un cliente
 - elimina una prenotazione annullata
 - collega gli ordini ai clienti che li hanno fatti
-
----
 
 ## Dove si usa SQL nel mondo reale?
 
@@ -43,8 +39,6 @@ Lo trovi in:
 - **dashboard e report**: per riassumere dati e numeri importanti
 - **app web**: per salvare account, messaggi e impostazioni
 
----
-
 ## SQL vs Python e C++
 
 Python e C++ servono a scrivere programmi. SQL ha un compito diverso: **permette di interrogare e modificare i dati**.
@@ -57,11 +51,9 @@ Python e C++ servono a scrivere programmi. SQL ha un compito diverso: **permette
 
 Non devi scegliere tra questi linguaggi. Spesso lavorano insieme: un'app scritta in Python o C++ può usare SQL per salvare e recuperare informazioni.
 
----
-
 ## Come funziona SQL?
 
-SQL funziona attraverso comandi chiamati **query**. Una query è una domanda o un'istruzione che mandi al database.
+In SQL scrivi istruzioni chiamate **query**. Una query può chiedere dati oppure ordinare al database di modificarli.
 
 In genere il flusso è questo:
 
@@ -70,9 +62,7 @@ In genere il flusso è questo:
 3. il database cerca o modifica i dati richiesti
 4. tu ricevi un risultato, oppure una conferma dell'operazione
 
-La query deve indicare con precisione l'operazione richiesta. Il database la esegue e restituisce un risultato oppure una conferma.
-
----
+Il database esegue la query e restituisce un risultato oppure segnala l'esito dell'operazione.
 
 ## La prima query
 
@@ -89,8 +79,6 @@ In parole semplici significa: **"mostrami tutte le colonne di tutte le righe nel
 
 Il simbolo `*` vuol dire "tutto". Più avanti imparerai anche a chiedere solo le colonne che ti servono.
 
----
-
 ## Quale SQL useremo?
 
 **Useremo soprattutto SQL standard.** Questo ti aiuta a capire i concetti senza dipendere subito da un database preciso.
@@ -98,8 +86,6 @@ Il simbolo `*` vuol dire "tutto". Più avanti imparerai anche a chiedere solo le
 Nella pratica esistono diversi database, come PostgreSQL, MySQL, SQLite e SQL Server. Sono come dialetti della stessa lingua: si assomigliano molto, ma a volte usano parole o dettagli diversi.
 
 Quando una differenza conta davvero, la segnaleremo in modo chiaro.
-
----
 
 ## Il percorso più semplice per iniziare
 
@@ -116,15 +102,11 @@ Se stai partendo da zero, segui questo ordine:
 
 **Non devi leggere tutto in una volta.** Impara una parola chiave alla volta e usala nelle query degli esercizi.
 
----
-
 ## Come è organizzata questa guida
 
 **Qui trovi un concetto per file.** In questo modo puoi studiare un argomento alla volta e ritrovare facilmente la pagina che ti serve.
 
 In pratica, se vuoi capire solo `WHERE`, hai una pagina per `WHERE`. Se vuoi capire solo `JOIN`, trovi una pagina dedicata a `JOIN`.
-
----
 
 ## Da portare a casa
 

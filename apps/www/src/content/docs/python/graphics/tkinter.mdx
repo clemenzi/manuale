@@ -7,13 +7,9 @@ description: Creare finestre e interfacce grafiche semplici con Tkinter in Pytho
 
 Finora i programmi mostrano e ricevono testo dal terminale. Con **Tkinter** puoi creare finestre con pulsanti, campi di testo e menu a tendina.
 
----
-
 ## Cos'è Tkinter?
 
 **Tkinter** è la libreria per le interfacce grafiche inclusa in Python. Non devi installare nulla. Offre elementi come etichette, pulsanti, caselle di testo e caselle di spunta.
-
----
 
 ## La prima finestra
 
@@ -30,8 +26,6 @@ root.mainloop()
 ```
 
 `mainloop()` mantiene aperta la finestra e gestisce le azioni dell'utente, come clic e digitazione.
-
----
 
 ## I componenti principali (Widget)
 
@@ -51,8 +45,6 @@ etichetta.pack(pady=20)   # pack() posiziona il widget nella finestra
 root.mainloop()
 ```
 
----
-
 ### Button — pulsante cliccabile
 
 ```python
@@ -70,8 +62,6 @@ root.mainloop()
 ```
 
 `command=saluta` indica la funzione da chiamare quando l'utente preme il pulsante.
-
----
 
 ### Entry — campo per inserire testo
 
@@ -93,8 +83,6 @@ pulsante.pack()
 
 root.mainloop()
 ```
-
----
 
 ## Esempio completo: app di saluto
 
@@ -130,8 +118,6 @@ etichetta_risultato.pack()
 
 root.mainloop()
 ```
-
----
 
 ## Posizionare i widget in griglia con `grid()`
 
@@ -171,8 +157,6 @@ etichetta_ris.grid(row=3, column=0, columnspan=2)
 root.mainloop()
 ```
 
----
-
 ## Altri widget utili
 
 ```python
@@ -200,8 +184,6 @@ cursore.pack()
 
 root.mainloop()
 ```
-
----
 
 ## Finestre di dialogo
 

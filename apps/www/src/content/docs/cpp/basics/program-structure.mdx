@@ -1,5 +1,5 @@
 ---
-title: Struttura di un Programma C++
+title: Struttura di un programma C++
 description: Le parti fondamentali che compongono ogni programma C++.
 ---
 
@@ -45,7 +45,9 @@ using namespace std;
 
 Pensa a un **namespace** come a un cognome. Se in classe ci sono due ragazzi chiamati Marco, li distingui con il cognome: "Marco Rossi" e "Marco Bianchi".
 
-`cout` e `cin` appartengono alla "famiglia" `std`. Scrivere `using namespace std;` dice al programma: "quando uso `cout`, intendo `std::cout`." Così puoi scrivere `cout` invece del nome completo `std::cout`.
+`cout` e `cin` appartengono alla “famiglia” `std`. Scrivere `using namespace std;` dice al compilatore di cercare in quella famiglia i nomi senza prefisso. Così puoi scrivere `cout` invece del nome completo `std::cout`.
+
+Nei primi esempi useremo questa scorciatoia per concentrare l'attenzione sui concetti nuovi. Nei progetti più grandi è spesso più chiaro scrivere `std::cout` e `std::cin`, perché nomi provenienti da famiglie diverse potrebbero entrare in conflitto.
 
 ## Parte 3: `int main() { ... }`
 

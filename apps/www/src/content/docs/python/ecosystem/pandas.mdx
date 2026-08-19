@@ -9,8 +9,6 @@ Supponi di avere un foglio Excel con migliaia di righe. Trovare gli studenti con
 
 Con **Pandas** puoi eseguire queste operazioni in poche righe di Python e ripeterle quando i dati cambiano.
 
----
-
 ## Cos'è Pandas?
 
 **Pandas** è una libreria Python per lavorare con **dati tabellari**, organizzati in righe e colonne come in un foglio Excel o in una tabella di database.
@@ -19,8 +17,6 @@ Le due strutture principali sono:
 
 - **Series**: una singola colonna di dati (come una lista con etichette)
 - **DataFrame**: una tabella completa con righe e colonne
-
----
 
 ## Installazione e importazione
 
@@ -33,8 +29,6 @@ Per convenzione, Pandas si importa con il soprannome `pd`:
 ```python
 import pandas as pd
 ```
-
----
 
 ## Series: una colonna di dati
 
@@ -59,8 +53,6 @@ voti_classe = pd.Series(
 print(voti_classe["Alice"])   # 8
 print(voti_classe.mean())     # 7.5 — media
 ```
-
----
 
 ## DataFrame: la tabella di dati
 
@@ -90,8 +82,6 @@ Output:
 3  Diana   16     6   Napoli
 ```
 
----
-
 ## Accedere ai dati
 
 ```python
@@ -108,8 +98,6 @@ print(studenti.iloc[0:2])     # Righe 0 e 1
 # Selezionare un singolo valore (riga, colonna)
 print(studenti.iloc[0, 2])    # Riga 0, colonna 2 → 8 (il voto di Alice)
 ```
-
----
 
 ## Filtrare i dati
 
@@ -129,8 +117,6 @@ risultato = studenti[(studenti["voto"] >= 7) & (studenti["eta"] >= 16)]
 print(risultato)
 ```
 
----
-
 ## Statistiche in un colpo solo
 
 ```python
@@ -142,8 +128,6 @@ print(studenti["voto"].std())     # deviazione standard
 # Riepilogo statistico di tutte le colonne numeriche
 print(studenti.describe())
 ```
-
----
 
 ## Leggere e scrivere file
 
@@ -162,8 +146,6 @@ df_excel = pd.read_excel("dati.xlsx")
 # Scrivere su Excel
 studenti.to_excel("studenti_export.xlsx", index=False)
 ```
-
----
 
 ## Operazioni comuni
 

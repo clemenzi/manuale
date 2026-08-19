@@ -1,5 +1,5 @@
 ---
-title: Sintassi di Base
+title: Sintassi di base
 description: Le regole fondamentali della sintassi del C++.
 ---
 
@@ -9,9 +9,9 @@ Ogni linguaggio ha le proprie regole. In C++ il **punto e virgola** chiude la ma
 
 Queste regole sono la base per leggere e scrivere il resto del codice.
 
-## La regola più importante: il punto e virgola
+## Chiudere le istruzioni con il punto e virgola
 
-Ogni istruzione in C++ deve terminare con un **punto e virgola** (`;`). Segnala al compilatore che l'istruzione è terminata.
+Molte istruzioni in C++ terminano con un **punto e virgola** (`;`). Segnala al compilatore dove finisce un'istruzione. Le direttive come `#include` e le intestazioni dei blocchi non seguono questa regola.
 
 ```cpp
 int x = 10;           // istruzione 1 — termina con ;
@@ -71,11 +71,11 @@ int main() {
 }
 ```
 
-Usa 4 spazi (o un tab) per ogni livello di indentazione. Una formattazione coerente rende il codice più facile da leggere.
+In questa guida usiamo 4 spazi per ogni livello di indentazione. Evita di alternare spazi e tab nello stesso file: una formattazione coerente rende il codice più facile da leggere.
 
 ## I nomi delle variabili (identificatori)
 
-Un **identificatore** è il nome che dai a una variabile, a una funzione, ecc. Pensa a esso come a un'etichetta su una scatola.
+Un **identificatore** è il nome che dai a una variabile, a una funzione o a un altro elemento del programma. È l'etichetta con cui potrai ritrovarlo nel codice.
 
 Regole per i nomi:
 

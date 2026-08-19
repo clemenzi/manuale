@@ -18,7 +18,7 @@ Un form HTML permette di inserire dati e inviarli al server. PHP può leggerli e
 
 `action` indica quale file riceve i dati. `method` indica come vengono inviati.
 
-In `cerca.php` puoi leggere il campo cosi:
+In `cerca.php` puoi leggere il campo così:
 
 ```php
 <?php
@@ -69,7 +69,7 @@ Non fidarti dei dati ricevuti da un form. Controlla che siano presenti, abbiano 
 ```php
 <?php
 if ($nome === "") {
-    echo "Il nome e obbligatorio";
+    echo "Il nome è obbligatorio";
 }
 ```
 
@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nome = $_POST["nome"] ?? "";
 
     if ($nome === "") {
-        echo "Il nome e obbligatorio";
+        echo "Il nome è obbligatorio";
     }
 }
 ```
@@ -111,4 +111,4 @@ In questo modo validi i dati solo quando il form è stato inviato.
 
 ## Regola pratica
 
-Usa GET quando il risultato puo stare nell'indirizzo, come una ricerca. Usa POST quando stai inviando dati che cambiano qualcosa o che non vuoi mostrare nell'URL.
+Usa GET quando il risultato può stare nell'indirizzo, come una ricerca. Usa POST quando stai inviando dati che cambiano qualcosa o che non vuoi mostrare nell'URL.

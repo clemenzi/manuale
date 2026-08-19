@@ -13,7 +13,7 @@ Un link usa l'elemento `<a>` e l'attributo `href`:
 <a href="contatti.html">Vai alla pagina dei contatti</a>
 ```
 
-`href` indica la destinazione. Il testo tra i tag è la parte che la persona può selezionare.
+`href` indica la destinazione. Il testo tra i tag è la parte visibile e selezionabile. Quando la persona attiva il link, il browser apre la risorsa indicata da `href`.
 
 ## Link interni ed esterni
 
@@ -29,7 +29,7 @@ Un link **esterno** usa un indirizzo completo e porta a un altro sito:
 <a href="https://www.example.com">Visita il sito del fornitore</a>
 ```
 
-L'indirizzo completo comprende il protocollo `https://` e il nome del sito.
+L'indirizzo completo comprende il **protocollo** `https://`, cioè il modo sicuro con cui browser e sito comunicano, e il nome del sito.
 
 Per aprire un link in una nuova scheda puoi aggiungere `target="_blank"`. Fallo solo quando c'è un motivo, perché cambiare scheda può sorprendere chi naviga.
 
@@ -39,7 +39,7 @@ Per aprire un link in una nuova scheda puoi aggiungere `target="_blank"`. Fallo 
 </a>
 ```
 
-`rel` descrive la relazione con la nuova pagina e aggiunge una protezione utile quando usi `_blank`.
+`rel="noopener noreferrer"` limita il rapporto tra la pagina di partenza e quella appena aperta. È una precauzione utile quando usi `_blank`.
 
 ## Link a una sezione
 
@@ -55,7 +55,7 @@ Poi usa l'id preceduto da `#`:
 <a href="#orari">Vai agli orari</a>
 ```
 
-Ogni `id` deve essere unico nella pagina. Puoi collegare anche una sezione di un altro file con `contatti.html#orari`.
+Ogni `id` deve essere unico nella pagina: serve a identificare una sola destinazione. Puoi collegare anche una sezione di un altro file con `contatti.html#orari`.
 
 ## Email e telefono
 

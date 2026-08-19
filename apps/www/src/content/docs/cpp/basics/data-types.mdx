@@ -1,5 +1,5 @@
 ---
-title: Tipi di Dati
+title: Tipi di dati
 description: "I tipi di dati fondamentali del C++: int, float, double, char e bool."
 ---
 
@@ -22,13 +22,13 @@ int anno = 2024;
 int zero = 0;
 ```
 
-Un `int` occupa 4 byte di memoria e può contenere valori da circa -2 miliardi a +2 miliardi. Per la maggior parte dei programmi, è più che sufficiente.
+Su molti sistemi un `int` occupa 4 byte e contiene valori da circa -2 miliardi a +2 miliardi. Lo standard C++ non impone però una dimensione identica su ogni piattaforma. Per i primi programmi puoi usare `int` per i normali numeri interi.
 
 Se hai bisogno di numeri molto grandi o molto piccoli, esistono varianti:
 
 ```cpp
-short int piccolo = 32000;   // massimo circa 32.000
-long long enorme = 9000000000000LL;  // fino a 9 miliardi di miliardi
+short int piccolo = 32000;
+long long enorme = 9000000000000LL;
 ```
 
 ## Numeri decimali: `float` e `double`
@@ -37,7 +37,7 @@ Per numeri con la virgola (come 3.14 o 1.75) hai due opzioni.
 
 ### `float`
 
-Occupa 4 byte. Preciso fino a circa 7 cifre. Metti la `f` alla fine del numero per indicare che è un float:
+Su molti sistemi occupa 4 byte e conserva circa 6-7 cifre significative. Metti la `f` alla fine del numero per indicare che il valore è un `float`:
 
 ```cpp
 float temperatura = 36.6f;
@@ -46,7 +46,7 @@ float pi = 3.14159f;
 
 ### `double`
 
-Occupa 8 byte. Preciso fino a circa 15-16 cifre. È quello più usato:
+Su molti sistemi occupa 8 byte e conserva circa 15-16 cifre significative. È la scelta più comune per i calcoli decimali generici:
 
 ```cpp
 double altezza = 1.75;
@@ -55,16 +55,16 @@ double pi = 3.14159265358979;
 
 ### Quale usare?
 
-**Usa sempre `double`**, a meno che tu non abbia un motivo specifico per usare `float`. Il `double` è più preciso e il tipo preferito in C++ per i numeri decimali:
+Per iniziare, preferisci `double` a meno che un progetto richieda espressamente `float`. Offre più precisione, ma i numeri decimali binari restano approssimazioni:
 
 ```cpp
 // Possibile problema con float
 float a = 0.1f + 0.2f;
 cout << a;  // potrebbe stampare 0.3000001 invece di 0.3
 
-// Meglio con double
+// Anche double può mostrare un'approssimazione, ma conserva più cifre
 double b = 0.1 + 0.2;
-cout << b;  // molto più preciso
+cout << b;
 ```
 
 ## Singolo carattere: `char`
@@ -77,7 +77,7 @@ char cifra = '7';
 char spazio = ' ';
 ```
 
-Internamente, ogni carattere è memorizzato come un numero (il suo codice ASCII). Per esempio, `'A'` corrisponde al numero 65:
+Internamente, un `char` contiene un piccolo valore numerico. Per i caratteri di base, come `'A'`, quel valore segue normalmente la codifica ASCII. Un singolo `char` non basta invece a rappresentare in modo generale tutti i caratteri Unicode.
 
 ```cpp
 char c = 'A';

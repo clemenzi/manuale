@@ -13,8 +13,6 @@ Conoscere queste fasi aiuta a:
 - **lavorare con progetti grandi** — con più file `.cpp`, devi sapere come metterli insieme
 - **usare il terminale** — spesso si compila da riga di comando, specialmente in ambito professionale
 
----
-
 ## Le tre fasi: dalla ricetta al piatto
 
 Il processo completo comprende:
@@ -22,8 +20,6 @@ Il processo completo comprende:
 1. **Preprocessing** — il preprocessore prepara gli ingredienti (espande `#include`, sostituisce le macro `#define`, ecc.)
 2. **Compilazione** — il compilatore traduce la ricetta in lingua macchina
 3. **Linking** — il linker unisce tutti i pezzi in un unico programma eseguibile
-
----
 
 ## Fase 1: Preprocessing
 
@@ -49,8 +45,6 @@ g++ -E main.cpp -o main.i
 
 Il file `main.i` contiene il codice dopo il preprocessing — di solito è molto lungo perché include tutto il contenuto degli header.
 
----
-
 ## Fase 2: Compilazione
 
 Il compilatore prende il codice preprocessato e lo trasforma in **codice oggetto** — un file in linguaggio macchina con estensione `.o` (su Linux e macOS) o `.obj` (su Windows).
@@ -63,8 +57,6 @@ g++ -c main.cpp -o main.o
 g++ -c matematica.cpp -o matematica.o
 ```
 
----
-
 ## Fase 3: Linking (collegamento)
 
 Il linker prende tutti i file oggetto e li **unisce** in un unico programma eseguibile. Risolve i "ponti" tra i file: se `main.cpp` chiama la funzione `somma()` definita in `matematica.cpp`, il linker collega le due parti.
@@ -73,8 +65,6 @@ Il linker prende tutti i file oggetto e li **unisce** in un unico programma eseg
 # Collega i file oggetto in un unico eseguibile
 g++ main.o matematica.o -o programma
 ```
-
----
 
 ## Il comando completo con g++
 
@@ -85,8 +75,6 @@ g++ main.cpp matematica.cpp -o programma
 ```
 
 Questo comando esegue le tre fasi per ogni file `.cpp` e poi collega i risultati.
-
----
 
 ## I flag di g++ più utili
 
@@ -159,8 +147,6 @@ g++ -I./include file.cpp -o output   # cerca gli header anche nella cartella "in
 g++ -I /percorso/assoluto file.cpp -o output
 ```
 
----
-
 ## Errori di compilazione vs errori di linking
 
 Saper distinguere i due tipi di errore ti fa trovare il problema molto più in fretta.
@@ -201,8 +187,6 @@ g++ main.cpp -o programma
 g++ main.cpp matematica.cpp -o programma
 ```
 
----
-
 ## Esempio pratico con più file
 
 Struttura del progetto:
@@ -230,8 +214,6 @@ g++ -std=c++17 -c studente.cpp -o studente.o
 # Collega tutto
 g++ main.o studente.o -o programma
 ```
-
----
 
 ## Makefile — automatizzare la compilazione
 
@@ -269,8 +251,6 @@ make clean
 
 Non è necessario imparare subito ogni dettaglio di un Makefile; basta sapere a cosa serve.
 
----
-
 ## Riepilogo dei flag principali
 
 | Flag          | Cosa fa                                             |
@@ -284,8 +264,6 @@ Non è necessario imparare subito ogni dettaglio di un Makefile; basta sapere a 
 | `-c`          | Solo compilazione, senza collegamento               |
 | `-I percorso` | Aggiunge una cartella dove cercare gli header       |
 | `-E`          | Solo preprocessing                                  |
-
----
 
 ## Comando consigliato durante lo studio
 

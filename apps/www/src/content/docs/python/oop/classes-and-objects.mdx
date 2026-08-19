@@ -9,8 +9,6 @@ Per gestire 30 studenti con sole variabili separate avresti nomi come `nome1`, `
 
 Le **classi** raggruppano dati e funzioni correlate. Gli oggetti sono le singole istanze create a partire da una classe.
 
----
-
 ## La differenza tra classe e oggetto
 
 Una **classe** è come il **progetto di un'automobile**: descrive la struttura dell'auto, ma non è un'auto concreta.
@@ -19,16 +17,12 @@ Un **oggetto** è un'**automobile vera**, costruita seguendo quel progetto.
 
 Dallo stesso progetto puoi costruire molti oggetti, ciascuno con il proprio colore, la propria targa e il proprio chilometraggio.
 
----
-
 ## Definire una classe
 
 ```python
 class Persona:
     pass   # "pass" significa: classe vuota per ora, aggiungeremo cose dopo
 ```
-
----
 
 ## Il costruttore: `__init__`
 
@@ -45,8 +39,6 @@ class Persona:
 
 `self` è un riferimento all'oggetto stesso. È il primo parametro di ogni metodo, anche se non lo scrivi quando chiami il metodo.
 
----
-
 ## Creare oggetti (istanze)
 
 ```python
@@ -59,8 +51,6 @@ print(bob.eta)      # 17
 ```
 
 `alice` e `bob` sono due **istanze** della classe `Persona`. Hanno gli stessi attributi, ma valori diversi.
-
----
 
 ## Aggiungere metodi
 
@@ -87,8 +77,6 @@ alice.compleanno()   # → Buon compleanno Alice! Ora hai 17 anni.
 alice.saluta()       # → Ciao, mi chiamo Alice e ho 17 anni.
 ```
 
----
-
 ## Attributi di classe vs attributi di istanza
 
 - **Attributi di istanza**: appartengono al singolo oggetto (ogni oggetto ha il suo valore)
@@ -110,8 +98,6 @@ print(alice.nome)     # Alice
 print(bob.nome)       # Bob               ← valore diverso per ciascuno
 ```
 
----
-
 ## Il metodo `__str__`: come stampare un oggetto
 
 Senza una definizione specifica, `print(alice)` mostra un testo come `<__main__.Persona object at 0x...>`. Il metodo speciale `__str__` definisce la rappresentazione da stampare.
@@ -129,8 +115,6 @@ class Persona:
 alice = Persona("Alice", 16)
 print(alice)   # → Persona(nome=Alice, eta=16)
 ```
-
----
 
 ## Esempio completo: la classe `Rettangolo`
 

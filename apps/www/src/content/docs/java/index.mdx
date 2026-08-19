@@ -1,16 +1,16 @@
 ---
 title: Introduzione a Java
-description: Cos'e Java, dove viene usato e come iniziare a scrivere programmi semplici.
+description: Cos’è Java, dove viene usato e come iniziare a scrivere programmi semplici.
 icon: BookOpen
 ---
 
 ## Cos'è Java
 
-Java è un linguaggio di programmazione usato per creare programmi che funzionano su computer diversi: Windows, macOS, Linux, server, telefoni Android e altri ambienti.
+Java è un linguaggio di programmazione usato per creare applicazioni su computer, server e altri dispositivi. Lo stesso codice può funzionare su sistemi operativi diversi grazie all'ambiente di esecuzione di Java.
 
 Lo trovi in applicazioni aziendali, servizi web, app Android, strumenti per banche, università, negozi online e sistemi che devono restare stabili nel tempo.
 
-Un programma Java puo essere semplice come questo:
+Ecco un programma Java completo che mostra un saluto:
 
 ```java
 public class Saluto {
@@ -26,11 +26,11 @@ Output:
 Ciao, Java!
 ```
 
-All'inizio alcune parole sembrano lunghe: `public`, `class`, `static`, `main`. Non serve capirle tutte subito: le incontreremo un pezzo alla volta.
+All'inizio parole come `public`, `class`, `static` e `main` possono sembrare dense. Per ora osserva soltanto `System.out.println(...)`: è l'istruzione che mostra il messaggio. Le altre parti verranno spiegate una alla volta.
 
 ## Perché Java è diverso da molti linguaggi
 
-Java non viene eseguito direttamente come un file di testo. Prima viene **compilato**, cioè trasformato in un formato intermedio.
+Java non viene eseguito direttamente come un file di testo. Prima viene **compilato**, cioè trasformato in un formato intermedio chiamato **bytecode**.
 
 Poi entra in gioco la **JVM**, la Java Virtual Machine. È il programma che legge quel formato intermedio ed esegue il codice sul computer.
 
@@ -41,7 +41,7 @@ Il percorso è questo:
 3. Java produce un file `.class`
 4. esegui quel file con `java`
 
-Lo stesso programma può funzionare su sistemi diversi, se hanno una JVM compatibile.
+Il file `.class` non contiene più il testo Java che hai scritto. Contiene bytecode, che una JVM compatibile può eseguire su sistemi diversi.
 
 ## Dove si usa Java
 
@@ -53,10 +53,10 @@ Alcuni esempi:
 - app Android
 - programmi gestionali
 - sistemi bancari e assicurativi
-- strumenti per aziende e universita
+- strumenti per aziende e università
 - applicazioni con database
 
-Java non e sempre il linguaggio piu breve da scrivere. In cambio ti spinge a organizzare bene il codice. Questa caratteristica diventa utile quando i programmi crescono.
+Java richiede spesso di dichiarare in modo esplicito tipi e struttura. All'inizio scriverai qualche parola in più, ma queste informazioni aiutano a trovare errori e a organizzare programmi che crescono.
 
 ## Cosa imparerai in questa guida
 

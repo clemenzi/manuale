@@ -7,8 +7,6 @@ description: Introduzione alle espressioni regolari con il modulo re in Python.
 
 Per controllare un indirizzo email o trovare numeri di telefono in un testo, potresti scrivere molte condizioni `if`. Le **espressioni regolari** descrivono questi schemi in modo compatto.
 
----
-
 ## Cosa sono le espressioni regolari?
 
 Le **espressioni regolari** (dette anche "regex" o "regexp") descrivono **schemi di testo**. Puoi usarle per:
@@ -23,8 +21,6 @@ In Python si usano con il modulo `re`:
 ```python
 import re
 ```
-
----
 
 ## I mattoncini di base: cosa significano i simboli
 
@@ -51,8 +47,6 @@ import re
 | `{3}`   | Esattamente 3 volte |
 | `{2,5}` | Da 2 a 5 volte      |
 
----
-
 ## Cercare uno schema in una stringa
 
 ### `re.search()` — cerca ovunque nella stringa
@@ -73,8 +67,6 @@ else:
 
 Il prefisso `r` prima delle virgolette (`r"..."`) indica una **raw string** (stringa "grezza"). Senza `r`, Python interpreterebbe `\d` come una sequenza speciale, come `\n`. Con `r`, Python lascia il testo invariato. Usa `r"..."` nelle espressioni regolari.
 
----
-
 ### `re.match()` — cerca solo all'inizio della stringa
 
 ```python
@@ -89,8 +81,6 @@ else:
     print("Non trovato.")
 ```
 
----
-
 ### `re.findall()` — trova TUTTE le corrispondenze
 
 ```python
@@ -101,8 +91,6 @@ numeri = re.findall(r"\d+", testo)   # Trova tutti i gruppi di cifre
 print(numeri)   # ['3', '5', '2']
 ```
 
----
-
 ## Sostituire testo: `re.sub()`
 
 ```python
@@ -112,8 +100,6 @@ testo = "Il prezzo è 10 euro, poi 20 euro."
 nuovo = re.sub(r"\d+", "X", testo)   # Sostituisce tutti i numeri con "X"
 print(nuovo)   # Il prezzo è X euro, poi X euro.
 ```
-
----
 
 ## Dividere testo: `re.split()`
 
@@ -127,8 +113,6 @@ testo = "mela; banana, uva  ciliegia"
 parti = re.split(r"[;,\s]+", testo)
 print(parti)   # ['mela', 'banana', 'uva', 'ciliegia']
 ```
-
----
 
 ## Estrarre parti specifiche: i gruppi con `()`
 
@@ -147,8 +131,6 @@ if match:
     print(f"Giorno: {giorno}, Mese: {mese}, Anno: {anno}")
 ```
 
----
-
 ## Riutilizzare uno schema: `re.compile()`
 
 Se usi lo stesso schema molte volte, "compilalo" una volta sola:
@@ -164,8 +146,6 @@ for frase in frasi:
     if trovati:
         print(f"Trovati: {trovati}")
 ```
-
----
 
 ## Esempi pratici
 

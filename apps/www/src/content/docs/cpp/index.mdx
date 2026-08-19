@@ -4,45 +4,39 @@ description: Cos'è il C++, come funziona e perché impararlo.
 icon: BookOpen
 ---
 
-## Perché imparare il C++?
+## Perché imparare il C++
 
 Videogiochi, browser e servizi di streaming usano spesso software scritto, almeno in parte, in C++.
 
 Il C++ è adatto ai programmi che devono essere veloci, usare poca memoria o controllare direttamente l'hardware del computer.
 
-Imparare il C++ aiuta a capire meglio come funzionano il computer e il programma che lo usa. Questa conoscenza resta utile anche passando ad altri linguaggi.
+Imparare il C++ ti mette a contatto con concetti come tipi, memoria e compilazione. Richiede più attenzione rispetto ad altri linguaggi, ma ti aiuta a capire che cosa succede tra il codice che scrivi e il programma che esegui.
 
----
+## Cos'è il C++
 
-## Cos'è il C++?
-
-Il **C++** è un linguaggio di programmazione creato da **Bjarne Stroustrup** nei primi anni '80. Il nome ("C più più") indica che è un'evoluzione del linguaggio C, con molte funzionalità aggiunte.
+Il **C++** è un linguaggio di programmazione nato come evoluzione del C. Il suo nome si legge “C più più”. In programmazione, `++` indica spesso un incremento: il nome suggeriva quindi un C arricchito con nuove possibilità.
 
 Lo trovi ovunque:
 
 - **Sistemi operativi** — parti di Windows e Linux sono scritte in C++
 - **Videogiochi** — motori grafici come Unreal Engine usano C++
 - **Browser** — Chrome e Firefox hanno il motore di rendering scritto in C++
-- **Software scientifico e finanziario** — dove la velocità è fondamentale
+- **Software scientifico e finanziario** — per elaborazioni che richiedono prestazioni elevate
 - **Dispositivi embedded** — microcontrollori, robot, sistemi industriali
 
----
-
-## C++ vs Python: le differenze principali
+## C++ e Python: compiti e differenze
 
 Se hai già studiato Python, ecco le differenze più importanti:
 
-| Caratteristica         | C++                                    | Python                                       |
-| ---------------------- | -------------------------------------- | -------------------------------------------- |
-| Come funziona          | Compilato — tradotto prima di eseguire | Interpretato — tradotto durante l'esecuzione |
-| Velocità               | Molto veloce                           | Più lento                                    |
-| Sintassi               | Più precisa e rigida                   | Più semplice e flessibile                    |
-| Tipi delle variabili   | Obbligatori da dichiarare              | Non obbligatori                              |
-| Gestione della memoria | Spesso manuale                         | Automatica                                   |
+| Caratteristica         | C++                                        | Python                                      |
+| ---------------------- | ------------------------------------------ | ------------------------------------------- |
+| Come si esegue         | Di solito compilato prima dell'avvio       | Di solito eseguito da un interprete         |
+| Prestazioni            | Offre molto controllo e può essere rapido  | Privilegia spesso semplicità e produttività |
+| Sintassi               | Più precisa e rigida                       | Più semplice e flessibile                   |
+| Tipi delle variabili   | Obbligatori da dichiarare                  | Non obbligatori                             |
+| Gestione della memoria | Esplicita, ma aiutata da strumenti moderni | Gestita automaticamente                     |
 
-In C++ devi essere più preciso: devi dichiarare il tipo di ogni variabile, chiudere ogni istruzione con `;`, e fare attenzione a come usi la memoria. In cambio, ottieni programmi molto più veloci e un controllo totale su ciò che fa il computer.
-
----
+In C++ devi dichiarare il tipo delle variabili e terminare molte istruzioni con `;`. Hai anche più controllo sulle risorse del programma. Questo controllo può portare a ottime prestazioni, ma non rende automaticamente veloce ogni programma: contano anche gli algoritmi e il modo in cui scrivi il codice.
 
 ## Come funziona il C++?
 
@@ -54,21 +48,19 @@ Il flusso di lavoro è:
 2. Il compilatore legge il file e lo trasforma in un programma eseguibile (`.exe` su Windows, senza estensione su Linux e macOS)
 3. Esegui il programma
 
-Questo processo rende i programmi C++ molto veloci: il processore esegue direttamente le istruzioni già tradotte nella sua lingua, senza dover interpretare il codice ogni volta.
-
----
+Se il compilatore trova un errore, non crea l'eseguibile e mostra un messaggio. All'inizio è normale: leggeremo questi messaggi per capire quale riga correggere.
 
 ## Il primo programma
 
-Per tradizione, il primo programma che si scrive in qualsiasi linguaggio è "Hello, World!" — un programma che stampa un saluto sullo schermo:
+Per vedere il percorso completo, ecco un programma che stampa un saluto:
 
 ```cpp
-#include <iostream>   // include la libreria per stampare
-using namespace std;  // semplifica la scrittura del codice
+#include <iostream>
+using namespace std;
 
-int main() {          // il punto di partenza del programma
-    cout << "Hello, World!" << endl;  // stampa il messaggio
-    return 0;         // segnala che il programma è finito correttamente
+int main() {
+    cout << "Hello, World!\n";
+    return 0;
 }
 ```
 
@@ -78,9 +70,7 @@ Output:
 Hello, World!
 ```
 
-Non è necessario capire subito ogni parte: le sezioni successive spiegano i singoli elementi.
-
----
+`main` è il punto da cui parte il programma. La riga con `cout` mostra il testo. Non devi ancora ricordare `#include`, `using namespace std` o `return`: li vedremo nelle pagine successive.
 
 ## Le versioni del C++
 
@@ -88,9 +78,9 @@ Il C++ viene aggiornato periodicamente con nuove funzionalità. Le versioni prin
 
 - **C++98** — la prima versione standardizzata
 - **C++11** — un grande aggiornamento con molte funzionalità moderne
-- **C++14, C++17, C++20** — miglioramenti successivi
+- **C++14, C++17, C++20 e versioni successive** — miglioramenti progressivi
 
-In questo manuale useremo le funzionalità moderne, introdotte a partire da C++11.
+In questa guida useremo C++ moderno ed eviteremo tecniche superate quando esiste un'alternativa più sicura e leggibile.
 
 ## Da dove continuare
 

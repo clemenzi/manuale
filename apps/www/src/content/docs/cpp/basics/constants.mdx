@@ -32,7 +32,7 @@ Il compilatore impedisce così le modifiche accidentali.
 
 ## La convenzione dei nomi
 
-Per le costanti si usa la convenzione di scrivere **tutto in maiuscolo**, con le parole separate da underscore. Così si riconoscono a colpo d'occhio nel codice:
+In questa guida scriveremo i nomi delle costanti **tutto in maiuscolo**, con le parole separate da underscore. È una convenzione, non una regola del linguaggio, e permette di riconoscerle a colpo d'occhio:
 
 ```cpp
 const double PI = 3.14159;
@@ -43,14 +43,14 @@ const double VELOCITA_LUCE = 299792458.0;
 
 ## Un altro modo: `#define`
 
-Prima che esistesse `const`, i programmatori usavano la direttiva `#define`:
+Il preprocessore del C++ offre anche la direttiva `#define`, ereditata dal C:
 
 ```cpp
 #define PI 3.14159
 #define MAX_STUDENTI 30
 ```
 
-Con `#define`, il compilatore sostituisce ogni occorrenza di `PI` con `3.14159` prima di compilare il codice. Non è una vera variabile: è una semplice sostituzione di testo.
+Con `#define`, il **preprocessore** sostituisce ogni occorrenza di `PI` con `3.14159` prima della compilazione vera e propria. Non crea una variabile con un tipo: esegue una sostituzione di testo.
 
 ```cpp
 #include <iostream>

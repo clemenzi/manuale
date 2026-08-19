@@ -9,8 +9,6 @@ Se descrivi cani, gatti e uccelli, alcune operazioni sono comuni: tutti respiran
 
 Con l'**ereditarietà** scrivi il codice comune nella classe "genitore". Le classi "figlie" lo ereditano e aggiungono le proprie caratteristiche.
 
----
-
 ## La metafora della famiglia
 
 L'analogia con l'ereditarietà biologica è questa:
@@ -20,8 +18,6 @@ L'analogia con l'ereditarietà biologica è questa:
 - Può anche avere caratteristiche simili ai genitori ma con variazioni (stesso naso, ma di misura diversa)
 
 In programmazione il principio è simile.
-
----
 
 ## Sintassi di base
 
@@ -33,8 +29,6 @@ class ClasseFiglia(ClassePadre):   # ← il nome tra parentesi indica "eredita d
     # eredita tutto dal padre
     # può aggiungere roba nuova o modificare ciò che eredita
 ```
-
----
 
 ## Esempio: animali
 
@@ -69,8 +63,6 @@ micio.respira()    # → Micio respira.
 micio.fa_le_fusa() # → Micio fa le fusa...
 ```
 
----
-
 ## Sovrascrivere i metodi (Override)
 
 La classe figlia può **ridefinire** un metodo del genitore e cambiarne il comportamento.
@@ -97,8 +89,6 @@ micio = Gatto("Micio")
 fido.suono()    # → Fido fa: Bau bau!
 micio.suono()   # → Micio fa: Miao!
 ```
-
----
 
 ## `super()`: richiamare il genitore
 
@@ -128,8 +118,6 @@ fido.presenta()
 # → Sono un Labrador.
 ```
 
----
-
 ## Verificare la parentela tra classi e oggetti
 
 ```python
@@ -148,8 +136,6 @@ print(isinstance(fido, Animale))  # True  ← fido è anche un Animale (per ered
 # issubclass() verifica se una classe è "figlia" di un'altra
 print(issubclass(Cane, Animale))  # True  ← Cane è una sottoclasse di Animale
 ```
-
----
 
 ## Esempio pratico: forme geometriche
 

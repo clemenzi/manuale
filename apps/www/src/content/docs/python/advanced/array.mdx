@@ -7,8 +7,6 @@ description: Come usare le liste Python come array e quando usare librerie speci
 
 In linguaggi come C++ o Java, un **array** è una sequenza di elementi dello stesso tipo, indicizzati a partire da 0. In Python questo ruolo è svolto nella maggior parte dei casi dalle **liste**, che sono più flessibili.
 
----
-
 ## Le liste come array
 
 Per gli usi generici, le liste Python si comportano come array:
@@ -26,8 +24,6 @@ print(numeri[-1])   # 50  ← ultimo elemento (si conta da destra)
 numeri[1] = 25
 print(numeri)   # [10, 25, 30, 40, 50]
 ```
-
----
 
 ## Il modulo `array`: più efficiente per grandi quantità di numeri
 
@@ -61,8 +57,6 @@ I codici tipo più usati:
 | `'f'`  | float  | Numero decimale (singola precisione) |
 | `'d'`  | double | Numero decimale (doppia precisione)  |
 
----
-
 ## Matrici: array a due dimensioni
 
 Una **matrice** è una tabella con righe e colonne. In Python puoi rappresentarla come una lista di liste:
@@ -85,8 +79,6 @@ matrice[1][1] = 99
 print(matrice[1])      # [4, 99, 6]
 ```
 
----
-
 ## Scorrere un array (o una matrice) con `for`
 
 ```python
@@ -108,8 +100,6 @@ for riga in matrice:
     print()   # Va a capo dopo ogni riga
 ```
 
----
-
 ## Operazioni comuni
 
 ```python
@@ -121,8 +111,6 @@ print(sum(numeri))     # 28 — la somma di tutti
 print(len(numeri))     # 6  — quanti elementi ci sono
 print(sorted(numeri))  # [1, 2, 3, 5, 8, 9] — copia ordinata
 ```
-
----
 
 ## Quando usare NumPy invece delle liste?
 

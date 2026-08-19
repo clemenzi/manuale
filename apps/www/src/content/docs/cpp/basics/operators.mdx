@@ -40,9 +40,11 @@ int x = 7, y = 2;
 cout << x / y << endl;           // 3 (non 3.5!)
 
 // Per ottenere 3.5, converti uno dei due in double prima di dividere
-double risultato = (double)x / y;
+double risultato = static_cast<double>(x) / y;
 cout << risultato << endl;       // 3.5
 ```
+
+`static_cast<double>(x)` crea per il calcolo una versione decimale di `x`. In C++ moderno questa forma rende esplicito il tipo di conversione ed è preferibile al vecchio cast `(double)x`.
 
 ### Il modulo `%`
 

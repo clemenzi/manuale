@@ -23,11 +23,9 @@ print("Ciao!")  # Puoi mettere un commento anche dopo il codice
 # print("Questa riga non viene eseguita")
 ```
 
-## Commenti su più righe
+## Note su più righe
 
-Per una nota su più righe puoi scegliere tra due forme.
-
-**Opzione 1:** Metti `#` all'inizio di ogni riga
+Per scrivere un commento su più righe, metti `#` all'inizio di ogni riga:
 
 ```python
 # Questo programma calcola l'area di un rettangolo.
@@ -35,17 +33,7 @@ Per una nota su più righe puoi scegliere tra due forme.
 # e stampa il risultato.
 ```
 
-**Opzione 2:** Usa le virgolette triple `"""..."""`
-
-```python
-"""
-Questo è un blocco di testo su più righe.
-Python non lo esegue come codice.
-Viene spesso usato all'inizio di un file per descriverlo.
-"""
-```
-
-Tecnicamente le virgolette triple creano una stringa, non un commento. Se non la assegni a una variabile, però, Python non la usa. Questa forma compare spesso all'inizio dei file.
+Le virgolette triple, invece, creano una stringa su più righe: non sono una seconda sintassi per i commenti. Quando quella stringa si trova all'inizio di un modulo, di una funzione o di una classe, può diventare una **docstring**, cioè documentazione accessibile anche dal programma.
 
 ## Cosa scrivere (e cosa NON scrivere)
 

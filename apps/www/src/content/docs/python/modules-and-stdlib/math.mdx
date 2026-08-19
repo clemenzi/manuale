@@ -13,8 +13,6 @@ Per usarlo, importa il modulo all'inizio del programma:
 import math   # Importa il modulo matematica
 ```
 
----
-
 ## Costanti matematiche
 
 Il modulo `math` include alcune costanti matematiche già pronte:
@@ -27,8 +25,6 @@ print(math.e)     # 2.718281828459045 — il numero di Nepero (base dei logaritm
 print(math.inf)   # inf — infinito (utile per confronti: nessun numero è più grande)
 print(math.nan)   # nan — "Not a Number", cioè "non è un numero" (risultato di operazioni impossibili, come 0/0)
 ```
-
----
 
 ## Arrotondamento
 
@@ -45,8 +41,6 @@ print(math.trunc(3.9))   # 3 — tronca la parte decimale (butta via i decimali)
 
 Analogia: pensa ai piani di un edificio. `floor` ti porta al piano di sotto, `ceil` a quello di sopra.
 
----
-
 ## Valore assoluto
 
 ```python
@@ -57,8 +51,6 @@ print(math.fabs(-5.0))  # 5.0 — versione di math (restituisce sempre un decima
 ```
 
 Il valore assoluto è la "distanza da zero" e non conserva il segno negativo.
-
----
 
 ## Potenze e radici
 
@@ -71,8 +63,6 @@ print(math.sqrt(2))     # 1.4142135... — radice quadrata di 2
 print(math.pow(2, 10))  # 1024.0 — potenza (2^10), equivalente a 2**10 ma restituisce float
 print(math.isqrt(17))   # 4 — radice quadrata intera (tronca, senza decimali)
 ```
-
----
 
 ## Logaritmi e funzioni esponenziali
 
@@ -92,8 +82,6 @@ print(math.log10(1000))     # 3.0  — scorciatoia per log base 10
 print(math.log2(8))         # 3.0  — scorciatoia per log base 2 (2^3 = 8)
 ```
 
----
-
 ## Trigonometria
 
 Le funzioni trigonometriche lavorano in **radianti**, non in gradi. Python offre funzioni per convertire le due unità:
@@ -111,8 +99,6 @@ print(math.cos(0))              # 1.0  — coseno di 0°
 print(math.tan(math.pi / 4))   # 1.0  — tangente di 45°
 ```
 
----
-
 ## Altre funzioni utili
 
 ```python
@@ -122,8 +108,6 @@ print(math.gcd(12, 8))     # 4   — Massimo Comune Divisore (MCD)
 print(math.lcm(4, 6))      # 12  — Minimo Comune Multiplo (MCM) [Python 3.9+]
 print(math.factorial(5))   # 120 — fattoriale: 5! = 5×4×3×2×1
 ```
-
----
 
 ## Il modulo `random`: numeri casuali
 
@@ -141,8 +125,6 @@ print(random.choice(lista))      # Elemento scelto a caso dalla lista
 random.shuffle(lista)            # Mescola la lista in ordine casuale
 print(lista)                     # Esempio: [3, 1, 5, 2, 4]
 ```
-
----
 
 ## Esempio pratico: calcoli geometrici
 

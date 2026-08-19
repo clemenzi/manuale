@@ -5,9 +5,9 @@ description: Cosa succede quando il browser richiede, riceve e mostra un documen
 
 ## Dal tuo browser al sito
 
-Quando scrivi un indirizzo web e premi Invio, la pagina non si trova già dentro il browser. Il browser deve chiederla al computer che la conserva.
+Quando scrivi un indirizzo web e premi Invio, il browser deve recuperare i file della pagina. Di solito li chiede a un altro computer collegato a Internet.
 
-Quel computer si chiama **server**. Il programma che usi per visitare il sito, come Firefox, Chrome o Safari, è invece il **client**.
+Il computer che fornisce i file si chiama **server**. Il programma che li richiede, come Firefox, Chrome o Safari, si chiama **client**. Questi termini descrivono i due ruoli durante lo scambio.
 
 Il passaggio assomiglia a una richiesta al banco di una biblioteca:
 
@@ -16,7 +16,7 @@ Il passaggio assomiglia a una richiesta al banco di una biblioteca:
 3. il server manda una risposta;
 4. il browser interpreta i file ricevuti e mostra la pagina.
 
-La richiesta contiene anche l'indirizzo della risorsa. La risposta può contenere HTML e indicare altri file da caricare, come immagini o fogli di stile CSS.
+La richiesta indica quale risorsa serve. La risposta contiene il documento HTML, che a sua volta può indicare altri file da caricare, come immagini o fogli di stile CSS.
 
 ## Il documento HTML
 
@@ -35,7 +35,7 @@ Un file HTML usa normalmente l'estensione `.html`, per esempio `index.html` o `c
 
 Il processo con cui il browser trasforma il codice in ciò che vedi si chiama **rendering**.
 
-Durante il rendering, il browser legge gli elementi HTML e costruisce una rappresentazione ordinata della pagina. Se incontra un'immagine, prova a caricare il file indicato. Se trova un link, lo rende selezionabile.
+Durante il rendering, il browser legge gli elementi HTML e costruisce una rappresentazione ordinata della pagina. Se incontra un'immagine, prova a caricare il file indicato. Se trova un link, permette alla persona di attivarlo e raggiungere la sua destinazione.
 
 HTML descrive il contenuto, ma non è una fotografia. Browser diversi possono mostrare piccoli dettagli in modo leggermente diverso. Il significato della struttura, però, resta lo stesso.
 
@@ -43,7 +43,7 @@ HTML descrive il contenuto, ma non è una fotografia. Browser diversi possono mo
 
 Durante i primi esercizi apriremo direttamente un file dal computer. In questo caso il browser legge `index.html` dal disco e non deve contattare un server su Internet.
 
-Il risultato HTML è lo stesso, ma l'indirizzo comincerà probabilmente con `file://` invece di `https://`.
+Il browser interpreta comunque HTML, ma l'indirizzo comincerà probabilmente con `file://` invece di `https://`. Alcune funzioni disponibili su un sito pubblicato non funzionano allo stesso modo con un file locale; per i primi esercizi non saranno necessarie.
 
 > **Nota:** più avanti, quando un sito viene pubblicato, i file vengono messi su un server e raggiunti attraverso un indirizzo web.
 

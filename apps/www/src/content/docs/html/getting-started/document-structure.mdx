@@ -22,7 +22,7 @@ Il browser riesce a mostrare anche poche righe isolate, ma un documento HTML cor
 </html>
 ```
 
-Salva e ricarica il browser. Il contenuto visibile sarà simile a prima, ma ora il documento contiene tutte le informazioni essenziali.
+Salva e ricarica la pagina nel browser. Vedrai ancora lo stesso titolo e lo stesso paragrafo: le nuove righe servono soprattutto a dare al documento una struttura completa e informazioni utili al browser.
 
 ## Il doctype
 
@@ -32,7 +32,7 @@ La prima riga è:
 <!doctype html>
 ```
 
-Dice al browser di interpretare il documento secondo le regole moderne di HTML. Non è un elemento della pagina e non ha un tag di chiusura.
+Dice al browser di usare la modalità standard di HTML moderno. Non è un elemento della pagina e non ha un tag di chiusura: va scritto una sola volta, all'inizio del file.
 
 ## L'elemento html
 
@@ -51,7 +51,7 @@ Dentro `<html>` trovi due parti:
 - `<head>` contiene informazioni **sulla pagina**;
 - `<body>` contiene ciò che appare **nella pagina**.
 
-Nel `head`, `charset` permette di rappresentare correttamente lettere accentate e altri caratteri. `viewport` aiuta la pagina ad adattarsi allo schermo. `<title>` imposta il testo mostrato nella scheda del browser.
+Nel `head`, `<meta charset="UTF-8" />` permette di interpretare correttamente lettere accentate e altri caratteri. La riga con `viewport` prepara la pagina per schermi di dimensioni diverse. `<title>` imposta il testo mostrato nella scheda del browser.
 
 Nel `body` metti titoli, paragrafi, immagini, link e gli altri contenuti visibili.
 
@@ -63,6 +63,6 @@ Un elemento dentro un altro è **annidato**. Nel nostro esempio, `h1` è dentro 
 
 Gli spazi all'inizio delle righe si chiamano **indentazione**. Il browser mostra la pagina anche senza questi spazi, ma l'indentazione rende chiaro dove comincia e finisce ogni livello.
 
-Usa due spazi per ogni livello e mantieni la stessa scelta in tutto il file. Quando apri un elemento, chiudilo prima di chiudere il suo contenitore.
+Usa due spazi per ogni livello e mantieni la stessa scelta in tutto il file. Quando un elemento si trova dentro un altro, chiudi prima quello più interno. Nel nostro esempio, `h1` deve chiudersi prima di `body`.
 
 Ora hai un documento completo che useremo come base per gli esempi successivi.

@@ -14,15 +14,11 @@ Se installi tutto "globalmente", cioè nel Python di sistema, i due progetti ent
 
 Gli **ambienti virtuali** separano le dipendenze: ogni progetto ha le proprie librerie e le versioni richieste.
 
----
-
 ## Cos'è un ambiente virtuale?
 
 Un ambiente virtuale è una **cartella isolata** con Python e le librerie installate per un progetto. È separata dal Python di sistema e dagli altri ambienti.
 
 Ogni progetto ha quindi il proprio insieme di dipendenze, anche quando due progetti usano la stessa libreria.
-
----
 
 ## Creare un ambiente virtuale
 
@@ -33,8 +29,6 @@ python -m venv venv
 ```
 
 Il comando crea una sottocartella chiamata `venv` con il necessario. Puoi scegliere un altro nome, ma `venv` e `.venv` sono le convenzioni più comuni.
-
----
 
 ## Attivare l'ambiente virtuale
 
@@ -60,8 +54,6 @@ Quando l'ambiente è attivo, il nome appare all'inizio del prompt del terminale:
 
 Da quel momento, `pip install` installerà le librerie **solo in questo ambiente**, non nel sistema globale.
 
----
-
 ## Disattivare l'ambiente virtuale
 
 Quando hai finito di lavorare al progetto:
@@ -71,8 +63,6 @@ deactivate
 ```
 
 Il prompt torna alla normalità, senza `(venv)`.
-
----
 
 ## Flusso di lavoro tipico
 
@@ -99,8 +89,6 @@ pip install requests pandas
 pip freeze > requirements.txt
 ```
 
----
-
 ## Ripristinare un progetto su un altro computer
 
 Quando qualcuno riceve il tuo progetto (o tu stesso lo riapri su un altro computer):
@@ -110,8 +98,6 @@ python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt   # Installa tutte le librerie elencate nel file
 ```
-
----
 
 ## Non aggiungere `venv` a Git
 
@@ -126,8 +112,6 @@ __pycache__/
 *.pyc
 ```
 
----
-
 ## Strumenti alternativi (per il futuro)
 
 | Strumento    | Descrizione                                     |
@@ -139,8 +123,6 @@ __pycache__/
 | `uv`         | Strumento moderno e molto veloce                |
 
 Per ora, `venv` è più che sufficiente.
-
----
 
 ## Verificare dove sei
 

@@ -7,8 +7,6 @@ description: Lavorare con date e orari usando il modulo datetime in Python.
 
 Qualunque programma reale prima o poi ha a che fare con le date: "quando è stata inviata questa email?", "quanti giorni mancano al compleanno?", "quanti giorni fa ho creato questo file?". Python ha un modulo dedicato per tutto questo.
 
----
-
 ## Il modulo `datetime`
 
 Il modulo `datetime` offre quattro strumenti principali:
@@ -24,8 +22,6 @@ Il modulo `datetime` offre quattro strumenti principali:
 from datetime import date, datetime, timedelta   # Importa solo quello che serve
 ```
 
----
-
 ## La data e l'ora di adesso
 
 ```python
@@ -38,8 +34,6 @@ adesso = datetime.now()  # Data e orario attuali
 print(adesso)            # 2024-01-15 14:30:25.123456
 ```
 
----
-
 ## Creare una data specifica
 
 ```python
@@ -51,8 +45,6 @@ print(compleanno)   # 2008-03-25
 capodanno = datetime(2025, 1, 1, 0, 0, 0)  # anno, mese, giorno, ora, minuti, secondi
 print(capodanno)    # 2025-01-01 00:00:00
 ```
-
----
 
 ## Accedere alle singole parti di una data
 
@@ -68,8 +60,6 @@ print(adesso.hour)     # Ora (0-23)
 print(adesso.minute)   # Minuti (0-59)
 print(adesso.second)   # Secondi (0-59)
 ```
-
----
 
 ## Formattare una data come testo: `strftime()`
 
@@ -99,8 +89,6 @@ I codici di formato principali:
 | `%A`   | Nome del giorno (inglese) | Monday  |
 | `%B`   | Nome del mese (inglese)   | January |
 
----
-
 ## Convertire testo in data: `strptime()`
 
 L'operazione inversa: prendi una stringa di testo e trasformala in un oggetto data. Devi dirle in che formato è scritta la stringa:
@@ -113,8 +101,6 @@ data = datetime.strptime(testo, "%d/%m/%Y")   # Dici a Python come è formattata
 print(data)         # 2008-03-25 00:00:00
 print(data.year)    # 2008
 ```
-
----
 
 ## Calcolare differenze tra date: `timedelta`
 
@@ -138,8 +124,6 @@ nato = date(2008, 3, 25)
 differenza = date.today() - nato      # Sottrai due date → ottieni un timedelta
 print(f"Giorni vissuti: {differenza.days}")
 ```
-
----
 
 ## Confrontare date
 
