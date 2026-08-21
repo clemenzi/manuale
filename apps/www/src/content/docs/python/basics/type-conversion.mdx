@@ -28,13 +28,13 @@ Python applica queste conversioni solo in combinazioni previste dal linguaggio. 
 
 Negli altri casi devi chiedere esplicitamente la conversione con funzioni dedicate.
 
-### `int()` — trasforma in numero intero
+### `int()`: trasforma in numero intero
 
 `int()` converte valori di tipo diverso in un numero intero:
 
 ```python
-x = int(3.9)     # 3  — la parte decimale viene TAGLIATA (non arrotondata!)
-y = int("42")    # 42 — una stringa numerica diventa un numero
+x = int(3.9)     # 3: la parte decimale viene TAGLIATA (non arrotondata!)
+y = int("42")    # 42: una stringa numerica diventa un numero
 z = int(True)    # 1
 w = int(False)   # 0
 
@@ -45,7 +45,7 @@ print(x, y, z, w)  # 3 42 1 0
 `int(3.9)` restituisce `3`, non `4`. Il decimale viene tagliato, non arrotondato. Se vuoi arrotondare, usa `round(3.9)` che fa `4`.
 :::
 
-### `float()` — trasforma in numero decimale
+### `float()`: trasforma in numero decimale
 
 `float()` trasforma un valore in un numero decimale:
 
@@ -57,14 +57,14 @@ d = float(True)    # 1.0
 print(a, b, d)  # 5.0 3.14 1.0
 ```
 
-### `str()` — trasforma in testo
+### `str()`: trasforma in testo
 
 Questa conversione è comune quando devi inserire numeri in un messaggio di testo:
 
 ```python
 eta = 16
-# print("Ho " + eta + " anni")       # ERRORE — non puoi sommare str e int
-print("Ho " + str(eta) + " anni")    # OK — "Ho 16 anni"
+# print("Ho " + eta + " anni")       # ERRORE: non puoi sommare str e int
+print("Ho " + str(eta) + " anni")    # OK: "Ho 16 anni"
 
 n = str(42)     # "42"
 f = str(3.14)   # "3.14"
@@ -75,22 +75,22 @@ In alternativa puoi usare le **f-string** (stringhe formattate), che inseriscono
 
 ```python
 eta = 16
-print(f"Ho {eta} anni")  # "Ho 16 anni" — più comodo!
+print(f"Ho {eta} anni")  # "Ho 16 anni": più comodo!
 ```
 
-### `bool()` — trasforma in vero/falso
+### `bool()`: trasforma in vero/falso
 
 Ogni valore in Python può essere convertito in booleano. I valori "vuoti" o uguali a zero diventano `False`; gli altri diventano `True`:
 
 ```python
-print(bool(0))      # False — zero è falso
-print(bool(""))     # False — testo vuoto è falso
-print(bool([]))     # False — lista vuota è falsa
+print(bool(0))      # False: zero è falso
+print(bool(""))     # False: testo vuoto è falso
+print(bool([]))     # False: lista vuota è falsa
 print(bool(None))   # False
 
 print(bool(1))      # True
-print(bool(-5))     # True  — qualsiasi numero diverso da zero è vero
-print(bool("ciao")) # True  — qualsiasi testo non vuoto è vero
+print(bool(-5))     # True: qualsiasi numero diverso da zero è vero
+print(bool("ciao")) # True: qualsiasi testo non vuoto è vero
 ```
 
 ## Cosa succede se la conversione non è possibile?
@@ -98,7 +98,7 @@ print(bool("ciao")) # True  — qualsiasi testo non vuoto è vero
 Se il valore non è convertibile, Python solleva un `ValueError`:
 
 ```python
-int("ciao")   # ValueError — "ciao" non è un numero!
+int("ciao")   # ValueError: "ciao" non è un numero!
 float("abc")  # ValueError
 ```
 

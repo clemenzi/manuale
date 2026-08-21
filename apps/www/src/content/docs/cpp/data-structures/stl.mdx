@@ -19,7 +19,7 @@ La STL ha tre componenti principali:
 
 ## I contenitori principali
 
-### `vector` — Lista dinamica
+### `vector`: la lista dinamica
 
 Già trattato nella sezione dedicata. È il contenitore più usato in assoluto.
 
@@ -29,7 +29,7 @@ vector<int> v = {1, 2, 3, 4, 5};
 v.push_back(6);
 ```
 
-### `map` — Dizionario (chiave → valore)
+### `map`: il dizionario (chiave → valore)
 
 Un `map` associa ogni chiave a un valore. È come un dizionario: cerchi una parola (chiave) e trovi la sua definizione (valore). Le chiavi sono mantenute in ordine alfabetico/numerico.
 
@@ -64,7 +64,7 @@ if (eta.count("Alice") > 0) {
 eta.erase("Bob");
 ```
 
-### `unordered_map` — Dizionario veloce
+### `unordered_map`: il dizionario veloce
 
 Come `map`, ma non mantiene l'ordine delle chiavi. In cambio è più veloce:
 
@@ -84,7 +84,7 @@ for (auto& p : contaParole) {
 
 Usa `map` se ti serve l'ordine, `unordered_map` se ti serve la velocità.
 
-### `set` — Insieme (senza duplicati)
+### `set`: l'insieme senza duplicati
 
 Un `set` memorizza elementi unici, in ordine. Se inserisci un valore già presente, non cambia nulla.
 
@@ -106,7 +106,7 @@ for (int n : numeri) cout << n << " ";
 // Output: 1 2 3 5 9
 ```
 
-### `list` — Lista collegata
+### `list`: la lista collegata
 
 Una `list` è efficiente quando aggiungi e rimuovi elementi in mezzo alla lista molto spesso:
 
@@ -124,7 +124,7 @@ for (int n : l) cout << n << " ";
 
 Per la maggior parte dei casi usa `vector`. Usa `list` solo se fai molte inserzioni/rimozioni nel mezzo.
 
-### `stack` — Pila (ultimo entrato, primo uscito)
+### `stack`: la pila (ultimo entrato, primo uscito)
 
 Una pila (stack) funziona come una pila di piatti: metti sempre sopra, e prendi sempre dall'alto. L'ultimo elemento aggiunto è il primo a uscire (LIFO: Last In, First Out).
 
@@ -137,12 +137,12 @@ pila.push(1);   // metti 1 in cima
 pila.push(2);   // metti 2 sopra all'1
 pila.push(3);   // metti 3 sopra al 2
 
-cout << pila.top() << endl;  // 3 — elemento in cima
+cout << pila.top() << endl;  // 3: elemento in cima
 pila.pop();                  // rimuovi l'elemento in cima
 cout << pila.top() << endl;  // 2
 ```
 
-### `queue` — Coda (primo entrato, primo uscito)
+### `queue`: la coda (primo entrato, primo uscito)
 
 Una coda (queue) funziona come la cassa al supermercato: il primo ad arrivare è il primo ad essere servito (FIFO: First In, First Out).
 
@@ -155,7 +155,7 @@ coda.push("Alice");   // Alice arriva per prima
 coda.push("Bob");
 coda.push("Carlo");
 
-cout << coda.front() << endl;  // "Alice" — la prima ad essere servita
+cout << coda.front() << endl;  // "Alice": la prima ad essere servita
 coda.pop();                    // Alice viene servita e va via
 cout << coda.front() << endl;  // ora tocca a "Bob"
 ```

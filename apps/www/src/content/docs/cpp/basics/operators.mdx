@@ -27,8 +27,8 @@ int a = 10, b = 3;
 cout << a + b << endl;  // 13
 cout << a - b << endl;  // 7
 cout << a * b << endl;  // 30
-cout << a / b << endl;  // 3 — attenzione, non 3.33!
-cout << a % b << endl;  // 1 — il resto della divisione
+cout << a / b << endl;  // 3: attenzione, non 3.33!
+cout << a % b << endl;  // 1: il resto della divisione
 ```
 
 ### La divisione intera
@@ -115,10 +115,10 @@ Confrontano due valori e restituiscono `true` (vero) o `false` (falso):
 ```cpp
 int a = 5, b = 3;
 
-cout << (a == b) << endl;  // 0 (false — 5 non è uguale a 3)
-cout << (a != b) << endl;  // 1 (true  — 5 è diverso da 3)
-cout << (a > b)  << endl;  // 1 (true  — 5 è maggiore di 3)
-cout << (a < b)  << endl;  // 0 (false — 5 non è minore di 3)
+cout << (a == b) << endl;  // 0 (false, 5 non è uguale a 3)
+cout << (a != b) << endl;  // 1 (true,  5 è diverso da 3)
+cout << (a > b)  << endl;  // 1 (true,  5 è maggiore di 3)
+cout << (a < b)  << endl;  // 0 (false, 5 non è minore di 3)
 ```
 
 **Errore comune**: confondere `==` (confronto) con `=` (assegnazione). Scrivere `if (x = 5)` invece di `if (x == 5)` cambia il valore di `x` invece di confrontarlo!
@@ -185,8 +185,8 @@ Come in matematica, alcuni operatori hanno la precedenza su altri. Da quella pi�
 Quando hai dubbi, usa le parentesi per rendere esplicito l'ordine:
 
 ```cpp
-int risultato = 2 + 3 * 4;      // 14 — la moltiplicazione va prima
-int risultato2 = (2 + 3) * 4;   // 20 — le parentesi cambiano tutto
+int risultato = 2 + 3 * 4;      // 14: la moltiplicazione va prima
+int risultato2 = (2 + 3) * 4;   // 20: le parentesi cambiano tutto
 ```
 
 ## Esempio pratico

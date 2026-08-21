@@ -198,7 +198,7 @@ int main() {
 
 ## Il distruttore virtuale
 
-Quando usi il polimorfismo con puntatori alla classe madre, dichiara sempre il distruttore della classe madre come `virtual`. Altrimenti, quando elimini un oggetto con `delete`, viene chiamato solo il distruttore della madre — non quello della figlia:
+Quando usi il polimorfismo con puntatori alla classe madre, dichiara sempre il distruttore della classe madre come `virtual`. Altrimenti, quando elimini un oggetto con `delete`, viene chiamato solo il distruttore della madre, non quello della figlia:
 
 ```cpp
 class Base {

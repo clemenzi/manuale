@@ -45,7 +45,7 @@ progetto/
 Contiene solo le **firme** delle funzioni (senza il corpo):
 
 ```cpp
-// matematica.h — le dichiarazioni
+// matematica.h: le dichiarazioni
 
 #ifndef MATEMATICA_H   // protezione dall'inclusione multipla (spiegata più sotto)
 #define MATEMATICA_H
@@ -62,7 +62,7 @@ double potenza(double base, int esponente);
 Contiene il codice vero delle funzioni:
 
 ```cpp
-// matematica.cpp — le implementazioni
+// matematica.cpp: le implementazioni
 
 #include "matematica.h"   // include il proprio header
 
@@ -125,10 +125,10 @@ Si chiamano **include guard**. Servono a evitare un errore comune: se lo stesso 
 
 Come funzionano:
 
-1. `#ifndef MATEMATICA_H` — "se MATEMATICA_H non è ancora definito..."
-2. `#define MATEMATICA_H` — "...definiscilo..."
+1. `#ifndef MATEMATICA_H`: "se MATEMATICA_H non è ancora definito..."
+2. `#define MATEMATICA_H`: "...definiscilo..."
 3. "...ed esegui tutto questo contenuto"
-4. `#endif` — fine del blocco
+4. `#endif`: fine del blocco
 
 La seconda volta che il file viene incluso, `MATEMATICA_H` è già definito, quindi tutto il contenuto viene saltato automaticamente.
 
@@ -260,6 +260,6 @@ g++ main.cpp studente.cpp -o programma
 #include "matematica.h"     // CORRETTO
 
 // Dimenticare di compilare tutti i file .cpp
-g++ main.cpp -o programma              // SBAGLIATO — manca matematica.cpp
+g++ main.cpp -o programma              // SBAGLIATO: manca matematica.cpp
 g++ main.cpp matematica.cpp -o programma  // CORRETTO
 ```

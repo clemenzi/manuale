@@ -7,7 +7,7 @@ description: Come modificare dati già presenti nel database senza toccare le ri
 
 `UPDATE` serve quando devi cambiare un dato già presente.
 
-Un cliente cambia città. Un prodotto cambia prezzo. Un ordine passa da “in preparazione” a “spedito”. In tutti questi casi non vuoi creare una nuova riga: vuoi aggiornare quella giusta.
+Un cliente cambia città. Un prodotto cambia prezzo. Un ordine passa da "in preparazione" a "spedito". In tutti questi casi non vuoi creare una nuova riga: vuoi aggiornare quella giusta.
 
 Ecco la forma base:
 
@@ -19,7 +19,7 @@ WHERE id = 1;
 
 Questa query dice:
 
-> “Nella tabella `clienti`, cambia la città in `Bologna`, ma solo per la riga con `id = 1`.”
+> "Nella tabella `clienti`, cambia la città in `Bologna`, ma solo per la riga con `id = 1`."
 
 ## Il ruolo di `SET`
 
@@ -37,7 +37,7 @@ SET citta = 'Bologna', email = 'luca.nuova@email.it'
 WHERE id = 1;
 ```
 
-Qui cambi sia la città sia l’email dello stesso cliente.
+Qui cambi sia la città sia l'email dello stesso cliente.
 
 ## Il ruolo di `WHERE`
 
@@ -61,7 +61,7 @@ FROM clienti
 WHERE id = 1;
 ```
 
-Se la `SELECT` mostra una sola riga, sai che l’`UPDATE` toccherà una sola riga. Se ne mostra molte, fermati e controlla meglio il filtro.
+Se la `SELECT` mostra una sola riga, sai che l'`UPDATE` toccherà una sola riga. Se ne mostra molte, fermati e controlla meglio il filtro.
 
 ## Usare il valore attuale
 
@@ -75,7 +75,7 @@ SET prezzo = prezzo * 1.10
 WHERE id = 5;
 ```
 
-`prezzo * 1.10` significa: “prendi il prezzo attuale e moltiplicalo per 1,10”.
+`prezzo * 1.10` significa: "prendi il prezzo attuale e moltiplicalo per 1,10".
 
 Anche in questo caso il filtro `WHERE` decide quali righe cambiano.
 

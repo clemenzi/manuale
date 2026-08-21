@@ -9,7 +9,7 @@ Il C++ include strumenti per funzioni matematiche, file, ordinamento e molte alt
 
 Questa raccolta è la **libreria standard** (Standard Library). Le singole parti si usano con `#include`.
 
-## `<iostream>` — Input e Output
+## Input e output con `<iostream>`
 
 Serve per stampare a schermo e leggere dalla tastiera.
 
@@ -29,12 +29,12 @@ int main() {
 }
 ```
 
-- `cout` — stampa a schermo
-- `cin` — legge da tastiera
-- `cerr` — stampa messaggi di errore (canale separato)
-- `endl` — va a capo
+- `cout`: stampa a schermo
+- `cin`: legge da tastiera
+- `cerr`: stampa messaggi di errore (canale separato)
+- `endl`: va a capo
 
-## `<string>` — Testo
+## Gestire il testo con `<string>`
 
 Per usare il tipo `string` e tutte le sue funzionalità:
 
@@ -52,7 +52,7 @@ int n = stoi("123");        // 123
 double d = stod("3.14");    // 3.14
 ```
 
-## `<cmath>` — Funzioni Matematiche
+## Funzioni matematiche con `<cmath>`
 
 Contiene funzioni matematiche avanzate (potenza, radice, arrotondamento, trigonometria):
 
@@ -80,7 +80,7 @@ cout << round(3.5) << endl;     // 4 (arrotonda al più vicino)
 cout << M_PI << endl;           // 3.14159265...
 ```
 
-## `<cstdlib>` e `<ctime>` — Numeri Casuali e Utilità
+## Numeri casuali e utilità con `<cstdlib>` e `<ctime>`
 
 ```cpp
 #include <cstdlib>
@@ -98,7 +98,7 @@ int n = atoi("42");      // stringa → intero
 double d = atof("3.14"); // stringa → decimale
 ```
 
-## `<cctype>` — Funzioni sui Caratteri
+## Funzioni sui caratteri con `<cctype>`
 
 Per controllare e trasformare singoli caratteri:
 
@@ -116,7 +116,7 @@ cout << (char)tolower('A') << endl;   // 'a'
 cout << (char)toupper('a') << endl;   // 'A'
 ```
 
-## `<algorithm>` — Algoritmi Pronti
+## Algoritmi pronti con `<algorithm>`
 
 Contiene algoritmi già implementati per lavorare con collezioni di dati:
 
@@ -149,7 +149,7 @@ if (it != v.end()) {
 reverse(v.begin(), v.end());
 ```
 
-## `<vector>` — Array Dinamici
+## Array dinamici con `<vector>`
 
 Per usare array che cambiano dimensione (vedi la sezione dedicata):
 
@@ -163,7 +163,7 @@ v.push_back(5);
 cout << v.size() << endl;   // 5
 ```
 
-## `<limits>` — Valori Massimi e Minimi dei Tipi
+## Valori massimi e minimi dei tipi con `<limits>`
 
 Per sapere i limiti di ogni tipo numerico:
 

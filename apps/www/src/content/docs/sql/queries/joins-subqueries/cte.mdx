@@ -5,7 +5,7 @@ description: Usare WITH per creare risultati temporanei leggibili e riutilizzabi
 
 ## Dare un nome a un risultato intermedio
 
-CTE significa **Common Table Expression**. Il nome è tecnico, ma l’idea è semplice: crei un risultato temporaneo, gli dai un nome e lo usi subito dopo.
+CTE significa **Common Table Expression**. Il nome è tecnico, ma l'idea è semplice: crei un risultato temporaneo, gli dai un nome e lo usi subito dopo.
 
 Puoi separare un passaggio della query, assegnargli un nome e usarlo nella parte successiva.
 
@@ -49,9 +49,9 @@ FROM ordini_grandi
 INNER JOIN clienti ON clienti.id = ordini_grandi.cliente_id;
 ```
 
-La CTE si occupa del primo passaggio: “quali sono gli ordini grandi?”.
+La CTE si occupa del primo passaggio: "quali sono gli ordini grandi?".
 
-La query principale si occupa del secondo: “a quali clienti appartengono?”.
+La query principale si occupa del secondo: "a quali clienti appartengono?".
 
 ## Più CTE nella stessa query
 

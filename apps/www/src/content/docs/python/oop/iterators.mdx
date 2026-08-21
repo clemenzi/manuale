@@ -83,7 +83,7 @@ for numero in ContaDa(1, 5):
 
 Una classe iteratore completa funziona, ma richiede parecchio codice. I **generatori** permettono di ottenere lo stesso risultato in modo più breve.
 
-Un generatore è una funzione che usa `yield` invece di `return`. Ogni volta che viene chiamata, si "ferma" a `yield`, restituisce il valore, e riprende da lì alla chiamata successiva — come un libro che segna automaticamente la pagina.
+Un generatore è una funzione che usa `yield` invece di `return`. Ogni volta che viene chiamata, si "ferma" a `yield`, restituisce il valore, e riprende da lì alla chiamata successiva, come un libro che segna automaticamente la pagina.
 
 ```python
 def conta_da(inizio, fine):
@@ -125,7 +125,7 @@ Supponi di dover lavorare con un milione di numeri:
 numeri_lista = list(range(1_000_000))
 
 # Con generatore: i numeri vengono creati uno alla volta, solo quando servono
-# Occupa quasi zero memoria — indipendentemente da quanti numeri ci sono
+# Occupa quasi zero memoria, indipendentemente da quanti numeri ci sono
 numeri_gen = range(1_000_000)
 ```
 

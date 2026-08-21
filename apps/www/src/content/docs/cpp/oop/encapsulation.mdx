@@ -53,7 +53,7 @@ public:
 int main() {
     Eta e;
     e.setValore(16);     // OK
-    e.setValore(-5);     // "Eta non valida!" — il controllo blocca il valore
+    e.setValore(-5);     // "Eta non valida!": il controllo blocca il valore
     e.setValore(9999);   // "Eta non valida!"
 
     cout << e.getValore() << endl;   // 16
@@ -69,7 +69,7 @@ In C++ ci sono tre parole chiave per controllare chi può accedere ai dati:
 
 | Parola chiave | Chi può accedere                                            |
 | ------------- | ----------------------------------------------------------- |
-| `public`      | Tutti — dall'interno della classe e dall'esterno            |
+| `public`      | Tutti, dall'interno della classe e dall'esterno             |
 | `private`     | Solo dall'interno della classe                              |
 | `protected`   | Dalla classe e dalle classi che la estendono (ereditarietà) |
 
@@ -165,7 +165,7 @@ public:
 };
 ```
 
-Chi scrive `t.setTemperatura(100)` non deve cambiare nulla — l'interfaccia è la stessa.
+Chi scrive `t.setTemperatura(100)` non deve cambiare nulla: l'interfaccia è la stessa.
 
 ## Ricorda: nelle `class`, tutto è privato per default
 

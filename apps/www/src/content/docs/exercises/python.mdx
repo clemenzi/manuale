@@ -59,7 +59,7 @@ somma = a + b
 print(somma)
 ```
 
-Il risultato della somma viene memorizzato in una terza variabile e poi stampato.
+Il programma memorizza la somma in una terza variabile e la stampa.
 
 </details>
 
@@ -121,7 +121,7 @@ nome = input("Inserisci il tuo nome: ")
 print("Ciao,", nome)
 ```
 
-Il testo digitato viene salvato nella variabile `nome`.
+Il testo digitato finisce nella variabile `nome`.
 
 </details>
 
@@ -182,7 +182,7 @@ fahrenheit = celsius * 9 / 5 + 32
 print(fahrenheit)
 ```
 
-Il risultato finale viene stampato come numero decimale.
+Il programma stampa il risultato finale come numero decimale.
 
 </details>
 
@@ -250,7 +250,7 @@ else:
     print("Zero")
 ```
 
-Le condizioni vengono valutate dall'alto verso il basso.
+Python valuta le condizioni dall'alto verso il basso.
 
 </details>
 
@@ -417,7 +417,7 @@ if totale > 100:
 print(totale)
 ```
 
-La variabile `totale` viene aggiornata solo nel caso richiesto.
+Il programma aggiorna la variabile `totale` solo nel caso richiesto.
 
 </details>
 
@@ -440,7 +440,7 @@ else:
     print("Assente")
 ```
 
-La parola viene cercata tra gli elementi della lista.
+L'operatore `in` cerca la parola tra gli elementi della lista.
 
 </details>
 
@@ -497,7 +497,7 @@ Stampare un conto alla rovescia da `n` fino a 0.
 <details>
 <summary>Soluzione spiegata</summary>
 
-In questo caso il contatore viene diminuito a ogni giro.
+In questo caso il contatore diminuisce a ogni giro.
 
 ```python
 n = int(input("Numero iniziale: "))
@@ -566,7 +566,7 @@ for i in range(1, n + 1):
 print(fattoriale)
 ```
 
-`fattoriale` parte da 1 e viene aggiornato a ogni moltiplicazione.
+`fattoriale` parte da 1 e il ciclo lo aggiorna a ogni moltiplicazione.
 
 </details>
 
@@ -607,7 +607,7 @@ for cifra in numero:
 print(totale)
 ```
 
-Ogni carattere viene trasformato in numero e aggiunto al totale finale.
+Il ciclo trasforma ogni carattere in numero e lo aggiunge al totale finale.
 
 </details>
 
@@ -673,7 +673,7 @@ testo = input("Testo: ")
 print(len(testo))
 ```
 
-Anche gli spazi vengono contati come caratteri.
+Il programma conta anche gli spazi come caratteri.
 
 </details>
 
@@ -773,7 +773,7 @@ nuova_frase = frase.replace(" ", "-")
 print(nuova_frase)
 ```
 
-Il testo originale non viene modificato: `replace()` restituisce una nuova stringa.
+Il testo originale resta invariato: `replace()` restituisce una nuova stringa.
 
 </details>
 
@@ -1325,7 +1325,7 @@ nome = input("Nome: ").lower()
 print(voti[nome])
 ```
 
-La chiave scelta determina quale valore del dizionario viene letto.
+La chiave scelta determina quale valore il programma legge dal dizionario.
 
 </details>
 
@@ -1349,7 +1349,7 @@ voti["luca"] = 10
 print(voti)
 ```
 
-Se la chiave esiste già, il vecchio valore viene sostituito.
+Se la chiave esiste già, il nuovo valore sostituisce il vecchio.
 
 </details>
 
@@ -1709,7 +1709,7 @@ Creare una funzione con un parametro predefinito per il saluto.
 <details>
 <summary>Soluzione spiegata</summary>
 
-Il parametro di default viene usato solo se non viene passato un valore diverso.
+Python usa il parametro di default solo se non passiamo un valore diverso.
 
 ```python
 def saluta(nome, saluto="Ciao"):
@@ -1809,7 +1809,7 @@ print(raddoppia(7))
 print(raddoppia(15))
 ```
 
-Qui la funzione anonima viene salvata in una variabile e poi richiamata come una funzione normale.
+Qui salviamo la funzione anonima in una variabile e poi la richiamiamo come una funzione normale.
 
 </details>
 
@@ -1871,7 +1871,7 @@ with open("appunti.txt", "a") as file:
     file.write("quarta riga\n")
 ```
 
-Il nuovo testo viene inserito in fondo al file.
+Il nuovo testo finisce in fondo al file.
 
 </details>
 
@@ -1936,7 +1936,7 @@ except ZeroDivisionError:
     print("Non puoi dividere per zero.")
 ```
 
-L'errore viene gestito in modo controllato senza bloccare il programma.
+Il blocco `except` gestisce l'errore in modo controllato senza bloccare il programma.
 
 </details>
 
@@ -1992,7 +1992,7 @@ Salvare in un file JSON una lista di studenti, dove ogni studente è rappresenta
 <details>
 <summary>Soluzione spiegata</summary>
 
-Il modulo `json` può salvare non solo un dizionario singolo, ma anche strutture più ricche come una lista di dizionari.
+Il modulo `json` può salvare anche strutture più ricche di un dizionario singolo, come una lista di dizionari.
 
 ```python
 import json
@@ -2141,7 +2141,7 @@ Creare una classe `Studente` con attributo di classe `scuola` e metodo `__str__(
 <details>
 <summary>Soluzione spiegata</summary>
 
-L'attributo di classe è condiviso da tutte le istanze, mentre `__str__()` decide come stamparle.
+Tutte le istanze condividono l'attributo di classe, mentre `__str__()` decide come stamparle.
 
 ```python
 class Studente:

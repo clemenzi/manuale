@@ -33,10 +33,10 @@ Come nelle liste, ogni carattere ha un indice che parte da `0`:
 
 ```python
 testo = "Python"
-print(testo[0])   # P  — primo carattere
+print(testo[0])   # P:   primo carattere
 print(testo[1])   # y
-print(testo[-1])  # n  — ultimo carattere
-print(testo[-2])  # o  — penultimo
+print(testo[-1])  # n:   ultimo carattere
+print(testo[-2])  # o:   penultimo
 ```
 
 ## Estrarre una parte di stringa (slicing)
@@ -45,10 +45,10 @@ Puoi estrarre una sottostringa indicando l'indice iniziale e quello finale:
 
 ```python
 testo = "Python"
-print(testo[0:3])   # Pyt   — dalla posizione 0 alla 2 (3 esclusa)
-print(testo[2:])    # thon  — dalla posizione 2 alla fine
-print(testo[:4])    # Pyth  — dall'inizio alla posizione 3
-print(testo[::-1])  # nohtyP — la stringa al contrario
+print(testo[0:3])   # Pyt:    dalla posizione 0 alla 2 (3 esclusa)
+print(testo[2:])    # thon:   dalla posizione 2 alla fine
+print(testo[:4])    # Pyth:   dall'inizio alla posizione 3
+print(testo[::-1])  # nohtyP:  la stringa al contrario
 ```
 
 ## Lunghezza di una stringa
@@ -96,9 +96,9 @@ Le stringhe hanno molti metodi integrati. Questi sono alcuni dei più usati.
 ```python
 testo = "  Ciao, Mondo!  "
 
-print(testo.upper())   # "  CIAO, MONDO!  "  — tutto maiuscolo
-print(testo.lower())   # "  ciao, mondo!  "  — tutto minuscolo
-print(testo.strip())   # "Ciao, Mondo!"      — rimuove spazi iniziali e finali
+print(testo.upper())   # "  CIAO, MONDO!  ":   tutto maiuscolo
+print(testo.lower())   # "  ciao, mondo!  ":   tutto minuscolo
+print(testo.strip())   # "Ciao, Mondo!":       rimuove spazi iniziali e finali
 ```
 
 ### Cercare, sostituire e dividere
@@ -109,8 +109,8 @@ testo = "Ciao, Mondo!"
 print(testo.replace("Mondo", "Python"))  # "Ciao, Python!"
 
 frutta = "mela,banana,ciliegia"
-print(frutta.split(","))   # ['mela', 'banana', 'ciliegia']  — divide in lista
-print(",".join(["mela", "banana", "ciliegia"]))  # "mela,banana,ciliegia"  — unisce
+print(frutta.split(","))   # ['mela', 'banana', 'ciliegia']: divide in lista
+print(",".join(["mela", "banana", "ciliegia"]))  # "mela,banana,ciliegia": unisce
 ```
 
 ### Controllare il contenuto
@@ -118,11 +118,11 @@ print(",".join(["mela", "banana", "ciliegia"]))  # "mela,banana,ciliegia"  — u
 ```python
 testo = "ciao"
 
-print(testo.capitalize())       # "Ciao"   — prima lettera maiuscola
-print(testo.startswith("ci"))   # True  — inizia con "ci"?
-print(testo.endswith("ao"))     # True  — finisce con "ao"?
-print(testo.find("ia"))         # 1     — dove inizia "ia"? (-1 se non trovato)
-print(testo.count("a"))         # 1     — quante volte compare "a"?
+print(testo.capitalize())       # "Ciao": prima lettera maiuscola
+print(testo.startswith("ci"))   # True: inizia con "ci"?
+print(testo.endswith("ao"))     # True: finisce con "ao"?
+print(testo.find("ia"))         # 1: dove inizia "ia"? (-1 se non trovato)
+print(testo.count("a"))         # 1: quante volte compare "a"?
 ```
 
 ## Caratteri speciali
@@ -151,7 +151,7 @@ Le stringhe sono **immutabili**: non puoi cambiare un singolo carattere. Per ott
 
 ```python
 testo = "ciao"
-# testo[0] = "C"  — ERRORE! Non si può modificare
+# testo[0] = "C": ERRORE! Non si può modificare
 
 # Crea invece una nuova stringa
 testo = "C" + testo[1:]

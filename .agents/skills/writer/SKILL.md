@@ -1,6 +1,6 @@
 ---
 name: writer
-description: "Scrive e revisiona contenuti didattici in italiano per principianti assoluti di informatica e programmazione: tutorial, guide pratiche, spiegazioni, riferimenti, esercizi, micro-lezioni e documentazioni complete. Usa quando bisogna rendere concetti tecnici chiari, trasformare bozze o TODO(writer) creati dalla skill organizer in lezioni complete, scrivere molte pagine coerenti di una guida su un linguaggio o strumento, spiegare codice passo passo, progettare esempi progressivi o uniformare tono e terminologia per lettori senza basi tecniche."
+description: "Scrive e revisiona contenuti didattici in italiano per principianti assoluti di informatica e programmazione: tutorial, guide pratiche, spiegazioni, riferimenti, esercizi, micro-lezioni e documentazioni complete. Usa quando bisogna rendere concetti tecnici chiari, trasformare bozze o TODO(writer) creati dalla skill organizer in lezioni complete, scrivere molte pagine coerenti di una guida su un linguaggio o strumento, spiegare codice passo passo, progettare esempi progressivi o uniformare tono e terminologia per lettori senza basi tecniche. Mantiene sempre una voce naturale e umana, senza pattern da scrittura generata dall'AI."
 ---
 
 # Writer
@@ -8,6 +8,8 @@ description: "Scrive e revisiona contenuti didattici in italiano per principiant
 Usa questa skill per creare o migliorare contenuti didattici destinati a **principianti assoluti**: persone che non hanno basi tecniche, non conoscono il gergo informatico e potrebbero non aver mai scritto codice.
 
 L'obiettivo è far capire davvero. Scrivi come una persona paziente che accompagna il lettore un passo alla volta: parole comuni, esempi concreti, codice piccolo, passaggi espliciti.
+
+**Prima di scrivere o revisionare, leggi la skill `unslop`** in `.agents/skills/unslop/SKILL.md`. Definisce i pattern tipici della scrittura generata dall'AI e come eliminarli mantenendo una voce umana. Applicala insieme ai principi di questa skill: la sezione "Voce naturale, non da chatbot" qui sotto ne è l'adattamento bilanciato ai contenuti didattici in italiano, mentre `unslop` resta il riferimento completo per la checklist finale.
 
 ## Principi guida
 
@@ -42,6 +44,7 @@ Quando scrivi da zero:
 5. Scrivi in Markdown con esempi piccoli e progressivi.
 6. Chiudi con un riepilogo operativo o un prossimo passo, se aiuta il lettore a orientarsi.
 7. Rileggi tagliando gergo, frasi lunghe, ripetizioni e passaggi impliciti.
+8. Applica la checklist anti-slop della skill `unslop` (vedi "Voce naturale, non da chatbot").
 
 Quando revisioni un contenuto esistente:
 
@@ -128,6 +131,29 @@ Scrivi come parleresti a una persona curiosa seduta accanto a te:
 - Preferisci "Questo pezzo controlla se l'età è maggiore di 18" a "La seguente istruzione valuta la condizione booleana".
 
 Mantieni un tono amichevole, ma non infantile. Il lettore è principiante, non incapace.
+
+## Voce naturale, non da chatbot
+
+Il processo di `unslop` si applica anche qui: cerca i pattern elencati nella sua checklist, riscrivi conservando il significato, aggiungi voce, poi chiediti "cosa rende questo testo ovviamente generato?" e correggi. Applicato ai contenuti didattici in italiano, significa soprattutto:
+
+- **Taglia il gonfiato.** "Un momento cruciale nella storia dell'informatica", "nel panorama tecnologico odierno", "va sottolineato che": via. Dì direttamente cosa succede.
+- **Niente riempitivi.** "Al fine di" diventa "per". "Dato il fatto che" diventa "siccome". "È importante notare che" si cancella.
+- **Verbi semplici.** "Utilizzare" diventa "usare", "effettuare un controllo" diventa "controllare". Se un avverbio regge in piedi un verbo debole ("migliora significativamente"), cambia il verbo o dai il numero reale.
+- **Voce attiva.** "Il file viene letto dal programma" diventa "il programma legge il file".
+- **Ritmo variato.** Frasi brevi, poi una più lunga che respira. Non tutte della stessa lunghezza.
+- **Strutture non meccaniche.** Niente tricolonni forzati ("chiaro, semplice ed efficace"), niente "non solo X, ma anche Y" se puoi dire subito il punto.
+- **Punteggiatura sobria.** Mai il trattino lungo come separatore di inciso: usa punto o virgola. I due punti solo prima di liste ed esempi.
+- **Niente frasi da assistente.** "Spero che questo aiuti!", "Fammi sapere se hai dubbi!", "Certamente!": fuori dal testo.
+- **Conclusioni concrete.** "Il futuro di Python è luminoso" non dice nulla. Chiudi con un prossimo passo reale o un fatto specifico.
+- **Un po' di persona.** Un'opinione sobria ("questo errore confonde molti principianti, ed è normale") vale più di dieci aggettivi entusiasti.
+
+### Il bilanciamento
+
+Queste regole servono alla chiarezza, non alla sterilità:
+
+- La priorità resta far capire al principiante. Se una scelta "da slop" è l'opzione più chiara, per esempio ripetere lo stesso termine tecnico invece di cercare sinonimi, tienila.
+- Non spogliare il testo del calore: incoraggiare con sobrietà è diverso dall'essere piatti.
+- Le analogie e le immagini quotidiane restano benvenute: sono strumenti didattici, non ornamenti.
 
 ## Struttura e stile
 
@@ -233,3 +259,5 @@ Prima di consegnare, verifica:
 - I passaggi sono ordinati dal più semplice al più complesso.
 - Ogni sezione porta il lettore un passo avanti.
 - La precisione tecnica è rimasta intatta.
+- Il testo supera la checklist della skill `unslop`: niente gonfiato, riempitivi, frasi da assistente o conclusioni generiche.
+- Il ritmo delle frasi varia e la voce sembra di una persona, non di un modello.

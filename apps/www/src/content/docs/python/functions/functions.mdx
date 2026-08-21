@@ -65,7 +65,7 @@ def somma(a, b):
 
 risultato = somma(3, 5)
 print(risultato)         # 8
-print(somma(10, 20) * 2) # 60 — puoi usarlo direttamente nelle espressioni
+print(somma(10, 20) * 2) # 60: puoi usarlo direttamente nelle espressioni
 ```
 
 Quando Python incontra `return`, esce dalla funzione e restituisce il valore indicato. Senza `return`, la funzione restituisce automaticamente `None`.
@@ -78,8 +78,8 @@ Puoi assegnare un valore predefinito a un parametro. Se durante la chiamata non 
 def saluta(nome, saluto="Ciao"):
     print(f"{saluto}, {nome}!")
 
-saluta("Alice")               # Ciao, Alice!  — usa il default
-saluta("Bob", "Buongiorno")   # Buongiorno, Bob!  — sovrascrive il default
+saluta("Alice")               # Ciao, Alice!  Usa il default
+saluta("Bob", "Buongiorno")   # Buongiorno, Bob!  Sovrascrive il default
 ```
 
 I parametri con valore di default devono sempre venire **dopo** quelli senza.
@@ -95,7 +95,7 @@ def descrivi_persona(nome, eta, citta):
 # Ordine normale
 descrivi_persona("Alice", 16, "Roma")
 
-# Con i nomi — l'ordine non importa più
+# Con i nomi: l'ordine non importa più
 descrivi_persona(eta=16, citta="Roma", nome="Alice")
 ```
 
@@ -134,8 +134,8 @@ voti_alice = [8, 7, 9, 6, 10]
 media = calcola_media(voti_alice)
 giudizio = classifica_voto(media)
 
-print(f"Media: {media:.1f} — {giudizio}")
-# Media: 8.0 — Buono
+print(f"Media: {media:.1f}, {giudizio}")
+# Media: 8.0, Buono
 ```
 
 Il programma principale mostra l'intento del codice senza dover leggere l'implementazione interna delle funzioni.

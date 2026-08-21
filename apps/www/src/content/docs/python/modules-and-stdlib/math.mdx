@@ -20,10 +20,10 @@ Il modulo `math` include alcune costanti matematiche già pronte:
 ```python
 import math
 
-print(math.pi)    # 3.141592653589793 — il pi greco (π)
-print(math.e)     # 2.718281828459045 — il numero di Nepero (base dei logaritmi naturali)
-print(math.inf)   # inf — infinito (utile per confronti: nessun numero è più grande)
-print(math.nan)   # nan — "Not a Number", cioè "non è un numero" (risultato di operazioni impossibili, come 0/0)
+print(math.pi)    # 3.141592653589793: il pi greco (π)
+print(math.e)     # 2.718281828459045: il numero di Nepero (base dei logaritmi naturali)
+print(math.inf)   # inf: infinito (utile per confronti: nessun numero è più grande)
+print(math.nan)   # nan: "Not a Number", cioè "non è un numero" (risultato di operazioni impossibili, come 0/0)
 ```
 
 ## Arrotondamento
@@ -33,10 +33,10 @@ Queste funzioni arrotondano un numero decimale in modi diversi. Guarda come si c
 ```python
 import math
 
-print(math.floor(3.7))   # 3 — arrotonda VERSO IL BASSO (piano inferiore)
-print(math.ceil(3.2))    # 4 — arrotonda VERSO L'ALTO (piano superiore)
-print(round(3.5))        # 4 — arrotondamento standard (già disponibile senza math)
-print(math.trunc(3.9))   # 3 — tronca la parte decimale (butta via i decimali)
+print(math.floor(3.7))   # 3: arrotonda VERSO IL BASSO (piano inferiore)
+print(math.ceil(3.2))    # 4: arrotonda VERSO L'ALTO (piano superiore)
+print(round(3.5))        # 4: arrotondamento standard (già disponibile senza math)
+print(math.trunc(3.9))   # 3: tronca la parte decimale (butta via i decimali)
 ```
 
 Analogia: pensa ai piani di un edificio. `floor` ti porta al piano di sotto, `ceil` a quello di sopra.
@@ -46,8 +46,8 @@ Analogia: pensa ai piani di un edificio. `floor` ti porta al piano di sotto, `ce
 ```python
 import math
 
-print(abs(-5))           # 5   — funzione già disponibile senza math
-print(math.fabs(-5.0))  # 5.0 — versione di math (restituisce sempre un decimale)
+print(abs(-5))           # 5: funzione già disponibile senza math
+print(math.fabs(-5.0))  # 5.0: versione di math (restituisce sempre un decimale)
 ```
 
 Il valore assoluto è la "distanza da zero" e non conserva il segno negativo.
@@ -57,11 +57,11 @@ Il valore assoluto è la "distanza da zero" e non conserva il segno negativo.
 ```python
 import math
 
-print(math.sqrt(16))    # 4.0  — radice quadrata (√16 = 4)
-print(math.sqrt(2))     # 1.4142135... — radice quadrata di 2
+print(math.sqrt(16))    # 4.0: radice quadrata (√16 = 4)
+print(math.sqrt(2))     # 1.4142135...: radice quadrata di 2
 
-print(math.pow(2, 10))  # 1024.0 — potenza (2^10), equivalente a 2**10 ma restituisce float
-print(math.isqrt(17))   # 4 — radice quadrata intera (tronca, senza decimali)
+print(math.pow(2, 10))  # 1024.0: potenza (2^10), equivalente a 2**10 ma restituisce float
+print(math.isqrt(17))   # 4: radice quadrata intera (tronca, senza decimali)
 ```
 
 ## Logaritmi e funzioni esponenziali
@@ -70,16 +70,16 @@ print(math.isqrt(17))   # 4 — radice quadrata intera (tronca, senza decimali)
 import math
 
 # Esponenziale: e elevato alla x
-print(math.exp(1))    # 2.718... — e^1
-print(math.exp(2))    # 7.389... — e^2
+print(math.exp(1))    # 2.718...: e^1
+print(math.exp(2))    # 7.389...: e^2
 
 # Logaritmo naturale (base e)
-print(math.log(math.e))     # 1.0  — logaritmo naturale di e
+print(math.log(math.e))     # 1.0: logaritmo naturale di e
 
 # Logaritmo in base personalizzata
-print(math.log(100, 10))    # 2.0  — log base 10 di 100 (quanto è 10^x = 100? Risposta: 2)
-print(math.log10(1000))     # 3.0  — scorciatoia per log base 10
-print(math.log2(8))         # 3.0  — scorciatoia per log base 2 (2^3 = 8)
+print(math.log(100, 10))    # 2.0: log base 10 di 100 (quanto è 10^x = 100? Risposta: 2)
+print(math.log10(1000))     # 3.0: scorciatoia per log base 10
+print(math.log2(8))         # 3.0: scorciatoia per log base 2 (2^3 = 8)
 ```
 
 ## Trigonometria
@@ -94,9 +94,9 @@ print(math.radians(180))      # 3.14159... (180 gradi = π radianti)
 print(math.degrees(math.pi))  # 180.0
 
 # Seno, coseno, tangente
-print(math.sin(math.pi / 2))   # 1.0  — seno di 90°
-print(math.cos(0))              # 1.0  — coseno di 0°
-print(math.tan(math.pi / 4))   # 1.0  — tangente di 45°
+print(math.sin(math.pi / 2))   # 1.0: seno di 90°
+print(math.cos(0))              # 1.0: coseno di 0°
+print(math.tan(math.pi / 4))   # 1.0: tangente di 45°
 ```
 
 ## Altre funzioni utili
@@ -104,9 +104,9 @@ print(math.tan(math.pi / 4))   # 1.0  — tangente di 45°
 ```python
 import math
 
-print(math.gcd(12, 8))     # 4   — Massimo Comune Divisore (MCD)
-print(math.lcm(4, 6))      # 12  — Minimo Comune Multiplo (MCM) [Python 3.9+]
-print(math.factorial(5))   # 120 — fattoriale: 5! = 5×4×3×2×1
+print(math.gcd(12, 8))     # 4: Massimo Comune Divisore (MCD)
+print(math.lcm(4, 6))      # 12: Minimo Comune Multiplo (MCM) [Python 3.9+]
+print(math.factorial(5))   # 120: fattoriale, cioè 5! = 5×4×3×2×1
 ```
 
 ## Il modulo `random`: numeri casuali

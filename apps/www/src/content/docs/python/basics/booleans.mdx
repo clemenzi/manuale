@@ -1,6 +1,6 @@
 ---
 title: Booleani
-description: I valori vero/falso in Python — la base di ogni decisione nel codice.
+description: I valori vero/falso in Python, la base di ogni decisione nel codice.
 ---
 
 ## Cos'è un booleano?
@@ -26,12 +26,12 @@ print(type(luce_accesa))   # <class 'bool'>
 Ogni confronto tra due valori restituisce `True` oppure `False`:
 
 ```python
-print(5 > 3)    # True  — 5 è maggiore di 3? Sì
-print(5 < 3)    # False — 5 è minore di 3? No
-print(5 == 5)   # True  — 5 è uguale a 5? Sì
-print(5 != 3)   # True  — 5 è diverso da 3? Sì
-print(5 >= 5)   # True  — 5 è maggiore o uguale a 5? Sì
-print(5 <= 4)   # False — 5 è minore o uguale a 4? No
+print(5 > 3)    # True: 5 è maggiore di 3? Sì
+print(5 < 3)    # False: 5 è minore di 3? No
+print(5 == 5)   # True: 5 è uguale a 5? Sì
+print(5 != 3)   # True: 5 è diverso da 3? Sì
+print(5 >= 5)   # True: 5 è maggiore o uguale a 5? Sì
+print(5 <= 4)   # False: 5 è minore o uguale a 4? No
 ```
 
 :::caution
@@ -45,7 +45,7 @@ print(5 <= 4)   # False — 5 è minore o uguale a 4? No
 
 Per combinare più condizioni puoi usare tre operatori logici.
 
-### `and` — "e"
+### `and`: "e"
 
 Restituisce `True` solo se **tutte** le condizioni sono vere. Nell'esempio dell'auto, puoi passare solo se la strada è libera e il semaforo è verde.
 
@@ -57,7 +57,7 @@ ha_patente = True
 print(eta >= 18 and ha_patente)  # True
 ```
 
-### `or` — "o"
+### `or`: "o"
 
 Restituisce `True` se **almeno una** condizione è vera. Per esempio, puoi entrare al cinema se hai il biglietto o sei membro del club.
 
@@ -65,16 +65,16 @@ Restituisce `True` se **almeno una** condizione è vera. Per esempio, puoi entra
 ha_biglietto = False
 e_membro = True
 
-print(ha_biglietto or e_membro)  # True — basta una delle due
+print(ha_biglietto or e_membro)  # True: basta una delle due
 ```
 
-### `not` — "non"
+### `not`: "non"
 
 Inverte il valore: trasforma `True` in `False` e viceversa.
 
 ```python
 piove = False
-print(not piove)   # True — NON piove, quindi posso uscire
+print(not piove)   # True: NON piove, quindi posso uscire
 
 maggiorenne = True
 print(not maggiorenne)  # False
@@ -95,13 +95,13 @@ I valori che Python considera **falsi** (equivalenti a `False`):
 Tutto il resto è considerato **vero**: per esempio un numero diverso da zero, una stringa non vuota o una lista con elementi.
 
 ```python
-print(bool(0))       # False — zero è falso
-print(bool(""))      # False — stringa vuota è falsa
-print(bool([]))      # False — lista vuota è falsa
+print(bool(0))       # False: zero è falso
+print(bool(""))      # False: stringa vuota è falsa
+print(bool([]))      # False: lista vuota è falsa
 
-print(bool(42))      # True  — qualsiasi numero non-zero è vero
-print(bool("ciao"))  # True  — qualsiasi testo non-vuoto è vero
-print(bool([1, 2]))  # True  — una lista con elementi è vera
+print(bool(42))      # True: qualsiasi numero non-zero è vero
+print(bool("ciao"))  # True: qualsiasi testo non-vuoto è vero
+print(bool([1, 2]))  # True: una lista con elementi è vera
 ```
 
 Nelle condizioni puoi quindi verificare direttamente se un nome è stato inserito:

@@ -45,7 +45,7 @@ using namespace std;
 
 Pensa a un **namespace** come a un cognome. Se in classe ci sono due ragazzi chiamati Marco, li distingui con il cognome: "Marco Rossi" e "Marco Bianchi".
 
-`cout` e `cin` appartengono alla “famiglia” `std`. Scrivere `using namespace std;` dice al compilatore di cercare in quella famiglia i nomi senza prefisso. Così puoi scrivere `cout` invece del nome completo `std::cout`.
+`cout` e `cin` appartengono alla "famiglia" `std`. Scrivere `using namespace std;` dice al compilatore di cercare in quella famiglia i nomi senza prefisso. Così puoi scrivere `cout` invece del nome completo `std::cout`.
 
 Nei primi esempi useremo questa scorciatoia per concentrare l'attenzione sui concetti nuovi. Nei progetti più grandi è spesso più chiaro scrivere `std::cout` e `std::cin`, perché nomi provenienti da famiglie diverse potrebbero entrare in conflitto.
 
@@ -60,9 +60,9 @@ int main() {
 
 La funzione `main()` è il **punto di partenza** di ogni programma C++. Quando avvii un programma, il computer cerca sempre `main()` e inizia a eseguire le istruzioni al suo interno.
 
-- `int` — indica che `main` restituisce un numero intero al termine
-- Le parentesi graffe `{` e `}` — delimitano il corpo della funzione
-- `return 0;` — segnala che il programma è terminato senza errori (0 = tutto ok)
+- `int`: indica che `main` restituisce un numero intero al termine
+- Le parentesi graffe `{` e `}`: delimitano il corpo della funzione
+- `return 0;`: segnala che il programma è terminato senza errori (0 = tutto ok)
 
 ## Parte 4: le istruzioni dentro `main()`
 
@@ -109,11 +109,11 @@ Qui abbiamo aggiunto `#include <string>` perché vogliamo usare le stringhe di t
 
 Un file C++ tipico segue sempre quest'ordine dall'alto verso il basso:
 
-1. **Le librerie** — cosa includiamo
-2. **Il namespace** — quale "famiglia" di nomi usare
-3. **Variabili e costanti globali** — valori disponibili ovunque (opzionale)
-4. **La funzione `main()`** — da dove parte il programma
-5. **Altre funzioni** — pezzi di codice riutilizzabili (opzionale)
+1. **Le librerie**: cosa includiamo
+2. **Il namespace**: quale "famiglia" di nomi usare
+3. **Variabili e costanti globali**: valori disponibili ovunque (opzionale)
+4. **La funzione `main()`**: da dove parte il programma
+5. **Altre funzioni**: pezzi di codice riutilizzabili (opzionale)
 
 ```cpp
 // 1. Librerie
@@ -160,7 +160,7 @@ In C++, quasi tutte le istruzioni terminano con `;`. Dimenticarlo è uno degli e
 cout << "Ciao!" << endl;
 int x = 5;
 
-// Errato — manca il ;
+// Errato: manca il ;
 cout << "Ciao!" << endl   // il compilatore segnala un errore
 int x = 5                  // anche qui
 ```

@@ -48,8 +48,8 @@ using std::endl;
 using std::string;
 
 int main() {
-    cout << "Ciao!" << endl;   // OK — importato
-    // cin >> x;               // ERRORE — cin non è stato importato
+    cout << "Ciao!" << endl;   // OK: importato
+    // cin >> x;               // ERRORE: cin non è stato importato
     return 0;
 }
 ```
@@ -80,7 +80,7 @@ namespace Geometria {
 }
 
 int main() {
-    // Nessun conflitto — il compilatore sa qual è quale
+    // Nessun conflitto: il compilatore sa qual è quale
     cout << Matematica::area(5.0) << endl;     // area del cerchio
     cout << Geometria::area(4.0, 6.0) << endl; // area del rettangolo
     cout << Matematica::PI << endl;
@@ -142,13 +142,13 @@ int main() {
 
 ## Regola importante per gli header
 
-Non scrivere mai `using namespace std;` dentro un file header (`.h`). Chi include il tuo header si ritroverebbe importato tutto `std` senza saperlo — potrebbe causare conflitti di nomi inaspettati:
+Non scrivere mai `using namespace std;` dentro un file header (`.h`). Chi include il tuo header si ritroverà tutto `std` importato senza saperlo, e questo potrebbe causare conflitti di nomi inaspettati:
 
 ```cpp
-// mio_header.h — SBAGLIATO
+// mio_header.h: SBAGLIATO
 using namespace std;   // "inquina" il namespace di chi include questo file
 
-// mio_header.h — CORRETTO
+// mio_header.h: CORRETTO
 void funzione(std::string s);   // usa il prefisso esplicito
 ```
 

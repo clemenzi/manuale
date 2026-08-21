@@ -11,7 +11,7 @@ Le direttive possono includere file, sostituire macro e scegliere parti del codi
 
 Le istruzioni che dai al preprocessore si chiamano **direttive** e iniziano sempre con il simbolo `#`.
 
-## `#include` — Aggiungere altri file
+## Aggiungere altri file con `#include`
 
 `#include` chiede al preprocessore di inserire il contenuto di un altro file.
 
@@ -41,7 +41,7 @@ Per includere file che hai scritto tu, si usano le virgolette `""`:
 
 Il compilatore cerca prima nella cartella del tuo progetto, poi nelle cartelle standard.
 
-## `#define` — Creare una sostituzione automatica
+## Creare una sostituzione automatica con `#define`
 
 `#define` associa un testo a un nome che il preprocessore sostituirà nel sorgente.
 
@@ -83,13 +83,13 @@ Attenzione: queste "macro-funzioni" possono dare risultati strani. Preferisci le
 ```cpp
 // PROBLEMA: n viene incrementato due volte!
 int n = 5;
-int r = QUADRATO(n++);   // diventa: ((n++) * (n++)) — comportamento imprevedibile
+int r = QUADRATO(n++);   // diventa: ((n++) * (n++)), comportamento imprevedibile
 
 // SOLUZIONE: usa una funzione normale
 int quadrato(int x) { return x * x; }
 ```
 
-## `#undef` — Cancellare una scorciatoia
+## Cancellare una scorciatoia con `#undef`
 
 ```cpp
 #define VALORE 42
@@ -100,7 +100,7 @@ cout << VALORE << endl;   // 42
 // cout << VALORE << endl;  // ERRORE!
 ```
 
-## Compilazione condizionale — Includere codice solo in certi casi
+## Compilazione condizionale: includere codice solo in certi casi
 
 Puoi dire al preprocessore: _"includi questa parte di codice solo se questa condizione è vera"_.
 
@@ -126,7 +126,7 @@ int main() {
 - `#ifndef NOME` = "se NOME NON è definito, includi il codice che segue"
 - `#endif` = "fine del blocco condizionale"
 
-## Include guard — Evitare di includere lo stesso file due volte
+## Include guard: evitare di includere lo stesso file due volte
 
 Immagina di copiare e incollare lo stesso capitolo due volte in un libro: sarebbe un problema. Stessa cosa in C++.
 
@@ -157,7 +157,7 @@ void salutaStudente();
 
 `#pragma once` è supportato da quasi tutti i compilatori moderni, anche se non è parte dello standard ufficiale.
 
-## `#error` — Generare un errore personalizzato
+## Generare un errore personalizzato con `#error`
 
 Puoi far fallire la compilazione con un messaggio tuo:
 
@@ -169,7 +169,7 @@ Puoi far fallire la compilazione con un messaggio tuo:
 
 Se la condizione si verifica, il compilatore si ferma e mostra il tuo messaggio.
 
-## Macro predefinite — Informazioni automatiche
+## Macro predefinite: informazioni automatiche
 
 Il preprocessore definisce alcune parole speciali in automatico:
 
@@ -180,7 +180,7 @@ cout << __DATE__ << endl;   // data in cui è stato compilato il programma
 cout << __TIME__ << endl;   // ora in cui è stato compilato
 ```
 
-Sono molto utili per il debug — per sapere esattamente dove è successo un problema:
+Sono molto utili per il debug, per sapere esattamente dove è successo un problema:
 
 ```cpp
 #ifdef DEBUG

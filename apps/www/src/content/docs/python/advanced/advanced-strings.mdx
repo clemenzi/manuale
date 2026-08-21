@@ -9,7 +9,7 @@ Le stringhe sono ovunque: nomi, messaggi, dati da file, risposte dal web. Python
 
 ## Cercare testo dentro una stringa
 
-### `find()` — trova la posizione di una sottostringa
+### `find()`: trova la posizione di una sottostringa
 
 ```python
 testo = "Ciao, mi chiamo Alice e vivo a Roma."
@@ -19,7 +19,7 @@ print(testo.find("Mario"))    # -1 → non trovato (restituisce -1 invece di err
 print(testo.rfind("a"))       # 31 → posizione dell'ULTIMA "a"
 ```
 
-### `count()` — conta quante volte appare qualcosa
+### `count()`: conta quante volte appare qualcosa
 
 ```python
 testo = "banana"
@@ -27,7 +27,7 @@ print(testo.count("a"))    # 3
 print(testo.count("na"))   # 2
 ```
 
-### `replace()` — sostituisci una parte del testo
+### `replace()`: sostituisci una parte del testo
 
 ```python
 testo = "Ciao mondo! Ciao Python!"
@@ -37,7 +37,7 @@ print(testo.replace("Ciao", "Salve", 1))    # Salve mondo! Ciao Python! (solo la
 
 ## Tagliare e unire
 
-### `split()` — divide una stringa in una lista di pezzi
+### `split()`: divide una stringa in una lista di pezzi
 
 ```python
 frase = "mela banana ciliegia uva"
@@ -53,7 +53,7 @@ print(campi)    # ['Alice', '16', 'Roma']
 print("a:b:c:d".split(":", 2))   # ['a', 'b', 'c:d']  ← si ferma dopo 2 tagli
 ```
 
-### `splitlines()` — divide su ogni fine riga
+### `splitlines()`: divide su ogni fine riga
 
 ```python
 testo = "Prima riga\nSeconda riga\nTerza riga"
@@ -61,7 +61,7 @@ righe = testo.splitlines()
 print(righe)   # ['Prima riga', 'Seconda riga', 'Terza riga']
 ```
 
-### `join()` — unisce una lista di stringhe in una sola
+### `join()`: unisce una lista di stringhe in una sola
 
 `join()` è l'opposto di `split()`: prende una lista e la incolla insieme usando un separatore.
 

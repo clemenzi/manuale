@@ -23,7 +23,7 @@ cout << x << endl;    // 42
 cout << ref << endl;  // 42 (stessa variabile, stesso valore)
 
 ref = 100;            // modifica il valore tramite ref
-cout << x << endl;    // 100 — anche x è cambiata!
+cout << x << endl;    // 100: anche x è cambiata!
 ```
 
 `ref` e `x` puntano alla stessa casella in memoria. Cambiare uno cambia l'altro.
@@ -51,7 +51,7 @@ void raddoppiaValore(int x) {
 int main() {
     int numero = 5;
     raddoppiaValore(numero);
-    cout << numero << endl;   // 5 — non è cambiato!
+    cout << numero << endl;   // 5: non è cambiato!
 }
 ```
 
@@ -65,7 +65,7 @@ void raddoppiaRiferimento(int& x) {
 int main() {
     int numero = 5;
     raddoppiaRiferimento(numero);   // nessun &, si passa direttamente
-    cout << numero << endl;         // 10 — è cambiato!
+    cout << numero << endl;         // 10: è cambiato!
 }
 ```
 
@@ -95,7 +95,7 @@ int main() {
 
 ## Riferimento costante: leggere senza copiare
 
-Se passi una stringa o un oggetto grande a una funzione, il computer ne fa una copia — spreco di tempo e memoria. Con `const &` passi il riferimento (nessuna copia) ma impedisci le modifiche:
+Se passi una stringa o un oggetto grande a una funzione, il computer ne fa una copia. Uno spreco di tempo e memoria. Con `const &` passi il riferimento (nessuna copia) ma impedisci le modifiche:
 
 ```cpp
 // Senza const ref: copia l'intera stringa (lento per stringhe lunghe)
@@ -112,7 +112,7 @@ void stampa2(const string& s) {
 int main() {
     string testo = "Una stringa molto lunga...";
     stampa1(testo);   // fa una copia
-    stampa2(testo);   // non fa nessuna copia — più efficiente!
+    stampa2(testo);   // non fa nessuna copia, più efficiente!
 }
 ```
 

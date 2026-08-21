@@ -14,9 +14,9 @@ Queste regole sono la base per leggere e scrivere il resto del codice.
 Molte istruzioni in C++ terminano con un **punto e virgola** (`;`). Segnala al compilatore dove finisce un'istruzione. Le direttive come `#include` e le intestazioni dei blocchi non seguono questa regola.
 
 ```cpp
-int x = 10;           // istruzione 1 — termina con ;
-cout << "Ciao!";      // istruzione 2 — termina con ;
-x = x + 1;           // istruzione 3 — termina con ;
+int x = 10;           // istruzione 1, termina con ;
+cout << "Ciao!";      // istruzione 2, termina con ;
+x = x + 1;           // istruzione 3, termina con ;
 ```
 
 Dimenticare il punto e virgola è l'errore più comune per chi inizia. Il compilatore te lo segnala subito.
@@ -92,9 +92,9 @@ string nomeUtente;
 int x1;
 
 // Nomi non validi
-int 2variabile;   // inizia con un numero — ERRORE
-int nome utente;  // contiene uno spazio — ERRORE
-int int;          // è una parola riservata — ERRORE
+int 2variabile;   // ERRORE: inizia con un numero
+int nome utente;  // ERRORE: contiene uno spazio
+int int;          // ERRORE: è una parola riservata
 ```
 
 ## Le parole riservate
@@ -111,21 +111,21 @@ return, class, struct, public, private, new, delete
 
 In C++ esistono tre modi principali per scrivere i nomi:
 
-**camelCase** — la prima parola è minuscola, le successive iniziano con la maiuscola. Usato per le variabili:
+**camelCase**: la prima parola è minuscola, le successive iniziano con la maiuscola. Usato per le variabili:
 
 ```cpp
 int numeroStudenti;
 string nomeUtente;
 ```
 
-**snake_case** — tutto minuscolo, parole separate da underscore. Anch'esso usato per le variabili:
+**snake_case**: tutto minuscolo, parole separate da underscore. Anch'esso usato per le variabili:
 
 ```cpp
 int numero_studenti;
 string nome_utente;
 ```
 
-**PascalCase** — ogni parola inizia con la maiuscola. Usato per i nomi delle classi:
+**PascalCase**: ogni parola inizia con la maiuscola. Usato per i nomi delle classi:
 
 ```cpp
 class NomeClasse;
@@ -139,24 +139,24 @@ Scegli uno stile e usalo in modo coerente in tutto il progetto.
 In C++ ci sono diversi tipi di istruzioni. Ecco le principali:
 
 ```cpp
-// Dichiarazione di variabile — riserva uno spazio in memoria
+// Dichiarazione di variabile: riserva uno spazio in memoria
 int x;
 
-// Assegnazione — mette un valore nella variabile
+// Assegnazione: mette un valore nella variabile
 x = 10;
 
-// Dichiarazione con inizializzazione — le due cose insieme
+// Dichiarazione con inizializzazione: le due cose insieme
 int y = 20;
 
-// Chiamata a funzione — esegue un'azione
+// Chiamata a funzione: esegue un'azione
 cout << "Ciao";
 
-// Istruzione condizionale — prende una decisione
+// Istruzione condizionale: prende una decisione
 if (x > 0) {
     cout << "positivo";
 }
 
-// Istruzione di ritorno — termina la funzione
+// Istruzione di ritorno: termina la funzione
 return 0;
 ```
 

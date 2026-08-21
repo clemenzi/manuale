@@ -16,10 +16,10 @@ Per usare un modulo, importalo all'inizio del file:
 ```python
 import math   # Importa il modulo "math" (matematica)
 
-print(math.pi)           # 3.141592653589793 — il pi greco
-print(math.sqrt(16))     # 4.0 — radice quadrata
-print(math.floor(3.7))   # 3   — arrotondamento verso il basso
-print(math.ceil(3.2))    # 4   — arrotondamento verso l'alto
+print(math.pi)           # 3.141592653589793: il pi greco
+print(math.sqrt(16))     # 4.0: radice quadrata
+print(math.floor(3.7))   # 3: arrotondamento verso il basso
+print(math.ceil(3.2))    # 4: arrotondamento verso l'alto
 ```
 
 `math.sqrt` indica la funzione `sqrt` contenuta nel modulo `math`.
@@ -36,7 +36,7 @@ print(sqrt(25))    # 5.0
 print(floor(4.9))  # 4
 ```
 
-## `from math import *` — sconsigliato
+## `from math import *`: sconsigliato
 
 Puoi importare tutto con `*`, ma questa forma è sconsigliata:
 
@@ -72,7 +72,7 @@ import pandas as pd   # Convenzione universale per Pandas
 Un modulo è un file `.py`. Crea, per esempio, `calcolatrice.py`:
 
 ```python
-# calcolatrice.py — il mio modulo personale
+# calcolatrice.py: il mio modulo personale
 
 def somma(a, b):
     return a + b
@@ -89,7 +89,7 @@ pi = 3.14159
 Poi in un altro file nella **stessa cartella**:
 
 ```python
-# main.py — uso il mio modulo
+# main.py: uso il mio modulo
 import calcolatrice
 
 print(calcolatrice.somma(3, 4))    # 7
@@ -128,7 +128,7 @@ if __name__ == "__main__":
 | `re`       | Espressioni regolari (ricerche avanzate nel testo)      |
 | `time`     | Misurare il tempo, mettere in pausa il programma        |
 
-## Il modulo `random` — numeri casuali
+## Il modulo `random`: numeri casuali
 
 ```python
 import random
@@ -142,7 +142,7 @@ random.shuffle(lista)   # Mescola la lista (modifica la lista originale)
 print(lista)            # Ordine casuale, es: [3, 1, 5, 2, 4]
 ```
 
-## Il modulo `os` — interazione con il sistema
+## Il modulo `os`: interazione con il sistema
 
 ```python
 import os

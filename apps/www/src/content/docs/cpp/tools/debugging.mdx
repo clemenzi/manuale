@@ -27,9 +27,9 @@ hello.cpp:5:5: error: 'cout' was not declared in this scope
 
 Il formato è: `file:riga:colonna: tipo: messaggio`
 
-- `hello.cpp` — il file con l'errore
-- `5` — la riga dell'errore
-- `error` — tipo di problema (`error` = grave, `warning` = avviso)
+- `hello.cpp`: il file con l'errore
+- `5`: la riga dell'errore
+- `error`: tipo di problema (`error` = grave, `warning` = avviso)
 - Il messaggio spiega cosa c'è di sbagliato
 
 Correggi prima il **primo** errore della lista: gli errori successivi possono dipendere da quello.
@@ -74,7 +74,7 @@ Aggiungi il prefisso `[DEBUG]` così quando hai finito sai quali `cout` eliminar
 
 ```cpp
 int x;
-cout << x;   // stampa un numero casuale — bug!
+cout << x;   // stampa un numero casuale, bug!
 
 // Soluzione: inizializza sempre
 int x = 0;

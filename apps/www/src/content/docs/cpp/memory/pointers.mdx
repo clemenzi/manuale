@@ -17,7 +17,7 @@ La RAM assegna un indirizzo alle aree in cui conserva i dati. Ogni variabile occ
 
 Quando dichiari `int x = 42;`, il computer affitta un appartamento per `x` e ci mette dentro il numero 42.
 
-Un puntatore è come un bigliettino su cui scrivi il numero civico di quell'appartamento. Con il bigliettino, puoi andare a vedere cosa c'è dentro — o addirittura cambiarlo.
+Un puntatore è come un bigliettino su cui scrivi il numero civico di quell'appartamento. Con il bigliettino, puoi andare a vedere cosa c'è dentro, o addirittura cambiarlo.
 
 ## Come vedere l'indirizzo di una variabile
 
@@ -29,7 +29,7 @@ cout << x << endl;    // stampa 42 (il valore)
 cout << &x << endl;   // stampa qualcosa come 0x7fff5c1a2b40 (l'indirizzo)
 ```
 
-Quell'indirizzo strano con lettere e numeri è scritto in **esadecimale** — è il numero del "cassetto" nella RAM.
+Quell'indirizzo strano con lettere e numeri è scritto in **esadecimale**: è il numero del "cassetto" nella RAM.
 
 ## Dichiarare un puntatore
 
@@ -98,7 +98,7 @@ if (ptr != nullptr) {
 }
 ```
 
-**Regola d'oro:** non usare mai un puntatore nullo senza averlo controllato prima — causerebbe il crash del programma.
+**Regola d'oro:** non usare mai un puntatore nullo senza averlo controllato prima, causerebbe il crash del programma.
 
 ## Passare variabili alle funzioni tramite puntatore
 
@@ -116,7 +116,7 @@ int main() {
 
     raddoppia(&x);       // passa l'indirizzo di x (il "bigliettino")
 
-    cout << x << endl;   // 10 — x è stata modificata dalla funzione!
+    cout << x << endl;   // 10: x è stata modificata dalla funzione!
     return 0;
 }
 ```

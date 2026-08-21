@@ -77,17 +77,17 @@ using namespace std;
 
 const double PI = 3.14159265358979;
 
-// Area del cerchio — riceve solo il raggio
+// Area del cerchio: riceve solo il raggio
 double area(double raggio) {
     return PI * raggio * raggio;
 }
 
-// Area del rettangolo — riceve base e altezza
+// Area del rettangolo: riceve base e altezza
 double area(double base, double altezza) {
     return base * altezza;
 }
 
-// Area del triangolo — riceve base, altezza e un flag per distinguerla dal rettangolo
+// Area del triangolo: riceve base, altezza e un flag per distinguerla dal rettangolo
 double area(double base, double altezza, bool triangolo) {
     return (base * altezza) / 2;
 }
@@ -116,11 +116,11 @@ Il compilatore non sa quale delle due chiamare, e lo segnala come errore.
 A volte si può ottenere lo stesso risultato con entrambi gli approcci:
 
 ```cpp
-// Con overloading — due funzioni separate
+// Con overloading: due funzioni separate
 void saluta() { cout << "Ciao, ospite!" << endl; }
 void saluta(string nome) { cout << "Ciao, " << nome << "!" << endl; }
 
-// Con parametro di default — una sola funzione
+// Con parametro di default: una sola funzione
 void saluta(string nome = "ospite") {
     cout << "Ciao, " << nome << "!" << endl;
 }

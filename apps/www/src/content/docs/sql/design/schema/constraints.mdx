@@ -16,7 +16,7 @@ Quelli che incontrerai più spesso sono:
 | Vincolo       | A cosa serve                           |
 | ------------- | -------------------------------------- |
 | `PRIMARY KEY` | identifica ogni riga                   |
-| `FOREIGN KEY` | collega una tabella a un’altra         |
+| `FOREIGN KEY` | collega una tabella a un'altra         |
 | `UNIQUE`      | impedisce valori duplicati             |
 | `NOT NULL`    | rende una colonna obbligatoria         |
 | `CHECK`       | controlla una regola personalizzata    |
@@ -39,9 +39,9 @@ CREATE TABLE clienti (
 I vincoli impongono queste regole:
 
 - `id INT PRIMARY KEY`: ogni cliente ha un identificatore unico.
-- `email VARCHAR(150) UNIQUE NOT NULL`: l’email è obbligatoria e non può essere duplicata.
+- `email VARCHAR(150) UNIQUE NOT NULL`: l'email è obbligatoria e non può essere duplicata.
 - `nome VARCHAR(100) NOT NULL`: il nome è obbligatorio.
-- `eta INT CHECK (eta >= 0)`: l’età non può essere negativa.
+- `eta INT CHECK (eta >= 0)`: l'età non può essere negativa.
 - `attivo BOOLEAN DEFAULT TRUE`: se non dici nulla, il cliente parte come attivo.
 
 ## Perché sono utili
@@ -53,7 +53,7 @@ Senza vincoli, il database potrebbe accettare dati sbagliati:
 - un cliente senza nome
 - un ordine collegato a un cliente che non esiste
 
-I controlli nel codice dell’applicazione sono utili, ma non bastano sempre. Il database è l’ultimo posto in cui puoi fermare un dato sbagliato prima che venga salvato.
+I controlli nel codice dell'applicazione sono utili, ma non bastano sempre. Il database è l'ultimo posto in cui puoi fermare un dato sbagliato prima che venga salvato.
 
 ## Un esempio con `CHECK`
 

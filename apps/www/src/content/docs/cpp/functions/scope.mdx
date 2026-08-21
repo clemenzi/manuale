@@ -19,12 +19,12 @@ int main() {
 
     {
         int y = 20;   // y esiste solo in questo blocco interno
-        cout << x;    // OK — x è visibile anche qui
-        cout << y;    // OK — y è visibile qui
+        cout << x;    // OK: x è visibile anche qui
+        cout << y;    // OK: y è visibile qui
     }
 
-    cout << x;    // OK — x esiste ancora
-    // cout << y; // ERRORE — y non esiste più, il blocco è finito
+    cout << x;    // OK: x esiste ancora
+    // cout << y; // ERRORE: y non esiste più, il blocco è finito
 }
 ```
 
@@ -40,7 +40,7 @@ void miaFunzione() {
 
 int main() {
     miaFunzione();
-    // cout << x;  // ERRORE — x non esiste qui
+    // cout << x;  // ERRORE: x non esiste qui
     return 0;
 }
 ```
@@ -52,7 +52,7 @@ Ogni chiamata alla funzione crea una nuova copia delle variabili locali, che poi
 Una **variabile globale** è dichiarata fuori da qualsiasi funzione. È visibile da tutto il codice nel file:
 
 ```cpp
-int contatore = 0;   // variabile globale — visibile ovunque
+int contatore = 0;   // variabile globale, visibile ovunque
 
 void incrementa() {
     contatore++;     // può accedere e modificare la variabile globale
@@ -77,7 +77,7 @@ Le variabili dichiarate dentro un `for` esistono solo per la durata del ciclo:
 for (int i = 0; i < 5; i++) {
     cout << i << " ";   // OK
 }
-// cout << i;  // ERRORE — i non esiste più fuori dal ciclo
+// cout << i;  // ERRORE: i non esiste più fuori dal ciclo
 ```
 
 Il contatore `i` resta così confinato al ciclo.
@@ -90,7 +90,7 @@ Se dichiari una variabile locale con lo stesso nome di una globale, la locale "n
 int x = 100;  // variabile globale
 
 void funzione() {
-    int x = 50;   // variabile locale — nasconde quella globale
+    int x = 50;   // variabile locale, nasconde quella globale
     cout << x;    // stampa 50 (usa la locale)
 }
 

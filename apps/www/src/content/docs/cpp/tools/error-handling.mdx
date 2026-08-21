@@ -104,10 +104,10 @@ double dividi(double a, double b) {
 
 int main() {
     try {
-        cout << dividi(10, 2) << endl;   // 5 — va bene
+        cout << dividi(10, 2) << endl;   // 5: va bene
         cout << dividi(10, 0) << endl;   // lancia l'eccezione
     } catch (runtime_error& e) {
-        // Il programma non crasha — gestiamo l'errore qui
+        // Il programma non crasha: gestiamo l'errore qui
         cout << "Errore catturato: " << e.what() << endl;
     }
 
@@ -185,12 +185,12 @@ if (!file.is_open()) {
 // Qui sei sicuro che il file è aperto correttamente
 ```
 
-`cerr` funziona come `cout`, ma manda il messaggio al canale degli errori — utile per distinguere i messaggi di errore dall'output normale.
+`cerr` funziona come `cout`, ma manda il messaggio al canale degli errori, utile per distinguere i messaggi di errore dall'output normale.
 
 ## Regole pratiche
 
 - Valida sempre l'input dell'utente prima di usarlo
 - Controlla sempre il risultato delle operazioni che possono fallire (apertura file, divisioni, ecc.)
-- Non ignorare mai un errore in silenzio — il programma sembrerà funzionare ma darà risultati sbagliati
+- Non ignorare mai un errore in silenzio: il programma sembrerà funzionare ma darà risultati sbagliati
 - Scrivi messaggi di errore chiari: l'utente deve capire cosa è andato storto
 - Usa `cerr` per i messaggi di errore, non `cout`

@@ -11,12 +11,12 @@ Qualunque programma reale prima o poi ha a che fare con le date: "quando è stat
 
 Il modulo `datetime` offre quattro strumenti principali:
 
-| Classe      | Cosa rappresenta                           |
-| ----------- | ------------------------------------------ |
-| `date`      | Solo la data (anno, mese, giorno)          |
-| `time`      | Solo l'orario (ore, minuti, secondi)       |
-| `datetime`  | Data e orario insieme                      |
-| `timedelta` | Una durata — la differenza tra due momenti |
+| Classe      | Cosa rappresenta                          |
+| ----------- | ----------------------------------------- |
+| `date`      | Solo la data (anno, mese, giorno)         |
+| `time`      | Solo l'orario (ore, minuti, secondi)      |
+| `datetime`  | Data e orario insieme                     |
+| `timedelta` | Una durata: la differenza tra due momenti |
 
 ```python
 from datetime import date, datetime, timedelta   # Importa solo quello che serve
@@ -104,7 +104,7 @@ print(data.year)    # 2008
 
 ## Calcolare differenze tra date: `timedelta`
 
-`timedelta` rappresenta una **durata** — un certo numero di giorni, ore, minuti, ecc. Puoi aggiungerla o sottrarla a una data:
+`timedelta` rappresenta una **durata**: un certo numero di giorni, ore, minuti, ecc. Puoi aggiungerla o sottrarla a una data:
 
 ```python
 from datetime import date, timedelta

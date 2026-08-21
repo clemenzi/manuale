@@ -83,9 +83,9 @@ string nomeUtente;
 int x1;
 
 // Nomi non validi
-int 2x;          // inizia con un numero — ERRORE
-int nome utente; // contiene uno spazio — ERRORE
-int int;         // è una parola riservata — ERRORE
+int 2x;          // ERRORE: inizia con un numero
+int nome utente; // ERRORE: contiene uno spazio
+int int;         // ERRORE: è una parola riservata
 ```
 
 ## Le convenzioni di stile
@@ -103,7 +103,7 @@ In C++, una variabile dichiarata ma non inizializzata contiene un valore casuale
 
 ```cpp
 int x;
-cout << x;  // stampa un numero imprevedibile — comportamento non definito!
+cout << x;  // stampa un numero imprevedibile, comportamento non definito!
 ```
 
 In Python questo causa un errore chiaro. In C++ il compilatore potrebbe non avvertire e il programma può produrre risultati imprevedibili.

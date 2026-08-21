@@ -19,8 +19,8 @@ Pensa a un iteratore come a un dito che scorre su una lista: parte dall'inizio, 
 
 Ogni contenitore STL ha due metodi fondamentali:
 
-- **`begin()`** — restituisce un iteratore che punta al **primo** elemento
-- **`end()`** — restituisce un iteratore che punta **dopo** l'ultimo elemento
+- **`begin()`**: restituisce un iteratore che punta al **primo** elemento
+- **`end()`**: restituisce un iteratore che punta **dopo** l'ultimo elemento
 
 ```cpp
 vector<int> v = {10, 20, 30, 40, 50};
@@ -39,7 +39,7 @@ Dichiara un iteratore con `auto` (il compilatore capisce il tipo da solo):
 vector<int> v = {10, 20, 30, 40, 50};
 
 auto it = v.begin();        // it punta al primo elemento (10)
-cout << *it << endl;        // 10 — il * "legge" il valore puntato
+cout << *it << endl;        // 10: il * "legge" il valore puntato
 
 ++it;                       // sposta l'iteratore al prossimo elemento
 cout << *it << endl;        // 20
@@ -65,7 +65,7 @@ while (it != v.end()) {
 ```
 
 ```cpp
-// Ciclo for con iteratore — forma compatta
+// Ciclo for con iteratore, forma compatta
 for (auto it = v.begin(); it != v.end(); ++it) {
     cout << *it << " ";
 }
@@ -84,7 +84,7 @@ vector<int> v = {1, 2, 3};
 
 for (auto it = v.cbegin(); it != v.cend(); ++it) {
     cout << *it << " ";
-    // *it = 99;  // ERRORE — con l'iteratore costante non puoi modificare
+    // *it = 99;  // ERRORE: con l'iteratore costante non puoi modificare
 }
 ```
 
@@ -159,7 +159,7 @@ int main() {
     }
     cout << endl;
 
-    // unique rimuove i duplicati consecutivi — richiede il vector ordinato
+    // unique rimuove i duplicati consecutivi, richiede il vector ordinato
     auto fine = unique(numeri.begin(), numeri.end());
     numeri.erase(fine, numeri.end());  // rimuoviamo i "resti" lasciati da unique
     cout << "Senza duplicati: ";

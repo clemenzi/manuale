@@ -12,13 +12,13 @@ In questi casi Python "lancia" un **errore**, chiamato tecnicamente _eccezione_.
 Esempi di errori comuni:
 
 ```python
-print(10 / 0)               # ZeroDivisionError — non si può dividere per zero
-print("ciao" + 5)           # TypeError — non puoi sommare testo e numero
-int("pippo")                # ValueError — "pippo" non è un numero
-print(variabile_che_non_c_e)  # NameError — variabile non definita
+print(10 / 0)               # ZeroDivisionError: non si può dividere per zero
+print("ciao" + 5)           # TypeError: non puoi sommare testo e numero
+int("pippo")                # ValueError: "pippo" non è un numero
+print(variabile_che_non_c_e)  # NameError: variabile non definita
 
 lista = [1, 2, 3]
-print(lista[10])            # IndexError — la lista non ha la posizione 10
+print(lista[10])            # IndexError: la lista non ha la posizione 10
 ```
 
 ## Il blocco `try / except`
@@ -49,7 +49,7 @@ except ZeroDivisionError:
     print("Non puoi dividere per zero.")
 ```
 
-## Il blocco `else` — "tutto è andato bene"
+## Il blocco `else`: "tutto è andato bene"
 
 Il blocco `else` viene eseguito **solo se non si è verificato nessun errore**:
 
@@ -63,7 +63,7 @@ else:
     print(f"Risultato: {risultato}")   # viene eseguito solo se tutto è ok
 ```
 
-## Il blocco `finally` — "sempre, in ogni caso"
+## Il blocco `finally`: "sempre, in ogni caso"
 
 Il blocco `finally` viene **sempre eseguito**, con o senza errori. Puoi usarlo per la "pulizia", come chiudere un file o liberare risorse:
 

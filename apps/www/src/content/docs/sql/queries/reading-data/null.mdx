@@ -5,9 +5,9 @@ description: Come rappresentare e controllare l'assenza di un valore in SQL.
 
 ## Rappresentare un dato mancante
 
-`NULL` significa che un valore **non c’è** oppure **non è conosciuto**.
+`NULL` significa che un valore **non c'è** oppure **non è conosciuto**.
 
-Non significa zero. Non significa testo vuoto. Non significa “no”. Significa proprio: “qui il dato manca”.
+Non significa zero. Non significa testo vuoto. Non significa "no". Significa proprio: "qui il dato manca".
 
 La colonna esiste, ma per quella riga non è disponibile alcun valore.
 
@@ -53,7 +53,7 @@ FROM clienti
 WHERE email IS NOT NULL;
 ```
 
-Questa query mostra solo i clienti che hanno un’email salvata.
+Questa query mostra solo i clienti che hanno un'email salvata.
 
 ## `NULL`, zero e testo vuoto
 
@@ -62,8 +62,8 @@ Questi tre casi sono diversi:
 | Valore | Significato            |
 | ------ | ---------------------- |
 | `NULL` | il dato manca          |
-| `0`    | il dato c’è ed è zero  |
-| `''`   | il dato c’è ma è vuoto |
+| `0`    | il dato c'è ed è zero  |
+| `''`   | il dato c'è ma è vuoto |
 
 Per esempio, se `sconto` è `NULL`, forse non sai ancora lo sconto. Se `sconto` è `0`, sai che lo sconto è zero.
 
@@ -75,7 +75,7 @@ Questa differenza è importante nei calcoli, nei filtri e nei report.
 
 - una colonna è facoltativa
 - un dato non è stato ancora inserito
-- un’informazione non è disponibile
+- un'informazione non è disponibile
 - una `LEFT JOIN` non trova una riga collegata
 
 Consideralo semplicemente un dato mancante o sconosciuto.

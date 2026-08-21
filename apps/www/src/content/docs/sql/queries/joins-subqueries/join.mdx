@@ -34,7 +34,7 @@ Immagina queste due tabelle.
 
 Nella tabella `ordini`, la colonna `cliente_id` dice a quale cliente appartiene ogni ordine.
 
-Per mostrare il nome del cliente insieme al totale dell’ordine, scrivi:
+Per mostrare il nome del cliente insieme al totale dell'ordine, scrivi:
 
 ```sql
 SELECT clienti.nome, ordini.totale
@@ -73,7 +73,7 @@ ON clienti.id = ordini.cliente_id
 
 Significa:
 
-> “Abbina un cliente a un ordine quando l’id del cliente è uguale al `cliente_id` salvato nell’ordine.”
+> "Abbina un cliente a un ordine quando l'id del cliente è uguale al `cliente_id` salvato nell'ordine."
 
 Se sbagli questa condizione, la join collega righe sbagliate. Per questo conviene leggerla sempre con calma.
 
@@ -105,11 +105,11 @@ Il risultato diventa:
 | Marta | 18.50  |
 | Sara  | NULL   |
 
-`NULL` significa che manca un valore. Qui vuol dire: “per Sara non esiste un ordine collegato”.
+`NULL` significa che manca un valore. Qui vuol dire: "per Sara non esiste un ordine collegato".
 
 ## Quale join scegliere?
 
-All’inizio concentrati su queste due:
+All'inizio concentrati su queste due:
 
 - `INNER JOIN` quando vuoi solo le righe che si abbinano.
 - `LEFT JOIN` quando vuoi tenere tutte le righe della tabella di sinistra.

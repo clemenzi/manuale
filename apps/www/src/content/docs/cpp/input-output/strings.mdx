@@ -62,9 +62,9 @@ Come negli array, puoi leggere o modificare un carattere con un indice tra `[]`.
 
 ```cpp
 string nome = "Alice";
-cout << nome[0] << endl;  // A — primo carattere
+cout << nome[0] << endl;  // A: il primo carattere
 cout << nome[1] << endl;  // l
-cout << nome[4] << endl;  // e — quinto (e ultimo) carattere
+cout << nome[4] << endl;  // e: il quinto (e ultimo) carattere
 
 // Modifica del primo carattere
 nome[0] = 'E';
@@ -80,9 +80,9 @@ string a = "ciao";
 string b = "ciao";
 string c = "hello";
 
-cout << (a == b) << endl;  // 1 — sono uguali
-cout << (a == c) << endl;  // 0 — sono diverse
-cout << (a != c) << endl;  // 1 — sono diverse
+cout << (a == b) << endl;  // 1: sono uguali
+cout << (a == c) << endl;  // 0: sono diverse
+cout << (a != c) << endl;  // 1: sono diverse
 ```
 
 Attenzione: il confronto distingue maiuscole e minuscole. `"Ciao"` e `"ciao"` sono considerate diverse.
@@ -94,7 +94,7 @@ Il metodo `find()` cerca una parola o un carattere e restituisce la posizione in
 ```cpp
 string frase = "Ciao, mondo!";
 int pos = frase.find("mondo");
-cout << pos << endl;  // 6 — "mondo" inizia alla posizione 6
+cout << pos << endl;  // 6: "mondo" inizia alla posizione 6
 
 // Se non trova niente, restituisce string::npos
 if (frase.find("xyz") == string::npos) {

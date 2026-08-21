@@ -40,7 +40,7 @@ void saluta() {
 }
 
 int main() {
-    saluta();   // esegue la funzione — stampa "Ciao!"
+    saluta();   // esegue la funzione: stampa "Ciao!"
     saluta();   // la puoi chiamare quante volte vuoi
     return 0;
 }
@@ -107,7 +107,7 @@ Quando il programma esegue `return`, la funzione termina e restituisce il valore
 In C++, una funzione deve essere **dichiarata prima del punto in cui la chiami**. Se vuoi definire le funzioni dopo il `main`, devi prima scrivere il loro **prototipo** (una dichiarazione anticipata):
 
 ```cpp
-// Prototipo — dice al compilatore che questa funzione esisterà
+// Prototipo: dice al compilatore che questa funzione esisterà
 int somma(int a, int b);
 
 int main() {
@@ -115,7 +115,7 @@ int main() {
     return 0;
 }
 
-// Definizione completa — scritta dopo il main
+// Definizione completa: scritta dopo il main
 int somma(int a, int b) {
     return a + b;
 }
@@ -133,8 +133,8 @@ void saluta(string nome, string saluto = "Ciao") {
 }
 
 int main() {
-    saluta("Alice");               // usa il default — stampa: Ciao, Alice!
-    saluta("Bob", "Buongiorno");  // usa il valore specificato — stampa: Buongiorno, Bob!
+    saluta("Alice");               // usa il default e stampa: Ciao, Alice!
+    saluta("Bob", "Buongiorno");  // usa il valore specificato e stampa: Buongiorno, Bob!
     return 0;
 }
 ```
@@ -160,7 +160,7 @@ Di default, una funzione riceve una **copia** del valore. Le modifiche che fa no
 
 ```cpp
 void raddoppia(int x) {
-    x = x * 2;    // modifica solo la copia — l'originale non cambia
+    x = x * 2;    // modifica solo la copia, l'originale non cambia
     cout << "Dentro la funzione: " << x << endl;
 }
 

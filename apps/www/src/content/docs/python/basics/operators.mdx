@@ -7,7 +7,7 @@ description: I simboli con cui fare calcoli, confronti e operazioni logiche in P
 
 Un **operatore** è un simbolo che esegue un'operazione su uno o più valori. `+`, `-` e `*` sono operatori matematici; Python ne mette a disposizione anche altri.
 
-## Operatori aritmetici — per i calcoli
+## Operatori aritmetici
 
 Seguono le regole della matematica, con alcune operazioni aggiuntive:
 
@@ -37,7 +37,7 @@ print(a % b)   # 1   (il resto è 1)
 print(a ** b)  # 1000  (10 alla potenza 3)
 ```
 
-## Operatori di confronto — per fare domande
+## Operatori di confronto
 
 Confrontano due valori e restituiscono `True` oppure `False`:
 
@@ -58,7 +58,7 @@ print(x > 4)   # True
 print(x < 3)   # False
 ```
 
-## Operatori logici — per combinare condizioni
+## Combinare condizioni con gli operatori logici
 
 Servono a combinare più condizioni:
 
@@ -69,12 +69,12 @@ Servono a combinare più condizioni:
 | `not`     | Inverte il valore (vero diventa falso e viceversa) |
 
 ```python
-print(5 > 3 and 10 > 7)  # True  — entrambe vere
-print(5 > 3 or 10 < 7)   # True  — almeno una vera
-print(not 5 > 3)          # False — 5 > 3 è True, not lo inverte
+print(5 > 3 and 10 > 7)  # True: entrambe vere
+print(5 > 3 or 10 < 7)   # True: almeno una vera
+print(not 5 > 3)          # False: 5 > 3 è True, not lo inverte
 ```
 
-## Operatori di assegnazione — scorciatoie per aggiornare variabili
+## Operatori di assegnazione: scorciatoie per aggiornare variabili
 
 Al posto di `x = x + 3` puoi usare la forma abbreviata `x += 3`. Le due istruzioni hanno lo stesso effetto:
 
@@ -97,15 +97,15 @@ punteggio -= 20   # penalità di 20 punti
 print(punteggio)  # 130
 ```
 
-## Operatori `in` e `not in` — per cercare elementi
+## Cercare elementi con `in` e `not in`
 
 Verificano se un valore è presente o assente in una lista, una stringa o un'altra sequenza:
 
 ```python
 frutta = ["mela", "banana", "ciliegia"]
-print("mela" in frutta)      # True  — c'è la mela
-print("uva" in frutta)       # False — non c'è l'uva
-print("uva" not in frutta)   # True  — l'uva non c'è
+print("mela" in frutta)      # True: c'è la mela
+print("uva" in frutta)       # False: non c'è l'uva
+print("uva" not in frutta)   # True: l'uva non c'è
 
 testo = "Ciao, mondo!"
 print("mondo" in testo)      # True
@@ -117,8 +117,8 @@ print("pizza" in testo)      # False
 Come in matematica, Python esegue le operazioni secondo un ordine preciso. Le parentesi hanno la precedenza più alta:
 
 ```python
-print(2 + 3 * 4)    # 14 — prima la moltiplicazione, poi l'addizione
-print((2 + 3) * 4)  # 20 — prima le parentesi
+print(2 + 3 * 4)    # 14: prima la moltiplicazione, poi l'addizione
+print((2 + 3) * 4)  # 20: prima le parentesi
 ```
 
 Se non sei sicuro dell'ordine, usa le parentesi: rendono il codice più chiaro e sicuro.

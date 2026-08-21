@@ -74,7 +74,7 @@ int eta = 20;
 bool haPatente = true;
 
 if (eta >= 18) {
-    // siamo maggiorenni — ora controlliamo la patente
+    // siamo maggiorenni, ora controlliamo la patente
     if (haPatente) {
         cout << "Puoi guidare." << endl;
     } else {
@@ -141,9 +141,9 @@ Output: `Mercoledì`
 
 ### I componenti di `switch`
 
-- **`case valore:`** — esegue il codice se la variabile vale quel numero
-- **`break`** — esce dallo switch. Senza di esso, l'esecuzione continua nei case successivi!
-- **`default`** — viene eseguito se nessun case corrisponde (facoltativo)
+- **`case valore:`**: esegue il codice se la variabile vale quel numero
+- **`break`**: esce dallo switch. Senza di esso, l'esecuzione continua nei case successivi!
+- **`default`**: viene eseguito se nessun case corrisponde (facoltativo)
 
 ### Attenzione al `break`!
 
@@ -210,15 +210,15 @@ int main() {
     if (punteggio < 0 || punteggio > 100) {
         cout << "Punteggio non valido!" << endl;
     } else if (punteggio >= 90) {
-        cout << "Voto: A — Eccellente!" << endl;
+        cout << "Voto: A, Eccellente!" << endl;
     } else if (punteggio >= 80) {
-        cout << "Voto: B — Molto buono" << endl;
+        cout << "Voto: B, Molto buono" << endl;
     } else if (punteggio >= 70) {
-        cout << "Voto: C — Buono" << endl;
+        cout << "Voto: C, Buono" << endl;
     } else if (punteggio >= 60) {
-        cout << "Voto: D — Sufficiente" << endl;
+        cout << "Voto: D, Sufficiente" << endl;
     } else {
-        cout << "Voto: F — Insufficiente" << endl;
+        cout << "Voto: F, Insufficiente" << endl;
     }
 
     return 0;

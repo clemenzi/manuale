@@ -9,17 +9,17 @@ Quando compili un programma C++, il sistema esegue tre fasi distinte.
 
 Conoscere queste fasi aiuta a:
 
-- **interpretare gli errori** — ci sono errori di compilazione ed errori di linking, e si risolvono in modi diversi
-- **lavorare con progetti grandi** — con più file `.cpp`, devi sapere come metterli insieme
-- **usare il terminale** — spesso si compila da riga di comando, specialmente in ambito professionale
+- **interpretare gli errori**: ci sono errori di compilazione ed errori di linking, e si risolvono in modi diversi
+- **lavorare con progetti grandi**: con più file `.cpp`, devi sapere come metterli insieme
+- **usare il terminale**: spesso si compila da riga di comando, specialmente in ambito professionale
 
 ## Le tre fasi: dalla ricetta al piatto
 
 Il processo completo comprende:
 
-1. **Preprocessing** — il preprocessore prepara gli ingredienti (espande `#include`, sostituisce le macro `#define`, ecc.)
-2. **Compilazione** — il compilatore traduce la ricetta in lingua macchina
-3. **Linking** — il linker unisce tutti i pezzi in un unico programma eseguibile
+1. **Preprocessing**: il preprocessore prepara gli ingredienti (espande `#include`, sostituisce le macro `#define`, ecc.)
+2. **Compilazione**: il compilatore traduce la ricetta in lingua macchina
+3. **Linking**: il linker unisce tutti i pezzi in un unico programma eseguibile
 
 ## Fase 1: Preprocessing
 
@@ -43,11 +43,11 @@ Puoi vedere il risultato del preprocessing con il flag `-E`:
 g++ -E main.cpp -o main.i
 ```
 
-Il file `main.i` contiene il codice dopo il preprocessing — di solito è molto lungo perché include tutto il contenuto degli header.
+Il file `main.i` contiene il codice dopo il preprocessing. Di solito è molto lungo, perché include tutto il contenuto degli header.
 
 ## Fase 2: Compilazione
 
-Il compilatore prende il codice preprocessato e lo trasforma in **codice oggetto** — un file in linguaggio macchina con estensione `.o` (su Linux e macOS) o `.obj` (su Windows).
+Il compilatore prende il codice preprocessato e lo trasforma in **codice oggetto**, un file in linguaggio macchina con estensione `.o` (su Linux e macOS) o `.obj` (su Windows).
 
 Il codice oggetto contiene istruzioni che il processore capisce, ma non è ancora un programma completo: mancano i collegamenti alle funzioni scritte in altri file.
 
@@ -87,14 +87,14 @@ g++ file.cpp -o mio_programma   # l'eseguibile si chiamerà "mio_programma"
 g++ file.cpp                    # senza -o, l'eseguibile si chiama "a.out"
 ```
 
-### Warning — gli avvisi del compilatore
+### I warning del compilatore
 
 I warning non sono errori: il programma compila lo stesso, ma il compilatore ti avvisa di cose sospette.
 
 ```bash
 g++ -Wall file.cpp -o output       # abilita la maggior parte dei warning
 g++ -Wextra file.cpp -o output     # warning aggiuntivi
-g++ -Wall -Wextra file.cpp -o output   # entrambi — consigliato!
+g++ -Wall -Wextra file.cpp -o output   # entrambi, consigliato!
 ```
 
 Esempi di warning utili:
@@ -104,9 +104,9 @@ int x;         // warning: x usata senza essere inizializzata
 if (x = 5)    // warning: probabilmente volevi == invece di =
 ```
 
-Leggi sempre i warning e correggili — anche se il programma funziona.
+Leggi sempre i warning e correggili, anche se il programma funziona.
 
-### Debug — per trovare gli errori
+### Debug: trovare gli errori
 
 ```bash
 g++ -g file.cpp -o output   # include informazioni di debug nel programma
@@ -114,7 +114,7 @@ g++ -g file.cpp -o output   # include informazioni di debug nel programma
 
 Con `-g` puoi usare strumenti come `gdb` per eseguire il programma passo passo e vedere cosa succede.
 
-### Ottimizzazione — per rendere il programma più veloce
+### Ottimizzazione: rendere il programma più veloce
 
 ```bash
 g++ -O0 file.cpp -o output   # nessuna ottimizzazione (utile durante lo sviluppo)
@@ -125,7 +125,7 @@ g++ -O3 file.cpp -o output   # ottimizzazione aggressiva
 
 Usa `-O0` durante lo sviluppo e il debug. Usa `-O2` quando vuoi distribuire il programma.
 
-### Standard C++ — scegliere la versione del linguaggio
+### Standard C++: scegliere la versione del linguaggio
 
 ```bash
 g++ -std=c++11 file.cpp -o output   # C++11
@@ -204,7 +204,7 @@ Compilazione in un unico comando:
 g++ -std=c++17 -Wall main.cpp studente.cpp -o programma
 ```
 
-Oppure in due fasi (utile nei progetti grandi — ricompili solo i file modificati):
+Oppure in due fasi (utile nei progetti grandi, perché ricompili solo i file modificati):
 
 ```bash
 # Compila i singoli file
@@ -215,7 +215,7 @@ g++ -std=c++17 -c studente.cpp -o studente.o
 g++ main.o studente.o -o programma
 ```
 
-## Makefile — automatizzare la compilazione
+## Automatizzare la compilazione con Make
 
 Nei progetti con molti file, riscrivere il comando `g++` ogni volta è noioso e rischioso. Il **Makefile** è un file che descrive come compilare il progetto automaticamente.
 

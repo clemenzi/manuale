@@ -44,7 +44,7 @@ In questo caso il programma **gira senza errori**, ma produce risultati sbagliat
 def calcola_media(numeri):
     return sum(numeri) / len(numeri) - 1  # Bug! Il "-1" non dovrebbe esserci
 
-print(calcola_media([8, 7, 9]))  # Stampa 7.0 invece di 8.0 — sbagliato!
+print(calcola_media([8, 7, 9]))  # Stampa 7.0 invece di 8.0: sbagliato!
 ```
 
 ## Leggere il messaggio di errore (Traceback)
@@ -161,7 +161,7 @@ print(type(x), x)   # Stampa sia il tipo che il valore
 
 ### Usa `assert` per aggiungere controlli
 
-`assert` ti permette di scrivere "mi aspetto che questa condizione sia vera — se non lo è, fermati e dimmi perché".
+`assert` ti permette di scrivere "mi aspetto che questa condizione sia vera: se non lo è, fermati e dimmi perché".
 
 ```python
 def calcola_area(base, altezza):

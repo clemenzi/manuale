@@ -17,14 +17,14 @@ In C++, la memoria funziona in due modi diversi:
 
 ```cpp
 int x = 5;          // creato automaticamente, distrutto automaticamente
-int arr[10];        // array di dimensione fissa — deve essere nota prima
+int arr[10];        // array di dimensione fissa, deve essere nota prima
 ```
 
-**Memoria dinamica (heap):** tu decidi quanta memoria serve, nel momento in cui ti serve. Devi gestirla tu — compresa la "restituzione" quando hai finito.
+**Memoria dinamica (heap):** tu decidi quanta memoria serve, nel momento in cui ti serve. Devi gestirla tu, compresa la "restituzione" quando hai finito.
 
 ```cpp
 int* ptr = new int;         // crei uno spazio nella memoria heap
-int* arr = new int[100];    // un array di 100 interi — deciso a runtime
+int* arr = new int[100];    // un array di 100 interi, deciso a runtime
 ```
 
 La memoria allocata nell'heap resta occupata finché non la liberi o finché il processo non termina.
@@ -52,7 +52,7 @@ arr[1] = 20;
 
 ## Liberare memoria: `delete`
 
-Ogni volta che usi `new`, devi usare `delete` quando hai finito. Altrimenti la memoria rimane "affittata" per sempre — si chiama **memory leak** (perdita di memoria):
+Ogni volta che usi `new`, devi usare `delete` quando hai finito. Altrimenti la memoria rimane "affittata" per sempre. Si chiama **memory leak** (perdita di memoria):
 
 ```cpp
 int* ptr = new int(42);
@@ -80,7 +80,7 @@ Se dimentichi il `delete`, la memoria resta occupata finché il programma non ch
 void funzione() {
     int* ptr = new int(42);
     // ... usa ptr ...
-    // manca delete ptr! — il ptr viene distrutto ma la memoria no
+    // manca delete ptr! Il ptr viene distrutto ma la memoria no
 }
 
 // Se la chiami mille volte, hai perso 4000 byte senza saperlo
@@ -124,7 +124,7 @@ int main() {
     cout << "Quanti numeri vuoi inserire? ";
     cin >> n;
 
-    // Alloca esattamente n interi — deciso a runtime!
+    // Alloca esattamente n interi, deciso a runtime!
     int* numeri = new int[n];
 
     // Inserisci i numeri

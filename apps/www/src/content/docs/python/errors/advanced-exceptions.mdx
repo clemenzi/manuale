@@ -91,7 +91,7 @@ def leggi_file(percorso):
             return f.read()
     except FileNotFoundError as e:
         print(f"Log: il file '{percorso}' non è stato trovato.")
-        raise   # Rilancio lo stesso errore — non lo "ingoio"
+        raise   # Rilancio lo stesso errore: non lo "ingoio"
 ```
 
 Con `raise` da solo (senza argomenti), Python rilancia esattamente lo stesso errore che hai appena catturato.
@@ -176,7 +176,7 @@ with GestoreRisorse() as r:
 try:
     operazione_complessa()
 except:
-    pass   # Silenzio totale — non sai cosa è andato storto
+    pass   # Silenzio totale: non sai cosa è andato storto
 
 # BENE: cattura solo gli errori che ti aspetti
 try:
@@ -190,7 +190,7 @@ try:
     operazione_complessa()
 except Exception as e:
     logging.error(f"Errore inatteso: {e}")
-    raise   # Non nascondere l'errore — rilancierlo
+    raise   # Non nascondere l'errore: rilanciarlo
 ```
 
 Regola: **cattura solo gli errori che sai come gestire**. Lascia propagare gli altri.

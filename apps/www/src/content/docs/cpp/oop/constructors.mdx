@@ -88,7 +88,7 @@ La lista inizializza i campi direttamente, senza una successiva assegnazione nel
 
 ## Più costruttori per la stessa classe
 
-Puoi avere più costruttori con parametri diversi — il compilatore sceglie quello giusto in base a come crei l'oggetto:
+Puoi avere più costruttori con parametri diversi. Il compilatore sceglie quello giusto in base a come crei l'oggetto:
 
 ```cpp
 class Punto {
@@ -107,9 +107,9 @@ public:
 };
 
 int main() {
-    Punto p1;           // (0, 0) — usa il primo costruttore
-    Punto p2(5.0);      // (5, 5) — usa il secondo costruttore
-    Punto p3(3.0, 4.0); // (3, 4) — usa il terzo costruttore
+    Punto p1;           // (0, 0): usa il primo costruttore
+    Punto p2(5.0);      // (5, 5): usa il secondo costruttore
+    Punto p3(3.0, 4.0); // (3, 4): usa il terzo costruttore
     return 0;
 }
 ```

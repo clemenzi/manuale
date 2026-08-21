@@ -9,7 +9,7 @@ Una variabile `x` definita dentro una funzione esiste solo in quella funzione. F
 
 Questa zona del programma si chiama **scope** (o "ambito").
 
-## Variabili locali — dentro la funzione
+## Variabili locali: dentro la funzione
 
 Una variabile creata dentro una funzione è **locale**: esiste durante l'esecuzione della funzione e non è accessibile fuori dal suo scope.
 
@@ -24,7 +24,7 @@ mia_funzione()  # 10
 
 È un comportamento voluto: le funzioni restano **indipendenti** e le loro variabili non interferiscono con quelle esterne.
 
-## Variabili globali — fuori dalle funzioni
+## Variabili globali: fuori dalle funzioni
 
 Una variabile definita fuori da ogni funzione è **globale**: può essere letta dalla parte principale del programma e dalle funzioni, salvo variabili locali con lo stesso nome.
 
@@ -79,10 +79,10 @@ x = "globale"
 
 def funzione():
     x = "locale"
-    print(x)   # locale — la variabile locale ha la precedenza
+    print(x)   # locale: la variabile locale ha la precedenza
 
 funzione()
-print(x)       # globale — fuori dalla funzione, x è ancora quella globale
+print(x)       # globale: fuori dalla funzione, x è ancora quella globale
 ```
 
 Non vengono confuse: sono due variabili separate che condividono solo il nome.
@@ -95,6 +95,6 @@ Per questo non dovresti mai chiamare una tua variabile `print` o `list`: sovrasc
 
 ```python
 # Da non fare mai!
-# list = [1, 2, 3]   — ora non puoi più usare list() come funzione
-# print = "ciao"     — ora print() non funziona più!
+# list = [1, 2, 3]: ora non puoi più usare list() come funzione
+# print = "ciao": ora print() non funziona più!
 ```

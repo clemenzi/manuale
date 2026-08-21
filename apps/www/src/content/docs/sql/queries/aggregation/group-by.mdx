@@ -7,7 +7,7 @@ description: Come raggruppare le righe che condividono lo stesso valore.
 
 `GROUP BY` serve quando vuoi **raggruppare** le righe che condividono uno stesso valore.
 
-Immagina una pila di schede clienti. Invece di leggerle in ordine, le dividi per città: Roma da una parte, Milano da un’altra, Torino da un’altra ancora.
+Immagina una pila di schede clienti. Invece di leggerle in ordine, le dividi per città: Roma da una parte, Milano da un'altra, Torino da un'altra ancora.
 
 `GROUP BY` applica questa logica ai dati della tabella.
 
@@ -19,7 +19,7 @@ GROUP BY citta;
 
 Questa query dice:
 
-> “Raggruppa i clienti per città e conta quanti clienti ci sono in ogni città.”
+> "Raggruppa i clienti per città e conta quanti clienti ci sono in ogni città."
 
 ## Un esempio con una tabella
 
@@ -83,7 +83,7 @@ FROM clienti
 GROUP BY citta;
 ```
 
-Il problema è `nome`. Se a Roma ci sono Luca e Sara, quale nome dovrebbe mostrare SQL per il gruppo “Roma”?
+Il problema è `nome`. Se a Roma ci sono Luca e Sara, quale nome dovrebbe mostrare SQL per il gruppo "Roma"?
 
 Quando raggruppi, stai lasciando il dettaglio delle singole righe. Per questo devi mostrare il gruppo e i calcoli sul gruppo.
 

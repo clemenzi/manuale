@@ -51,7 +51,7 @@ voti_classe = pd.Series(
     index=["Alice", "Bob", "Carlo", "Diana"]
 )
 print(voti_classe["Alice"])   # 8
-print(voti_classe.mean())     # 7.5 — media
+print(voti_classe.mean())     # 7.5: media
 ```
 
 ## DataFrame: la tabella di dati
@@ -120,9 +120,9 @@ print(risultato)
 ## Statistiche in un colpo solo
 
 ```python
-print(studenti["voto"].mean())    # 7.5  — media dei voti
-print(studenti["voto"].max())     # 9    — voto più alto
-print(studenti["voto"].min())     # 6    — voto più basso
+print(studenti["voto"].mean())    # 7.5:   media dei voti
+print(studenti["voto"].max())     # 9:     voto più alto
+print(studenti["voto"].min())     # 6:     voto più basso
 print(studenti["voto"].std())     # deviazione standard
 
 # Riepilogo statistico di tutte le colonne numeriche
@@ -164,6 +164,6 @@ per_citta = studenti.groupby("citta")["voto"].mean()
 print(per_citta)
 
 # Informazioni generali sul DataFrame
-print(studenti.shape)    # (4, 4) — 4 righe, 4 colonne
+print(studenti.shape)    # (4, 4): 4 righe, 4 colonne
 print(studenti.dtypes)   # tipo di dati in ogni colonna
 ```

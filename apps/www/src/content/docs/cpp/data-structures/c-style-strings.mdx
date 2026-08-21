@@ -11,8 +11,8 @@ Conoscere entrambi serve per leggere codice esistente; nei nuovi programmi si us
 
 ## I due metodi
 
-1. **Stringhe C-style** — sono array di caratteri (`char[]`), ereditate dal linguaggio C. Più complicate da usare.
-2. **`std::string`** — la stringa moderna del C++, molto più semplice e sicura.
+1. **Stringhe C-style**: sono array di caratteri (`char[]`), ereditate dal linguaggio C. Più complicate da usare.
+2. **`std::string`**: la stringa moderna del C++, molto più semplice e sicura.
 
 **Regola pratica: usa `std::string`.** Le stringhe C-style servono soprattutto per interoperare con codice C o API che le richiedono.
 
@@ -44,10 +44,10 @@ Per manipolare queste stringhe hai bisogno di funzioni speciali dalla libreria `
 char a[] = "Ciao";
 char b[] = "Mondo";
 
-cout << strlen(a) << endl;        // 4 — lunghezza della stringa (senza '\0')
+cout << strlen(a) << endl;        // 4: lunghezza della stringa (senza '\0')
 strcpy(a, "Hello");               // copia "Hello" in a
 strcat(a, " World");              // concatena " World" ad a
-cout << strcmp("abc", "abc");     // 0 — le due stringhe sono uguali
+cout << strcmp("abc", "abc");     // 0: le due stringhe sono uguali
 ```
 
 ### I problemi delle stringhe C-style
@@ -59,7 +59,7 @@ cout << strcmp("abc", "abc");     // 0 — le due stringhe sono uguali
 
 ```cpp
 char a[10] = "Ciao";
-// ERRORE — non puoi fare a + " mondo" con le C-style strings
+// ERRORE: non puoi fare a + " mondo" con le C-style strings
 // Devi usare: strcat(a, " mondo");
 ```
 
@@ -108,7 +108,7 @@ A volte devi passare da uno all'altro (per esempio, alcune librerie richiedono i
 string str = "Ciao";
 const char* cstr = str.c_str();   // converte in puntatore al C-string
 
-// Da char[] a string — la conversione è automatica
+// Da char[] a string: la conversione è automatica
 char cArray[] = "Ciao";
 string str2 = cArray;
 ```
@@ -137,7 +137,7 @@ FILE* f = fopen(nomefile.c_str(), "r");
 using namespace std;
 
 int main() {
-    // Approccio C-style — verboso e fragile
+    // Approccio C-style: verboso e fragile
     char c_nome[50] = "Alice";
     char c_cognome[50] = "Bianchi";
     char c_completo[100];
@@ -146,7 +146,7 @@ int main() {
     strcat(c_completo, c_cognome); // aggiunge il cognome
     cout << "C-style: " << c_completo << endl;
 
-    // Approccio moderno con string — semplice e leggibile
+    // Approccio moderno con string: semplice e leggibile
     string s_nome = "Alice";
     string s_cognome = "Bianchi";
     string s_completo = s_nome + " " + s_cognome;

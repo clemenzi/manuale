@@ -26,10 +26,10 @@ Ogni elemento ha una **posizione**, chiamata indice, che parte da `0`.
 
 ```python
 frutta = ["mela", "banana", "ciliegia"]
-print(frutta[0])   # mela      — il primo elemento
-print(frutta[1])   # banana    — il secondo
-print(frutta[-1])  # ciliegia  — l'ultimo (conta dalla fine)
-print(frutta[-2])  # banana    — il penultimo
+print(frutta[0])   # mela:       il primo elemento
+print(frutta[1])   # banana:     il secondo
+print(frutta[-1])  # ciliegia:   l'ultimo (conta dalla fine)
+print(frutta[-2])  # banana:     il penultimo
 ```
 
 ## Estrarre una parte della lista (slicing)
@@ -38,10 +38,10 @@ Puoi estrarre una parte della lista indicando l'indice iniziale e quello finale:
 
 ```python
 numeri = [0, 1, 2, 3, 4, 5]
-print(numeri[1:4])   # [1, 2, 3]    — dalla posizione 1 alla 3 (4 esclusa)
-print(numeri[:3])    # [0, 1, 2]    — dall'inizio alla posizione 2
-print(numeri[3:])    # [3, 4, 5]    — dalla posizione 3 alla fine
-print(numeri[::-1])  # [5, 4, 3, 2, 1, 0]  — la lista al contrario
+print(numeri[1:4])   # [1, 2, 3]:     dalla posizione 1 alla 3 (4 esclusa)
+print(numeri[:3])    # [0, 1, 2]:     dall'inizio alla posizione 2
+print(numeri[3:])    # [3, 4, 5]:     dalla posizione 3 alla fine
+print(numeri[::-1])  # [5, 4, 3, 2, 1, 0]:   la lista al contrario
 ```
 
 ## Modificare gli elementi
@@ -97,9 +97,9 @@ print(frutta)  # []
 
 ```python
 numeri = [1, 2, 3, 2, 4, 2]
-print(numeri.count(2))   # 3  — quante volte compare il numero 2
-print(numeri.index(3))   # 2  — in quale posizione si trova il numero 3
-print(len(numeri))       # 6  — quanti elementi ha la lista
+print(numeri.count(2))   # 3:   quante volte compare il numero 2
+print(numeri.index(3))   # 2:   in quale posizione si trova il numero 3
+print(len(numeri))       # 6:   quanti elementi ha la lista
 ```
 
 ## Ordinare una lista
@@ -116,8 +116,8 @@ print(numeri)  # [9, 5, 4, 3, 2, 1, 1]
 # sorted() non modifica l'originale, restituisce una nuova lista
 originale = [3, 1, 4, 1, 5]
 ordinata = sorted(originale)
-print(originale)  # [3, 1, 4, 1, 5]  — invariata
-print(ordinata)   # [1, 1, 3, 4, 5]  — nuova lista ordinata
+print(originale)  # [3, 1, 4, 1, 5]:   invariata
+print(ordinata)   # [1, 1, 3, 4, 5]:   nuova lista ordinata
 ```
 
 ## Copiare una lista
@@ -129,8 +129,8 @@ originale = [1, 2, 3]
 copia = originale.copy()    # copia vera e propria
 copia.append(4)
 
-print(originale)  # [1, 2, 3]    — non cambiata
-print(copia)      # [1, 2, 3, 4] — modificata
+print(originale)  # [1, 2, 3]:     non cambiata
+print(copia)      # [1, 2, 3, 4]:  modificata
 ```
 
 ## Liste di liste
@@ -143,5 +143,5 @@ matrice = [
     [4, 5, 6],
     [7, 8, 9]
 ]
-print(matrice[1][2])  # 6  — seconda riga, terza colonna
+print(matrice[1][2])  # 6:   seconda riga, terza colonna
 ```

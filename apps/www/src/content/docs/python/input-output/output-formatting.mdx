@@ -32,9 +32,9 @@ Per i numeri decimali puoi specificare quante cifre mostrare dopo la virgola:
 
 ```python
 pi = 3.14159265
-print(f"{pi:.2f}")   # 3.14    — 2 cifre decimali
-print(f"{pi:.4f}")   # 3.1416  — 4 cifre decimali
-print(f"{pi:.0f}")   # 3       — nessuna cifra decimale
+print(f"{pi:.2f}")   # 3.14: 2 cifre decimali
+print(f"{pi:.4f}")   # 3.1416: 4 cifre decimali
+print(f"{pi:.0f}")   # 3: nessuna cifra decimale
 ```
 
 La sintassi è `{valore:.Nf}` dove `N` è il numero di cifre decimali.
@@ -63,7 +63,7 @@ print(f"{numero:,}")   # 1,234,567
 Per creare colonne allineate puoi specificare larghezza e direzione dell'allineamento:
 
 ```python
-print(f"{'Sinistra':<15}|")   # allineato a sinistra — 15 caratteri
+print(f"{'Sinistra':<15}|")   # allineato a sinistra, 15 caratteri
 print(f"{'Centro':^15}|")     # centrato
 print(f"{'Destra':>15}|")     # allineato a destra
 ```
@@ -80,7 +80,7 @@ Sinistra       |
 
 La funzione `print()` ha due opzioni utili:
 
-**`sep`** — il testo che viene messo tra gli argomenti (default: uno spazio):
+**`sep`**: il testo che Python mette tra gli argomenti (default: uno spazio).
 
 ```python
 print("mela", "banana", "uva")            # mela banana uva
@@ -88,11 +88,11 @@ print("mela", "banana", "uva", sep=", ")  # mela, banana, uva
 print("mela", "banana", "uva", sep=" | ") # mela | banana | uva
 ```
 
-**`end`** — il testo aggiunto alla fine (default: va a capo `\n`):
+**`end`**: il testo aggiunto alla fine (default: va a capo `\n`).
 
 ```python
 print("Ciao", end=" ")
-print("mondo!")         # Ciao mondo!  — sulla stessa riga
+print("mondo!")         # Ciao mondo!  Sulla stessa riga
 ```
 
 Utile per stampare più elementi sulla stessa riga in un ciclo:

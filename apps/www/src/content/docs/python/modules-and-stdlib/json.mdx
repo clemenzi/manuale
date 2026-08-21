@@ -153,7 +153,7 @@ import json
 try:
     dati = json.loads("questo non è JSON valido!!!")
 except json.JSONDecodeError as e:
-    print(f"Errore: il testo non è JSON valido — {e}")
+    print(f"Errore: il testo non è JSON valido, {e}")
 ```
 
 ## Esempio pratico: file di configurazione
